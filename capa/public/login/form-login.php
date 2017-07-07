@@ -6,6 +6,8 @@
 <head>
   <meta charset="utf-8">
   <title>Login CAPA</title>
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
   <h1>Formulário de Login</h1>
@@ -19,5 +21,8 @@
 
     <input type="submit" value="Entrar">
   </form>
+
+  <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

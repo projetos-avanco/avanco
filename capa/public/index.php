@@ -6,6 +6,8 @@
 <head>
   <meta charset="utf-8">
   <title>Tela de Login - CAPA</title>
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
   <h1>Tela de Login - CAPA</h1>
@@ -19,5 +21,8 @@
   <?php else : ?>
     <p>Olá, visitante . <a href="login/form-login.php">Login</a></p>
   <?php endif; ?>
+
+  <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
