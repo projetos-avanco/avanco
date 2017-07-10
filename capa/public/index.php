@@ -15,7 +15,7 @@
   <?php if (verificaUsuarioLogado()) : ?>
     <p>Olá,
       <?php echo $_SESSION['nome_usuario']; ?> |
-      <a href="home.php">Home Page</a> |
+      <a href="<?php echo BASE_URL; ?>public/home.php">Home Page</a> |
       <a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Sair</a>
     </p>
   <?php else : ?>

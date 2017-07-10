@@ -36,6 +36,6 @@ function consultaDadosDoUsuario($conexao, $login)
   $_SESSION['id_usuario']   = $usuario['id'];
   $_SESSION['nome_usuario'] = $usuario['nome'];
 
-  header('Location: ' . BASE_URL . 'public/index.php');
+  header('Location: ' . BASE_URL . 'public/home.php');
 
 }
