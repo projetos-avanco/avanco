@@ -19,7 +19,7 @@
       <a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Sair</a>
     </p>
   <?php else : ?>
-    <p>Olá, visitante . <a href="login/form-login.php">Login</a></p>
+    <p>Olá, visitante . <a href="<?php echo BASE_URL; ?>public/views/login/form-login.php">Login</a></p>
   <?php endif; ?>
 
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>

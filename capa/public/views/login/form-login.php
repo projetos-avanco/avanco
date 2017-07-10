@@ -1,5 +1,5 @@
 <?php session_start(); ?>
-<?php require '../../init.php'; ?>
+<?php require '../../../init.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
