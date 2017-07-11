@@ -23,7 +23,7 @@ function consultaDadosDoUsuario($conexao, $login)
 
     echo 'Usuário ou Senha incorretos!';
 
-    header('Location: ' . BASE_URL . 'public/login/form-login.php');
+    header('Location: ' . BASE_URL . 'public/views/login/form-login.php');
 
     exit();
 
