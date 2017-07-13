@@ -18,4 +18,4 @@ require_once 'database/conexao.php';
 require_once 'database/functions/consultas-login.php';
 
 # importando script com as funções de segurança para o sistema de login
-require_once 'app/functions/seguranca.php';
+require_once 'app/helpers/seguranca.php';
