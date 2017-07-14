@@ -1,4 +1,5 @@
 <?php session_start(); ?>
+
 <?php require '../init.php'; ?>
 
 <!DOCTYPE html>
