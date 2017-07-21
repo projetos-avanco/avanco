@@ -29,6 +29,10 @@ function defineArrayDeRelatorioDeChamados()
       'indices' => array(
         'avancino' => '',
         'geral'    => ''
+      ),
+      'comentarios' => array(
+        'satisfeitos' => '',
+        'insatisfeitos' => ''
       )
     ),
 
@@ -55,6 +59,10 @@ function defineArrayDeRelatorioDeChamados()
       'indices' => array(
         'avancino' => '',
         'geral'    => ''
+      ),
+      'comentarios' => array(
+        'satisfeitos' => '',
+        'insatisfeitos' => ''
       )
     ),
 
@@ -81,6 +89,10 @@ function defineArrayDeRelatorioDeChamados()
       'indices' => array(
         'avancino' => '',
         'geral'    => ''
+      ),
+      'comentarios' => array(
+        'satisfeitos' => '',
+        'insatisfeitos' => ''
       )
     ),
 
@@ -107,6 +119,10 @@ function defineArrayDeRelatorioDeChamados()
       'indices' => array(
         'avancino' => '',
         'geral'    => ''
+      ),
+      'comentarios' => array(
+        'satisfeitos' => '',
+        'insatisfeitos' => ''
       )
     ),
 
@@ -133,6 +149,10 @@ function defineArrayDeRelatorioDeChamados()
       'indices' => array(
         'avancino' => '',
         'geral'    => ''
+      ),
+      'comentarios' => array(
+        'satisfeitos' => '',
+        'insatisfeitos' => ''
       )
     ),
 
@@ -159,6 +179,10 @@ function defineArrayDeRelatorioDeChamados()
       'indices' => array(
         'avancino' => '',
         'geral'    => ''
+      ),
+      'comentarios' => array(
+        'satisfeitos' => '',
+        'insatisfeitos' => ''
       )
     )
   );
