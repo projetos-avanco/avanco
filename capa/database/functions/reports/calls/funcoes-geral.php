@@ -1,27 +1,5 @@
 <?php
 
-require ABS_PATH . 'app/models/departamentos.php';
-require ABS_PATH . 'app/models/atendimento.php';
-
-/**
- * gera o relatório geral do atendimento
- * @param - conexão aberta
- * @param - array com a data inicial e data final
- */
-function geraRelatorioGeralDoAtendimento($conexao, $datas)
-{
-  $departamentos = defineArrayDeDepartamentos();
-
-  $resultados = defineArrayDeResultadosDoAtendimento();
-
-  $resultados['aug_int_parc']['geral']['demanda_total'] = retornaDemandaTotal($conexao, $datas, $departamentos['aug_int_parc']);
-  $resultados['aug_int_parc']['geral']['atendidos'] = retornaAtendidos($conexao, $datas, $departamentos['aug_int_parc']);
-  #$resultados['aug_int_parc']['geral']['perdidos'] = retornaPerdidos($conexao, $datas, $departamentos['aug_int_parc']);
-  #$resultados['aug_int_parc']['geral']['taxa_de_perda'] = retornaTaxaDePerda($conexao, $datas, $departamentos['aug_int_parc']);
-
-  exit(var_dump($resultados['aug_int_parc']));
-}
-
 /**
  * retorna a quantidade de demanda total de chamados de um departamento durante um período ou uma data especifíca
  * @param - conexão aberta
@@ -34,7 +12,7 @@ function retornaDemandaTotal($conexao, $datas, $departamento)
   "SELECT
   	COUNT(id) AS demanda_total
   FROM lh_chat
-  WHERE (status = 1 OR status = 2)
+  WHERE (status = 2)
   	AND ({$departamento})
   	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}')";
 
@@ -57,7 +35,7 @@ function retornaAtendidos($conexao, $datas, $departamento)
   "SELECT
   	COUNT(id) AS atendidos
   FROM lh_chat
-  WHERE (status = 1 OR status = 2)
+  WHERE (status = 2)
   	AND ({$departamento})
   	AND (chat_duration > 0)
   	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}')";
@@ -75,18 +53,55 @@ function retornaAtendidos($conexao, $datas, $departamento)
  * @param - array com a data inicial e a data final
  * @param - array com o departamento especifíco
  */
-function retornaPerdidos()
+function retornaPerdidos($conexao, $datas, $departamento)
 {
+  $sql =
+  "SELECT
+  	COUNT(id) AS perdidos
+  FROM lh_chat
+  WHERE (status = 2)
+  	AND ({$departamento})
+  	AND (chat_duration = 0)
+  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}')";
 
+    $resultado = mysqli_query($conexao, $sql);
+
+    $resultado = mysqli_fetch_row($resultado);
+
+    return $resultado[0];
 }
 
 /**
- * retorna a taxa de perda de chamados de um departamento durante um período ou uma data especifíca
+ * calcula o percentual de taxa de perda dos chamados de um departamento durante um período ou uma data especifíca
  * @param - conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com o departamento especifíco
  */
-function calculaTaxaDePerda()
+function calculaTaxaDePerda($conexao, $datas, $departamento)
 {
+  $sql =
+  "SELECT
+  	ROUND(100 * (
+  		(SELECT
+  			COUNT(id) AS taxa_de_perdidos
+  		FROM lh_chat
+  		WHERE (status = 2)
+  			AND ({$departamento})
+  			AND (chat_duration = 0)
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}'))
 
+  		/
+
+  		(SELECT
+  			COUNT(id) AS demanda_total
+  		FROM lh_chat
+  		WHERE (status = 2)
+  			AND ({$departamento})
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}'))), 1) AS taxa_de_perda";
+
+    $resultado = mysqli_query($conexao, $sql);
+
+    $resultado = mysqli_fetch_row($resultado);
+
+    return $resultado[0];
 }

@@ -1,14 +1,14 @@
 <?php
 
 require ABS_PATH . 'app/helpers/datas.php';
-require ABS_PATH . 'database/functions/reports/consultas-clientes.php';
-require ABS_PATH . 'database/functions/reports/funcoes-relatorio-geral.php';
-
-# abrindo conexão com a base de dados
-$conexao = abre_conexao();
+require ABS_PATH . 'app/modules/reports/calls/chamados.php';
+require ABS_PATH . 'database/functions/reports/calls/funcoes-clientes.php';
 
 # verificando se existe requisição via método GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+  # abrindo conexão com a base de dados
+  $conexao = abre_conexao();
 
   $datas = array();
 
@@ -33,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     # geral
     $datas['inicial'] = '2017-07-03';
     $datas['final'] = '2017-07-03';
-    geraRelatorioGeralDoAtendimento($conexao, $datas);
+
+    geraRelatorioGeralDeChamados($conexao, $datas);
 
   }
 }

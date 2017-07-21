@@ -1,6 +1,6 @@
-<?php require '../../../init.php'; ?>
+<?php require '../../../../init.php'; ?>
 
-<?php require ABS_PATH . 'app/modules/reports/processa-datas.php'; ?>
+<?php require ABS_PATH . 'app/requests/get/processa-datas.php'; ?>
 
 <?php $clientes = $_SESSION['clientes']; ?>
 
@@ -17,8 +17,8 @@
 
   <form action="" method="get">
     <label for="data">Calendário: </label>
-      <input type="date" name="datas[inicial]" id="data" value="<?php echo formataDataParaExibir($data['inicial']); ?>" min="1979-12-31">
-      <input type="date" name="datas[final]" id="data" value="<?php echo formataDataParaExibir($data['final']); ?>" max="2099-12-31">
+      <input type="date" name="datas[inicial]" id="datas" value="<?php echo formataDataParaExibir($datas['inicial']); ?>" min="1979-12-31">
+      <input type="date" name="datas[final]" id="datas" value="<?php echo formataDataParaExibir($datas['final']); ?>" max="2099-12-31">
 
     <label for="cliente">Cliente: </label>
       <select name="cliente">
@@ -33,4 +33,4 @@
 </body>
 </html>
 
-<?php exit(var_dump($_GET)); ?>
+<?php exit(var_dump($_SESSION['relatorio_chamados'])); ?>
