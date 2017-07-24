@@ -7,9 +7,6 @@ require ABS_PATH . 'database/functions/reports/calls/funcoes-clientes.php';
 # verificando se existe requisição via método GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-  # abrindo conexão com a base de dados
-  $conexao = abre_conexao();
-
   $datas = array();
 
   # verificando se o formulário foi preenchido, caso contrário grava a data atual
@@ -19,20 +16,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   # chamando função que verifica o formato da data enviada
   $datas = formataDataParaMysql($datas);
 
+  # abrindo conexão com a base de dados
+  $conexao = abre_conexao();
+
   # chamando função que busca os clientes e gera as opções para o HTML
   geraOpcoesClientes($conexao);
 
-  # verificando se o relatório será de um cliente especifíco ou geral
-  if (isset($_GET['cliente']) && $_GET['cliente'] != '0') {
+  $datas['inicial'] = '2017-01-01';
+  $datas['final']   = '2017-07-03';
 
-    # especifíco
-    echo 'Especifíco';
+  # verificando se o relatório será de um cliente especifíco ou geral
+  if (isset($_GET['cnpj']) && $_GET['cnpj'] != '0') {
+
+    geraRelatorioEspecificoDeChamados($conexao, $datas, $_GET['cnpj']);
 
   } else {
-
-    # geral
-    $datas['inicial'] = '2017-06-01';
-    $datas['final'] = '2017-06-05';
 
     geraRelatorioGeralDeChamados($conexao, $datas);
 

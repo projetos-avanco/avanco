@@ -20,8 +20,8 @@
       <input type="date" name="datas[inicial]" id="datas" value="<?php echo formataDataParaExibir($datas['inicial']); ?>" min="1979-12-31">
       <input type="date" name="datas[final]" id="datas" value="<?php echo formataDataParaExibir($datas['final']); ?>" max="2099-12-31">
 
-    <label for="cliente">Cliente: </label>
-      <select name="cliente">
+    <label for="cnpj">Cliente: </label>
+      <select name="cnpj">
         <option value="0" selected>Selecione um Cliente</option>
         <?php echo $clientes; ?>
       </select>
@@ -33,4 +33,4 @@
 </body>
 </html>
 
-<?php exit(var_dump($_SESSION['relatorio_chamados'])); ?>
+<?php exit(var_dump($_SESSION['relatorio_de_chamados_especifico'])); ?>
