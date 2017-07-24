@@ -3,10 +3,10 @@
 
 require ABS_PATH . 'app/models/departamentos.php';
 require ABS_PATH . 'app/models/chamados.php';
-require ABS_PATH . 'database/functions/reports/calls/funcoes-geral.php';
-require ABS_PATH . 'database/functions/reports/calls/funcoes-triagem.php';
-require ABS_PATH . 'database/functions/reports/calls/funcoes-indices.php';
-require ABS_PATH . 'database/functions/reports/calls/funcoes-comentarios.php';
+require ABS_PATH . 'database/functions/reports/calls/general/funcoes-geral.php';
+require ABS_PATH . 'database/functions/reports/calls/general/funcoes-triagem.php';
+require ABS_PATH . 'database/functions/reports/calls/general/funcoes-indices.php';
+require ABS_PATH . 'database/functions/reports/calls/general/funcoes-comentarios.php';
 
 /**
  * gera o relatório geral (de todos os clientes) dos chamados de um período ou uma data específica

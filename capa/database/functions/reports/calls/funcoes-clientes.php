@@ -36,6 +36,5 @@ function geraOpcoesClientes($conexao)
 
     # criando sessão que guarda os clientes
     $_SESSION['clientes'] = $options;
-    
   }
 }
