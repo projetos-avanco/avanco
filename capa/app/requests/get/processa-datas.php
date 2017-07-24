@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   } else {
 
     # geral
-    $datas['inicial'] = '2017-07-03';
-    $datas['final'] = '2017-07-03';
+    $datas['inicial'] = '2017-06-01';
+    $datas['final'] = '2017-06-05';
 
     geraRelatorioGeralDeChamados($conexao, $datas);
 

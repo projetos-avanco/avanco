@@ -6,6 +6,7 @@ require ABS_PATH . 'app/models/chamados.php';
 require ABS_PATH . 'database/functions/reports/calls/funcoes-geral.php';
 require ABS_PATH . 'database/functions/reports/calls/funcoes-triagem.php';
 require ABS_PATH . 'database/functions/reports/calls/funcoes-indices.php';
+require ABS_PATH . 'database/functions/reports/calls/funcoes-comentarios.php';
 
 /**
  * gera o relatório geral (de todos os clientes) dos chamados de um período ou uma data específica
@@ -293,6 +294,16 @@ function geraRelatorioGeralDeChamados($conexao, $datas)
     ['tecnologia']
       ['indices']
         ['geral'] = calculaPercentualGeral($conexao, $datas, $departamentos['tecnologia']);
+
+  # comentários satisfeitos
+  $resultados
+    ['comentarios']
+      ['satisfeitos'] = retornaComentariosSatisfeitos($conexao, $datas);
+
+  # comentários insatisfeitos
+  $resultados
+    ['comentarios']
+      ['insatisfeitos'] = retornaComentariosInsatisfeitos($conexao, $datas);
 
   $_SESSION['relatorio_chamados'] = $resultados;
 }
