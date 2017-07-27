@@ -33,4 +33,16 @@
 </body>
 </html>
 
-<?php exit(var_dump($_SESSION['relatorio_de_chamados_especifico'])); ?>
+<?php
+  
+  if ($_SESSION['relatorios']['exibir']['geral'] == true && ! $_SESSION['relatorios']['exibir']['especifico']) {
+
+    exit(var_dump($_SESSION['relatorios']['chamados']['geral']));
+
+  } else {
+
+    exit(var_dump($_SESSION['relatorios']['chamados']['especifico']));
+
+  }
+
+?>

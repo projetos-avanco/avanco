@@ -7,8 +7,8 @@ function defineArrayDeRelatorioDeChamados()
 {
   $resultados = array(
     # departamento auge + integral + parceiros
-    'aug_int_parc' => array(
-      'geral' => array(
+    'geral' => array(
+      'demandas' => array(
         'demanda_total' => '',
         'atendidos'     => '',
         'perdidos'      => '',
@@ -34,7 +34,7 @@ function defineArrayDeRelatorioDeChamados()
 
     # departamento auge
     'auge' => array(
-      'geral' => array(
+      'demandas' => array(
         'demanda_total' => '',
         'atendidos'     => '',
         'perdidos'      => '',
@@ -60,7 +60,7 @@ function defineArrayDeRelatorioDeChamados()
 
     # departamento integral
     'integral' => array(
-      'geral' => array(
+      'demandas' => array(
         'demanda_total' => '',
         'atendidos'     => '',
         'perdidos'      => '',
@@ -86,7 +86,7 @@ function defineArrayDeRelatorioDeChamados()
 
     # departamento parceiros
     'parceiros' => array(
-      'geral' => array(
+      'demandas' => array(
         'demanda_total' => '',
         'atendidos'     => '',
         'perdidos'      => '',
@@ -112,7 +112,7 @@ function defineArrayDeRelatorioDeChamados()
 
     # departamento novo erp
     'novo_erp' => array(
-      'geral' => array(
+      'demandas' => array(
         'demanda_total' => '',
         'atendidos'     => '',
         'perdidos'      => '',
@@ -138,7 +138,7 @@ function defineArrayDeRelatorioDeChamados()
 
     # departamento tecnologia
     'tecnologia' => array(
-      'geral' => array(
+      'demandas' => array(
         'demanda_total' => '',
         'atendidos'     => '',
         'perdidos'      => '',

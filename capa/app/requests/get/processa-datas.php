@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
   $datas = array();
 
-  # verificando se o formulário foi preenchido, caso contrário grava a data atual
+  # verificando se foi informado as datas, caso contrário, será utilizado a data atual
   $datas['inicial'] = isset($_GET['datas']['inicial']) ? $_GET['datas']['inicial'] : date('Y-m-d');
   $datas['final']   = isset($_GET['datas']['final'])   ? $_GET['datas']['final']   : date('Y-m-d');
 
@@ -22,16 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   # chamando função que busca os clientes e gera as opções para o HTML
   geraOpcoesClientes($conexao);
 
-  $datas['inicial'] = '2017-01-01';
-  $datas['final']   = '2017-07-03';
-
   # verificando se o relatório será de um cliente especifíco ou geral
   if (isset($_GET['cnpj']) && $_GET['cnpj'] != '0') {
 
+    # chamando função que gera o relatório de chamados específico
     geraRelatorioEspecificoDeChamados($conexao, $datas, $_GET['cnpj']);
 
   } else {
-
+    
+    # chamando função que gera o relatório de chamados geral
     geraRelatorioGeralDeChamados($conexao, $datas);
 
   }

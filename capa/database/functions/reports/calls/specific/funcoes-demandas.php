@@ -2,12 +2,12 @@
 
 /**
  * retorna a demanda total de chamados de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com o departamento especifíco
  * @param - variável com o cnpj de um cliente específico
  */
-function retornaDemandaTotalDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function retornaDemandaTotalCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT
@@ -27,12 +27,12 @@ function retornaDemandaTotalDeUmCliente($conexao, $datas, $departamento, $cnpj)
 
 /**
  * retorna a quantidade de chamados atendidos de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com o departamento especifíco
  * @param - variável com o cnpj de um cliente específico
  */
-function retornaChamadosAtendidosDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function retornaChamadosAtendidosCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT
@@ -53,12 +53,12 @@ function retornaChamadosAtendidosDeUmCliente($conexao, $datas, $departamento, $c
 
 /**
  * retorna a quantidade de chamados perdidos de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com um departamento especifíco
  * @param - variável com o cnpj de um cliente específico
  */
-function retornaChamadosPerdidosDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function retornaChamadosPerdidosCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT
@@ -79,12 +79,12 @@ function retornaChamadosPerdidosDeUmCliente($conexao, $datas, $departamento, $cn
 
 /**
  * calcula o percentual de taxa de perda dos chamados de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com um departamento especifíco
  * @param - variável com o cnpj de um cliente específico
  */
-function calculaTaxaDePerdaDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function calculaTaxaDePerdaCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT

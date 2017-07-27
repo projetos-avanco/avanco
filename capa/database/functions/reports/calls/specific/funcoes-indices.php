@@ -2,12 +2,12 @@
 
 /**
  * calcula o percentual do índice avancino de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com um departamento especifíco
  * @param - variável com o cnpj de um cliente específico
  */
-function calculaPercentualDoIndiceAvancinoDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function calculaPercentualDoIndiceAvancinoCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT
@@ -42,12 +42,12 @@ function calculaPercentualDoIndiceAvancinoDeUmCliente($conexao, $datas, $departa
 
 /**
  * calcula o percentual do índice de satisfação geral do atendimento de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com um departamento especifíco
  * @param - variável com cnpj de um cliente específico
  */
-function calculaPercentualDoIndiceGeralDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function calculaPercentualDoIndiceGeralCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT

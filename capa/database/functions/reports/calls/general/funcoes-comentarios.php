@@ -1,8 +1,8 @@
 <?php
 
 /**
- * retorna todos os comentários de clientes satisfeitos durante um período ou uma data especifíca
- * @param - conexão aberta
+ * retorna todos os comentários satisfeitos dos clientes durante um período ou uma data especifíca
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  */
 function retornaComentariosSatisfeitos($conexao, $datas)
@@ -39,8 +39,8 @@ function retornaComentariosSatisfeitos($conexao, $datas)
 }
 
 /**
- * retorna todos os comentários de clientes insatisfeitos durante um período ou uma data especifíca
- * @param - conexão aberta
+ * retorna todos os comentários insatisfeitos dos clientes durante um período ou uma data especifíca
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  */
 function retornaComentariosInsatisfeitos($conexao, $datas)

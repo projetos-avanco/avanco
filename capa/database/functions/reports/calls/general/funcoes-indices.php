@@ -1,12 +1,12 @@
 <?php
 
 /**
- * calcula o percentual do índice avancino de um departamento durante um período ou uma data especifíca
- * @param - conexão aberta
+ * calcula o percentual do índice avancino de um departamento específico durante um período ou uma data especifíca
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
- * @param - array com o departamento especifíco
+ * @param - array com um departamento especifíco
  */
-function calculaPercentualAvancino($conexao, $datas, $departamento)
+function calculaPercentualDoIndiceAvancino($conexao, $datas, $departamento)
 {
   $sql =
   "SELECT
@@ -32,18 +32,18 @@ function calculaPercentualAvancino($conexao, $datas, $departamento)
 
     $resultado = mysqli_query($conexao, $sql);
 
-    $resultado = mysqli_fetch_row($resultado);
+    $valor = mysqli_fetch_row($resultado);
 
-    return $resultado[0];
+    return $valor[0];
 }
 
 /**
- * calcula o percentual do índice de satisfação geral do atendimento de um departamento durante um período ou uma data especifíca
- * @param - conexão aberta
+ * calcula o percentual do índice de satisfação geral do atendimento de um departamento específico durante um período ou uma data especifíca
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
- * @param - array com o departamento especifíco
+ * @param - array com um departamento especifíco
  */
-function calculaPercentualGeral($conexao, $datas, $departamento)
+function calculaPercentualDoIndiceGeral($conexao, $datas, $departamento)
 {
   $sql =
   "SELECT
@@ -69,7 +69,7 @@ function calculaPercentualGeral($conexao, $datas, $departamento)
 
     $resultado = mysqli_query($conexao, $sql);
 
-    $resultado = mysqli_fetch_row($resultado);
+    $valor = mysqli_fetch_row($resultado);
 
-    return $resultado[0];
+    return $valor[0];
 }

@@ -2,11 +2,11 @@
 
 /**
  * retorna todos os comentários satisfeitos de um cliente específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - variável com o cnpj de um cliente específico
  */
-function retornaComentariosSatisfeitosDeUmCliente($conexao, $datas, $cnpj)
+function retornaComentariosSatisfeitosCnpj($conexao, $datas, $cnpj)
 {
   $sql =
   "SELECT
@@ -42,11 +42,11 @@ function retornaComentariosSatisfeitosDeUmCliente($conexao, $datas, $cnpj)
 
 /**
  * retorna todos os comentários insatisfeitos de um cliente durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - variável com o cnpj de um cliente específico
  */
-function retornaComentariosInsatisfeitosDeUmCliente($conexao, $datas, $cnpj)
+function retornaComentariosInsatisfeitosCnpj($conexao, $datas, $cnpj)
 {
   $sql =
   "SELECT

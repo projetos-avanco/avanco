@@ -2,12 +2,12 @@
 
 /**
  * calcula o percentual de chamados com tempo de espera até 15 minutos de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com um departamento especifíco
  * @param - variável com o cnpj de um cliente específico
  */
-function calculaPercentualAte15MinutosDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function calculaPercentualAte15MinutosCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT
@@ -38,12 +38,12 @@ function calculaPercentualAte15MinutosDeUmCliente($conexao, $datas, $departament
 
 /**
  * calcula o percentual de chamados com tempo de espera entre 15 e 30 minutos de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com um departamento especifíco
  * @param - variável com o cnpj de um cliente específico
  */
-function calculaPercentualEntre15E30MinutosDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function calculaPercentualEntre15E30MinutosCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT
@@ -74,12 +74,12 @@ function calculaPercentualEntre15E30MinutosDeUmCliente($conexao, $datas, $depart
 
 /**
  * calcula o percentual de chamados com tempo de espera acima 30 minutos de um cliente específico em um departamento específico durante um período ou uma data especifíca
- * @param - array com uma conexão aberta
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
  * @param - array com um departamento especifíco
  * @param - variável com o cnpj de um cliente específico
  */
-function calculaPercentualAcimaDe30MinutosDeUmCliente($conexao, $datas, $departamento, $cnpj)
+function calculaPercentualAcimaDe30MinutosCnpj($conexao, $datas, $departamento, $cnpj)
 {
   $sql =
   "SELECT

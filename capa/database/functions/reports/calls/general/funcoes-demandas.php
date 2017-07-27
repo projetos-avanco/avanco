@@ -1,10 +1,10 @@
 <?php
 
 /**
- * retorna a quantidade de demanda total de chamados de um departamento durante um período ou uma data especifíca
- * @param - conexão aberta
+ * retorna a quantidade de demanda total de chamados de um departamento específico durante um período ou uma data especifíca
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
- * @param - array com o departamento especifíco
+ * @param - array com um departamento especifíco
  */
 function retornaDemandaTotal($conexao, $datas, $departamento)
 {
@@ -17,19 +17,19 @@ function retornaDemandaTotal($conexao, $datas, $departamento)
   	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}')";
 
   $resultado = mysqli_query($conexao, $sql);
+  
+  $valor = mysqli_fetch_row($resultado);
 
-  $resultado = mysqli_fetch_row($resultado);
-
-  return $resultado[0];
+  return $valor[0];
 }
 
 /**
- * retorna a quantidade de chamados atendidos de um departamento durante um período ou uma data especifíca
- * @param - conexão aberta
+ * retorna a quantidade de chamados atendidos de um departamento específico durante um período ou uma data especifíca
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
- * @param - array com o departamento especifíco
+ * @param - array com um departamento especifíco
  */
-function retornaAtendidos($conexao, $datas, $departamento)
+function retornaChamadosAtendidos($conexao, $datas, $departamento)
 {
   $sql =
   "SELECT
@@ -42,18 +42,18 @@ function retornaAtendidos($conexao, $datas, $departamento)
 
     $resultado = mysqli_query($conexao, $sql);
 
-    $resultado = mysqli_fetch_row($resultado);
+    $valor = mysqli_fetch_row($resultado);
 
-    return $resultado[0];
+    return $valor[0];
 }
 
 /**
- * retorna a quantidade de chamados perdidos de um departamento durante um período ou uma data especifíca
- * @param - conexão aberta
+ * retorna a quantidade de chamados perdidos de um departamento específico durante um período ou uma data especifíca
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
- * @param - array com o departamento especifíco
+ * @param - array com um departamento especifíco
  */
-function retornaPerdidos($conexao, $datas, $departamento)
+function retornaChamadosPerdidos($conexao, $datas, $departamento)
 {
   $sql =
   "SELECT
@@ -66,16 +66,16 @@ function retornaPerdidos($conexao, $datas, $departamento)
 
     $resultado = mysqli_query($conexao, $sql);
 
-    $resultado = mysqli_fetch_row($resultado);
+    $valor = mysqli_fetch_row($resultado);
 
-    return $resultado[0];
+    return $valor[0];
 }
 
 /**
- * calcula o percentual de taxa de perda dos chamados de um departamento durante um período ou uma data especifíca
- * @param - conexão aberta
+ * calcula o percentual de taxa de perda dos chamados de um departamento específico durante um período ou uma data especifíca
+ * @param - objeto com uma conexão aberta
  * @param - array com a data inicial e a data final
- * @param - array com o departamento especifíco
+ * @param - array com um departamento especifíco
  */
 function calculaTaxaDePerda($conexao, $datas, $departamento)
 {
@@ -101,7 +101,7 @@ function calculaTaxaDePerda($conexao, $datas, $departamento)
 
     $resultado = mysqli_query($conexao, $sql);
 
-    $resultado = mysqli_fetch_row($resultado);
+    $valor = mysqli_fetch_row($resultado);
 
-    return $resultado[0];
+    return $valor[0];
 }

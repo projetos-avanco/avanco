@@ -7,7 +7,7 @@ function defineArrayDeDepartamentos()
 {
   $departamentos = array(
     # departamento auge + integral + parceiros
-    'aug_int_parc' => '
+    'geral' => '
       dep_id = 3 OR
       dep_id = 4 OR
       dep_id = 6 OR
