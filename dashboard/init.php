@@ -13,7 +13,3 @@ require_once 'config/database/configuracoes.php';
 
 # importando script com as funções para conexão com a base de dados
 require_once 'database/conexao.php';
-
-$conexao = abre_conexao();
-
-exit(var_dump($conexao));
