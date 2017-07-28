@@ -7,9 +7,9 @@ function defineArrayComModeloDeColaborador()
 {
   $colaborador = array(
     'informacoes_pessoais' => array(
+      'id' => 0,
       'nome' => '',
-      'sobrenome' => '',
-      'id_usuario_chat' => 0
+      'sobrenome' => ''
     ),
 
     'informacoes_atendimento' => array(
