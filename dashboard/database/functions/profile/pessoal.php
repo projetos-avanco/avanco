@@ -6,7 +6,7 @@
  * @param - array com o modelo de colaborador
  * @param - string com o nome de usuário do colaborador cadastrado no chat
  */
-function retornaInformacoesPessoaisDoColaborador($conexao, $colaborador, $usuario)
+function retornaDadosPessoaisDoColaborador($conexao, $colaborador, $usuario)
 {
   $sql =
     "SELECT
@@ -20,9 +20,9 @@ function retornaInformacoesPessoaisDoColaborador($conexao, $colaborador, $usuari
 
   while ($registro = mysqli_fetch_assoc($resultado)) {
 
-    $colaborador['informacoes_pessoais']['id']        = $registro['id'];
-    $colaborador['informacoes_pessoais']['nome']      = $registro['name'];
-    $colaborador['informacoes_pessoais']['sobrenome'] = $registro['surname'];
+    $colaborador['pessoal']['id']        = $registro['id'];
+    $colaborador['pessoal']['nome']      = $registro['name'];
+    $colaborador['pessoal']['sobrenome'] = $registro['surname'];
 
   }
 
