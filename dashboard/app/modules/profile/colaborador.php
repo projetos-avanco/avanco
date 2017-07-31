@@ -1,19 +1,28 @@
 <?php
 
-require ABS_PATH . 'database/functions/profile/informacoes-pessoais.php';
-require ABS_PATH . 'database/functions/profile/informacoes-atendimento.php';
+require ABS_PATH . 'database/functions/profile/pessoal.php';
+require ABS_PATH . 'database/functions/profile/chamados.php';
+require ABS_PATH . 'database/functions/profile/indices.php';
+require ABS_PATH . 'database/functions/profile/outros.php';
 require ABS_PATH . 'app/models/colaborador.php';
 require ABS_PATH . 'app/helpers/uri.php';
 
 function atualizaDadosDoColaborador($datas)
 {
+  # criando array com o modelo de colaborador
   $colaborador = defineArrayComModeloDeColaborador();
 
+  # recuparando nome de usuário que requisitou a página
   $usuario = retornaNomeDeUsuarioDoColaborador($colaborador);
 
+  # abrindo conexão com a base de dados
   $conexao = abre_conexao();
 
-  $colaborador = retornaInformacoesPessoaisDoColaborador($conexao, $colaborador, $usuario);
-  $colaborador = retornaInformacoesDosAtendimentosDoColaborador($conexao, $colaborador, $datas);
+  # preenchendo o array modelo de colaborador
+  $colaborador = retornaDadosPessoaisDoColaborador($conexao, $colaborador, $usuario);
+  $colaborador = retornaDadosDosChamadosDoColaborador($conexao, $colaborador, $datas);
+  $colaborador = retornaDadosDosIndicesDoColaborador($conexao, $colaborador, $datas);
+  $colaborador = retornaDadosDeOutrosDoColaborador($conexao, $colaborador, $datas);
 
+  exit(var_dump($colaborador));
 }
