@@ -1,10 +1,12 @@
 <?php
 
-require ABS_PATH . 'database/functions/profile/pessoal.php';
-require ABS_PATH . 'database/functions/profile/chamados.php';
-require ABS_PATH . 'database/functions/profile/indices.php';
-require ABS_PATH . 'database/functions/profile/outros.php';
+require ABS_PATH . 'database/functions/profile/data/pessoal.php';
+require ABS_PATH . 'database/functions/profile/data/chamados.php';
+require ABS_PATH . 'database/functions/profile/data/indices.php';
+require ABS_PATH . 'database/functions/profile/data/outros.php';
+
 require ABS_PATH . 'app/models/colaborador.php';
+
 require ABS_PATH . 'app/helpers/uri.php';
 
 function atualizaDadosDoColaborador($datas)
