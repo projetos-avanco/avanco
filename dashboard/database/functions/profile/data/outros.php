@@ -124,5 +124,10 @@ function retornaDadosDeOutrosDoColaborador($conexao, $colaborador, $datas)
   $colaborador = verificaQuantidadeDeDocumentosBaseConhecimentoMesVigente($conexao, $colaborador);
   $colaborador = verificaQuantidadeDeDocumentosBaseConhecimentoAcumulado($conexao, $colaborador);
 
+  # enviando os nomes de artigos, documentos e datas de postagem para a sessão
+  session_start();
+  $_SESSION['infovarejo']['artigos']           = $colaborador['outros']['infovarejo']['artigos'];
+  $_SESSION['base_conhecimento']['documentos'] = $colaborador['outros']['base_conhecimento']['documentos'];
+
   return $colaborador;
 }
