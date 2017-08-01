@@ -9,7 +9,8 @@ function defineArrayComModeloDeColaborador()
     'pessoal' => array(
       'id' => 0,
       'nome' => '',
-      'sobrenome' => ''
+      'sobrenome' => '',
+      'usuario' => ''
     ),
 
     'atendimento' => array(
@@ -17,7 +18,7 @@ function defineArrayComModeloDeColaborador()
       'atendimentos_realizados' => 0,
       'atendimentos_perdidos' => 0,
       'percentual_perda' => '',
-      'percentual_atendimento_15_minutos' => '',
+      'percentual_fila_ate_15_minutos' => '',
       'tma' => ''
     ),
 
@@ -29,18 +30,10 @@ function defineArrayComModeloDeColaborador()
 
     'outros' => array(
       'infovarejo' => array(
-        'artigos' => array(
-          'data' => '',
-          'nome' => ''
-        ),
         'quantidade_mes_vigente' => 0,
         'total_acumulado' => 0
       ),
       'base_conhecimento' => array(
-        'documentos' => array(
-          'data' => '',
-          'nome' => ''
-        ),
         'quantidade_mes_vigente' => 0,
         'total_acumulado' => 0
       ),

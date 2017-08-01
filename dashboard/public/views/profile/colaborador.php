@@ -16,8 +16,8 @@
 
   <form action="#" method="get">
     <label for="data">Calendário: </label>
-      <input type="date" name="datas[inicial]" id="datas" min="1979-12-31">
-      <input type="date" name="datas[final]" id="datas" max="2099-12-31">
+      <input type="date" name="datas[data1]" id="datas" min="1979-12-31">
+      <input type="date" name="datas[data2]" id="datas" max="2099-12-31">
 
     <input type="submit" value="Gerar">
   </form>

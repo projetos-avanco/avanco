@@ -14,7 +14,7 @@ function calculaAtendimentosDemandados($conexao, $colaborador, $datas)
   FROM lh_chat
   WHERE (user_id = {$colaborador['pessoal']['id']})
   	AND (status = 2)
-  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}')";
+  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
 
   $resultado = mysqli_query($conexao, $sql);
 
@@ -40,7 +40,7 @@ function calculaAtendimentosRealizados($conexao, $colaborador, $datas)
   WHERE (user_id = {$colaborador['pessoal']['id']})
   	AND (status = 2)
   	AND (chat_duration > 0)
-  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}')";
+  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
 
   $resultado = mysqli_query($conexao, $sql);
 
@@ -66,7 +66,7 @@ function calculaAtendimentosPerdidos($conexao, $colaborador, $datas)
   WHERE (user_id = {$colaborador['pessoal']['id']})
   	AND (status = 2)
   	AND (chat_duration = 0)
-  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}')";
+  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
 
   $resultado = mysqli_query($conexao, $sql);
 
@@ -94,7 +94,7 @@ function calculaPercentualDePerda($conexao, $colaborador, $datas)
   		WHERE (user_id = {$colaborador['pessoal']['id']})
   			AND (status = 2)
   			AND (chat_duration = 0)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}'))
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
 
   		/
 
@@ -103,7 +103,7 @@ function calculaPercentualDePerda($conexao, $colaborador, $datas)
   		FROM lh_chat
   		WHERE (user_id = {$colaborador['pessoal']['id']})
   			AND (status = 2)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}'))), 1) AS percentual_perda";
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_perda";
 
   $resultado = mysqli_query($conexao, $sql);
 
@@ -131,7 +131,7 @@ function calculaPercentualDeFilaAte15Minutos($conexao, $colaborador, $datas)
   		WHERE (user_id = {$colaborador['pessoal']['id']})
   			AND (status = 2)
   			AND (chat_duration <= 900)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}'))
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
 
   		/
 
@@ -141,13 +141,13 @@ function calculaPercentualDeFilaAte15Minutos($conexao, $colaborador, $datas)
   		FROM lh_chat
   		WHERE (user_id = {$colaborador['pessoal']['id']})
   			AND (status = 2)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}'))), 1) AS percentual_atendimentos_15_minutos";
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_atendimentos_15_minutos";
 
   $resultado = mysqli_query($conexao, $sql);
 
   $valor = mysqli_fetch_row($resultado);
 
-  $colaborador['atendimento']['percentual_atendimento_15_minutos'] = $valor[0];
+  $colaborador['atendimento']['percentual_fila_ate_15_minutos'] = $valor[0];
 
   return $colaborador;
 }
@@ -168,7 +168,7 @@ function calculaTMA($conexao, $colaborador, $datas)
   		FROM lh_chat
   		WHERE (user_id = {$colaborador['pessoal']['id']})
   			AND (status = 2)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}'))
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
 
   		/
 
@@ -178,7 +178,7 @@ function calculaTMA($conexao, $colaborador, $datas)
   		WHERE (user_id = {$colaborador['pessoal']['id']})
   			AND (status = 2)
   			AND (chat_duration > 0)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['inicial']}' AND '{$datas['final']}'))), 0) AS tma";
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS tma";
 
   $resultado = mysqli_query($conexao, $sql);
 
@@ -190,23 +190,23 @@ function calculaTMA($conexao, $colaborador, $datas)
 }
 
 /**
- * retorna as informações dos atendimentos do colaborador
+ * retorna os dados dos atendimentos do colaborador
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo do colaborador
  * @param - array com a data inicial e data final de um período ou específica
  */
-function retornaDadosDosChamadosDoColaborador($conexao, $colaborador, $datas)
+function retornaDadosDosAtendimentosDoColaborador($conexao, $colaborador, $datas)
 {
-  # demandas
+  # chamando funções que calculam e retornam as demandas
   $colaborador = calculaAtendimentosDemandados($conexao, $colaborador, $datas);
   $colaborador = calculaAtendimentosRealizados($conexao, $colaborador, $datas);
   $colaborador = calculaAtendimentosPerdidos($conexao, $colaborador, $datas);
 
-  # percentuais
+  # chamando funções que calculam e retornam os percentuais
   $colaborador = calculaPercentualDePerda($conexao, $colaborador, $datas);
   $colaborador = calculaPercentualDeFilaAte15Minutos($conexao, $colaborador, $datas);
 
-  # tma
+  # chamando função que calcula e retorna o tma
   $colaborador = calculaTMA($conexao, $colaborador, $datas);
 
   return $colaborador;

@@ -1,33 +1,27 @@
 <?php
 
 /**
- * verifica a quantidade e o nome dos artigos postados no infovarejo pelo colaborador do mês vigente
+ * verifica a quantidade de artigos postados no infovarejo pelo colaborador do mês vigente
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo do colaborador
  */
-function verificaQuantidadeDeArtigosInfoVarejoMesVigente($conexao, $colaborador)
+function verificaQuantidadeDeArtigosPostadosNoInfoVarejoNoMesVigente($conexao, $colaborador)
 {
-  #$data = date('Y-m');
-  $data = '2016-11';
+  # recuperando ano e mês vigente
+  $data = date('Y-m');
+
   $sql =
   "SELECT
-    data_conteudo_postado AS data,
-  	conteudo_postado_info_varejo AS artigo
+  	COUNT(id) AS artigos_postados_mes_vigente
   FROM av_info_varejo_avancao
   WHERE (codigo_jogador = {$colaborador['pessoal']['id']})
-  	AND (data BETWEEN '$data-01' AND '$data-31')
-      ORDER BY data DESC";
+  	AND (data BETWEEN '$data-01' AND '$data-31')";
 
   $resultado = mysqli_query($conexao, $sql);
 
-  while ($registro = mysqli_fetch_assoc($resultado)) {
+  $valor = mysqli_fetch_row($resultado);
 
-    $colaborador['outros']['infovarejo']['artigos']['data'][] = $registro['data'];
-    $colaborador['outros']['infovarejo']['artigos']['nome'][] = $registro['artigo'];
-
-  }
-
-  $colaborador['outros']['infovarejo']['quantidade_mes_vigente'] = (int)$resultado->num_rows;
+  $colaborador['outros']['infovarejo']['quantidade_mes_vigente'] = (int)$valor[0];
 
   return $colaborador;
 }
@@ -37,7 +31,7 @@ function verificaQuantidadeDeArtigosInfoVarejoMesVigente($conexao, $colaborador)
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo do colaborador
  */
-function verificaQuantidadeDeArtigosInfoVarejoAcumulado($conexao, $colaborador)
+function verificaQuantidadeDeArtigosPostadosNoInfoVarejoAcumulado($conexao, $colaborador)
 {
   $sql =
   "SELECT
@@ -59,29 +53,23 @@ function verificaQuantidadeDeArtigosInfoVarejoAcumulado($conexao, $colaborador)
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo do colaborador
  */
-function verificaQuantidadeDeDocumentosBaseConhecimentoMesVigente($conexao, $colaborador)
+function verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoNoMesVigente($conexao, $colaborador)
 {
+  # recuperando ano e mês vigente
   $data = date('Y-m');
 
   $sql =
   "SELECT
-  	data_conteudo_postado AS data,
-  	conteudo_postado_base_de_conhecimento AS documento
+  	COUNT(id) AS documentos_postados_mes_vigente
   FROM av_base_de_conhecimento_avancao
   WHERE (codigo_jogador = {$colaborador['pessoal']['id']})
-  	AND (data_conteudo_postado BETWEEN '$data-01' AND '$data-31')
-      ORDER BY data DESC";
+  	AND (data_conteudo_postado BETWEEN '$data-01' AND '$data-31')";
 
   $resultado = mysqli_query($conexao, $sql);
 
-  while ($registro = mysqli_fetch_assoc($resultado)) {
+  $valor = mysqli_fetch_row($resultado);
 
-    $colaborador['outros']['base_conhecimento']['documentos']['data'][] = $registro['data'];
-    $colaborador['outros']['base_conhecimento']['documentos']['nome'][] = $registro['documento'];
-
-  }
-
-  $colaborador['outros']['base_conhecimento']['quantidade_mes_vigente'] = (int)$resultado->num_rows;
+  $colaborador['outros']['base_conhecimento']['quantidade_mes_vigente'] = (int)$valor[0];
 
   return $colaborador;
 }
@@ -91,7 +79,7 @@ function verificaQuantidadeDeDocumentosBaseConhecimentoMesVigente($conexao, $col
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo do colaborador
  */
-function verificaQuantidadeDeDocumentosBaseConhecimentoAcumulado($conexao, $colaborador)
+function verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoAcumulado($conexao, $colaborador)
 {
   $sql =
   "SELECT
@@ -109,25 +97,19 @@ function verificaQuantidadeDeDocumentosBaseConhecimentoAcumulado($conexao, $cola
 }
 
 /**
- * retorna a quantidade de (artigos do infovarejo e base de conhecimento) postados pelo colaboradorem no mês vigente e o total acumulado
+ * retorna os dados de outros (artigos do infovarejo e base de conhecimento) postados pelo colaboradorem no mês vigente e o total acumulado
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo do colaborador
- * @param - array com a data inicial e data final de um período ou específica
  */
-function retornaDadosDeOutrosDoColaborador($conexao, $colaborador, $datas)
+function retornaDadosDeOutrosDoColaborador($conexao, $colaborador)
 {
-  # infovarejo
-  $colaborador = verificaQuantidadeDeArtigosInfoVarejoMesVigente($conexao, $colaborador);
-  $colaborador = verificaQuantidadeDeArtigosInfoVarejoAcumulado($conexao, $colaborador);
+  # chamando funções que verificam e retornam a quantidade (do mês vigente e o acumulado) de artigos postados no infovarejo
+  $colaborador = verificaQuantidadeDeArtigosPostadosNoInfoVarejoNoMesVigente($conexao, $colaborador);
+  $colaborador = verificaQuantidadeDeArtigosPostadosNoInfoVarejoAcumulado($conexao, $colaborador);
 
-  # base de conhecimento
-  $colaborador = verificaQuantidadeDeDocumentosBaseConhecimentoMesVigente($conexao, $colaborador);
-  $colaborador = verificaQuantidadeDeDocumentosBaseConhecimentoAcumulado($conexao, $colaborador);
-
-  # enviando os nomes de artigos, documentos e datas de postagem para a sessão
-  session_start();
-  $_SESSION['infovarejo']['artigos']           = $colaborador['outros']['infovarejo']['artigos'];
-  $_SESSION['base_conhecimento']['documentos'] = $colaborador['outros']['base_conhecimento']['documentos'];
+  # chamando funções que verificam e retornam a quantidade (do mês vigente e o acumulado) de documentos postados na base de conhecimento
+  $colaborador = verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoNoMesVigente($conexao, $colaborador);
+  $colaborador = verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoAcumulado($conexao, $colaborador);
 
   return $colaborador;
 }

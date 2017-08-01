@@ -2,20 +2,24 @@
 
 require ABS_PATH . 'app/modules/profile/colaborador.php';
 
+# verificando se houve requisição da página via método GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
+  # criando array modelo para datas
   $datas = array(
-    'inicial' => '',
-    'final' => ''
+    'data1' => '',
+    'data2' => ''
   );
 
-  $datas['inicial'] = isset($_GET['datas']['inicial']) ? $_GET['datas']['inicial'] : date('Y-m-d');
-  $datas['final']   = isset($_GET['datas']['final'])   ? $_GET['datas']['final']   : date('Y-m-d');
+  # recuperando data informada pelo usuário ou data atual
+  $datas['data1'] = isset($_GET['datas']['data1']) ? $_GET['datas']['data1'] : date('Y-m-d');
+  $datas['data2'] = isset($_GET['datas']['data2']) ? $_GET['datas']['data2'] : date('Y-m-d');
 
   # retirar
-  $datas['inicial'] = '2017-06-01';
-  $datas['final']   = '2017-06-30';
+  $datas['data1'] = '2017-06-01';
+  $datas['data2'] = '2017-06-30';
 
-  atualizaDadosDoColaborador($datas);
+  # chamando função que consulta os dados do colaborador
+  consultaDadosDoColaborador($datas);
 
 }

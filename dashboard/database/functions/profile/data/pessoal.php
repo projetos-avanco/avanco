@@ -1,12 +1,11 @@
 <?php
 
 /**
- * retorna as informações pessoais do colaborador (id do chat, nome e sobrenome cadastrados no chat)
+ * retorna os dados pessoais do colaborador (id, nome e sobrenome cadastrados no chat)
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo de colaborador
- * @param - string com o nome de usuário do colaborador cadastrado no chat
  */
-function retornaDadosPessoaisDoColaborador($conexao, $colaborador, $usuario)
+function retornaDadosPessoaisDoColaborador($conexao, $colaborador)
 {
   $sql =
     "SELECT
@@ -14,7 +13,7 @@ function retornaDadosPessoaisDoColaborador($conexao, $colaborador, $usuario)
     	name,
     	surname
     FROM lh_users
-    WHERE username = '$usuario'";
+    WHERE username = '{$colaborador['pessoal']['usuario']}'";
 
   $resultado = mysqli_query($conexao, $sql);
 

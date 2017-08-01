@@ -5,7 +5,7 @@
  */
 function defineArrayModelo()
 {
-  # definindo array de modelo
+  # definindo array modelo temporário
   $array = array(
     'query_string' => '',
     'quebrado' => array(),
@@ -20,7 +20,7 @@ function defineArrayModelo()
  */
 function retornaNomeDeUsuarioDoColaborador()
 {
-  # definindo array modelo
+  # criando array com o modelo temporário
   $array = defineArrayModelo();
 
   # recuperando query string com o nome do colaborador
@@ -34,7 +34,7 @@ function retornaNomeDeUsuarioDoColaborador()
   # concatenando nome e sobrenome do colaborador
   $usuario = $array['quebrado'][0] . '.' . $array['quebrado'][1];
 
-  # limpando array
+  # limpando array temporário
   unset($array);
 
   return $usuario;
