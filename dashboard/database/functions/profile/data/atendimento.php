@@ -8,7 +8,7 @@
  */
 function calculaAtendimentosDemandados($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	COUNT(id) AS atendimentos_demandados
   FROM lh_chat
@@ -16,7 +16,7 @@ function calculaAtendimentosDemandados($conexao, $colaborador, $datas)
   	AND (status = 2)
   	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -33,7 +33,7 @@ function calculaAtendimentosDemandados($conexao, $colaborador, $datas)
  */
 function calculaAtendimentosRealizados($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	COUNT(id) AS atendimentos_realizados
   FROM lh_chat
@@ -42,7 +42,7 @@ function calculaAtendimentosRealizados($conexao, $colaborador, $datas)
   	AND (chat_duration > 0)
   	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -59,7 +59,7 @@ function calculaAtendimentosRealizados($conexao, $colaborador, $datas)
  */
 function calculaAtendimentosPerdidos($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	COUNT(id) AS atendimentos_perdidos
   FROM lh_chat
@@ -68,7 +68,7 @@ function calculaAtendimentosPerdidos($conexao, $colaborador, $datas)
   	AND (chat_duration = 0)
   	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -85,7 +85,7 @@ function calculaAtendimentosPerdidos($conexao, $colaborador, $datas)
  */
 function calculaPercentualDePerda($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	ROUND(100 * (
   		(SELECT
@@ -105,7 +105,7 @@ function calculaPercentualDePerda($conexao, $colaborador, $datas)
   			AND (status = 2)
   			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_perda";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -122,7 +122,7 @@ function calculaPercentualDePerda($conexao, $colaborador, $datas)
  */
 function calculaPercentualDeFilaAte15Minutos($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	ROUND(100 * (
   		(SELECT
@@ -143,7 +143,7 @@ function calculaPercentualDeFilaAte15Minutos($conexao, $colaborador, $datas)
   			AND (status = 2)
   			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_atendimentos_15_minutos";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -160,7 +160,7 @@ function calculaPercentualDeFilaAte15Minutos($conexao, $colaborador, $datas)
  */
 function calculaTMA($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	ROUND((
   		(SELECT
@@ -180,7 +180,7 @@ function calculaTMA($conexao, $colaborador, $datas)
   			AND (chat_duration > 0)
   			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS tma";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 

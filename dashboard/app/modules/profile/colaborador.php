@@ -34,7 +34,7 @@ function consultaDadosDoColaborador($datas)
 
   # eliminando posição usuário do array modelo de colaborador (essa posição não será gravada na tabela av_dashboard_colaborador)
   unset($colaborador['pessoal']['usuario']);
-
+exit(var_dump($colaborador));
   # chamando função que insere os dados consultados do colaborador na tabela av_dashboard_colaborador
   insereDadosDoColaborador($conexao, $colaborador);
 }

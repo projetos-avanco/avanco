@@ -10,6 +10,7 @@ function defineArrayComModeloDeColaborador()
       'id' => 0,
       'nome' => '',
       'sobrenome' => '',
+      'caminho_foto' => '',
       'usuario' => ''
     ),
 

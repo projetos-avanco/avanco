@@ -10,14 +10,14 @@ function verificaQuantidadeDeArtigosPostadosNoInfoVarejoNoMesVigente($conexao, $
   # recuperando ano e mês vigente
   $data = date('Y-m');
 
-  $sql =
+  $query =
   "SELECT
   	COUNT(id) AS artigos_postados_mes_vigente
   FROM av_info_varejo_avancao
   WHERE (codigo_jogador = {$colaborador['pessoal']['id']})
   	AND (data BETWEEN '$data-01' AND '$data-31')";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -33,13 +33,13 @@ function verificaQuantidadeDeArtigosPostadosNoInfoVarejoNoMesVigente($conexao, $
  */
 function verificaQuantidadeDeArtigosPostadosNoInfoVarejoAcumulado($conexao, $colaborador)
 {
-  $sql =
+  $query =
   "SELECT
   	COUNT(id) AS total_acumulado
   FROM av_info_varejo_avancao
   WHERE (codigo_jogador = {$colaborador['pessoal']['id']})";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -58,14 +58,14 @@ function verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoNoMesVigente($c
   # recuperando ano e mês vigente
   $data = date('Y-m');
 
-  $sql =
+  $query =
   "SELECT
   	COUNT(id) AS documentos_postados_mes_vigente
   FROM av_base_de_conhecimento_avancao
   WHERE (codigo_jogador = {$colaborador['pessoal']['id']})
   	AND (data_conteudo_postado BETWEEN '$data-01' AND '$data-31')";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -81,13 +81,13 @@ function verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoNoMesVigente($c
  */
 function verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoAcumulado($conexao, $colaborador)
 {
-  $sql =
+  $query =
   "SELECT
   	COUNT(id) AS total_acumulado
   FROM av_base_de_conhecimento_avancao
   WHERE (codigo_jogador = {$colaborador['pessoal']['id']})";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 

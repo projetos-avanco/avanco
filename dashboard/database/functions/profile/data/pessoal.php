@@ -7,7 +7,7 @@
  */
 function retornaDadosPessoaisDoColaborador($conexao, $colaborador)
 {
-  $sql =
+  $query =
     "SELECT
     	id,
     	name,
@@ -15,7 +15,7 @@ function retornaDadosPessoaisDoColaborador($conexao, $colaborador)
     FROM lh_users
     WHERE username = '{$colaborador['pessoal']['usuario']}'";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   while ($registro = mysqli_fetch_assoc($resultado)) {
 

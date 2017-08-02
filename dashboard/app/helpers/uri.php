@@ -34,7 +34,7 @@ function retornaNomeDeUsuarioDoColaborador()
   # concatenando nome e sobrenome do colaborador
   $usuario = $array['quebrado'][0] . '.' . $array['quebrado'][1];
 
-  # limpando array temporário
+  # eliminando array temporário
   unset($array);
 
   return $usuario;

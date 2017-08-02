@@ -8,7 +8,7 @@
  */
 function calculaPercentualAvancino($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	ROUND(100 * (
   		(SELECT
@@ -30,7 +30,7 @@ function calculaPercentualAvancino($conexao, $colaborador, $datas)
   		WHERE (c.user_id = {$colaborador['pessoal']['id']})
   			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_indice_avancino";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -47,7 +47,7 @@ function calculaPercentualAvancino($conexao, $colaborador, $datas)
  */
 function calculaPercentualEficiencia($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	ROUND(100 * (
   		(SELECT
@@ -69,7 +69,7 @@ function calculaPercentualEficiencia($conexao, $colaborador, $datas)
   		WHERE (c.user_id = {$colaborador['pessoal']['id']})
   			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_indice_eficiencia";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
@@ -86,7 +86,7 @@ function calculaPercentualEficiencia($conexao, $colaborador, $datas)
  */
 function calculaPercentualQuestionariosRespondidos($conexao, $colaborador, $datas)
 {
-  $sql =
+  $query =
   "SELECT
   	ROUND(100 * (
   		(SELECT
@@ -107,7 +107,7 @@ function calculaPercentualQuestionariosRespondidos($conexao, $colaborador, $data
   			AND (c.status = 2)
   			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_questionario_respondido";
 
-  $resultado = mysqli_query($conexao, $sql);
+  $resultado = mysqli_query($conexao, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
