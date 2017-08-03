@@ -27,3 +27,32 @@ function retornaDadosPessoaisDoColaborador($conexao, $colaborador)
 
   return $colaborador;
 }
+
+/**
+ * cria o caminho da foto do colaborador de acordo com o seu time atual
+ * @param - objeto com uma conexão aberta
+ * @param - array com o modelo de colaborador
+ */
+function criaCaminhoDaFotoDoColaborador($conexao, $colaborador)
+{
+  $query =
+    "SELECT
+    	av_dashboard_times.nome
+    FROM av_dashboard_times
+    INNER JOIN av_dashboard_colaborador_times
+    	ON av_dashboard_colaborador_times.id_times = av_dashboard_times.id
+    WHERE (id_colaborador = {$colaborador['pessoal']['id']})
+    	AND (data_saida IS NULL)";
+
+  $resultado = mysqli_query($conexao, $query);
+
+  $valor = mysqli_fetch_row($resultado);
+
+  $time = $valor[0];
+
+  # criando caminho da foto do colaborador de acordo com o seu time atual
+  $colaborador['pessoal']['caminho_foto'] =
+    strtolower('img/teams/' . $time . '/' . $colaborador['pessoal']['nome'] . '_' . $colaborador['pessoal']['sobrenome'] . '.png');
+
+  return $colaborador;
+}

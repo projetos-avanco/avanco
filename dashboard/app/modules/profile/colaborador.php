@@ -28,6 +28,7 @@ function consultaDadosDoColaborador($datas)
 
   # chamando funções que consultam dados do colaborador e preenchem o array modelo
   $colaborador = retornaDadosPessoaisDoColaborador($conexao, $colaborador);
+  $colaborador = criaCaminhoDaFotoDoColaborador($conexao, $colaborador);
   $colaborador = retornaDadosDosAtendimentosDoColaborador($conexao, $colaborador, $datas);
   $colaborador = retornaDadosDosIndicesDoColaborador($conexao, $colaborador, $datas);
   $colaborador = retornaDadosDeOutrosDoColaborador($conexao, $colaborador);
