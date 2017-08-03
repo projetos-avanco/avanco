@@ -1,6 +1,6 @@
 <?php require '../../../init.php'; ?>
 
-<?php require ABS_PATH . 'app/requests/get/processa-perfil.php'; ?>
+<?php require ABS_PATH . 'app/requests/get/processa-perfil-atual.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -14,7 +14,7 @@
 <body>
   <h1>Dashboard do Colaborador</h1>
 
-  <form action="#" method="post">
+  <form action="<?php echo BASE_URL; ?>app/requests/post/processa-perfil-dinamico.php" method="post">
     <label for="data">Calendário: </label>
       <input type="date" name="datas[data1]" id="datas" min="1979-12-31">
       <input type="date" name="datas[data2]" id="datas" max="2099-12-31">
