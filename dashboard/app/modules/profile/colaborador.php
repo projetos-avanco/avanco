@@ -32,9 +32,19 @@ function consultaDadosDoColaborador($datas)
   $colaborador = retornaDadosDosIndicesDoColaborador($conexao, $colaborador, $datas);
   $colaborador = retornaDadosDeOutrosDoColaborador($conexao, $colaborador);
 
-  # eliminando posição usuário do array modelo de colaborador (essa posição não será gravada na tabela av_dashboard_colaborador)
+  # eliminando posição usuário do array modelo de colaborador (essa posição não será gravada na tabela)
   unset($colaborador['pessoal']['usuario']);
-exit(var_dump($colaborador));
-  # chamando função que insere os dados consultados do colaborador na tabela av_dashboard_colaborador
-  insereDadosDoColaborador($conexao, $colaborador);
+
+  # verificando se foi informado a query string ?usuario=nome-sobrenome (id = 0 - não foi informada a query string e os dados não serão inseridos na tabela)
+  if ($colaborador['pessoal']['id'] == 0) {
+
+    # mensagem de erro
+    echo '<h3>Na URL, após o script colaborador.php, informe ?usuario=nome-sobrenome cadastrado no chat!</h3>';
+
+  } else {
+
+    # chamando função que insere os dados consultados do colaborador na tabela
+    insereDadosDoColaborador($conexao, $colaborador);
+
+  }
 }

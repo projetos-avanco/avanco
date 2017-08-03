@@ -15,10 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $datas['data1'] = isset($_GET['datas']['data1']) ? $_GET['datas']['data1'] : date('Y-m-d');
   $datas['data2'] = isset($_GET['datas']['data2']) ? $_GET['datas']['data2'] : date('Y-m-d');
 
-  # retirar
-  $datas['data1'] = '2017-06-01';
-  $datas['data2'] = '2017-06-30';
-
   # chamando função que consulta os dados do colaborador
   consultaDadosDoColaborador($datas);
 

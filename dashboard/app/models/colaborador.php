@@ -30,18 +30,12 @@ function defineArrayComModeloDeColaborador()
     ),
 
     'outros' => array(
-      'infovarejo' => array(
-        'quantidade_mes_vigente' => 0,
-        'total_acumulado' => 0
-      ),
-      'base_conhecimento' => array(
-        'quantidade_mes_vigente' => 0,
-        'total_acumulado' => 0
-      ),
-      'percentual_sla' => array(
-        'mes_vigente' => '0',
-        'total_acumulado' => '0'
-      )
+      'quantidade_mes_artigos_infovarejo' => 0,
+      'quantidade_total_artigos_infovarejo' => 0,
+      'quantidade_mes_documentos_bc' => 0,
+      'quantidade_total_documentos_bc' => 0,
+      'percentual_mes_sla' => '0',
+      'percentual_total_sla' => '0'
     )
   );
 

@@ -21,7 +21,7 @@ function verificaQuantidadeDeArtigosPostadosNoInfoVarejoNoMesVigente($conexao, $
 
   $valor = mysqli_fetch_row($resultado);
 
-  $colaborador['outros']['infovarejo']['quantidade_mes_vigente'] = (int)$valor[0];
+  $colaborador['outros']['quantidade_mes_artigos_infovarejo'] = (int)$valor[0];
 
   return $colaborador;
 }
@@ -43,7 +43,7 @@ function verificaQuantidadeDeArtigosPostadosNoInfoVarejoAcumulado($conexao, $col
 
   $valor = mysqli_fetch_row($resultado);
 
-  $colaborador['outros']['infovarejo']['total_acumulado'] = (int)$valor[0];
+  $colaborador['outros']['quantidade_total_artigos_infovarejo'] = (int)$valor[0];
 
   return $colaborador;
 }
@@ -69,7 +69,7 @@ function verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoNoMesVigente($c
 
   $valor = mysqli_fetch_row($resultado);
 
-  $colaborador['outros']['base_conhecimento']['quantidade_mes_vigente'] = (int)$valor[0];
+  $colaborador['outros']['quantidade_mes_documentos_bc'] = (int)$valor[0];
 
   return $colaborador;
 }
@@ -91,7 +91,7 @@ function verificaQuantidadeDeDocumentosPostadosNaBaseConhecimentoAcumulado($cone
 
   $valor = mysqli_fetch_row($resultado);
 
-  $colaborador['outros']['base_conhecimento']['total_acumulado'] = (int)$valor[0];
+  $colaborador['outros']['quantidade_total_documentos_bc'] = (int)$valor[0];
 
   return $colaborador;
 }
