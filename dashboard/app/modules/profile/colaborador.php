@@ -21,7 +21,7 @@ function consultaDadosDoColaborador($datas)
   $conexao = abre_conexao();
 
   # criando array com o modelo de colaborador
-  $colaborador = defineArrayComModeloDeColaborador();
+  $colaborador = defineArrayModeloDeColaborador();
 
   # recuparando nome de usuário que requisitou a página
   $colaborador['pessoal']['usuario'] = retornaNomeDeUsuarioDoColaborador();

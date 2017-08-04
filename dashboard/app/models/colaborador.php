@@ -1,9 +1,9 @@
 <?php
 
 /*
- * define um array com modelo de colaborador
+ * define um array modelo de colaborador
  */
-function defineArrayComModeloDeColaborador()
+function defineArrayModeloDeColaborador()
 {
   $colaborador = array(
     'pessoal' => array(
