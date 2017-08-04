@@ -1,5 +1,7 @@
 <?php
 
+require ABS_PATH . 'app/helpers/caracteres.php';
+
 /**
  * consulta e retorna os dados pessoais do colaborador (id, nome e sobrenome cadastrados no chat)
  * @param - objeto com uma conexão aberta
@@ -53,6 +55,9 @@ function criaCaminhoDaFotoDoColaborador($objeto, $modelo)
   # criando caminho da foto do colaborador de acordo com o seu time atual
   $modelo['pessoal']['caminho_foto'] =
     strtolower('img/teams/' . $time . '/' . $modelo['pessoal']['nome'] . '_' . $modelo['pessoal']['sobrenome'] . '.png');
+
+  # chamando função que retira os acentos e troca os espaços ( ) por traço (-)
+  $modelo['pessoal']['caminho_foto'] = removeAcentos($modelo['pessoal']['caminho_foto']);
 
   return $modelo;
 }
