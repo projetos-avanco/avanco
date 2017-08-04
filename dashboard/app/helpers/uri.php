@@ -1,7 +1,7 @@
 <?php
 
 /*
- * define um array de modelo
+ * define um array modelo temporártio
  */
 function defineArrayModelo()
 {
@@ -21,21 +21,21 @@ function defineArrayModelo()
 function retornaNomeDeUsuarioDoColaborador()
 {
   # criando array com o modelo temporário
-  $array = defineArrayModelo();
+  $temporario = defineArrayModelo();
 
   # recuperando query string com o nome do colaborador
-  $array['query_string'] = $_SERVER['QUERY_STRING'];
+  $temporario['query_string'] = $_SERVER['QUERY_STRING'];
 
   # recuperando nome e sobrenome do colaborador
-  $array['quebrado']     = explode('=', $array['query_string']);
-  $array['valor']        = $array['quebrado'][1];
-  $array['quebrado']     = explode('-', $array['valor']);
+  $temporario['quebrado']     = explode('=', $temporario['query_string']);
+  $temporario['valor']        = $temporario['quebrado'][1];
+  $temporario['quebrado']     = explode('-', $temporario['valor']);
 
   # concatenando nome e sobrenome do colaborador
-  $usuario = $array['quebrado'][0] . '.' . $array['quebrado'][1];
+  $usuario = $temporario['quebrado'][0] . '.' . $temporario['quebrado'][1];
 
   # eliminando array temporário
-  unset($array);
+  unset($temporario);
 
   return $usuario;
 }

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * define um array com o modelo de título (premiação dos colaboradores)
+ * define um array com modelo de título (premiação dos colaboradores)
  */
 function defineArrayComModeloDeTitulo()
 {

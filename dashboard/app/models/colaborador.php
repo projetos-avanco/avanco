@@ -1,7 +1,7 @@
 <?php
 
 /*
- * define um array com o modelo de colaborador
+ * define um array com modelo de colaborador
  */
 function defineArrayComModeloDeColaborador()
 {

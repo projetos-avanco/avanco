@@ -5,7 +5,7 @@ require ABS_PATH . 'database/functions/profile/data/atendimento.php';
 require ABS_PATH . 'database/functions/profile/data/indices.php';
 require ABS_PATH . 'database/functions/profile/data/outros.php';
 
-require ABS_PATH . 'database/functions/profile/tables/insere-dados.php';
+require ABS_PATH . 'database/functions/profile/tables/dados.php';
 
 require ABS_PATH . 'app/models/colaborador.php';
 
@@ -26,12 +26,16 @@ function consultaDadosDoColaborador($datas)
   # recuparando nome de usuário que requisitou a página
   $colaborador['pessoal']['usuario'] = retornaNomeDeUsuarioDoColaborador();
 
-  # chamando funções que consultam dados do colaborador e preenchem o array modelo
-  $colaborador = retornaDadosPessoaisDoColaborador($conexao, $colaborador);
+  # chamando função que consulta e retorna os dados pessoais do colaborador
+  $colaborador = consultaDadosPessoaisDoColaborador($conexao, $colaborador);
+
+  # chamando função que cria o caminho da foto do colaborador de acordo com o seu time atual
   $colaborador = criaCaminhoDaFotoDoColaborador($conexao, $colaborador);
-  $colaborador = retornaDadosDosAtendimentosDoColaborador($conexao, $colaborador, $datas);
-  $colaborador = retornaDadosDosIndicesDoColaborador($conexao, $colaborador, $datas);
-  $colaborador = retornaDadosDeOutrosDoColaborador($conexao, $colaborador);
+
+  # chamando funções que consultam e retornam os dados de atendimentos, índices e outros do colaborador
+  $colaborador = consultaDadosDosAtendimentosDoColaborador($conexao, $colaborador, $datas);
+  $colaborador = consultaDadosDosIndicesDoColaborador($conexao, $colaborador, $datas);
+  $colaborador = consultaDadosDeOutrosDoColaborador($conexao, $colaborador);
 
   # eliminando posição usuário do array modelo de colaborador (essa posição não será gravada na tabela)
   unset($colaborador['pessoal']['usuario']);
@@ -44,8 +48,9 @@ function consultaDadosDoColaborador($datas)
 
   } else {
 
-    # chamando função que insere os dados consultados do colaborador na tabela
-    insereDadosDoColaborador($conexao, $colaborador);
+    # chamando função que analise se os dados consultados do colaborador serão inseridos ou atualizados na tabela
+    analisaDadosDoColaborador($conexao, $colaborador);
 
   }
+
 }

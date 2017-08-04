@@ -6,7 +6,7 @@
  * @param - array com o modelo do colaborador
  * @param - array com a data inicial e data final de um período ou específica
  */
-function calculaPercentualAvancino($conexao, $colaborador, $datas)
+function calculaPercentualAvancino($objeto, $modelo, $datas)
 {
   $query =
   "SELECT
@@ -16,7 +16,7 @@ function calculaPercentualAvancino($conexao, $colaborador, $datas)
   		FROM av_questionario_externo AS e
   		INNER JOIN lh_chat AS c
   			ON c.id = e.id_chat
-  		WHERE (c.user_id = {$colaborador['pessoal']['id']})
+  		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (e.avaliacao_colaborador = 'Ótimo' OR e.avaliacao_colaborador = 'Bom')
   			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
 
@@ -27,16 +27,16 @@ function calculaPercentualAvancino($conexao, $colaborador, $datas)
   		FROM av_questionario_externo AS e
   		INNER JOIN lh_chat AS c
   			ON c.id = e.id_chat
-  		WHERE (c.user_id = {$colaborador['pessoal']['id']})
+  		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_indice_avancino";
 
-  $resultado = mysqli_query($conexao, $query);
+  $resultado = mysqli_query($objeto, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
-  $colaborador['indices']['percentual_avancino'] = $valor[0];
+  $modelo['indices']['percentual_avancino'] = $valor[0];
 
-  return $colaborador;
+  return $modelo;
 }
 
 /**
@@ -45,7 +45,7 @@ function calculaPercentualAvancino($conexao, $colaborador, $datas)
  * @param - array com o modelo do colaborador
  * @param - array com a data inicial e data final de um período ou específica
  */
-function calculaPercentualEficiencia($conexao, $colaborador, $datas)
+function calculaPercentualEficiencia($objeto, $modelo, $datas)
 {
   $query =
   "SELECT
@@ -55,7 +55,7 @@ function calculaPercentualEficiencia($conexao, $colaborador, $datas)
   		FROM av_questionario_externo AS e
   		INNER JOIN lh_chat AS c
   			ON c.id = e.id_chat
-  		WHERE (c.user_id = {$colaborador['pessoal']['id']})
+  		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (e.avaliacao_atendimento = 'Ótimo' OR e.avaliacao_atendimento = 'Bom')
   			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
 
@@ -66,16 +66,16 @@ function calculaPercentualEficiencia($conexao, $colaborador, $datas)
   		FROM av_questionario_externo AS e
   		INNER JOIN lh_chat AS c
   			ON c.id = e.id_chat
-  		WHERE (c.user_id = {$colaborador['pessoal']['id']})
+  		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_indice_eficiencia";
 
-  $resultado = mysqli_query($conexao, $query);
+  $resultado = mysqli_query($objeto, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
-  $colaborador['indices']['percentual_eficiencia'] = $valor[0];
+  $modelo['indices']['percentual_eficiencia'] = $valor[0];
 
-  return $colaborador;
+  return $modelo;
 }
 
 /**
@@ -84,7 +84,7 @@ function calculaPercentualEficiencia($conexao, $colaborador, $datas)
  * @param - array com o modelo do colaborador
  * @param - array com a data inicial e data final de um período ou específica
  */
-function calculaPercentualQuestionariosRespondidos($conexao, $colaborador, $datas)
+function calculaPercentualQuestionariosRespondidos($objeto, $modelo, $datas)
 {
   $query =
   "SELECT
@@ -94,7 +94,7 @@ function calculaPercentualQuestionariosRespondidos($conexao, $colaborador, $data
   		FROM av_questionario_interno AS i
   		INNER JOIN lh_chat AS c
   			ON c.id = i.id_chat
-  		WHERE (c.user_id = {$colaborador['pessoal']['id']})
+  		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (c.status = 2)
   			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
 
@@ -103,31 +103,31 @@ function calculaPercentualQuestionariosRespondidos($conexao, $colaborador, $data
   		(SELECT
   			COUNT(c.id)
   		FROM lh_chat AS c
-  		WHERE (c.user_id = {$colaborador['pessoal']['id']})
+  		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (c.status = 2)
   			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_questionario_respondido";
 
-  $resultado = mysqli_query($conexao, $query);
+  $resultado = mysqli_query($objeto, $query);
 
   $valor = mysqli_fetch_row($resultado);
 
-  $colaborador['indices']['percentual_questionario_respondido'] = $valor[0];
+  $modelo['indices']['percentual_questionario_respondido'] = $valor[0];
 
-  return $colaborador;
+  return $modelo;
 }
 
 /**
- * retorna os dados dos índices (avancino, eficiência e questionários respondidos) do colaborador
+ * consulta e retorna os dados dos índices (avancino, eficiência e questionários respondidos) do colaborador
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo do colaborador
  * @param - array com a data inicial e data final de um período ou específica
  */
-function retornaDadosDosIndicesDoColaborador($conexao, $colaborador, $datas)
+function consultaDadosDosIndicesDoColaborador($objeto, $modelo, $datas)
 {
   # chamando funções que calculam e retornam os índices
-  $colaborador = calculaPercentualAvancino($conexao, $colaborador, $datas);
-  $colaborador = calculaPercentualEficiencia($conexao, $colaborador, $datas);
-  $colaborador = calculaPercentualQuestionariosRespondidos($conexao, $colaborador, $datas);
+  $modelo = calculaPercentualAvancino($objeto, $modelo, $datas);
+  $modelo = calculaPercentualEficiencia($objeto, $modelo, $datas);
+  $modelo = calculaPercentualQuestionariosRespondidos($objeto, $modelo, $datas);
 
-  return $colaborador;
+  return $modelo;
 }

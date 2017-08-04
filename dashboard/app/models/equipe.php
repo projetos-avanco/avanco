@@ -1,7 +1,7 @@
 <?php
 
 /*
- * define um modelo de equipe
+ * define um array modelo de equipe
  */
 function defineArrayComModeloDeEquipe()
 {
