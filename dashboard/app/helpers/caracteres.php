@@ -1,12 +1,12 @@
 <?php
 
 /**
- * remove acentos e troca espacos ( ) por traço (-)
+ * remove acentos e troca espaços ( ) por traço (-)
  * @param - string com acentos e espacos
  */
 function removeAcentos($string)
 {
-  # removendo acentos e trocando espacos por traço
+  # removendo acentos e trocando espaços por traço
   $tr = strtr($string, array (
         'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A',
         'Æ' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E',
