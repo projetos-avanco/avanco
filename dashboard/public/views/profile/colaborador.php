@@ -1,6 +1,13 @@
-<?php require '../../../init.php'; ?>
+<?php
 
-<?php require ABS_PATH . 'app/requests/processa-perfil.php'; ?>
+  require '../../../init.php';
+  require ABS_PATH . 'app/requests/processa-perfil.php';
+
+  $conexao = abre_conexao();
+
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,9 +29,23 @@
     <input type="submit" value="Gerar">
   </form>
 
+  <?php if ($_SESSION['colaborador']['id'] != 0 && $_SESSION['colaborador']['mensagem'] == 'sucesso') : ?>
+
+    <?php
+
+      require ABS_PATH . 'database/functions/profile/tables/perfil.php';
+
+      recuperaDadosDoColaborador($conexao, $_SESSION['colaborador']['id']);
+
+    ?>
+
+  <?php else : ?>
+
+    <?php echo '<h2>Erro ao consultar os dados do colaborador!</h2>'; ?>
+
+  <?php endif; ?>
+
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-<?php exit(var_dump($_SESSION)); ?>

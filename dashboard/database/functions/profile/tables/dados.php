@@ -28,10 +28,32 @@ function analisaDadosDoColaborador($objeto, $modelo)
 
     # chamando função que retira do array modelo de colaborador as colunas e os valores e retorna a query de UPDATE
     $query = criaQueryDeColaborador($modelo, $resultado->num_rows);
-    
+
   }
 
-  mysqli_query($objeto, $query);
+  # emitindo instrução (query) na base de dados (INSERT ou UPDATE)
+  $resultado = mysqli_query($objeto, $query);
+
+  # abrindo sessão
+  session_start();
+  
+  # verificando se a emissão da instrução foi realizada
+  if ($resultado) {
+
+    # emissão realizada, criando sessão com o id do colaborador que requisitou a página
+    $_SESSION['colaborador']['id'] = $modelo['pessoal']['id'];
+    $_SESSION['colaborador']['mensagem'] = 'sucesso';
+
+  } else {
+
+    # emissão não realizada, criando sessão com o id 0
+    $_SESSION['colaborador']['id'] = '0';
+    $_SESSION['colaborador']['mensagem'] = 'erro';
+
+  }
+
+  # eliminando array modelo do colaborador
+  unset($modelo);
 
   # fechando conexao com a base de dados
   fecha_conexao($objeto);
