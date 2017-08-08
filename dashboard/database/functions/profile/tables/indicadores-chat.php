@@ -18,23 +18,3 @@ function consultaIndicadoresDoChat($objeto, $id)
 
   exit(var_dump($colaborador));
 }
-
-function consultaTitulosConquistados()
-{
-
-}
-
-function consultaInformacoesGerais()
-{
-
-}
-
-function consultaConhecimentoTecnico()
-{
-
-}
-
-function recuperaDadosDoColaborador($objeto, $id)
-{
-  consultaIndicadoresDoChat($objeto, $id);
-}

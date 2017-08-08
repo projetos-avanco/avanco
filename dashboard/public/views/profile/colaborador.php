@@ -1,13 +1,10 @@
 <?php
 
   require '../../../init.php';
+
   require ABS_PATH . 'app/requests/processa-perfil.php';
 
-  $conexao = abre_conexao();
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -33,9 +30,9 @@
 
     <?php
 
-      require ABS_PATH . 'database/functions/profile/tables/perfil.php';
+      require ABS_PATH . 'app/modules/profile/perfil.php';
 
-      recuperaDadosDoColaborador($conexao, $_SESSION['colaborador']['id']);
+      consultaDadosDoColaborador($_SESSION['colaborador']['id']);
 
     ?>
 
