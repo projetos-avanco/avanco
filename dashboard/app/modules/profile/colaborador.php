@@ -40,17 +40,6 @@ function consultaDadosDoColaborador($datas)
   # eliminando posição usuário do array modelo de colaborador (essa posição não será gravada na tabela)
   unset($colaborador['pessoal']['usuario']);
 
-  # verificando se foi informado a query string ?usuario=nome-sobrenome (id = 0 - não foi informada a query string e os dados não serão inseridos na tabela)
-  if ($colaborador['pessoal']['id'] == 0) {
-
-    # mensagem de erro
-    echo '<h3>Na URL, após o script colaborador.php, informe ?usuario=nome-sobrenome cadastrado no chat!</h3>';
-
-  } else {
-
-    # chamando função que analise se os dados consultados do colaborador serão inseridos ou atualizados na tabela
-    analisaDadosDoColaborador($conexao, $colaborador);
-
-  }
-
+  # chamando função que analise se os dados consultados do colaborador serão inseridos ou atualizados na tabela
+  analisaDadosDoColaborador($conexao, $colaborador);
 }

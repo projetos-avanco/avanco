@@ -5,6 +5,9 @@ ini_set('display_errors', 1);
 ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
+# abrindo sessão
+session_start();
+
 # importando script com as rotas do servidor web
 require_once 'routes/servidor.php';
 

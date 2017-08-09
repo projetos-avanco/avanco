@@ -4,6 +4,8 @@
 
   require ABS_PATH . 'app/requests/processa-perfil.php';
 
+  require ABS_PATH . 'app/modules/profile/perfil.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -26,23 +28,28 @@
     <input type="submit" value="Gerar">
   </form>
 
-  <?php if ($_SESSION['colaborador']['id'] != 0 && $_SESSION['colaborador']['mensagem'] == 'sucesso') : ?>
+  <?php if (isset($_SESSION['colaborador']['id'])) : ?>
 
-    <?php
+    <?php if ($_SESSION['colaborador']['id'] != 0 && $_SESSION['colaborador']['tipo'] == '1') : ?>
 
-      require ABS_PATH . 'app/modules/profile/perfil.php';
+      <?php geraDadosParaDashboard($_SESSION['colaborador']['id']); ?>
 
-      consultaDadosDoColaborador($_SESSION['colaborador']['id']);
+    <?php elseif ($_SESSION['colaborador']['id'] == 0 && $_SESSION['colaborador']['tipo'] == '2') : ?>
 
-    ?>
+      <?php echo 'não atualizou tabela'; ?>
 
-  <?php else : ?>
+    <?php elseif ($_SESSION['colaborador']['id'] == 0 && $_SESSION['colaborador']['tipo'] == '3') : ?>
 
-    <?php echo '<h2>Erro ao consultar os dados do colaborador!</h2>'; ?>
+      <?php echo 'usuário não existe'; ?>
 
+    <?php endif; ?>
+
+    <?php unset($_SESSION['colaborador']); ?>
   <?php endif; ?>
 
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+<?php exit(var_dump($_SESSION)); ?>
