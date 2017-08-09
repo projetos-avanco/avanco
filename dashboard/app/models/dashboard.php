@@ -6,7 +6,7 @@
 function defineArrayModeloDeDashboard()
 {
   $dashboard = array(
-    'colaborador' => array(
+    'pessoal' => array(
       'nome'         => '',
       'sobrenome'    => '',
       'caminho_foto' => ''

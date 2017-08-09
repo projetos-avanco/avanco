@@ -1,8 +1,10 @@
 <?php
 
 require ABS_PATH . 'database/functions/profile/tables/dashboard.php';
+require ABS_PATH . 'database/functions/profile/tables/documentos.php';
 
 require ABS_PATH . 'app/models/dashboard.php';
+require ABS_PATH . 'app/models/documentos.php';
 
 /**
  * consulta e cria a sessão com os dados que serão exibidos no dashboard
@@ -16,15 +18,24 @@ function geraDadosParaDashboard($id)
   # criando array com o modelo de dashboard
   $dashboard = defineArrayModeloDeDashboard();
 
+  # criando array com o modelo de documentos
+  $documentos = defineArrayModeloDeDocumentos();
+
   # chamando função que retorna os dados para o dashboard
   $dashboard = retornaDadosParaDashboard($conexao, $dashboard, $id);
+
+  # chamando função que retorna todos os documentos inseridos pelo colaborador na base de conhecimento
+  $documentos = retornaDocumentosInseridosNaBaseDeConhecimento($conexao, $documentos, $id);
 
   # eliminando posição id do colaborador (essa posição não será exibida no dashboard)
   unset($dashboard['colaborador']['id']);
 
   $_SESSION['front_end'] = array(
-    'dashboard' => $dashboard
+    'colaborador' => array(
+      'dashboard'  => $dashboard,
+      'documentos' => $documentos
+    )
   );
 
-  exit(var_dump($_SESSION['front_end']));
+  exit(var_dump($_SESSION['front_end']['colaborador']));
 }

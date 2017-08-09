@@ -22,9 +22,9 @@ function retornaDadosDoColaborador($objeto, $modelo, $id)
 
   while ($registro = mysqli_fetch_assoc($resultado)) {
 
-    $modelo['colaborador']['nome']         = $registro['nome'];
-    $modelo['colaborador']['sobrenome']    = $registro['sobrenome'];
-    $modelo['colaborador']['caminho_foto'] = $registro['caminho_foto'];
+    $modelo['pessoal']['nome']         = $registro['nome'];
+    $modelo['pessoal']['sobrenome']    = $registro['sobrenome'];
+    $modelo['pessoal']['caminho_foto'] = $registro['caminho_foto'];
 
   }
 

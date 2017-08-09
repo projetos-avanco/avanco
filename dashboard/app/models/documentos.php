@@ -1,14 +1,14 @@
 <?php
 
 /*
- * define um array com modelo de título (premiação dos colaboradores)
+ * define um array modelo de documentos (da base de conhecimento)
  */
-function defineArrayModeloDeTitulo()
+function defineArrayModeloDeDocumentos()
 {
-  $titulo = array(
-    'data_premiacao' => '',
-    'nome' => ''
+  $documentos = array(
+   'nome'          => array(),
+   'data_postagem' => array()
   );
 
-  return $titulo;
+  return $documentos;
 }
