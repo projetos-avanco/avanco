@@ -96,8 +96,9 @@ function retornaTitulosConquistados($objeto, $modelo, $id)
 
   }
 
+  # chamando função que formata todas as datas dos títulos conquistados para dd/mm/aaaa
   $modelo['titulos_conquistados']['data_premiacao'] = formataArrayComDatasParaExibir($modelo['titulos_conquistados']['data_premiacao']);
-exit(var_dump($modelo));
+
   return $modelo;
 }
 
