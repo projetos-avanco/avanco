@@ -19,6 +19,7 @@ function geraDadosParaDashboard($id)
   # chamando função que retorna os dados para o dashboard
   $dashboard = retornaDadosParaDashboard($conexao, $dashboard, $id);
 
+  # eliminando posição id do colaborador (essa posição não será exibida no dashboard)
   unset($dashboard['colaborador']['id']);
 
   $_SESSION['front_end'] = array(
