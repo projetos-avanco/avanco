@@ -32,7 +32,7 @@ function formataDataParaMysql($datas)
  * formata data para dd/mm/aaaa
  * @param - string com apenas uma data, seja inicial ou final
  */
-function formataDataParaExibir($datas)
+function formataDataParaExibir($data)
 {
   $arr = array();
 
@@ -54,9 +54,11 @@ function formataArrayComDatasParaExibir($datas)
 {
   $arr = array();
 
-  $contador = count($datas);
+  # contando quantas posições com datas existem no array
+  $posicoes = count($datas);
 
-  for ($i = 0; $i < $contador; $i++) {
+  # formatando todas as posições do array para dd/mm/aaaa
+  for ($i = 0; $i < $posicoes; $i++) {
 
     $arr = explode('-', $datas[$i]);
 
