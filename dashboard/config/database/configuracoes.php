@@ -10,7 +10,7 @@ if (! defined('DB_USER'))
 
 # definindo constante com a senha do usuário da base de dados
 if (! defined('DB_PASSWORD'))
-  define('DB_PASSWORD', 'super');
+  define('DB_PASSWORD', 'lucas');
 
 # definindo constante o nome da base de dados
 if (! defined('DB_NAME'))

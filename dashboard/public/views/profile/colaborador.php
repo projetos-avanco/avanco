@@ -47,18 +47,22 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/datetimepicker/css/jquery.datetimepicker.css" media="screen">
+
 </head>
 <body>
   <div class="container-fluid">
     <h1>DASHBOARD DO COLABORADOR</h1>
 
-    <form action="" method="post">
-      <label for="data">Calendário: </label>
-        <input type="date" name="datas[data-1]" id="datas" min="1979-12-31">
-        <input type="date" name="datas[data-2]" id="datas" max="2099-12-31">
-
-      <input type="submit" value="Gerar">
-    </form>
+    <div class="row">
+      <div class="col align-self-center">
+        <form action="" method="post" class="form-horizontal"  role="form">
+            <input id="date_timepicker_start" type="text" name="datas[data-1]">
+            <input id="date_timepicker_end" type="text" name="datas[data-2]">
+            <input type="submit" value="Gerar" >
+        </form>
+      </div>
+    </div>
 
     <div class="row"><!-- linha 1 -->
       <div class="col-md-3">
@@ -198,5 +202,36 @@
 
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>libs/datetimepicker/js/jquery.datetimepicker.full.min.js" charset="UTF-8"></script>
+  <script type="text/javascript">
+
+    jQuery(function(){
+
+      $.datetimepicker.setLocale('pt-BR');
+     jQuery('#date_timepicker_start').datetimepicker({
+      format:'Y-m-d',
+      onShow:function( ct ){
+       this.setOptions({
+        maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
+
+      });
+      },
+      timepicker:false
+     });
+
+
+     jQuery('#date_timepicker_end').datetimepicker({
+      format:'Y-m-d',
+      onShow:function( ct ){
+       this.setOptions({
+        minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
+       })
+
+      },
+      timepicker:false
+     });
+    });
+
+  </script>
 </body>
 </html>
