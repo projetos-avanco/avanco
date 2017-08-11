@@ -6,7 +6,7 @@
 function defineArrayModeloDeDocumentos()
 {
   $documentos = array(
-   'nome'          => array(),
+   'nome' => array(),
    'data_postagem' => array()
   );
 

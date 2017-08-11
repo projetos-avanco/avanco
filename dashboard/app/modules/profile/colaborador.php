@@ -23,6 +23,10 @@ function consultaDadosDoColaborador($datas)
   # criando array com o modelo de colaborador
   $colaborador = defineArrayModeloDeColaborador();
 
+  # recuperando período informado pelo usuário (data atual ou período)
+  $colaborador['periodo']['data_1'] = $datas['data_1'];
+  $colaborador['periodo']['data_2'] = $datas['data_2'];
+
   # recuparando nome de usuário que requisitou a página
   $colaborador['pessoal']['usuario'] = retornaNomeDeUsuarioDoColaborador();
 

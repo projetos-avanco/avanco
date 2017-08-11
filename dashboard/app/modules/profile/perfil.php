@@ -30,12 +30,12 @@ function geraDadosParaDashboard($id)
   # eliminando posição id do colaborador (essa posição não será exibida no dashboard)
   unset($dashboard['colaborador']['id']);
 
-  $_SESSION['front_end'] = array(
-    'colaborador' => array(
-      'dashboard'  => $dashboard,
-      'documentos' => $documentos
-    )
-  );
+  # fechando conexão com a base de dados (depois passar esse código para a última função que consulta o banco de dados)
+  fecha_conexao($conexao);
 
-  exit(var_dump($_SESSION['front_end']['colaborador']));
+  # criando sessão com os dados para o dashboard
+  $_SESSION['navegador'] = array(
+    'dashboard'  => $dashboard,
+    'documentos' => $documentos
+  );
 }

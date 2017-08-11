@@ -18,7 +18,7 @@ function calculaPercentualAvancino($objeto, $modelo, $datas)
   			ON c.id = e.id_chat
   		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (e.avaliacao_colaborador = 'Ótimo' OR e.avaliacao_colaborador = 'Bom')
-  			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
+  			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))
 
   		/
 
@@ -28,7 +28,7 @@ function calculaPercentualAvancino($objeto, $modelo, $datas)
   		INNER JOIN lh_chat AS c
   			ON c.id = e.id_chat
   		WHERE (c.user_id = {$modelo['pessoal']['id']})
-  			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_indice_avancino";
+  			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))), 0) AS percentual_indice_avancino";
 
   $resultado = mysqli_query($objeto, $query);
 
@@ -57,7 +57,7 @@ function calculaPercentualEficiencia($objeto, $modelo, $datas)
   			ON c.id = e.id_chat
   		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (e.avaliacao_atendimento = 'Ótimo' OR e.avaliacao_atendimento = 'Bom')
-  			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
+  			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))
 
   		/
 
@@ -67,7 +67,7 @@ function calculaPercentualEficiencia($objeto, $modelo, $datas)
   		INNER JOIN lh_chat AS c
   			ON c.id = e.id_chat
   		WHERE (c.user_id = {$modelo['pessoal']['id']})
-  			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_indice_eficiencia";
+  			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))), 0) AS percentual_indice_eficiencia";
 
   $resultado = mysqli_query($objeto, $query);
 
@@ -96,7 +96,7 @@ function calculaPercentualQuestionariosRespondidos($objeto, $modelo, $datas)
   			ON c.id = i.id_chat
   		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (c.status = 2)
-  			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
+  			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))
 
   		/
 
@@ -105,7 +105,7 @@ function calculaPercentualQuestionariosRespondidos($objeto, $modelo, $datas)
   		FROM lh_chat AS c
   		WHERE (c.user_id = {$modelo['pessoal']['id']})
   			AND (c.status = 2)
-  			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_questionario_respondido";
+  			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))), 0) AS percentual_questionario_respondido";
 
   $resultado = mysqli_query($objeto, $query);
 

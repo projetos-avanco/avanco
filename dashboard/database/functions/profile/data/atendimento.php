@@ -14,7 +14,7 @@ function calculaAtendimentosDemandados($objeto, $modelo, $datas)
   FROM lh_chat
   WHERE (user_id = {$modelo['pessoal']['id']})
   	AND (status = 2)
-  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
+  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}')";
 
   $resultado = mysqli_query($objeto, $query);
 
@@ -40,7 +40,7 @@ function calculaAtendimentosRealizados($objeto, $modelo, $datas)
   WHERE (user_id = {$modelo['pessoal']['id']})
   	AND (status = 2)
   	AND (chat_duration > 0)
-  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
+  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}')";
 
   $resultado = mysqli_query($objeto, $query);
 
@@ -66,7 +66,7 @@ function calculaAtendimentosPerdidos($objeto, $modelo, $datas)
   WHERE (user_id = {$modelo['pessoal']['id']})
   	AND (status = 2)
   	AND (chat_duration = 0)
-  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}')";
+  	AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}')";
 
   $resultado = mysqli_query($objeto, $query);
 
@@ -94,7 +94,7 @@ function calculaPercentualDePerda($objeto, $modelo, $datas)
   		WHERE (user_id = {$modelo['pessoal']['id']})
   			AND (status = 2)
   			AND (chat_duration = 0)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))
 
   		/
 
@@ -103,7 +103,7 @@ function calculaPercentualDePerda($objeto, $modelo, $datas)
   		FROM lh_chat
   		WHERE (user_id = {$modelo['pessoal']['id']})
   			AND (status = 2)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_perda";
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))), 0) AS percentual_perda";
 
   $resultado = mysqli_query($objeto, $query);
 
@@ -131,7 +131,7 @@ function calculaPercentualDeFilaAte15Minutos($objeto, $modelo, $datas)
   		WHERE (user_id = {$modelo['pessoal']['id']})
   			AND (status = 2)
   			AND (chat_duration <= 900)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))
 
   		/
 
@@ -141,7 +141,7 @@ function calculaPercentualDeFilaAte15Minutos($objeto, $modelo, $datas)
   		FROM lh_chat
   		WHERE (user_id = {$modelo['pessoal']['id']})
   			AND (status = 2)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS percentual_atendimentos_15_minutos";
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))), 0) AS percentual_atendimentos_15_minutos";
 
   $resultado = mysqli_query($objeto, $query);
 
@@ -168,7 +168,7 @@ function calculaTMA($objeto, $modelo, $datas)
   		FROM lh_chat
   		WHERE (user_id = {$modelo['pessoal']['id']})
   			AND (status = 2)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))
 
   		/
 
@@ -178,7 +178,7 @@ function calculaTMA($objeto, $modelo, $datas)
   		WHERE (user_id = {$modelo['pessoal']['id']})
   			AND (status = 2)
   			AND (chat_duration > 0)
-  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data1']}' AND '{$datas['data2']}'))), 0) AS tma";
+  			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))), 0) AS tma";
 
   $resultado = mysqli_query($objeto, $query);
 

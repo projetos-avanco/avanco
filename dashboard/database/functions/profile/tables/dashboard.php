@@ -1,7 +1,5 @@
 <?php
 
-require ABS_PATH . 'app/helpers/data.php';
-
 /**
  * retorna os dados (nome, sobrenome e caminho da foto) do colaborador que serão exibidos no dashboard
  * @param - objeto com uma conexão aberta
@@ -27,6 +25,37 @@ function retornaDadosDoColaborador($objeto, $modelo, $id)
     $modelo['pessoal']['caminho_foto'] = $registro['caminho_foto'];
 
   }
+
+  return $modelo;
+}
+
+/**
+ * retorna o período pesquisado pelo colaborador
+ * @param - objeto com uma conexão aberta
+ * @param - array com o modelo do dashboard
+ * @param - string com o id do colaborador que requisitou a página
+ */
+function retornaPeriodo($objeto, $modelo, $id)
+{
+  $query =
+    "SELECT
+    	data_1,
+      data_2
+    FROM av_dashboard_colaborador
+    WHERE id = $id";
+
+  $resultado = mysqli_query($objeto, $query);
+
+  while ($registros = mysqli_fetch_assoc($resultado)) {
+
+    $modelo['periodo']['data_1'] = $registros['data_1'];
+    $modelo['periodo']['data_2'] = $registros['data_2'];
+
+  }
+
+  # chamando função que formata as datas (pesquisadas pelo colaborador) do período para dd/mm/aaaa
+  $modelo['periodo']['data_1'] = formataDataParaExibir($modelo['periodo']['data_1']);
+  $modelo['periodo']['data_2'] = formataDataParaExibir($modelo['periodo']['data_2']);
 
   return $modelo;
 }
@@ -169,7 +198,7 @@ function retornaDadosDeSLA($objeto, $modelo, $id)
     	percentual_mes_sla,
       percentual_total_sla
     FROM av_dashboard_colaborador
-    WHERE id = 48";
+    WHERE id = $id";
 
   $resultado = mysqli_query($objeto, $query);
 
@@ -193,6 +222,9 @@ function retornaDadosParaDashboard($objeto, $modelo, $id)
 {
   # chamando função que retorna os dados do colaborador
   $modelo = retornaDadosDoColaborador($objeto, $modelo, $id);
+
+  # chamando função que retorna o período pesquisado pelo colaborador
+  $modelo = retornaPeriodo($objeto, $modelo, $id);
 
   # chamando função que retorna os indicadores de chat do colaborador
   $modelo = retornaIndicadoresDoChat($objeto, $modelo, $id);
