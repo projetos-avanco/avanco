@@ -41,6 +41,7 @@
 <html lang="pt-br">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Perfil do Colaborador</title>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
@@ -48,66 +49,134 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
 </head>
 <body>
-  <h1>DASHBOARD DO COLABORADOR</h1>
+  <div class="container-fluid">
+    <h1>DASHBOARD DO COLABORADOR</h1>
 
-  <form action="" method="post">
-    <label for="data">Calendário: </label>
-      <input type="date" name="datas[data-1]" id="datas" min="1979-12-31">
-      <input type="date" name="datas[data-2]" id="datas" max="2099-12-31">
+    <form action="" method="post">
+      <label for="data">Calendário: </label>
+        <input type="date" name="datas[data-1]" id="datas" min="1979-12-31">
+        <input type="date" name="datas[data-2]" id="datas" max="2099-12-31">
 
-    <input type="submit" value="Gerar">
-  </form>
+      <input type="submit" value="Gerar">
+    </form>
 
-  <div class="um">
-    <h3><?php echo $dashboard['pessoal']['nome'] . ' ' . $dashboard['pessoal']['sobrenome']; ?></h3>
+    <div class="row"><!-- linha 1 -->
+      <div class="col-md-3">
+        <h4 class="text-center"><?php echo $dashboard['pessoal']['nome'] . ' ' . $dashboard['pessoal']['sobrenome']; ?></h4>
 
-    <img src="<?php echo $dashboard['pessoal']['caminho_foto']; ?>" alt="Foto do colaborador" width="493" height="343">
-  </div>
+        <img src="<?php
+          echo $dashboard['pessoal']['caminho_foto'];
+          ?>" alt="Avatar" class="rounded-circle" width="100%" height="100%">
+      </div>
 
-  <div class="dois">
-    <h2>Indicadores do Chat</h2>
+      <div class="col-md-4">
+        <h4>Indicadores Chat</h4>
 
-    <table>
-      <tr>
-        <th>Período de <?php echo $dashboard['periodo']['data_1']; ?> até <?php echo $dashboard['periodo']['data_2']; ?></th>
-      </tr>
-      <?php foreach ($dashboard['indicadores_chat'] as $chave => $valor) : ?>
-        <tr>
-          <th><?php echo $chave; ?></th>
-          <td><?php echo $valor; ?></td>
-        </tr>
-      <?php endforeach; ?>
-    </table>
-  </div>
-
-  <div class="tres">
-    <h2>Títulos Conquistados</h2>
-
-    <table>
-      <?php foreach ($dashboard['titulos_conquistados'] as $chaves) : ?>
-        <?php foreach ($chaves as $chave => $valor) : ?>
+        <table class="table table-sm">
           <tr>
-            <td><?php echo $valor; ?></td>
+            <th>Período de <?php echo $dashboard['periodo']['data_1']; ?> até <?php echo $dashboard['periodo']['data_2']; ?></th>
+          </tr>
+          <tr>
+            <th>Atendimentos Demandados:</th>
+            <td><?php echo $dashboard['indicadores_chat']['atendimentos_demandados']; ?></td>
+          </tr>
+          <tr>
+            <th>Atendimentos Realizados:</th>
+            <td><?php echo $dashboard['indicadores_chat']['atendimentos_realizados']; ?></td>
+          </tr>
+          <tr>
+            <th>Taxa de Perda:</th>
+            <td><?php echo $dashboard['indicadores_chat']['percentual_perda'] . '%'; ?></td>
+          </tr>
+          <tr>
+            <th>Fila até 15 Minutos:</th>
+            <td><?php echo $dashboard['indicadores_chat']['percentual_fila_ate_15_minutos'] . '%'; ?></td>
+          </tr>
+          <tr>
+            <th>TMA:</th>
+            <td><?php echo $dashboard['indicadores_chat']['tma'] . ' min'; ?></td>
+          </tr>
+          <tr>
+            <th>Avancino:</th>
+            <td><?php echo $dashboard['indicadores_chat']['percentual_avancino'] . '%'; ?></td>
+          </tr>
+          <tr>
+            <th>Eficiência:</th>
+            <td><?php echo $dashboard['indicadores_chat']['percentual_eficiencia'] . '%'; ?></td>
+          </tr>
+          <tr>
+            <th>Questionário Interno:</th>
+            <td><?php echo $dashboard['indicadores_chat']['percentual_questionario_respondido'] . '%'; ?></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="col-md-5">
+        <h4>Gráficos</h4>
+      </div>
+    </div><!-- linha 1 -->
+
+    <div class="row"><!-- linha 2 -->
+      <div class="col-md-3">
+        <h4>Títulos Conquistados</h4>
+
+        <table class="table table-sm">
+        <?php foreach ($dashboard['titulos_conquistados']['nome'] as $chave => $valor) : ?>
+          <tr>
+            <th><?php echo $valor; ?></th>
           </tr>
         <?php endforeach; ?>
-      <?php endforeach; ?>
-    </table>
+        </table>
+      </div>
+
+      <div class="col-md-4">
+        <h4>Informações Gerais</h4>
+
+        <table class="table table-sm">
+          <tr><!-- infovarejo -->
+            <th>Artigos no Infovarejo:</th>
+            <td>
+              <?php
+                echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_mes_artigos_infovarejo'];
+                echo '/Mês' . ' - ';
+                echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_total_artigos_infovarejo'];
+                echo '/Total';
+              ?>
+            </td>
+          </tr><!-- infovarejo -->
+
+          <tr><!-- base de conhecimento -->
+            <th>Documentos BC:</th>
+            <td>
+              <?php
+                echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_mes_documentos_bc'];
+                echo '/Mês' . ' - ';
+                echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_total_documentos_bc'];
+                echo '/Total';
+              ?>
+            </td>
+          </tr><!-- base de conhecimento -->
+
+          <tr><!-- sla -->
+            <th>SLA:</th>
+            <td>
+              <?php
+                echo $dashboard['informacoes_gerais']['sla']['percentual_mes_sla'];
+                echo '%/Mês' . ' - ';
+                echo $dashboard['informacoes_gerais']['sla']['percentual_total_sla'];
+                echo '%/Total';
+              ?>
+            </td>
+          </tr><!-- sla -->
+        </table>
+      </div>
+
+      <div class="col-md-5">
+        <h4>Gráficos</h4>
+      </div>
+    </div><!-- linha 2 -->
   </div>
 
-  <div class="quatro">
-    <h2>Informações Gerais</h2>
-
-    <table>
-      <?php foreach ($dashboard['informacoes_gerais'] as $chave) : ?>
-        <?php foreach ($chave as $sub_chave => $valor) : ?>
-          <tr>
-            <th><?php echo $sub_chave; ?></th>
-            <td><?php echo $valor; ?></td>
-          </tr>
-        <?php endforeach; ?>
-      <?php endforeach; ?>
-    </table>
-  </div>
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
 </body>
