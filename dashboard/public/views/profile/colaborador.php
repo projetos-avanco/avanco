@@ -138,9 +138,9 @@
             <td>
               <?php
                 echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_mes_artigos_infovarejo'];
-                echo '/Mês' . ' - ';
+                echo ' / Mês' . ' - ';
                 echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_total_artigos_infovarejo'];
-                echo '/Total';
+                echo ' / Total';
               ?>
             </td>
           </tr><!-- infovarejo -->
@@ -150,9 +150,9 @@
             <td>
               <?php
                 echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_mes_documentos_bc'];
-                echo '/Mês' . ' - ';
+                echo ' / Mês' . ' - ';
                 echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_total_documentos_bc'];
-                echo '/Total';
+                echo ' / Total';
               ?>
             </td>
           </tr><!-- base de conhecimento -->
@@ -162,9 +162,9 @@
             <td>
               <?php
                 echo $dashboard['informacoes_gerais']['sla']['percentual_mes_sla'];
-                echo '%/Mês' . ' - ';
+                echo '% / Mês' . ' - ';
                 echo $dashboard['informacoes_gerais']['sla']['percentual_total_sla'];
-                echo '%/Total';
+                echo '% / Total';
               ?>
             </td>
           </tr><!-- sla -->
@@ -175,6 +175,25 @@
         <h4>Gráficos</h4>
       </div>
     </div><!-- linha 2 -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-sm">
+          <tr>
+            <th>Nome</th>
+            <th>Postado</th>
+          </tr>
+        <?php foreach ($documentos['nome'] as $nomeChave => $nomeValor) : ?>
+          <?php foreach ($documentos['data_postagem'] as $dataChave => $dataValor) : ?>
+            <tr>
+              <td><?php echo $nomeValor; ?></td>
+              <td><?php echo $dataValor; ?></td>
+            </tr>
+          <?php endforeach; ?>
+        <?php endforeach; ?>
+        </table>
+      </div>
+    </div>
   </div>
 
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
