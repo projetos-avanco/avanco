@@ -176,9 +176,9 @@
       </div>
     </div><!-- linha 2 -->
 
-    <div class="row">
+    <div class="row"><!-- linha 3 -->
       <div class="col-md-12">
-        <table class="table table-sm">
+        <table class="table table-striped">
           <tr>
             <th>Nome</th>
             <th>Postado</th>
@@ -193,7 +193,7 @@
         <?php endforeach; ?>
         </table>
       </div>
-    </div>
+    </div><!-- linha 3 -->
   </div>
 
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
