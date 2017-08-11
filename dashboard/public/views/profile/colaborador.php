@@ -1,31 +1,37 @@
 <?php
 
   require '../../../init.php';
-  require ABS_PATH . 'app/modules/profile/perfil.php';
-  require ABS_PATH . 'app/requests/processa-perfil.php';
 
+  require DIRETORIO_MODULES  . 'profile/perfil.php';
+  require DIRETORIO_REQUESTS . 'processa-perfil.php';
+
+  # verificando se os dados do colaborador foram consultados no chat
   if (isset($_SESSION['colaborador'])) {
 
+    # verificando se os dados do colaborador foram inseridos ou atualizados na tabela
     if ($_SESSION['colaborador']['id'] != '0' && $_SESSION['colaborador']['tipo'] == '1') {
 
-      echo 'query INSERT ou UPDATE foi executada!';
-
+      # chamando função que gera (busca e retorna os dados processados na tabela) a sessão com os dados para o navegador
       geraDadosParaDashboard($_SESSION['colaborador']['id']);
 
+      # recuperando dados que serão exibidos no dashboard
       $dashboard  = $_SESSION['navegador']['dashboard'];
       $documentos = $_SESSION['navegador']['documentos'];
 
+      # verificando se os dados do colaborador não foram inseridos ou atualizados na tabela
     } elseif ($_SESSION['colaborador']['id'] == '0' && $_SESSION['colaborador']['tipo'] == '2') {
 
       echo 'query INSERT ou UPDATE não foi executada!';
 
+      # verificando se o usuário que requisitou a página possui cadastro no chat
     } elseif ($_SESSION['colaborador']['id'] == '0' && $_SESSION['colaborador']['tipo'] == '3') {
 
       echo 'usuário não existe na base de dados do chat!';
 
     }
 
-    unset($_SESSION['colaborador']);
+    # eliminando sessões
+    unset($_SESSION['colaborador'], $_SESSION['navegador']['dashboard'], $_SESSION['navegador']['documentos']);
 
   }
 

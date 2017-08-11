@@ -1,15 +1,12 @@
 <?php
 
-require ABS_PATH . 'database/functions/profile/data/pessoal.php';
-require ABS_PATH . 'database/functions/profile/data/atendimento.php';
-require ABS_PATH . 'database/functions/profile/data/indices.php';
-require ABS_PATH . 'database/functions/profile/data/outros.php';
-
-require ABS_PATH . 'database/functions/profile/tables/dados.php';
-
-require ABS_PATH . 'app/models/colaborador.php';
-
-require ABS_PATH . 'app/helpers/uri.php';
+require DIRETORIO_FUNCTIONS . 'profile/data/pessoal.php';
+require DIRETORIO_FUNCTIONS . 'profile/data/atendimento.php';
+require DIRETORIO_FUNCTIONS . 'profile/data/indices.php';
+require DIRETORIO_FUNCTIONS . 'profile/data/outros.php';
+require DIRETORIO_FUNCTIONS . 'profile/tables/dados.php';
+require DIRETORIO_MODELS    . 'colaborador.php';
+require DIRETORIO_HELPERS   . 'uri.php';
 
 /**
  * consulta os dados do colaborador na base de dados do chat de acordo com um período ou data específica informada

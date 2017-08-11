@@ -1,10 +1,9 @@
 <?php
 
-require ABS_PATH . 'database/functions/profile/tables/dashboard.php';
-require ABS_PATH . 'database/functions/profile/tables/documentos.php';
-
-require ABS_PATH . 'app/models/dashboard.php';
-require ABS_PATH . 'app/models/documentos.php';
+require DIRETORIO_FUNCTIONS . 'profile/tables/dashboard.php';
+require DIRETORIO_FUNCTIONS . 'profile/tables/documentos.php';
+require DIRETORIO_MODELS    . 'dashboard.php';
+require DIRETORIO_MODELS    . 'documentos.php';
 
 /**
  * consulta e cria a sessão com os dados que serão exibidos no dashboard

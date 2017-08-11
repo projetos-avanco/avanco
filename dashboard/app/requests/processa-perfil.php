@@ -1,8 +1,7 @@
 <?php
 
-require ABS_PATH . 'app/modules/profile/colaborador.php';
-
-require ABS_PATH . 'app/helpers/data.php';
+require DIRETORIO_MODULES . 'profile/colaborador.php';
+require DIRETORIO_HELPERS . 'data.php';
 
 # criando array com o modelo de datas
 $datas = defineArrayModeloDeDatas();
