@@ -31,3 +31,6 @@ require_once 'config/database/configuracoes.php';
 
 # importando script com as funções para conexão com a base de dados
 require_once 'database/conexao.php';
+
+# importando script com as funções de segurança
+require_once 'app/helpers/seguranca.php';

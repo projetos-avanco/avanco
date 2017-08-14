@@ -4,6 +4,7 @@
 
   require DIRETORIO_MODULES  . 'profile/perfil.php';
   require DIRETORIO_REQUESTS . 'processa-perfil.php';
+  require DIRETORIO_HELPERS  . 'check.php';
 
   # verificando se os dados do colaborador foram consultados no chat
   if (isset($_SESSION['colaborador'])) {
@@ -52,6 +53,10 @@
 <body>
   <div class="container-fluid"><!-- container -->
     <h1>DASHBOARD DO COLABORADOR</h1>
+
+    <p>
+      <a class="btn btn-default" href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Deslogar</a>
+    </p>
 
     <div class="row">
       <div class="col align-self-center">
