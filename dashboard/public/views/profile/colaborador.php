@@ -16,7 +16,6 @@
 
       # recuperando dados que serão exibidos no dashboard
       $dashboard  = $_SESSION['navegador']['dashboard'];
-      $documentos = $_SESSION['navegador']['documentos'];
 
       # verificando se os dados do colaborador não foram inseridos ou atualizados na tabela
     } elseif ($_SESSION['colaborador']['id'] == '0' && $_SESSION['colaborador']['tipo'] == '2') {
@@ -47,11 +46,11 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/datetimepicker/css/jquery.datetimepicker.css" media="screen">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/date-time-picker/css/jquery.datetimepicker.css" media="screen">
 
 </head>
 <body>
-  <div class="container-fluid">
+  <div class="container-fluid"><!-- container -->
     <h1>DASHBOARD DO COLABORADOR</h1>
 
     <div class="row">
@@ -166,9 +165,9 @@
             <td>
               <?php
                 echo $dashboard['informacoes_gerais']['sla']['percentual_mes_sla'];
-                echo '% / Mês' . ' - ';
+                echo '% Mês' . ' - ';
                 echo $dashboard['informacoes_gerais']['sla']['percentual_total_sla'];
-                echo '% / Total';
+                echo '% Total';
               ?>
             </td>
           </tr><!-- sla -->
@@ -179,59 +178,11 @@
         <h4>Gráficos</h4>
       </div>
     </div><!-- linha 2 -->
+  </div><!-- container -->
 
-    <div class="row"><!-- linha 3 -->
-      <div class="col-md-12">
-        <table class="table table-striped">
-          <tr>
-            <th>Nome</th>
-            <th>Postado</th>
-          </tr>
-        <?php foreach ($documentos['nome'] as $nomeChave => $nomeValor) : ?>
-          <?php foreach ($documentos['data_postagem'] as $dataChave => $dataValor) : ?>
-            <tr>
-              <td><?php echo $nomeValor; ?></td>
-              <td><?php echo $dataValor; ?></td>
-            </tr>
-          <?php endforeach; ?>
-        <?php endforeach; ?>
-        </table>
-      </div>
-    </div><!-- linha 3 -->
-  </div>
-
-  <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
-  <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
-  <script src="<?php echo BASE_URL; ?>libs/datetimepicker/js/jquery.datetimepicker.full.min.js" charset="UTF-8"></script>
-  <script type="text/javascript">
-
-    jQuery(function(){
-
-      $.datetimepicker.setLocale('pt-BR');
-     jQuery('#date_timepicker_start').datetimepicker({
-      format:'Y-m-d',
-      onShow:function( ct ){
-       this.setOptions({
-        maxDate:jQuery('#date_timepicker_end').val()?jQuery('#date_timepicker_end').val():false
-
-      });
-      },
-      timepicker:false
-     });
-
-
-     jQuery('#date_timepicker_end').datetimepicker({
-      format:'Y-m-d',
-      onShow:function( ct ){
-       this.setOptions({
-        minDate:jQuery('#date_timepicker_start').val()?jQuery('#date_timepicker_start').val():false
-       })
-
-      },
-      timepicker:false
-     });
-    });
-
-  </script>
+  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/date-time-picker/js/jquery.datetimepicker.full.min.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/date-time-picker/script-data.js"></script>
 </body>
 </html>
