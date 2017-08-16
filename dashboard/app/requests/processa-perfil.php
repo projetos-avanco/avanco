@@ -2,6 +2,7 @@
 
 require DIRETORIO_MODULES . 'profile/colaborador.php';
 require DIRETORIO_HELPERS . 'data.php';
+require DIRETORIO_HELPERS . 'verifica.php';
 
 # criando array com o modelo de datas
 $datas = defineArrayModeloDeDatas();

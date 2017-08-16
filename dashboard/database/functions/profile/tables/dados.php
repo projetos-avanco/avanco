@@ -1,6 +1,7 @@
 <?php
 
-require ABS_PATH . 'app/helpers/query.php';
+require DIRETORIO_HELPERS . 'query.php';
+require DIRETORIO_MODELS  . 'sessoes.php';
 
 /**
  * analisa se os dados do colaborador serão inseridos ou atualizados na tabela
@@ -9,6 +10,9 @@ require ABS_PATH . 'app/helpers/query.php';
  */
 function analisaDadosDoColaborador($objeto, $modelo)
 {
+  # chamando função que cria a sessão de colaborador
+  criaSessaoDeColaborador();
+
   # verificando se foi informado um nome de usuário existente no chat, no momento da requisição da página (?usuario=nome-sobrenome)
   if ($modelo['pessoal']['id'] != 0) {
 
@@ -41,31 +45,23 @@ function analisaDadosDoColaborador($objeto, $modelo)
     if ($resultado) {
 
       # emissão realizada, criando sessão com o id do colaborador que requisitou a página
-      $_SESSION['colaborador'] = array(
-        'id'       => $modelo['pessoal']['id'],
-        'tipo'     => '1',
-        'mensagem' => 'query executada!'
-      );
+      $_SESSION['colaborador']['id']       = $modelo['pessoal']['id'];
+      $_SESSION['colaborador']['tipo']     = 1;
+      $_SESSION['colaborador']['mensagem'] = 'query executada!';
 
     } else {
 
       # emissão não realizada, criando sessão com o id 0
-      $_SESSION['colaborador'] = array(
-        'id'       => '0',
-        'tipo'     => '2',
-        'mensagem' => 'query não executada!'
-      );
+      $_SESSION['colaborador']['tipo']     = 2;
+      $_SESSION['colaborador']['mensagem'] = 'query não executada!';
 
     }
 
   } else {
 
     # usuário não existente no chat, criando sessão com id 0
-    $_SESSION['colaborador'] = array(
-      'id'       => '0',
-      'tipo'     => '3',
-      'mensagem' => 'usuário não existente na base de dados do chat!'
-    );
+    $_SESSION['colaborador']['tipo']     = 3;
+    $_SESSION['colaborador']['mensagem'] = 'usuário não existente na base de dados do chat!';
 
   }
 

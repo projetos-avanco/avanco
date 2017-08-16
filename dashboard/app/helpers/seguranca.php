@@ -40,7 +40,7 @@ function redirecionaUsuario()
  */
 function verificaUsuarioLogado()
 {
-  # verificando se existe a sessão usuário ou se a sessão logado está como falso
+  # verificando se existe a sessão de usuário ou se a sessão de usuário logado está como falso
   if (! isset($_SESSION['usuario']) OR $_SESSION['usuario']['logado'] !== true) {
 
     return false;

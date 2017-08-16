@@ -15,3 +15,15 @@ function criaSessaoDeUsuario()
     'mensagem' => ''
   );
 }
+
+/*
+ * cria uma sessão para colaborador
+ */
+function criaSessaoDeColaborador()
+{
+  $_SESSION['colaborador'] = array(
+    'id' => '0',
+    'tipo' => 0,
+    'mensagem' => ''
+  );
+}
