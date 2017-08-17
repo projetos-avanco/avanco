@@ -11,13 +11,23 @@ function redirecionaUsuario()
     # verificando se o usuário está cadastrado
     if ($_SESSION['usuario']['id'] != '0' AND $_SESSION['usuario']['tipo'] == 1) {
 
-      # redirecionando para a página de dashboard do usuário
-      header('Location: ' . BASE_URL .
-        'public/views/profile/colaborador.php?usuario=' .
-        strtolower(removeAcentos($_SESSION['usuario']['nome'])) .
-        '-' .
-        strtolower(removeAcentos($_SESSION['usuario']['sobrenome']))
-      );
+      # verificando se o nível de usuário é comun
+      if ($_SESSION['usuario']['nivel'] == 1) {
+
+        # redirecionando para a página de dashboard do colaborador
+        header('Location: ' . BASE_URL . 'public/views/profile/colaborador.php?usuario=' .
+          strtolower(removeAcentos($_SESSION['usuario']['nome'])) .
+          '-' .
+          strtolower(removeAcentos($_SESSION['usuario']['sobrenome']))
+        );
+
+        # verificando se o nível de usuário é administrador
+      } elseif ($_SESSION['usuario']['nivel'] == 2) {
+
+        # redirecionando para página de seleção do dashboard do colaborador
+        header('Location: ' . BASE_URL . 'public/views/profile/administrador.php');
+
+      }
 
       # verificando se os dados não foram preenchidos no formulário ou se o envio de requisição está incorreto ou se o usuário não está cadastrado
     } elseif ($_SESSION['usuario']['id'] == '0' AND (

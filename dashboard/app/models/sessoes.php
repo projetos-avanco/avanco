@@ -1,7 +1,7 @@
 <?php
 
 /*
- * cria uma sessão para usuário
+ * cria uma sessão para usuário (utilizado para gravar os dados do usuário que está logando no sistema)
  */
 function criaSessaoDeUsuario()
 {
@@ -17,7 +17,7 @@ function criaSessaoDeUsuario()
 }
 
 /*
- * cria uma sessão para colaborador
+ * cria uma sessão para colaborador (utilizado para gravar o retorno da consultas de INSERT ou UPDATE dos dados do colaborador)
  */
 function criaSessaoDeColaborador()
 {
@@ -25,5 +25,15 @@ function criaSessaoDeColaborador()
     'id' => '0',
     'tipo' => 0,
     'mensagem' => ''
+  );
+}
+
+/*
+ * cria uma sessão para colaboradores (utilizado para montar o select da página de administrador)
+ */
+function criaSessaoDeColaboradores()
+{
+  $_SESSION['colaboradores'] = array(
+    'options' => array(),    
   );
 }
