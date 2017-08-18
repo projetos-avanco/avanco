@@ -3,7 +3,14 @@
   require '../../../init.php';
   require DIRETORIO_MODULES . 'profile/administrador.php';
 
-  retornaColaboradoresDoChat();
+  #chamando função que cria as opções com os nomes dos colaboradores para o select dinamicamente
+  criaOpcoesComOsColaboradoresDoChat();
+
+  # recuperando opções
+  $options = $_SESSION['colaboradores']['options'];
+
+  # eliminando sessão de colaboradores
+  unset($_SESSION['colaboradores']['options']);
 
 ?>
 
@@ -21,11 +28,11 @@
 
 <body>
   <div class="container">
-    <form class="" action="<?php echo BASE_URL; ?>public/views/profile/colaborador.php" method="get">
+    <form class="was-validated" action="<?php echo BASE_URL; ?>public/views/profile/colaborador.php" method="get">
       <div class="form-group text-center">
         <label for="usuario">Colaboradores</label>
-        <select multiple class="form-control" name="usuario">
-          <?php echo $_SESSION['colaboradores']['options']; ?>
+        <select class="form-control" name="usuario">
+          <?php echo $options; ?>
         </select>
       </div>
 

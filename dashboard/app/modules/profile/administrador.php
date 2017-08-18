@@ -1,11 +1,11 @@
 <?php
 
-require DIRETORIO_FUNCTIONS . 'profile/tables/selecao.php';
+require DIRETORIO_FUNCTIONS . 'profile/tables/opcoes.php';
 
 /*
- * retorna os colaboradores cadastrados como usuários no sistema
+ * cria as opções com os nomes dos colaboradores cadastrados do chat
  */
-function retornaColaboradoresDoChat()
+function criaOpcoesComOsColaboradoresDoChat()
 {
   # abrindo uma conexão com a base de dados
   $conexao = abre_conexao();

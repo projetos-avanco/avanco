@@ -10,6 +10,7 @@ require DIRETORIO_HELPERS . 'caracteres.php';
  */
 function criaUsuariosParaDashboard($nome, $sobrenome)
 {
+  # retirando acentos, acrescentando - e deixando todas as letras minúsculas para criar o usuário do dashboard (enviado via URL)
   $usuario = strtolower(removeAcentos($nome)) . '-' . strtolower(removeAcentos($sobrenome));
 
   return $usuario;
@@ -41,13 +42,14 @@ function consultaColaboradoresDoChat($objeto)
     # chamando função que cria o usuário do colaborador no dashboard
     $usuario = criaUsuariosParaDashboard($registros['nome'], $registros['sobrenome']);
 
-    # montando option
+    # montando options
     $options .= "<option value='{$usuario}'>{$registros['nome']} {$registros['sobrenome']}</option>";
 
   }
 
+  # enviando opções para a sessão
   $_SESSION['colaboradores']['options'] = $options;
-  
+
   # fechando conexão aberta
   fecha_conexao($objeto);
 }
