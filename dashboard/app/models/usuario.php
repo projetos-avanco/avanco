@@ -9,6 +9,7 @@ function defineArrayModeloDeUsuarioParaLogin()
     'id' => '',
     'nome' => '',
     'sobrenome' => '',
+    'usuario' => '',
     'nivel' => 0,
     'usuario' => '',
     'senha' => ''

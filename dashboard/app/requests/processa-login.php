@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   }
 
+  # a requisição não foi via método POST
 } else {
 
   # setando mensagem de envio incorreto de requisição na sessão

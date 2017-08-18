@@ -14,6 +14,7 @@ function consultaDadosDeLogin($conexao, $login)
     	id,
       nome,
       sobrenome,
+      usuario,
       nivel
     FROM av_usuarios_login
     WHERE (usuario = '{$login['usuario']}')
@@ -23,6 +24,7 @@ function consultaDadosDeLogin($conexao, $login)
 
   $resultado = mysqli_query($conexao, $query);
 
+  # verificando se o usuário está cadastrado no sistema
   if ($resultado->num_rows != 1) {
 
     # setando mensagem de usuário não encontrado na sessão
@@ -46,6 +48,7 @@ function consultaDadosDeLogin($conexao, $login)
       $login['id']        = $registros['id'];
       $login['nome']      = $registros['nome'];
       $login['sobrenome'] = $registros['sobrenome'];
+      $login['usuario']   = $registros['usuario'];
       $login['nivel']     = $registros['nivel'];
 
     }
@@ -54,6 +57,7 @@ function consultaDadosDeLogin($conexao, $login)
     $_SESSION['usuario']['id']        = $login['id'];
     $_SESSION['usuario']['nome']      = $login['nome'];
     $_SESSION['usuario']['sobrenome'] = $login['sobrenome'];
+    $_SESSION['usuario']['usuario']   = $login['usuario'];
     $_SESSION['usuario']['nivel']     = (int)$login['nivel'];
     $_SESSION['usuario']['logado']    = true;
     $_SESSION['usuario']['tipo']      = 1;

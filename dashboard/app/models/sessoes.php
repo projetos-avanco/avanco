@@ -9,6 +9,7 @@ function criaSessaoDeUsuario()
     'id' => '0',
     'nome' => '',
     'sobrenome' => '',
+    'usuario' => '',
     'nivel' => 0,
     'logado' => false,
     'tipo' => 0,
@@ -34,6 +35,6 @@ function criaSessaoDeColaborador()
 function criaSessaoDeColaboradores()
 {
   $_SESSION['colaboradores'] = array(
-    'options' => array(),    
+    'options' => array(),
   );
 }
