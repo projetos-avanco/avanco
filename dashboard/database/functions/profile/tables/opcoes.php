@@ -10,8 +10,8 @@ require DIRETORIO_HELPERS . 'caracteres.php';
  */
 function criaUsuariosParaDashboard($nome, $sobrenome)
 {
-  # retirando acentos, acrescentando - e deixando todas as letras minúsculas para criar o usuário do dashboard (enviado via URL)
-  $usuario = strtolower(removeAcentos($nome)) . '-' . strtolower(removeAcentos($sobrenome));
+  # retirando acentos, acrescentando . e deixando todas as letras minúsculas para criar o usuário do dashboard
+  $usuario = strtolower(removeAcentos($nome)) . '.' . strtolower(removeAcentos($sobrenome));
 
   return $usuario;
 }

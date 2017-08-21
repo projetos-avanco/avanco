@@ -20,8 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   # recuperando data informada pelo usuário ou data atual
-  $datas['data_1'] = isset($_POST['datas']['data-1']) ? $_POST['datas']['data-1'] : date('Y-m-d');
-  $datas['data_2'] = isset($_POST['datas']['data-2']) ? $_POST['datas']['data-2'] : date('Y-m-d');
+  $datas['data_1'] = isset($_POST['data-1']) ? $_POST['data-1'] : date('Y-m-d');
+  $datas['data_2'] = isset($_POST['data-2']) ? $_POST['data-2'] : date('Y-m-d');
+
+  # chamando função que formata a data para aaaa-mm-dd
+  $datas = formataDataParaMysql($datas);
 
 }
 

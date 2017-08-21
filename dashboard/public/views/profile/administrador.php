@@ -28,7 +28,7 @@
 
 <body>
   <div class="container">
-    <form class="was-validated" action="<?php echo BASE_URL; ?>public/views/profile/colaborador.php" method="get">
+    <form class="" action="<?php echo BASE_URL; ?>public/views/profile/colaborador.php" method="post">
       <div class="form-group text-center">
         <label for="usuario">Colaboradores</label>
         <select class="form-control" name="usuario">

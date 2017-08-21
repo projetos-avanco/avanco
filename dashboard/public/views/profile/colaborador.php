@@ -38,17 +38,17 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
+
   <title>Perfil do Colaborador</title>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/date-time-picker/css/jquery.datetimepicker.css" media="screen">
 </head>
 
 <body>
@@ -60,11 +60,12 @@
     </p>
 
     <div class="row">
-      <div class="col align-self-center">
-        <form action="" method="post" class="form-horizontal"  role="form">
-            <input id="date_timepicker_start" type="text" name="datas[data-1]">
-            <input id="date_timepicker_end" type="text" name="datas[data-2]">
-            <input type="submit" value="Gerar" >
+      <div class="input-group input-daterange">
+        <form class="form-inline" method="post">
+          <input type="text" class="form-control" name="data-1" value="<?php echo $dashboard['periodo']['data_1']; ?>">
+          <div class="input-group-addon">até</div>
+          <input type="text" class="form-control" name="data-2" value="<?php echo $dashboard['periodo']['data_2']; ?>">
+          <button type="submit">Gerar</button>
         </form>
       </div>
     </div>
@@ -186,9 +187,22 @@
     </div><!-- linha 2 -->
   </div><!-- container -->
 
-  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/date-time-picker/js/jquery.datetimepicker.full.min.js" charset="UTF-8"></script>
-  <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/date-time-picker/script-data.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+
+  <script type="text/javascript">
+
+    $('.input-daterange input').each(function() {
+      $(this).datepicker({
+        language: 'pt-BR',
+        format: 'dd/mm/yyyy',
+        autoclose: true
+      });
+    });
+
+  </script>
 </body>
 </html>

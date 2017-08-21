@@ -3,34 +3,6 @@
 require ABS_PATH . 'app/helpers/caracteres.php';
 
 /**
- * consulta e retorna os dados pessoais do colaborador (id, nome e sobrenome cadastrados no chat)
- * @param - objeto com uma conexão aberta
- * @param - array com o modelo de colaborador
- */
-function consultaDadosPessoaisDoColaborador($objeto, $modelo)
-{
-  $query =
-    "SELECT
-    	id,
-    	name,
-    	surname
-    FROM lh_users
-    WHERE username = '{$modelo['pessoal']['usuario']}'";
-
-  $resultado = mysqli_query($objeto, $query);
-
-  while ($registro = mysqli_fetch_assoc($resultado)) {
-
-    $modelo['pessoal']['id']        = $registro['id'];
-    $modelo['pessoal']['nome']      = $registro['name'];
-    $modelo['pessoal']['sobrenome'] = $registro['surname'];
-
-  }
-
-  return $modelo;
-}
-
-/**
  * cria o caminho da foto do colaborador de acordo com o seu time atual
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo de colaborador
@@ -58,6 +30,36 @@ function criaCaminhoDaFotoDoColaborador($objeto, $modelo)
 
   # chamando função que retira os acentos e troca os espaços ( ) por traço (-)
   $modelo['pessoal']['caminho_foto'] = removeAcentos($modelo['pessoal']['caminho_foto']);
+
+  return $modelo['pessoal']['caminho_foto'];
+}
+
+/**
+ * consulta e retorna os dados pessoais do colaborador (id, nome e sobrenome cadastrados no chat)
+ * @param - objeto com uma conexão aberta
+ * @param - array com o modelo de colaborador
+ */
+function consultaDadosPessoaisDoColaborador($objeto, $modelo)
+{
+  $query =
+    "SELECT
+    	id,
+    	name,
+    	surname
+    FROM lh_users
+    WHERE username = '{$modelo['pessoal']['usuario']}'";
+
+  $resultado = mysqli_query($objeto, $query);
+
+  while ($registro = mysqli_fetch_assoc($resultado)) {
+
+    $modelo['pessoal']['id']        = $registro['id'];
+    $modelo['pessoal']['nome']      = $registro['name'];
+    $modelo['pessoal']['sobrenome'] = $registro['surname'];
+
+  }
+
+  $modelo['pessoal']['caminho_foto'] = criaCaminhoDaFotoDoColaborador($objeto, $modelo);
 
   return $modelo;
 }

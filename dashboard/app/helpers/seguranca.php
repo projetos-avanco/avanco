@@ -15,11 +15,7 @@ function redirecionaUsuario()
       if ($_SESSION['usuario']['nivel'] == 1) {
 
         # redirecionando para a página de dashboard do colaborador
-        header('Location: ' . BASE_URL . 'public/views/profile/colaborador.php?usuario=' .
-          strtolower(removeAcentos($_SESSION['usuario']['nome'])) .
-          '-' .
-          strtolower(removeAcentos($_SESSION['usuario']['sobrenome']))
-        );
+        header('Location: ' . BASE_URL . 'public/views/profile/colaborador.php');
 
         # verificando se o nível de usuário é administrador
       } elseif ($_SESSION['usuario']['nivel'] == 2) {

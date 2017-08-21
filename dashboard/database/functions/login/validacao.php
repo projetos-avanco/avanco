@@ -19,7 +19,7 @@ function consultaDadosDeLogin($conexao, $login)
     FROM av_usuarios_login
     WHERE (usuario = '{$login['usuario']}')
     	AND (senha = '{$login["senha"]}')
-        AND (ativo = 1)
+      AND (ativo = 1)
     		LIMIT 1";
 
   $resultado = mysqli_query($conexao, $query);
