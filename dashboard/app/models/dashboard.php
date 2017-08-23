@@ -9,7 +9,8 @@ function defineArrayModeloDeDashboard()
     'pessoal' => array(
       'nome' => '',
       'sobrenome' => '',
-      'caminho_foto' => ''
+      'caminho_foto' => '',
+      'time' => ''
     ),
 
     'periodo' => array(

@@ -30,6 +30,34 @@ function retornaDadosDoColaborador($objeto, $modelo, $id)
 }
 
 /**
+ * retorna o nome do atual do colaborador
+ * @param - objeto com uma conexão aberta
+ * @param - array com o modelo do dashboard
+ * @param - string com o id do colaborador que requisitou a página
+ */
+function retornaNomeDoTimeAtual($objeto, $modelo, $id)
+{
+  $query =
+    "SELECT
+    	av_dashboard_times.nome
+    FROM av_dashboard_times
+    INNER JOIN av_dashboard_colaborador_times
+    	ON av_dashboard_colaborador_times.id_times = av_dashboard_times.id
+    WHERE (id_colaborador = $id)
+    	AND (data_saida IS NULL)";
+
+  $resultado = mysqli_query($objeto, $query);
+
+  $time = mysqli_fetch_row($resultado);
+
+  $modelo['pessoal']['time'] = $time[0];
+
+  # retirando espaços do nome do time
+  $modelo['pessoal']['time'] = str_replace(" ", "", $modelo['pessoal']['time']);
+
+  return $modelo;
+}
+/**
  * retorna o período pesquisado pelo colaborador
  * @param - objeto com uma conexão aberta
  * @param - array com o modelo do dashboard
@@ -222,6 +250,9 @@ function retornaDadosParaDashboard($objeto, $modelo, $id)
 {
   # chamando função que retorna os dados do colaborador
   $modelo = retornaDadosDoColaborador($objeto, $modelo, $id);
+
+  # chamando função que retorna o nome do time atual do colaborador
+  $modelo = retornaNomeDoTimeAtual($objeto, $modelo, $id);
 
   # chamando função que retorna o período pesquisado pelo colaborador
   $modelo = retornaPeriodo($objeto, $modelo, $id);
