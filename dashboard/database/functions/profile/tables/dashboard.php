@@ -20,9 +20,9 @@ function retornaDadosDoColaborador($objeto, $modelo, $id)
 
   while ($registro = mysqli_fetch_assoc($resultado)) {
 
-    $modelo['pessoal']['nome']         = $registro['nome'];
-    $modelo['pessoal']['sobrenome']    = $registro['sobrenome'];
-    $modelo['pessoal']['caminho_foto'] = $registro['caminho_foto'];
+    $modelo['pessoal']['nome']                 = $registro['nome'];
+    $modelo['pessoal']['sobrenome']            = $registro['sobrenome'];
+    $modelo['pessoal']['caminho_foto_jogador'] = $registro['caminho_foto'];
 
   }
 
@@ -57,6 +57,33 @@ function retornaNomeDoTimeAtual($objeto, $modelo, $id)
 
   return $modelo;
 }
+
+/**
+ * retorna o caminho da foto da bandeira do time do colaborador
+ * @param - objeto com uma conexão aberta
+ * @param - array com o modelo do dashboard
+ * @param - string com o id do colaborador que requisitou a página
+ */
+function retornaCaminhoDaFotoDaBandeiraDoTime($objeto, $modelo, $id)
+{
+  $query =
+    "SELECT
+    	av_dashboard_times.nome
+    FROM av_dashboard_times
+    INNER JOIN av_dashboard_colaborador_times
+    	ON av_dashboard_colaborador_times.id_times = av_dashboard_times.id
+    WHERE (id_colaborador = $id)
+    	AND (data_saida IS NULL)";
+
+  $resultado = mysqli_query($objeto, $query);
+
+  $bandeira = mysqli_fetch_row($resultado);
+
+  $modelo['pessoal']['caminho_foto_bandeira'] = BASE_URL . 'public/img/flags/' . strtolower(removeAcentos($bandeira[0])) . '.png';
+
+  return $modelo;
+}
+
 /**
  * retorna o período pesquisado pelo colaborador
  * @param - objeto com uma conexão aberta
@@ -253,6 +280,9 @@ function retornaDadosParaDashboard($objeto, $modelo, $id)
 
   # chamando função que retorna o nome do time atual do colaborador
   $modelo = retornaNomeDoTimeAtual($objeto, $modelo, $id);
+
+  # chamando função que retorna o caminho da foto da bandeira do time do colaborador
+  $modelo = retornaCaminhoDaFotoDaBandeiraDoTime($objeto, $modelo, $id);
 
   # chamando função que retorna o período pesquisado pelo colaborador
   $modelo = retornaPeriodo($objeto, $modelo, $id);
