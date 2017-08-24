@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/dashboard.css">
 </head>
 
 <body>
@@ -109,7 +109,7 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </div>
                     <input type="text" class="form-control" name="data-2" value="<?php echo $dashboard['periodo']['data_2']; ?>">
-                    <button type="submit" class="btn btn-outline-primary">Pesquisar</button>
+                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
               </form>
             </div><!-- segunda coluna da linha -->
@@ -125,7 +125,7 @@
             <div class="col-sm-3"><!-- primeira coluna da linha -->
               <div class="text-left">
                 <p>Realizados</p>
-                <h1>
+                <h1 class="resultados">
                 <?php
                   echo $dashboard['indicadores_chat']['atendimentos_realizados'];
                 ?>
@@ -136,7 +136,7 @@
             <div class="col-sm-3"><!-- segunda coluna da linha -->
               <div class="text-left">
                 <p>Demandados</p>
-                <h1>
+                <h1 class="resultados">
                 <?php
                   echo $dashboard['indicadores_chat']['atendimentos_demandados'];
                 ?>
@@ -147,7 +147,7 @@
             <div class="col-sm-3"><!-- terceira coluna da linha -->
               <div class="text-left">
                 <p>Taxa de Perda</p>
-                <h1>
+                <h1 class="resultados">
                 <?php
                   echo $dashboard['indicadores_chat']['percentual_perda'] . '%';
                 ?>
@@ -158,9 +158,9 @@
             <div class="col-sm-3"><!-- quarta coluna da linha -->
               <div class="text-left">
                 <p>TMA</p>
-                <h1>
+                <h1 class="resultados">
                 <?php
-                  echo $dashboard['indicadores_chat']['tma'] . ' min';
+                  echo $dashboard['indicadores_chat']['tma'] . '<span class="tma">min<span>';
                 ?>
                 </h1>
               </div>
@@ -171,7 +171,7 @@
             <div class="col-sm-3"><!-- primeira coluna da linha -->
               <div class="text-left">
                 <p>Fila até 15 Minutos</p>
-                <h1>
+                <h1 class="resultados">
                 <?php
                   echo $dashboard['indicadores_chat']['percentual_fila_ate_15_minutos'] . '%';
                 ?>
@@ -182,7 +182,7 @@
             <div class="col-sm-3"><!-- segunda coluna da linha -->
               <div class="text-left">
                 <p>Avancino</p>
-                <h1>
+                <h1 class="resultados">
                 <?php
                   echo $dashboard['indicadores_chat']['percentual_avancino'] . '%';
                 ?>
@@ -193,7 +193,7 @@
             <div class="col-sm-3"><!-- terceira coluna da linha -->
               <div class="text-left">
                 <p>Eficiência</p>
-                <h1>
+                <h1 class="resultados">
                 <?php
                   echo $dashboard['indicadores_chat']['percentual_eficiencia'] . '%';
                 ?>
@@ -204,7 +204,7 @@
             <div class="col-sm-3"><!-- quarta coluna da linha -->
               <div class="text-left">
                 <p>Questionário</p>
-                <h1>
+                <h1 class="resultados">
                 <?php
                   echo $dashboard['indicadores_chat']['percentual_questionario_respondido'] . '%';
                 ?>
@@ -234,14 +234,14 @@
                   </a>
                 </div>
                 <div class="card-body">
-                  <h4  class="text-center">
+                  <h1  class="text-center resultados">
                   <?php
                     echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_mes_artigos_infovarejo'];
-                    echo ' Mês' . ' / ';
+                    echo '<span class="mes-total">Mês</span>' . '/ ';
                     echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_total_artigos_infovarejo'];
-                    echo ' Total';
+                    echo '<span class="mes-total">Total</span>';
                   ?>
-                  </h4>
+                  </h1>
                 </div>
               </div><!-- card -->
             </div><!-- primeira coluna da linha -->
@@ -254,14 +254,14 @@
                 </a>
                 </div>
                 <div class="card-body">
-                  <h4  class="text-center">
+                  <h1  class="text-center resultados">
                   <?php
                     echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_mes_documentos_bc'];
-                    echo ' Mês' . ' / ';
+                    echo '<span class="mes-total">Mês</span>' . '/ ';
                     echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_total_documentos_bc'];
-                    echo ' Total';
+                    echo '<span class="mes-total">Total</span>';
                   ?>
-                  </h4>
+                  </h1>
                 </div>
               </div><!-- card -->
             </div><!-- segunda coluna da linha -->
@@ -272,11 +272,11 @@
                   SLA do Mês
                 </div>
                 <div class="card-body">
-                  <h4  class="text-center">
+                  <h1  class="text-center resultados">
                   <?php
                     echo $dashboard['informacoes_gerais']['sla']['percentual_mes_sla'] . '%';
                   ?>
-                  </h4>
+                  </h1>
                 </div>
               </div><!-- card -->
             </div><!-- terceira coluna da linha -->
@@ -287,11 +287,11 @@
                   SLA Total
                 </div>
                 <div class="card-body">
-                  <h4  class="text-center">
+                  <h1  class="text-center resultados">
                   <?php
                     echo $dashboard['informacoes_gerais']['sla']['percentual_total_sla'] . '%';
                   ?>
-                  </h4>
+                  </h1>
                 </div>
               </div><!-- card -->
             </div><!-- quarta coluna da linha -->
