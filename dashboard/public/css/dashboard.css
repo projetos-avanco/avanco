@@ -1,3 +1,17 @@
+@font-face {
+  font-family: Museosans;
+  src: url('../fonts/museosans.otf');
+}
+
+@@font-face {
+  font-family: 'Museosans 2';
+  src: url('../fonts/museosans_100_italic.otf');
+}
+
+body {
+  font-family: 'Museosans 2', sans-serif;
+}
+
 div {
   margin: 0 0 20px 0;
 }
@@ -23,6 +37,7 @@ div {
 }
 
 .resultados {
+  font-family: Museosans;
   font-size: 350%;
 }
 
