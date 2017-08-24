@@ -7,9 +7,9 @@
     <title>Formulario de Login</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/style.css">
   </head>
-  
+
   <body>
-    <form action="<?php echo BASE_URL; ?>app/requests/processa-login.php" method="post">
+    <form action="<?php echo BASE_URL; ?>app/requests/processa_login.php" method="post">
       <fieldset>
         <legend>Dados de Login</legend>
         <label for="usuario">Usuário: </label>

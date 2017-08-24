@@ -4,6 +4,6 @@
 if (! verificaUsuarioLogado()) {
 
   # redirecionando
-  header('Location: ' . BASE_URL . 'public/views/login/form-login.php');
+  header('Location: ' . BASE_URL . 'public/views/login/form_login.php');
 
 }

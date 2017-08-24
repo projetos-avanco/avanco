@@ -18,4 +18,4 @@ $_SESSION['usuario']['logado'] = false;
 session_destroy();
 
 # redirecionando para a página de login
-header('Location: ' . BASE_URL . 'public/views/login/form-login.php');
+header('Location: ' . BASE_URL . 'public/views/login/form_login.php');

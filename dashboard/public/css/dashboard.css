@@ -23,7 +23,7 @@ div {
 }
 
 .resultados {
-  font-size: 4.5em;
+  font-size: 350%;
 }
 
 .mes-total {
@@ -32,6 +32,6 @@ div {
   top: -40px;
 }
 
-input['type=text'] {
-  border: none;
+.card-body {
+  margin: 0 0 0 0;
 }
