@@ -10,6 +10,39 @@
 
 body {
   font-family: 'Museosans 2', sans-serif;
+  color: #DCE6EF;
+  background-color: #151A20;
+}
+
+hr {
+  color: #363D45;
+  background-color: #363d45;
+  height: 2px;
+  width: 60%;
+}
+
+p {
+  color: #009f45;
+}
+
+h2 {
+  font-weight: bold;
+  font-style: italic;
+  color: #EAEFF5;
+}
+
+h4 {
+  color: #6B747B;
+}
+
+#nome-time {
+  color: #354044;
+}
+
+#hall-da-fama {
+  font-weight: bold;
+  font-style: italic;
+  color: #6B757F;
 }
 
 div {
@@ -25,19 +58,15 @@ div {
   top: -130px;
 }
 
-#bandeira {
-  background-color: black;
-  padding: 0px 0px 25px 0px;
-}
-
 .tma {
   position: relative;
-  font-size: 35px;
+  font-size: 25px;
   top: -35px;
 }
 
 .resultados {
   font-family: Museosans;
+  font-weight: bold;
   font-size: 350%;
 }
 
@@ -47,6 +76,32 @@ div {
   top: -40px;
 }
 
+.links, a:hover {
+  color: #009f45;
+  text-decoration: none;
+}
+
+.card {
+  border: none;
+}
+
+.card-header {
+  background-color: #2B343B;
+}
+
 .card-body {
+  background-color: #1d2228;
   margin: 0 0 0 0;
+}
+
+.info-gerais {
+  margin: 0 0 0 0;
+}
+
+.cor-cinza {
+  color: #374049;
+}
+
+.btn-success {
+  background-color: #009f45;
 }

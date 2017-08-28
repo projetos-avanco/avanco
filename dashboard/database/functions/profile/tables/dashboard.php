@@ -164,7 +164,7 @@ function retornaTitulosConquistados($objeto, $modelo, $id)
 {
   $query =
     "SELECT
-    	titulos.nome,
+      titulos.id,
       historico_titulos.data_premiacao
     FROM av_dashboard_titulos AS titulos
     INNER JOIN av_dashboard_colaborador_titulos AS historico_titulos
@@ -175,7 +175,7 @@ function retornaTitulosConquistados($objeto, $modelo, $id)
 
   while ($registros = mysqli_fetch_assoc($resultado)) {
 
-    $modelo['titulos_conquistados']['nome'][]           = $registros['nome'];
+    $modelo['titulos_conquistados']['id'][]             = $registros['id'];    
     $modelo['titulos_conquistados']['data_premiacao'][] = $registros['data_premiacao'];
 
   }

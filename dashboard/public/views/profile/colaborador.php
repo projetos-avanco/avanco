@@ -28,7 +28,7 @@
 
   <header><!-- cabeçalho -->
     <figure>
-      <img src="<?php echo $dashboard['pessoal']['caminho_foto_bandeira'];?>" id="bandeira" alt="Bandeira do Time" width="100%" height="100%">
+      <img src="<?php echo $dashboard['pessoal']['caminho_foto_bandeira'];?>" alt="Bandeira do Time" width="100%" height="100%">
     </figure>
   </header><!-- cabeçalho -->
 
@@ -56,7 +56,7 @@
 
             <div class="col-sm-12"><!-- terceira coluna da linha -->
               <div class="text-center">
-                <h5>
+                <h5 id="nome-time">
                 <?php
                   echo '#' . $dashboard['pessoal']['time'];
                 ?>
@@ -71,11 +71,57 @@
               </div>
 
               <div class="text-center">
-                <h5>Hall da Fama</h5>
+                <h5 id="hall-da-fama">Hall da Fama</h5>
+              </div>
+
+              <!-- processando títulos conquistados -->
+              <?php
+                if ($dashboard['titulos_conquistados'] > 0) {
+
+                  $titulos = '';
+
+                  for ($i = 0; $i < count($dashboard['titulos_conquistados']['id']); $i++) {
+                    switch ($dashboard['titulos_conquistados']['id'][$i]) {
+                      case '1':
+                        $titulos .=
+                          "<img src='".BASE_URL."public/img/titles/artilheiro.png'
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                        break;
+
+                      case '2':
+                        $titulos .=
+                          "<img src='".BASE_URL."public/img/titles/goleiro.png'
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                        break;
+
+                      case '3':
+                        $titulos .=
+                          "<img src='".BASE_URL."public/img/titles/lateral.png'
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                        break;
+
+                      case '4':
+                        $titulos .=
+                          "<img src='".BASE_URL."public/img/titles/meio_campo.png'
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                        break;
+
+                      case '5':
+                        $titulos .=
+                          "<img src='".BASE_URL."public/img/titles/zagueiro.png'
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                        break;
+                    }
+                  }
+                }
+              ?>
+              <!-- processando títulos conquistados -->
+
+              <div class="text-center">
+                <?php echo $titulos;?>
               </div>
             </div><!-- quarta coluna da linha -->
           </div><!-- primeira linha da coluna 1 -->
-
         </div><!--coluna 1 da linha 1 -->
 
         <div class="col-sm-8"><!--coluna 2 da linha 1-->
@@ -84,7 +130,7 @@
             <div class="col-sm-12"><!-- primeira coluna da linha -->
               <div class="text-right">
                 <p>
-                  <a class="text-right btn btn-outline-primary btn-sm" href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Deslogar</a>
+                  <a class="text-right btn btn-success btn-sm" href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Deslogar</a>
                 </p>
               </div>
             </div><!-- primeira coluna da linha -->
@@ -92,7 +138,7 @@
 
           <div class="row"><!-- segunda linha da coluna 2 -->
             <div class="col-sm-6"><!-- primeira coluna da linha -->
-              <h2>Indicadores do Chat</h2>
+              <h2>Indicadores Chat</h2>
             </div><!-- primeira coluna da linha -->
           </div><!-- segunda linha da coluna 2 -->
 
@@ -109,7 +155,7 @@
                     <i class="fa fa-calendar" aria-hidden="true"></i>
                   </div>
                     <input type="text" class="form-control" name="data-2" value="<?php echo $dashboard['periodo']['data_2']; ?>">
-                    <button type="submit" class="btn btn-outline-primary"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
               </form>
             </div><!-- segunda coluna da linha -->
@@ -149,7 +195,7 @@
                 <p>Taxa de Perda</p>
                 <h1 class="resultados">
                 <?php
-                  echo $dashboard['indicadores_chat']['percentual_perda'] . '%';
+                  echo $dashboard['indicadores_chat']['percentual_perda'] . '<span class="cor-cinza">%</span>';
                 ?>
                 </h1>
               </div>
@@ -160,7 +206,7 @@
                 <p>TMA</p>
                 <h1 class="resultados">
                 <?php
-                  echo $dashboard['indicadores_chat']['tma'] . '<span class="tma">min<span>';
+                  echo $dashboard['indicadores_chat']['tma'] . '<span class="tma cor-cinza">min<span>';
                 ?>
                 </h1>
               </div>
@@ -173,7 +219,7 @@
                 <p>Fila até 15 Minutos</p>
                 <h1 class="resultados">
                 <?php
-                  echo $dashboard['indicadores_chat']['percentual_fila_ate_15_minutos'] . '%';
+                  echo $dashboard['indicadores_chat']['percentual_fila_ate_15_minutos'] . '<span class="cor-cinza">%</span>';
                 ?>
                 </h1>
               </div>
@@ -184,7 +230,7 @@
                 <p>Avancino</p>
                 <h1 class="resultados">
                 <?php
-                  echo $dashboard['indicadores_chat']['percentual_avancino'] . '%';
+                  echo $dashboard['indicadores_chat']['percentual_avancino'] . '<span class="cor-cinza">%</span>';
                 ?>
                 </h1>
               </div>
@@ -195,7 +241,7 @@
                 <p>Eficiência</p>
                 <h1 class="resultados">
                 <?php
-                  echo $dashboard['indicadores_chat']['percentual_eficiencia'] . '%';
+                  echo $dashboard['indicadores_chat']['percentual_eficiencia'] . '<span class="cor-cinza">%</span>';
                 ?>
                 </h1>
               </div>
@@ -206,7 +252,7 @@
                 <p>Questionário</p>
                 <h1 class="resultados">
                 <?php
-                  echo $dashboard['indicadores_chat']['percentual_questionario_respondido'] . '%';
+                  echo $dashboard['indicadores_chat']['percentual_questionario_respondido'] . '<span class="cor-cinza">%</span>';
                 ?>
                 </h1>
               </div>
@@ -221,7 +267,7 @@
 
           <div class="row"><!-- oitava linha da coluna 2 -->
             <div class="col-sm-12"><!-- primeira coluna da linha -->
-              <h4 class="text-center">Artigos e Documentos</h4>
+              <h4 class="text-center">Artigos Documentos SLA</h4>
             </div><!-- primeira coluna da linha -->
           </div><!-- oitava linha da coluna 2 -->
 
@@ -229,17 +275,19 @@
             <div class="col-sm-3"><!-- primeira coluna da linha -->
               <div class="card"><!-- card -->
                 <div class="card-header text-center">
-                  <a href="http://www.infovarejo.com.br<?php echo $info; ?>" target="_blank">
-                    Artigos InfoVarejo
-                  </a>
+                  <p class="info-gerais">
+                    <a href="http://www.infovarejo.com.br<?php echo $info; ?>" class="links" target="_blank">
+                      Artigos InfoVarejo
+                    </a>
+                  </p>
                 </div>
                 <div class="card-body">
                   <h1  class="text-center resultados">
                   <?php
                     echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_mes_artigos_infovarejo'];
-                    echo '<span class="mes-total">Mês</span>' . '/ ';
+                    echo '<span class="mes-total cor-cinza">Mês</span>' . '<span class="barras">/</span> ';
                     echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_total_artigos_infovarejo'];
-                    echo '<span class="mes-total">Total</span>';
+                    echo '<span class="mes-total cor-cinza">Total</span>';
                   ?>
                   </h1>
                 </div>
@@ -249,17 +297,19 @@
             <div class="col-sm-3"><!-- segunda coluna da linha -->
               <div class="card"><!-- card -->
                 <div class="card-header text-center">
-                  <a href="http://bc.avancoinfo.com.br/dosearchsite.action?cql=siteSearch+~+%22<?php echo $base; ?>%22+and+space+%3D+%22AV%22&queryString=<?php echo $base; ?>" target="_blank">
-                  Documentos B.C
+                  <p class="info-gerais">
+                    <a href="http://bc.avancoinfo.com.br/dosearchsite.action?cql=siteSearch+~+%22<?php echo $base; ?>%22+and+space+%3D+%22AV%22&queryString=<?php echo $base; ?>" class="links" target="_blank">
+                    Documentos B.C
+                  </p>
                 </a>
                 </div>
                 <div class="card-body">
                   <h1  class="text-center resultados">
                   <?php
                     echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_mes_documentos_bc'];
-                    echo '<span class="mes-total">Mês</span>' . '/ ';
+                    echo '<span class="mes-total cor-cinza">Mês</span>' . '<span class="cor-cinza">/</span> ';
                     echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_total_documentos_bc'];
-                    echo '<span class="mes-total">Total</span>';
+                    echo '<span class="mes-total cor-cinza">Total</span>';
                   ?>
                   </h1>
                 </div>
@@ -269,12 +319,14 @@
             <div class="col-sm-3"><!-- terceira coluna da linha -->
               <div class="card"><!-- card -->
                 <div class="card-header text-center">
-                  SLA do Mês
+                  <p class="info-gerais">
+                    SLA do Mês
+                  </p>
                 </div>
                 <div class="card-body">
                   <h1  class="text-center resultados">
                   <?php
-                    echo $dashboard['informacoes_gerais']['sla']['percentual_mes_sla'] . '%';
+                    echo $dashboard['informacoes_gerais']['sla']['percentual_mes_sla'] . '<span class="cor-cinza">%</span>';
                   ?>
                   </h1>
                 </div>
@@ -284,12 +336,14 @@
             <div class="col-sm-3"><!-- quarta coluna da linha -->
               <div class="card"><!-- card -->
                 <div class="card-header text-center">
-                  SLA Total
+                  <p class="info-gerais">
+                    SLA Total
+                  </p>
                 </div>
                 <div class="card-body">
                   <h1  class="text-center resultados">
                   <?php
-                    echo $dashboard['informacoes_gerais']['sla']['percentual_total_sla'] . '%';
+                    echo $dashboard['informacoes_gerais']['sla']['percentual_total_sla'] . '<span class="cor-cinza">%</span>';
                   ?>
                   </h1>
                 </div>

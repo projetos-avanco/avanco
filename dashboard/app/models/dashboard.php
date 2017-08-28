@@ -31,7 +31,7 @@ function defineArrayModeloDeDashboard()
     ),
 
     'titulos_conquistados' => array(
-      'nome' => array(),
+      'id' => array(),      
       'data_premiacao' => array()
     ),
 
