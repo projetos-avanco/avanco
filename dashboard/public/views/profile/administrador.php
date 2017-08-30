@@ -12,6 +12,7 @@
   # eliminando sessão de colaboradores
   unset($_SESSION['colaboradores']['options']);
 
+
 ?>
 
 <!DOCTYPE html>
@@ -23,24 +24,40 @@
   <title>Seleção de Colaborador</title>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
 <body>
-  <div class="container">
-    <form class="" action="<?php echo BASE_URL; ?>public/views/profile/colaborador.php" method="post">
-      <div class="form-group text-center">
-        <label for="usuario">Colaboradores</label>
-        <select class="form-control" name="usuario">
-          <?php echo $options; ?>
-        </select>
-      </div>
 
-      <button type="submit" class="btn btn-primary">Gerar</button>
-    </form>
-  </div>
+  <header>
 
-  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap.min.js"></script>
+  </header>
+
+  <main>
+        <div class="container">
+
+          <div class="row justify-content-sm-center" style="margin: 25% 0 0 0;"><!-- linha -->
+            <div class="col-sm-4 text-center"><!-- coluna -->
+                    <form class="" action="<?php echo BASE_URL; ?>public/views/profile/colaborador.php" method="post">
+                      <div class="form-group text-center">
+                        <label for="usuario"><h2>Colaboradores</h2></label>
+                        <select class="custom-select form-control" name="usuario">
+                          <?php echo $options; ?>
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-success btn-block">Gerar</button>
+                    </form>
+            </div>
+          </div>
+
+        </div>
+
+  </main>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+  <script src="<?php echo BASE_URL; ?>libs/bootstrap-4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
