@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: Museosans;
+  src: url('../fonts/museosans.otf');
+}
+
+@@font-face {
+  font-family: 'Museosans 2';
+  src: url('../fonts/museosans_100_italic.otf');
+}
