@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/dashboard.css">
 </head>
 
@@ -64,8 +65,9 @@
               </div>
             </div><!-- terceira coluna da linha -->
 
+            <hr>
+
             <div class="col-sm-12"><!-- quarta coluna da linha -->
-              <hr>
               <div class="text-center" id="trofeu">
                 <img src="<?php echo BASE_URL; ?>public/img/others/trofeu.png" alt="Troféu" width="8%" height="8%">
               </div>
@@ -85,31 +87,31 @@
                       case '1':
                         $titulos .=
                           "<img src='".BASE_URL."public/img/titles/artilheiro.png'
-                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."' width='20%' height='20%'>";
                         break;
 
                       case '2':
                         $titulos .=
                           "<img src='".BASE_URL."public/img/titles/goleiro.png'
-                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."' width='20%' height='20%'>";
                         break;
 
                       case '3':
                         $titulos .=
                           "<img src='".BASE_URL."public/img/titles/lateral.png'
-                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."' width='20%' height='20%'>";
                         break;
 
                       case '4':
                         $titulos .=
                           "<img src='".BASE_URL."public/img/titles/meio_campo.png'
-                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."' width='20%' height='20%'>";
                         break;
 
                       case '5':
                         $titulos .=
                           "<img src='".BASE_URL."public/img/titles/zagueiro.png'
-                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."'>";
+                            title='".$dashboard['titulos_conquistados']['data_premiacao'][$i]."' width='20%' height='20%'>";
                         break;
                     }
                   }
@@ -130,6 +132,9 @@
             <div class="col-sm-12"><!-- primeira coluna da linha -->
               <div class="text-right">
                 <p>
+                <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
+                  <a class="text-right btn btn-success btn-sm" href="<?php echo BASE_URL; ?>public/views/profile/administrador.php">Voltar</a>
+                <?php endif; ?>
                   <a class="text-right btn btn-success btn-sm" href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Deslogar</a>
                 </p>
               </div>
@@ -148,11 +153,11 @@
               <form class="form-inline" method="post">
                 <div class="input-group input-daterange">
                   <div class="input-group-addon">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <i class="fa fa-calendar" aria-hidden="true"></i><span class="calendario">De: </span>
                   </div>
                     <input type="text" class="form-control" name="data-1" value="<?php echo $dashboard['periodo']['data_1']; ?>">
                   <div class="input-group-addon">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    <i class="fa fa-calendar" aria-hidden="true"></i><span class="calendario">Até: </span>
                   </div>
                     <input type="text" class="form-control" name="data-2" value="<?php echo $dashboard['periodo']['data_2']; ?>">
                     <button type="submit" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -282,10 +287,10 @@
                   </p>
                 </div>
                 <div class="card-body">
-                  <h1  class="text-center resultados">
+                  <h1  class="text-center resultados-gerais">
                   <?php
                     echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_mes_artigos_infovarejo'];
-                    echo '<span class="mes-total cor-cinza">Mês</span>' . '<span class="barras">/</span> ';
+                    echo '<span class="mes-total cor-cinza">Mês</span>' . '<span class="cor-cinza">/</span> ';
                     echo $dashboard['informacoes_gerais']['infovarejo']['quantidade_total_artigos_infovarejo'];
                     echo '<span class="mes-total cor-cinza">Total</span>';
                   ?>
@@ -304,7 +309,7 @@
                 </a>
                 </div>
                 <div class="card-body">
-                  <h1  class="text-center resultados">
+                  <h1  class="text-center resultados-gerais">
                   <?php
                     echo $dashboard['informacoes_gerais']['base_conhecimento']['quantidade_mes_documentos_bc'];
                     echo '<span class="mes-total cor-cinza">Mês</span>' . '<span class="cor-cinza">/</span> ';
@@ -324,7 +329,7 @@
                   </p>
                 </div>
                 <div class="card-body">
-                  <h1  class="text-center resultados">
+                  <h1  class="text-center resultados-gerais">
                   <?php
                     echo $dashboard['informacoes_gerais']['sla']['percentual_mes_sla'] . '<span class="cor-cinza">%</span>';
                   ?>
@@ -341,7 +346,7 @@
                   </p>
                 </div>
                 <div class="card-body">
-                  <h1  class="text-center resultados">
+                  <h1  class="text-center resultados-gerais">
                   <?php
                     echo $dashboard['informacoes_gerais']['sla']['percentual_total_sla'] . '<span class="cor-cinza">%</span>';
                   ?>
@@ -363,7 +368,13 @@
   </main><!-- conteúdo -->
 
   <footer><!-- rodapé -->
-
+    <div class="container-fluid">
+      <div class="row justify-content-sm-center">
+        <div class="col-sm-auto text-center">
+          <h5 id="avancao">Avanção 2017</h5>
+        </div>
+      </div>
+    </div>
   </footer><!-- rodapé -->
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -1,28 +1,12 @@
-@font-face {
-  font-family: Museosans;
-  src: url('../fonts/museosans.otf');
-}
-
-@@font-face {
-  font-family: 'Museosans 2';
-  src: url('../fonts/museosans_100_italic.otf');
-}
-
+/* CORPO */
 body {
   font-family: 'Museosans 2', sans-serif;
   color: #DCE6EF;
   background-color: #151A20;
 }
 
-hr {
-  color: #363D45;
-  background-color: #363d45;
-  height: 2px;
-  width: 60%;
-}
-
-p {
-  color: #009f45;
+div {
+  margin: 0 0 20px 0;
 }
 
 h2 {
@@ -35,6 +19,63 @@ h4 {
   color: #6B747B;
 }
 
+p {
+  color: #009f45;
+}
+
+hr {
+  color: #363D45;
+  background-color: #363d45;
+  height: 2px;
+  width: 60%;
+}
+
+/* BOOTSTRAP */
+.card {
+  border: none;
+}
+
+.card-header {
+  background-color: #2B343B;
+}
+
+.card-body {
+  background-color: #1d2228;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+.btn-success {
+  background-color: #009f45;
+}
+
+.input-group-addon {
+  background-color: #151A20;
+  padding: 0 0 0 0;
+}
+
+.fa-calendar {
+    color: #009f45;
+}
+
+.form-control {
+  padding: 0 0 0 0;
+}
+
+.container-fluid {
+  margin: 0 0 0 0;
+}
+
+.justify-content-sm-center {
+  background-color: #1d2228;
+  margin: 0 0 0 0;
+}
+
+.col-sm-auto {
+  margin: 0 0 0 0;
+}
+
+/* OUTRAS */
 #nome-time {
   color: #354044;
 }
@@ -43,10 +84,6 @@ h4 {
   font-weight: bold;
   font-style: italic;
   color: #6B757F;
-}
-
-div {
-  margin: 0 0 20px 0;
 }
 
 #trofeu {
@@ -61,6 +98,7 @@ div {
 .tma {
   position: relative;
   font-size: 25px;
+  font-weight: bold;
   top: -35px;
 }
 
@@ -68,6 +106,34 @@ div {
   font-family: Museosans;
   font-weight: bold;
   font-size: 350%;
+}
+
+.info-gerais {
+  margin: 0 0 0 0;
+}
+
+@media screen and (min-width: 1388px) {
+  .resultados-gerais {
+    font-family: Museosans;
+    font-weight: bold;
+    font-size: 310%;
+    margin: 0 0 0 0;
+    padding: 25px 0 15px 0;
+  }
+}
+
+@media screen and (min-width: 1666px) {
+  .resultados-gerais {
+    font-family: Museosans;
+    font-weight: bold;
+    font-size: 350%;
+    margin: 0 0 0 0;
+    padding: 25px 0 15px 0;
+  }
+}
+
+.cor-cinza {
+  color: #374049;
 }
 
 .mes-total {
@@ -81,27 +147,21 @@ div {
   text-decoration: none;
 }
 
-.card {
-  border: none;
+input[type="text"] {
+  background-color: #151A20;
+  color: #657074;
+  border-bottom: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #657074;
 }
 
-.card-header {
-  background-color: #2B343B;
+.calendario {
+  padding: 0 0 0 5px;
+  margin: 3px 0 0 0;
 }
 
-.card-body {
-  background-color: #1d2228;
-  margin: 0 0 0 0;
-}
-
-.info-gerais {
-  margin: 0 0 0 0;
-}
-
-.cor-cinza {
-  color: #374049;
-}
-
-.btn-success {
-  background-color: #009f45;
+#avancao {
+  font-weight: bold;
+  font-style: normal;
+  margin: 25% 0 25% 0;
 }
