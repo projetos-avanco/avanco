@@ -36,24 +36,23 @@
   </header>
 
   <main>
-        <div class="container">
+    <div class="container">
+      <div class="row justify-content-sm-center" style="margin: 25% 0 0 0;"><!-- linha -->
+          <div class="col-sm-4 text-center"><!-- coluna -->
+            <form class="" action="<?php echo BASE_URL; ?>public/views/profile/colaborador.php" method="post">
+              <div class="form-group text-center">
+                <label for="usuario"><h2>Colaboradores</h2></label>
 
-          <div class="row justify-content-sm-center" style="margin: 25% 0 0 0;"><!-- linha -->
-            <div class="col-sm-4 text-center"><!-- coluna -->
-                    <form class="" action="<?php echo BASE_URL; ?>public/views/profile/colaborador.php" method="post">
-                      <div class="form-group text-center">
-                        <label for="usuario"><h2>Colaboradores</h2></label>
-                        <select class="custom-select form-control" name="usuario">
-                          <?php echo $options; ?>
-                        </select>
-                      </div>
-                      <button type="submit" class="btn btn-success btn-block">Gerar</button>
-                    </form>
-            </div>
+                <select class="custom-select form-control" name="usuario">
+                  <?php echo $options; ?>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-success btn-block">Visualizar</button>
+            </form>
           </div>
-
-        </div>
-
+      </div>
+    </div>
   </main>
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
