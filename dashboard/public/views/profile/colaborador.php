@@ -3,6 +3,7 @@
   require '../../../init.php';
 
   require DIRETORIO_MODULES  . 'profile/perfil.php';
+  require DIRETORIO_MODULES  . 'graphics/graficos.php';
   require DIRETORIO_REQUESTS . 'processa_perfil.php';
   require DIRETORIO_HELPERS  . 'verifica.php';
   require DIRETORIO_HELPERS  . 'profile/init_colaborador.php';
