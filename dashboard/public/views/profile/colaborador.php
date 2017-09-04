@@ -3,11 +3,13 @@
   require '../../../init.php';
 
   require DIRETORIO_MODULES  . 'profile/perfil.php';
-  require DIRETORIO_MODULES  . 'graphics/graficos.php';
   require DIRETORIO_REQUESTS . 'processa_perfil.php';
-  require DIRETORIO_HELPERS  . 'verifica.php';
   require DIRETORIO_HELPERS  . 'profile/init_colaborador.php';
+  require DIRETORIO_MODULES  . 'graphics/graficos.php';
+  require DIRETORIO_HELPERS  . 'graphics/init_graficos.php' ;
 
+  require DIRETORIO_HELPERS  . 'verifica.php';
+#exit(var_dump($graficos));
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +26,114 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/dashboard.css">
+
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChartIntegral);
+      google.charts.setOnLoadCallback(drawChartFrente);
+      google.charts.setOnLoadCallback(drawChartGestor);
+
+      /* Gráfico do Integral */
+      function drawChartIntegral() {
+        var data = google.visualization.arrayToDataTable([
+          ['Módulos',     'Percentual'],
+          ['Materiais',   <?php echo $graficos['integral']['materiais']; ?>],
+          ['Fiscal',      <?php echo $graficos['integral']['fiscal']; ?>],
+          ['Financeiro',  <?php echo $graficos['integral']['financeiro']; ?>],
+          ['Contábil',    <?php echo $graficos['integral']['contabil']; ?>],
+          ['Cotação Web', <?php echo $graficos['integral']['cotacao']; ?>],
+          ['TNFE',        <?php echo $graficos['integral']['tnfe']; ?>],
+          ['WMS',         <?php echo $graficos['integral']['wms']; ?>]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Gráfico de Conhecimento',
+            subtitle: 'Nível de Conhecimento do Colaborador nos Módulos do Sistema Integral',
+          },
+          bars: 'horizontal',
+          width: 1080,
+          height: 600,
+          hAxis: {
+            format: 'decimal'
+          },
+          backgroundColor: '#151A20',
+          colors: ['#009F45']
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('integral'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+      /* Gráfico do Integral */
+
+      /* Gráfico do Frente de Loja */
+      function drawChartFrente() {
+        var data = google.visualization.arrayToDataTable([
+          ['Módulos',         'Percentual'],
+          ['Frente Windows',  <?php echo $graficos['frente_de_loja']['frente_windows']; ?>],
+          ['Frente Linux',    <?php echo $graficos['frente_de_loja']['frente_linux']; ?>],
+          ['Supervisor',      <?php echo $graficos['frente_de_loja']['supervisor']; ?>],
+          ['Scanntech',       <?php echo $graficos['frente_de_loja']['scanntech']; ?>],
+          ['Sitef',           <?php echo $graficos['frente_de_loja']['sitef']; ?>],
+          ['Comandas',        <?php echo $graficos['frente_de_loja']['comandas']; ?>]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Gráfico de Conhecimento',
+            subtitle: 'Nível de Conhecimento do Colaborador nos Módulos do Frente de Loja',
+          },
+          bars: 'horizontal',
+          width: 1080,
+          height: 600,
+          hAxis: {
+            format: 'decimal'
+          },
+          backgroundColor: '#151A20',
+          colors: ['#009F45']
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('frente'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+      /* Gráfico do Frente de Loja */
+
+      /* Gráfico do Gestor */
+      function drawChartGestor() {
+        var data = google.visualization.arrayToDataTable([
+          ['Módulos',     'Percentual'],
+          ['Instalação',  <?php echo $graficos['gestor']['instalacao']; ?>],
+          ['Cadastro',    <?php echo $graficos['gestor']['cadastro']; ?>],
+          ['Movimento',   <?php echo $graficos['gestor']['movimento']; ?>],
+          ['Contábil',    <?php echo $graficos['gestor']['contabil']; ?>],
+          ['Fiscal',      <?php echo $graficos['gestor']['fiscal']; ?>]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Gráfico de Conhecimento',
+            subtitle: 'Nível de Conhecimento do Colaborador nos Módulos do Gestor',
+          },
+          bars: 'horizontal',
+          width: 1080,
+          height: 600,
+          hAxis: {
+            format: 'decimal'
+          },
+          backgroundColor: '#151A20',
+          colors: ['#009F45']
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('gestor'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+      /* Gráfico do Gestor */
+    </script>
 </head>
 
 <body>
@@ -362,6 +472,42 @@
               <h2>Conhecimento Técnico</h2>
             </div><!-- primeira coluna da linha -->
           </div><!-- décima linha da coluna 2 -->
+
+          <div class="row"><!-- décima primeira linha da coluna 2 -->
+            <div class="col-sm-12"><!-- primeira coluna da linha -->
+              <h4 class="text-center">Integral</h4>
+            </div><!-- primeira coluna da linha -->
+          </div><!-- décima primeira linha da coluna 2 -->
+
+          <div class="row"><!-- décima segunda linha da coluna 2 -->
+            <div class="col-sm-12"><!-- primeira coluna da linha -->
+              <div id="integral" style="width: 1000px; height: 600px;"></div>
+            </div><!-- primeira coluna da linha -->
+          </div><!-- décima segunda linha da coluna 2 -->
+
+          <div class="row"><!-- décima terceira linha da coluna 2 -->
+            <div class="col-sm-12"><!-- primeira coluna da linha -->
+              <h4 class="text-center">Frente de Loja</h4>
+            </div><!-- primeira coluna da linha -->
+          </div><!-- décima terceira linha da coluna 2 -->
+
+          <div class="row"><!-- décima quarta linha da coluna 2 -->
+            <div class="col-sm-12"><!-- primeira coluna da linha -->
+              <div id="frente" style="width: 1000px; height: 600px;"></div>
+            </div><!-- primeira coluna da linha -->
+          </div><!-- décima quarta linha da coluna 2 -->
+
+          <div class="row"><!-- décima quinta linha da coluna 2 -->
+            <div class="col-sm-12"><!-- primeira coluna da linha -->
+              <h4 class="text-center">Gestor</h4>
+            </div><!-- primeira coluna da linha -->
+          </div><!-- décima quinta linha da coluna 2 -->
+
+          <div class="row"><!-- décima sexta linha da coluna 2 -->
+            <div class="col-sm-12"><!-- primeira coluna da linha -->
+              <div id="gestor" style="width: 1000px; height: 600px;"></div>
+            </div><!-- primeira coluna da linha -->
+          </div><!-- décima sexta linha da coluna 2 -->
 
         </div><!--coluna 2 -->
       </div><!--linha 1 -->

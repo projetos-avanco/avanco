@@ -38,3 +38,38 @@ function criaSessaoDeColaboradores()
     'options' => array(),
   );
 }
+
+/*
+ * cria uma sessão para os percentuais que serão usados para gerar os gráficos
+ */
+function criaSessaoDeGraficos()
+{
+  $_SESSION['graficos'] = array(
+    'integral' => array(
+      'materiais' => '',
+      'fiscal' => '',
+      'financeiro' => '',
+      'contabil' => '',
+      'cotacao' => '',
+      'tnfe' => '',
+      'wms' => ''
+    ),
+
+    'frente_de_loja' => array(
+      'frente_windows' => '',
+      'frente_linux' => '',
+      'supervisor' => '',
+      'scanntech' => '',
+      'sitef' => '',
+      'comandas' => ''
+    ),
+
+    'gestor' => array(
+      'instalacao' => '',
+      'cadastro' => '',
+      'movimento' => '',
+      'contabil' => '',
+      'fiscal' => ''
+    )
+  );
+}
