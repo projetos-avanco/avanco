@@ -9,7 +9,7 @@
   require DIRETORIO_HELPERS  . 'graphics/init_graficos.php' ;
 
   require DIRETORIO_HELPERS  . 'verifica.php';
-#exit(var_dump($graficos));
+
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +27,6 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/dashboard.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/graficos.css">
-
-
 
 </head>
 
@@ -439,23 +437,23 @@
 
   <script type="text/javascript">
 
-        function define_cor(valor)
-        {
-              var cor;
-              if(valor<25)
+      function define_cor(valor)
+      {
+            var cor;
+            if(valor<25)
+            {
+              cor = 'color: #f66565';
+            }
+              else if((valor<50)&&(valor>=25))
               {
-                cor = 'color: #f66565';
+                cor = 'color: #ced04d';
               }
-                else if((valor<50)&&(valor>=25))
-                {
-                  cor = 'color: #ced04d';
-                }
-                else
-                {
-                  cor = 'color: #009F45';
-                }
-                return cor;
-        }
+              else
+              {
+                cor = 'color: #009F45';
+              }
+              return cor;
+      }
 
       google.charts.load('current',{packages:["corechart"]});
       google.charts.setOnLoadCallback(drawIntegralChart);
@@ -523,7 +521,6 @@
             barrasfrenteloja.draw(data, options);
       }
 
-
       function drawGestorChart()
       {
       //montando o array com os dados
@@ -553,11 +550,10 @@
             outros.draw(data, options);
     }
 
-      $(window).resize(function(){
-         yourCallingChartFunction();
-      });
-
-      /* Gráfico do Gestor */
+    $(window).resize(function(){
+       yourCallingChartFunction();
+    });
+    /* Gráfico do Gestor */
   </script>
 </body>
 </html>
