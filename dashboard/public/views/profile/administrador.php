@@ -48,6 +48,12 @@
                 </select>
               </div>
 
+              <div class="form-group">
+                <div class="text-right">
+                  <a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php" class="badge badge-light">Deslogar</a>
+                </div>
+              </div>
+
               <button type="submit" class="btn btn-success btn-block">Visualizar</button>
             </form>
           </div>

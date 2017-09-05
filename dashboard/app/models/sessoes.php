@@ -73,3 +73,16 @@ function criaSessaoDeGraficos()
     )
   );
 }
+
+/*
+ * cria uma sessão para mensagens
+ */
+function criaSessaoDeMensagens()
+{
+  $_SESSION['mensagens'] = array(
+    'alteracao_senha' => array(
+      'tipo' => 0,
+      'mensagem' => ''
+    )
+  );
+}

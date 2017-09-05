@@ -25,7 +25,7 @@ if (isset($_SESSION['colaborador'])) {
   }
 
   # eliminando sessões
-  unset($_SESSION['navegador']['dashboard'], $_SESSION['navegador']['documentos']);
+  unset($_SESSION['navegador']['dashboard'], $_SESSION['navegador']['documentos'], $_SESSION['mensagens']['alteracao_senha']);
 
 }
 

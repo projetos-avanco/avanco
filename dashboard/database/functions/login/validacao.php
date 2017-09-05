@@ -17,7 +17,7 @@ function consultaDadosDeLogin($conexao, $login)
       usuario,
       nivel
     FROM av_usuarios_login
-    WHERE (usuario = '{$login['usuario']}')
+    WHERE (email = '{$login['usuario']}')
     	AND (senha = '{$login["senha"]}')
       AND (ativo = 1)
     		LIMIT 1";
@@ -27,9 +27,9 @@ function consultaDadosDeLogin($conexao, $login)
   # verificando se o usuário está cadastrado no sistema
   if ($resultado->num_rows != 1) {
 
-    # setando mensagem de usuário não encontrado na sessão
+    # setando mensagem de usuário ou senha incorretos na sessão
     $_SESSION['usuario']['tipo']     = 4;
-    $_SESSION['usuario']['mensagem'] = 'usuário não cadastrado.';
+    $_SESSION['usuario']['mensagem'] = 'Usuário ou senha incorreto!';
 
     # eliminando array de login
     unset($login);

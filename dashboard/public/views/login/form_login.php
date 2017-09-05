@@ -42,12 +42,54 @@
                     Lembre-me
                   </label>
                 </div>
+                <div class="form-group text-right">
+                  <a href="<?php echo BASE_URL; ?>public/views/login/form_alteracao_senha.php" class="badge badge-light">Alterar Senha</a>
+                </div>
                 <button type="submit" id="submetido" class="btn btn-success btn-block">Entrar</button>
               </form><!-- formulário -->
             </div><!-- corpo do card -->
           </div><!-- card -->
         </div><!-- coluna -->
       </div><!-- linha -->
+
+      <?php if ($_SESSION['mensagens']['alteracao_senha']['tipo'] == 1) : ?>
+
+        <div class="row justify-content-sm-center">
+          <div class="col-sm-auto text-center">
+            <div class="alert alert-success" role="alert">
+
+              <?php echo $_SESSION['mensagens']['alteracao_senha']['mensagem']; ?>
+
+            </div>
+          </div>
+        </div>
+
+      <?php elseif ($_SESSION['mensagens']['alteracao_senha']['tipo'] == 2) : ?>
+
+        <div class="row justify-content-sm-center">
+          <div class="col-sm-auto text-center">
+            <div class="alert alert-danger" role="alert">
+
+              <?php echo $_SESSION['mensagens']['alteracao_senha']['mensagem']; ?>
+
+            </div>
+          </div>
+        </div>
+
+      <?php elseif ($_SESSION['usuario']['tipo'] == 4) : ?>
+
+        <div class="row justify-content-sm-center">
+          <div class="col-sm-auto text-center">
+            <div class="alert alert-danger" role="alert">
+
+              <?php echo $_SESSION['usuario']['mensagem']; ?>
+
+            </div>
+          </div>
+        </div>
+
+      <?php endif; ?>
+
     </div><!-- container -->
   </main>
 
