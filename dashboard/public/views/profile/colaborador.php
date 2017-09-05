@@ -26,114 +26,10 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/dashboard.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/graficos.css">
 
-  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-  <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChartIntegral);
-      google.charts.setOnLoadCallback(drawChartFrente);
-      google.charts.setOnLoadCallback(drawChartGestor);
 
-      /* Gráfico do Integral */
-      function drawChartIntegral() {
-        var data = google.visualization.arrayToDataTable([
-          ['Módulos',     'Percentual'],
-          ['Materiais',   <?php echo $graficos['integral']['materiais']; ?>],
-          ['Fiscal',      <?php echo $graficos['integral']['fiscal']; ?>],
-          ['Financeiro',  <?php echo $graficos['integral']['financeiro']; ?>],
-          ['Contábil',    <?php echo $graficos['integral']['contabil']; ?>],
-          ['Cotação Web', <?php echo $graficos['integral']['cotacao']; ?>],
-          ['TNFE',        <?php echo $graficos['integral']['tnfe']; ?>],
-          ['WMS',         <?php echo $graficos['integral']['wms']; ?>]
-        ]);
-
-        var options = {
-          chart: {
-            title: 'Gráfico de Conhecimento',
-            subtitle: 'Nível de Conhecimento do Colaborador nos Módulos do Sistema Integral',
-          },
-          bars: 'horizontal',
-          width: 1080,
-          height: 600,
-          hAxis: {
-            format: 'decimal'
-          },
-          backgroundColor: '#151A20',
-          colors: ['#009F45']
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('integral'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-      /* Gráfico do Integral */
-
-      /* Gráfico do Frente de Loja */
-      function drawChartFrente() {
-        var data = google.visualization.arrayToDataTable([
-          ['Módulos',         'Percentual'],
-          ['Frente Windows',  <?php echo $graficos['frente_de_loja']['frente_windows']; ?>],
-          ['Frente Linux',    <?php echo $graficos['frente_de_loja']['frente_linux']; ?>],
-          ['Supervisor',      <?php echo $graficos['frente_de_loja']['supervisor']; ?>],
-          ['Scanntech',       <?php echo $graficos['frente_de_loja']['scanntech']; ?>],
-          ['Sitef',           <?php echo $graficos['frente_de_loja']['sitef']; ?>],
-          ['Comandas',        <?php echo $graficos['frente_de_loja']['comandas']; ?>]
-        ]);
-
-        var options = {
-          chart: {
-            title: 'Gráfico de Conhecimento',
-            subtitle: 'Nível de Conhecimento do Colaborador nos Módulos do Frente de Loja',
-          },
-          bars: 'horizontal',
-          width: 1080,
-          height: 600,
-          hAxis: {
-            format: 'decimal'
-          },
-          backgroundColor: '#151A20',
-          colors: ['#009F45']
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('frente'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-      /* Gráfico do Frente de Loja */
-
-      /* Gráfico do Gestor */
-      function drawChartGestor() {
-        var data = google.visualization.arrayToDataTable([
-          ['Módulos',     'Percentual'],
-          ['Instalação',  <?php echo $graficos['gestor']['instalacao']; ?>],
-          ['Cadastro',    <?php echo $graficos['gestor']['cadastro']; ?>],
-          ['Movimento',   <?php echo $graficos['gestor']['movimento']; ?>],
-          ['Contábil',    <?php echo $graficos['gestor']['contabil']; ?>],
-          ['Fiscal',      <?php echo $graficos['gestor']['fiscal']; ?>]
-        ]);
-
-        var options = {
-          chart: {
-            title: 'Gráfico de Conhecimento',
-            subtitle: 'Nível de Conhecimento do Colaborador nos Módulos do Gestor',
-          },
-          bars: 'horizontal',
-          width: 1080,
-          height: 600,
-          hAxis: {
-            format: 'decimal'
-          },
-          backgroundColor: '#151A20',
-          colors: ['#009F45']
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('gestor'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-      /* Gráfico do Gestor */
-    </script>
 </head>
 
 <body>
@@ -473,41 +369,50 @@
             </div><!-- primeira coluna da linha -->
           </div><!-- décima linha da coluna 2 -->
 
-          <div class="row"><!-- décima primeira linha da coluna 2 -->
-            <div class="col-sm-12"><!-- primeira coluna da linha -->
-              <h4 class="text-center">Integral</h4>
-            </div><!-- primeira coluna da linha -->
-          </div><!-- décima primeira linha da coluna 2 -->
+          <div class="clearfix"></div>
+                <div class="row"><!-- décima primeira linha da coluna 2 -->
+                  <div class="col-sm-12 "><!-- primeira coluna da linha -->
+                    <h4 class="text-center">Integral</h4>
+                  </div><!-- primeira coluna da linha -->
+                </div><!-- décima primeira linha da coluna 2 -->
 
-          <div class="row"><!-- décima segunda linha da coluna 2 -->
-            <div class="col-sm-12"><!-- primeira coluna da linha -->
-              <div id="integral" style="width: 1000px; height: 600px;"></div>
-            </div><!-- primeira coluna da linha -->
-          </div><!-- décima segunda linha da coluna 2 -->
+                <div class="row"><!-- décima segunda linha da coluna 2 -->
+                  <div class="col-sm-12"><!-- primeira coluna da linha -->
+                    <div class="text-left titulo1">Gráfico de Conhecimento</div><!-- primeira coluna da linha -->
+                    <div class="text-left titulo2">Nível de Conhecimento do Colaborador nos Módulos do Sistema Integral</div><!-- primeira coluna da linha -->
+                    <div id="barras_Integral_div" class="tamanhografico"></div>
 
-          <div class="row"><!-- décima terceira linha da coluna 2 -->
-            <div class="col-sm-12"><!-- primeira coluna da linha -->
-              <h4 class="text-center">Frente de Loja</h4>
-            </div><!-- primeira coluna da linha -->
-          </div><!-- décima terceira linha da coluna 2 -->
+                  </div><!-- primeira coluna da linha -->
+                </div><!-- décima segunda linha da coluna 2 -->
 
-          <div class="row"><!-- décima quarta linha da coluna 2 -->
-            <div class="col-sm-12"><!-- primeira coluna da linha -->
-              <div id="frente" style="width: 1000px; height: 600px;"></div>
-            </div><!-- primeira coluna da linha -->
-          </div><!-- décima quarta linha da coluna 2 -->
+                <div class="row"><!-- décima terceira linha da coluna 2 -->
+                  <div class="col-sm-12"><!-- primeira coluna da linha -->
+                    <h4 class="text-center">Frente de Loja</h4>
+                  </div><!-- primeira coluna da linha -->
+                </div><!-- décima terceira linha da coluna 2 -->
 
-          <div class="row"><!-- décima quinta linha da coluna 2 -->
-            <div class="col-sm-12"><!-- primeira coluna da linha -->
-              <h4 class="text-center">Gestor</h4>
-            </div><!-- primeira coluna da linha -->
-          </div><!-- décima quinta linha da coluna 2 -->
+                <div class="row"><!-- décima quarta linha da coluna 2 -->
+                  <div class="col-sm-12">
+                    <div class="text-left titulo1">Gráfico de Conhecimento</div><!-- primeira coluna da linha -->
+                    <div class="text-left titulo2">Nível de Conhecimento do Colaborador nos Módulos do Frente de Loja</div>
+                    <div id="barras_FrenteLoja_div" class="tamanhografico"></div>
+                  </div><!-- primeira coluna da linha -->
+                </div><!-- décima quarta linha da coluna 2 -->
 
-          <div class="row"><!-- décima sexta linha da coluna 2 -->
-            <div class="col-sm-12"><!-- primeira coluna da linha -->
-              <div id="gestor" style="width: 1000px; height: 600px;"></div>
-            </div><!-- primeira coluna da linha -->
-          </div><!-- décima sexta linha da coluna 2 -->
+                <div class="row"><!-- décima quinta linha da coluna 2 -->
+                  <div class="col-sm-12 "><!-- primeira coluna da linha -->
+                    <h4 class="text-center">Gestor</h4>
+                  </div><!-- primeira coluna da linha -->
+                </div><!-- décima quinta linha da coluna 2 -->
+
+                <div class="row"><!-- décima sexta linha da coluna 2 -->
+                  <div class="col-sm-12"><!-- primeira coluna da linha -->
+                    <div class="text-left titulo1">Gráfico de Conhecimento</div><!-- primeira coluna da linha -->
+                    <div class="text-left titulo2">Nível de Conhecimento do Colaborador nos Módulos do Gestor</div>
+                    <div id="barras_gestor_div" class="tamanhografico"></div>
+
+                  </div><!-- primeira coluna da linha -->
+                </div><!-- décima sexta linha da coluna 2 -->
 
         </div><!--coluna 2 -->
       </div><!--linha 1 -->
@@ -530,5 +435,129 @@
   <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/bootstrap-datepicker/calendario.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+  <script type="text/javascript">
+
+        function define_cor(valor)
+        {
+              var cor;
+              if(valor<25)
+              {
+                cor = 'color: #f66565';
+              }
+                else if((valor<50)&&(valor>=25))
+                {
+                  cor = 'color: #ced04d';
+                }
+                else
+                {
+                  cor = 'color: #009F45';
+                }
+                return cor;
+        }
+
+      google.charts.load('current',{packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawIntegralChart);
+      google.charts.setOnLoadCallback(drawFrenteLojaChart);
+      google.charts.setOnLoadCallback(drawGestorChart);
+
+      function drawIntegralChart()
+      {
+        //montando o array com os dados
+        var data = google.visualization.arrayToDataTable([
+          ['Módulos',     'Percentual', {role: "style"}],
+          ['Materiais',   <?php echo $graficos['integral']['materiais']; ?>, define_cor(<?php echo $graficos['integral']['materiais']; ?>)],
+          ['Fiscal',      <?php echo $graficos['integral']['fiscal']; ?>,define_cor(<?php echo $graficos['integral']['fiscal']; ?>)],
+          ['Financeiro',  <?php echo $graficos['integral']['financeiro']; ?>,define_cor(<?php echo $graficos['integral']['financeiro']; ?>)],
+          ['Contábil',    <?php echo $graficos['integral']['contabil']; ?>,define_cor(<?php echo $graficos['integral']['contabil']; ?>)],
+          ['Cotação Web', <?php echo $graficos['integral']['cotacao']; ?>,define_cor(<?php echo $graficos['integral']['cotacao']; ?>)],
+          ['TNFE',        <?php echo $graficos['integral']['tnfe']; ?>,define_cor(<?php echo $graficos['integral']['tnfe']; ?>)],
+          ['WMS',         <?php echo $graficos['integral']['wms']; ?>,define_cor(<?php echo $graficos['integral']['wms']; ?>)],
+        ]);
+
+        //opções para o gráfico de barras
+        var options = {
+          chartArea: {width: '70%', height:"80%"},
+          titleTextStyle:{color:'#fff'},
+          legend: {position:'bottom', textStyle: { color:'#fff' } },
+          hAxis:{ format: 'decimal',textStyle: { color: '#fff'},viewWindow: {min: 0,max: 100}},
+          vAxis: {title:'Módulos', titleTextStyle:{color:'fff'},textStyle: { color: '#fff'}},//legenda vertical
+          colors: ['#151A20'],
+          backgroundColor: '#151A20',
+        };
+
+        //instanciando e desenhando o gráfico de barras
+        var barras = new google.visualization.BarChart(document.getElementById('barras_Integral_div'));
+        barras.draw(data, options);
+      }
+
+      function drawFrenteLojaChart()
+      {
+      //montando o array com os dados
+            var data = google.visualization.arrayToDataTable([
+              ['Módulos',         'Percentual', {role: "style"}],
+              ['Frente Windows',  <?php echo $graficos['frente_de_loja']['frente_windows']; ?>,define_cor(<?php echo $graficos['frente_de_loja']['frente_windows']; ?>)],
+              ['Frente Linux',    <?php echo $graficos['frente_de_loja']['frente_linux']; ?>,define_cor(<?php echo $graficos['frente_de_loja']['frente_linux']; ?>)],
+              ['Supervisor',      <?php echo $graficos['frente_de_loja']['supervisor']; ?>,define_cor(<?php echo $graficos['frente_de_loja']['supervisor']; ?>)],
+              ['Scanntech',       <?php echo $graficos['frente_de_loja']['scanntech']; ?>,define_cor(<?php echo $graficos['frente_de_loja']['scanntech']; ?>)],
+              ['Sitef',           <?php echo $graficos['frente_de_loja']['sitef']; ?>,define_cor(<?php echo $graficos['frente_de_loja']['sitef']; ?>)],
+              ['Comandas',        <?php echo $graficos['frente_de_loja']['comandas']; ?>,define_cor(<?php echo $graficos['frente_de_loja']['comandas']; ?>)]
+
+            ]);
+
+            //opções para o gráfico de barras
+            var options = {
+                chartArea: {width: '70%', height:"80%"},
+                titleTextStyle:"#fff",
+                titleTextStyle:{color:'#fff'},
+                legend: { position:'bottom',textStyle: { color:'#fff' } },
+                hAxis:{ format: 'decimal',textStyle: { color: '#fff'},viewWindow: {min: 0,max: 100}},
+                vAxis: {title:'Módulos', titleTextStyle:{color:'fff'},textStyle: { color: '#fff'}},//legenda vertical
+                backgroundColor: '#151A20',
+                colors: ['#151A20'],
+            };
+
+            //instanciando e desenhando o gráfico de barras
+            var barrasfrenteloja = new google.visualization.BarChart(document.getElementById('barras_FrenteLoja_div'));
+            barrasfrenteloja.draw(data, options);
+      }
+
+
+      function drawGestorChart()
+      {
+      //montando o array com os dados
+
+            var data = google.visualization.arrayToDataTable([
+              ['Módulos',     'Percentual', {role: "style"}],
+              ['Instalação',  <?php echo $graficos['gestor']['instalacao']; ?>,define_cor(<?php echo $graficos['gestor']['instalacao']; ?>)],
+              ['Cadastro',    <?php echo $graficos['gestor']['cadastro']; ?>, define_cor(<?php echo $graficos['gestor']['cadastro']; ?>)],
+              ['Movimento',   <?php echo $graficos['gestor']['movimento']; ?>, define_cor(<?php echo $graficos['gestor']['movimento']; ?>)],
+              ['Contábil',    <?php echo $graficos['gestor']['contabil']; ?>, define_cor(<?php echo $graficos['gestor']['contabil']; ?>)],
+              ['Fiscal',      <?php echo $graficos['gestor']['fiscal']; ?>, define_cor(<?php echo $graficos['gestor']['fiscal']; ?>)]
+            ]);
+
+            //opções para o gráfico de barras
+            var options = {
+                chartArea: {width: '70%', height:"80%"},
+                titleTextStyle:{color:'#fff'},
+                legend: {position:'bottom', textStyle: { color:'#fff' } },
+                hAxis:{format: 'decimal',textStyle: { color: '#fff'},viewWindow: {min: 0,max: 100},},
+                vAxis: {title:'Módulos', titleTextStyle:{color:'fff'},textStyle: { color: '#fff'}},//legenda vertical
+                backgroundColor: '#151A20',
+                colors: ['#151A20'],
+            };
+
+            //instanciando e desenhando o gráfico de barras
+            var outros = new google.visualization.BarChart(document.getElementById('barras_gestor_div'));
+            outros.draw(data, options);
+    }
+
+      $(window).resize(function(){
+         yourCallingChartFunction();
+      });
+
+      /* Gráfico do Gestor */
+  </script>
 </body>
 </html>
