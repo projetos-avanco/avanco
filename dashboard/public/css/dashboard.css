@@ -118,6 +118,12 @@ hr {
   margin: 0 0 0 0;
 }
 
+@media screen and (max-width: 1280px) {
+  .resultados-gerais {
+    padding: 30px 0 15px 0;
+  }
+}
+
 @media screen and (min-width: 1388px) {
   .resultados-gerais {
     font-family: Museosans;
