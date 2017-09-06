@@ -15,7 +15,7 @@ if (! isset($_SESSION)) {
 $_SESSION['usuario']['logado'] = false;
 
 # finalizando sessões abertas
-session_destroy();
+unset($_SESSION['usuario'], $_SESSION['colaborador'], $_SESSION['colaboradores'], $_SESSION['graficos'], $_SESSION['mensagens']);
 
 # redirecionando para a página de login
 header('Location: ' . BASE_URL . 'public/views/login/form_login.php');

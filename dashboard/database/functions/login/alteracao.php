@@ -7,11 +7,15 @@
  */
 function alteraSenhaDeLogin($conexao, $alteracao)
 {
+  # gerando código hash da senha atual
+  $alteracao['senha-atual'] = geraCodigoHash($alteracao['senha-atual']);
+
   $query =
     "SELECT
       id
     FROM av_usuarios_login
-    WHERE (email = '{$alteracao['usuario']}')";
+    WHERE (email = '{$alteracao['usuario']}')
+      AND (senha = '{$alteracao['senha-atual']}')";
 
   $resultado = mysqli_query($conexao, $query);
 
@@ -40,14 +44,23 @@ function alteraSenhaDeLogin($conexao, $alteracao)
   } else {
 
     $_SESSION['mensagens']['alteracao_senha']['tipo']     = 2;
-    $_SESSION['mensagens']['alteracao_senha']['mensagem'] = 'Usuário não Existe na Base de Dados!';
+    $_SESSION['mensagens']['alteracao_senha']['mensagem'] = 'Usuário ou senha atual incorreto!';
 
   }
 
   # fechando conexão aberta
   fecha_conexao($conexao);
 
-  # redirecionando usuário para o formulário de login
-  header('Location: ' . BASE_URL . 'public/views/login/form_login.php');
+  if ($_SESSION['mensagens']['alteracao_senha']['tipo'] == 1) {
+
+    # redirecionando usuário para o formulário de login
+    header('Location: ' . BASE_URL . 'public/views/login/form_login.php');
+
+  } elseif ($_SESSION['mensagens']['alteracao_senha']['tipo'] == 2) {
+
+    # redirecionando usuário para o formulário de alteração de senha
+    header('Location: ' . BASE_URL . 'public/views/login/form_alteracao_senha.php');
+
+  }
 
 }

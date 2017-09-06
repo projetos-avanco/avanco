@@ -14,24 +14,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $alteracao = array();
 
   # verificando se os campos do formulário foram preenchidos
-  if (! empty($_POST['alteracao']['senha']) AND ! empty($_POST['alteracao']['confirmacao']) AND ! empty($_POST['alteracao']['usuario'])) {
+  if (! empty($_POST['alteracao']['senha'])
+    AND ! empty($_POST['alteracao']['confirmacao'])
+    AND ! empty($_POST['alteracao']['usuario'])
+    AND ! empty($_POST['alteracao']['senha-atual'])) {
 
     # recuperando dados do formulário
     $alteracao['usuario']     = $_POST['alteracao']['usuario'];
     $alteracao['senha']       = $_POST['alteracao']['senha'];
+    $alteracao['senha-atual'] = $_POST['alteracao']['senha-atual'];
     $alteracao['confirmacao'] = $_POST['alteracao']['confirmacao'];
 
     if ($alteracao['senha'] != $alteracao['confirmacao']) {
 
       $_SESSION['mensagens']['alteracao_senha']['tipo']     = 3;
-      $_SESSION['mensagens']['alteracao_senha']['mensagem'] = 'Senhas diferentes!';
+      $_SESSION['mensagens']['alteracao_senha']['mensagem'] = 'Erro na alteração, senhas diferentes!';
 
       header('Location: ' . BASE_URL . 'public/views/login/form_alteracao_senha.php');
 
     } else {
 
+      # chamando função que verifica os dados do usuário
       verificaUsuario($alteracao);
-      
+
     }
 
   } else {

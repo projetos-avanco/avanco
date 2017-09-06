@@ -34,6 +34,9 @@
                   <input type="email" class="form-control" id="email" name="alteracao[usuario]" placeholder="Usuário">
                 </div>
                 <div class="form-group">
+                  <input type="password" class="form-control" id="senha-atual" name="alteracao[senha-atual]" placeholder="Senha Atual">
+                </div>
+                <div class="form-group">
                   <input type="password" class="form-control" id="senha" name="alteracao[senha]" placeholder="Nova Senha">
                 </div>
                 <div class="form-group">
@@ -53,7 +56,19 @@
         </div><!-- coluna -->
       </div><!-- linha -->
 
-      <?php if ($_SESSION['mensagens']['alteracao_senha']['tipo'] == 3) : ?>
+      <?php if ($_SESSION['mensagens']['alteracao_senha']['tipo'] == 2) : ?>
+
+        <div class="row justify-content-sm-center">
+          <div class="col-sm-auto text-center">
+            <div class="alert alert-danger" role="alert">
+
+              <?php echo $_SESSION['mensagens']['alteracao_senha']['mensagem']; ?>
+
+            </div>
+          </div>
+        </div>
+
+      <?php elseif ($_SESSION['mensagens']['alteracao_senha']['tipo'] == 3) : ?>
 
         <div class="row justify-content-sm-center">
           <div class="col-sm-auto text-center">
@@ -78,7 +93,7 @@
         </div>
 
       <?php endif; ?>
-      
+
     </div><!-- container -->
   </main>
 
