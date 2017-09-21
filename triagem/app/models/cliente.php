@@ -1,7 +1,7 @@
 <?php
 
 /*
- * cria um array modelo de cliente
+ * cria um array modelo para receber os dados do cliente
  */
 function criaModeloDeCliente()
 {
@@ -14,7 +14,7 @@ function criaModeloDeCliente()
     'produto' => '',
     'modulo' => '',
     'duvida' => '',
-    'departamento' => ''
+    'departamento' => '0'
   );
 
   return $cliente;
