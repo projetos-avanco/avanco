@@ -6,15 +6,15 @@
 function criaModeloDeCliente()
 {
   $cliente = array(
-    'nome' => '',
-    'nome_usuario' => '',
-    'cnpj' => '',
+    'nome'           => '',
+    'nome_usuario'   => '',
+    'cnpj'           => '',
     'conta_contrato' => '',
-    'razao_social' => '',
-    'produto' => '',
-    'modulo' => '',
-    'duvida' => '',
-    'departamento' => '0'
+    'razao_social'   => '',
+    'produto'        => '',
+    'modulo'         => '',
+    'duvida'         => '',
+    'departamento'   => '0'
   );
 
   return $cliente;
