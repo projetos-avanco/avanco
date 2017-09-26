@@ -12,17 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $valida = false;
 
   # verificando se todos os campos foram enviados
-  if (
-    ! empty($_POST['cliente']['nome'])           AND
-    ! empty($_POST['cliente']['nome_usuario'])   AND
-    ! empty($_POST['cliente']['cnpj'])           AND
-    ! empty($_POST['cliente']['conta_contrato']) AND
-    ! empty($_POST['cliente']['razao_social'])   AND
-    ! empty($_POST['cliente']['produto'])        AND
-    ! empty($_POST['cliente']['modulo'])         AND
-    ! empty($_POST['cliente']['duvida'])
-  )
-    $valida = true;
+  if (! empty($_POST['cliente']['nome'])           AND
+      ! empty($_POST['cliente']['nome_usuario'])   AND
+      ! empty($_POST['cliente']['cnpj'])           AND
+      ! empty($_POST['cliente']['conta_contrato']) AND
+      ! empty($_POST['cliente']['razao_social'])   AND
+      ! empty($_POST['cliente']['produto'])        AND
+      ! empty($_POST['cliente']['modulo'])         AND
+      ! empty($_POST['cliente']['duvida']))
+        $valida = true;
 
   if ($valida) {
 
