@@ -23,20 +23,3 @@ function abre_conexao()
 
   }
 }
-
-/**
- * fecha uma conexão com a base de dados MYSQL
- * @param - uma conexão aberta
- */
-function fecha_conexao($conexao)
-{
-  try {
-
-    mysqli_close($conexao);
-
-  } catch (Exception $e) {
-
-      echo $e->getMessage();
-
-  }
-}
