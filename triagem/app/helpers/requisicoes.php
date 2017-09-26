@@ -13,14 +13,14 @@ function recuperaDados($array, $metodo)
     # recuperando dados que estão no array super-global $_POST
     foreach ($_POST as $chave => $valor) {
 
-      $array['nome']           = $valor['nome'];
-      $array['nome_usuario']   = $valor['nome_usuario'];
+      $array['nome']           = ucwords($valor['nome']);
+      $array['nome_usuario']   = ucwords($valor['nome_usuario']);
       $array['cnpj']           = $valor['cnpj'];
       $array['conta_contrato'] = $valor['conta_contrato'];
-      $array['razao_social']   = $valor['razao_social'];
+      $array['razao_social']   = strtoupper($valor['razao_social']);
       $array['produto']        = $valor['produto'];
       $array['modulo']         = $valor['modulo'];
-      $array['duvida']         = $valor['duvida'];
+      $array['duvida']         = ucwords($valor['duvida']);
 
       break;
 
