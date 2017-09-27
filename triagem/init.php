@@ -12,6 +12,9 @@ require_once 'app/helpers/sessoes.php';
 # importando script com as funções de log
 require_once 'app/helpers/log.php';
 
+# importando script com as funções diversas
+require_once 'app/helpers/funcoes.php';
+
 # importando script com as rotas do servidor web
 require_once 'routes/servidor.php';
 
