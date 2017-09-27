@@ -58,7 +58,7 @@ function verificaColaboradoresOnlineNoChat($array, $db)
       sleep(10);
 
       # não existem colaboradores online, retornando array nulo
-      return $array = null;
+      return $array = NULL;
 
     }
 
@@ -69,8 +69,5 @@ function verificaColaboradoresOnlineNoChat($array, $db)
 
   }
 
-  $db->close();
-  $resultado->close();
-  
   return $array;
 }
