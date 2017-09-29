@@ -17,3 +17,12 @@ function criaSessaoDeCliente($array)
     'duvida'         => $array['duvida']
   );
 }
+
+/**
+ * cria uma sessão com os dados dos colaboradores online no chat
+ * @param - array com os dados dos colaboradores
+ */
+function criaSessaoColaboradores($array)
+{
+  $_SESSION['colaboradores'] = $array;
+}
