@@ -6,7 +6,7 @@
  * @param - inteiro com a quantidade de colaboradores online
  * @param - objeto com uma conexão aberta
  */
-function verificaFilaDosColaboradoresOlineQuePossuemConhecimento($array, $quantidade, $db)
+function verificaFilaDosColaboradores($array, $quantidade, $db)
 {
   $posicao = 0;
 
