@@ -6,30 +6,23 @@ require ABS_PATH . 'database/functions/contributors/conhecimento.php';
 require ABS_PATH . 'database/functions/contributors/fila.php';
 
 /*
- * responsável por chamar outras funções que consultam informações na base de dados do chat
+ * responsável por chamar outras funções que consultam informações na base de dados do chat e redirecionar o cliente
  */
 function consultaChat()
 {
-  $cliente = array();
+  # chamando função que retorna uma conexão com a base de dados
+  $conexao = abre_conexao();
 
   # recuperando os dados do cliente que chamou no portal avanço
   $cliente = $_SESSION['cliente'];
 
-  # chamando função que retorna uma conexão com a base de dados
-  $conexao = abre_conexao();
+  $quantidade = 0;
 
   # chamando função que retorna um array modelo para receber os dados dos colaboradores
   $colaboradores = criaModeloDeColaboradores();
 
-  # chamando a função até que tenha pelo menos um colaborador online
-  while ($colaboradores == NULL OR $colaboradores[0]['id'] == '') {
-
-    # chamando a função que retorna um array com os dados dos colaboradores online
-    $colaboradores = verificaColaboradoresOnlineNoChat($colaboradores, $conexao);
-
-  }
-
-  $quantidade = 0;
+  # chamando função que aguarda até que um ou mais colaboradores fiquem online no chat
+  $colaboradores = aguardaColaradoresOnline($colaboradores, $conexao);
 
   # recuperando a quantidade de colaboradores online
   $quantidade = count($colaboradores);
@@ -37,42 +30,77 @@ function consultaChat()
   # verificando se existe um ou mais colaboradores online
   if ($quantidade == 1) {
 
-    # montando URL
-    $url =   "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&portalKey=1505758004&prefill%5Bphone%5D={$colaboradores[0]['departamento']}";
+    # chamando função que monta uma URL com os dados do cliente e com código do departamento para o qual o cliente será transferido
+    $url = montaURL($colaboradores, $cliente);
 
     # redirecionando cliente para o colaborador no chat
-    header("Location: http://127.0.0.1/avanco-local/lhc_web/" . $url);
+    header('Location: http://192.168.0.47:9999/' . $url);
 
+    # verificando se existe um ou mais colaboradores online no chat
   } elseif ($quantidade > 1) {
 
     # pesquisar conhecimento dos colaboradores
     $colaboradores = verificaNivelDeConhecimentoDosColaboradoresOnline($colaboradores, $cliente, $quantidade, $conexao);
 
-    # eliminando colaboradores que possuem menos de 20% de conhecimento sobre o módulo selecionado pelo cliente no portal avanço
-    for ($i = 0; $i < $quantidade; $i++) {
+    # chamando função que grava os colaboradores em uma sessão
+    criaSessaoColaboradores($colaboradores, $quantidade);
 
-      # verificando se o colaborador possue menos do que 20% de conhecimento
-      if ($colaboradores[$i]['conhecimento'] < '20.0') {
-
-        unset($colaboradores[$i]);
-
-      }
-
-    }
+    # chamando função que elimina os colaboradores que possuem menos de 20% de conhecimento
+    $colaboradores = eliminaColaboradoresSemConhecimento($colaboradores, $quantidade);
 
     # recuperando a quantidade de colaboradores que possuem no mínimo 20% de conhecimento
     $quantidade = count($colaboradores);
 
-    # reordenando os valores do array começando por 0
-    $colaboradores = array_values($colaboradores);
+    # verificando se não existe nenhum colaborador online com no mínimo 20% de conhecimento
+    if ($quantidade == 0) {
 
-    # chamando função que verifica a quantidade de fila
-    $colaboradores = verificaFilaDosColaboradoresOlineQuePossuemConhecimento($colaboradores, $quantidade, $conexao);
+      # recuperando dados dos colaboradores que estão online
+      $colaboradores = $_SESSION['colaboradores'];
 
-    # chamando função que ordena o array deixando o colaborador com menor fila na posição 0
-    usort($colaboradores, "comparaChavesDosArraysInternos");
+      # recuperando a quantidade de colaboradores online e com no mínimo 20% de conhecimento
+      $quantidade = count($colaboradores);
 
-    exit(var_dump($colaboradores));
+      # chamando função que verifica a quantidade de fila
+      $colaboradores = verificaFilaDosColaboradores($colaboradores, $quantidade, $conexao);
+
+      # chamando função que ordena o array deixando o colaborador com menor fila na posição 0
+      usort($colaboradores, "comparaChavesDosArraysInternos");
+
+      # chamando função que monta uma URL com os dados do cliente e com código do departamento para o qual o cliente será transferido
+      $url = montaURL($colaboradores, $cliente);
+
+      # redirecionando cliente para o colaborador no chat
+      header('Location: http://192.168.0.47:9999/' . $url);
+
+      # verificando se existe um ou mais colaboradores logados que possuem no mínimo 20% de conhecimento
+    } elseif ($quantidade > 0) {
+
+      # reordenando os valores do array começando por 0
+      $colaboradores = array_values($colaboradores);
+
+      # chamando função que verifica a quantidade de fila
+      $colaboradores = verificaFilaDosColaboradores($colaboradores, $quantidade, $conexao);
+
+      # chamando função que ordena o array deixando o colaborador com menor fila na posição 0
+      usort($colaboradores, "comparaChavesDosArraysInternos");
+
+      # chamando função que monta uma URL com os dados do cliente e com código do departamento para o qual o cliente será transferido
+      $url = montaURL($colaboradores, $cliente);
+
+      # redirecionando cliente para o colaborador no chat
+      header('Location: http://192.168.0.47:9999/' . $url);
+
+    }
+
+    # eliminando arrays
+    unset(
+      $colaboradores,
+      $cliente,
+      $_SESSION['cliente'],
+      $_SESSION['colaboradores']
+    );
+
+    # fechando conexão aberta
+    fecha_conexao($conexao);
   }
-
 }
