@@ -12,7 +12,8 @@ function verificaColaboradoresOnlineNoChat($array, $db)
     	u.user_id AS id,
     	s.name AS nome,
     	s.surname AS sobrenome,
-    	d.id AS departamento
+    	d.id AS id_departamento,
+      d.name AS departamento
     FROM lh_departament AS d
     INNER JOIN lh_userdep AS u
     	ON u.dep_id = d.id
@@ -41,12 +42,13 @@ function verificaColaboradoresOnlineNoChat($array, $db)
       # recuperando os dados dos colaboradores online
       while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
-        $array[$posicao]['id']           = $registro['id'];
-        $array[$posicao]['nome']         = $registro['nome'];
-        $array[$posicao]['sobrenome']    = $registro['sobrenome'];
-        $array[$posicao]['conhecimento'] = '0';
-        $array[$posicao]['fila']         = '0';
-        $array[$posicao]['departamento'] = $registro['departamento'];
+        $array[$posicao]['id']              = $registro['id'];
+        $array[$posicao]['nome']            = $registro['nome'];
+        $array[$posicao]['sobrenome']       = $registro['sobrenome'];
+        $array[$posicao]['conhecimento']    = '0';
+        $array[$posicao]['fila']            = '0';
+        $array[$posicao]['id_departamento'] = $registro['id_departamento'];
+        $array[$posicao]['departamento']    = $registro['departamento'];
 
         $posicao++;
 
@@ -70,4 +72,22 @@ function verificaColaboradoresOnlineNoChat($array, $db)
   }
 
   return $array;
+}
+
+/**
+ * aguarda até que um ou mais colaboradores fiquem online no chat
+ * @param - array com os dados dos colaboradores
+ * @param - objeto com uma conexão aberta
+ */
+function aguardaColaradoresOnline($colaboradores, $db)
+{
+  # chamando a função até que tenha pelo menos um colaborador online
+  while ($colaboradores == NULL OR $colaboradores[0]['id'] == '') {
+
+    # chamando a função que retorna um array com os dados dos colaboradores online
+    $colaboradores = verificaColaboradoresOnlineNoChat($colaboradores, $db);
+
+  }
+
+  return $colaboradores;
 }
