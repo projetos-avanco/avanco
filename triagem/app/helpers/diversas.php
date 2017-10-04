@@ -48,25 +48,7 @@ function montaURL($colaboradores, $cliente)
   $url = '';
 
   # montando URL
-  $url =   "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&portalKey=1505758004&prefill%5Bphone%5D={$colaboradores[0]['departamento']}";
+  $url =   "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&portalKey=1505758004&prefill%5Bphone%5D={$colaboradores[0]['id_departamento']}";
 
   return $url;
-}
-
-/**
- * aguarda até que um ou mais colaboradores fiquem online no chat
- * @param - array com os dados dos colaboradores
- * @param - objeto com uma conexão aberta
- */
-function aguardaColaradoresOnline($colaboradores, $db)
-{
-  # chamando a função até que tenha pelo menos um colaborador online
-  while ($colaboradores == NULL OR $colaboradores[0]['id'] == '') {
-
-    # chamando a função que retorna um array com os dados dos colaboradores online
-    $colaboradores = verificaColaboradoresOnlineNoChat($colaboradores, $db);
-
-  }
-
-  return $colaboradores;
 }
