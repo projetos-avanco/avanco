@@ -26,3 +26,12 @@ function criaSessaoColaboradores($array)
 {
   $_SESSION['colaboradores'] = $array;
 }
+
+/**
+ * cria uma sessão com os dados dos documentos da base de conhecimento
+ * @param - array com os dados dos colaboradores
+ */
+function criaSessaoDeDocumentos($array)
+{
+  $_SESSION['documentos'] = $array;
+}
