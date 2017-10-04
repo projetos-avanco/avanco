@@ -3,6 +3,7 @@
 require '../../init.php';
 
 require ABS_PATH . 'app/models/cliente.php';
+require ABS_PATH . 'app/modules/knowledge-base/documentos.php';
 require ABS_PATH . 'app/modules/transfer/redireciona.php';
 require ABS_PATH . 'app/helpers/requisicoes.php';
 
@@ -29,6 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     # chamando função que recupera os dados do cliente no array super-global $_POST
     recuperaDados($cliente, 'POST');
+
+    # chamando função que consulta a dúvida do cliente na base de conhecimento
+    consultaDuvidaNaBaseDeConhecimento();
 
     # chamando função que consulta informações na base de dados do chat
     consultaChat();
