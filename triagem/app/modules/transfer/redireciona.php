@@ -43,7 +43,7 @@ function consultaChat()
     $colaboradores = verificaNivelDeConhecimentoDosColaboradoresOnline($colaboradores, $cliente, $quantidade, $conexao);
 
     # chamando função que grava os colaboradores em uma sessão
-    criaSessaoColaboradores($colaboradores, $quantidade);
+    criaSessaoDeColaboradores($colaboradores, $quantidade);
 
     # chamando função que elimina os colaboradores que possuem menos de 20% de conhecimento
     $colaboradores = eliminaColaboradoresSemConhecimento($colaboradores, $quantidade);
@@ -93,12 +93,7 @@ function consultaChat()
     }
 
     # eliminando arrays
-    unset(
-      $colaboradores,
-      $cliente,
-      $_SESSION['cliente'],
-      $_SESSION['colaboradores']
-    );
+    unset($colaboradores, $cliente);
 
     # fechando conexão aberta
     fecha_conexao($conexao);
