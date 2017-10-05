@@ -45,7 +45,8 @@ function eliminaColaboradoresSemConhecimento($array, $quantidade)
  */
 function montaURL($colaboradores, $cliente)
 {
-  $url = '';
+  # chamando função que grava o nome do departamento que realizará o atendimento em uma sessão
+  criaSessaoDeDepartamento($colaboradores[0]['departamento']);
 
   # montando URL
   $url =   "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&portalKey=1505758004&prefill%5Bphone%5D={$colaboradores[0]['id_departamento']}";
