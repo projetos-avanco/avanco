@@ -17,8 +17,8 @@ function verificaFilaDosColaboradores($array, $quantidade, $db)
       "SELECT
       	COUNT(c.id) AS fila
       FROM lh_chat AS c
-      WHERE (c.status = 1)
-      	AND (c.user_id = {$array[$posicao]['id']})";
+      WHERE (c.status = 0 OR c.status = 1)
+      	AND (c.dep_id = {$array[$posicao]['id_departamento']})";
 
     # verificando se a query pode ser executada
     if ($resultado = $db->query($query)) {
