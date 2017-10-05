@@ -22,9 +22,18 @@ function criaSessaoDeCliente($array)
  * cria uma sessão com os dados dos colaboradores online no chat
  * @param - array com os dados dos colaboradores
  */
-function criaSessaoColaboradores($array)
+function criaSessaoDeColaboradores($array)
 {
   $_SESSION['colaboradores'] = $array;
+}
+
+/**
+ * cria uma sessão com o nome do departamento do colaborador online no chat que realizará o atendimento
+ * @param - string com o nome do departamento
+ */
+function criaSessaoDeDepartamento($string)
+{
+  $_SESSION['departamento'] = $string;
 }
 
 /**
