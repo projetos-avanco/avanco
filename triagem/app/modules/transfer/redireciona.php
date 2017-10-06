@@ -30,11 +30,8 @@ function consultaChat()
   # verificando se existe um ou mais colaboradores online
   if ($quantidade == 1) {
 
-    # chamando função que monta uma URL com os dados do cliente e com código do departamento para o qual o cliente será transferido
-    $url = montaURL($colaboradores, $cliente);
-
-    # redirecionando cliente para o colaborador no chat
-    header('Location: http://192.168.0.47:9999/' . $url);
+    # chamando função que monta uma URL e redireciona o cliente para o departamento que realizará o atendimento
+    redirecionaClienteParaDepartamento($colaboradores, $cliente);
 
     # verificando se existe um ou mais colaboradores online no chat
   } elseif ($quantidade > 1) {
@@ -66,11 +63,8 @@ function consultaChat()
       # chamando função que ordena o array deixando o colaborador com menor fila na posição 0
       usort($colaboradores, "comparaChavesDosArraysInternos");
 
-      # chamando função que monta uma URL com os dados do cliente e com código do departamento para o qual o cliente será transferido
-      $url = montaURL($colaboradores, $cliente);
-
-      # redirecionando cliente para o colaborador no chat
-      header('Location: http://192.168.0.47:9999/' . $url);
+      # chamando função que monta uma URL e redireciona o cliente para o departamento que realizará o atendimento
+      redirecionaClienteParaDepartamento($colaboradores, $cliente);
 
       # verificando se existe um ou mais colaboradores logados que possuem no mínimo 20% de conhecimento
     } elseif ($quantidade > 0) {
@@ -84,11 +78,8 @@ function consultaChat()
       # chamando função que ordena o array deixando o colaborador com menor fila na posição 0
       usort($colaboradores, "comparaChavesDosArraysInternos");
 
-      # chamando função que monta uma URL com os dados do cliente e com código do departamento para o qual o cliente será transferido
-      $url = montaURL($colaboradores, $cliente);
-
-      # redirecionando cliente para o colaborador no chat
-      header('Location: http://192.168.0.47:9999/' . $url);
+      # chamando função que monta uma URL e redireciona o cliente para o departamento que realizará o atendimento
+      redirecionaClienteParaDepartamento($colaboradores, $cliente);
 
     }
 
