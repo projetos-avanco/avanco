@@ -39,11 +39,12 @@ function eliminaColaboradoresSemConhecimento($array, $quantidade)
 }
 
 /**
- * monta uma URL com os dados do cliente e com o código do departamento para qual o cliente será transferido
+ * monta uma URL com os dados do cliente e com o código do departamento para qual o cliente será transferido e redireciona para o
+ * departamento que realizará o atendimento
  * @param - array com os dados dos colaboradores que estão online
  * @param - array com os dados do cliente
  */
-function montaURL($colaboradores, $cliente)
+function redirecionaClienteParaDepartamento($colaboradores, $cliente)
 {
   # chamando função que grava o nome do departamento que realizará o atendimento em uma sessão
   criaSessaoDeDepartamento($colaboradores[0]['departamento']);
@@ -51,5 +52,6 @@ function montaURL($colaboradores, $cliente)
   # montando URL
   $url =   "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&portalKey=1505758004&prefill%5Bphone%5D={$colaboradores[0]['id_departamento']}";
 
-  return $url;
+  # redirecionando cliente para o colaborador no chat
+  header('Location: http://192.168.0.47:9999/' . $url);
 }
