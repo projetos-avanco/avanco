@@ -5,35 +5,178 @@
 <head>
   <meta charset="utf-8">
   <title>Formulário de Teste</title>
-  <link rel="stylesheet" href="../css/estilo.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <style media="screen">
+    body {
+      margin: 20px 0 0 0;
+    }
+  </style>
 </head>
+
 <body>
-  <form action="<?php echo BASE_URL; ?>app/requests/recebe_cliente.php" method="post">
-    <label for="nome">Nome: </label>
-      <input type="text" name="cliente[nome]">
 
-    <label for="nome_usuario">Nome de Usuário: </label>
-      <input type="text" name="cliente[nome_usuario]">
+  <div class="container">
+    <form class="form-inline" action="<?php echo BASE_URL; ?>app/requests/recebe_cliente.php" method="post">
+      <div class="row">
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label class="sr-only" for="nome">Nome: </label>
+            <input type="text" id="nome" name="cliente[nome]" value="Marlene">
+          </div>
+        </div>
 
-    <label for="cnpj">CNPJ: </label>
-      <input type="text" name="cliente[cnpj]">
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label class="sr-only" for="nome_usuario">Nome de Usuário: </label>
+            <input type="text" id="nome_usuario" name="cliente[nome_usuario]" value="MarleneAdmin">
+          </div>
+        </div>
 
-    <label for="conta_contrato">Conta Contrato: </label>
-      <input type="text" name="cliente[conta_contrato]">
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label class="sr-only" for="cnpj">CNPJ: </label>
+            <input type="text" id="cnpj" name="cliente[cnpj]" value="07065445000107">
+          </div>
+        </div>
 
-    <label for="razao_social">Razão Social: </label>
-      <input type="text" name="cliente[razao_social]">
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label class="sr-only" for="conta_contrato">Conta Contrato: </label>
+            <input type="text" id="conta_contrato" name="cliente[conta_contrato]" value="0000337">
+          </div>
+        </div>
 
-    <label for="produto">Produto: </label>
-      <input type="text" name="cliente[produto]">
+        <div class="col-sm-2">
+          <div class="form-group">
+            <label class="sr-only" for="razao_social">Razão Social: </label>
+            <input type="text" id="razao_social" name="cliente[razao_social]" value="Supermercado Ita">
+          </div>
+        </div>
+      </div>
 
-    <label for="modulo">Módulo: </label>
-      <input type="text" name="cliente[modulo]">
+      <br>
 
-    <label for="duvida">Dúvida: </label>
-      <input type="text" name="cliente[duvida]">
+      <div class="row">
+        <div class="col-sm-6">
+          <select class="form-control" id="produto" name="cliente[produto]">
+            <option value="0">Selecione uma Opção</option>
+            <option value="1">Integral</option>
+            <option value="2">Frente de Loja</option>
+            <option value="3">Gestor</option>
+            <option value="4">Novo ERP</option>
+          </select>
+        </div>
 
-    <input type="submit" name="Enviar">
-  </form>
+        <div class="col-sm-6">
+          <div class="col-sm-6">
+            <select class="form-control" id="modulo" name="cliente[modulo]">
+              <option value="0">Selecione uma Opção</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label class="sr-only" for="duvida">Dúvida: </label>
+            <input type="text" id="duvida" name="cliente[duvida]" placeholder="Dúvida">
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="cliente[tecnologia]">
+          Deseja atendimento no Departamento Tecnologia?
+        </label>
+      </div>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="cliente[novo_erp]">
+          Deseja atendimento no Departamento Novo ERP?
+        </label>
+      </div>
+
+      <br><br>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Enviar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $('document').ready(function() {
+
+      $('#produto').change(function() {
+
+        var produto = $('#produto').val();
+
+        $('#modulo').empty();
+
+        switch (produto) {
+
+          case '1':
+
+            var integral =
+              '<option value="1">Materiais</option>'  +
+              '<option value="2">Fiscal</option>'     +
+              '<option value="3">Financeiro</option>' +
+              '<option value="4">Contábil</option>'   +
+              '<option value="5">Cotação</option>'    +
+              '<option value="6">TNFE</option>'       +
+              '<option value="7">WMS</option>';
+
+            $('#modulo').html(integral);
+
+            break;
+
+          case '2':
+
+            var frente =
+              '<option value="8">Frente Windows</option>' +
+              '<option value="9">Frente Linux</option>'   +
+              '<option value="10">Supervisor</option>'    +
+              '<option value="11">Scanntech</option>'     +
+              '<option value="12">Sitef</option>'         +
+              '<option value="13">Comandas</option>';
+
+            $('#modulo').html(frente);
+
+            break;
+
+          case '3':
+
+            var gestor =
+              '<option value="14">Instalação</option>' +
+              '<option value="15">Cadastro</option>'   +
+              '<option value="16">Movimento</option>'  +
+              '<option value="17">Contábil</option>'   +
+              '<option value="18">Fiscal</option>';
+
+            $('#modulo').html(gestor);
+
+            break;
+
+        }
+
+      });
+
+    });
+  </script>
 </body>
 </html>
