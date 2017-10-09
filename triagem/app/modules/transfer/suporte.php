@@ -1,15 +1,10 @@
 <?php
 
-require ABS_PATH . 'app/models/colaboradores.php';
-require ABS_PATH . 'database/functions/contributors/online.php';
-require ABS_PATH . 'database/functions/contributors/conhecimento.php';
-require ABS_PATH . 'database/functions/contributors/fila.php';
-
 /*
- * responsável por chamar outras funções que consultam informações na base de dados do chat e redirecionar o cliente
+ * responsável por chamar outras funções que consultam informações na base de dados do chat e redireciona o cliente
  */
-function consultaChat()
-{
+function consultaChatSuporte()
+{  
   # chamando função que retorna uma conexão com a base de dados
   $conexao = abre_conexao();
 
@@ -89,4 +84,5 @@ function consultaChat()
     # fechando conexão aberta
     fecha_conexao($conexao);
   }
+
 }
