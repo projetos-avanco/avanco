@@ -1,43 +1,5 @@
 <?php
 
-/*
- * confirma o envio dos dados do cliente
- */
-function confirmaEnvioDosDadosDoCliente()
-{
-  # verificando se os dados do cliente foram enviados
-  if (
-    ! empty($_POST['cliente']['nome'])           AND
-    ! empty($_POST['cliente']['nome_usuario'])   AND
-    ! empty($_POST['cliente']['cnpj'])           AND
-    ! empty($_POST['cliente']['conta_contrato']) AND
-    ! empty($_POST['cliente']['razao_social'])
-  ) {
-
-      return true;
-      
-    }
-
-  return false;
-
-}
-
-/*
- * confirma o envio dos dados da demanda
- */
-function confirmaEnvioDosDadosDaDemanda()
-{
-  # verificando se os dados da demanda foram enviados
-  if (! empty($_POST['cliente']['produto']) AND ! empty($_POST['cliente']['modulo']) AND ! empty($_POST['cliente']['duvida'])) {
-
-    return true;
-
-  }
-
-  return false;
-
-}
-
 /**
  * compara chaves dos arrays multidimensionais para a função usort()
  * @param - arrays internos com a quantidade de fila
@@ -74,6 +36,22 @@ function eliminaColaboradoresSemConhecimento($array, $quantidade)
   }
 
   return $array;
+}
+
+/**
+ * redireciona o cliente diretamente para o departamento de tecnologia
+ * @param - array com os dados do cliente
+ */
+function redirecionaClienteParaDepartamentoTecnologia($cliente)
+{
+  # chamando função que grava o nome do departamento que realizará o atendimento em uma sessão
+  criaSessaoDeDepartamento('Tecnologia');
+
+  # montando URL
+  $url =   "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&portalKey=1505758004&prefill%5Bphone%5D=2";
+
+  # redirecionando cliente para o colaborador no chat
+  header('Location: http://192.168.0.47:9999/' . $url);
 }
 
 /**
