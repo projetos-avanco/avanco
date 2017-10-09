@@ -1,5 +1,43 @@
 <?php
 
+/*
+ * confirma o envio dos dados do cliente
+ */
+function confirmaEnvioDosDadosDoCliente()
+{
+  # verificando se os dados do cliente foram enviados
+  if (
+    ! empty($_POST['cliente']['nome'])           AND
+    ! empty($_POST['cliente']['nome_usuario'])   AND
+    ! empty($_POST['cliente']['cnpj'])           AND
+    ! empty($_POST['cliente']['conta_contrato']) AND
+    ! empty($_POST['cliente']['razao_social'])
+  ) {
+
+      return true;
+      
+    }
+
+  return false;
+
+}
+
+/*
+ * confirma o envio dos dados da demanda
+ */
+function confirmaEnvioDosDadosDaDemanda()
+{
+  # verificando se os dados da demanda foram enviados
+  if (! empty($_POST['cliente']['produto']) AND ! empty($_POST['cliente']['modulo']) AND ! empty($_POST['cliente']['duvida'])) {
+
+    return true;
+
+  }
+
+  return false;
+
+}
+
 /**
  * compara chaves dos arrays multidimensionais para a função usort()
  * @param - arrays internos com a quantidade de fila
