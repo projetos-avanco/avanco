@@ -11,7 +11,7 @@ function consultaDuvidaNaBaseDeConhecimento()
 	$duvida = $_SESSION['cliente']['duvida'];
 
 	# montando URL para a API do confluence
-	$url = 'http://bc.avancoinfo.com.br/rest/searchv3/1.0/search?queryString=' . $duvida . '&where=AV&type=page';
+	$url = 'http://bc.avancoinfo.com.br/rest/searchv3/1.0/search?queryString=' . urlencode($duvida) . '&where=AV&type=page';
 
 	# utilizendo o CURL para requisitar os documentos no confluence
 	$curl = curl_init();
