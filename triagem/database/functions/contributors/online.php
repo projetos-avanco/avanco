@@ -58,8 +58,11 @@ function verificaColaboradoresOnlineNoChat($array, $db)
 
     } else {
 
-      # parando a execução do código por 2 minutos
-      sleep(10);
+      # retornando array vazio para o portal avanço
+      echo json_encode($array);
+
+      # parando a execução do código por 1 minutos
+      sleep(60);
 
       # não existem colaboradores online, retornando array nulo
       return $array = NULL;
@@ -68,8 +71,12 @@ function verificaColaboradoresOnlineNoChat($array, $db)
 
   } else {
 
-    # chamando função que grava um log
-    gravaLog('erro na consulta de colaboradores logados, no script online.php', 'error');
+    $msg = 'Erro ao executar a consulta de colaboradores logados!';
+
+    # retornando mensagem para o portal avanço
+    echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+
+    exit;
 
   }
 
