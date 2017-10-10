@@ -4,7 +4,7 @@
  * responsável por chamar outras funções que consultam informações na base de dados do chat e redireciona o cliente
  */
 function consultaChatSuporte()
-{  
+{
   # chamando função que retorna uma conexão com a base de dados
   $conexao = abre_conexao();
 
@@ -82,7 +82,7 @@ function consultaChatSuporte()
     unset($colaboradores, $cliente);
 
     # fechando conexão aberta
-    fecha_conexao($conexao);
+    $conexao->close();
   }
 
 }
