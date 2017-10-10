@@ -32,8 +32,12 @@ function verificaFilaDosColaboradores($array, $quantidade, $db)
 
     } else {
 
-      # chamando função que grava um log
-      gravaLog('erro na consulta de quantidade de fila, no script fila.php', 'error');
+      $msg = 'Erro ao executar a consulta de quantidade de fila!';
+
+      # retornando mensagem para o portal avanço
+      echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+
+      exit;
 
     }
 

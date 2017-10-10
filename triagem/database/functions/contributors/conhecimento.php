@@ -43,8 +43,12 @@ function verificaNivelDeConhecimentoDosColaboradoresOnline($colaboradores, $clie
 
     } else {
 
-      # chamando função que grava um log
-      gravaLog('erro na consulta de conhecimento dos colaboradores, no script conhecimento.php', 'error');
+      $msg = 'Erro ao executar a consulta de conhecimento dos colaboradores!';
+
+      # retornando mensagem para o portal avanço
+      echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+
+      exit;
 
     }
 
