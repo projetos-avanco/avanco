@@ -91,16 +91,16 @@
 
       <br>
 
-      <div class="checkbox">
+      <div class="radio">
         <label>
-          <input type="checkbox" name="cliente[tecnologia]">
+          <input type="radio" name="cliente[tecnologia]" id="tecnologia">
           Deseja atendimento no Departamento Tecnologia?
         </label>
       </div>
 
-      <div class="checkbox">
+      <div class="radio">
         <label>
-          <input type="checkbox" name="cliente[novo_erp]">
+          <input type="radio" name="cliente[novo_erp]" id="novo_erp">
           Deseja atendimento no Departamento Novo ERP?
         </label>
       </div>
@@ -178,5 +178,6 @@
 
     });
   </script>
+
 </body>
 </html>
