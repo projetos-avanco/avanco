@@ -10,4 +10,7 @@ function consultaChatTecnologia()
 
   # chamando função que monta uma URL e redireciona o cliente para o departamento de tecnologia
   redirecionaClienteParaDepartamentoTecnologia($cliente);
+
+  # eliminando array
+  unset($cliente);
 }
