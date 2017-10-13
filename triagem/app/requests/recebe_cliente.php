@@ -25,17 +25,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     # chamando função que consulta a dúvida do cliente na base de conhecimento
     consultaDuvidaNaBaseDeConhecimento();
 
-    # verificando se o cliente deseja falar no departamento de tecnologia
-    if (isset($_POST['cliente']['tecnologia']) AND ! empty($_POST['cliente']['tecnologia'])) {
-
-      # chamando função que consulta informações na base de dados do chat
-      consultaChatTecnologia();
-
     # verificando se o cliente deseja falar no departamento do novo ERP
-    } elseif (isset($_POST['cliente']['novo_erp']) AND ! empty($_POST['cliente']['novo_erp'])) {
+    if (isset($_POST['cliente']['produto']) AND $_POST['cliente']['produto'] == '4') {
 
       # chamando função que consulta informações na base de dados do chat
       consultaChatNovoErp();
+
+    # verificando se o cliente deseja falar no departamento de tecnologia    
+    } elseif (isset($_POST['cliente']['produto']) AND $_POST['cliente']['produto'] == '5') {
+
+      # chamando função que consulta informações na base de dados do chat
+      consultaChatTecnologia();
 
     # verificando se o cliente deseja falar no departamento de suporte geral
     } else {
