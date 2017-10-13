@@ -59,22 +59,25 @@
       <br>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
           <select class="form-control" id="produto" name="cliente[produto]">
-            <option value="0">Selecione uma Opção</option>
+            <option value="0" selected>Selecione um Produto</option>
             <option value="1">Integral</option>
             <option value="2">Frente de Loja</option>
             <option value="3">Gestor</option>
             <option value="4">Novo ERP</option>
+            <option value="5">Tecnologia</option>
           </select>
         </div>
+      </div>
 
-        <div class="col-sm-6">
-          <div class="col-sm-6">
-            <select class="form-control" id="modulo" name="cliente[modulo]">
-              <option value="0">Selecione uma Opção</option>
-            </select>
-          </div>
+      <br>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <select class="form-control" id="modulo" name="cliente[modulo]">
+            <option value="0" selected>Selecione um Módulo</option>
+          </select>
         </div>
       </div>
 
@@ -84,23 +87,16 @@
         <div class="col-sm-12">
           <div class="form-group">
             <label class="sr-only" for="duvida">Dúvida: </label>
-            <input type="text" id="duvida" name="cliente[duvida]" placeholder="Dúvida">
+            <input type="text" id="duvida" name="cliente[duvida]" placeholder="Dúvida" required>
           </div>
         </div>
       </div>
 
       <br>
 
-      <div class="radio">
+      <div class="checkbox">
         <label>
-          <input type="radio" name="cliente[tecnologia]" id="tecnologia">
-          Deseja atendimento no Departamento Tecnologia?
-        </label>
-      </div>
-
-      <div class="radio">
-        <label>
-          <input type="radio" name="cliente[novo_erp]" id="novo_erp">
+          <input type="checkbox" name="cliente[novo_erp]" id="novo_erp">
           Deseja atendimento no Departamento Novo ERP?
         </label>
       </div>
@@ -109,7 +105,7 @@
 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-default">Enviar</button>
+          <button type="submit" class="btn btn-default" id="enviar">Enviar</button>
         </div>
       </div>
     </form>
@@ -122,13 +118,37 @@
   <script type="text/javascript">
     $('document').ready(function() {
 
+      $('#nome').hide();
+      $('#nome_usuario').hide();
+      $('#cnpj').hide();
+      $('#conta_contrato').hide();
+      $('#razao_social').hide();
+
       $('#produto').change(function() {
 
         var produto = $('#produto').val();
 
-        $('#modulo').empty();
+        if (produto == '5') {
+
+          $('#modulo').hide();
+
+        } else {
+
+          if ($('#modulo').hide()) {
+
+            $('#modulo').show();
+
+          }
+
+        }
 
         switch (produto) {
+
+          case '0':
+
+            $('#modulo').html('<option value="0">Selecione um Módulo</option>');
+
+            break;
 
           case '1':
 
@@ -171,6 +191,62 @@
             $('#modulo').html(gestor);
 
             break;
+
+            case '4':
+
+              var erp =
+                '<option value="19">Pessoas</option>'                    +
+                '<option value="20">Produtos</option>'                   +
+                '<option value="21">Fiscal</option>'                     +
+                '<option value="22">Financeiro</option>'                 +
+                '<option value="23">Relatórios e Gráficos</option>'      +
+                '<option value="24">Lançamentos</option>'                +
+                '<option value="25">Importação e Exportações</option>'   +
+                '<option value="26">Configurações PDV</option>'          +
+                '<option value="27">Poynt</option>';
+
+              $('#modulo').html(erp);
+
+              break;
+
+        }
+
+      });
+
+      $('#novo_erp').change(function() {
+
+        var checkbox = $('#novo_erp').val();
+
+        if (checkbox == 'on') {
+
+          $('#produto').val('4');
+
+          var erp =
+            '<option value="19">Pessoas</option>'                    +
+            '<option value="20">Produtos</option>'                   +
+            '<option value="21">Fiscal</option>'                     +
+            '<option value="22">Financeiro</option>'                 +
+            '<option value="23">Relatórios e Gráficos</option>'      +
+            '<option value="24">Lançamentos</option>'                +
+            '<option value="25">Importação e Exportações</option>'   +
+            '<option value="26">Configurações PDV</option>'          +
+            '<option value="27">Poynt</option>';
+
+          $('#modulo').html(erp);
+
+        } else {
+
+          $('#produto').val('0');
+
+        }
+
+      });
+
+      $('#enviar').click(function() {
+
+        if ($('#duvida').val() == '') {
+
+          alert('O campo dúvida deve ser preenchido!');
 
         }
 
