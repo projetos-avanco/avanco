@@ -160,11 +160,11 @@
                   <div class="input-group-addon">
                     <i class="fa fa-calendar" aria-hidden="true"></i><span class="calendario">De: </span>
                   </div>
-                    <input type="text" class="form-control" name="data-1" value="<?php echo $dashboard['periodo']['data_1']; ?>">
+                    <input type="text" class="form-control" id="data1" name="data-1" value="<?php echo $dashboard['periodo']['data_1']; ?>">
                   <div class="input-group-addon">
                     <i class="fa fa-calendar" aria-hidden="true"></i><span class="calendario">Até: </span>
                   </div>
-                    <input type="text" class="form-control" name="data-2" value="<?php echo $dashboard['periodo']['data_2']; ?>">
+                    <input type="text" class="form-control" id="data2" name="data-2" value="<?php echo $dashboard['periodo']['data_2']; ?>">
                     <button type="submit" class="btn btn-success"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
               </form>
@@ -259,7 +259,7 @@
 
             <div class="col-sm-3"><!-- quarta coluna da linha -->
               <div class="text-left">
-                <p>Questionário</p>
+                <p id="questionario">Questionário</p>
                 <h1 class="resultados">
                 <?php
                   echo $dashboard['indicadores_chat']['percentual_questionario_respondido'] . '<span class="cor-cinza">%</span>';
@@ -427,8 +427,9 @@
     </div>
   </footer><!-- rodapé -->
 
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
   <script src="<?php echo BASE_URL; ?>libs/bootstrap-4.0.0/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
@@ -554,6 +555,57 @@
        yourCallingChartFunction();
     });
     /* Gráfico do Gestor */
+  </script>
+
+  <script type="text/javascript">
+    $('document').ready(function() {
+
+      $('#questionario').click(function() {
+
+        <?php $id = $_SESSION['colaborador']['id']; ?>
+
+        var id    = <?php echo $id; ?>;
+        var data1 = $('#data1').val();
+        var data2 = $('#data2').val();
+
+        if (id != '' && data1 != '' && data2 != '') {
+
+          // requisição AJAX
+          $.ajax({
+            type: 'post',
+            url: '../../../app/requests/ajax/busca_ids.php?id=' + id + '&data1=' + data1 + '&data2=' + data2,
+            dataType: 'json',
+            success: function(resposta) {
+
+              if (resposta != '') {
+
+                // exibindo ids não preenchidos
+                alert(resposta);
+
+              } else {
+
+                alert('Não existem questionários pendentes!');
+
+              }
+
+            },
+            error: function(resposta) {
+
+              console.log(resposta);
+
+            }
+          });
+
+        } else {
+
+          // exibindo no console
+          console.log('Não foi possível recuperar id, data1 ou data2!');
+
+        }
+
+      });
+
+    });
   </script>
 </body>
 </html>
