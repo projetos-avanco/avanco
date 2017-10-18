@@ -14,7 +14,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <title>CAPA - Novo Ticket</title>
+  <title>Novo Ticket</title>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap-3.3.7.min.css">
@@ -51,31 +51,60 @@
 
       <br>
 
+      <h4 class="text-center">Resultado da Pesquisa</h4>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <table class='table'>
+            <thead>
+              <tr>
+                <th class='text-center'>CNPJ</th>
+                <th class='text-center'>Conta Contrato</th>
+                <th class='text-center'>Razão Social</th>
+                <th class='text-center'>Opções</th>
+              </tr>
+            </thead>
+
+            <tbody id="linhas">
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <br>
+
+      <h4 class="text-center">Dados Cadastrais</h4>
+
+      <br>
+
       <div class="row">
         <div class="col-sm-5">
           <div class="form-group">
             <label for="razao-social">Razão Social</label>
-            <input class="form-control" id="razao-social" type="text" name="form[razao-social]" value="" placeholder="Razão Social">
+            <input class="form-control" id="razao-social" type="text" name="form[razao-social]" value="" placeholder="Razão Social" disabled>
           </div>
         </div>
 
         <div class="col-sm-3">
           <div class="form-group">
             <label for="cnpj">CNPJ</label>
-            <input class="form-control" id="cnpj" type="text" name="form[cnpj]" value="" placeholder="CNPJ">
+            <input class="form-control" id="cnpj" type="text" name="form[cnpj]" value="" placeholder="CNPJ" disabled>
           </div>
         </div>
 
         <div class="col-sm-2">
           <div class="form-group">
             <label for="conta-contrato">Conta Contrato</label>
-            <input class="form-control" id="conta-contrato" type="text" name="form[conta-contrato]" value="" placeholder="Conta Contrato">
+            <input class="form-control" id="conta-contrato" type="text" name="form[conta-contrato]" value="" placeholder="Conta Contrato" disabled>
           </div>
         </div>
 
         <div class="col-sm-2">
-          <label for="cliente">Cliente</label>
-          <input class="form-control" id="cliente" type="text" name="form[cliente]" placeholder="Nome do Cliente">
+          <label for="cliente">Contato</label>
+          <input class="form-control" id="cliente" type="text" name="form[contato]" placeholder="Nome do Contato">
         </div>
       </div>
 
@@ -130,7 +159,7 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <button class="btn btn-primary" type="submit"><strong>Gerar</strong></button>
+          <button class="btn btn-primary" type="submit"><b>Gerar</b></button>
         </div>
       </div>
     </form>
@@ -141,5 +170,7 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/screen/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/modulos.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/screen/pesquisa.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/screen/seleciona.js"></script>
 </body>
 </html>
