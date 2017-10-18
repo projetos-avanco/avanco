@@ -6,22 +6,22 @@ $('document').ready(function() {
     type: 'post',
     url: BASE_URL + 'app/requests/post/processa_colaboradores.php',
     dataType: 'html',
-    success: function(resposta)
+    success: function(colaboradores)
     {
-      if (resposta === 'erro') {
+      if (colaboradores === 'erro') {
 
         alert('Ops! Houve um erro durante a execução da consulta de colaboradores.');
 
       } else {
 
-        $('#colaborador').html(resposta);
+        $('#colaborador').html(colaboradores);
 
       }
 
     },
-    error: function(resposta)
+    error: function(colaboradores)
     {
-      alert(resposta);
+      alert(colaboradores);
     }
 
   });
