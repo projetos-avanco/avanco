@@ -2,7 +2,7 @@
 
 require '../../../init.php';
 
-require ABS_PATH . 'database/functions/screen/instrucoes.php';
+require DIRETORIO_FUNCTIONS . '/screen/instrucoes.php';
 
 /**
  * responsável por criar as linhas da tabela dinâmica de clientes
@@ -10,7 +10,8 @@ require ABS_PATH . 'database/functions/screen/instrucoes.php';
  */
 function criaLinhasParaTabelaDinamicaDeClientes($pesquisa)
 {
-  $db    = abre_conexao();
+  $db = abre_conexao();
+  
   $linhas = '';
 
   # verificando se está sendo pesquisado um cnpj ou uma razão social ($tipo = true -> cnpj ou $tipo = false -> razão social)

@@ -1,6 +1,6 @@
 <?php
 
-require '../../modules/screen/colaborador.php';
+require '../../modules/screen/colaboradores.php';
 
 # verificando se foi enviado requisição via método POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
