@@ -47,3 +47,20 @@ function removeAcentosTrocaEspacoPorTraco($string)
 
   return $tr;
 }
+
+/*
+ * gera um código de ticket com 6 dígitos
+ */
+function geraTicket()
+{
+  $ticket = NULL;
+
+  # gerando código de ticket
+  for ($i = 1; $i <= 6; $i++) {
+
+    $ticket .= rand(1, 9);
+
+  }
+
+  return $ticket;
+}
