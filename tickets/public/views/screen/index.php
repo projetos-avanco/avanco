@@ -14,7 +14,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <title>Novo Ticket</title>
+  <title>CAPA - Novo Ticket</title>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap-3.3.7.min.css">
@@ -32,14 +32,14 @@
 
     <h2>Novo Ticket</h2>
 
-    <form action="#" method="post">
+    <form action="<?php echo BASE_URL; ?>app/requests/post/processa_ticket.php" method="post">
 
       <hr>
 
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
           <div class="input-group h2">
-            <input class="form-control" id="pesquisa" type="text" name="dados[pesquisa]" placeholder="CNPJ ou Razão Social">
+            <input class="form-control" id="pesquisa" type="text" placeholder="CNPJ ou Razão Social">
             <span class="input-group-btn">
               <button class="btn btn-primary" type="button">
                 <span class="glyphicon glyphicon-search"></span>
@@ -63,7 +63,7 @@
                 <th class='text-center'>CNPJ</th>
                 <th class='text-center'>Conta Contrato</th>
                 <th class='text-center'>Razão Social</th>
-                <th class='text-center'>Opções</th>
+                <th class='text-center'></th>
               </tr>
             </thead>
 
@@ -81,24 +81,24 @@
       <br>
 
       <div class="row">
-        <div class="col-sm-5">
+        <div class="col-sm-6">
           <div class="form-group">
             <label for="razao-social">Razão Social</label>
-            <input class="form-control" id="razao-social" type="text" name="form[razao-social]" value="" placeholder="Razão Social" disabled>
+            <input class="form-control" id="razao-social" type="text" name="form[razao-social]" value="" placeholder="Razão Social" readonly="true">
           </div>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-2">
           <div class="form-group">
             <label for="cnpj">CNPJ</label>
-            <input class="form-control" id="cnpj" type="text" name="form[cnpj]" value="" placeholder="CNPJ" disabled>
+            <input class="form-control" id="cnpj" type="text" name="form[cnpj]" value="" placeholder="CNPJ" readonly="true">
           </div>
         </div>
 
         <div class="col-sm-2">
           <div class="form-group">
             <label for="conta-contrato">Conta Contrato</label>
-            <input class="form-control" id="conta-contrato" type="text" name="form[conta-contrato]" value="" placeholder="Conta Contrato" disabled>
+            <input class="form-control" id="conta-contrato" type="text" name="form[conta-contrato]" value="" placeholder="Conta Contrato" readonly="true">
           </div>
         </div>
 
@@ -149,7 +149,15 @@
           <div class="panel panel-primary">
             <div class="panel-heading text-center"><strong>Número do Ticket</strong></div>
             <div class="panel-body text-center">
-              <h2><strong>157789</strong></h2>
+              <h2>
+                <strong>
+                  <?php if (isset($_SESSION['ticket'])) : ?>
+                    <?php echo $_SESSION['ticket']; ?>
+                  <?php else : ?>
+                    0
+                  <?php endif; ?>
+                </strong>
+              </h2>
             </div>
           </div>
         </div>
@@ -160,10 +168,24 @@
       <div class="row">
         <div class="col-sm-12">
           <button class="btn btn-primary" type="submit"><b>Gerar</b></button>
+          <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/"><strong>Limpar</strong></a>
         </div>
       </div>
     </form>
-  </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm-12">
+      <?php if (! empty($_SESSION['mensagem'])) : ?>
+        <div class="alert alert-<?php echo $_SESSION['tipo']; ?>" role="alert">
+          <?php echo $_SESSION['mensagem']; ?>
+          <?php unset($_SESSION['mensagem'], $_SESSION['tipo']); ?>
+        </div>
+      <?php endif; ?>
+      </div>
+    </div>
+  </div><!-- container -->
 
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap-3.3.7.min.js"></script>
@@ -172,5 +194,19 @@
   <script src="<?php echo BASE_URL; ?>public/js/screen/modulos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/pesquisa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/seleciona.js"></script>
+
+  <script>
+    $(function() {
+
+      $(document).on('click', 'btn-default', function(e) {
+
+        e.preventDefault;
+
+        <?php unset($_SESSION['ticket']); ?>
+
+      });
+
+    });
+  </script>
 </body>
 </html>
