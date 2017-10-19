@@ -35,6 +35,8 @@ function consultaColaboradores($options, $db)
 
   }
 
+  $db->close();
+
   return $options;
 }
 
@@ -102,5 +104,87 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $linhas, $db)
 
   }
 
+  $db->close();
+
   return $linhas;
+}
+
+/**
+ * verifica se o novo código de ticket gerado já existe no banco de dados, caso exista, gera um novo código de ticket
+ * @param - string com o código de ticket gerado pelo módulo de ticket
+ * @param - objeto com uma conexão aberta
+ */
+function verificaTicketDuplicado($ticket, $db)
+{
+  $query =
+    "SELECT
+    	id
+    FROM av_tickets
+    WHERE ticket = $ticket;";
+
+  # verificando se a consulta pode ser executada
+  if ($resultado = $db->query($query)) {
+
+    # verificando se o código de ticket gerado já existe no banco de dados
+    if ($resultado->num_rows > 0) {
+
+      $ticket = NULL;
+
+      # gerando novo código de ticket
+      $ticket = geraTicket();
+
+      # chamando a função novamente para confirmar se o novo código gerado também não existe no banco de dados
+      verificaTicketDuplicado($ticket, $db);
+
+    }
+
+  }
+
+  return $ticket;
+
+}
+
+/**
+ * insere os dados do formulário da tela de novo ticket no banco de dados
+ * @param - array com os dados do formulário da tela de novo ticket
+ * @param - objeto com uma conexão aberta
+ */
+function insereDadosDoFormularioNovoTicket($dados, $db)
+{
+  # chamando função que verifica se o código de ticket gerado já existe no banco de dados
+  $dados['ticket'] = verificaTicketDuplicado($dados['ticket'], $db);
+
+  $colunas = NULL;
+  $valores = NULL;
+
+  # montando colunas e valores para a consulta
+  foreach ($dados as $chave => $valor) {
+
+    $colunas .= trim($chave, "'") . ", ";
+    $valores .= "'$valor', ";
+
+  }
+
+  # retirando a últimas vírgula das colunas e dos valores
+  $colunas = rtrim($colunas, ', ');
+  $valores = rtrim($valores, ', ');
+
+  # montando consulta
+  $query = "INSERT INTO av_tickets " . "($colunas)" . " VALUES " . "($valores);";
+
+  if ($resultado = $db->query($query)) {
+
+    $_SESSION['mensagem'] = '<p class="text-center"><strong>Tudo Certo!</strong> O Ticket foi gravado com sucesso.</p>';
+    $_SESSION['tipo']     = 'success';
+    $_SESSION['ticket']   = $dados['ticket'];
+
+  } else {
+
+    $_SESSION['mensagem'] = '<p class="text-center"><strong>Ops!</strong> O Ticket não foi gravado.</p>';
+    $_SESSION['tipo']     = 'danger';
+
+  }
+
+  $db->close();
+
 }
