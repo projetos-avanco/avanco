@@ -18,12 +18,9 @@
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize-7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap-3.3.7.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
 
-  <style media="screen">
-    .panel-body {
-      padding: 24px;
-    }
-  </style>
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/screen/index.css">
 </head>
 
 <body>
@@ -51,13 +48,9 @@
 
       <br>
 
-      <h4 class="text-center">Resultado da Pesquisa</h4>
-
-      <br>
-
       <div class="row">
         <div class="col-sm-12">
-          <table class='table'>
+          <table class='table' id="tabela">
             <thead>
               <tr>
                 <th class='text-center'>CNPJ</th>
@@ -76,7 +69,7 @@
 
       <br>
 
-      <h4 class="text-center">Dados Cadastrais</h4>
+      <h4>Dados Cadastrais</h4>
 
       <br>
 
@@ -84,27 +77,27 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label for="razao-social">Razão Social</label>
-            <input class="form-control" id="razao-social" type="text" name="form[razao-social]" value="" placeholder="Razão Social" readonly="true">
+            <input class="form-control required" id="razao-social" type="text" name="form[razao-social]" value="" placeholder="Razão Social" readonly="true">
           </div>
         </div>
 
         <div class="col-sm-2">
           <div class="form-group">
             <label for="cnpj">CNPJ</label>
-            <input class="form-control" id="cnpj" type="text" name="form[cnpj]" value="" placeholder="CNPJ" readonly="true">
+            <input class="form-control required" id="cnpj" type="text" name="form[cnpj]" value="" placeholder="CNPJ" readonly="true">
           </div>
         </div>
 
         <div class="col-sm-2">
           <div class="form-group">
             <label for="conta-contrato">Conta Contrato</label>
-            <input class="form-control" id="conta-contrato" type="text" name="form[conta-contrato]" value="" placeholder="Conta Contrato" readonly="true">
+            <input class="form-control required" id="conta-contrato" type="text" name="form[conta-contrato]" value="" placeholder="Conta Contrato" readonly="true">
           </div>
         </div>
 
         <div class="col-sm-2">
           <label for="cliente">Contato</label>
-          <input class="form-control" id="cliente" type="text" name="form[contato]" placeholder="Nome do Contato">
+          <input class="form-control required" id="cliente" type="text" name="form[contato]" placeholder="Nome do Contato">
         </div>
       </div>
 
@@ -113,14 +106,14 @@
       <div class="row">
         <div class="col-sm-3">
           <label for="colaborador">Colaborador</label>
-          <select class="form-control" id="colaborador" name="form[colaborador]">
+          <select class="form-control required" id="colaborador" name="form[colaborador]">
             <option value="0">Selecione um Colaborador</option>
           </select>
         </div>
 
         <div class="col-sm-4">
           <label for="produto">Produto</label>
-          <select class="form-control" id="produto" name="form[produto]">
+          <select class="form-control required" id="produto" name="form[produto]">
             <option value="0">Selecione um Produto</option>
             <option value="1">Integral</option>
             <option value="2">Frente de Loja</option>
@@ -131,7 +124,7 @@
 
         <div class="col-sm-4">
           <label for="modulo">Módulo</label>
-          <select class="form-control" id="modulo" name="form[modulo]">
+          <select class="form-control required" id="modulo" name="form[modulo]">
             <option value="0">Selecione um Módulo</option>
           </select>
         </div>
@@ -142,14 +135,14 @@
       <div class="row">
         <div class="col-sm-4">
           <label for="assunto">Assunto</label>
-          <textarea class="form-control" id="assunto" name="form[assunto]" rows="5" cols="30"></textarea>
+          <textarea class="form-control required" id="assunto" name="form[assunto]" rows="5" cols="30"></textarea>
         </div>
 
         <div class="col-sm-4 col-sm-offset-4">
           <div class="panel panel-primary">
             <div class="panel-heading text-center"><strong>Número do Ticket</strong></div>
             <div class="panel-body text-center">
-              <h2>
+              <h2 id="ticket">
                 <strong>
                   <?php if (isset($_SESSION['ticket'])) : ?>
                     <?php echo $_SESSION['ticket']; ?>
@@ -189,11 +182,13 @@
 
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery-3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap-3.3.7.min.js"></script>
+  <script src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
 
   <script src="<?php echo BASE_URL; ?>public/js/screen/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/modulos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/pesquisa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/seleciona.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/screen/validacao.js"></script>
 
   <script>
     $(function() {
@@ -203,6 +198,43 @@
         e.preventDefault;
 
         <?php unset($_SESSION['ticket']); ?>
+
+      });
+
+    });
+  </script>
+
+  <script type="text/javascript">
+    // criando tabela dinâmica através da biblioteca dataTable
+    $(document).ready(function() {
+
+      $('#linhas').change(function() {
+
+        $('#tabela').dataTable({
+           "oLanguage" : {
+             "sEmptyTable": "Nenhum registro encontrado",
+             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+             "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+             "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+             "sInfoPostFix": "",
+             "sInfoThousands": ".",
+             "sLengthMenu": "_MENU_ Contratos exibidos por página",
+             "sLoadingRecords": "Carregando...",
+             "sProcessing": "Processando...",
+             "sZeroRecords": "Nenhum registro encontrado",
+             "sSearch": "Pesquisar",
+             "oPaginate": {
+               "sNext": "Próximo",
+               "sPrevious": "Anterior",
+               "sFirst": "Primeiro",
+               "sLast": "Último"
+             },
+             "oAria": {
+               "sSortAscending": ": Ordenar colunas de forma ascendente",
+               "sSortDescending": ": Ordenar colunas de forma descendente"
+             }
+           }
+        });
 
       });
 
