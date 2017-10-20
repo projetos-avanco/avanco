@@ -20,18 +20,14 @@ function recuperaDadosDosArraysSuperGlobais($modelo, $formulario, $requisicao)
         if (isset($_POST['form']) AND (count($_POST['form']) == 8)) {
 
           # recuperando dados
-          foreach ($_POST as $form) {
-
-            $modelo['contato']        = $form['contato'];
-            $modelo['cnpj']           = $form['cnpj'];
-            $modelo['conta_contrato'] = $form['conta-contrato'];
-            $modelo['razao_social']   = $form['razao-social'];
-            $modelo['colaborador']    = $form['colaborador'];
-            $modelo['produto']        = $form['produto'];
-            $modelo['modulo']         = $form['modulo'];
-            $modelo['assunto']        = $form['assunto'];
-
-          }
+          $modelo['contato']        = $_POST['form']['contato'];
+          $modelo['cnpj']           = $_POST['form']['cnpj'];
+          $modelo['conta_contrato'] = $_POST['form']['conta-contrato'];
+          $modelo['razao_social']   = $_POST['form']['razao-social'];
+          $modelo['colaborador']    = $_POST['form']['colaborador'];
+          $modelo['produto']        = $_POST['form']['produto'];
+          $modelo['modulo']         = $_POST['form']['modulo'];
+          $modelo['assunto']        = $_POST['form']['assunto'];
 
         }
 

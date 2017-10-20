@@ -3,7 +3,7 @@
 function criaModeloParaFormularioNovoTicket()
 {
   $formulario = array(
-    'data'           => '',
+    'data_hora'      => '',
     'ticket'         => 0,
     'validade'       => true,
     'contato'        => '',

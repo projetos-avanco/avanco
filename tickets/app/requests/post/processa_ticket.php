@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $dados = recuperaDadosDosArraysSuperGlobais($dados, 'ticket', 'POST');
 
   # setando data e hora e execução
-  $dados['data'] = date('Y-m-d H:i:s');
+  $dados['data_hora'] = date('Y-m-d H:i:s');
 
   # chamando função que gera um código de ticket com 6 dígitos
   $dados['ticket'] = geraTicket();

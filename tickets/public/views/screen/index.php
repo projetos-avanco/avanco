@@ -36,7 +36,7 @@
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
           <div class="input-group h2">
-            <input class="form-control" id="pesquisa" type="text" placeholder="CNPJ ou Razão Social">
+            <input class="form-control" id="pesquisa" type="text" placeholder="Pesquise por CNPJ ou Razão Social">
             <span class="input-group-btn">
               <button class="btn btn-primary" type="button">
                 <span class="glyphicon glyphicon-search"></span>
@@ -50,20 +50,9 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <table class='table' id="tabela">
-            <thead>
-              <tr>
-                <th class='text-center'>CNPJ</th>
-                <th class='text-center'>Conta Contrato</th>
-                <th class='text-center'>Razão Social</th>
-                <th class='text-center'></th>
-              </tr>
-            </thead>
+          <div id="bloco">
 
-            <tbody id="linhas">
-
-            </tbody>
-          </table>
+          </div>
         </div>
       </div>
 
@@ -198,43 +187,6 @@
         e.preventDefault;
 
         <?php unset($_SESSION['ticket']); ?>
-
-      });
-
-    });
-  </script>
-
-  <script type="text/javascript">
-    // criando tabela dinâmica através da biblioteca dataTable
-    $(document).ready(function() {
-
-      $('#linhas').change(function() {
-
-        $('#tabela').dataTable({
-           "oLanguage" : {
-             "sEmptyTable": "Nenhum registro encontrado",
-             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-             "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-             "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-             "sInfoPostFix": "",
-             "sInfoThousands": ".",
-             "sLengthMenu": "_MENU_ Contratos exibidos por página",
-             "sLoadingRecords": "Carregando...",
-             "sProcessing": "Processando...",
-             "sZeroRecords": "Nenhum registro encontrado",
-             "sSearch": "Pesquisar",
-             "oPaginate": {
-               "sNext": "Próximo",
-               "sPrevious": "Anterior",
-               "sFirst": "Primeiro",
-               "sLast": "Último"
-             },
-             "oAria": {
-               "sSortAscending": ": Ordenar colunas de forma ascendente",
-               "sSortDescending": ": Ordenar colunas de forma descendente"
-             }
-           }
-        });
 
       });
 

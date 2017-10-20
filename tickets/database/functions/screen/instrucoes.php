@@ -47,7 +47,7 @@ function consultaColaboradores($options, $db)
  * @param - string vazia que receberá as linhas para a tabela dinâmica de clientes
  * @param - objeto com uma conexão aberta
  */
-function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $linhas, $db)
+function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
 {
   require '../../../app/helpers/diversas.php';
 
@@ -81,6 +81,21 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $linhas, $db)
 
   if ($resultado = $db->query($query)) {
 
+    $tabela .=
+      "<table class='table' id='tabela'>
+        <thead>
+          <tr>
+            <th class='text-center'>CNPJ</th>
+            <th class='text-center'>Conta Contrato</th>
+            <th class='text-center'>Razão Social</th>
+            <th class='text-center'></th>
+          </tr>
+        </thead>
+
+        <tbody>";
+
+    $linhas = '';
+
     while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
       $linhas .=
@@ -97,6 +112,11 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $linhas, $db)
 
     }
 
+    $tabela .= $linhas;
+    $tabela .=
+      "</tbody>
+    </table>";
+
   } else {
 
     # erro durante a execução da consulta
@@ -106,7 +126,7 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $linhas, $db)
 
   $db->close();
 
-  return $linhas;
+  return $tabela;
 }
 
 /**
