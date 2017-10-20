@@ -16,6 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   # chamando função que recupera os dados enviados pelo formulário da tela de novo ticket
   $dados = recuperaDadosDosArraysSuperGlobais($dados, 'ticket', 'POST');
 
+  # retirando quebras de linhas do assunto
+  $dados['assunto'] = preg_replace('/[\n|\r|\n\r|\r\n]{2,}/',' ', $dados['assunto']);
+
+  $dados['contato'] = ucwords($dados['contato']);
+  $dados['assunto'] = ucwords($dados['assunto']);
+
   # setando data e hora e execução
   $dados['data_hora'] = date('Y-m-d H:i:s');
 

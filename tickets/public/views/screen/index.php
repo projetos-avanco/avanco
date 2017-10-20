@@ -131,8 +131,8 @@
           <div class="panel panel-primary">
             <div class="panel-heading text-center"><strong>Número do Ticket</strong></div>
             <div class="panel-body text-center">
-              <h2 id="ticket">
-                <strong>
+              <h2>
+                <strong id="ticket">
                   <?php if (isset($_SESSION['ticket'])) : ?>
                     <?php echo $_SESSION['ticket']; ?>
                   <?php else : ?>
