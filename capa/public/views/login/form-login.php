@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <?php require '../../../init.php'; ?>
 
 <!DOCTYPE html>
@@ -13,12 +11,12 @@
 <body>
   <h1>Formulário de Login</h1>
 
-  <form action="<?php echo BASE_URL; ?>app/modules/login/login.php" method="post">
+  <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_login.php" method="post">
     <label for="usuario">Usuário: </label>
-      <input type="text" name="login[usuario]" id="usuario">
+      <input type="text" name="form[email]" id="email">
 
     <label for="senha">Senha: </label>
-      <input type="password" name="login[senha]" id="senha">
+      <input type="password" name="form[senha]" id="senha">
 
     <input type="submit" value="Entrar">
   </form>

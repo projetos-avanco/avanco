@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <?php require '../init.php'; ?>
 <?php require '../app/modules/login/check.php'; ?>
 
@@ -11,6 +10,12 @@
 <body>
   <h1>Home Page do Usuário</h1>
 
-  <p>Bem vindo a sua Home Page, <?php echo $_SESSION['nome_usuario']; ?> | <a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Sair</a></p>
+  <p>
+    Bem vindo a sua Home Page,
+    <?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?> |
+    <a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">
+      Sair
+    </a>
+  </p>
 </body>
 </html>

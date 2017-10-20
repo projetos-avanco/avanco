@@ -7,7 +7,7 @@ require '../../../init.php';
 session_start();
 
 # alterando o índice para falso
-$_SESSION['logado'] = false;
+$_SESSION['usuario']['logado'] = false;
 
 # finalizando sessões abertas
 session_destroy();

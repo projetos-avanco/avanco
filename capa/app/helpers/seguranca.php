@@ -14,7 +14,7 @@ function criaCodigoHash($senha)
  */
 function verificaUsuarioLogado()
 {
-  if (! isset($_SESSION['usuario_logado']) || $_SESSION['usuario_logado'] !== true) {
+  if (! isset($_SESSION['usuario']['logado']) OR $_SESSION['usuario']['logado'] !== true) {
 
     return false;
 
