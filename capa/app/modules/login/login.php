@@ -7,8 +7,24 @@
  */
 function realizaLoginNaAplicacao($login, $usuario)
 {
+  # abrindo conexão
   $db = abre_conexao();
 
+  $controle = NULL;
+
   # chamando função que irá consultar a base de dados
-  consultaDadosDoUsuario($login, $usuario, $db);
+  $controle = consultaDadosDoUsuario($login, $usuario, $db);
+
+  if ($controle) {
+
+    # redirecionando usuário para a página home da aplicação
+    header('Location: ' . PAGE_HOME);
+
+  } else {
+
+    # redirecionando usuário para o formulário de login
+    header('Location: ' . FORM_LOGIN);
+    
+  }
+
 }

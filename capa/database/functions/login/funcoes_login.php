@@ -44,8 +44,7 @@ function consultaDadosDoUsuario($login, $usuario, $db)
       $_SESSION['usuario']['nivel']     = $usuario['nivel'];
       $_SESSION['usuario']['logado']    = true;
 
-      # redirecionando usuário para a página home da aplicação
-      header('Location: ' . BASE_URL . 'public/home.php');
+      return true;
 
     } else {
 
@@ -53,8 +52,7 @@ function consultaDadosDoUsuario($login, $usuario, $db)
       $_SESSION['mensagem'] = 'Email ou Senha incorreto!';
       $_SESSION['tipo']     = 'danger';
 
-      # redirecionando usuário para o formulário de login
-      header('Location: ' . BASE_URL . 'public/views/login/form_login.php');
+      return false;
 
     }
 
