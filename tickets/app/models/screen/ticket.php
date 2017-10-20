@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * cria um array modelo para receber os dados do formulário de novo ticket
+ */
 function criaModeloParaFormularioNovoTicket()
 {
   $formulario = array(
