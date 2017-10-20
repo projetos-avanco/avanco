@@ -33,7 +33,7 @@ require_once 'config/database/configuracoes.php';
 require_once 'database/conexao.php';
 
 # importando script com as funções para conexão com a base de dados do sistema de login
-require_once 'database/functions/login/funcoes-login.php';
+require_once 'database/functions/login/funcoes_login.php';
 
 # importando script com as funções de segurança para o sistema de login
 require_once 'app/helpers/seguranca.php';
