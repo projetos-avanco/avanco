@@ -14,6 +14,7 @@ function criaCodigoHash($senha)
  */
 function verificaUsuarioLogado()
 {
+  # verificando se não existem as variáveis de sessão do usuário
   if (! isset($_SESSION['usuario']['logado']) OR $_SESSION['usuario']['logado'] !== true) {
 
     return false;
