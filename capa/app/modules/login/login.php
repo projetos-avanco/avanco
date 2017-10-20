@@ -15,6 +15,7 @@ function realizaLoginNaAplicacao($login, $usuario)
   # chamando função que irá consultar a base de dados
   $controle = consultaDadosDoUsuario($login, $usuario, $db);
 
+  # verificando se o usuário forneceu email e senha válidos
   if ($controle) {
 
     # redirecionando usuário para a página home da aplicação
@@ -24,7 +25,7 @@ function realizaLoginNaAplicacao($login, $usuario)
 
     # redirecionando usuário para o formulário de login
     header('Location: ' . FORM_LOGIN);
-    
+
   }
 
 }

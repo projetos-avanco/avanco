@@ -45,7 +45,7 @@
 
                 <div class="form-group">
                   <label class="sr-only" for="senha">Senha</label>
-                  <input class="form-control" type="text" name="form[senha]" placeholder="Senha">
+                  <input class="form-control" type="password" name="form[senha]" placeholder="Senha">
                 </div>
 
                 <br>
@@ -64,7 +64,23 @@
           </div>
         </div>
       </form>
-    </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-sm-12">
+        <?php if (isset($_SESSION['mensagem'])) : ?>
+
+          <div class="alert alert-<?php echo $_SESSION['tipo']; ?>" role="alert">
+
+            <?php echo $_SESSION['mensagem']; ?>
+            
+          </div>
+
+        <?php endif; ?>
+        </div>
+      </div>
+    </div><!-- container -->
   </main>
 
   <footer>

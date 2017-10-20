@@ -49,7 +49,7 @@ function consultaDadosDoUsuario($login, $usuario, $db)
     } else {
 
       # criando variáveis de sessão com as mensagens
-      $_SESSION['mensagem'] = 'Email ou Senha incorreto!';
+      $_SESSION['mensagem'] = '<p class="text-center"><strong>Ops!</strong> email ou senha não confere.</p>';
       $_SESSION['tipo']     = 'danger';
 
       return false;
