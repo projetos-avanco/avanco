@@ -1,7 +1,5 @@
 <?php require '../init.php'; ?>
 
-<?php if (verificaUsuarioLogado()) : ?>
-  
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -23,15 +21,8 @@
 </head>
 
 <body>
-
   <header>
-    <p>
-      Bem vindo a sua Home Page,
-      <?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?> |
-      <a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">
-        Sair
-      </a>
-    </p>
+
   </header>
 
   <main>
@@ -46,9 +37,3 @@
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
 </body>
 </html>
-
-<?php else : ?>
-
-  <?php header('Location: ' . FORM_LOGIN); ?>
-
-<?php endif; ?>
