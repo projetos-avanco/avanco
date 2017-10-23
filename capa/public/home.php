@@ -21,9 +21,8 @@
 </head>
 
 <body>
-  <header>
 
-  </header>
+  <?php require BASE_URL . "inc/templates/template_nav_bar.php"  ?>
 
   <main class="container">
     <h2>CAPA - Home Page<small> Versão 2.0</small></h2>
