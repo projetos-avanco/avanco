@@ -4,24 +4,22 @@
 
           <ul class="nav nav-list">
             <li>
-              <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu1"><span class="nav-header-primary">Ticket <span class="pull-right"><b class="caret"></b></span></span></a>
+              <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu1"><span class="nav-header-primary"><i class="fa fa-ticket" aria-hidden="true"></i>  Ticket <span class="pull-right"><b class="caret"></b></span></span></a>
 
               <ul class="nav nav-list collapse" id="submenu1">
-                  <li>
+                  <li class="espaco">
                     <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php">
-                      <i class="fa fa-fw"></i>&nbspNovo
+                      Novo
                     </a>
                   </li>
-                  <li><a href="#" title="Title"><i class="fa fa-fw"></i>&nbspConsultar</a></li>
-                  <li><a href="#" title="Title"><i class="fa fa-fw"></i>&nbspExcluir</a></li>
+                  <li class="espaco"><a href="#">Consultar</a></li>
+                  <li class="espaco"><a href="#">Excluir</a></li>
                </ul>
             </li>
             <li>
-              <a href="#">Dashboard</a>
+              <a href="#"><i class="fa fa-id-card-o" aria-hidden="true"></i>  Dashboard</a>
             </li>
-            <li>
-              <a href="#">Graficos</a>
-            </li>
+
           </ul>
 
         </div>
