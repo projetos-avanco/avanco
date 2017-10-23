@@ -34,7 +34,7 @@
 
     <ul>
       <li>
-        <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/index.php">Novo Ticket</a>
+        <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php">Novo Ticket</a>
       </li>
     </ul>
   </main>

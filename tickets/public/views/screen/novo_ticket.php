@@ -160,7 +160,7 @@
       <div class="row">
         <div class="col-sm-12">
           <button class="btn btn-primary" type="submit"><b>Gerar</b></button>
-          <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/"><strong>Limpar</strong></a>
+          <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/novo_ticket.php"><strong>Limpar</strong></a>
         </div>
       </div>
     </form>
