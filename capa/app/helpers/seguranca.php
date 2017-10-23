@@ -19,11 +19,11 @@ function verificaUsuarioLogado()
 
     $_SESSION['mensagem'] = '<p class="text-center"><strong>Ops!</strong> Faça o login para acessar o sistema.</p>';
     $_SESSION['tipo']     = 'warning';
-    
+
     return false;
 
   }
 
   return true;
-
+  
 }

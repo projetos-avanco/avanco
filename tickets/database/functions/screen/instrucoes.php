@@ -171,6 +171,8 @@ function verificaTicketDuplicado($ticket, $db)
  */
 function insereDadosDoFormularioNovoTicket($dados, $db)
 {
+  require DIRETORIO_MODELS . 'sessao.php';
+
   # chamando função que verifica se o código de ticket gerado já existe no banco de dados
   $dados['ticket'] = verificaTicketDuplicado($dados['ticket'], $db);
 
@@ -194,14 +196,17 @@ function insereDadosDoFormularioNovoTicket($dados, $db)
 
   if ($resultado = $db->query($query)) {
 
-    $_SESSION['mensagem'] = '<p class="text-center"><strong>Tudo Certo!</strong> O Ticket foi gravado com sucesso.</p>';
-    $_SESSION['tipo']     = 'success';
-    $_SESSION['ticket']   = $dados['ticket'];
+    $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Tudo Certo!</strong> O Ticket foi gerado com sucesso.</p>';
+    $_SESSION['mensagens']['tipo']     = 'success';
+    $_SESSION['mensagens']['exibe']    = true;
+
+    $_SESSION['ticket'] = $dados['ticket'];
 
   } else {
 
-    $_SESSION['mensagem'] = '<p class="text-center"><strong>Ops!</strong> O Ticket não foi gravado.</p>';
-    $_SESSION['tipo']     = 'danger';
+    $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Ops!</strong> O Ticket não foi gerado.</p>';
+    $_SESSION['mensagens']['tipo']     = 'danger';
+    $_SESSION['mensagens']['exibe']    = true;
 
   }
 

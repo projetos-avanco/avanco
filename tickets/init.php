@@ -6,9 +6,6 @@ error_reporting(E_ALL);
 
 session_start();
 
-# retirar depois que o login estiver pronto
-$_SESSION['usuario']['id'] = 42;
-
 # importando script com as rotas do servidor web
 require_once 'routes/servidor.php';
 
@@ -32,3 +29,6 @@ require_once 'config/database/configuracoes.php';
 
 # importando script com as funções para conexão com a base de dados
 require_once 'database/conexao.php';
+
+# importando script com as funções de segurança
+require_once 'app/helpers/seguranca.php';

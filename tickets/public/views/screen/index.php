@@ -1,5 +1,7 @@
 <?php require '../../../init.php'; ?>
 
+<?php if (verificaUsuarioLogado()) : ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,6 +34,14 @@
     <form action="<?php echo BASE_URL; ?>app/requests/post/processa_ticket.php" method="post">
 
       <hr>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <p class="text-right">
+            <a class="btn btn-primary" href="<?php echo BASE_URL;?>../capa/app/modules/logout/logout.php">Deslogar</a>
+          </p>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
@@ -159,11 +169,13 @@
 
     <div class="row">
       <div class="col-sm-12">
-      <?php if (! empty($_SESSION['mensagem'])) : ?>
-        <div class="alert alert-<?php echo $_SESSION['tipo']; ?>" role="alert">
-          <?php echo $_SESSION['mensagem']; ?>
-          <?php unset($_SESSION['mensagem'], $_SESSION['tipo']); ?>
+      <?php if (! empty($_SESSION['mensagens']['mensagem']) AND $_SESSION['mensagens']['exibe'] == true) : ?>
+
+        <div class="alert alert-<?php echo $_SESSION['mensagens']['tipo']; ?>" role="alert">
+          <?php echo $_SESSION['mensagens']['mensagem']; ?>
+          <?php unset($_SESSION['mensagens']['mensagem'], $_SESSION['mensagens']['tipo']); ?>
         </div>
+
       <?php endif; ?>
       </div>
     </div>
@@ -194,3 +206,9 @@
   </script>
 </body>
 </html>
+
+<?php else : ?>
+
+  <?php header('Location: ' . BASE_URL . '../capa/public/views/login/form_login.php'); ?>
+
+<?php endif; ?>
