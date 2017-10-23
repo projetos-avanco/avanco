@@ -7,7 +7,11 @@
               <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu1"><span class="nav-header-primary">Ticket <span class="pull-right"><b class="caret"></b></span></span></a>
 
               <ul class="nav nav-list collapse" id="submenu1">
-                  <li><a href="#" title="Title"><i class="fa fa-fw"></i>&nbspNovo</a></li>
+                  <li>
+                    <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php">
+                      <i class="fa fa-fw"></i>&nbspNovo
+                    </a>
+                  </li>
                   <li><a href="#" title="Title"><i class="fa fa-fw"></i>&nbspConsultar</a></li>
                   <li><a href="#" title="Title"><i class="fa fa-fw"></i>&nbspExcluir</a></li>
                </ul>

@@ -22,20 +22,11 @@
 
 <body>
 
-  <?php require BASE_URL . "inc/templates/template_nav_bar.php"  ?>
+  <?php include ABS_PATH . 'inc/templates/nav_bar.php' ?>
+  <?php include ABS_PATH . 'inc/templates/sidebar.php' ?>
 
   <main class="container">
-    <h2>CAPA - Home Page<small> Versão 2.0</small></h2>
-
-    <p class="text-right">
-      <a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Deslogar</a>
-    </p>
-
-    <ul>
-      <li>
-        <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php">Novo Ticket</a>
-      </li>
-    </ul>
+    
   </main>
 
   <footer>
