@@ -38,7 +38,7 @@
       <div class="row">
         <div class="col-sm-12">
           <p class="text-right">
-            <a class="btn btn-primary" href="<?php echo BASE_URL;?>../capa/app/modules/logout/logout.php">Deslogar</a>
+            <a class="btn btn-primary" href="<?php echo BASE_URL;?>../capa/app/modules/logout/logout.php"><b>Deslogar</b></a>
           </p>
         </div>
       </div>
@@ -68,7 +68,7 @@
 
       <br>
 
-      <h4>Dados Cadastrais</h4>
+      <h4 class="text-center">Dados Cadastrais</h4>
 
       <br>
 

@@ -104,7 +104,7 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
           <td class='text-center' data-conta='{$registro['conta_contrato']}'>{$registro['conta_contrato']}</td>
           <td class='text-left'   data-razao='{$registro['razao_social']}'>{$registro['razao_social']}</td>
           <td class='text-right'>
-            <button class='btn btn-xs btn-success btn-block' type='button'>
+            <button class='btn btn-xs btn-default btn-block' type='button'>
               <span class='glyphicon glyphicon-ok'></span>
             </button>
           </td>
