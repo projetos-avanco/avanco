@@ -18,7 +18,7 @@
 <body>
 
   <div class="container">
-    <form class="form-inline" action="<?php echo BASE_URL; ?>app/requests/recebe_cliente.php" method="post">
+    <form class="form-inline" action="<?php echo BASE_URL; ?>app/requests/post/recebe_cliente_portal.php" method="post">
       <div class="row">
         <div class="col-sm-2">
           <div class="form-group">
