@@ -33,6 +33,9 @@ body {
   -moz-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  border-right-color: #e7e7e7;
+  border-right-style: solid;
+  border-right-width: 1px;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -53,6 +56,29 @@ body {
 
 /* Sidebar Styles */
 
+/*alterando espaço fonte awesome*/
+.fa{
+    display: inline;
+}
+
+/*colocando espaço nos submenus*/
+p{
+  margin: 0 0 0 40px;
+}
+
+/*adicionando as bordas das opções dos menus*/
+.bordermenu
+{
+  border-bottom-color: #e7e7e7;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+/*diminuido o excesso de espaçamento da classe nav, tornando as opções com menor espessura*/
+.nav>li>a {
+    padding: 2px 5px 2px 2px;
+}
+
 .sidebar-nav {
   position: absolute;
   top: 0;
@@ -60,23 +86,26 @@ body {
   margin: 0;
   padding: 0;
   list-style: none;
+
 }
 
 .sidebar-nav li {
   text-indent: 20px;
   line-height: 40px;
+
 }
 
 .sidebar-nav li a {
   display: block;
   text-decoration: none;
-  color: #999999;
+  color: #337ab7;
+
 }
 
 .sidebar-nav li a:hover {
   text-decoration: none;
-  color: #fff;
-  background: rgba(255, 255, 255, 0.2);
+  color: #23527c;
+  background: #eeeeee;
 }
 
 .sidebar-nav li a:active, .sidebar-nav li a:focus {

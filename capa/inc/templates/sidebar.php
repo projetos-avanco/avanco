@@ -1,29 +1,22 @@
 <div id="wrapper">
   <div id="sidebar-wrapper"><!-- sidebar -->
-    <ul class="sidebar-nav">
-      <li class="sidebar-brand">
-        <a href="#">Start Bootstrap</a>
+    <ul class="nav sidebar-nav">
+      <li class="bordermenu">
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu1">
+          <span class="nav-header-primary">
+            <i class="fa fa-tags" aria-hidden="true"></i>  Tickets
+            <span class="pull-right">
+              <b class="caret"></b>
+            </span>
+          </span>
+        </a>
+        <ul class="nav collapse"  id="submenu1">
+          <li><a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php"><p>Novo<p></a></li>
+          <li><a href="#"><p>Consultar<p></a></li>
+        </ul>
       </li>
-      <li>
-        <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php">Tickets</a>
-      </li>
-      <li>
-        <a href="#">Shortcuts</a>
-      </li>
-      <li>
-        <a href="#">Overview</a>
-      </li>
-      <li>
-        <a href="#">Events</a>
-      </li>
-      <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="#">Services</a>
-      </li>
-      <li>
-        <a href="#">Contact</a>
+      <li class="bordermenu">
+        <a href="#"><i class="fa fa-address-card" aria-hidden="true"></i>   Dashboard</a>
       </li>
     </ul>
   </div><!-- sidebar -->
