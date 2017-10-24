@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand" href="#">
-          <img alt="Novo Capa" src="...">
+          <img alt="Novo Capa" src="#">
         </a>
       </div>
       <ul class="nav navbar-nav navbar-right dropdown">

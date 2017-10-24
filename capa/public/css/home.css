@@ -1,3 +1,31 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: 'Museosans 300';
+  src: url('../fonts/museosans_300.otf');
+}
+
+@font-face {
+  font-family: 'Museosans 0';
+  src: url('../fonts/museosans_0.otf');
+}
+
+body {
+  font-family: 'Museosans 300', sans-serif;
+}
+
+#ticket {
+  font-family: 'Museosans 0', sans-serif;
+}
+
+.panel-body {
+  padding: 24px;
+}
+
+.erro {
+  border: 2px solid red;
+}
+
 .sidebar {
     position: fixed;
     top: 51px;
@@ -46,4 +74,9 @@
 .entreicons{
  padding-right:10px;
  padding-left: 10px;
+}
+
+/* retirando marcação de linha dos links*/
+a {
+  outline: none;
 }
