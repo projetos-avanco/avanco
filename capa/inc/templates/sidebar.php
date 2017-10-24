@@ -5,7 +5,7 @@
         <a href="#">Start Bootstrap</a>
       </li>
       <li>
-        <a href="#">Dashboard</a>
+        <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php">Tickets</a>
       </li>
       <li>
         <a href="#">Shortcuts</a>

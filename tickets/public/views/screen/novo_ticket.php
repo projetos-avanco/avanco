@@ -23,13 +23,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
 
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/screen/index.css">  
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/screen/index.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
 </head>
 
 <body>
 
-  <?php require ABS_PATH . '../capa/inc/templates/nav_bar.php'; ?>
+  <?php require ABS_PATH . '../capa/inc/templates/navbar.php'; ?>
   <?php require ABS_PATH . '../capa/inc/templates/sidebar.php'; ?>
 
           <h2>Novo Ticket</h2>

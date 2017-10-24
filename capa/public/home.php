@@ -19,24 +19,21 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize_7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  
+
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
 </head>
 
 <body>
 
-  <?php include ABS_PATH . 'inc/templates/nav_bar.php' ?>
+  <?php include ABS_PATH . 'inc/templates/navbar.php' ?>
   <?php include ABS_PATH . 'inc/templates/sidebar.php' ?>
 
-  <main class="container">
-
-  </main>
-
-  <footer>
-
-  </footer>
-
+    </div><!-- container -->
+  </div><!-- conteúdo da página -->
+</div><!-- wrapper -->
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
 </body>
 </html>
