@@ -1,29 +1,37 @@
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-2 com-md-2 sidebar">
+<div id="wrapper">
+  <div id="sidebar-wrapper"><!-- sidebar -->
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#">Start Bootstrap</a>
+      </li>
+      <li>
+        <a href="#">Dashboard</a>
+      </li>
+      <li>
+        <a href="#">Shortcuts</a>
+      </li>
+      <li>
+        <a href="#">Overview</a>
+      </li>
+      <li>
+        <a href="#">Events</a>
+      </li>
+      <li>
+        <a href="#">About</a>
+      </li>
+      <li>
+        <a href="#">Services</a>
+      </li>
+      <li>
+        <a href="#">Contact</a>
+      </li>
+    </ul>
+  </div><!-- sidebar -->
 
-          <ul class="nav nav-list">
-            <li>
-              <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu1"><span class="nav-header-primary"><i class="fa fa-ticket" aria-hidden="true"></i>  Ticket <span class="pull-right"><b class="caret"></b></span></span></a>
-
-              <ul class="nav nav-list collapse" id="submenu1">
-                  <li class="espaco">
-                    <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php">
-                      Novo
-                    </a>
-                  </li>
-                  <li class="espaco"><a href="#">Consultar</a></li>
-                  <li class="espaco"><a href="#">Excluir</a></li>
-               </ul>
-            </li>
-            <li>
-              <a href="#"><i class="fa fa-id-card-o" aria-hidden="true"></i>  Dashboard</a>
-            </li>
-
-          </ul>
-
+  <div id="page-content-wrapper"><!-- conteúdo da página -->
+    <div class="container-fluid"><!-- container -->
+        <div class="row">
+          <div class="col-sm-12">
+            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Barra Lateral</a>
+          </div>
         </div>
-      </div>
-    </div>
-
-  </div>
