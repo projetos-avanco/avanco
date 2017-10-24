@@ -6,7 +6,7 @@
           <span class="nav-header-primary">
             <i class="fa fa-tags" aria-hidden="true"></i>  Tickets
             <span class="pull-right">
-              <b class="caret"></b>
+                <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
             </span>
           </span>
         </a>
@@ -24,7 +24,7 @@
   <div id="page-content-wrapper"><!-- conteúdo da página -->
     <div class="container-fluid"><!-- container -->
         <div class="row">
-          <div class="col-sm-12">
-            <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Barra Lateral</a>
+          <div class="col-sm-12 botaoespaco">
+            <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle"><i id="seta" class="fa fa-caret-right fa-3x" aria-hidden="true"></i></a>
           </div>
         </div>

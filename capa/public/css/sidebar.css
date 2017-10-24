@@ -56,6 +56,30 @@ body {
 
 /* Sidebar Styles */
 
+/*classe do botão da sidebar*/
+.botaoespaco
+{
+  padding-left: 0px;
+}
+
+a{
+  text-decoration: none;
+}
+
+a:active{
+  text-decoration: none;
+}
+
+a:focus{
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+
+
 /*alterando espaço fonte awesome*/
 .fa{
     display: inline;
