@@ -3,7 +3,7 @@
 # verificando se foi enviado uma requisição via método POST pelo portal avanço
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-  require '../../init.php';
+  require '../../../init.php';
 
   require ABS_PATH . 'app/modules/transfer/tecnologia.php';
   require ABS_PATH . 'app/modules/transfer/suporte.php';
