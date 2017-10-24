@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap-3.3.7.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
-  
+
   <link rel="stylesheet" href="<?php echo BASE_URL_CAPA; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL_CAPA; ?>public/css/sidebar.css">
 </head>
@@ -37,14 +37,6 @@
           <form action="<?php echo BASE_URL; ?>app/requests/post/processa_ticket.php" method="post">
 
             <hr>
-
-            <div class="row">
-              <div class="col-sm-12">
-                <p class="text-right">
-                  <a class="btn btn-primary" href="<?php echo BASE_URL;?>../capa/app/modules/logout/logout.php"><b>Deslogar</b></a>
-                </p>
-              </div>
-            </div>
 
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
