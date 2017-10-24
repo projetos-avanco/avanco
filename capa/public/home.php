@@ -29,11 +29,30 @@
   <?php include ABS_PATH . 'inc/templates/navbar.php' ?>
   <?php include ABS_PATH . 'inc/templates/sidebar.php' ?>
 
+
+
     </div><!-- container -->
   </div><!-- conteúdo da página -->
 </div><!-- wrapper -->
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
+  <script>
+      $('a').click(function() {
+        $(this).find("#seta").toggleClass('fa-caret-right fa-caret-left');
+        });
+
+
+      $('a').click(function() {
+      $(this).find("#setinha").toggleClass('fa-caret-down fa-caret-up');
+      });
+
+
+      $('a').click(function() {
+      $(this).find("#setauser").toggleClass('fa-caret-down fa-caret-up');
+      });
+
+  </script>
+
 </body>
 </html>
