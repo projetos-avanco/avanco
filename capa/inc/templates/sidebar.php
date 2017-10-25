@@ -16,15 +16,16 @@
         </ul>
       </li>
       <li class="bordermenu">
-        <a href="#"><i class="fa fa-address-card" aria-hidden="true"></i>   Dashboard</a>
+        <a href="<?php echo BASE_URL; ?>../dashboard/public/views/login/form_login.php"><i class="fa fa-address-card" aria-hidden="true"></i>   Dashboard</a>
       </li>
     </ul>
   </div><!-- sidebar -->
 
+  <div class="teste">
+    <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle">
+      <i id="seta" class="fa fa-angle-double-right fa-4x" aria-hidden="true"></i>
+    </a>
+  </div>
+
   <div id="page-content-wrapper"><!-- conteúdo da página -->
-    <div class="container-fluid"><!-- container -->
-        <div class="row">
-          <div class="col-sm-12 botaoespaco">
-            <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle"><i id="seta" class="fa fa-caret-right fa-3x" aria-hidden="true"></i></a>
-          </div>
-        </div>
+    <div class="container"><!-- container -->

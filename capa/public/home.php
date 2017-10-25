@@ -37,5 +37,6 @@
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
 </body>
 </html>

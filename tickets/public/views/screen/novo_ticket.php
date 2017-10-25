@@ -23,14 +23,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
 
-  <link rel="stylesheet" href="<?php echo BASE_URL_CAPA; ?>public/css/home.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL_CAPA; ?>public/css/sidebar.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/home.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/sidebar.css">
 </head>
 
 <body>
 
-  <?php require ABS_PATH . '../capa/inc/templates/navbar.php'; ?>
-  <?php require ABS_PATH . '../capa/inc/templates/sidebar.php'; ?>
+  <?php include ABS_PATH . '../capa/inc/templates/navbar.php'; ?>
+  <?php include ABS_PATH . '../capa/inc/templates/sidebar.php'; ?>
 
           <h2>Novo Ticket</h2>
 
@@ -154,8 +154,12 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <button class="btn btn-primary" type="submit"><b>Gerar</b></button>
-                <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/novo_ticket.php"><strong>Limpar</strong></a>
+                <button class="btn btn-primary" type="submit">
+                  <b>Gerar</b>
+                </button>
+                <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/novo_ticket.php">
+                  <strong>Limpar</strong>
+                </a>
               </div>
             </div>
           </form>
@@ -187,8 +191,8 @@
   <script src="<?php echo BASE_URL; ?>public/js/screen/pesquisa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/seleciona.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/validacao.js"></script>
-  <script src="<?php echo BASE_URL_CAPA; ?>public/js/sidebar.js"></script>
-  <script src="<?php echo BASE_URL_CAPA; ?>public/js/outros.js"></script>
+  <script src="<?php echo BASE_URL; ?>../capa/public/js/sidebar.js"></script>
+  <script src="<?php echo BASE_URL; ?>../capa/public/js/outros.js"></script>
 
   <script>
     $(function() {
@@ -203,7 +207,7 @@
       });
 
     });
-  </script>
+  </script>  
 </body>
 </html>
 

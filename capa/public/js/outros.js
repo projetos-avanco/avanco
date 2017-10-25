@@ -2,7 +2,7 @@ $('document').ready(function() {
   // alterando os ícones de setas da barra lateral e cabeçalho
   $('a').click(function() {
 
-    $(this).find("#seta").toggleClass('fa-caret-right fa-caret-left');
+    $(this).find("#seta").toggleClass('fa-angle-double-right fa-angle-double-left');
 
     });
 

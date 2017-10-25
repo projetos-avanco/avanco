@@ -18,81 +18,71 @@
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize_7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/login/login.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
 </head>
 
 <body>
 
-  <header>
+  <?php include ABS_PATH . 'inc/templates/navbar.php'; ?>
+  <?php include ABS_PATH . 'inc/templates/sidebar.php'; ?>
 
-  </header>
-
-  <main>
-    <div class="container">
-      <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_login.php" method="post">
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3">
-            <div class="panel panel-default">
-              <div class="panel-heading text-center">
-                <h3 class="panel-title"><b>Login</b></h3>
-              </div>
-              <div class="panel-body">
-                <div class="form-group">
-                  <label class="sr-only" for="email">Email</label>
-                  <input class="form-control" type="text" name="form[email]" placeholder="Email" required>
+        <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_login.php" method="post">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                  <h3 class="panel-title"><b>Login</b></h3>
                 </div>
+                <div class="panel-body">
+                  <div class="form-group">
+                    <label class="sr-only" for="email">Email</label>
+                    <input class="form-control" type="text" name="form[email]" placeholder="Email" required>
+                  </div>
 
-                <div class="form-group">
-                  <label class="sr-only" for="senha">Senha</label>
-                  <input class="form-control" type="password" name="form[senha]" placeholder="Senha" required>
+                  <div class="form-group">
+                    <label class="sr-only" for="senha">Senha</label>
+                    <input class="form-control" type="password" name="form[senha]" placeholder="Senha" required>
+                  </div>
+
+                  <br>
+
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Lembre-me
+                    </label>
+                  </div>
+
+                  <br>
+
+                  <button class="btn btn-block btn-success" type="submit"><b>Enviar</b></button>
                 </div>
-
-                <br>
-
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox"> Lembre-me
-                  </label>
-                </div>
-
-                <br>
-
-                <button class="btn btn-block btn-success" type="submit"><b>Enviar</b></button>
               </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
 
-      <br>
+        <br>
 
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3">
-          <p class="text-right">
-            <a class="btn btn-primary" href="<?php echo PAGE_HOME; ?>"><b>Home Page</b></a>
-          </p>
-        </div>
-      </div>
+        <div class="row">
+          <div class="col-sm-12">
+          <?php if (isset($_SESSION['mensagem'])) : ?>
 
-      <br>
+            <div class="alert alert-<?php echo $_SESSION['tipo']; ?>" role="alert">
 
-      <div class="row">
-        <div class="col-sm-12">
-        <?php if (isset($_SESSION['mensagem'])) : ?>
+              <?php echo $_SESSION['mensagem']; ?>
 
-          <div class="alert alert-<?php echo $_SESSION['tipo']; ?>" role="alert">
+            </div>
 
-            <?php echo $_SESSION['mensagem']; ?>
-
+          <?php endif; ?>
           </div>
-
-        <?php endif; ?>
         </div>
-      </div>
-
-    </div><!-- container -->
-  </main>
+      </div><!-- container -->
+    </div><!-- conteúdo da página -->
+  </div><!-- wrapper -->
 
   <footer>
 
@@ -100,5 +90,7 @@
 
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
 </body>
 </html>
