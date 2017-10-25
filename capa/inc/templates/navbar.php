@@ -4,6 +4,9 @@
       <a class="navbar-brand" href="#">
         <img alt="Novo Capa" src="#">
       </a>
+      <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle">
+        <i id="seta" class="fa fa-angle-double-right fa-3x" aria-hidden="true"></i>
+      </a>
     </div>
     <ul class="nav navbar-nav navbar-right dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">

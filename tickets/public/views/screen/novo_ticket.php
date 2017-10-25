@@ -131,7 +131,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <label for="assunto">Assunto</label>
-                  <textarea class="form-control required" id="assunto" name="form[assunto]" rows="5" cols="30" placeholder="Descreva o assunto..."></textarea>
+                  <textarea class="form-control required" id="assunto" name="form[assunto]" rows="3" cols="30" placeholder="Descreva o assunto..."></textarea>
                 </div>
               </div>
 

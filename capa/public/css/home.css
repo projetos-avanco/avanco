@@ -22,6 +22,12 @@ h2 {
   font-family: 'Museosans 0', sans-serif;
 }
 
+/* posicionando a seta da barra lateral */
+i#seta {
+  position: relative;
+  top: 3px;
+}
+
 .panel-body {
   padding: 24px;
 }
