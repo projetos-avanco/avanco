@@ -18,7 +18,7 @@ body {
   font-family: 'Museosans 0', sans-serif;
 }
 
-h2, h4 {
+h2 {
   font-family: 'Museosans 0', sans-serif;
 }
 
@@ -37,6 +37,10 @@ h2, h4 {
 
 .navbar {
   margin-bottom: 0px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
 }
 
 .nav>li>a {

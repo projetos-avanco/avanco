@@ -21,12 +21,11 @@
     </ul>
   </div><!-- sidebar -->
 
+  <div>
+    <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle">
+      <i id="seta" class="fa fa-angle-double-right fa-4x" aria-hidden="true"></i>
+    </a>
+  </div>
+
   <div id="page-content-wrapper"><!-- conteúdo da página -->
-
-    <div>
-      <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle">
-        <i id="seta" class="fa fa-angle-double-right fa-4x" aria-hidden="true"></i>
-      </a>
-    </div>
-
     <div class="container-fluid"><!-- container -->
