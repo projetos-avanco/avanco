@@ -72,11 +72,6 @@ body {
 
 /* Sidebar Styles */
 
-/* espaçamento a esquerda da seta da barra lateral */
-#menu-toggle {
-  padding-left: 10px;
-}
-
 /*classe do botão da sidebar*/
 a{
   text-decoration: none;

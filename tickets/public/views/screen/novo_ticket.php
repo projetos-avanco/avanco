@@ -43,7 +43,7 @@
                 <div class="input-group h2">
                   <input class="form-control" id="pesquisa" type="text" placeholder="Pesquise por CNPJ ou Razão Social">
                   <span class="input-group-btn">
-                    <button class="btn btn-primary" type="button">
+                    <button class="btn btn-info" type="button">
                       <span class="glyphicon glyphicon-search"></span>
                     </button>
                   </span>
@@ -63,19 +63,19 @@
 
             <br>
 
-            <h4 class="text-center">Dados Cadastrais</h4>
+            <h4 class="text-left">Dados Cadastrais</h4>
 
             <br>
 
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-5">
                 <div class="form-group">
                   <label for="razao-social">Razão Social</label>
                   <input class="form-control required" id="razao-social" type="text" name="form[razao-social]" value="" placeholder="Razão Social" readonly="true">
                 </div>
               </div>
 
-              <div class="col-sm-2">
+              <div class="col-sm-3">
                 <div class="form-group">
                   <label for="cnpj">CNPJ</label>
                   <input class="form-control required" id="cnpj" type="text" name="form[cnpj]" value="" placeholder="CNPJ" readonly="true">
@@ -98,7 +98,7 @@
             <br>
 
             <div class="row">
-              <div class="col-sm-3">
+              <div class="col-sm-4">
                 <label for="colaborador">Colaborador</label>
                 <select class="form-control required" id="colaborador" name="form[colaborador]">
                   <option value="0">Selecione um Colaborador</option>
@@ -127,16 +127,20 @@
             <br>
 
             <div class="row">
-              <div class="col-sm-4">
+              <div class="col-sm-12">
                 <label for="assunto">Assunto</label>
-                <textarea class="form-control required" id="assunto" name="form[assunto]" rows="5" cols="30"></textarea>
+                <textarea class="form-control required" id="assunto" name="form[assunto]" rows="5" cols="30" placeholder="Descreva o assunto..."></textarea>
               </div>
+            </div>
 
-              <div class="col-sm-4 col-sm-offset-4">
-                <div class="panel panel-primary">
+            <br>
+
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <div class="panel panel-info">
                   <div class="panel-heading text-center"><strong>Número do Ticket</strong></div>
                   <div class="panel-body text-center">
-                    <h2>
+                    <h1>
                       <strong id="ticket">
                         <?php if (isset($_SESSION['ticket'])) : ?>
                           <?php echo $_SESSION['ticket']; ?>
@@ -144,7 +148,7 @@
                           0
                         <?php endif; ?>
                       </strong>
-                    </h2>
+                    </h1>
                   </div>
                 </div>
               </div>
@@ -154,7 +158,7 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-success" type="submit">
                   <b>Gerar</b>
                 </button>
                 <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/novo_ticket.php">
@@ -207,7 +211,7 @@
       });
 
     });
-  </script>  
+  </script>
 </body>
 </html>
 
