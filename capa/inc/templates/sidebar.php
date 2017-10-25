@@ -29,4 +29,4 @@
       </a>
     </div>
 
-    <div class="container"><!-- container -->
+    <div class="container-fluid"><!-- container -->
