@@ -14,4 +14,4 @@ $_SESSION['usuario']['logado'] = false;
 session_destroy();
 
 # redirecionando
-header('Location: ' . FORM_LOGIN);
+header('Location: ' . BASE_URL . '../capa/public/home.php');
