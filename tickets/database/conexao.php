@@ -11,7 +11,7 @@ function abre_conexao()
 
     $conexao = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
-    mysqli_set_charset($conexao, 'utf8');
+    $conexao->set_charset('utf8');
 
     return $conexao;
 

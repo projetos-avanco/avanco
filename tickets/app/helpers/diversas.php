@@ -48,6 +48,15 @@ function removeAcentosTrocaEspacoPorTraco($string)
   return $tr;
 }
 
+/**
+ * decodefica caracteres especiais JSON para UTF-8
+ * @param - string com a cadeia de caracteres que será decodificada
+ */
+function decodificaCaracteresJSON($string)
+{
+  return json_decode('["'.$string.'"]')[0];
+}
+
 /*
  * gera um código de ticket com 6 dígitos
  */

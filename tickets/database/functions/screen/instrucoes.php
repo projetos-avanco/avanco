@@ -57,23 +57,34 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
       "SELECT DISTINCT
       	SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) AS cnpj,
       	SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"contaContratoContato\"',lh_chat.additional_data)+ 38)),'\"',1) AS conta_contrato,
-      	UPPER(SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"empresaContato\"',lh_chat.additional_data)+ 32)),'\"',1)) AS razao_social
+      	SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"empresaContato\"',lh_chat.additional_data)+ 32)),'\"',1) AS razao_social
       FROM lh_chat
       WHERE (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '2017-07-01' AND CURRENT_DATE())
+        AND NOT
+          (SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) = '' OR
+          SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) = 'eContato' OR
+          SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"contaContratoContato\"',lh_chat.additional_data)+ 38)),'\"',1) = '' OR
+          SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"empresaContato\"',lh_chat.additional_data)+ 32)),'\"',1) = '')
       	AND (SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) LIKE '$pesquisa%')
       ORDER BY razao_social";
 
   } else {
 
+    # chamando função que remove os acentos e convertendo string para maiúsculas
     $pesquisa = strtoupper(removeAcentos($pesquisa));
 
     $query =
       "SELECT DISTINCT
       	SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) AS cnpj,
       	SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"contaContratoContato\"',lh_chat.additional_data)+ 38)),'\"',1) AS conta_contrato,
-      	UPPER(SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"empresaContato\"',lh_chat.additional_data)+ 32)),'\"',1)) AS razao_social
+      	SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"empresaContato\"',lh_chat.additional_data)+ 32)),'\"',1) AS razao_social
       FROM lh_chat
       WHERE (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '2017-07-01' AND CURRENT_DATE())
+      AND NOT
+        (SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) = '' OR
+        SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) = 'eContato' OR
+        SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"contaContratoContato\"',lh_chat.additional_data)+ 38)),'\"',1) = '' OR
+        SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"empresaContato\"',lh_chat.additional_data)+ 32)),'\"',1) = '')
       	AND (SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"empresaContato\"',lh_chat.additional_data)+ 32)),'\"',1) LIKE '%$pesquisa%')
       ORDER BY razao_social";
 
@@ -94,21 +105,30 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
 
         <tbody>";
 
-    $linhas = '';
+    $razaoSocial = array();
+    $contador    = 0;
+    $linhas      = '';
 
     while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
+
+      # chamando função que decodifica os caracteres JSON para UTF-8
+      $razaoSocial[$contador] = decodificaCaracteresJSON($registro['razao_social']);
+
+      $razaoSocial[$contador] = strtoupper($razaoSocial[$contador]);
 
       $linhas .=
         "<tr>
           <td class='text-center' data-cnpj='{$registro['cnpj']}'>{$registro['cnpj']}</td>
           <td class='text-center' data-conta='{$registro['conta_contrato']}'>{$registro['conta_contrato']}</td>
-          <td class='text-left'   data-razao='{$registro['razao_social']}'>{$registro['razao_social']}</td>
+          <td class='text-left'   data-razao='{$razaoSocial[$contador]}'>{$razaoSocial[$contador]}</td>
           <td class='text-right'>
             <button class='btn btn-xs btn-default btn-block' type='button'>
               <span class='glyphicon glyphicon-ok'></span>
             </button>
           </td>
         </tr>";
+
+      $contador++;
 
     }
 
