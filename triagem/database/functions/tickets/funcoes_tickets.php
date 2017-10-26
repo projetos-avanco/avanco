@@ -21,8 +21,10 @@ function consultaDadosDoTicket($cliente, $db)
     WHERE (ticket = {$cliente['ticket']})
       AND (validade = 1)";
 
+  # verificando se a consulta pode ser executada
   if ($resultado = $db->query($query)) {
 
+    # recuperando dados do agendamento
     while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
       $cliente['cnpj']           = $registro['cnpj'];
