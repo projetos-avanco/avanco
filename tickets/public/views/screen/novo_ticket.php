@@ -65,10 +65,6 @@
 
               <br>
 
-              <h4 class="text-left">Dados Cadastrais</h4>
-
-              <br>
-
               <div class="row">
                 <div class="col-sm-5">
                   <div class="form-group">
@@ -160,11 +156,11 @@
 
               <div class="row">
                 <div class="col-sm-12">
-                  <button class="btn btn-success" type="submit">
-                    <b>Gerar</b>
+                  <button class="btn btn-info" type="submit">
+                    <b>Gerar Novo Ticket</b>
                   </button>
                   <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/novo_ticket.php">
-                    <strong>Limpar</strong>
+                    <strong>Limpar Tela</strong>
                   </a>
                 </div>
               </div>

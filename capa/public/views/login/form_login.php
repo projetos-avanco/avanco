@@ -68,12 +68,12 @@
         <br>
 
         <div class="row">
-          <div class="col-sm-12">
-          <?php if (isset($_SESSION['mensagem'])) : ?>
+          <div class="col-sm-12">                    
+          <?php if (isset($_SESSION['mensagens']['mensagem']) AND $_SESSION['mensagens']['exibe'] == true) : ?>
 
-            <div class="alert alert-<?php echo $_SESSION['tipo']; ?>" role="alert">
+            <div class="alert alert-<?php echo $_SESSION['mensagens']['tipo']; ?>" role="alert">
 
-              <?php echo $_SESSION['mensagem']; ?>
+              <?php echo $_SESSION['mensagens']['mensagem']; ?>
 
             </div>
 

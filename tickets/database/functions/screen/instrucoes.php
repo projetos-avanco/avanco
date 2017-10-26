@@ -88,7 +88,7 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
             <th class='text-center'>CNPJ</th>
             <th class='text-center'>Conta Contrato</th>
             <th class='text-center'>Razão Social</th>
-            <th class='text-center'></th>
+            <th class='text-center'>Selecione</th>
           </tr>
         </thead>
 

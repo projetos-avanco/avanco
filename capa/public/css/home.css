@@ -25,7 +25,7 @@ h2 {
 /* posicionando a seta da barra lateral */
 i#seta {
   position: relative;
-  top: 3px;
+  top: 10px;
 }
 
 .panel-body {

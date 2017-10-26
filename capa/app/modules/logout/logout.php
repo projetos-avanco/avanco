@@ -3,8 +3,9 @@
 # importando script de inicialização
 require '../../../init.php';
 
-# abrindo sessão
-session_start();
+# verificando se existe sessão aberta
+if (! isset($_SESSION))
+  session_start();
 
 # alterando o índice para falso
 $_SESSION['usuario']['logado'] = false;
@@ -13,4 +14,4 @@ $_SESSION['usuario']['logado'] = false;
 session_destroy();
 
 # redirecionando
-header('Location: ' . BASE_URL . 'public/views/login/form_login.php');
+header('Location: ' . FORM_LOGIN);

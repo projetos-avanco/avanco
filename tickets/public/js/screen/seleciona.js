@@ -4,8 +4,8 @@ $(function() {
 
     e.preventDefault;
 
-    $('.btn-xs.btn-success').removeClass('btn-success').addClass('btn-default');
-    $(this).removeClass('btn-default').addClass('btn-success');
+    $('.btn-xs.btn-info').removeClass('btn-info').addClass('btn-default');
+    $(this).removeClass('btn-default').addClass('btn-info');
 
     var cnpj           = $(this).closest('tr').find('td[data-cnpj]').data('cnpj');
     var conta_contrato = $(this).closest('tr').find('td[data-conta]').data('conta');

@@ -36,6 +36,10 @@ function consultaIdDoUsuarioNoChat($usuario, $db)
  */
 function consultaDadosDoUsuario($login, $usuario, $db)
 {
+  require DIRETORIO_MODELS . 'sessao.php';
+
+  criaModeloDeSessaoParaMensagens();
+
   $query =
     "SELECT
       nome,
@@ -76,14 +80,15 @@ function consultaDadosDoUsuario($login, $usuario, $db)
       $_SESSION['usuario']['nivel']     = $usuario['nivel'];
       $_SESSION['usuario']['usuario']   = $usuario['usuario'];
       $_SESSION['usuario']['logado']    = true;
-      
+
       return true;
 
     } else {
 
       # criando variáveis de sessão com as mensagens
-      $_SESSION['mensagem'] = '<p class="text-center"><strong>Ops!</strong> email ou senha não confere.</p>';
-      $_SESSION['tipo']     = 'danger';
+      $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Ops!</strong> email ou senha não confere.</p>';
+      $_SESSION['mensagens']['tipo']     = 'danger';
+      $_SESSION['mensagens']['exibe']    = true;
 
       return false;
 

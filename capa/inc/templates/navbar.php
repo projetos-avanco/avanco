@@ -5,7 +5,7 @@
         <img alt="Novo Capa" src="#">
       </a>
       <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle">
-        <i id="seta" class="fa fa-angle-double-right fa-3x" aria-hidden="true"></i>
+        <i id="seta" class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
       </a>
     </div>
     <ul class="nav navbar-nav navbar-right dropdown">
