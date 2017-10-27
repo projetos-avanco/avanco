@@ -26,8 +26,8 @@
       <?php if (isset($_SESSION['usuario']) AND $_SESSION['usuario']['logado'] == true) : ?>
       <div class="row">
         <div class="col-sm-12">
-          <h5 class="text-right">Bem Vindo, você está logado no sistema
-            <small><?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?></small></h5>
+          <h5 class="text-right"><small>Bem vindo,
+            <?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?>!</small></h5>
         </div>
       </div>
       <?php endif; ?>

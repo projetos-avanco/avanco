@@ -45,7 +45,7 @@
                   <div class="input-group h2">
                     <input class="form-control" id="pesquisa" type="text" placeholder="Pesquise por CNPJ ou Razão Social">
                     <span class="input-group-btn">
-                      <button class="btn btn-info" type="button">
+                      <button class="btn btn-primary" type="button">
                         <span class="glyphicon glyphicon-search"></span>
                       </button>
                     </span>
@@ -135,7 +135,7 @@
 
               <div class="row">
                 <div class="col-sm-4 col-sm-offset-4">
-                  <div class="panel panel-info">
+                  <div class="panel panel-primary">
                     <div class="panel-heading text-center"><strong>Número do Ticket</strong></div>
                     <div class="panel-body text-center">
                       <h1>
@@ -152,16 +152,14 @@
                 </div>
               </div>
 
-              <br>
-
               <div class="row">
-                <div class="col-sm-12">
-                  <button class="btn btn-info" type="submit">
-                    <b>Gerar Novo Ticket</b>
-                  </button>
+                <div class="col-sm-12 text-right">
                   <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/novo_ticket.php">
-                    <strong>Limpar Tela</strong>
+                    <b>Limpar Tela</b>
                   </a>
+                  <button class="btn btn-primary" type="submit">
+                    <b>Gerar Ticket</b>
+                  </button>
                 </div>
               </div>
             </form>
