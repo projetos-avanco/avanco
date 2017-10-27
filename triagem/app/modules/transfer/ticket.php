@@ -19,6 +19,9 @@ function redirecionaParaColaboradorResponsavel($cliente, $colaboradores)
 
   unset($cliente['colaborador']);
 
+  # criando sessão com o código do ticket enviado pelo portal avanço
+  $_SESSION['agendamento']['ticket'] = $cliente['ticket'];
+
   # chamando função que verifica se o colaborador responsável pelo agendamento está online
   $colaboradores = verificaColaboradorAgendadoOnlineNoChat($colaboradores, $db);
 
