@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: text/html; charset=utf-8');
+
 /**
  * consulta os tickets válidos referentes a uma conta contrato
  * @param - string com o código de conta contrato
@@ -45,7 +47,7 @@ function consultaTicketsValidos($conta_contrato, $db)
     echo json_encode($arr, JSON_UNESCAPED_UNICODE);
 
     exit;
-    
+
   } else {
 
     $msg = 'Erro ao executar a consulta de tickets válidos!';

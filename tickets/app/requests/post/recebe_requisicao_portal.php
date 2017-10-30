@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   require '../../modules/portal/requisicoes_portal.php';
 
   # recuperando o código de conta contrato
-  $conta_contrato = isset($_POST['conta-contrato']) ? $_POST['conta-contrato'] : NULL;
+  $conta_contrato = isset($_POST['conta_contrato']) ? $_POST['conta_contrato'] : NULL;
 
   # verificando se a conta contrato foi enviada
   if (! empty($conta_contrato)) {
