@@ -1,5 +1,7 @@
 <?php
 
+header('Content-Type: text/html; charset=UTF-8');
+
 /**
  * responsável por verificar se o colaborador está online e redirecionar o cliente para ele
  * @param - array com o número do ticket

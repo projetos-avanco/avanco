@@ -94,15 +94,6 @@
 
       <br>
 
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" name="cliente[novo_erp]" id="novo_erp">
-          Deseja atendimento no Departamento Novo ERP?
-        </label>
-      </div>
-
-      <br><br>
-
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-default" id="enviar">Enviar</button>
