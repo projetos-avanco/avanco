@@ -44,7 +44,7 @@ function verificaColaboradorAgendadoOnlineNoChat($array, $db)
 
     } else {
 
-      $msg = 'O Colaborador responsável pelo agendamento não está logado no momento';
+      $msg = 'O Colaborador responsável pelo agendamento não está logado no momento!';
 
       # retornando mensagem para o portal
       echo json_encode($msg, JSON_UNESCAPED_UNICODE);

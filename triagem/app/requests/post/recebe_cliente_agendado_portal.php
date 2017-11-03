@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   } else {
 
-    $msg = 'O nome do Usuário ou o Número do Ticket não foi enviado!';
+    $msg = 'O Nome do Usuário ou o Número do Ticket não foi enviado!';
 
     # retornando mensagem para o portal avanço
     echo json_encode($msg, JSON_UNESCAPED_UNICODE);
