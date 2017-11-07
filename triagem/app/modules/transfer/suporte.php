@@ -16,8 +16,8 @@ function consultaChatSuporte()
   # chamando função que retorna um array modelo para receber os dados dos colaboradores
   $colaboradores = criaModeloDeColaboradores();
 
-  # chamando função que aguarda até que um ou mais colaboradores fiquem online no chat
-  $colaboradores = aguardaColaradoresOnline($colaboradores, $conexao);
+  # chamando função que verifica se existe pelo menos um colaborador online no chat
+  $colaboradores = verificaColaboradoresOnlineNoChat($colaboradores, $conexao);
 
   # recuperando a quantidade de colaboradores online
   $quantidade = count($colaboradores);

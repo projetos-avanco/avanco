@@ -51,7 +51,9 @@ function redirecionaClienteParaDepartamentoTecnologia($cliente)
   $url =   "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&portalKey=1505758004&prefill%5Bphone%5D=2";
 
   # redirecionando cliente para o colaborador no chat
-  header('Location: http://192.168.0.47:9999/' . $url);
+  echo json_encode(['url' => 'http://192.168.0.47:9999/' . $url]);
+  
+  exit;
 }
 
 /**
@@ -69,5 +71,7 @@ function redirecionaClienteParaDepartamento($colaboradores, $cliente)
   $url =   "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&portalKey=1505758004&prefill%5Bphone%5D={$colaboradores[0]['id_departamento']}";
 
   # redirecionando cliente para o colaborador no chat
-  header('Location: http://192.168.0.47:9999/' . $url);
+  echo json_encode(['url' => 'http://192.168.0.47:9999/' . $url]);
+
+  exit;
 }

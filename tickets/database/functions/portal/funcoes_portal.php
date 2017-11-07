@@ -43,8 +43,20 @@ function consultaTicketsValidos($conta_contrato, $db)
 
     }
 
-    # enviando array com os dados para o portal avanço
-    echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+    $contador = count($arr);
+
+    # verificando a quantidade de tickets gerados para o código de conta contrato recebido
+    if ($contador > 0) {
+
+      # enviando array com os dados para o portal avanço
+      echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+
+    } else {
+
+      # enviando null para o portal avanço
+      echo json_encode(NULL);
+
+    }
 
     exit;
 

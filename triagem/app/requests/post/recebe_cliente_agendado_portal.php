@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   # verificando se o número do ticket não foi enviado
   if (! empty($cliente['ticket']) AND ! empty($cliente['nome_usuario'])) {
 
-    # chamanfo função responsável por redirecionar o cliente para o colaborador agendado
+    # chamando função responsável por redirecionar o cliente para o colaborador agendado
     redirecionaParaColaboradorResponsavel($cliente, $colaboradores);
 
   } else {

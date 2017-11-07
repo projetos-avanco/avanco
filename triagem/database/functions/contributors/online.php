@@ -44,10 +44,8 @@ function verificaColaboradorAgendadoOnlineNoChat($array, $db)
 
     } else {
 
-      $msg = 'O Colaborador responsável pelo agendamento não está logado no momento!';
-
-      # retornando mensagem para o portal
-      echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+      # retornando null para o portal avanço
+      echo json_encode(NULL);
 
       exit;
 
@@ -124,14 +122,10 @@ function verificaColaboradoresOnlineNoChat($array, $db)
 
     } else {
 
-      # retornando array vazio para o portal avanço
-      echo json_encode($array);
+      # retornando null para o portal avanço
+      echo json_encode(NULL);
 
-      # parando a execução do código por 1 minutos
-      sleep(60);
-
-      # não existem colaboradores online, retornando array nulo
-      return $array = NULL;
+      exit;
 
     }
 
@@ -149,6 +143,7 @@ function verificaColaboradoresOnlineNoChat($array, $db)
   return $array;
 }
 
+# função não está sendo utilizada
 /**
  * aguarda até que um ou mais colaboradores fiquem online no chat
  * @param - array com os dados dos colaboradores
