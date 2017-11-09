@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   require ABS_PATH . 'app/modules/transfer/tecnologia.php';
   require ABS_PATH . 'app/modules/transfer/suporte.php';
   require ABS_PATH . 'app/modules/transfer/novo_erp.php';
-  require ABS_PATH . 'app/modules/knowledge-base/documentos.php';
 
   # chamando função que verifica se os dados do cliente foram enviados
   $confirma = confirmaEnvioDosDadosDoCliente();
@@ -21,9 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     # chamando função que recupera os dados do cliente no array super-global $_POST
     recuperaDados($cliente, 'POST');
-
-    # chamando função que consulta a dúvida do cliente na base de conhecimento
-    consultaDuvidaNaBaseDeConhecimento();
 
     # verificando se o cliente deseja falar no departamento do novo ERP
     if (isset($_POST['cliente']['produto']) AND $_POST['cliente']['produto'] == '4') {

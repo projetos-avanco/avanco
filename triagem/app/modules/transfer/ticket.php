@@ -16,6 +16,9 @@ function redirecionaParaColaboradorResponsavel($cliente, $colaboradores)
   # chamando função que consulta os dados de agendamento do cliente
   $cliente = consultaDadosDoTicket($cliente, $db);
 
+  # indicando que o cliente não utiliza o novo ERP
+  $cliente['novo_erp'] = '0';
+
   # recuperando id do colaborador responsável pelo agendamento
   $colaboradores[0]['id'] = $cliente['colaborador'];
 

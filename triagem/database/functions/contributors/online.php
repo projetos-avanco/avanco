@@ -142,22 +142,3 @@ function verificaColaboradoresOnlineNoChat($array, $db)
 
   return $array;
 }
-
-# função não está sendo utilizada
-/**
- * aguarda até que um ou mais colaboradores fiquem online no chat
- * @param - array com os dados dos colaboradores
- * @param - objeto com uma conexão aberta
- */
-function aguardaColaradoresOnline($colaboradores, $db)
-{
-  # chamando a função até que tenha pelo menos um colaborador online
-  while ($colaboradores == NULL OR $colaboradores[0]['id'] == '') {
-
-    # chamando a função que retorna um array com os dados dos colaboradores online
-    $colaboradores = verificaColaboradoresOnlineNoChat($colaboradores, $db);
-
-  }
-
-  return $colaboradores;
-}

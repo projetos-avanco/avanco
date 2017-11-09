@@ -11,6 +11,9 @@ function consultaChatNovoErp()
   # recuperando os dados do cliente que chamou no portal avanço
   $cliente = $_SESSION['cliente'];
 
+  # indicando que o cliente utiliza o novo ERP
+  $cliente['novo_erp'] = '1';
+
   $quantidade = 0;
 
   # chamando função que retorna um array modelo para receber os dados dos colaboradores
