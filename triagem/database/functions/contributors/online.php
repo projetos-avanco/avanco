@@ -24,7 +24,7 @@ function verificaColaboradorAgendadoOnlineNoChat($array, $db)
       AND (s.hide_online = 'false')
       AND (d.disabled = 0)
       AND (s.disabled = 0)
-      AND (u.last_activity > 0)      
+      AND (u.last_activity > 0)
       AND (FROM_UNIXTIME(u.last_activity, '%Y-%m-%d') = CURRENT_DATE())
       AND (TIMEDIFF(CURRENT_TIME(), FROM_UNIXTIME(u.last_activity, '%H:%i:%s')) <= '00:05:00')
     ORDER BY id";
