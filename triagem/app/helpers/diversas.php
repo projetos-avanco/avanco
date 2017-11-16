@@ -49,8 +49,11 @@ function redirecionaClienteParaDepartamentoTecnologia($cliente)
   $url =
     "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['nome_usuario']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome_usuario']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&value_items_admin[5]=0&nome_departamento=Tecnologia&codigo_ticket=0&novo_erp={$cliente['novo_erp']}&prefill%5Bphone%5D=2";
 
-  # redirecionando cliente para o colaborador no chat
+  # redirecionando cliente para o colaborador no chat teste
   echo json_encode(['url' => 'http://192.168.0.47:9999/' . $url]);
+
+  # redirecionando cliente para o colaborador no chat produção
+  #echo json_encode(['url' => 'https://chat.avancoinfo.net/' . $url]);
 
   exit;
 }
@@ -78,8 +81,11 @@ function redirecionaClienteParaDepartamento($colaboradores, $cliente)
 
   }
 
-  # redirecionando cliente para o colaborador no chat
+  # redirecionando cliente para o colaborador no chat teste
   echo json_encode(['url' => 'http://192.168.0.47:9999/' . $url]);
+
+  # redirecionando cliente para o colaborador no chat produção
+  #echo json_encode(['url' => 'https://chat.avancoinfo.net/' . $url]);
 
   exit;
 }

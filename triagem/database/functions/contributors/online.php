@@ -21,7 +21,6 @@ function verificaColaboradorAgendadoOnlineNoChat($array, $db)
       ON s.id = u.user_id
     WHERE NOT (d.id = 1 OR d.id = 2 OR d.id = 3 OR d.id = 4 OR d.id = 6 OR d.id = 7 OR d.id = 8 OR d.id = 9 OR d.id = 10 OR d.id = 11)
       AND (s.id = {$array[0]['id']})
-      AND (s.hide_online = 'false')
       AND (d.disabled = 0)
       AND (s.disabled = 0)
       AND (u.last_activity > 0)
