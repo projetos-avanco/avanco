@@ -18,6 +18,19 @@
       <li class="bordermenu">
         <a href="<?php echo BASE_URL; ?>../dashboard/public/views/login/form_login.php"><i class="fa fa-address-card" aria-hidden="true"></i>   Dashboard</a>
       </li>
+      <li class="bordermenu">
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu2">
+          <span class="nav-header-primary">
+            <i class="fa fa-pie-chart" aria-hidden="true"></i>  Painéis
+            <span class="pull-right">
+                <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </span>
+        </a>
+        <ul class="nav collapse"  id="submenu2">
+          <li><a href="<?php echo BASE_URL; ?>../capa/public/views/panels/colaboradores_logados.php"><p>Logados<p></a></li>
+        </ul>
+      </li>
     </ul>
   </div><!-- sidebar -->
 
