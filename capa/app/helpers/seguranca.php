@@ -12,7 +12,7 @@ function criaCodigoHash($senha)
 /**
  * verifica se o usuário está logado
  */
-function verificaUsuarioLogado()
+function verificaUsuarioLogado($pagina = null)
 {
   require DIRETORIO_MODELS . 'sessao.php';
 
@@ -29,6 +29,17 @@ function verificaUsuarioLogado()
 
   }
 
-  return true;
+  # verificando se o nível de acesso do usuário permite abrir a página
+  if ($_SESSION['usuario']['nivel'] == 2 AND $pagina == 'colaboradores_logados.php') {
+
+    return true;
+
+  } else {
+
+    $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
+    $_SESSION['mensagens']['tipo']     = 'danger';
+    $_SESSION['mensagens']['exibe']    = true;
+
+  }
 
 }
