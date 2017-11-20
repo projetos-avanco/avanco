@@ -7,7 +7,7 @@
   $painelSuporte = retornaDadosParaPainelDeColaboradoresLogados();
   $painelExterno = separaColaboradoresExterno($painelSuporte);
 
-  unset($painelSuporte[3], $painelSuporte[4], $painelSuporte[5], $painelSuporte[6], $painelSuporte[16], $painelSuporte[24])
+  unset($painelSuporte[3], $painelSuporte[4], $painelSuporte[5], $painelSuporte[6], $painelSuporte[16], $painelSuporte[24]);
 ?>
 
 <?php if (verificaUsuarioLogado('colaboradores_logados.php')) : ?>
@@ -126,6 +126,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/panels/destaca_tabela_colaboradores_logados.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/panels/atualizacao_automatica.js"></script>
 </body>
 </html>
 
