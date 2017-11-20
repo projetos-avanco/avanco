@@ -11,7 +11,7 @@ if (! isset($_SESSION))
 $_SESSION['usuario']['logado'] = false;
 
 # finalizando sessões abertas
-session_destroy();
+unset($_SESSION['usuarios'], $_SESSION['mensagens']);
 
 # redirecionando
 header('Location: ' . BASE_URL . '../capa/public/home.php');
