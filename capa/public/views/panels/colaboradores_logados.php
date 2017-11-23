@@ -4,7 +4,10 @@
 
 <?php
 
+  # chamando funçao que recupera os dados para o painel de colaboradores logados
   $painelSuporte = retornaDadosParaPainelDeColaboradoresLogados();
+
+  # chamando função que separa os colaboradores do setor externo
   $painelExterno = separaColaboradoresExterno($painelSuporte);
 
   unset($painelSuporte[3], $painelSuporte[4], $painelSuporte[5], $painelSuporte[6], $painelSuporte[16], $painelSuporte[24]);
@@ -31,6 +34,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize_7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
@@ -123,10 +127,13 @@
   </div><!-- wrapper -->
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
+  <script src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
+
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/panels/destaca_tabela_colaboradores_logados.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/panels/atualizacao_automatica.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/panels/paginacao_tabela.js"></script>
 </body>
 </html>
 
