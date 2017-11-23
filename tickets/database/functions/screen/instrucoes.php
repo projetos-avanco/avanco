@@ -7,33 +7,74 @@
  */
 function consultaColaboradores($options, $db)
 {
-  $query =
-    "SELECT
-    	id,
-    	name AS nome,
-    	surname AS sobrenome
-    FROM lh_users
-    WHERE (disabled = 0)
-    	AND NOT (id = 1 OR id = 2 OR id = 3 OR id = 4 OR id = 5 OR id = 6 OR id = 42 OR id = 43 OR id = 44)
-    ORDER BY nome";
+  # recuperando nível de acesso do usuário
+  $nivel = $_SESSION['usuario']['nivel'];
 
-  # verificando se a consulta pode ser executada
-  if ($resultado = $db->query($query)) {
+  # verificando se o usuário é um colaborador
+  if ($nivel == 1) {
 
-    $options .= '<option value="0" selected>Selecione um Colaborador</option>';
+    # recuperando id do chat do colaborador
+    $id = $_SESSION['usuario']['id'];
 
-    while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
+    # criando query que retorna os dados do chat do colaborador
+    $query =
+      "SELECT
+      	id,
+      	name AS nome,
+      	surname AS sobrenome
+      FROM lh_users
+      WHERE id = $id";
 
-      $options .= "<option value='{$registro['id']}'>{$registro['nome']} {$registro['sobrenome']}</option>";
+      # verificando se a consulta pode ser executada
+      if ($resultado = $db->query($query)) {
+
+        # montando option do select com os dados do colaborador
+        while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
+
+          $options .= "<option value='{$registro['id']}'>{$registro['nome']} {$registro['sobrenome']}</option>";
+
+        }
+
+      } else {
+
+        #erro durante a execução da consulta
+        echo 'erro';
+
+      }
+
+    } else {
+
+      # criando query que retorna os dados do chat de todos os colaboradores
+      $query =
+        "SELECT
+        	id,
+        	name AS nome,
+        	surname AS sobrenome
+        FROM lh_users
+        WHERE (disabled = 0)
+        	AND NOT (id = 1 OR id = 2 OR id = 3 OR id = 4 OR id = 5 OR id = 6 OR id = 42 OR id = 43 OR id = 44)
+        ORDER BY nome";
+
+      # verificando se a consulta pode ser executada
+      if ($resultado = $db->query($query)) {
+
+        $options .= '<option value="0" selected>Selecione um Colaborador</option>';
+
+        # montando options do select com os dados de todos os colaboradores
+        while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
+
+          $options .= "<option value='{$registro['id']}'>{$registro['nome']} {$registro['sobrenome']}</option>";
+
+        }
+
+      } else {
+
+        #erro durante a execução da consulta
+        echo 'erro';
+
+      }
 
     }
-
-  } else {
-
-    #erro durante a execução da consulta
-    echo 'erro';
-
-  }
 
   $db->close();
 
@@ -147,6 +188,7 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
   $db->close();
 
   return $tabela;
+
 }
 
 /**
@@ -214,17 +256,32 @@ function insereDadosDoFormularioNovoTicket($dados, $db)
   # montando consulta
   $query = "INSERT INTO av_tickets " . "($colunas)" . " VALUES " . "($valores);";
 
-  if ($resultado = $db->query($query)) {
+  # verificando se o sistema recuperou o id de usuário do chat do usuário do capa
+  if ($dados['supervisor'] != 0) {
 
-    $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Tudo Certo!</strong> O Ticket foi gerado com sucesso.</p>';
-    $_SESSION['mensagens']['tipo']     = 'success';
-    $_SESSION['mensagens']['exibe']    = true;
+    # verificando se a consulta pode ser executada
+    if ($resultado = $db->query($query)) {
 
-    $_SESSION['ticket'] = $dados['ticket'];
+      # gerando mensagem se sucesso
+      $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Tudo Certo!</strong> O Ticket foi gerado com sucesso.</p>';
+      $_SESSION['mensagens']['tipo']     = 'success';
+      $_SESSION['mensagens']['exibe']    = true;
+
+      $_SESSION['ticket'] = $dados['ticket'];
+
+    } else {
+
+      # gerando mensagem de erro
+      $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Ops!</strong> O Ticket não foi gerado! Houve erro de SQL.</p>';
+      $_SESSION['mensagens']['tipo']     = 'danger';
+      $_SESSION['mensagens']['exibe']    = true;
+
+    }
 
   } else {
 
-    $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Ops!</strong> O Ticket não foi gerado.</p>';
+    # gerando mensagem de erro
+    $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Ops!</strong> O Ticket não foi gerado! Usuário não possui ID no chat.</p>';
     $_SESSION['mensagens']['tipo']     = 'danger';
     $_SESSION['mensagens']['exibe']    = true;
 

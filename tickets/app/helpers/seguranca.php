@@ -18,18 +18,6 @@ function verificaUsuarioLogado()
 
   }
 
-  if ($_SESSION['usuario']['nivel'] != 2) {
-
-    $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
-    $_SESSION['mensagens']['tipo']     = 'danger';
-    $_SESSION['mensagens']['exibe']    = true;
-
-    return false;
-
-  } else {
-
-    return true;
-
-  }
-
+  return true;
+  
 }
