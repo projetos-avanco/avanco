@@ -25,7 +25,8 @@ $('document').ready(function() {
          "sSortDescending": ": Ordenar colunas de forma descendente"
        }
      },
-     "bFilter": false //removendo a pesquisa
+     "bFilter": false, //removendo a pesquisa
+     "pageLength": 25
   });
 
 });
