@@ -2,12 +2,12 @@
 
 @font-face {
   font-family: 'Museosans 300';
-  src: url('../../fonts/museosans_300.otf');
+  src: url('../../fonts/museosans/museosans_300.otf');
 }
 
 @font-face {
   font-family: 'Museosans 0';
-  src: url('../../fonts/museosans_0.otf');
+  src: url('../../fonts/museosans/museosans_0.otf');
 }
 
 body {
