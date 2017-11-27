@@ -34,6 +34,10 @@ function verificaUsuarioLogado($pagina = null)
 
     return true;
 
+  } elseif ($_SESSION['usuario']['nivel'] == 1 OR $_SESSION['usuario']['nivel'] == 2 AND $pagina == 'consulta_tickets.php') {
+
+    return true;
+
   } else {
 
     $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
