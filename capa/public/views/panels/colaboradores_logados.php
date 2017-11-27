@@ -38,6 +38,7 @@
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/panels/tabela_logados.css">
 </head>
 
 <body>
@@ -65,8 +66,7 @@
               <thead>
                 <tr>
                   <th class="text-center">ID</th>
-                  <th class="text-center">Nome</th>
-                  <th class="text-center">Sobrenome</th>
+                  <th class="text-center">Colaborador</th>
                   <th class="text-center">Em Atendimento</th>
                   <th class="text-center">Em Espera</th>
                   <th class="text-center">Logado</th>
@@ -77,8 +77,7 @@
               <?php foreach($painelSuporte as $suporte) : ?>
                 <tr>
                   <td class="text-center"><b><?php echo $suporte['colaborador']; ?></b></td>
-                  <td class="text-center"><?php echo $suporte['nome']; ?></td>
-                  <td class="text-center"><?php echo $suporte['sobrenome']; ?></td>
+                  <td class="text-left"><?php echo $suporte['nome'] . ' ' . $suporte['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $suporte['atendimento']; ?></td>
                   <td class="text-center"><?php echo $suporte['espera']; ?></td>
                   <td class="text-center"><?php echo $suporte['logado']; ?></td>
@@ -98,8 +97,7 @@
               <thead>
                 <tr>
                   <th class="text-center">ID</th>
-                  <th class="text-center">Nome</th>
-                  <th class="text-center">Sobrenome</th>
+                  <th class="text-center">Colaborador</th>
                   <th class="text-center">Em Atendimento</th>
                   <th class="text-center">Em Espera</th>
                   <th class="text-center">Logado</th>
@@ -110,8 +108,7 @@
               <?php foreach($painelExterno as $externo) : ?>
                 <tr>
                   <td class="text-center"><b><?php echo $externo['colaborador']; ?></b></td>
-                  <td class="text-center"><?php echo $externo['nome']; ?></td>
-                  <td class="text-center"><?php echo $externo['sobrenome']; ?></td>
+                  <td class="text-left"><?php echo $externo['nome'] . ' ' . $externo['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $externo['atendimento']; ?></td>
                   <td class="text-center"><?php echo $externo['espera']; ?></td>
                   <td class="text-center"><?php echo $externo['logado']; ?></td>

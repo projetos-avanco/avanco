@@ -2,8 +2,8 @@ $('document').ready(function() {
 
   $('table tbody tr').each(function() {
 
-    var logado = $(this).find('td:nth-child(6)').html();
-    var oculto = $(this).find('td:nth-child(7)').html();
+    var logado = $(this).find('td:nth-child(5)').html();
+    var oculto = $(this).find('td:nth-child(6)').html();
 
     if (logado == 'Não' && oculto == 'Não') {
 
