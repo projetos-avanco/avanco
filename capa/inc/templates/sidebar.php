@@ -12,7 +12,7 @@
         </a>
         <ul class="nav collapse"  id="submenu1">
           <li><a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php"><p>Novo<p></a></li>
-          <li><a href="#"><p>Consultar<p></a></li>
+          <li><a href="<?php echo BASE_URL; ?>../capa/public/views/tickets/consulta_tickets.php"><p>Consultar<p></a></li>
         </ul>
       </li>
       <li class="bordermenu">
