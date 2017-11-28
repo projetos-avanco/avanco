@@ -77,7 +77,7 @@
               <?php foreach($painelSuporte as $suporte) : ?>
                 <tr>
                   <td class="text-center"><b><?php echo $suporte['colaborador']; ?></b></td>
-                  <td class="text-left"><?php echo $suporte['nome'] . ' ' . $suporte['sobrenome']; ?></td>
+                  <td class="text-center"><?php echo $suporte['nome'] . ' ' . $suporte['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $suporte['atendimento']; ?></td>
                   <td class="text-center"><?php echo $suporte['espera']; ?></td>
                   <td class="text-center"><?php echo $suporte['logado']; ?></td>
@@ -108,7 +108,7 @@
               <?php foreach($painelExterno as $externo) : ?>
                 <tr>
                   <td class="text-center"><b><?php echo $externo['colaborador']; ?></b></td>
-                  <td class="text-left"><?php echo $externo['nome'] . ' ' . $externo['sobrenome']; ?></td>
+                  <td class="text-center"><?php echo $externo['nome'] . ' ' . $externo['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $externo['atendimento']; ?></td>
                   <td class="text-center"><?php echo $externo['espera']; ?></td>
                   <td class="text-center"><?php echo $externo['logado']; ?></td>
