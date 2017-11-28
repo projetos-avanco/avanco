@@ -7,6 +7,8 @@ function verificaUsuarioLogado()
 {
   require DIRETORIO_MODELS . 'sessao.php';
 
+  criaModeloDeSessaoParaMensagens();
+
   # verificando se não existem as variáveis de sessão do usuário
   if (! isset($_SESSION['usuario']['logado']) OR $_SESSION['usuario']['logado'] !== true) {
 
@@ -19,5 +21,5 @@ function verificaUsuarioLogado()
   }
 
   return true;
-  
+
 }
