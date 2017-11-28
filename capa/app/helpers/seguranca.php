@@ -12,7 +12,7 @@ function criaCodigoHash($senha)
 /**
  * verifica se o usuário está logado
  */
-function verificaUsuarioLogado($pagina = null)
+function verificaUsuarioLogado($pagina)
 {
   require DIRETORIO_MODELS . 'sessao.php';
 
@@ -29,20 +29,57 @@ function verificaUsuarioLogado($pagina = null)
 
   }
 
-  # verificando se o nível de acesso do usuário permite abrir a página
-  if ($_SESSION['usuario']['nivel'] == 2 AND $pagina == 'colaboradores_logados.php') {
+  # recuperando o nível de acesso do usuário
+  $nivel = $_SESSION['usuario']['nivel'];
 
-    return true;
+  # verificando se o usuário possui nível de acesso para acessar as páginas do sistema
+  switch ($nivel) {
 
-  } elseif ($_SESSION['usuario']['nivel'] == 1 OR $_SESSION['usuario']['nivel'] == 2 AND $pagina == 'consulta_tickets.php') {
+    case 1:
 
-    return true;
+      # usuário nível 1 possui permissão para acessar a página de consulta de chats
+      if ($pagina == 'consulta_tickets.php') {
 
-  } else {
+        return true;
 
-    $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
-    $_SESSION['mensagens']['tipo']     = 'danger';
-    $_SESSION['mensagens']['exibe']    = true;
+      }
+
+      # usuário nível 1 não possui permissão para acessar a página de colaboradores logados
+      if ($pagina == 'colaboradores_logados.php') {
+
+        $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
+        $_SESSION['mensagens']['tipo']     = 'danger';
+        $_SESSION['mensagens']['exibe']    = true;
+
+        return false;
+
+      }
+
+      break;
+
+    case 2:
+
+      # usuário nível 2 possui permissão para acessar a página de colaboradores logados
+      if ($pagina == 'colaboradores_logados.php') {
+
+        return true;
+
+      }
+
+      # usuário nível 2 possui permissão para acessar a página de consulta de tickets
+      if ($pagina == 'consulta_tickets.php') {
+
+        return true;
+
+      }
+
+      break;
+
+    default:
+
+      return false;
+
+      break;
 
   }
 
