@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/login/login.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
 </head>
 
 <body>
@@ -68,7 +69,7 @@
         <br>
 
         <div class="row">
-          <div class="col-sm-12">                    
+          <div class="col-sm-12">
           <?php if (isset($_SESSION['mensagens']['mensagem']) AND $_SESSION['mensagens']['exibe'] == true) : ?>
 
             <div class="alert alert-<?php echo $_SESSION['mensagens']['tipo']; ?>" role="alert">

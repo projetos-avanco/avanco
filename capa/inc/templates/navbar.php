@@ -28,5 +28,9 @@
         </li>
       </ul>
     </ul>
+    <?php if (isset($_SESSION['usuario']) AND $_SESSION['usuario']['logado'] == true) : ?>
+    <h5 id="saudacao" class="text-right"><small>Bem vindo,
+      <?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?>!</small></h5>
+    <?php endif; ?>
   </div>
 </nav>
