@@ -1,7 +1,8 @@
 <?php require '../../../init.php'; ?>
 <?php require DIRETORIO_MODULES . 'tickets/modulo_tickets.php'; ?>
 
-<?php  
+<?php
+
   $tickets = array();
 
   # chamando função que consulta e recupera todos os tickets gerados
@@ -63,11 +64,11 @@
                   <th class="text-center">Válido</th>
                   <th class="text-center">Contato</th>
                   <th class="text-center">CNPJ</th>
-                  <th class="text-center" width="15%">Razão Social</th>
+                  <th class="text-center">Razão Social</th>
                   <th class="text-center">Gerado</th>
                   <th class="text-center">Agendado</th>
-                  <th class="text-center">Produto</th>
-                  <th class="text-center">Módulo</th>
+                  <th class="text-center" width="5%">Produto</th>
+                  <th class="text-center" width="10%">Módulo</th>
                   <th class="text-center" width="15%">Assunto</th>
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
                   <th class="text-center"></th>
@@ -111,7 +112,6 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/panels/atualizacao_automatica.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/tickets/paginacao_tabela.js"></script>
 </body>
 </html>
