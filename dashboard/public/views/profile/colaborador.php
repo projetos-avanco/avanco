@@ -135,14 +135,16 @@
 
           <div class="row"><!-- primeira linha da coluna 2 -->
             <div class="col-sm-12"><!-- primeira coluna da linha -->
+              <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
               <div class="text-right">
                 <p>
-                <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
-                  <a class="text-right btn btn-success btn-sm" href="<?php echo BASE_URL; ?>public/views/profile/administrador.php">Voltar</a>
-                <?php endif; ?>
-                  <a class="text-right btn btn-success btn-sm" href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Deslogar</a>
+                  <a class="text-right btn btn-success btn-sm" href="<?php echo BASE_URL; ?>public/views/profile/administrador.php">
+                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Página Anterior
+                  </a>
+                  <!--<a class="text-right btn btn-success btn-sm" href="<?php echo BASE_URL; ?>app/modules/logout/logout.php">Deslogar</a>-->
                 </p>
               </div>
+              <?php endif; ?>
             </div><!-- primeira coluna da linha -->
           </div><!-- primeira linha da coluna 2 -->
 
