@@ -149,12 +149,6 @@
           </div><!-- primeira linha da coluna 2 -->
 
           <div class="row"><!-- segunda linha da coluna 2 -->
-            <div class="col-sm-6"><!-- primeira coluna da linha -->
-              <h2>Indicadores Chat</h2>
-            </div><!-- primeira coluna da linha -->
-          </div><!-- segunda linha da coluna 2 -->
-
-          <div class="row"><!-- terceira linha da coluna 2 -->
             <div class="col-sm-6"></div>
             <div class="col-sm-6"><!-- segunda coluna da linha -->
               <form class="form-inline" method="post">
@@ -171,6 +165,12 @@
                 </div>
               </form>
             </div><!-- segunda coluna da linha -->
+          </div><!-- segunda linha da coluna 2 -->
+
+          <div class="row"><!-- terceira linha da coluna 2 -->
+            <div class="col-sm-6"><!-- primeira coluna da linha -->
+              <h2>Indicadores Chat</h2>
+            </div><!-- primeira coluna da linha -->
           </div><!-- terceira linha da coluna 2 -->
 
           <div class="row"><!-- quarta linha da coluna 2 -->
