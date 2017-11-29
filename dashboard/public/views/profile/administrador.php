@@ -2,6 +2,7 @@
 
   require '../../../init.php';
   require DIRETORIO_MODULES . 'profile/administrador.php';
+  require DIRETORIO_HELPERS . 'verifica.php';
 
   #chamando função que cria as opções com os nomes dos colaboradores para o select dinamicamente
   criaOpcoesComOsColaboradoresDoChat();
@@ -50,7 +51,7 @@
 
               <div class="form-group">
                 <div class="text-right">
-                  <a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php" class="badge badge-light">Deslogar</a>
+                  <!--<a href="<?php echo BASE_URL; ?>app/modules/logout/logout.php" class="badge badge-light">Deslogar</a>-->
                 </div>
               </div>
 
