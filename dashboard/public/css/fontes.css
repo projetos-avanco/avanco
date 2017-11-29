@@ -5,7 +5,12 @@
   src: url('../fonts/museosans.otf');
 }
 
-@@font-face {
+@font-face {
   font-family: 'Museosans 2';
   src: url('../fonts/museosans_100_italic.otf');
+}
+
+@font-face {
+  font-family: 'Museosans 100';
+  src: url('../fonts/museosans_100.otf');
 }
