@@ -77,7 +77,7 @@
               <tbody>
               <?php foreach($painelSuporte as $suporte) : ?>
                 <tr>
-                  <td class="text-center"><b><?php echo $suporte['colaborador']; ?></b></td>
+                  <td class="text-center"><?php echo $suporte['colaborador']; ?></td>
                   <td class="text-center"><?php echo $suporte['nome'] . ' ' . $suporte['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $suporte['atendimento']; ?></td>
                   <td class="text-center"><?php echo $suporte['espera']; ?></td>
