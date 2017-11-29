@@ -1,4 +1,5 @@
 <?php require '../../../init.php'; ?>
+<?php require DIRETORIO_HELPERS . 'verifica.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
