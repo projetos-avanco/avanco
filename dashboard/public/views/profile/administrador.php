@@ -28,6 +28,8 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/administrador.css">
 </head>
 
 <body>
@@ -44,7 +46,7 @@
               <div class="form-group text-center">
                 <label for="usuario"><h2>Colaboradores</h2></label>
 
-                <select class="custom-select form-control" name="usuario">
+                <select class="custom-select form-control styled-select" name="usuario">
                   <?php echo $options; ?>
                 </select>
               </div>

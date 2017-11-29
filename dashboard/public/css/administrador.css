@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+body {
+  font-family: 'Museosans 2', sans-serif;
+  background-image: url('../img/others/fundo.png');
+  background-color: #151A20;
+}
+
+h2 {
+  font-family: 'Museosans 100', sans-serif;
+  color: #FFF;
+}
