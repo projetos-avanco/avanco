@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
 
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
@@ -66,35 +67,38 @@
                   <th class="text-center">Contato</th>
                   <th class="text-center">CNPJ</th>
                   <th class="text-center">Razão Social</th>
-                  <th class="text-center">Gerado</th>
-                  <th class="text-center">Agendado</th>
-                  <th class="text-center" width="5%">Produto</th>
+                  <th class="text-center" width="8%">Gerado</th>
+                  <th class="text-center" width="8%">Agendado</th>
+                  <th class="text-center" width="7%">Produto</th>
                   <th class="text-center" width="10%">Módulo</th>
-                  <th class="text-center" width="15%">Assunto</th>
+                  <th class="text-center" width="10%">Assunto</th>
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
-                  <th class="text-center"></th>
+                  <th class="text-center" width="14%"></th>
                 <?php endif; ?>
                 </tr>
               </thead>
               <tbody>
               <?php foreach($tickets as $ticket) : ?>
                 <tr>
-                  <td class="text-left"><?php echo $ticket['data']; ?></td>
+                  <td class="text-left"><?php   echo $ticket['data']; ?></td>
                   <td class="text-center"><?php echo $ticket['ticket']; ?></td>
                   <td class="text-center"><?php echo $ticket['chat_id']; ?></td>
                   <td class="text-center"><?php echo $ticket['validade']; ?></td>
                   <td class="text-center"><?php echo $ticket['contato']; ?></td>
-                  <td class="text-left"><?php echo $ticket['cnpj']; ?></td>
-                  <td class="text-left"><?php echo $ticket['razao_social']; ?></td>
+                  <td class="text-left"><?php   echo $ticket['cnpj']; ?></td>
+                  <td class="text-left"><?php   echo $ticket['razao_social']; ?></td>
                   <td class="text-center"><?php echo $ticket['supervisor']; ?></td>
                   <td class="text-center"><?php echo $ticket['colaborador']; ?></td>
                   <td class="text-center"><?php echo $ticket['produto']; ?></td>
                   <td class="text-center"><?php echo $ticket['modulo']; ?></td>
-                  <td class="text-left"><?php echo $ticket['assunto']; ?></td>
+                  <td class="text-justify"><?php echo $ticket['assunto']; ?></td>
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
-                  <td>
-                    <a class="btn btn-sm btn-danger" href="<?php echo BASE_URL; ?>/app/modules/tickets/modulo_deleta_tickets.php?ticket=<?php echo $ticket['ticket']; ?>">
-                      <i class="fa fa-trash-o" aria-hidden="true"></i> Deletar
+                  <td class="text-center">
+                    <a class="btn btn-sm btn-warning" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
+                      <i class="fa fa-check-circle" aria-hidden="true"></i> Invalidar
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=deleta">
+                      <i class="fa fa-times-circle" aria-hidden="true"></i> Deletar
                     </a>
                   </td>
                 <?php endif; ?>

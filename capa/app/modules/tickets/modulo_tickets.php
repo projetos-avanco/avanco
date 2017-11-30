@@ -1,7 +1,7 @@
 <?php
 
 /*
- * consulta e recupera todos os tickets gerados
+ * reponsável por consultar e recuperar todos os tickets gerados pelo sistema
  */
 function recuperaTodosOsTicketsGerados()
 {
@@ -20,5 +20,51 @@ function recuperaTodosOsTicketsGerados()
   fecha_conexao($db);
 
   return $tickets;
+
+}
+
+/**
+ * responsável por deletar um ticket
+ * @param - string com o número do ticket que será deletado
+ */
+function deletaTicket($ticket)
+{
+  require DIRETORIO_FUNCTIONS . 'tickets/instrucoes_tickets.php';
+
+  # abrindo conexão com a base de dados
+  $db = abre_conexao();
+
+  # chamando função que deleta um ticket no banco de dados
+  deletaTicketNoBancoDeDados($db, $ticket);
+
+  fecha_conexao($db);
+
+  # redirecionando usuário para a página de consulta de tickets
+  header('Location: ' . BASE_URL . 'public/views/tickets/consulta_tickets.php');
+
+  exit;
+
+}
+
+/**
+ * responsável por invalidar um ticket
+ * @param - string com o número do ticket que será invalidado
+ */
+function invalidaTicket($ticket)
+{
+  require DIRETORIO_FUNCTIONS . 'tickets/instrucoes_tickets.php';
+
+  # abrindo conexão com a base de dados
+  $db = abre_conexao();
+
+  # chamando função que invalida um ticket no banco de dados
+  invalidaTicketNoBancoDeDados($db, $ticket);
+
+  fecha_conexao($db);
+
+  # redirecionando usuário para a página de consulta de tickets
+  header('Location: ' . BASE_URL . 'public/views/tickets/consulta_tickets.php');
+
+  exit;
 
 }
