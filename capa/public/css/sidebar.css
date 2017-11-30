@@ -3,6 +3,17 @@ body {
   padding-top: 52px;
 }
 
+/* alterando fonte dos itens do menu lateral */
+ul li {
+  font-family: 'Lato Light', sans-serif;
+}
+
+/* posicionando a seta da barra lateral */
+i#seta {
+  position: relative;
+  top: 10px;
+}
+
 #wrapper {
   padding-left: 0;
   -webkit-transition: all 0.5s ease;

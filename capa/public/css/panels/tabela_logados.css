@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
-table tr td {
-  font-family: 'Lato', sans-serif;
+table tbody tr td {
   font-size: 0.9em;
+}
+
+.table tbody tr td {
+  vertical-align: middle;
 }

@@ -1,84 +1,11 @@
 @charset "UTF-8";
 
-@font-face {
-  font-family: 'Museosans 300';
-  src: url('../fonts/museosans/museosans_300.otf');
-}
-
-@font-face {
-  font-family: 'Lato';
-  src: url('../fonts/lato/lato_regular.ttf');
-}
-
-@font-face {
-  font-family: 'Museosans 0';
-  src: url('../fonts/museosans/museosans_0.otf');
-}
-
 body {
-  font-family: 'Museosans 300', sans-serif;
+  font-family: 'Lato Regular', sans-serif;
 }
 
-#ticket {
-  font-family: 'Museosans 0', sans-serif;
-}
-
-h2 {
-  font-family: 'Museosans 0', sans-serif;
-}
-
-/* posicionando a seta da barra lateral */
-i#seta {
-  position: relative;
-  top: 10px;
-}
-
-.panel-body {
-  padding: 24px;
-}
-
-.erro {
-  border: 2px solid red;
-}
-
-.navbar-default {
-    background-color: #f8f8f8;
-    border-color: #e7e7e7;
-}
-
-.navbar {
-  margin-bottom: 0px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 999;
-}
-
-.nav>li>a {
-
-  padding-left: 0px;
-}
-
-.espaco
-{
-  padding-left: 20px;
-}
-
-/*espaçamento da seta do link de user*/
-.espacoseta{
-  padding-top: 18px;
-}
-
-/*espaçamento do icone de user*/
-.espacouser
-{
-  padding-top: 10px;
-}
-
-/*espaçamento entre icons*/
-.entreicons{
- padding-right:10px;
- padding-left: 10px;
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Lato Bold', sans-serif;
 }
 
 /* retirando marcação de linha dos links*/
