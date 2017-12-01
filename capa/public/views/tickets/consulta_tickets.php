@@ -73,7 +73,8 @@
                   <th class="text-center" width="10%">Módulo</th>
                   <th class="text-center" width="10%">Assunto</th>
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
-                  <th class="text-center" width="14%"></th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
                 <?php endif; ?>
                 </tr>
               </thead>
@@ -97,6 +98,8 @@
                     <a class="btn btn-sm btn-warning" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
                       <i class="fa fa-check-circle" aria-hidden="true"></i> Invalidar
                     </a>
+                  </td>
+                  <td class="text-center">
                     <a class="btn btn-sm btn-danger" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=deleta">
                       <i class="fa fa-times-circle" aria-hidden="true"></i> Deletar
                     </a>
