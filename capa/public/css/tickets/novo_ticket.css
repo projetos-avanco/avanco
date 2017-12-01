@@ -7,3 +7,7 @@
 .panel-body {
   padding: 24px;
 }
+
+.erro {
+  border: 2px solid red;
+}
