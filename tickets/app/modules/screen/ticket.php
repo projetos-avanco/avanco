@@ -16,4 +16,6 @@ function processaDadosDoFormularioNovoTicket($dados)
 
   # redirecionando usuário para a tela principal
   header('Location: ' . BASE_URL . 'public/views/screen/novo_ticket.php');
+
+  exit;
 }
