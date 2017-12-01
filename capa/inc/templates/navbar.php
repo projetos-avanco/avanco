@@ -1,8 +1,8 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">
-        <img alt="Novo Capa" src="#">
+      <a class="navbar-brand" href="<?php echo BASE_URL; ?>../capa/public/home.php">
+        <img id="novo-capa" src="#" alt="Novo Capa">
       </a>
       <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle">
         <i id="seta" class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
@@ -29,8 +29,8 @@
       </ul>
     </ul>
     <?php if (isset($_SESSION['usuario']) AND $_SESSION['usuario']['logado'] == true) : ?>
-    <h5 id="saudacao" class="text-right"><small>Bem vindo,
-      <?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?>!</small></h5>
+    <p id="saudacao" class="text-right"><small>Bem vindo,
+      <?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?>!</small></p>
     <?php endif; ?>
   </div>
 </nav>
