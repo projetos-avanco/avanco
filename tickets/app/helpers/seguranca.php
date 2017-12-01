@@ -7,7 +7,15 @@ function verificaUsuarioLogado()
 {
   require DIRETORIO_MODELS . 'sessao.php';
 
-  criaModeloDeSessaoParaMensagens();
+  $mensagem = isset($_SESSION['mensagens']['mensagem']) ? $_SESSION['mensagens']['mensagem'] : '';
+
+  # verificando se a sessão de mensagem contém a mensagem de nível de usuário
+  if ($mensagem == '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>') {
+
+    # chamando função que cria o modelo de mensagem para limpar a mensagem existente na sessão
+    criaModeloDeSessaoParaMensagens();
+
+  }
 
   # verificando se não existem as variáveis de sessão do usuário
   if (! isset($_SESSION['usuario']['logado']) OR $_SESSION['usuario']['logado'] !== true) {
