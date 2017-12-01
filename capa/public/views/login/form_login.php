@@ -20,10 +20,11 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/login/login.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/login/login.css">
 </head>
 
 <body>
@@ -36,7 +37,7 @@
             <div class="col-sm-6 col-sm-offset-3">
               <div class="panel panel-default">
                 <div class="panel-heading text-center">
-                  <h3 class="panel-title"><b>Login</b></h3>
+                  <h3 class="panel-title">Login</h3>
                 </div>
                 <div class="panel-body">
                   <div class="form-group">

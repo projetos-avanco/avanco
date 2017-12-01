@@ -23,9 +23,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
 
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/sidebar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/navbar.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/tickets/novo_ticket.css">
 </head>
 
 <body>
@@ -74,37 +76,37 @@
                   </div>
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <div class="form-group">
                     <label for="cnpj">CNPJ</label>
                     <input class="form-control required" id="cnpj" type="text" name="form[cnpj]" value="" placeholder="CNPJ" readonly="true">
                   </div>
                 </div>
 
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                   <div class="form-group">
                     <label for="conta-contrato">Conta Contrato</label>
                     <input class="form-control required" id="conta-contrato" type="text" name="form[conta-contrato]" value="" placeholder="Conta Contrato" readonly="true">
                   </div>
-                </div>
-
-                <div class="col-sm-2">
-                  <label for="cliente">Contato</label>
-                  <input class="form-control required" id="cliente" type="text" name="form[contato]" placeholder="Nome do Contato">
                 </div>
               </div>
 
               <br>
 
               <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                  <label for="cliente">Contato</label>
+                  <input class="form-control required" id="cliente" type="text" name="form[contato]" placeholder="Nome do Contato">
+                </div>
+
+                <div class="col-sm-3">
                   <label for="colaborador">Colaborador</label>
                   <select class="form-control required" id="colaborador" name="form[colaborador]">
                     <option value="0">Selecione um Colaborador</option>
                   </select>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <label for="produto">Produto</label>
                   <select class="form-control required" id="produto" name="form[produto]">
                     <option value="0">Selecione um Produto</option>
@@ -115,7 +117,7 @@
                   </select>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <label for="modulo">Módulo</label>
                   <select class="form-control required" id="modulo" name="form[modulo]">
                     <option value="0">Selecione um Módulo</option>
@@ -156,10 +158,10 @@
               <div class="row">
                 <div class="col-sm-12 text-right">
                   <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/screen/novo_ticket.php">
-                    <b>Limpar Tela</b>
+                    Limpar Tela
                   </a>
                   <button class="btn btn-primary" type="submit">
-                    <b>Gerar Ticket</b>
+                    Gerar Ticket
                   </button>
                 </div>
               </div>
