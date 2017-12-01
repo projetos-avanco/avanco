@@ -140,7 +140,7 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
             <th class='text-center'>CNPJ</th>
             <th class='text-center'>Conta Contrato</th>
             <th class='text-center'>Razão Social</th>
-            <th class='text-center'>Selecione</th>
+            <th class='text-center' width='10%'>Selecione</th>
           </tr>
         </thead>
 
@@ -162,7 +162,7 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
           <td class='text-center' data-cnpj='{$registro['cnpj']}'>{$registro['cnpj']}</td>
           <td class='text-center' data-conta='{$registro['conta_contrato']}'>{$registro['conta_contrato']}</td>
           <td class='text-left'   data-razao='{$razaoSocial[$contador]}'>{$razaoSocial[$contador]}</td>
-          <td class='text-right'>
+          <td class='text-center'>
             <button class='btn btn-xs btn-default btn-block' type='button'>
               <span class='glyphicon glyphicon-ok'></span>
             </button>
