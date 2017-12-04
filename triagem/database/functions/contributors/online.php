@@ -93,6 +93,7 @@ function verificaColaboradoresOnlineNoChat($array, $db)
       AND (s.id <> 41)
       AND (s.id <> 42)
       AND (s.id <> 43)
+      AND (s.id <> 61)
       AND (FROM_UNIXTIME(u.last_activity, '%Y-%m-%d') = CURRENT_DATE())
     ORDER BY id";
 
