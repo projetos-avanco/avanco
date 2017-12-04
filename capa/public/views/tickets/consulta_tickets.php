@@ -95,11 +95,11 @@
                   <td class="text-justify"><?php echo $ticket['assunto']; ?></td>
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
                   <td class="text-center">
-                    <a class="btn btn-sm btn-warning" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
+                    <a id="invalida" class="btn btn-sm btn-warning" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
                       <i class="fa fa-check-circle" aria-hidden="true"></i> Invalidar
                     </a>
                   </td>
-                  <td class="text-center">
+                  <td id="deleta" class="text-center">
                     <a class="btn btn-sm btn-danger" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=deleta">
                       <i class="fa fa-times-circle" aria-hidden="true"></i> Deletar
                     </a>
@@ -121,6 +121,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/tickets/paginacao_tabela.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/tickets/confirma_exclusao_ticket.js"></script>
 </body>
 </html>
 
