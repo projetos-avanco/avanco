@@ -10,7 +10,7 @@
   # chamando função que separa os colaboradores do setor externo
   $painelExterno = separaColaboradoresExterno($painelSuporte);
 
-  unset($painelSuporte[3], $painelSuporte[4], $painelSuporte[5], $painelSuporte[6], $painelSuporte[16], $painelSuporte[24]);
+  unset($painelSuporte[3], $painelSuporte[5], $painelSuporte[6], $painelSuporte[7], $painelSuporte[17], $painelSuporte[25]);
 ?>
 
 <?php if (verificaUsuarioLogado('colaboradores_logados.php')) : ?>
