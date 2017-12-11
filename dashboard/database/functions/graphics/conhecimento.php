@@ -11,7 +11,7 @@ function verificaConhecimentoDoColaborador($conexao, $id)
   criaSessaoDeGraficos();
 
   # preenchendo a sessão com o nível de conhecimento do colaborador em cada módulo
-  for ($i = 1; $i <= 18; $i++) {
+  for ($i = 1; $i <= 28; $i++) {
 
     $query =
       "SELECT
@@ -36,76 +36,117 @@ function verificaConhecimentoDoColaborador($conexao, $id)
 
     # preencho a sessão com o nível de conhecimento de acordo com o id do módulo
     switch ($i) {
+
       case 1:
-        $_SESSION['graficos']['integral']['materiais'] = $percentual[0];
+        $_SESSION['graficos']['integral']['materiais']               = $percentual[0];
         break;
 
       case 2:
-        $_SESSION['graficos']['integral']['fiscal'] = $percentual[0];
+        $_SESSION['graficos']['integral']['fiscal']                  = $percentual[0];
         break;
 
       case 3:
-        $_SESSION['graficos']['integral']['financeiro'] = $percentual[0];
+        $_SESSION['graficos']['integral']['financeiro']              = $percentual[0];
         break;
 
       case 4:
-        $_SESSION['graficos']['integral']['contabil'] = $percentual[0];
+        $_SESSION['graficos']['integral']['contabil']                = $percentual[0];
         break;
 
       case 5:
-        $_SESSION['graficos']['integral']['cotacao'] = $percentual[0];
+        $_SESSION['graficos']['integral']['cotacao']                 = $percentual[0];
         break;
 
       case 6:
-        $_SESSION['graficos']['integral']['tnfe'] = $percentual[0];
+        $_SESSION['graficos']['integral']['tnfe']                    = $percentual[0];
         break;
 
       case 7:
-        $_SESSION['graficos']['integral']['wms'] = $percentual[0];
+        $_SESSION['graficos']['integral']['wms']                     = $percentual[0];
         break;
 
       case 8:
-        $_SESSION['graficos']['frente_de_loja']['frente_windows'] = $percentual[0];
+        $_SESSION['graficos']['frente_de_loja']['frente_windows']    = $percentual[0];
         break;
 
       case 9:
-        $_SESSION['graficos']['frente_de_loja']['frente_linux'] = $percentual[0];
+        $_SESSION['graficos']['frente_de_loja']['frente_linux']      = $percentual[0];
         break;
 
       case 10:
-        $_SESSION['graficos']['frente_de_loja']['supervisor'] = $percentual[0];
+        $_SESSION['graficos']['frente_de_loja']['supervisor']        = $percentual[0];
         break;
 
       case 11:
-        $_SESSION['graficos']['frente_de_loja']['scanntech'] = $percentual[0];
+        $_SESSION['graficos']['frente_de_loja']['scanntech']         = $percentual[0];
         break;
 
       case 12:
-        $_SESSION['graficos']['frente_de_loja']['sitef'] = $percentual[0];
+        $_SESSION['graficos']['frente_de_loja']['sitef']             = $percentual[0];
         break;
 
       case 13:
-        $_SESSION['graficos']['frente_de_loja']['comandas'] = $percentual[0];
+        $_SESSION['graficos']['frente_de_loja']['comandas']          = $percentual[0];
         break;
 
       case 14:
-        $_SESSION['graficos']['gestor']['instalacao'] = $percentual[0];
+        $_SESSION['graficos']['gestor']['instalacao']                = $percentual[0];
         break;
 
       case 15:
-        $_SESSION['graficos']['gestor']['cadastro'] = $percentual[0];
+        $_SESSION['graficos']['gestor']['cadastro']                  = $percentual[0];
         break;
 
       case 16:
-        $_SESSION['graficos']['gestor']['movimento'] = $percentual[0];
+        $_SESSION['graficos']['gestor']['movimento']                 = $percentual[0];
         break;
 
       case 17:
-        $_SESSION['graficos']['gestor']['contabil'] = $percentual[0];
+        $_SESSION['graficos']['gestor']['contabil']                  = $percentual[0];
         break;
 
       case 18:
-        $_SESSION['graficos']['gestor']['fiscal'] = $percentual[0];
+        $_SESSION['graficos']['gestor']['fiscal']                    = $percentual[0];
+        break;
+
+      case 19:
+        $_SESSION['graficos']['novo_erp']['instalacao']              = $percentual[0];
+        break;
+
+      case 20:
+        $_SESSION['graficos']['novo_erp']['pessoas']                 = $percentual[0];
+        break;
+
+      case 21:
+        $_SESSION['graficos']['novo_erp']['produtos']                = $percentual[0];
+        break;
+
+      case 22:
+        $_SESSION['graficos']['novo_erp']['fiscal']                  = $percentual[0];
+        break;
+
+      case 23:
+        $_SESSION['graficos']['novo_erp']['financeiro']              = $percentual[0];
+        break;
+
+      case 24:
+        $_SESSION['graficos']['novo_erp']['lancamentos']             = $percentual[0];
+        break;
+
+      case 25:
+        $_SESSION['graficos']['novo_erp']['relatorios_e_graficos']   = $percentual[0];
+        break;
+
+      case 26:
+        $_SESSION['graficos']['novo_erp']['importacao_e_exportacao'] = $percentual[0];
+        break;
+
+      case 27:
+        $_SESSION['graficos']['novo_erp']['configuracoes_pdv']       = $percentual[0];
+        break;
+
+      case 28:
+        $_SESSION['graficos']['novo_erp']['minha_conta']             = $percentual[0];
         break;
 
     }

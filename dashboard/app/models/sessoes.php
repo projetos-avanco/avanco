@@ -70,6 +70,19 @@ function criaSessaoDeGraficos()
       'movimento' => '',
       'contabil' => '',
       'fiscal' => ''
+    ),
+
+    'novo_erp' => array(
+      'instalacao' => '',
+      'pessoas' => '',
+      'produtos' => '',
+      'fiscal' => '',
+      'financeiro' => '',
+      'lancamentos' => '',
+      'relatorios_e_graficos' => '',
+      'importacao_e_exportacao' => '',
+      'configuracoes_pdv' => '',
+      'minha_conta' => ''
     )
   );
 }
