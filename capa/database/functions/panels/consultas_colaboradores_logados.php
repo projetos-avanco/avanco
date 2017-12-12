@@ -113,8 +113,7 @@ function consultaDadosDosColaboradores($painel, $db)
         u.user_id  = 61)
     		AND (u.dep_id > 0)
     		AND NOT (d.disabled = 1)
-    		AND NOT (s.disabled = 1)
-    	ORDER BY s.name) AS t";
+    		AND NOT (s.disabled = 1)) AS t";
 
     if ($resultado = $db->query($query)) {
 

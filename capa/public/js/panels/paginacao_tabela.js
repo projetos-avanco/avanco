@@ -1,7 +1,7 @@
 $('document').ready(function() {
 
   // paginando a tabela
-  $('.table').dataTable({
+  var tabela = $('.table').dataTable({
      "oLanguage" : {
        "sEmptyTable": "Nenhum registro encontrado",
        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -28,5 +28,8 @@ $('document').ready(function() {
      "bFilter": false, //removendo a pesquisa
      "pageLength": 25
   });
+
+  // ordenando tabela pelas colunas logado e oculto
+  tabela.fnSort([[4, 'desc'], [5, 'desc']]);
 
 });
