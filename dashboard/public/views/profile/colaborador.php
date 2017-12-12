@@ -414,6 +414,24 @@
                   </div><!-- primeira coluna da linha -->
                 </div><!-- décima sexta linha da coluna 2 -->
 
+
+                <div class="row"><!-- décima quinta linha da coluna 2 -->
+                  <div class="col-sm-12 "><!-- primeira coluna da linha -->
+                    <h4 class="text-center">Novo ERP</h4>
+                  </div><!-- primeira coluna da linha -->
+                </div><!-- décima quinta linha da coluna 2 -->
+
+                <div class="row"><!-- décima sexta linha da coluna 2 -->
+                  <div class="col-sm-12"><!-- primeira coluna da linha -->
+                    <div class="text-left titulo1">Gráfico de Conhecimento</div><!-- primeira coluna da linha -->
+                    <div class="text-left titulo2">Nível de Conhecimento do Colaborador nos Módulos do Novo ERP</div>
+                    <div id="barras_novo_erp_div" class="tamanhografico"></div>
+
+                  </div><!-- primeira coluna da linha -->
+                </div><!-- décima sexta linha da coluna 2 -->
+
+               
+
         </div><!--coluna 2 -->
       </div><!--linha 1 -->
     </div><!-- container -->
@@ -462,6 +480,7 @@
       google.charts.setOnLoadCallback(drawIntegralChart);
       google.charts.setOnLoadCallback(drawFrenteLojaChart);
       google.charts.setOnLoadCallback(drawGestorChart);
+      google.charts.setOnLoadCallback(drawNovoErpChart);
 
       function drawIntegralChart()
       {
@@ -551,7 +570,61 @@
             //instanciando e desenhando o gráfico de barras
             var outros = new google.visualization.BarChart(document.getElementById('barras_gestor_div'));
             outros.draw(data, options);
-    }
+      }
+
+    
+      function drawNovoErpChart()
+      {
+      //montando o array com os dados
+
+            var data = google.visualization.arrayToDataTable([
+              ['Módulos',     'Percentual', {role: "style"}],
+              
+              ['Instalação', <?php echo $graficos['novo_erp']['instalacao']; ?>, define_cor(<?php echo $graficos['novo_erp']['instalacao']; ?>)],
+              
+
+              ['Pessoas', <?php echo $graficos['novo_erp']['pessoas']; ?>, define_cor(<?php echo $graficos['novo_erp']['pessoas']; ?>)],
+              
+
+              ['Produtos', <?php echo $graficos['novo_erp']['produtos']; ?>, define_cor(<?php echo $graficos['novo_erp']['produtos']; ?>)],
+              
+
+              ['Fiscal', <?php echo $graficos['novo_erp']['fiscal']; ?>, define_cor(<?php echo $graficos['novo_erp']['fiscal']; ?>)],
+              
+
+              ['Financeiro', <?php echo $graficos['novo_erp']['financeiro']; ?>, define_cor(<?php echo $graficos['novo_erp']['financeiro']; ?>)],
+              
+
+              ['Lançamentos', <?php echo $graficos['novo_erp']['lancamentos']; ?>, define_cor(<?php echo $graficos['novo_erp']['lancamentos']; ?>)],
+              
+
+              ['Relat/Grafic', <?php echo $graficos['novo_erp']['relatorios_e_graficos']; ?>, define_cor(<?php echo $graficos['novo_erp']['relatorios_e_graficos']; ?>)],
+              
+
+              ['Imp/Exp', <?php echo $graficos['novo_erp']['importacao_e_exportacao']; ?>, define_cor(<?php echo $graficos['novo_erp']['importacao_e_exportacao']; ?>)],
+              
+
+              ['Config.PDV', <?php echo $graficos['novo_erp']['configuracoes_pdv']; ?>, define_cor(<?php echo $graficos['novo_erp']['configuracoes_pdv']; ?>)],
+              
+
+              ['Minha Conta', <?php echo $graficos['novo_erp']['minha_conta']; ?>, define_cor(<?php echo $graficos['novo_erp']['minha_conta']; ?>)]
+            ]);
+
+            //opções para o gráfico de barras
+            var options = {
+                chartArea: {width: '70%', height:"80%"},
+                titleTextStyle:{color:'#fff'},
+                legend: {position:'bottom', textStyle: { color:'#fff' } },
+                hAxis:{format: 'decimal',textStyle: { color: '#fff'},viewWindow: {min: 0,max: 100},},
+                vAxis: {title:'Módulos', titleTextStyle:{color:'fff'},textStyle: { color: '#fff'}},//legenda vertical
+                backgroundColor: '#151A20',
+                colors: ['#151A20'],
+            };
+
+            //instanciando e desenhando o gráfico de barras
+            var barrasnovo = new google.visualization.BarChart(document.getElementById('barras_novo_erp_div'));
+            barrasnovo.draw(data, options);
+      }
 
     $(window).resize(function(){
        yourCallingChartFunction();
