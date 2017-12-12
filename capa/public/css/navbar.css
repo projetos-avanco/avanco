@@ -1,8 +1,15 @@
 @charset "UTF-8";
 
-/* alterando fonte do título Novo Capa */
+#logo {
+  position: relative;
+  top: -2px;
+}
+
 #novo-capa {
   font-family: 'Lato Light', sans-serif;
+  position: relative;
+  top: -27px;
+  padding: 0 0 0 15px;
 }
 
 #saudacao {

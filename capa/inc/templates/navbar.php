@@ -2,7 +2,10 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="<?php echo BASE_URL; ?>../capa/public/home.php">
-        <img id="novo-capa" src="#" alt="Novo Capa">
+        <img id="logo" src="<?php echo BASE_URL; ?>../capa/public/img/logo.png" alt="Novo Capa">
+        <p id="novo-capa">
+          Novo Capa
+        </p>
       </a>
       <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle">
         <i id="seta" class="fa fa-angle-double-right fa-2x" aria-hidden="true"></i>
