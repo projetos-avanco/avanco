@@ -1,33 +1,43 @@
 <?php
 
 /**
- * consulta a quantidade de clientes que estão sendo atendidos e que estão em espera
+ * consulta a quantidade de clientes que estão em atendimento
  * @param - array com os dados do painel de colaboradores logados
  * @param - objeto com uma conexão aberta
  */
-function consultaAtendimentosDosColaboradoresLogados($painel, $db)
+function consultaAtendimentosEmAndamento($painel, $db)
 {
   # consultando clientes que estão em atendimento
-  for ($i = 0; $i < count($painel); $i++) {
+    for ($i = 0; $i < count($painel); $i++) {
 
-    $query =
-      "SELECT
-      	COUNT(c.id) AS em_atendimento
-      FROM lh_chat AS c
-      WHERE (c.dep_id = {$painel[$i]['departamento']})
-      	AND (c.status = 1)
-      	AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') = CURRENT_DATE())";
+      $query =
+        "SELECT
+        	COUNT(c.id) AS em_atendimento
+        FROM lh_chat AS c
+        WHERE (c.dep_id = {$painel[$i]['departamento']})
+        	AND (c.status = 1)
+        	AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') = CURRENT_DATE())";
 
-    if ($resultado = $db->query($query)) {
+      if ($resultado = $db->query($query)) {
 
-      $linha = mysqli_fetch_row($resultado);
+        $linha = mysqli_fetch_row($resultado);
 
-      $painel[$i]['atendimento'] = $linha[0];
+        $painel[$i]['atendimento'] = $linha[0];
+
+      }
 
     }
 
-  }
+  return $painel;
+}
 
+/**
+ * consulta a quantidade de clientes que estão em espera
+ * @param - array com os dados do painel de colaboradores logados
+ * @param - objeto com uma conexão aberta
+ */
+function consultaAtendimentosEmEspera($painel, $db)
+{
   # consultando clientes que estão em espera
   for ($i = 0; $i < count($painel); $i++) {
 
@@ -60,73 +70,61 @@ function consultaAtendimentosDosColaboradoresLogados($painel, $db)
 function consultaDadosDosColaboradores($painel, $db)
 {
   $query =
-    "SELECT DISTINCT
-    	u.id AS colaborador,
-    	d.id AS departamento,
-    	u.name AS nome,
-    	u.surname AS sobrenome,
+    "SELECT
+    	t.id,
+    	t.nome,
+    	t.sobrenome,
+    	t.departamento,
     	CASE
-    		WHEN (u.hide_online = 'false')
-    			THEN 'Não'
-    		WHEN (u.hide_online <> 'false')
+    		WHEN (t.data = CURRENT_DATE() AND t.horario <= '00:40:00')
     			THEN 'Sim'
-    	END
-    		AS oculto,
+    		WHEN (t.data <> CURRENT_DATE())
+    			THEN 'Não'
+    	END AS logado,
     	CASE
-    		WHEN (s.last_activity = 0)
-    			THEN 'Não'
-    		WHEN (s.last_activity <> 0)
+    		WHEN (t.oculto = 1)
     			THEN 'Sim'
-    	END
-    		AS logado
-    FROM lh_departament AS d
-    INNER JOIN
+    		WHEN (t.oculto <> 1)
+    			THEN 'Não'
+    	END AS oculto
+    FROM
     	(SELECT
-    		u.id,
-    		u.name,
-    		u.surname,
-    		u.email,
-    		u.hide_online
-    	FROM lh_users AS u
-    	WHERE (disabled = 0)
-    		AND NOT
-          (u.id = 1 OR
-          u.id = 2 OR
-          u.id = 3 OR
-          u.id = 4 OR
-          u.id = 5 OR
-          u.id = 6 OR
-          u.id = 42 OR
-          u.id = 44)) AS u
-    ON u.email = d.email
-    INNER JOIN lh_userdep AS s
-    ON s.user_id = u.id
-    WHERE (disabled = 0)
-    	AND NOT
-        (d.id = 1 OR
-        d.id = 2 OR
-        d.id = 3 OR
-        d.id = 4 OR
-        d.id = 5 OR
-        d.id = 6 OR
-        d.id = 7 OR
-        d.id = 8 OR
-        d.id = 9 OR
-        d.id = 10 OR
-        d.id = 11 OR
-        d.id = 12 OR
-        d.id = 15)
-    ORDER BY nome";
+    		u.user_id AS id,
+    		s.name AS nome,
+    		s.surname AS sobrenome,
+    		u.dep_id AS departamento,
+    		FROM_UNIXTIME(u.last_activity, '%Y-%m-%d') AS data,
+    		TIMEDIFF(FROM_UNIXTIME(u.last_activity, '%T'), CURRENT_TIME()) AS horario,
+    		u.hide_online AS oculto
+    	FROM lh_userdep AS u
+    	INNER JOIN lh_users AS s
+    		ON s.id = u.user_id
+    	INNER JOIN lh_departament AS d
+    		ON d.id = u.dep_id
+    	WHERE NOT
+        (u.user_id = 1  OR
+        u.user_id  = 2  OR
+        u.user_id  = 3  OR
+        u.user_id  = 4  OR
+        u.user_id  = 5  OR
+        u.user_id  = 6  OR
+        u.user_id  = 42 OR
+        u.user_id  = 44 OR
+        u.user_id  = 61)
+    		AND (u.dep_id > 0)
+    		AND NOT (d.disabled = 1)
+    		AND NOT (s.disabled = 1)
+    	ORDER BY s.name) AS t";
 
     if ($resultado = $db->query($query)) {
 
       while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
         $painel[] = array(
-          'colaborador'  => $registro['colaborador'],
-          'departamento' => $registro['departamento'],
+          'id'           => $registro['id'],
           'nome'         => $registro['nome'],
           'sobrenome'    => $registro['sobrenome'],
+          'departamento' => $registro['departamento'],
           'atendimento'  => 0,
           'espera'       => 0,
           'logado'       => $registro['logado'],
@@ -135,8 +133,11 @@ function consultaDadosDosColaboradores($painel, $db)
 
       }
 
-      # chamando função que consulta a quantidade de clientes em atendimento e em espera
-      $painel = consultaAtendimentosDosColaboradoresLogados($painel, $db);
+      # chamando função que consulta a quantidade de clientes em atendimento
+      $painel = consultaAtendimentosEmAndamento($painel, $db);
+
+      # chamando função que consulta a quantidade de clientes em espera
+      $painel = consultaAtendimentosEmEspera($painel, $db);
 
     }
 

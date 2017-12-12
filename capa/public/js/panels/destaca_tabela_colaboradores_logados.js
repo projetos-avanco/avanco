@@ -5,7 +5,7 @@ $('document').ready(function() {
     var logado = $(this).find('td:nth-child(5)').html();
     var oculto = $(this).find('td:nth-child(6)').html();
 
-    if (logado == 'Não' && oculto == 'Não') {
+    if (logado == 'Não') {
 
       $(this).find('td').addClass('warning');
 

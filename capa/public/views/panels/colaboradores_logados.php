@@ -1,16 +1,11 @@
 <?php require '../../../init.php'; ?>
 <?php require DIRETORIO_MODULES . 'panels/modulo_colaboradores_logados.php'; ?>
-<?php require DIRETORIO_HELPERS . 'paineis.php'; ?>
 
 <?php
 
   # chamando funçao que recupera os dados para o painel de colaboradores logados
-  $painelSuporte = retornaDadosParaPainelDeColaboradoresLogados();
+  $paineis = retornaDadosParaPainelDeColaboradoresLogados();
 
-  # chamando função que separa os colaboradores do setor externo
-  $painelExterno = separaColaboradoresExterno($painelSuporte);
-
-  unset($painelSuporte[3], $painelSuporte[5], $painelSuporte[6], $painelSuporte[7], $painelSuporte[17], $painelSuporte[25]);
 ?>
 
 <?php if (verificaUsuarioLogado('colaboradores_logados.php')) : ?>
@@ -76,9 +71,9 @@
                 </tr>
               </thead>
               <tbody>
-              <?php foreach($painelSuporte as $suporte) : ?>
+              <?php foreach($paineis['suporte'] as $suporte) : ?>
                 <tr>
-                  <td class="text-center"><?php echo $suporte['colaborador']; ?></td>
+                  <td class="text-center"><?php echo $suporte['id']; ?></td>
                   <td class="text-center"><?php echo $suporte['nome'] . ' ' . $suporte['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $suporte['atendimento']; ?></td>
                   <td class="text-center"><?php echo $suporte['espera']; ?></td>
@@ -107,9 +102,9 @@
                 </tr>
               </thead>
               <tbody>
-              <?php foreach($painelExterno as $externo) : ?>
+              <?php foreach($paineis['externo'] as $externo) : ?>
                 <tr>
-                  <td class="text-center"><b><?php echo $externo['colaborador']; ?></b></td>
+                  <td class="text-center"><?php echo $externo['id']; ?></td>
                   <td class="text-center"><?php echo $externo['nome'] . ' ' . $externo['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $externo['atendimento']; ?></td>
                   <td class="text-center"><?php echo $externo['espera']; ?></td>
