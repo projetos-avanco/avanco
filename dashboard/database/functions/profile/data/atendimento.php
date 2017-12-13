@@ -130,7 +130,7 @@ function calculaPercentualDeFilaAte15Minutos($objeto, $modelo, $datas)
   		FROM lh_chat
   		WHERE (user_id = {$modelo['pessoal']['id']})
   			AND (status = 2)
-  			AND (chat_duration <= 900)
+  			AND (wait_time <= 900)
   			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))
 
   		/
