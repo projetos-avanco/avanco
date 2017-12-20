@@ -7,8 +7,8 @@
   require DIRETORIO_HELPERS  . 'profile/init_colaborador.php';
   require DIRETORIO_MODULES  . 'graphics/graficos.php';
   require DIRETORIO_HELPERS  . 'graphics/init_graficos.php' ;
-
   require DIRETORIO_HELPERS  . 'verifica.php';
+  require DIRETORIO_MODULES  . 'avancoins/avancoins.php';
 
 ?>
 
@@ -448,7 +448,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap-4.0.0/js/bootstrap.min.js"></script>
-  
+
   <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/bootstrap-datepicker/calendario.js"></script>
