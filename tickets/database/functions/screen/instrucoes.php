@@ -262,7 +262,7 @@ function insereDadosDoFormularioNovoTicket($dados, $db)
     # verificando se a consulta pode ser executada
     if ($resultado = $db->query($query)) {
 
-      # gerando mensagem se sucesso
+      # gerando mensagem de sucesso
       $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Tudo Certo!</strong> O Ticket foi gerado com sucesso.</p>';
       $_SESSION['mensagens']['tipo']     = 'success';
       $_SESSION['mensagens']['exibe']    = true;
