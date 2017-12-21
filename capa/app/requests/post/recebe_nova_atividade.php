@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
        # concatenando os segundos no horário
        $form['horario_acao'] .= ':00';
 
-       # retirando quebras de linhas da observação e
+       # retirando quebras de linhas da observação
        $form['observacao'] = preg_replace('/[\n|\r|\n\r|\r\n]{2,}/',' ', $form['observacao']);
 
        $form['observacao'] = ucwords($form['observacao']);
