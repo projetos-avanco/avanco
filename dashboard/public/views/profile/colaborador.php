@@ -10,6 +10,7 @@
   require DIRETORIO_HELPERS  . 'verifica.php';
   require DIRETORIO_MODULES  . 'avancoins/avancoins.php';
 
+  atualizaAcoesDiarias();
 ?>
 
 <!DOCTYPE html>
