@@ -45,15 +45,17 @@ function verificaUsuarioLogado($pagina)
 
     case 1:
 
-      # usuário nível 1 possui permissão para acessar a página de consulta de chats
+      # páginas que usuários de nível 1 possuem permissão para acessar
       if ($pagina == 'consulta_tickets.php') {
 
         return true;
 
       }
 
-      # usuário nível 1 não possui permissão para acessar a página de colaboradores logados
-      if ($pagina == 'colaboradores_logados.php') {
+      # páginas que usuários de nível 1 não possuem permissão para acessar
+      if
+        ($pagina == 'colaboradores_logados.php' OR
+         $pagina == 'nova_atividade.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -67,15 +69,11 @@ function verificaUsuarioLogado($pagina)
 
     case 2:
 
-      # usuário nível 2 possui permissão para acessar a página de colaboradores logados
-      if ($pagina == 'colaboradores_logados.php') {
-
-        return true;
-
-      }
-
-      # usuário nível 2 possui permissão para acessar a página de consulta de tickets
-      if ($pagina == 'consulta_tickets.php') {
+      # páginas que usuários de nível 2 possuem permissão para acessar
+      if
+        ($pagina == 'colaboradores_logados.php' OR
+         $pagina == 'consulta_tickets.php'      OR
+         $pagina == 'nova_atividade.php') {
 
         return true;
 
