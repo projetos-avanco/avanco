@@ -39,12 +39,22 @@ function atualizaAcoesDiarias()
   } else {
 
     # chamando função que remove as ações existentes
-    $acoes = removeAcoesDiariasRepetidas($db, $acoes, $logs);
+    $acoes = removeAcoesDiariasRepetidas($db, $carteira, $logs);
 
-    # chamando função que insere todas as ações diárias no período atual na tabela do logs de ações diárias
-    insereAcoesDiarias($db, $acoes);
+    # verificando se não existe nenhuma ação diária nova para ser inserida na tabela de logs de ações diárias
+    if (count($acoes) == 0) {
+
+      fecha_conexao($db);
+
+    } else {
+
+      # chamando função que insere todas as ações diárias no período atual na tabela do logs de ações diárias
+      insereAcoesDiarias($db, $acoes);
+
+      fecha_conexao($db);
+
+    }
 
   }
 
-  fecha_conexao($db);
 }
