@@ -10,7 +10,16 @@
   require DIRETORIO_HELPERS  . 'verifica.php';
   require DIRETORIO_MODULES  . 'avancoins/avancoins.php';
 
+?>
+
+<?php
+
+  # chamando função responsável por atualizar as ações diárias do colaborador no período atual
   atualizaAcoesDiarias();
+
+  # chamando função responsável por atualizar as ações mensais do colaborador no período atual
+  atualizaAcoesMensais();
+  
 ?>
 
 <!DOCTYPE html>

@@ -53,7 +53,7 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
     	id_chat
     FROM av_avancoins_acoes_diarias_logs
     WHERE (id_colaborador = {$carteira['id_colaborador']})
-    	AND (data_acao BETWEEN '{$carteira['periodo']['data_inicial']}' AND '{$carteira['periodo']['data_final']}')
+    	AND (data_acao BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')
     ORDER BY id_chat, data_acao, horario_acao;";
 
   # verificando se a consulta pode ser executada
@@ -113,7 +113,7 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
       AND (c.status = 2)
        AND NOT
            ($valores)
-      AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo']['data_inicial']}' AND '{$carteira['periodo']['data_final']}')
+      AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')
      ORDER BY id_chat, data_acao, horario_acao;";
 
    # verificando se a consulta pode ser executada
@@ -167,7 +167,7 @@ function consultaAcoesDiarias($db, $carteira)
     	ON i.id_chat = c.id
     WHERE (c.user_id = {$carteira['id_colaborador']})
     	AND (c.status = 2)
-    	AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo']['data_inicial']}' AND '{$carteira['periodo']['data_final']}')
+    	AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')
     ORDER BY id_chat, data_acao, horario_acao;";
 
   # verificando se a consulta pode ser executada

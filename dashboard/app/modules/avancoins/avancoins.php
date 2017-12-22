@@ -1,14 +1,15 @@
 <?php
 
+require DIRETORIO_MODELS    . 'carteira.php';
+require DIRETORIO_FUNCTIONS . 'avancoins/periodo.php';
+require DIRETORIO_FUNCTIONS . 'avancoins/acoes_diarias.php';
+require DIRETORIO_FUNCTIONS . 'avancoins/acoes_mensais.php';
+
 /*
- * responsável por atualizar a ações diárias do colaborador no período atual
+ * responsável por atualizar as ações diárias do colaborador no período atual
  */
 function atualizaAcoesDiarias()
 {
-  require DIRETORIO_MODELS    . 'carteira.php';
-  require DIRETORIO_FUNCTIONS . 'avancoins/periodo.php';
-  require DIRETORIO_FUNCTIONS . 'avancoins/acoes_diarias.php';
-
   # chamando função que abre uma conexão com a base de dados
   $db = abre_conexao();
 
@@ -18,11 +19,8 @@ function atualizaAcoesDiarias()
   # recuperando id do colaborador
   $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
 
-  # chamando função que retorna o período que deve ser consultado
+  # chamando função que retorna o período do mês atual
   $carteira = verificaPeriodoAtivo($db, $carteira);
-
-  $carteira['periodo']['data_inicial'] = '2017-11-01'; # RETIRAR
-  $carteira['periodo']['data_final']   = '2017-11-30'; # RETIRAR
 
   # chamando função que consulta todas as ações diárias do colaborador no período atual
   $acoes = consultaAcoesDiarias($db, $carteira);
@@ -54,6 +52,34 @@ function atualizaAcoesDiarias()
       fecha_conexao($db);
 
     }
+
+  }
+
+}
+
+/*
+ * responsável por atualizar as ações mensais do colaborador no período atual
+ */
+function atualizaAcoesMensais()
+{
+  # chamando função que abre uma conexão com a base de dados
+  $db = abre_conexao();
+
+  # chamando função que cria uma array modelo de carteira de avancoins
+  $carteira = defineArrayModeloDeCarteiraAvancoins();
+
+  # recuperando id do colaborador
+  $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
+
+  # chamando função que retorna o período do mês atual
+  $carteira = verificaPeriodoAtivo($db, $carteira);
+
+  # chamando função que retorna o período do mês anterior
+  $carteira = verificaPeriodoAnterior($db, $carteira);
+
+  if ($carteira['data_atual'] > $carteira['periodo_anterior']['data_final']) {
+
+    consultaAcoesMensais($db, $carteira);
 
   }
 
