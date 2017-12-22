@@ -10,7 +10,9 @@ function insereAcoesDiarias($db, $acoes)
   $colunas = null;
   $valores = null;
 
-  # inserindo ações diárias
+  $queries = array();
+
+  # montando consultas para inserção das ações diárias na tabela de logs de ações diárias
   foreach ($acoes as $acao) {
 
     foreach ($acao as $chave => $valor) {
@@ -23,15 +25,17 @@ function insereAcoesDiarias($db, $acoes)
     $colunas = rtrim($colunas, ', ');
     $valores = rtrim($valores, ', ');
 
-    $query = '';
-    $query = "INSERT INTO av_avancoins_acoes_diarias_logs " . "($colunas)" . " VALUES " . "($valores);";
+    $queries[] = "INSERT INTO av_avancoins_acoes_diarias_logs " . "($colunas)" . " VALUES " . "($valores);";
 
-    if ($resultado = $db->query($query)) {
+    $colunas = null;
+    $valores = null;
 
-      $colunas = null;
-      $valores = null;
+  }
 
-    }
+  # inserindo ações diárias na tabela de logs de ações diárias
+  foreach ($queries as $chave => $valor) {
+
+    $db->query($valor);
 
   }
 
