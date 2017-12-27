@@ -4,6 +4,7 @@ require DIRETORIO_MODELS    . 'carteira.php';
 require DIRETORIO_FUNCTIONS . 'avancoins/periodo.php';
 require DIRETORIO_FUNCTIONS . 'avancoins/acoes_diarias.php';
 require DIRETORIO_FUNCTIONS . 'avancoins/acoes_mensais.php';
+require DIRETORIO_FUNCTIONS . 'avancoins/carteira.php';
 
 /*
  * responsável por atualizar as ações diárias do colaborador no período atual
@@ -87,5 +88,49 @@ function atualizaAcoesMensais()
   }
 
   fecha_conexao($db);
+
+}
+
+/*
+ * responsável por atualizar a quantidade de moedas na carteira de avancoins
+ */
+function atualizaCarteira()
+{
+  # chamando função que abre uma conexão com a base de dados
+  $db = abre_conexao();
+
+  # chamando função que cria uma array modelo de carteira de avancoins
+  $carteira = defineArrayModeloDeCarteiraAvancoins();
+
+  # recuperando id do colaborador
+  $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
+
+  # chamando função que retorna o período do mês atual
+  $carteira = verificaPeriodoAtivo($db, $carteira);
+
+  # chamando função que atualiza a quantidade de moedas na carteira de avancoins
+  atualizaQuantidadeDeMoedasNaCarteira($db, $carteira);
+
+  fecha_conexao($db);
+
+}
+
+/*
+ * responsável por retornar para o dashboard a quantidade atual de moedas do colaborador
+ */
+function retornaQuantidadeDeMoedasDaCarteira()
+{
+  # chamando função que abre uma conexão com a base de dados
+  $db = abre_conexao();
+
+  # chamando função que cria uma array modelo de carteira de avancoins
+  $carteira = defineArrayModeloDeCarteiraAvancoins();
+
+  # recuperando id do colaborador
+  $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
+
+  $carteira['moedas'] = consultaQuantidadeDeMoedas($db, $carteira);
+
+  return $carteira['moedas'];
 
 }
