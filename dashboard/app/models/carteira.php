@@ -17,7 +17,8 @@ function defineArrayModeloDeCarteiraAvancoins()
       'data_final' => ''
     ),
     'mes_atual' => date('n'),
-    'data_atual' => date('Y-m-d')
+    'data_atual' => date('Y-m-d'),
+    'horario_atual' => ''
   );
 
   return $carteira;
