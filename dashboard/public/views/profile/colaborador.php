@@ -19,7 +19,15 @@
 
   # chamando função responsável por atualizar as ações mensais do colaborador no período atual
   atualizaAcoesMensais();
-  
+
+  # chamando função responsável por atualizar a quantidade de moedas na carteira do colaborador
+  atualizaCarteira();
+
+  $avancoins = 0;
+
+  # chamando função responsável por retornar a quantidade atual de moedas do colaborador
+  $avancoins = retornaQuantidadeDeMoedasDaCarteira();
+
 ?>
 
 <!DOCTYPE html>
@@ -67,16 +75,19 @@
                   echo $dashboard['pessoal']['nome'] . ' ' . $dashboard['pessoal']['sobrenome'];
                 ?>
                 </h2>
+                <h5>
+                <?php
+                  echo '#' . $dashboard['pessoal']['time'];
+                ?>
+                </h5>
               </div>
             </div><!-- segunda coluna da linha -->
 
             <div class="col-sm-12"><!-- terceira coluna da linha -->
               <div class="text-center">
-                <h5 id="nome-time">
-                <?php
-                  echo '#' . $dashboard['pessoal']['time'];
-                ?>
-                </h5>
+                <p>
+                  <img src="<?php echo BASE_URL; ?>public/img/others/avancoin.png" alt="Avancoins" width="50%" height="45%">
+                </p>
               </div>
             </div><!-- terceira coluna da linha -->
 
