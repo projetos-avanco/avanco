@@ -39,19 +39,16 @@ input:focus{
   border: none;
 }
 
-/*painel*/
-
-
-.numero
-{
-  padding-left: 2%;
-  padding-top: 9%;
+/* AVANCOINS */
+.avancoins {
+  padding-left: 2.5%;
+  padding-top: 6%;
 }
 
-.margem
-{
+#avancoins-margem {
   margin-left: -20px;
 }
+
 /* BOOTSTRAP */
 .card {
   border: none;

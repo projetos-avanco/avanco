@@ -84,15 +84,15 @@
             <div class="col-sm-6"><!-- terceira coluna da linha -->
               <div class="text-right">
                 <p>
-                  <img src="<?php echo BASE_URL; ?>public/img/others/avancoins.png" alt="Avancoins">
+                  <img src="<?php echo BASE_URL; ?>public/img/others/avancoins.png" alt="Moeda Avancoins">
                 </p>
               </div>
             </div>
-            <div class="col-sm-6 margem">
+            <div class="col-sm-6" id="avancoins-margem">
               <div class="text-left">
                 <p>
                   <?php foreach ($avancoins as $avancoin) : ?>
-                    <img class="numero" src="<?php echo $avancoin; ?>" alt="Avancoins">
+                    <img class="avancoins" src="<?php echo $avancoin; ?>" alt="Avancoins">
                   <?php endforeach; ?>
                 </p>
               </div>
