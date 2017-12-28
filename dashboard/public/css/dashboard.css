@@ -1,26 +1,23 @@
 /* CORPO */
-input:focus{
-  border: none;
-}
-
 body {
-  font-family: 'Museosans 2', sans-serif;
+  font-family: 'Museosans 300', sans-serif;
   color: #DCE6EF;
   background-color: #151A20;
 }
 
-div {
-  margin: 0 0 20px 0;
-}
-
 h2 {
   font-weight: bold;
-  font-style: italic;
   color: #EAEFF5;
 }
 
 h4 {
+  font-family: 'Museosans 2', sans-serif;
   color: #6B747B;
+}
+
+h5 {
+  font-weight: bold;
+  color: #4c5c6c;
 }
 
 p {
@@ -32,6 +29,14 @@ hr {
   background-color: #363d45;
   height: 2px;
   width: 60%;
+}
+
+div {
+  margin: 0 0 20px 0;
+}
+
+input:focus{
+  border: none;
 }
 
 /* BOOTSTRAP */
@@ -77,14 +82,9 @@ hr {
 }
 
 /* OUTRAS */
-#nome-time {
-  color: #354044;
-}
-
 #hall-da-fama {
   font-weight: bold;
   font-style: italic;
-  color: #6B757F;
 }
 
 #trofeu {
