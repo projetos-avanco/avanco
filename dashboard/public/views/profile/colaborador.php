@@ -84,7 +84,9 @@
             <div class="col-sm-12"><!-- terceira coluna da linha -->
               <div class="text-center">
                 <p>
-                  <img src="<?php echo BASE_URL; ?>public/img/others/avancoins/painel.png" alt="Painel de Bitcoins" width="50%" height="45%">
+                  <img src="<?php echo BASE_URL; ?>public/img/others/painel.png" alt="Painel de Bitcoins">
+                </p>
+                <p>
                   <?php foreach ($avancoins as $avancoin) : ?>
                     <img src="<?php echo $avancoin; ?>" alt="Avancoins">
                   <?php endforeach; ?>
