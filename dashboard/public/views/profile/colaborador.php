@@ -81,14 +81,18 @@
               </div>
             </div><!-- segunda coluna da linha -->
 
-            <div class="col-sm-12"><!-- terceira coluna da linha -->
-              <div class="text-center">
+            <div class="col-sm-6"><!-- terceira coluna da linha -->
+              <div class="text-right">
                 <p>
-                  <img src="<?php echo BASE_URL; ?>public/img/others/painel.png" alt="Painel de Bitcoins">
+                  <img src="<?php echo BASE_URL; ?>public/img/others/avancoins.png" alt="Avancoins">
                 </p>
+              </div>
+            </div>
+            <div class="col-sm-6 margem">
+              <div class="text-left">
                 <p>
                   <?php foreach ($avancoins as $avancoin) : ?>
-                    <img src="<?php echo $avancoin; ?>" alt="Avancoins">
+                    <img class="numero" src="<?php echo $avancoin; ?>" alt="Avancoins">
                   <?php endforeach; ?>
                 </p>
               </div>
