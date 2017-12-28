@@ -144,47 +144,47 @@ function retornaQuantidadeDeMoedasDaCarteira()
     switch ($carteira['moedas'][$i]) {
 
       case '-':
-        $imagens[$i] = BASE_URL . '/public/img/others/traco.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/traco.png';
       break;
 
       case '0':
-        $imagens[$i] = BASE_URL . '/public/img/others/zero.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/zero.png';
       break;
 
       case '1':
-        $imagens[$i] = BASE_URL . '/public/img/others/um.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/um.png';
       break;
 
       case '2':
-        $imagens[$i] = BASE_URL . '/public/img/others/dois.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/dois.png';
       break;
 
       case '3':
-        $imagens[$i] = BASE_URL . '/public/img/others/tres.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/tres.png';
       break;
 
       case '4':
-        $imagens[$i] = BASE_URL . '/public/img/others/quatro.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/quatro.png';
       break;
 
       case '5':
-        $imagens[$i] = BASE_URL . '/public/img/others/cinco.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/cinco.png';
       break;
 
       case '6':
-        $imagens[$i] = BASE_URL . '/public/img/others/seis.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/seis.png';
       break;
 
       case '7':
-        $imagens[$i] = BASE_URL . '/public/img/others/sete.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/sete.png';
         break;
 
       case '8':
-        $imagens[$i] = BASE_URL . '/public/img/others/oito.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/oito.png';
       break;
 
       case '9':
-        $imagens[$i] = BASE_URL . '/public/img/others/nove.png';
+        $imagens[$i] = BASE_URL . '/public/img/others/numeros/nove.png';
       break;
 
     }
