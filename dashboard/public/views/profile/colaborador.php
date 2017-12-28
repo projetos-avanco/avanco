@@ -23,8 +23,6 @@
   # chamando função responsável por atualizar a quantidade de moedas na carteira do colaborador
   atualizaCarteira();
 
-  $avancoins = 0;
-
   # chamando função responsável por retornar a quantidade atual de moedas do colaborador
   $avancoins = retornaQuantidadeDeMoedasDaCarteira();
 
@@ -86,7 +84,10 @@
             <div class="col-sm-12"><!-- terceira coluna da linha -->
               <div class="text-center">
                 <p>
-                  <img src="<?php echo BASE_URL; ?>public/img/others/avancoin.png" alt="Avancoins" width="50%" height="45%">
+                  <img src="<?php echo BASE_URL; ?>public/img/others/avancoins/painel.png" alt="Painel de Bitcoins" width="50%" height="45%">
+                  <?php foreach ($avancoins as $avancoin) : ?>
+                    <img src="<?php echo $avancoin; ?>" alt="Avancoins">
+                  <?php endforeach; ?>
                 </p>
               </div>
             </div><!-- terceira coluna da linha -->
