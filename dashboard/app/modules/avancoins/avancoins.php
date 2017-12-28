@@ -129,8 +129,68 @@ function retornaQuantidadeDeMoedasDaCarteira()
   # recuperando id do colaborador
   $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
 
+  # chamando função que retorna a quantidade atual de moedas do colaborador
   $carteira['moedas'] = consultaQuantidadeDeMoedas($db, $carteira);
 
-  return $carteira['moedas'];
+  $imagens = array();
+
+  settype($carteira['moedas'], 'string');
+
+  $contador = strlen($carteira['moedas']);
+
+  # montando array de imagens com o caminho das imagens referente a quantidade de moedas
+  for ($i = 0; $i < $contador; $i++) {
+
+    switch ($carteira['moedas'][$i]) {
+
+      case '-':
+        $imagens[$i] = BASE_URL . '/public/img/others/traco.png';
+      break;
+
+      case '0':
+        $imagens[$i] = BASE_URL . '/public/img/others/zero.png';
+      break;
+
+      case '1':
+        $imagens[$i] = BASE_URL . '/public/img/others/um.png';
+      break;
+
+      case '2':
+        $imagens[$i] = BASE_URL . '/public/img/others/dois.png';
+      break;
+
+      case '3':
+        $imagens[$i] = BASE_URL . '/public/img/others/tres.png';
+      break;
+
+      case '4':
+        $imagens[$i] = BASE_URL . '/public/img/others/quatro.png';
+      break;
+
+      case '5':
+        $imagens[$i] = BASE_URL . '/public/img/others/cinco.png';
+      break;
+
+      case '6':
+        $imagens[$i] = BASE_URL . '/public/img/others/seis.png';
+      break;
+
+      case '7':
+        $imagens[$i] = BASE_URL . '/public/img/others/sete.png';
+        break;
+
+      case '8':
+        $imagens[$i] = BASE_URL . '/public/img/others/oito.png';
+      break;
+
+      case '9':
+        $imagens[$i] = BASE_URL . '/public/img/others/nove.png';
+      break;
+
+    }
+
+  }
+
+  return $imagens;
 
 }
