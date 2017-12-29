@@ -38,95 +38,94 @@
         <div class="row">
           <div class="col-sm-12">
             <h2>Nova Atividade</h2>
+          </div>
+        </div>
 
-            <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_nova_atividade.php" method="post" accept-charset="utf-8">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_nova_atividade.php" method="post" accept-charset="utf-8">
 
-              <hr>
+          <hr>
 
-              <br>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <label for="colaborador">Colaborador*</label>
-                  <select class="form-control required" id="colaborador" name="form[colaborador]">
-                    <option value="0">Selecione um Colaborador</option>
-                  </select>
-                </div>
-              </div>
-
-              <br>
-
-              <div class="row">
-                <div class="col-sm-6">
-                  <label for="atividade">Atividade*</label>
-                  <select class="form-control required" id="atividade" name="form[atividade]">
-                    <option value="0">Selecione uma Atividade</option>
-                    <option value="1">Visita em Cliente</option>
-                    <option value="2">Atendimento Remoto com Relatório (Um Dia)</option>
-                    <option value="3">Atendimento Remoto com Relatório (Meio Dia)</option>
-                    <option value="4">Documento Inserido na Base de Conhecimento</option>
-                    <option value="5">Ausência na Gestão do Conhecimento</option>
-                    <option value="6">SLA fora da Meta (por Protocolo)</option>
-                    <option value="7">Issue (Aguardando Cliente) fora do Padrão</option>
-                  </select>
-                </div>
-
-                <div class="col-sm-3">
-                  <label for="data">Data*</label>
-                  <input class="form-control required" type="date" name="form[data]">
-                </div>
-
-                <div class="col-sm-3">
-                  <label for="horario">Horário*</label>
-                  <input class="form-control required" type="time" name="form[horario]">
-                </div>
-              </div>
-
-              <br>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <label for="observacao">Observação</label>
-                  <textarea class="form-control required" id="observacao" name="form[observacao]" rows="3" cols="30" placeholder="Descreva a observacao..."></textarea>
-                </div>
-              </div>
-
-              <br>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <input class="form-control required" type="hidden" name="form[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-sm-12 text-right">
-                  <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/avancoins/nova_atividade.php">
-                    Limpar Tela
-                  </a>
-                  <button class="btn btn-primary" type="submit">
-                    Gravar Atividade
-                  </button>
-                </div>
-              </div>
-            </form>
-
-            <br>
-
-            <div class="row">
-              <div class="col-sm-12">
-              <?php if (! empty($_SESSION['mensagens']['mensagem']) AND $_SESSION['mensagens']['exibe'] == true) : ?>
-
-                <div class="alert alert-<?php echo $_SESSION['mensagens']['tipo']; ?>" role="alert">
-                  <?php echo $_SESSION['mensagens']['mensagem']; ?>
-                  <?php unset($_SESSION['mensagens']['mensagem'], $_SESSION['mensagens']['tipo']); ?>
-                </div>
-
-              <?php endif; ?>
-              </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <label for="colaborador">Colaborador*</label>
+              <select class="form-control required" id="colaborador" name="form[colaborador]">
+                <option value="0">Selecione um Colaborador</option>
+              </select>
             </div>
-          </div><!-- coluna -->
-        </div><!-- linha -->
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <label for="atividade">Atividade*</label>
+              <select class="form-control required" id="atividade" name="form[atividade]">
+                <option value="0">Selecione uma Atividade</option>
+                <option value="1">Visita em Cliente</option>
+                <option value="2">Atendimento Remoto com Relatório (Um Dia)</option>
+                <option value="3">Atendimento Remoto com Relatório (Meio Dia)</option>
+                <option value="4">Documento Inserido na Base de Conhecimento</option>
+                <option value="5">Ausência na Gestão do Conhecimento</option>
+                <option value="6">SLA fora da Meta (por Protocolo)</option>
+                <option value="7">Issue (Aguardando Cliente) fora do Padrão</option>
+              </select>
+            </div>
+
+            <div class="col-sm-3">
+              <label for="data">Data*</label>
+              <input class="form-control required" type="date" name="form[data]">
+            </div>
+
+            <div class="col-sm-3">
+              <label for="horario">Horário*</label>
+              <input class="form-control required" type="time" name="form[horario]">
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <label for="observacao">Observação</label>
+              <textarea class="form-control required" id="observacao" name="form[observacao]" rows="3" cols="30" placeholder="Descreva a observacao..."></textarea>
+            </div>
+          </div>
+
+          <br>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <input class="form-control required" type="hidden" name="form[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 text-right">
+              <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/avancoins/nova_atividade.php">
+                Limpar Tela
+              </a>
+              <button class="btn btn-primary" type="submit">
+                Gravar Atividade
+              </button>
+            </div>
+          </div>
+        </form>
+
+        <br>
+
+        <div class="row">
+          <div class="col-sm-12">
+          <?php if (! empty($_SESSION['mensagens']['mensagem']) AND $_SESSION['mensagens']['exibe'] == true) : ?>
+
+            <div class="alert alert-<?php echo $_SESSION['mensagens']['tipo']; ?>" role="alert">
+              <?php echo $_SESSION['mensagens']['mensagem']; ?>
+              <?php unset($_SESSION['mensagens']['mensagem'], $_SESSION['mensagens']['tipo']); ?>
+            </div>
+
+          <?php endif; ?>
+          </div>
+        </div>
+
       </div><!-- container -->
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->

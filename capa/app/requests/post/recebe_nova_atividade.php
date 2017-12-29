@@ -4,6 +4,7 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   require '../../../init.php';
+  
   require DIRETORIO_MODULES . 'avancoins/avancoins.php';
 
   $form = array(
