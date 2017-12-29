@@ -49,7 +49,7 @@
             <div class="col-sm-12">
               <label for="colaborador">Colaborador*</label>
               <select class="form-control required" id="colaborador" name="form[colaborador]">
-                <option value="0">Selecione um Colaborador</option>
+                <option value="0" selected>Selecione um Colaborador</option>
               </select>
             </div>
           </div>
@@ -60,7 +60,7 @@
             <div class="col-sm-6">
               <label for="atividade">Atividade*</label>
               <select class="form-control required" id="atividade" name="form[atividade]">
-                <option value="0">Selecione uma Atividade</option>
+                <option value="0" selected>Selecione uma Atividade</option>
                 <option value="1">Visita em Cliente</option>
                 <option value="2">Atendimento Remoto com Relatório (Um Dia)</option>
                 <option value="3">Atendimento Remoto com Relatório (Meio Dia)</option>
