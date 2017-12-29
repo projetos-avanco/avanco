@@ -70,7 +70,7 @@ function insereLogsPercentualQuestionarioInternoForaDaMeta($db, $carteira)
     for ($i = 0; $i < count($arrays); $i++) {
 
       # verificando se o colaborador está com o percentual de perda na meta ou fora da meta
-      if ($arrays[$i]['indice_questionario_interno'] > 0 AND $arrays[$i]['indice_questionario_interno'] <= 99) {
+      if ($arrays[$i]['indice_questionario_interno'] > 0 AND $arrays[$i]['indice_questionario_interno'] < 99) {
 
         $query = '';
         $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 8, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
