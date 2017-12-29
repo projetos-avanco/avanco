@@ -4,13 +4,14 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   require '../../../init.php';
-  
+
   require DIRETORIO_MODULES . 'avancoins/avancoins.php';
 
   $form = array(
     'id_colaborador' => '',
     'id_acao_esporadica' => '',
     'id_supervisor' => '',
+    'data_registro' => date('Y-m-d'),
     'data_acao' => '',
     'horario_acao' => '',
     'observacao' => ''
