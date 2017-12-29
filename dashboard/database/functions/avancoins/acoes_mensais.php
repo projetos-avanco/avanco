@@ -1,7 +1,7 @@
 <?php
 
 /**
- * insere os logs dos colaboradores com percentual de de questionário interno respondido fora da meta no mês anterior
+ * insere os logs dos colaboradores com percentual de questionário interno respondido fora da meta no mês anterior
  * @param - objeto com uma conexão aberta
  * @param - array com os dados da carteira de avancoins
  *
@@ -69,7 +69,7 @@ function insereLogsPercentualQuestionarioInternoForaDaMeta($db, $carteira)
     # inserindo logs de ações mensais
     for ($i = 0; $i < count($arrays); $i++) {
 
-      # verificando se o colaborador está com o percentual de perda na meta ou fora da meta
+      # verificando se o colaborador está com o percentual de questionário interno respondido fora da meta
       if ($arrays[$i]['indice_questionario_interno'] > 0 AND $arrays[$i]['indice_questionario_interno'] < 99) {
 
         $query = '';
@@ -155,7 +155,7 @@ function insereLogsPercentualAvancinoForaDaMeta($db, $carteira)
     # inserindo logs de ações mensais
     for ($i = 0; $i < count($arrays); $i++) {
 
-      # verificando se o colaborador está com o percentual de perda na meta ou fora da meta
+      # verificando se o colaborador está com o percentual avancino fora da meta
       if ($arrays[$i]['indice_avancino'] > 0 AND $arrays[$i]['indice_avancino'] <= 94) {
 
         $query = '';
@@ -250,7 +250,7 @@ function insereLogsPercentualDeFilaAte15Minutos($db, $carteira)
     # inserindo logs de ações mensais
     for ($i = 0; $i < count($arrays); $i++) {
 
-      # verificando se o colaborador está com o percentual de perda na meta ou fora da meta
+      # verificando se o colaborador está com o percentual de fila até 15 minutos na meta ou fora da meta
       if ($arrays[$i]['percentual_fila'] != null AND $arrays[$i]['percentual_fila'] < 50) {
 
         $query = '';
