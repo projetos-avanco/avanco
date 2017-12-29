@@ -39,14 +39,19 @@
         <ul class="nav collapse"  id="submenu2">
         <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 1) : ?>
           <li>
-            <a href="<?php echo BASE_URL; ?>../dashboard/public/views/profile/colaborador.php">
-              <p>Aqui será o Extrato<p>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/avancoins/extrato.php">
+              <p>Extrato<p>
             </a>
           </li>
         <?php elseif(isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/avancoins/nova_atividade.php">
               <p>Atividade<p>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/avancoins/extrato.php">
+              <p>Extrato<p>
             </a>
           </li>
         <?php endif; ?>
