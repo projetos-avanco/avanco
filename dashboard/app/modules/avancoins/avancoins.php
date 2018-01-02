@@ -76,7 +76,7 @@ function atualizaAcoesMensais()
   $carteira = verificaPeriodoAtivo($db, $carteira);
 
   # verificando se o período atual corresponde a janeiro de 2018, em caso positivo, no mês de dezembro de 2017 não terá prêmiações mensais
-  if ($carteira['periodo']['data_inicial'] != '2018-01-01' AND $carteira['periodo']['data_final'] != '2018-01-31') {
+  if ($carteira['periodo_atual']['data_inicial'] != '2018-01-01' AND $carteira['periodo_atual']['data_final'] != '2018-01-31') {
 
     # chamando função que retorna o período do mês anterior
     $carteira = verificaPeriodoAnterior($db, $carteira);
