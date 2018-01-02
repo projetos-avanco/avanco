@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     # verificando se o usuário deseja o relatório completo
     if ($form['data_inicial'] == '' AND $form['data_final'] == '') {
 
-      $form['data_inicial'] = '2017-01-01';
+      $form['data_inicial'] = '2018-01-01';
       $form['data_final']   = date('Y-m-d');
 
     }
