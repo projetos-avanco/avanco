@@ -27,7 +27,19 @@ function criaModeloDeSessaoParaAvancoins()
 
   }
 
-  $_SESSION['avancoins'] = array('extrato' => '');
+  $_SESSION['avancoins'] = array(
+    'form' => array(
+      'colaborador'  => $_POST['form']['colaborador'],
+      'tipo'         => $_POST['form']['tipo'],
+      'data_inicial' => $_POST['form']['data_inicial'],
+      'data_final'   => $_POST['form']['data_final']
+    ),
+    'extrato' => array(
+      'diaria' => '',
+      'mensal' => '',
+      'esporadica' => ''
+    )
+  );
 
 }
 
@@ -58,5 +70,5 @@ function gravaModeloDeSessaoAvancoins($tabela, $tipo)
     break;
 
   }
-  
+
 }
