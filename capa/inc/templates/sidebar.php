@@ -55,6 +55,11 @@
             </a>
           </li>
         <?php endif; ?>
+        <li>
+          <a href="<?php echo BASE_URL; ?>../loja/public/index.php" target="_blank">
+            <p>Loja<p>
+          </a>
+        </li>
         </ul>
       </li>
 
