@@ -75,15 +75,20 @@ function atualizaAcoesMensais()
   # chamando função que retorna o período do mês atual
   $carteira = verificaPeriodoAtivo($db, $carteira);
 
-  # chamando função que retorna o período do mês anterior
-  $carteira = verificaPeriodoAnterior($db, $carteira);
+  # verificando se o período atual corresponde a janeiro de 2018, em caso positivo, no mês de dezembro de 2017 não terá prêmiações mensais
+  if ($carteira['periodo']['data_inicial'] != '2018-01-01' AND $carteira['periodo']['data_final'] != '2018-01-31') {
 
-  # verificando se a data atual é igual ou maior que a data final do período anterior (para inserir os logs de ações mensais)
-  if ($carteira['data_atual'] == $carteira['periodo_anterior']['data_final'] OR
-      $carteira['data_atual'] > $carteira['periodo_anterior']['data_final']) {
+    # chamando função que retorna o período do mês anterior
+    $carteira = verificaPeriodoAnterior($db, $carteira);
 
-    # chamando função que consulta todas as ações mensais do colaborador no período anterior
-    consultaAcoesMensais($db, $carteira);
+    # verificando se a data atual é igual ou maior que a data final do período anterior (para inserir os logs de ações mensais)
+    if ($carteira['data_atual'] == $carteira['periodo_anterior']['data_final'] OR
+        $carteira['data_atual'] > $carteira['periodo_anterior']['data_final']) {
+
+      # chamando função que consulta todas as ações mensais do colaborador no período anterior
+      consultaAcoesMensais($db, $carteira);
+
+    }
 
   }
 

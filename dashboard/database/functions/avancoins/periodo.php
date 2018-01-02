@@ -7,8 +7,6 @@
  */
 function verificaPeriodoAtivo($db, $carteira)
 {
-  $carteira['mes_atual'] = '10';# RETIRAR
-
   # consulta que retorna o id do período ativo na tabela períodos
   $query = "SELECT id FROM av_avancoins_periodos WHERE (ativo = 1);";
 
