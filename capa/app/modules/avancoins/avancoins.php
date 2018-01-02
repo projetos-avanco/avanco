@@ -70,10 +70,13 @@ function geraExtratoAvancoins($form)
     $valoresTotaisDasAcoes['acoes_mensais']     = geraExtratoDeAcoesMensaisSimplificado($db, $form);
     $valoresTotaisDasAcoes['acoes_esporadicas'] = geraExtratoDeAcoesEsporadicasSimplificado($db, $form);
 
+    # chamando função que cria uma tabela de extrato com os totais das ações do colaborador
     $tabelaTotais = criaTabelaDeTotais($valoresTotaisDasAcoes);
 
+    # chamando função que cria um array modelo para receber os dados do módulo avancoins
     criaModeloDeSessaoParaAvancoins();
 
+    # chamando função que grava os dados do módulo avancoins na sessão
     gravaModeloDeSessaoAvancoins($tabelaTotais, 'totais');
 
   } elseif ($form['tipo'] == 2) {
@@ -88,14 +91,16 @@ function geraExtratoAvancoins($form)
     $valoresTotaisDasAcoes['acoes_mensais']     = somaValoresDasAcoes($acoesMensais);
     $valoresTotaisDasAcoes['acoes_esporadicas'] = somaValoresDasAcoes($acoesEsporadicas);
 
+    # chamando funções que criam tabelas de extratos com os totais das ações do colaborador
     $tabelaDiaria     = criaTabelaDeAcoesDiarias($acoesDiarias, $valoresTotaisDasAcoes['acoes_diarias']);
     $tabelaMensal     = criaTabelaDeAcoesMensais($acoesMensais, $valoresTotaisDasAcoes['acoes_mensais']);
     $tabelaEsporadica = criaTabelaDeAcoesEsporadicas($acoesEsporadicas, $valoresTotaisDasAcoes['acoes_esporadicas']);
+    $tabelaTotais     = criaTabelaDeTotais($valoresTotaisDasAcoes);
 
-    $tabelaTotais = criaTabelaDeTotais($valoresTotaisDasAcoes);
-
+    # chamando função que cria um array modelo para receber os dados do módulo avancoins
     criaModeloDeSessaoParaAvancoins();
 
+    # chamando função que grava os dados do módulo avancoins na sessão
     gravaModeloDeSessaoAvancoins($tabelaDiaria, 'diaria');
     gravaModeloDeSessaoAvancoins($tabelaMensal, 'mensal');
     gravaModeloDeSessaoAvancoins($tabelaEsporadica, 'esporadica');
@@ -105,6 +110,7 @@ function geraExtratoAvancoins($form)
 
   fecha_conexao($db);
 
+  # redirecionando usuário para a página de extrato.
   header('Location: ' . BASE_URL . 'public/views/avancoins/extrato.php');
 
 }
