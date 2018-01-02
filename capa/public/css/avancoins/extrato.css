@@ -9,6 +9,12 @@
   font-weight: bold;
 }
 
+/* DESTACANDO CAMPOS OBRIGATÓRIOS DO FORMULÁRIO DE EXTRATO */
+.erro {
+  border: 2px solid red;
+}
+
+/* ESTILIZANDO TABELAS DE EXTRATO */ 
 table tbody tr td {
   font-size: 0.89em;
   height: 1.0em;

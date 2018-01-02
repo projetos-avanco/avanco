@@ -49,30 +49,65 @@
             <div class="row">
               <div class="col-sm-6">
                 <label for="tipo">Tipo*</label>
-                <select class="form-control required" name="form[tipo]">
-                  <option value="0" selected>Selecione o Tipo do Relatório</option>
-                  <option value="1">Relatório Simplificado</option>
-                  <option value="2">Relatório Detalhado</option>
-                </select>
+                <?php if (isset($_SESSION['avancoins']['form'])) : ?>
+
+                  <?php if ($_SESSION['avancoins']['form']['tipo'] == '1') : ?>
+                    <select class="form-control required" name="form[tipo]">
+                      <option value="0">Selecione o Tipo do Relatório</option>
+                      <option value="1" selected>Relatório Simplificado</option>
+                      <option value="2">Relatório Detalhado</option>
+                    </select>
+
+                  <?php elseif ($_SESSION['avancoins']['form']['tipo'] == '2') : ?>
+                    <select class="form-control required" name="form[tipo]">
+                      <option value="0">Selecione o Tipo do Relatório</option>
+                      <option value="1">Relatório Simplificado</option>
+                      <option value="2" selected>Relatório Detalhado</option>
+                    </select>
+
+                  <?php endif; ?>
+
+                <?php else : ?>
+                  <select class="form-control required" name="form[tipo]">
+                    <option value="0" selected>Selecione o Tipo do Relatório</option>
+                    <option value="1">Relatório Simplificado</option>
+                    <option value="2">Relatório Detalhado</option>
+                  </select>
+                <?php endif; ?>
+
                 <p id="aviso">
                   <small>Para emitir o extrato desde o início não preencha as datas inicial e final.</small>
                 </p>
               </div>
 
+              <?php if (isset($_SESSION['avancoins']['form'])) : ?>
+                <div class="col-sm-3">
+                  <label for="data_inicial">Data Inicial</label>
+                  <input class="form-control" type="date" name="form[data_inicial]" value="<?php echo $_SESSION['avancoins']['form']['data_inicial']; ?>">
+                </div>
+
+                <div class="col-sm-3">
+                  <label for="data_final">Data Final</label>
+                  <input class="form-control" type="date" name="form[data_final]" value="<?php echo $_SESSION['avancoins']['form']['data_final']; ?>">
+                </div>
+              </div>
+
+            <?php else : ?>
               <div class="col-sm-3">
                 <label for="data_inicial">Data Inicial</label>
-                <input class="form-control required" type="date" name="form[data_inicial]">
+                <input class="form-control" type="date" name="form[data_inicial]">
               </div>
 
               <div class="col-sm-3">
                 <label for="data_final">Data Final</label>
-                <input class="form-control required" type="date" name="form[data_final]">
+                <input class="form-control" type="date" name="form[data_final]">
               </div>
             </div>
+            <?php endif; ?>
 
             <div class="row">
               <div class="col-sm-12">
-                <input class="form-control required" type="hidden" name="form[colaborador]" value="<?php echo $_SESSION['usuario']['id']; ?>">
+                <input class="form-control" type="hidden" name="form[colaborador]" value="<?php echo $_SESSION['usuario']['id']; ?>">
               </div>
             </div>
           <?php elseif ($_SESSION['usuario']['nivel'] == 2) : ?>
@@ -90,34 +125,70 @@
             <div class="row">
               <div class="col-sm-6">
                 <label for="tipo">Tipo*</label>
-                <select class="form-control required" name="form[tipo]">
-                  <option value="0" selected>Selecione o Tipo do Relatório</option>
-                  <option value="1">Relatório Simplificado</option>
-                  <option value="2">Relatório Detalhado</option>
-                </select>
+                <?php if (isset($_SESSION['avancoins']['form'])) : ?>
+
+                  <?php if ($_SESSION['avancoins']['form']['tipo'] == '1') : ?>
+                    <select class="form-control required" name="form[tipo]">
+                      <option value="0">Selecione o Tipo do Relatório</option>
+                      <option value="1" selected>Relatório Simplificado</option>
+                      <option value="2">Relatório Detalhado</option>
+                    </select>
+
+                  <?php elseif ($_SESSION['avancoins']['form']['tipo'] == '2') : ?>
+                    <select class="form-control required" name="form[tipo]">
+                      <option value="0">Selecione o Tipo do Relatório</option>
+                      <option value="1">Relatório Simplificado</option>
+                      <option value="2" selected>Relatório Detalhado</option>
+                    </select>
+
+                  <?php endif; ?>
+
+                <?php else : ?>
+                  <select class="form-control required" name="form[tipo]">
+                    <option value="0" selected>Selecione o Tipo do Relatório</option>
+                    <option value="1">Relatório Simplificado</option>
+                    <option value="2">Relatório Detalhado</option>
+                  </select>
+                <?php endif; ?>
+
                 <p id="aviso">
                   <small>Para emitir o extrato desde o início não preencha as datas inicial e final.</small>
                 </p>
               </div>
 
+              <?php if (isset($_SESSION['avancoins']['form'])) : ?>
+                <div class="col-sm-3">
+                  <label for="data_inicial">Data Inicial</label>
+                  <input class="form-control" type="date" name="form[data_inicial]" value="<?php echo $_SESSION['avancoins']['form']['data_inicial']; ?>">
+                </div>
+
+                <div class="col-sm-3">
+                  <label for="data_final">Data Final</label>
+                  <input class="form-control" type="date" name="form[data_final]" value="<?php echo $_SESSION['avancoins']['form']['data_final']; ?>">
+                </div>
+              </div>
+
+            <?php else : ?>
               <div class="col-sm-3">
                 <label for="data_inicial">Data Inicial</label>
-                <input class="form-control required" type="date" name="form[data_inicial]">
+                <input class="form-control" type="date" name="form[data_inicial]">
               </div>
 
               <div class="col-sm-3">
                 <label for="data_final">Data Final</label>
-                <input class="form-control required" type="date" name="form[data_final]">
+                <input class="form-control" type="date" name="form[data_final]">
               </div>
             </div>
+            <?php endif; ?>
+
           <?php endif; ?>
 
           <br>
 
           <div class="row">
             <div class="col-sm-12 text-right">
-              <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/avancoins/extrato.php">
-                Limpar Tela
+              <a class="btn btn-default" href="<?php echo BASE_URL; ?>app/helpers/avancoins/limpa_extrato_avancoins.php">
+                Limpar Extrato
               </a>
               <button class="btn btn-primary" type="submit">
                 Gerar Extrato
@@ -156,6 +227,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/avancoins/validacao_extrato_avancoins.js"></script>
 </body>
 </html>
 

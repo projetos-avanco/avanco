@@ -79,4 +79,53 @@ function consultaColaboradores($options, $db)
   $db->close();
 
   return $options;
+
+}
+
+/**
+ * consulta e retorna nome colaborador
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do colaborador
+ */
+function consultaNomeDoColaborador($db, $id)
+{
+  $query =
+    "SELECT
+      name AS nome
+    FROM lh_users
+    WHERE id = $id";
+
+  if ($resultado = $db->query($query)) {
+
+    $nome = $resultado->fetch_row();
+    $nome = $nome[0];
+
+  }
+
+  return $nome;
+
+}
+
+/**
+ * consulta e retorna sobrenome colaborador
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do colaborador
+ */
+function consultaSobrenomeDoColaborador($db, $id)
+{
+  $query =
+    "SELECT
+      surname AS sobrenome
+    FROM lh_users
+    WHERE id = $id";
+
+  if ($resultado = $db->query($query)) {
+
+    $sobrenome = $resultado->fetch_row();
+    $sobrenome = $sobrenome[0];
+
+  }
+
+  return $sobrenome;
+
 }

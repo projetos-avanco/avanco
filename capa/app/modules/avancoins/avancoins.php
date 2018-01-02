@@ -44,6 +44,7 @@ function gravaNovaAtividadeEsporadica($form)
  */
 function geraExtratoAvancoins($form)
 {
+  require DIRETORIO_FUNCTIONS . 'avancoins/colaboradores.php';
   require DIRETORIO_FUNCTIONS . 'avancoins/relatorio_simplificado.php';
   require DIRETORIO_FUNCTIONS . 'avancoins/relatorio_detalhado.php';
   require DIRETORIO_FUNCTIONS . 'avancoins/tabelas_relatorios.php';
@@ -59,8 +60,22 @@ function geraExtratoAvancoins($form)
     'acoes_esporadicas' => 0
   );
 
+  $nivel = $_SESSION['usuario']['nivel'];
+
   # abrindo conexão com a base de dados
   $db = abre_conexao();
+
+  # verificando se o usuário é um supervisor, caso seja, recuperando o nome e sobrenome do colaborador selecionado
+  if ($nivel == 2) {
+
+    # chamando funções que retoram nome e sobrenome do colaborador selecionado
+    $nome      = consultaNomeDoColaborador($db, $_POST['form']['colaborador']);
+    $sobrenome = consultaSobrenomeDoColaborador($db, $_POST['form']['colaborador']);
+
+  }
+
+  # chamando função que cria um array modelo para receber os dados do módulo avancoins
+  criaModeloDeSessaoParaAvancoins();
 
   # verificando se o usuário solicitou um relatório simples ou detalhado (1 - Simples 2 - Detalhado)
   if ($form['tipo'] == 1) {
@@ -71,10 +86,7 @@ function geraExtratoAvancoins($form)
     $valoresTotaisDasAcoes['acoes_esporadicas'] = geraExtratoDeAcoesEsporadicasSimplificado($db, $form);
 
     # chamando função que cria uma tabela de extrato com os totais das ações do colaborador
-    $tabelaTotais = criaTabelaDeTotais($valoresTotaisDasAcoes);
-
-    # chamando função que cria um array modelo para receber os dados do módulo avancoins
-    criaModeloDeSessaoParaAvancoins();
+    $tabelaTotais = criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome, $sobrenome);
 
     # chamando função que grava os dados do módulo avancoins na sessão
     gravaModeloDeSessaoAvancoins($tabelaTotais, 'totais');
@@ -95,10 +107,7 @@ function geraExtratoAvancoins($form)
     $tabelaDiaria     = criaTabelaDeAcoesDiarias($acoesDiarias, $valoresTotaisDasAcoes['acoes_diarias']);
     $tabelaMensal     = criaTabelaDeAcoesMensais($acoesMensais, $valoresTotaisDasAcoes['acoes_mensais']);
     $tabelaEsporadica = criaTabelaDeAcoesEsporadicas($acoesEsporadicas, $valoresTotaisDasAcoes['acoes_esporadicas']);
-    $tabelaTotais     = criaTabelaDeTotais($valoresTotaisDasAcoes);
-
-    # chamando função que cria um array modelo para receber os dados do módulo avancoins
-    criaModeloDeSessaoParaAvancoins();
+    $tabelaTotais     = criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome, $sobrenome);
 
     # chamando função que grava os dados do módulo avancoins na sessão
     gravaModeloDeSessaoAvancoins($tabelaDiaria, 'diaria');
