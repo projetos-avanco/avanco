@@ -3,3 +3,17 @@
   font-weight: bold;
   margin: 0 0 0 0;
 }
+
+/* DESTACANDO TOTAL DE MOEDAS NAS TABELAS DE EXTRATO */
+.destaque {
+  font-weight: bold;
+}
+
+table tbody tr td {
+  font-size: 0.89em;
+  height: 1.0em;
+}
+
+.table tbody tr td {
+  vertical-align: middle;
+}

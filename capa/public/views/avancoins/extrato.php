@@ -130,8 +130,11 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <?php if (isset($_SESSION['avancoins']['extrato'])) : ?>
-              <?php echo ($_SESSION['avancoins']['extrato']); ?>
+            <?php if (isset($_SESSION['avancoins'])) : ?>
+              <?php echo ($_SESSION['avancoins']['extrato']['totais']); ?>
+              <?php echo ($_SESSION['avancoins']['extrato']['esporadica']); ?>
+              <?php echo ($_SESSION['avancoins']['extrato']['mensal']); ?>
+              <?php echo ($_SESSION['avancoins']['extrato']['diaria']); ?>              
             <?php endif; ?>
           </div>
         </div>

@@ -46,6 +46,7 @@ function geraExtratoAvancoins($form)
 {
   require DIRETORIO_FUNCTIONS . 'avancoins/relatorio_simplificado.php';
   require DIRETORIO_FUNCTIONS . 'avancoins/relatorio_detalhado.php';
+  require DIRETORIO_FUNCTIONS . 'avancoins/tabelas_relatorio_detalhado.php';
   require DIRETORIO_MODELS    . 'sessao.php';
 
   $acoesDiarias     = array();
@@ -57,9 +58,6 @@ function geraExtratoAvancoins($form)
     'acoes_mensais'     => 0,
     'acoes_esporadicas' => 0
   );
-
-  $tabela = '';
-  $linhas = '';
 
   # abrindo conexão com a base de dados
   $db = abre_conexao();
@@ -82,42 +80,18 @@ function geraExtratoAvancoins($form)
     $valoresTotaisDasAcoes['acoes_mensais']     = somaValoresDasAcoes($acoesMensais);
     $valoresTotaisDasAcoes['acoes_esporadicas'] = somaValoresDasAcoes($acoesEsporadicas);
 
-    $tabela .=
-      "<table class='table'>
-        <thead>
-          <tr>
-            <th class='text-center'>data_acao</th>
-            <th class='text-center'>horario_acao</th>
-            <th class='text-center'>id_chat</th>
-            <th class='text-center'>descricao</th>
-            <th class='text-center'>valor</th>
-          </tr>
-        </thead>
+    $tabelaDiaria     = criaTabelaDeAcoesDiarias($acoesDiarias, $valoresTotaisDasAcoes['acoes_diarias']);
+    $tabelaMensal     = criaTabelaDeAcoesMensais($acoesMensais, $valoresTotaisDasAcoes['acoes_mensais']);
+    $tabelaEsporadica = criaTabelaDeAcoesEsporadicas($acoesEsporadicas, $valoresTotaisDasAcoes['acoes_esporadicas']);
 
-        <tbody>";
-
-    foreach ($acoesDiarias as $acaoDiaria) {
-
-      $linhas .=
-        "<tr>
-          <td class='text-center' width='10%'>{$acaoDiaria['data_acao']}</td>
-          <td class='text-center'>{$acaoDiaria['horario_acao']}</td>
-          <td class='text-center'>{$acaoDiaria['id_chat']}</td>
-          <td class='text-center' width='20%'>{$acaoDiaria['descricao']}</td>
-          <td class='text-center'>{$acaoDiaria['valor']}</td>
-        </tr>";
-
-    }
-
-    $tabela .= $linhas;
-
-    $tabela .=
-      "</tbody>
-    </table>";
+    $tabelaTotais = criaTabelaDeTotais($valoresTotaisDasAcoes);
 
     criaModeloDeSessaoParaAvancoins();
 
-    gravaModeloDeSessaoAvancoins($tabela);
+    gravaModeloDeSessaoAvancoins($tabelaDiaria, 'diaria');
+    gravaModeloDeSessaoAvancoins($tabelaMensal, 'mensal');
+    gravaModeloDeSessaoAvancoins($tabelaEsporadica, 'esporadica');
+    gravaModeloDeSessaoAvancoins($tabelaTotais, 'totais');
 
   }
 

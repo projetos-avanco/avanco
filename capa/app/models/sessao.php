@@ -33,12 +33,30 @@ function criaModeloDeSessaoParaAvancoins()
 
 /**
  * grava os dados do módulo avancoins na sessão
- * @param - array com as ações diárias do colaborador
- * @param - array com as ações mensais do colaborador
- * @param - array com as ações esporádicas do colaborador
- * @param - array com os valores totais das ações do colaborador
+ * @param - string com uma tabela html
+ * @param - string com o tipo de tabela html (pode ser diária, mensal, esporádica ou totais)
  */
-function gravaModeloDeSessaoAvancoins($tabela)
+function gravaModeloDeSessaoAvancoins($tabela, $tipo)
 {
-  $_SESSION['avancoins']['extrato'] = $tabela;
+  # separando extratos por tipo
+  switch ($tipo) {
+
+    case 'diaria':
+      $_SESSION['avancoins']['extrato']['diaria'] = $tabela;
+    break;
+
+    case 'mensal':
+      $_SESSION['avancoins']['extrato']['mensal'] = $tabela;
+    break;
+
+    case 'esporadica':
+      $_SESSION['avancoins']['extrato']['esporadica'] = $tabela;
+    break;
+
+    case 'totais':
+      $_SESSION['avancoins']['extrato']['totais'] = $tabela;
+    break;
+
+  }
+  
 }

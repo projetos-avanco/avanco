@@ -30,7 +30,7 @@ function geraExtratoDeAcoesDiariasDetalhado($db, $form)
 {
   $query =
     "SELECT
-  		adl.data_acao,
+  		DATE_FORMAT(adl.data_acao, '%d/%m/%Y') AS data_acao,
   		adl.horario_acao,
   		adl.id_chat,
   		ad.descricao,
@@ -75,7 +75,7 @@ function geraExtratoDeAcoesMensaisDetalhado($db, $form)
 {
   $query =
     "SELECT
-      aml.data_acao,
+      DATE_FORMAT(aml.data_acao, '%d/%m/%Y') AS data_acao,
       aml.horario_acao,
       am.descricao,
       am.valor
@@ -118,10 +118,10 @@ function geraExtratoDeAcoesEsporadicasDetalhado($db, $form)
 {
   $query =
     "SELECT
-      ael.data_acao,
+      DATE_FORMAT(ael.data_acao, '%d/%m/%Y') AS data_acao,
       ael.horario_acao,
       CONCAT(lu.name, ' ', lu.surname) AS supervisor,
-      ael.data_registro,
+      DATE_FORMAT(ael.data_registro, '%d/%m/%Y') AS data_registro,
       ael.observacao,
       ae.descricao,
       ae.valor
