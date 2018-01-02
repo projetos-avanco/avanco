@@ -16,7 +16,8 @@ unset (
   $_SESSION['colaborador'],
   $_SESSION['navegador'],
   $_SESSION['mensagens'],
-  $_SESSION['usuario']
+  $_SESSION['usuario'],
+  $_SESSION['avancoins']
 );
 
 # redirecionando
