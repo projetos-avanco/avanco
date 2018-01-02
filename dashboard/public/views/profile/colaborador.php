@@ -480,6 +480,7 @@
   <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>libs/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js"></script>
   <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/bootstrap-datepicker/calendario.js"></script>
+  <script type="text/javascript" src="<?php echo BASE_URL; ?>public/js/avancoins/atualizacao_automatica.js"></script>
 
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
