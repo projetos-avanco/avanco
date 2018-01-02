@@ -46,7 +46,7 @@ function geraExtratoAvancoins($form)
 {
   require DIRETORIO_FUNCTIONS . 'avancoins/relatorio_simplificado.php';
   require DIRETORIO_FUNCTIONS . 'avancoins/relatorio_detalhado.php';
-  require DIRETORIO_FUNCTIONS . 'avancoins/tabelas_relatorio_detalhado.php';
+  require DIRETORIO_FUNCTIONS . 'avancoins/tabelas_relatorios.php';
   require DIRETORIO_MODELS    . 'sessao.php';
 
   $acoesDiarias     = array();
@@ -65,8 +65,16 @@ function geraExtratoAvancoins($form)
   # verificando se o usuário solicitou um relatório simples ou detalhado (1 - Simples 2 - Detalhado)
   if ($form['tipo'] == 1) {
 
-    # gera um extrato avancoins simples
-    geraExtratoAvancoinsSimples($db, $form, $acoesDiarias, $acoesMensais, $acoesEsporadicas);
+    # chamando funções que geram extratos das ações registradas nas tabelas de logs
+    $valoresTotaisDasAcoes['acoes_diarias']     = geraExtratoDeAcoesDiariasSimplificado($db, $form);
+    $valoresTotaisDasAcoes['acoes_mensais']     = geraExtratoDeAcoesMensaisSimplificado($db, $form);
+    $valoresTotaisDasAcoes['acoes_esporadicas'] = geraExtratoDeAcoesEsporadicasSimplificado($db, $form);
+
+    $tabelaTotais = criaTabelaDeTotais($valoresTotaisDasAcoes);
+
+    criaModeloDeSessaoParaAvancoins();
+
+    gravaModeloDeSessaoAvancoins($tabelaTotais, 'totais');
 
   } elseif ($form['tipo'] == 2) {
 

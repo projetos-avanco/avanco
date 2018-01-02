@@ -72,7 +72,7 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <input class="form-control required" type="hidden" name="form['colaborador']" value="<?php echo $_SESSION['usuario']['id']; ?>">
+                <input class="form-control required" type="hidden" name="form[colaborador]" value="<?php echo $_SESSION['usuario']['id']; ?>">
               </div>
             </div>
           <?php elseif ($_SESSION['usuario']['nivel'] == 2) : ?>
@@ -132,9 +132,16 @@
           <div class="col-sm-12">
             <?php if (isset($_SESSION['avancoins'])) : ?>
               <?php echo ($_SESSION['avancoins']['extrato']['totais']); ?>
-              <?php echo ($_SESSION['avancoins']['extrato']['esporadica']); ?>
-              <?php echo ($_SESSION['avancoins']['extrato']['mensal']); ?>
-              <?php echo ($_SESSION['avancoins']['extrato']['diaria']); ?>              
+
+              <?php if (isset($_SESSION['avancoins']['extrato']['esporadica']) AND
+                        isset($_SESSION['avancoins']['extrato']['mensal'])     AND
+                        isset($_SESSION['avancoins']['extrato']['diaria'])) : ?>
+
+                <?php echo ($_SESSION['avancoins']['extrato']['esporadica']); ?>
+                <?php echo ($_SESSION['avancoins']['extrato']['mensal']); ?>
+                <?php echo ($_SESSION['avancoins']['extrato']['diaria']); ?>
+
+              <?php endif; ?>
             <?php endif; ?>
           </div>
         </div>
