@@ -60,46 +60,46 @@
             <table class="table"><!-- painel do suporte -->
               <thead>
                 <tr>
-                  <th class="text-center">Data</th>
-                  <th class="text-center">Ticket</th>
-                  <th class="text-center">Chat</th>
-                  <th class="text-center">Válido</th>
-                  <th class="text-center">Contato</th>
-                  <th class="text-center">CNPJ</th>
-                  <th class="text-center">Razão Social</th>
-                  <th class="text-center" width="8%">Gerado</th>
-                  <th class="text-center" width="8%">Agendado</th>
-                  <th class="text-center" width="7%">Produto</th>
-                  <th class="text-center" width="10%">Módulo</th>
-                  <th class="text-center" width="10%">Assunto</th>
-                <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
-                  <th class="text-center"></th>
-                  <th class="text-center"></th>
-                <?php endif; ?>
+                  <th class="text-left">Data</th>
+                  <th class="text-left">Ticket</th>
+                  <th class="text-left">Chat</th>
+                  <th class="text-left">Válido</th>
+                  <th class="text-left">Contato</th>
+                  <th class="text-left">CNPJ</th>
+                  <th class="text-left">Razão Social</th>
+                  <th class="text-left">Gerado</th>
+                  <th class="text-left">Agendado</th>
+                  <th class="text-left">Produto</th>
+                  <th class="text-left">Módulo</th>
+                  <th class="text-left">Assunto</th>
+                  <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
+                    <th class="text-left"></th>
+                    <th class="text-left"></th>
+                  <?php endif; ?>
                 </tr>
               </thead>
               <tbody>
               <?php foreach($tickets as $ticket) : ?>
                 <tr>
-                  <td class="text-left"><?php   echo $ticket['data']; ?></td>
-                  <td class="text-center"><?php echo $ticket['ticket']; ?></td>
-                  <td class="text-center"><?php echo $ticket['chat_id']; ?></td>
-                  <td class="text-center"><?php echo $ticket['validade']; ?></td>
-                  <td class="text-center"><?php echo $ticket['contato']; ?></td>
-                  <td class="text-left"><?php   echo $ticket['cnpj']; ?></td>
-                  <td class="text-left"><?php   echo $ticket['razao_social']; ?></td>
-                  <td class="text-center"><?php echo $ticket['supervisor']; ?></td>
-                  <td class="text-center"><?php echo $ticket['colaborador']; ?></td>
-                  <td class="text-center"><?php echo $ticket['produto']; ?></td>
-                  <td class="text-center"><?php echo $ticket['modulo']; ?></td>
+                  <td class="text-left" width="8%"><?php echo $ticket['data']; ?></td>
+                  <td class="text-left"><?php echo $ticket['ticket']; ?></td>
+                  <td class="text-left"><?php echo $ticket['chat_id']; ?></td>
+                  <td class="text-left"><?php echo $ticket['validade']; ?></td>
+                  <td class="text-left"><?php echo $ticket['contato']; ?></td>
+                  <td class="text-left"><?php echo $ticket['cnpj']; ?></td>
+                  <td class="text-left"><?php echo $ticket['razao_social']; ?></td>
+                  <td class="text-left" width="11%"><?php echo $ticket['supervisor']; ?></td>
+                  <td class="text-left" width="10%"><?php echo $ticket['colaborador']; ?></td>
+                  <td class="text-left" width="9%"><?php echo $ticket['produto']; ?></td>
+                  <td class="text-left" width="10%"><?php echo $ticket['modulo']; ?></td>
                   <td class="text-justify"><?php echo $ticket['assunto']; ?></td>
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
-                  <td class="text-center">
+                  <td class="text-left">
                     <a class="btn btn-sm btn-warning" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
                       <i class="fa fa-check-circle" aria-hidden="true"></i> Invalidar
                     </a>
                   </td>
-                  <td class="text-center">
+                  <td class="text-left">
                     <a class="btn btn-sm btn-danger" onclick="confirmaExclusaoTicket();">
                       <i class="fa fa-times-circle" aria-hidden="true"></i> Deletar
                     </a>
