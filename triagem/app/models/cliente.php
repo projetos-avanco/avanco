@@ -14,7 +14,8 @@ function criaModeloDeCliente()
     'produto'        => '',
     'modulo'         => '',
     'duvida'         => '',
-    'departamento'   => '0'
+    'departamento'   => '0',
+    'telefone'       => ''
   );
 
   return $cliente;
