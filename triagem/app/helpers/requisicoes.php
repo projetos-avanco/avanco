@@ -11,8 +11,8 @@ function confirmaEnvioDosDadosDoCliente()
     ! empty($_POST['cliente']['nome_usuario'])   AND
     ! empty($_POST['cliente']['cnpj'])           AND
     ! empty($_POST['cliente']['conta_contrato']) AND
-    ! empty($_POST['cliente']['razao_social'])
-  ) {
+    ! empty($_POST['cliente']['razao_social'])   AND
+    ! empty($_POST['cliente']['telefone'])) {
 
       return true;
 
@@ -59,6 +59,7 @@ function recuperaDados($array, $metodo)
       $array['produto']        = $valor['produto'];
       $array['modulo']         = $valor['modulo'];
       $array['duvida']         = ucwords($valor['duvida']);
+      $array['telefone']       = $valor['telefone'];
 
       break;
 
