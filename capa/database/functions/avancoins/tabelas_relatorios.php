@@ -13,8 +13,7 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
   if ($nivel == 1) {
 
     $tabela .=
-      "<h5 class='text-center'>Resumo de Atividades</h5>
-      <br>
+      "<br><h4 class='text-center'>Resumo de Atividades</h4><br>
       <table class='table'>
         <thead>
           <tr>
@@ -29,8 +28,7 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
   } else {
 
     $tabela .=
-      "<h5 class='text-center'>Resumo de Atividades de {$nome} {$sobrenome}</h5>
-      <br>
+      "<br><h4 class='text-center'>Resumo de Atividades de {$nome} {$sobrenome}</h4><br>
       <table class='table'>
         <thead>
           <tr>
@@ -83,8 +81,7 @@ function criaTabelaDeAcoesDiarias($acoesDiarias, $valorTotalAcao)
   $linhas = '';
 
   $tabela .=
-    "<h5 class='text-center'>Atividades Diárias</h5>
-    <br>
+    "<br><h4 class='text-center'>Atividades Diárias</h4><br>
     <table class='table'>
     <thead>
         <tr>
@@ -140,8 +137,7 @@ function criaTabelaDeAcoesMensais($acoesMensais, $valorTotalAcao)
   $linhas = '';
 
   $tabela .=
-    "<h5 class='text-center'>Atividades Mensais</h5>
-    <br>
+    "<br><h4 class='text-center'>Atividades Mensais</h4><br>
     <table class='table'>
       <thead>
         <tr>
@@ -194,8 +190,7 @@ function criaTabelaDeAcoesEsporadicas($acoesEsporadicas, $valorTotalAcao)
   $linhas = '';
 
   $tabela .=
-    "<h5 class='text-center'>Atividades Esporádicas</h5>
-    <br>
+    "<br><h4 class='text-center'>Atividades Esporádicas</h4><br>
     <table class='table'>
       <thead>
         <tr>
