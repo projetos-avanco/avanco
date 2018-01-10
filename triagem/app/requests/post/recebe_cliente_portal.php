@@ -1,6 +1,6 @@
 <?php
 
-# verificando se foi enviado uma requisição via método POST pelo portal avanço
+# verificando se foi enviado uma requisição via método POST pelo portal avanço ou Novo ERP
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   require '../../../init.php';
