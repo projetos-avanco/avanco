@@ -14,7 +14,8 @@ function criaSessaoDeCliente($array)
     'razao_social'   => $array['razao_social'],
     'produto'        => $array['produto'],
     'modulo'         => $array['modulo'],
-    'duvida'         => $array['duvida']
+    'duvida'         => $array['duvida'],
+    'telefone'       => $array['telefone']
   );
 }
 
