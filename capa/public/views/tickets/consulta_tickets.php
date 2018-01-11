@@ -63,10 +63,11 @@
                   <th class="text-left">Data</th>
                   <th class="text-left">Ticket</th>
                   <th class="text-left">Chat</th>
-                  <th class="text-left">Válido</th>
+                  <th class="text-left">Validade</th>
                   <th class="text-left">Contato</th>
+                  <th class="text-left">Telefone</th>
                   <th class="text-left">CNPJ</th>
-                  <th class="text-left">Razão Social</th>
+                  <th class="text-left">Empresa</th>                  
                   <th class="text-left">Gerado</th>
                   <th class="text-left">Agendado</th>
                   <th class="text-left">Produto</th>
@@ -81,17 +82,18 @@
               <tbody>
               <?php foreach($tickets as $ticket) : ?>
                 <tr>
-                  <td class="text-left" width="8%"><?php echo $ticket['data']; ?></td>
+                  <td class="text-left" width="5%"><?php echo $ticket['data']; ?></td>
                   <td class="text-left"><?php echo $ticket['ticket']; ?></td>
                   <td class="text-left"><?php echo $ticket['chat_id']; ?></td>
                   <td class="text-left"><?php echo $ticket['validade']; ?></td>
                   <td class="text-left"><?php echo $ticket['contato']; ?></td>
+                  <td class="text-left" width="8%"><?php echo $ticket['telefone']; ?></td>
                   <td class="text-left"><?php echo $ticket['cnpj']; ?></td>
-                  <td class="text-left"><?php echo $ticket['razao_social']; ?></td>
-                  <td class="text-left" width="11%"><?php echo $ticket['supervisor']; ?></td>
-                  <td class="text-left" width="10%"><?php echo $ticket['colaborador']; ?></td>
-                  <td class="text-left" width="9%"><?php echo $ticket['produto']; ?></td>
-                  <td class="text-left" width="10%"><?php echo $ticket['modulo']; ?></td>
+                  <td class="text-left"><?php echo $ticket['razao_social']; ?></td>                  
+                  <td class="text-left" width="7%"><?php echo $ticket['supervisor']; ?></td>
+                  <td class="text-left" width="7%"><?php echo $ticket['colaborador']; ?></td>
+                  <td class="text-left"><?php echo $ticket['produto']; ?></td>
+                  <td class="text-left" width="7%"><?php echo $ticket['modulo']; ?></td>
                   <td class="text-justify"><?php echo $ticket['assunto']; ?></td>
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
                   <td class="text-left">
