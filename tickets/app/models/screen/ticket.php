@@ -13,6 +13,7 @@ function criaModeloParaFormularioNovoTicket()
     'cnpj'           => '',
     'conta_contrato' => '',
     'razao_social'   => '',
+    'telefone'       => '',
     'supervisor'     => 0,
     'colaborador'    => 0,
     'produto'        => 0,
