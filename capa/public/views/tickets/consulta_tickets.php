@@ -90,10 +90,10 @@
                   <td class="text-left" width="8%"><?php echo $ticket['telefone']; ?></td>
                   <td class="text-left"><?php echo $ticket['cnpj']; ?></td>
                   <td class="text-left"><?php echo $ticket['razao_social']; ?></td>                  
-                  <td class="text-left" width="7%"><?php echo $ticket['supervisor']; ?></td>
-                  <td class="text-left" width="7%"><?php echo $ticket['colaborador']; ?></td>
+                  <td class="text-left" width="8%"><?php echo $ticket['supervisor']; ?></td>
+                  <td class="text-left" width="8%"><?php echo $ticket['colaborador']; ?></td>
                   <td class="text-left"><?php echo $ticket['produto']; ?></td>
-                  <td class="text-left" width="7%"><?php echo $ticket['modulo']; ?></td>
+                  <td class="text-left" width="8%"><?php echo $ticket['modulo']; ?></td>
                   <td class="text-justify"><?php echo $ticket['assunto']; ?></td>
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
                   <td class="text-left">
