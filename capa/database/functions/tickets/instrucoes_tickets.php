@@ -9,7 +9,7 @@ function consultaTodosOsTicketsGerados($db, $tickets)
 {
   $query =
     "SELECT
-    	DATE_FORMAT(t.data_hora, '%d-%m-%Y') AS data,
+    	DATE_FORMAT(t.data_hora, '%d/%m/%Y') AS data,
     	t.ticket,
     	CASE
     		WHEN (t.chat_id IS NULL)
@@ -19,14 +19,15 @@ function consultaTodosOsTicketsGerados($db, $tickets)
     	END AS chat_id,
     	CASE
     		WHEN (t.validade = 0)
-    			THEN 'Não'
+    			THEN 'Vencido'
     		WHEN (t.validade = 1)
-    			THEN 'Sim'
+    			THEN 'Válido'
     	END AS validade,
     	t.contato,
     	t.cnpj,
     	t.conta_contrato,
     	t.razao_social,
+      t.telefone,
     	CONCAT(s.name, ' ', s.surname) AS supervisor,
     	CONCAT(c.name, ' ', c.surname) AS colaborador,
     	p.nome AS produto,
@@ -59,6 +60,7 @@ function consultaTodosOsTicketsGerados($db, $tickets)
     while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
       $tickets[] = array(
+
         'data'           => $registro['data'],
         'ticket'         => $registro['ticket'],
         'chat_id'        => $registro['chat_id'],
@@ -67,11 +69,13 @@ function consultaTodosOsTicketsGerados($db, $tickets)
         'cnpj'           => $registro['cnpj'],
         'conta_contrato' => $registro['conta_contrato'],
         'razao_social'   => $registro['razao_social'],
+        'telefone'       => $registro['telefone'],
         'supervisor'     => $registro['supervisor'],
         'colaborador'    => $registro['colaborador'],
         'produto'        => $registro['produto'],
         'modulo'         => $registro['modulo'],
         'assunto'        => $registro['assunto']
+
       );
 
     }
