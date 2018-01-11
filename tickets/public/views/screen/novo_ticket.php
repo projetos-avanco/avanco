@@ -94,19 +94,28 @@
               <br>
 
               <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                   <label for="cliente">Contato</label>
                   <input class="form-control required" id="cliente" type="text" name="form[contato]" placeholder="Nome do Contato">
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
+                  <label for="telefone">Telefone</label>
+                  <input class="form-control required" id="telefone" type="tel" name="form[telefone]" placeholder="Telefone do Contato" maxlength="15" onkeyup="mascara(this, mtel);">
+                </div>
+
+                <div class="col-sm-4">
                   <label for="colaborador">Colaborador</label>
                   <select class="form-control required" id="colaborador" name="form[colaborador]">
                     <option value="0">Selecione um Colaborador</option>
                   </select>
-                </div>
+                </div>                
+              </div>
 
-                <div class="col-sm-3">
+              <br>
+
+              <div class="row">
+                <div class="col-sm-6">
                   <label for="produto">Produto</label>
                   <select class="form-control required" id="produto" name="form[produto]">
                     <option value="0">Selecione um Produto</option>
@@ -117,7 +126,7 @@
                   </select>
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-6">
                   <label for="modulo">Módulo</label>
                   <select class="form-control required" id="modulo" name="form[modulo]">
                     <option value="0">Selecione um Módulo</option>
@@ -196,8 +205,9 @@
   <script src="<?php echo BASE_URL; ?>public/js/screen/pesquisa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/seleciona.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/screen/validacao.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/screen/mascara.js"></script>
   <script src="<?php echo BASE_URL; ?>../capa/public/js/sidebar.js"></script>
-  <script src="<?php echo BASE_URL; ?>../capa/public/js/outros.js"></script>
+  <script src="<?php echo BASE_URL; ?>../capa/public/js/outros.js"></script>  
 
   <script>
     $(function() {
