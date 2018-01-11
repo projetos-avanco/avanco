@@ -12,6 +12,7 @@ function consultaDadosDoTicket($cliente, $db)
       cnpj,
       conta_contrato,
       razao_social,
+      telefone,
       contato,
       colaborador,
       produto,
@@ -30,6 +31,7 @@ function consultaDadosDoTicket($cliente, $db)
       $cliente['cnpj']           = $registro['cnpj'];
       $cliente['conta_contrato'] = $registro['conta_contrato'];
       $cliente['razao_social']   = $registro['razao_social'];
+      $cliente['telefone']       = $registro['telefone'];
       $cliente['nome']           = $registro['contato'];
       $cliente['colaborador']    = $registro['colaborador'];
       $cliente['produto']        = $registro['produto'];
