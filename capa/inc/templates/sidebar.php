@@ -4,13 +4,33 @@
       <li class="bordermenu">
         <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu1">
           <span class="nav-header-primary">
-            <i class="fa fa-id-card-o" aria-hidden="true"></i> Dashboard
+            <i class="fa fa-user" aria-hidden="true"></i> Usuário
             <span class="pull-right">
                 <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
             </span>
           </span>
         </a>
         <ul class="nav collapse"  id="submenu1">
+        <?php if (isset($_SESSION['usuario']) AND $_SESSION['usuario']['logado'] == true) : ?>
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/users/conta.php">
+              <p>Conta<p>
+            </a>
+          </li>        
+        <?php endif; ?>
+        </ul>
+      </li>
+
+      <li class="bordermenu">
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu2">
+          <span class="nav-header-primary">
+            <i class="fa fa-id-card-o" aria-hidden="true"></i> Dashboard
+            <span class="pull-right">
+                <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </span>
+        </a>
+        <ul class="nav collapse"  id="submenu2">
         <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 1) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../dashboard/public/views/profile/colaborador.php" target="_blank">
@@ -28,7 +48,7 @@
       </li>
 
       <li class="bordermenu">
-        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu2">
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu3">
           <span class="nav-header-primary">
             <i class="fa fa-money" aria-hidden="true"></i> Avancoins
             <span class="pull-right">
@@ -36,7 +56,7 @@
             </span>
           </span>
         </a>
-        <ul class="nav collapse"  id="submenu2">
+        <ul class="nav collapse"  id="submenu3">
         <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 1) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/avancoins/extrato.php">
@@ -64,7 +84,7 @@
       </li>
 
       <li class="bordermenu">
-        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu3">
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu4">
           <span class="nav-header-primary">
             <i class="fa fa-tags" aria-hidden="true"></i> Tickets
             <span class="pull-right">
@@ -72,14 +92,14 @@
             </span>
           </span>
         </a>
-        <ul class="nav collapse"  id="submenu3">
+        <ul class="nav collapse"  id="submenu4">
           <li><a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php"><p>Novo<p></a></li>
           <li><a href="<?php echo BASE_URL; ?>../capa/public/views/tickets/consulta_tickets.php"><p>Consultar<p></a></li>
         </ul>
       </li>
 
       <li class="bordermenu">
-        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu4">
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu5">
           <span class="nav-header-primary">
             <i class="fa fa-television" aria-hidden="true"></i> Painéis
             <span class="pull-right">
@@ -87,10 +107,15 @@
             </span>
           </span>
         </a>
-        <ul class="nav collapse"  id="submenu4">
+        <ul class="nav collapse"  id="submenu5">
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/panels/colaboradores_logados.php">
               <p>Logados<p>
+            </a>
+          </li>
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/panels/ramais.php">
+              <p>Ramais<p>
             </a>
           </li>
         </ul>
