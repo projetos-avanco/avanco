@@ -30,10 +30,13 @@
           </a>
         </li>
       </ul>
-    </ul>
+    </ul>        
     <?php if (isset($_SESSION['usuario']) AND $_SESSION['usuario']['logado'] == true) : ?>
-    <p id="saudacao" class="text-right"><small>Bem vindo,
-      <?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?>!</small></p>
+    <p id="saudacao" class="text-right">      
+      <small>Bem vindo,
+        <?php echo $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome']; ?>!
+      </small>
+    </p>
     <?php endif; ?>
   </div>
 </nav>
