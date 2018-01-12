@@ -42,6 +42,7 @@ function consultaDadosDoUsuario($login, $usuario, $db)
 
   $query =
     "SELECT
+      id,
       nome,
       sobrenome,
       usuario,
@@ -61,11 +62,12 @@ function consultaDadosDoUsuario($login, $usuario, $db)
       # recuperando dados do usuário
       while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
+        $usuario['id_capa']   = $registro['id'];
         $usuario['nome']      = $registro['nome'];
         $usuario['sobrenome'] = $registro['sobrenome'];
         $usuario['usuario']   = $registro['usuario'];
         $usuario['email']     = $registro['email'];
-        $usuario['nivel']     = $registro['nivel'];
+        $usuario['nivel']     = $registro['nivel'];        
 
       }
 
@@ -74,10 +76,11 @@ function consultaDadosDoUsuario($login, $usuario, $db)
 
       # criando variáveis de sessão com os dados do usuário
       $_SESSION['usuario']['id']        = $usuario['id'];
+      $_SESSION['usuario']['id_capa']   = $usuario['id_capa'];
       $_SESSION['usuario']['nome']      = $usuario['nome'];
       $_SESSION['usuario']['sobrenome'] = $usuario['sobrenome'];
       $_SESSION['usuario']['email']     = $usuario['email'];
-      $_SESSION['usuario']['nivel']     = $usuario['nivel'];
+      $_SESSION['usuario']['nivel']     = $usuario['nivel'];      
       $_SESSION['usuario']['usuario']   = $usuario['usuario'];
       $_SESSION['usuario']['logado']    = true;
 
