@@ -48,7 +48,8 @@ function verificaUsuarioLogado($pagina)
       # páginas que usuários de nível 1 possuem permissão para acessar
       if ($pagina == 'consulta_tickets.php'      OR
           $pagina == 'colaboradores_logados.php' OR
-          $pagina == 'extrato.php') {
+          $pagina == 'extrato.php'               OR
+          $pagina == 'conta.php') {
 
         return true;
 
@@ -74,7 +75,8 @@ function verificaUsuarioLogado($pagina)
         ($pagina == 'colaboradores_logados.php' OR
          $pagina == 'consulta_tickets.php'      OR
          $pagina == 'nova_atividade.php'        OR
-         $pagina == 'extrato.php') {
+         $pagina == 'extrato.php'               OR
+         $pagina == 'conta.php') {
 
         return true;
 
