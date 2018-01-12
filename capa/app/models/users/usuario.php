@@ -11,8 +11,10 @@ function criaModeloDeUsuario()
     'sobrenome' => '',
     'email'     => '',
     'nivel'     => '',
-    'usuario'   => ''
+    'usuario'   => '',
+    'ramal'     => ''
   );
 
   return $usuario;
+
 }
