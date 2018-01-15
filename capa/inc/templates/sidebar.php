@@ -11,13 +11,11 @@
           </span>
         </a>
         <ul class="nav collapse"  id="submenu1">
-        <?php if (isset($_SESSION['usuario']) AND $_SESSION['usuario']['logado'] == true) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/users/conta.php">
               <p>Conta<p>
             </a>
-          </li>        
-        <?php endif; ?>
+          </li>
         </ul>
       </li>
 
