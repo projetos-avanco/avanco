@@ -10,9 +10,8 @@ function confirmaEnvioDosDadosDoCliente()
     ! empty($_POST['cliente']['nome'])           AND
     ! empty($_POST['cliente']['nome_usuario'])   AND
     ! empty($_POST['cliente']['cnpj'])           AND
-    ! empty($_POST['cliente']['conta_contrato']) AND
-    ! empty($_POST['cliente']['razao_social'])   AND
-    ! empty($_POST['cliente']['telefone'])) {
+    ! empty($_POST['cliente']['conta_contrato']) AND 
+    ! empty($_POST['cliente']['razao_social'])) {
 
       return true;
 
