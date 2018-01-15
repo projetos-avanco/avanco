@@ -39,7 +39,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">  
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/users/tabela_ramais.css">  
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/panels/tabela_ramais.css">  
 </head>
 
 <body>
