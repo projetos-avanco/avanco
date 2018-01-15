@@ -45,7 +45,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <h2>Painel Logados</h2>
+            <h2>Painel de Colaboradores Logados</h2>
 
             <hr>
           </div>
@@ -55,7 +55,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <h3 class="text-center">Suporte</h3>
+            <h3 class="text-center">Interno</h3>
 
             <br>
 

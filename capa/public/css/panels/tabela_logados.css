@@ -1,7 +1,8 @@
 @charset "UTF-8";
 
 table tbody tr td {
-  font-size: 0.9em;
+  font-family: 'Lato light',sans-serif;
+  font-size: 1.1em;
 }
 
 .table tbody tr td {

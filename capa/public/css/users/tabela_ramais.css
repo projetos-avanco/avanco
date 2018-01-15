@@ -1,8 +1,9 @@
 @charset "UTF-8";
 
+/* ESTILIZANDO TABELAS DE RAMAIS */
 table tbody tr td {
-  font-family: 'Lato Regular',sans-serif;
-  font-size: 1.0em;
+  font-family: 'Lato light',sans-serif;
+  font-size: 0.95em;
   height: 2.5em;
 }
 

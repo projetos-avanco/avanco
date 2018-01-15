@@ -1,3 +1,8 @@
+
+h4 {
+  font-family: 'Lato Light', sans-serif;
+}
+
 /* AVISO DE DATAS DO FORMULÁRIO EXTRATO AVANCOINS */
 #aviso {
   font-weight: bold;
@@ -16,6 +21,7 @@
 
 /* ESTILIZANDO TABELAS DE EXTRATO */ 
 table tbody tr td {
+  font-family: 'Lato Light', sans-serif;
   font-size: 0.89em;
   height: 1.0em;
 }
