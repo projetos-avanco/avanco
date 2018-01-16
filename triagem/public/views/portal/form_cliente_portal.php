@@ -60,7 +60,7 @@
         <div class="col-sm-2">
           <div class="form-group">
             <label class="form-control" for="telefone">Telefone: </label>
-            <input type="text" id="telefone" name="cliente[telefone]" value="31-33228563">
+            <input type="text" id="telefone" name="cliente[telefone]" value="(31) 3322-8563">
           </div>
         </div>
       </div>
