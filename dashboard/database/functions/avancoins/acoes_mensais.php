@@ -37,25 +37,37 @@ function insereLogsPercentualQuestionarioInternoForaDaMeta($db, $carteira)
 
       $query =
         "SELECT
-        	ROUND(100 * (
-        		(SELECT
-        			COUNT(i.id_chat)
-        		FROM av_questionario_interno AS i
-        		INNER JOIN lh_chat AS c
-        			ON c.id = i.id_chat
-        		WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
-        			AND (c.status = 2)
-        			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))
+          ROUND(100 * (
+            (SELECT
+              COUNT(d.id_chat)
+            FROM 
+              (SELECT
+                i.id_chat,
+                c.chat_duration,
+                TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+              FROM av_questionario_interno AS i
+              INNER JOIN lh_chat AS c
+                ON c.id = i.id_chat
+              WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
+                AND (c.status = 2)
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+              WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))
 
-        		/
+            /
 
-        		(SELECT
-        			COUNT(c.id)
-        		FROM lh_chat AS c
-        		WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
-        			AND (c.status = 2)
-        			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))), 0) AS percentual_questionario_respondido;";
-
+            (SELECT
+              COUNT(d.id)
+            FROM
+              (SELECT
+                c.id,
+                c.chat_duration,
+                TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+              FROM lh_chat AS c
+              WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
+                AND (c.status = 2)
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+              WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_questionario_respondido;";
+      
       # verificando se a consulta pode ser executada
       if ($resultado = $db->query($query)) {
 
@@ -122,26 +134,38 @@ function insereLogsPercentualAvancinoForaDaMeta($db, $carteira)
 
       $query =
         "SELECT
-        	ROUND(100 * (
-        		(SELECT
-        			COUNT(e.cod_pesquisa)
-        		FROM av_questionario_externo AS e
-        		INNER JOIN lh_chat AS c
-        			ON c.id = e.id_chat
-        		WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
-        			AND (e.avaliacao_colaborador = 'Ótimo' OR e.avaliacao_colaborador = 'Bom')
-        			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))
+          ROUND(100 * (
+            (SELECT
+              COUNT(d.id_chat)
+            FROM
+              (SELECT
+                e.id_chat,							
+                c.chat_duration,
+                TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+              FROM lh_chat AS c
+              INNER JOIN av_questionario_externo AS e
+                ON e.id_chat = c.id
+              WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
+                AND (e.avaliacao_colaborador = 'Otimo' OR e.avaliacao_colaborador = 'Bom')
+                AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+              WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))
 
-        		/
+            /
 
-        		(SELECT
-        			COUNT(e.cod_pesquisa)
-        		FROM av_questionario_externo AS e
-        		INNER JOIN lh_chat AS c
-        			ON c.id = e.id_chat
-        		WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
-        			AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))), 0) AS percentual_indice_avancino;";
-
+            (SELECT 
+              COUNT(d.id_chat)
+            FROM
+              (SELECT
+                e.id_chat,						
+                c.chat_duration,
+                TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+              FROM lh_chat AS c
+              INNER JOIN av_questionario_externo AS e
+                ON e.id_chat = c.id
+              WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
+                AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+              WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_indice_avancino;";
+      
       # verificando se a consulta pode ser executada
       if ($resultado = $db->query($query)) {
 
@@ -218,7 +242,6 @@ function insereLogsPercentualDeFilaAte15Minutos($db, $carteira)
         			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))
 
         		/
-
 
         		(SELECT
         			COUNT(id) AS atendimentos_demandados
@@ -312,22 +335,33 @@ function insereLogsPercentualDePerda($db, $carteira)
         "SELECT
           ROUND(100 * (
             (SELECT
-              COUNT(id) AS atendimentos_perdidos
-            FROM lh_chat
-            WHERE (user_id = {$arrays[$i]['id_colaborador']})
-              AND (status = 2)
-              AND (chat_duration = 0)
-              AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))
+              COUNT(d.id) AS atendimentos_perdidos
+            FROM
+              (SELECT
+                c.id,
+                TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+              FROM lh_chat AS c
+              WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
+                AND (c.status = 2)
+                AND (c.chat_duration = 0)
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+              WHERE (d.time_diff >= '00:03:00'))
 
             /
 
             (SELECT
-              COUNT(id) AS atendimentos_demandados
-            FROM lh_chat
-            WHERE (user_id = {$arrays[$i]['id_colaborador']})
-              AND (status = 2)
-              AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))), 0) AS percentual_perda;";
-
+              COUNT(d.id) atendimentos_demandados
+            FROM
+              (SELECT
+                c.id,
+                c.chat_duration,
+                TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+              FROM lh_chat AS c
+              WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
+                AND (c.status = 2)
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+              WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_perda;";
+      
       # verificando se a consulta pode ser executada
       if ($resultado = $db->query($query)) {
 
@@ -520,7 +554,7 @@ function insereLogDeArtilheiro($db, $carteira)
 }
 
 /**
- * consulta todas as ações mensais do colaborador no período anterior
+ * consulta todas as ações mensais dos colaboradores no período anterior
  * @param - objeto com uma conexão aberta
  * @param - array com os dados da carteira de avancoins
  *
