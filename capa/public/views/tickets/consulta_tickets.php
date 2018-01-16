@@ -119,6 +119,9 @@
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
   <script src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/locale/pt-br.js"></script>
+  <script src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
