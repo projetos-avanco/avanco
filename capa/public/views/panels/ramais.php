@@ -66,17 +66,15 @@
             <table class="table"><!-- painel do suporte -->
               <thead>
                 <tr>
-                  <th class="text-left">Nome</th>
-                  <th class="text-left">Sobrenome</th>
-                  <th class="text-left">Email</th>
+                  <th class="text-left" width="40%">Nome</th>                  
+                  <th class="text-left" width="50%">Email</th>
                   <th class="text-left">Ramal</th>                  
                 </tr>
               </thead>
               <tbody>
               <?php foreach($suporte as $suporte) : ?>
                 <tr>
-                  <td class="text-left"><?php echo $suporte['nome']; ?></td>
-                  <td class="text-left"><?php echo $suporte['sobrenome']; ?></td>
+                  <td class="text-left"><?php echo $suporte['nome'] . ' ' . $suporte['sobrenome']; ?></td>                  
                   <td class="text-left"><?php echo $suporte['email']; ?></td>
                   <td class="text-left"><?php echo $suporte['ramal']; ?></td>                  
                 </tr>
@@ -95,17 +93,15 @@
             <table class="table"><!-- painel do suporte -->
               <thead>
                 <tr>
-                  <th class="text-left">Nome</th>
-                  <th class="text-left">Sobrenome</th>
-                  <th class="text-left">Email</th>
+                  <th class="text-left" width="40%">Nome</th>                  
+                  <th class="text-left" width="50%">Email</th>
                   <th class="text-left">Ramal</th>                  
                 </tr>
               </thead>
               <tbody>
               <?php foreach($comercial as $comercial) : ?>
                 <tr>
-                  <td class="text-left"><?php echo $comercial['nome']; ?></td>
-                  <td class="text-left"><?php echo $comercial['sobrenome']; ?></td>
+                  <td class="text-left"><?php echo $comercial['nome'] . ' ' . $comercial['sobrenome']; ?></td>                  
                   <td class="text-left"><?php echo $comercial['email']; ?></td>
                   <td class="text-left"><?php echo $comercial['ramal']; ?></td>                  
                 </tr>
@@ -124,17 +120,15 @@
             <table class="table"><!-- painel do suporte -->
               <thead>
                 <tr>
-                  <th class="text-left">Nome</th>
-                  <th class="text-left">Sobrenome</th>
-                  <th class="text-left">Email</th>
+                  <th class="text-left" width="40%">Nome</th>                  
+                  <th class="text-left" width="50%">Email</th>
                   <th class="text-left">Ramal</th>                  
                 </tr>
               </thead>
               <tbody>
               <?php foreach($rh as $rh) : ?>
                 <tr>
-                  <td class="text-left"><?php echo $rh['nome']; ?></td>
-                  <td class="text-left"><?php echo $rh['sobrenome']; ?></td>
+                  <td class="text-left"><?php echo $rh['nome'] . ' ' . $rh['sobrenome']; ?></td>                  
                   <td class="text-left"><?php echo $rh['email']; ?></td>
                   <td class="text-left"><?php echo $rh['ramal']; ?></td>                  
                 </tr>
