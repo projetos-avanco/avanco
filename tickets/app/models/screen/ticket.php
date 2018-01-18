@@ -6,8 +6,9 @@
 function criaModeloParaFormularioNovoTicket()
 {
   $formulario = array(
-    'data_hora'      => '',
+    'data_hora'      => '',    
     'ticket'         => 0,
+    'agendamento'    => '',
     'validade'       => true,
     'contato'        => '',
     'cnpj'           => '',
