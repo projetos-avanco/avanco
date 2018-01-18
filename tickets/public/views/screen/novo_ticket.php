@@ -94,28 +94,38 @@
               <br>
 
               <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <label for="cliente">Contato</label>
                   <input class="form-control required" id="cliente" type="text" name="form[contato]" placeholder="Nome do Contato">
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                   <label for="telefone">Telefone</label>
                   <input class="form-control required" id="telefone" type="tel" name="form[telefone]" placeholder="Telefone do Contato" maxlength="15" onkeyup="mascara(this, mtel);">
                 </div>
 
-                <div class="col-sm-4">
-                  <label for="colaborador">Colaborador</label>
-                  <select class="form-control required" id="colaborador" name="form[colaborador]">
-                    <option value="0">Selecione um Colaborador</option>
-                  </select>
-                </div>                
+                <div class="col-sm-3">
+                  <label for="data">Data</label>
+                  <input class="form-control required" id="data" type="date" name="form[data]">
+                </div>
+
+                <div class="col-sm-3">
+                  <label for="horario">Horário</label>
+                  <input class="form-control required" id="horario" type="time" name="form[horario]">
+                </div>                                
               </div>
 
               <br>
 
               <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
+                  <label for="colaborador">Colaborador</label>
+                  <select class="form-control required" id="colaborador" name="form[colaborador]">
+                    <option value="0">Selecione um Colaborador</option>
+                  </select>
+                </div>
+
+                <div class="col-sm-4">
                   <label for="produto">Produto</label>
                   <select class="form-control required" id="produto" name="form[produto]">
                     <option value="0">Selecione um Produto</option>
@@ -126,7 +136,7 @@
                   </select>
                 </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                   <label for="modulo">Módulo</label>
                   <select class="form-control required" id="modulo" name="form[modulo]">
                     <option value="0">Selecione um Módulo</option>
