@@ -17,9 +17,10 @@ function recuperaDadosDosArraysSuperGlobais($modelo, $formulario, $requisicao)
       case 'POST':
 
         # verificando se existe dados no array super global POST
-        if (isset($_POST['form']) AND (count($_POST['form']) == 9)) {
+        if (isset($_POST['form']) AND (count($_POST['form']) == 11)) {
 
-          # recuperando dados
+          # recuperando dados          
+          $modelo['agendamento']    = $_POST['form']['data'] . ' '. $_POST['form']['horario'] . ':00';
           $modelo['contato']        = $_POST['form']['contato'];
           $modelo['cnpj']           = $_POST['form']['cnpj'];
           $modelo['conta_contrato'] = $_POST['form']['conta-contrato'];
