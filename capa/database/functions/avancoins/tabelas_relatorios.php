@@ -17,8 +17,8 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
       <table class='table'>
         <thead>
           <tr>
-            <th class='text-left' width='45%'>Total em Atividades Diárias</th>
-            <th class='text-left' width='35%'>Total em Atividades Mensais</th>
+            <th class='text-left' width='48%'>Total em Atividades Diárias</th>
+            <th class='text-left' width='32%'>Total em Atividades Mensais</th>
             <th class='text-left' width='20%'>Total em Atividades Esporádicas</th>
           </tr>
         </thead>
@@ -28,12 +28,12 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
   } else {
 
     $tabela .=
-      "<br><h4 class='text-left'>Resumo de Atividades da {$nome} {$sobrenome}</h4><br>
+      "<br><h4 class='text-left'>Resumo de Atividades de {$nome} {$sobrenome}</h4><br>
       <table class='table'>
         <thead>
           <tr>
-            <th class='text-left' width='45%'>Total em Atividades Diárias</th>
-            <th class='text-left' width='35%'>Total em Atividades Mensais</th>
+            <th class='text-left' width='48%'>Total em Atividades Diárias</th>
+            <th class='text-left' width='32%'>Total em Atividades Mensais</th>
             <th class='text-left' width='20%'>Total em Atividades Esporádicas</th>
           </tr>
         </thead>
@@ -56,7 +56,7 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
 
   $linhas .=
       "<tr>
-        <td class='text-left destaque' width='15%'>Total em Moedas</td>
+        <td class='text-left destaque' width='20%'>Total em Avancoins</td>
         <td class='text-left' width='10%'>{$total} Moedas</td>
         <td class='text-left'></td>
       </tr>";
@@ -110,7 +110,7 @@ function criaTabelaDeAcoesDiarias($acoesDiarias, $valorTotalAcao)
 
   $linhas .=
       "<tr>
-        <td class='text-left destaque' width='15%'>Total em Atividades Diárias</td>
+        <td class='text-left destaque' width='20%'>Total em Atividades Diárias</td>
         <td class='text-left' width='10%'>{$valorTotalAcao} Moedas</td>
         <td class='text-left'></td>
         <td class='text-left'></td>        
@@ -164,7 +164,7 @@ function criaTabelaDeAcoesMensais($acoesMensais, $valorTotalAcao)
 
   $linhas .=
       "<tr>
-        <td class='text-left destaque' width='15%'>Total em Atividades Mensais</td>
+        <td class='text-left destaque' width='20%'>Total em Atividades Mensais</td>
         <td class='text-left' width='10%'>{$valorTotalAcao} Moedas</td>
         <td class='text-left'></td>
         <td class='text-left'></td>
@@ -223,7 +223,7 @@ function criaTabelaDeAcoesEsporadicas($acoesEsporadicas, $valorTotalAcao)
 
   $linhas .=
       "<tr>
-        <td class='text-left destaque' width='15%'>Total em Atividades Esporádicas</td>
+        <td class='text-left destaque' width='20%'>Total em Atividades Esporádicas</td>
         <td class='text-left' width='10%'>{$valorTotalAcao} Moedas</td>
         <td class='text-left'></td>
         <td class='text-left'></td>
