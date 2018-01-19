@@ -22,8 +22,13 @@ h4 {
 /* ESTILIZANDO TABELAS DE EXTRATO */ 
 table tbody tr td {
   font-family: 'Lato Light', sans-serif;
-  font-size: 0.89em;
+  font-size: 0.90em;
   height: 1.0em;
+}
+
+/* ESTILIZANDO TABELA DE AÇÕES ESPORÁDICAS */
+.esporadica{
+  height: 7.5em;
 }
 
 .table tbody tr td {
