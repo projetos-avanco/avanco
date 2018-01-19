@@ -130,8 +130,7 @@ function geraExtratoDeAcoesEsporadicasDetalhado($db, $form)
   		ON ae.id = ael.id_acao_esporadica
   	INNER JOIN lh_users AS lu
   		ON lu.id = ael.id_supervisor
-  	WHERE (ael.id_colaborador = {$form['colaborador']})
-  		AND (ael.data_acao BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}')
+  	WHERE (ael.id_colaborador = {$form['colaborador']})  		
   		AND (ael.data_registro BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}')
   	ORDER BY ael.data_acao, ael.horario_acao, ael.data_registro;";
 
