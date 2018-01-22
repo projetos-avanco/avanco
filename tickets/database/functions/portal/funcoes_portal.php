@@ -11,15 +11,16 @@ function consultaTicketsValidos($conta_contrato, $db)
 {
   $query =
     "SELECT
-    	DATE_FORMAT(t.data_hora, '%d/%m/%Y') AS data,
-        t.ticket,
-        CONCAT(u.name, ' ', u.surname) AS colaborador,
-        assunto
+      DATE_FORMAT(t.data_hora, '%d/%m/%Y') AS data,
+      DATE_FORMAT(t.agendado, '%d/%m/%Y %T') AS agendado,
+      t.ticket,
+      CONCAT(u.name, ' ', u.surname) AS colaborador,
+      assunto
     FROM av_tickets AS t
     INNER JOIN lh_users AS u
-    	ON u.id = t.colaborador
+      ON u.id = t.colaborador
     WHERE (conta_contrato = $conta_contrato)
-    	AND (validade = 1)";
+      AND (validade = 1);";
 
   # verificando se é possível executar a consulta
   if ($resultado = $db->query($query)) {
@@ -34,6 +35,7 @@ function consultaTicketsValidos($conta_contrato, $db)
 
         $arr[] = array(
           'data'        => $registro['data'],
+          'agendado'    => $registro['agendado'],
           'ticket'      => $registro['ticket'],
           'colaborador' => $registro['colaborador'],
           'assunto'     => $registro['assunto']
@@ -50,7 +52,7 @@ function consultaTicketsValidos($conta_contrato, $db)
 
       # enviando array com os dados para o portal avanço
       echo json_encode($arr, JSON_UNESCAPED_UNICODE);
-
+          
     } else {
 
       # enviando null para o portal avanço
