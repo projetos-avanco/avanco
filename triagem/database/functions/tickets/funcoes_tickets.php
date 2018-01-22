@@ -54,3 +54,63 @@ function consultaDadosDoTicket($cliente, $db)
   return $cliente;
 
 }
+
+/**
+ * consulta o prazo de agendamento do ticket
+ * @param - string com o número do ticket
+ * @param - objeto com uma conexão aberta
+ */
+function consultaPrazoDoAgendamentoDoTicket($ticket, $db)
+{
+  $query =
+    "SELECT 
+      DATE_FORMAT(agendado, '%Y-%m-%d') AS data,
+      DATE_FORMAT(agendado, '%T') AS hora,
+      CASE
+        WHEN (CURRENT_TIME() > DATE_FORMAT(agendado, '%T'))
+          THEN TIMEDIFF(CURRENT_TIME(), DATE_FORMAT(agendado, '%T'))
+        ELSE '0'
+      END AS diferenca
+    FROM av_tickets
+    WHERE (ticket = $ticket);";
+
+  # verificando se a consulta pode ser executada
+  if ($resultado = $db->query($query)) {
+
+    $agendado = array(
+
+      'data_atual'    => date('Y-m-d'),
+      'data_agendada' => '', 
+      'hora_atual'    => date('H:i:s'),      
+      'hora_agendata' => '',
+      'diferenca'     => ''
+
+    );
+
+    # recuperando data e hora do agendamento
+    while ($registro = $resultado->fetch_assoc()) {
+
+      $agendado['data_agendada'] = $registro['data'];
+      $agendado['hora_agendada'] = $registro['hora'];
+      $agendado['diferenca']     = $registro['diferenca'];
+
+    }
+
+    return $agendado;
+
+  }
+
+}
+
+/**
+ * invalida um ticket
+ * @param - string com o número do ticket
+ * @param - objeto com uma conexão aberta
+ */
+function invalidaTicketForaDoPrazo($ticket, $db)
+{
+  $query = "UPDATE av_tickets SET validade = false WHERE (ticket = $ticket);";
+
+  $db->query($query);
+
+}
