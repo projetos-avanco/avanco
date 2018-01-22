@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   # verificando se o número do ticket não foi enviado
   if (! empty($cliente['ticket']) AND ! empty($cliente['nome_usuario'])) {
 
-    # chamando função responsável por redirecionar o cliente para o colaborador agendado
-    redirecionaParaColaboradorResponsavel($cliente, $colaboradores);
+    # chamando função que verifica se o prazo de agendamento do ticket já passou
+    verificaPrazoDoAgendamentoDoTicket($cliente, $colaboradores);
 
   } else {
 
@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo json_encode($msg, JSON_UNESCAPED_UNICODE);
 
     exit;
+
   }
 
 }
