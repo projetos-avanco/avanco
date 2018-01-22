@@ -20,7 +20,7 @@ function recuperaDadosDosArraysSuperGlobais($modelo, $formulario, $requisicao)
         if (isset($_POST['form']) AND (count($_POST['form']) == 11)) {
 
           # recuperando dados          
-          $modelo['agendamento']    = $_POST['form']['data'] . ' '. $_POST['form']['horario'] . ':00';
+          $modelo['agendado']       = $_POST['form']['data'] . ' '. $_POST['form']['horario'] . ':00';
           $modelo['contato']        = $_POST['form']['contato'];
           $modelo['cnpj']           = $_POST['form']['cnpj'];
           $modelo['conta_contrato'] = $_POST['form']['conta-contrato'];
