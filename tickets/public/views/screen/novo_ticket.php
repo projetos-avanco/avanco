@@ -61,7 +61,11 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div id="bloco">
-
+                    
+                  </div>
+                  
+                  <div class="hidden text-center" id="loader">
+                    <img src="<?php echo BASE_URL; ?>public/img/others/loader.gif" alt="loader" width="10%" height="10%">
                   </div>
                 </div>
               </div>
