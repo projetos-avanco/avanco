@@ -2,7 +2,7 @@ $('document').ready(function() {
 
   const BASE_URL = '../../../';
 
-  $('#pesquisa').keyup(function() {
+  var myEfficientFn = debounce(function() {
 
     var pesquisa = $('#pesquisa').val();
 
@@ -12,6 +12,9 @@ $('document').ready(function() {
         type: 'post',
         url: BASE_URL + 'app/requests/post/processa_pesquisa.php?pesquisa=' + pesquisa,
         dataType: 'html',
+        beforeSend: function() {
+          $('#loader').removeClass('hidden');
+        },
         success: function(tabela)
         {
           if (tabela === 'erro') {
@@ -20,6 +23,8 @@ $('document').ready(function() {
 
           } else {
 
+            $('#loader').addClass('hidden');
+            
             $('#bloco').html(tabela);
 
             // paginando a tabela
@@ -65,6 +70,37 @@ $('document').ready(function() {
 
     }
 
-  });
+  }, 1000);
+
+  $('#pesquisa').keyup(myEfficientFn);
 
 });
+
+/* função que retorna o resultado da busca do nome da razão social após o usuário parar de digitar */
+function debounce(func, wait, immediate) {
+
+  var timeout;
+
+  return function() {
+
+    var context = this, args = arguments;
+
+    var later = function() {
+
+      timeout = null;
+
+      if (!immediate) func.apply(context, args);
+
+    };
+
+    var callNow = immediate && !timeout;
+
+    clearTimeout(timeout);
+
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(context, args);
+
+  };
+  
+};
