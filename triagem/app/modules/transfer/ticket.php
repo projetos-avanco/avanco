@@ -22,7 +22,7 @@ function verificaPrazoDoAgendamentoDoTicket($cliente, $colaboradores)
     # chamando função que invalida um ticket
     invalidaTicketForaDoPrazo($cliente['ticket'], $db);
 
-    $msg = 'Ticket com o Prazo de Agendamento Vencido!';
+    $msg = 'Ticket com o Prazo de Agendamento Vencido! Será necessário fazer um reagendamento.';
 
     #retornando mensagem para o portal avanço
     echo json_encode($msg, JSON_UNESCAPED_UNICODE);
@@ -38,7 +38,7 @@ function verificaPrazoDoAgendamentoDoTicket($cliente, $colaboradores)
       # chamando função que invalida um ticket
       invalidaTicketForaDoPrazo($cliente['ticket'], $db);
 
-      $msg = 'Ticket com o Prazo de Agendamento Vencido!';
+      $msg = 'Ticket com o Prazo de Agendamento Vencido! Será necessário fazer um reagendamento.';
 
       #retornando mensagem para o portal avanço
       echo json_encode($msg, JSON_UNESCAPED_UNICODE);
