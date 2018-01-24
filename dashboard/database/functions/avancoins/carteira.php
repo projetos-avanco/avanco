@@ -32,17 +32,29 @@ function verificaQuantidadeDeMoedasDasAcoesEsporadicas($db, $carteira)
 {
   $query =
     "SELECT
-    	SUM(ae.valor)
-    FROM av_avancoins_acoes_esporadicas_logs AS ael
-    INNER JOIN av_avancoins_acoes_esporadicas AS ae
-    	ON ae.id = ael.id_acao_esporadica
-    WHERE (ael.id_colaborador = {$carteira['id_colaborador']});";
+      SUM(a.valor)	
+    FROM
+      (SELECT
+        CASE
+          WHEN (t.id = 3)
+            THEN ((t.horario_acao / 30) * t.valor)
+        ELSE (t.valor)
+        END AS valor
+      FROM
+        (SELECT
+          ae.id,
+          TIME_TO_SEC(ael.horario_acao) / 60 AS horario_acao,
+          ae.valor	
+        FROM av_avancoins_acoes_esporadicas_logs AS ael
+        INNER JOIN av_avancoins_acoes_esporadicas AS ae
+          ON ae.id = ael.id_acao_esporadica
+        WHERE (ael.id_colaborador = {$carteira['id_colaborador']})) AS t) AS a;";
 
   # verificando se a consulta pode ser executada
   if ($resultado = $db->query($query)) {
 
     $moedas = $resultado->fetch_row();
-
+    
     # somando a quantidade de moedas existentes com a quantidade retornada pela consulta
     $carteira['moedas'] += (int)$moedas[0];
 
