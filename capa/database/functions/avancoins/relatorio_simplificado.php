@@ -71,15 +71,26 @@ function geraExtratoDeAcoesEsporadicasSimplificado($db, $form)
 {
   $query =
     "SELECT
-    	SUM(ae.valor)
-    FROM av_avancoins_acoes_esporadicas_logs AS ael
-    INNER JOIN av_avancoins_acoes_esporadicas AS ae
-    	ON ae.id = ael.id_acao_esporadica
-    INNER JOIN lh_users AS lu
-    	ON lu.id = ael.id_supervisor
-    WHERE (ael.id_colaborador = {$form['colaborador']})    	
-    	AND (ael.data_registro BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}')
-    ORDER BY ael.data_acao, ael.horario_acao, ael.data_registro;";
+      SUM(a.valor)
+    FROM
+      (SELECT	
+        CASE 
+          WHEN (t.id = 3) 
+            THEN ((t.horario_acao_minutos / 30) * t.valor)
+          ELSE (t.valor)
+        END AS valor	
+      FROM
+        (SELECT		
+          ae.id,		
+          TIME_TO_SEC(ael.horario_acao) / 60 AS horario_acao_minutos,
+          ae.valor
+        FROM av_avancoins_acoes_esporadicas_logs AS ael
+        INNER JOIN av_avancoins_acoes_esporadicas AS ae
+          ON ae.id = ael.id_acao_esporadica
+        INNER JOIN lh_users AS lu
+          ON lu.id = ael.id_supervisor
+        WHERE (ael.id_colaborador = {$form['colaborador']})  		
+          AND (ael.data_registro BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}')) AS t) AS a;";
 
   if ($resultado = $db->query($query)) {
 
