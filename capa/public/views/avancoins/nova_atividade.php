@@ -57,28 +57,31 @@
           <br>
 
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <label for="atividade">Atividade*</label>
               <select class="form-control required" id="atividade" name="form[atividade]">
                 <option value="0" selected>Selecione uma Atividade</option>
                 <option value="1">Visita em Cliente</option>
-                <option value="2">Atendimento Remoto com Relatório (Um Dia)</option>
-                <option value="3">Atendimento Remoto com Relatório (Meio Dia)</option>
-                <option value="4">Documento Inserido na Base de Conhecimento</option>
+                <option value="2">Artigo Postado no InfoVarejo</option>
+                <option value="3">Atendimento Remoto com Relatório</option>
+                <option value="4">Documento Postado na Base de Conhecimento</option>
                 <option value="5">Ausência na Gestão do Conhecimento</option>
                 <option value="6">SLA fora da Meta (por Protocolo)</option>
                 <option value="7">Issue (Aguardando Cliente) fora do Padrão</option>
               </select>
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-sm-4">
               <label for="data">Data*</label>
               <input class="form-control required" type="date" name="form[data]">
             </div>
 
-            <div class="col-sm-3">
-              <label for="horario">Horário*</label>
+            <div class="col-sm-4">
+              <label for="horario">Horas/Horário*</label>
               <input class="form-control required" type="time" name="form[horario]">
+              <p id="aviso">
+                <small>Atendimento Remoto com Relatório é igual a horas trabalhadas.</small>
+              </p>
             </div>
           </div>
 
