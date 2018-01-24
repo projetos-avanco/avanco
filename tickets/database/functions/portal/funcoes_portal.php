@@ -11,16 +11,37 @@ function consultaTicketsValidos($conta_contrato, $db)
 {
   $query =
     "SELECT
-      DATE_FORMAT(t.data_hora, '%d/%m/%Y') AS data,
-      DATE_FORMAT(t.agendado, '%d/%m/%Y %T') AS agendado,
-      t.ticket,
-      CONCAT(u.name, ' ', u.surname) AS colaborador,
-      assunto
-    FROM av_tickets AS t
-    INNER JOIN lh_users AS u
-      ON u.id = t.colaborador
+      a.ticket,
+      a.assunto,
+      a.agendado,
+      a.tecnico,
+      CASE
+        WHEN ((a.validade = true OR a.validade = false) AND a.chat_id > 0)
+          THEN ('Atendido')
+        WHEN (a.validade = true AND a.chat_id = 0)	
+          THEN ('Em Aberto')
+        WHEN (a.validade = false AND a.chat_id = 0)
+          THEN ('Finalizado')
+      END AS status,
+      a.chat_id
+    FROM
+      (SELECT	
+        t.conta_contrato,
+        t.ticket,	
+        assunto,
+        t.agendado,
+        CONCAT(u.name, ' ', u.surname) AS tecnico,	
+        CASE
+          WHEN (t.chat_id IS NULL)
+            THEN (0)
+          ELSE (t.chat_id)
+        END AS chat_id,
+        t.validade
+      FROM av_tickets AS t
+      INNER JOIN lh_users AS u
+      ON u.id = t.colaborador) AS a
     WHERE (conta_contrato = $conta_contrato)
-      AND (validade = 1);";
+    ORDER BY a.agendado DESC, a.ticket DESC;";
 
   # verificando se é possível executar a consulta
   if ($resultado = $db->query($query)) {
@@ -34,11 +55,14 @@ function consultaTicketsValidos($conta_contrato, $db)
       while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
         $arr[] = array(
-          'data'        => $registro['data'],
-          'agendado'    => $registro['agendado'],
+
           'ticket'      => $registro['ticket'],
-          'colaborador' => $registro['colaborador'],
-          'assunto'     => $registro['assunto']
+          'assunto'     => $registro['assunto'],
+          'agendado'    => $registro['agendado'],
+          'tecnico'     => $registro['tecnico'],
+          'status'      => $registro['status'],
+          'chat_id'     => $registro['chat_id'],
+                    
         );
 
       }
