@@ -43,7 +43,25 @@ function formataDataParaMysql($datas)
 }
 
 /**
- * formata data para dd/mm/aaaa
+ * formata uma data para aaaa-mm-dd
+ * @param - string com apenas uma data, seja inicial ou final
+ */
+function formataUnicaDataParaMysql($data)
+{
+  $arr = array();
+
+  # quebrando data onde possui -
+  $arr = explode('/', $data);
+
+  # formatando data para dd-mm-aaaa
+  $data = "{$arr[2]}-{$arr[1]}-{$arr[0]}";
+
+  return $data;
+
+}
+
+/**
+ * formata uma data para dd/mm/aaaa
  * @param - string com apenas uma data, seja inicial ou final
  */
 function formataDataParaExibir($data)
