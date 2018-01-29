@@ -24,7 +24,7 @@ function enviaEmailDeCompraNaLoja($produto, $colaborador, $compra)
   $mensagem = htmlentities(
       "Foi solicitado a compra do produto $produto, 
        na data {$compra['data_compra']}, 
-       no horário {$compra['horario_compra']} pelo colaborador(a) $colaborador");
+       no horário {$compra['horario_compra']} pelo colaborador(a) $colaborador.");
 
   $email = new PHPMailer(true);    
   
@@ -38,13 +38,13 @@ function enviaEmailDeCompraNaLoja($produto, $colaborador, $compra)
     $email->isSMTP();                                      
     $email->Host       = 'email-ssl.com.br';  
     $email->SMTPAuth   = true;                               
-    $email->Username   = 'wellington.felix@avancoinfo.com.br';                 
+    $email->Username   = 'loja.avancao@avancoinfo.com.br';                 
     $email->Password   = 'Avanco123';                           
     $email->SMTPSecure = 'ssl';                            
     $email->Port       = 465;                                    
 
     # destinatários 
-    $email->setFrom('wellington.felix@avancoinfo.com.br', 'Wellington Felix');
+    $email->setFrom('loja.avancao@avancoinfo.com.br', 'Loja');
     $email->addAddress('badaro@avancoinfo.com.br', 'Adilson Badaro');     
     $email->addAddress('bruno@avancoinfo.com.br', 'Bruno Cesar');               
     #$email->addReplyTo('info@example.com', 'Information');
