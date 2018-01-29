@@ -74,7 +74,7 @@
           </li>
         <?php endif; ?>
         <li>
-          <a href="<?php echo BASE_URL; ?>../loja/public/index.php" target="_blank">
+          <a href="<?php echo BASE_URL; ?>../dashboard/public/views/store/loja.php" target="_blank">
             <p>Loja<p>
           </a>
         </li>
