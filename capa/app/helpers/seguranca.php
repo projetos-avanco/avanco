@@ -49,7 +49,8 @@ function verificaUsuarioLogado($pagina)
       if ($pagina == 'consulta_tickets.php'      OR
           $pagina == 'colaboradores_logados.php' OR
           $pagina == 'extrato.php'               OR
-          $pagina == 'conta.php') {
+          $pagina == 'conta.php'                 OR
+          $pagina == 'loja.php') {
 
         return true;
 
@@ -76,7 +77,8 @@ function verificaUsuarioLogado($pagina)
          $pagina == 'consulta_tickets.php'      OR
          $pagina == 'nova_atividade.php'        OR
          $pagina == 'extrato.php'               OR
-         $pagina == 'conta.php') {
+         $pagina == 'conta.php'                 OR
+         $pagina == 'loja.php') {
 
         return true;
 
