@@ -23,6 +23,7 @@ function criaArrayModeloDeCompra()
     'id_produto'     => '',
     'data_compra'    => '',
     'horario_compra' => '',
+    'email'          => '',
     'envio_email'    => ''
     
   );

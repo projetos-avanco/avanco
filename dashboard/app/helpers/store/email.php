@@ -50,6 +50,7 @@ function enviaEmailDeCompraNaLoja($produto, $colaborador, $compra)
     #$email->addReplyTo('info@example.com', 'Information');
     $email->addCC('wellington.felix@avancoinfo.com.br');
     $email->addCC('lucas.aguiar@avancoinfo.com.br');
+    $email->addCC("{$compra['email']}");
     #$email->addBCC('bcc@example.com');
 
     # anexos

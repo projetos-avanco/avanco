@@ -370,6 +370,10 @@
       <div class="col-sm-6">
         <input id="colaborador" type="hidden" value="<?php echo $_SESSION['colaborador']['id']; ?>"><!-- id do colaborador -->
       </div>
+
+      <div class="col-sm-6">
+        <input id="email" type="hidden" value="<?php echo $_SESSION['usuario']['email']; ?>"><!-- e-mail do colaborador -->
+      </div>
     </div>
 
   </div><!-- container -->

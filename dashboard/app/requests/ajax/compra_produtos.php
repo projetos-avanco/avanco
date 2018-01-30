@@ -17,12 +17,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $compra['data_compra']    = date('Y-m-d');
   $compra['horario_compra'] = date('H:i:s');
 
-  # recuperando id do colaborador e id do produto
+  # recuperando id do colaborador, id do produto e email
   $compra['id_colaborador'] = isset($_GET['idcolaborador']) ? $_GET['idcolaborador'] : null;
   $compra['id_produto']     = isset($_GET['idproduto'])     ? $_GET['idproduto']     : null;
+  $compra['email']          = isset($_GET['email'])         ? $_GET['email']         : null;
 
   # verificando se o id do colaborador e o id da compra foram enviados 
-  if (! empty($compra['id_colaborador']) AND ! empty($compra['id_produto'])) {
+  if (! empty($compra['id_colaborador']) AND ! empty($compra['id_produto']) AND ! empty($compra['email'])) {
 
     $db = abre_conexao();
 
@@ -39,6 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       # chamando função que envia o email de confirmação de compra
       $compra = enviaEmailDeCompraNaLoja($produto, $colaborador, $compra);
       
+      # eliminando o índice email
+      unset($compra['email']);
+
       # gravando registro da compra
       $resultado = insereProduto($db, $compra);
 

@@ -72,16 +72,18 @@ $('document').ready(function() {
     
     if (confirmacao) {
       
-      var idColaborador = '';      
+      var idColaborador = ''; 
+      var email         = '';     
       var url           = '';
 
       idColaborador = $('#colaborador').val(); // recuperando id do colaborador que está logado na loja
-      
+      email         = $('#email').val();      // recuperando email do colaborador que está logado na loja
+            
       url = '../../../app/requests/ajax/compra_produtos.php'; // path do script que realiza a compra do produto
 
       $.ajax({
         type: 'get',
-        url: url + '?idcolaborador=' + idColaborador + '&idproduto=' + idProduto,
+        url: url + '?idcolaborador=' + idColaborador + '&idproduto=' + idProduto + '&email=' + email,
         dataType: 'json',
         success: function(resposta) {
 
