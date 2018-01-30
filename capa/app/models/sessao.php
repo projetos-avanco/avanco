@@ -35,8 +35,8 @@ function criaModeloDeSessaoParaAvancoins()
       'data_final'   => $_POST['form']['data_final']
     ),
     'extrato' => array(
-      'diaria' => '',
-      'mensal' => '',
+      'diaria'     => '',
+      'mensal'     => '',
       'esporadica' => ''
     )
   );
@@ -53,21 +53,25 @@ function gravaModeloDeSessaoAvancoins($tabela, $tipo)
   # separando extratos por tipo
   switch ($tipo) {
 
+    case 'compra':
+      $_SESSION['avancoins']['extrato']['compra']     = $tabela;
+        break;
+
     case 'diaria':
-      $_SESSION['avancoins']['extrato']['diaria'] = $tabela;
-    break;
+      $_SESSION['avancoins']['extrato']['diaria']     = $tabela;
+        break;
 
     case 'mensal':
-      $_SESSION['avancoins']['extrato']['mensal'] = $tabela;
-    break;
+      $_SESSION['avancoins']['extrato']['mensal']     = $tabela;
+        break;
 
     case 'esporadica':
       $_SESSION['avancoins']['extrato']['esporadica'] = $tabela;
-    break;
+        break;
 
     case 'totais':
-      $_SESSION['avancoins']['extrato']['totais'] = $tabela;
-    break;
+      $_SESSION['avancoins']['extrato']['totais']     = $tabela;
+        break;
 
   }
 
