@@ -24,6 +24,35 @@ function consultaQuantidadeDeMoedas($db, $carteira)
 }
 
 /**
+ * verifica a quantidade de moedas utilizadas em compras na loja avanção pelos logs de compras
+ * @param - objeto com uma conexão aberta
+ * @param - array com os dados da carteira de avancoins
+ */
+function verificaQuantidadeDeMoedasUtilizadasNaLojaAvancao($db, $carteira)
+{
+  $query =
+    "SELECT
+      SUM(ap.valor)
+    FROM av_avancoins_historico_compras AS ahc
+    INNER JOIN av_avancoins_produtos AS ap
+      ON ap.id = ahc.id_produto
+    WHERE (ahc.id_colaborador = {$carteira['id_colaborador']})";
+
+  # verificando se a consulta pode ser executada
+  if ($resultado = $db->query($query)) {
+
+    $moedas = $resultado->fetch_row();
+    
+    # somando a quantidade de moedas existentes com a quantidade retornada pela consulta
+    $carteira['moedas'] += (int)$moedas[0];
+
+  }
+
+  return $carteira['moedas'];
+
+}
+
+/**
  * verifica a quantidade de moedas que o colaborador possui pelos logs de ações esporádicas
  * @param - objeto com uma conexão aberta
  * @param - array com os dados da carteira de avancoins
@@ -139,6 +168,9 @@ function atualizaQuantidadeDeMoedasNaCarteira($db, $carteira)
 
   # chamando função que verifica a quantidade de moedas que o colaborador possui pelos logs de ações esporádicas
   $carteira['moedas'] = verificaQuantidadeDeMoedasDasAcoesEsporadicas($db, $carteira);
+
+  # chamando função que verifica a quantidade de moedas utilizadas em compras na loja avanção pelos logs de compras
+  $carteira['moedas'] = verificaQuantidadeDeMoedasUtilizadasNaLojaAvancao($db, $carteira);
 
   $carteira['horario_atual'] = date('H:i:s');
 
