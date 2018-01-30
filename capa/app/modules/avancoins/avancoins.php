@@ -50,14 +50,18 @@ function geraExtratoAvancoins($form)
   require DIRETORIO_FUNCTIONS . 'avancoins/tabelas_relatorios.php';
   require DIRETORIO_MODELS    . 'sessao.php';
 
+  $compras          = array();
   $acoesDiarias     = array();
   $acoesMensais     = array();
   $acoesEsporadicas = array();
 
   $valoresTotaisDasAcoes = array(
+
+    'compras'           => 0,
     'acoes_diarias'     => 0,
     'acoes_mensais'     => 0,
     'acoes_esporadicas' => 0
+
   );
 
   $nivel = $_SESSION['usuario']['nivel'];
@@ -81,6 +85,7 @@ function geraExtratoAvancoins($form)
   if ($form['tipo'] == 1) {
 
     # chamando funções que geram extratos das ações registradas nas tabelas de logs
+    $valoresTotaisDasAcoes['compras']           = geraExtratoDeComprasSimplificado($db, $form);
     $valoresTotaisDasAcoes['acoes_diarias']     = geraExtratoDeAcoesDiariasSimplificado($db, $form);
     $valoresTotaisDasAcoes['acoes_mensais']     = geraExtratoDeAcoesMensaisSimplificado($db, $form);
     $valoresTotaisDasAcoes['acoes_esporadicas'] = geraExtratoDeAcoesEsporadicasSimplificado($db, $form);
@@ -94,22 +99,26 @@ function geraExtratoAvancoins($form)
   } elseif ($form['tipo'] == 2) {
 
     # chamando funções que geram extratos das ações registradas nas tabelas de logs
+    $compras          = geraExtratoDeComprasDetalhado($db, $form);
     $acoesDiarias     = geraExtratoDeAcoesDiariasDetalhado($db, $form);
     $acoesMensais     = geraExtratoDeAcoesMensaisDetalhado($db, $form);
     $acoesEsporadicas = geraExtratoDeAcoesEsporadicasDetalhado($db, $form);
 
     # chamando função que soma os valores das ações registradas nas tabelas de logs
+    $valoresTotaisDasAcoes['compras']           = somaValoresDasAcoes($compras);
     $valoresTotaisDasAcoes['acoes_diarias']     = somaValoresDasAcoes($acoesDiarias);
     $valoresTotaisDasAcoes['acoes_mensais']     = somaValoresDasAcoes($acoesMensais);
     $valoresTotaisDasAcoes['acoes_esporadicas'] = somaValoresDasAcoes($acoesEsporadicas);
 
     # chamando funções que criam tabelas de extratos com os totais das ações do colaborador
+    $tabelaCompra     = criaTabelaDeCompras($compras, $valoresTotaisDasAcoes['compras']);
     $tabelaDiaria     = criaTabelaDeAcoesDiarias($acoesDiarias, $valoresTotaisDasAcoes['acoes_diarias']);
     $tabelaMensal     = criaTabelaDeAcoesMensais($acoesMensais, $valoresTotaisDasAcoes['acoes_mensais']);
     $tabelaEsporadica = criaTabelaDeAcoesEsporadicas($acoesEsporadicas, $valoresTotaisDasAcoes['acoes_esporadicas']);
     $tabelaTotais     = criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome, $sobrenome);
 
     # chamando função que grava os dados do módulo avancoins na sessão
+    gravaModeloDeSessaoAvancoins($tabelaCompra, 'compra');
     gravaModeloDeSessaoAvancoins($tabelaDiaria, 'diaria');
     gravaModeloDeSessaoAvancoins($tabelaMensal, 'mensal');
     gravaModeloDeSessaoAvancoins($tabelaEsporadica, 'esporadica');
