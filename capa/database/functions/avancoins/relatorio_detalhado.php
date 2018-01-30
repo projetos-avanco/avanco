@@ -24,6 +24,49 @@ function somaValoresDasAcoes($acoes)
 }
 
 /**
+ * gera um extrato com as compras na loja detalhadas
+ * @param - objeto com uma conexão aberta
+ * @param - array com os dados do formulário de extrato avancoins
+ */
+function geraExtratoDeComprasDetalhado($db, $form)
+{
+  $query =
+    "SELECT
+      ahc.data_compra,
+      ahc.horario_compra,
+      ap.descricao,
+      ap.valor
+    FROM av_avancoins_historico_compras AS ahc
+    INNER JOIN av_avancoins_produtos AS ap
+      ON ap.id = ahc.id_produto
+    WHERE (ahc.id_colaborador = {$form['colaborador']})
+      AND (ahc.data_compra BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}')
+    ORDER BY ahc.data_compra DESC, ahc.horario_compra DESC;";
+
+  if ($resultado = $db->query($query)) {
+
+    $compras = array();
+
+    while ($registro = $resultado->fetch_assoc()) {
+
+      $compras[] = array(
+
+        'data_compra'    => formataDataParaExibir($registro['data_compra']),
+        'horario_compra' => $registro['horario_compra'],        
+        'descricao'      => $registro['descricao'],
+        'valor'          => $registro['valor']
+
+      );
+
+    }
+
+  }
+
+  return $compras;
+
+}
+
+/**
  * gera um extrato com as ações diárias detalhadas
  * @param - objeto com uma conexão aberta
  * @param - array com os dados do formulário de extrato avancoins

@@ -1,6 +1,36 @@
 <?php
 
 /**
+ * gera um extrato com as compras na loja simplificado
+ * @param - objeto com uma conexão aberta
+ * @param - array com os dados do formulário de extrato avancoins
+ */
+function geraExtratoDeComprasSimplificado($db, $form)
+{
+  $query =
+    "SELECT
+      SUM(ap.valor)
+    FROM av_avancoins_historico_compras AS ahc
+    INNER JOIN av_avancoins_produtos AS ap
+      ON ap.id = ahc.id_produto
+    WHERE (ahc.id_colaborador = {$form['colaborador']})
+      AND (ahc.data_compra BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}');";
+  
+  if ($resultado = $db->query($query)) {
+
+    $valor = $resultado->fetch_row();
+
+    $compras = $valor[0];
+
+    settype($compras, 'integer');
+
+  }
+
+  return $compras;
+
+}
+
+/**
  * gera um extrato com as ações diárias simplificado
  * @param - objeto com uma conexão aberta
  * @param - array com os dados do formulário de extrato avancoins
@@ -14,8 +44,7 @@ function geraExtratoDeAcoesDiariasSimplificado($db, $form)
     INNER JOIN av_avancoins_acoes_diarias AS ad
     	ON ad.id = adl.id_acao_diaria
     WHERE (adl.id_colaborador = {$form['colaborador']})
-    	AND (adl.data_acao BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}')
-    ORDER BY adl.data_acao, adl.horario_acao, adl.id_chat;";
+    	AND (adl.data_acao BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}');";
 
   if ($resultado = $db->query($query)) {
 
@@ -45,8 +74,7 @@ function geraExtratoDeAcoesMensaisSimplificado($db, $form)
     INNER JOIN av_avancoins_acoes_mensais AS am
     	ON am.id = aml.id_acao_mensal
     WHERE (aml.id_colaborador = {$form['colaborador']})
-    	AND (aml.data_acao BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}')
-    ORDER BY aml.data_acao;";
+    	AND (aml.data_acao BETWEEN '{$form['data_inicial']}' AND '{$form['data_final']}');";
 
   if ($resultado = $db->query($query)) {
 
