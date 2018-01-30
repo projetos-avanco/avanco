@@ -202,12 +202,15 @@
         <div class="row">
           <div class="col-sm-12">
             <?php if (isset($_SESSION['avancoins'])) : ?>
+
               <?php echo ($_SESSION['avancoins']['extrato']['totais']); ?>
 
-              <?php if (isset($_SESSION['avancoins']['extrato']['esporadica']) AND
+              <?php if (isset($_SESSION['avancoins']['extrato']['compra'])     AND
+                        isset($_SESSION['avancoins']['extrato']['esporadica']) AND
                         isset($_SESSION['avancoins']['extrato']['mensal'])     AND
                         isset($_SESSION['avancoins']['extrato']['diaria'])) : ?>
 
+                <?php echo ($_SESSION['avancoins']['extrato']['compra']); ?>
                 <?php echo ($_SESSION['avancoins']['extrato']['esporadica']); ?>
                 <?php echo ($_SESSION['avancoins']['extrato']['mensal']); ?>
                 <?php echo ($_SESSION['avancoins']['extrato']['diaria']); ?>
