@@ -17,9 +17,10 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
       <table class='table'>
         <thead>
           <tr>
-            <th class='text-left' width='48%'>Total em Atividades Diárias</th>
-            <th class='text-left' width='32%'>Total em Atividades Mensais</th>
-            <th class='text-left' width='20%'>Total em Atividades Esporádicas</th>
+            <th class='text-left' width='29%'>Total em Compras</th>
+            <th class='text-left' width='28%'>Total em Atividades Diárias</th>
+            <th class='text-left' width='27%'>Total em Atividades Mensais</th>
+            <th class='text-left' width='16%'>Total em Atividades Esporádicas</th>
           </tr>
         </thead>
 
@@ -32,9 +33,10 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
       <table class='table'>
         <thead>
           <tr>
-            <th class='text-left' width='48%'>Total em Atividades Diárias</th>
-            <th class='text-left' width='32%'>Total em Atividades Mensais</th>
-            <th class='text-left' width='20%'>Total em Atividades Esporádicas</th>
+            <th class='text-left' width='29%'>Total em Compras</th>
+            <th class='text-left' width='28%'>Total em Atividades Diárias</th>
+            <th class='text-left' width='27%'>Total em Atividades Mensais</th>
+            <th class='text-left' width='16%'>Total em Atividades Esporádicas</th>
           </tr>
         </thead>
 
@@ -44,12 +46,14 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
 
   $linhas .=
     "<tr>
+      <td class='text-left'>{$valoresTotaisDasAcoes['compras']}</td>
       <td class='text-left'>{$valoresTotaisDasAcoes['acoes_diarias']}</td>
       <td class='text-left'>{$valoresTotaisDasAcoes['acoes_mensais']}</td>
       <td class='text-left'>{$valoresTotaisDasAcoes['acoes_esporadicas']}</td>
     </tr>";
 
   $total =
+    $valoresTotaisDasAcoes['compras'] +
     $valoresTotaisDasAcoes['acoes_diarias'] +
     $valoresTotaisDasAcoes['acoes_mensais'] +
     $valoresTotaisDasAcoes['acoes_esporadicas'];
@@ -59,6 +63,60 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
         <td class='text-left destaque' width='20%'>Total em Avancoins</td>
         <td class='text-left' width='10%'>{$total} Moedas</td>
         <td class='text-left'></td>
+        <td class='text-left'></td>
+      </tr>";
+
+  $tabela .= $linhas;
+
+  $tabela .=
+    "</tbody>
+  </table>";
+
+  return $tabela;
+
+}
+
+/**
+ * cria uma tabela de extrato com o detalhamento e o total das compras na loja do colaborador
+ * @param - array com as ações diárias do colaborador
+ */
+function criaTabelaDeCompras($compras, $valorTotalAcao)
+{
+  $tabela = '';
+  $linhas = '';
+
+  $tabela .=
+    "<br><h4 class='text-left'>Histórico Compras</h4><br>
+    <table class='table'>
+    <thead>
+        <tr>
+        <th class='text-left' width='10%'>Data</th>
+        <th class='text-left' width='5%'>Horário</th>        
+        <th class='text-left' width='70%'>Produto</th>
+        <th class='text-left' width='15%'>Valor</th>
+        </tr>
+    </thead>
+
+    <tbody>";
+
+  foreach ($compras as $compra) {
+
+    $linhas .=
+      "<tr>
+        <td class='text-left'>{$compra['data_compra']}</td>
+        <td class='text-left'>{$compra['horario_compra']}</td>        
+        <td class='text-left'>{$compra['descricao']}</td>
+        <td class='text-left'>{$compra['valor']}</td>
+      </tr>";
+
+  }
+
+  $linhas .=
+      "<tr>
+        <td class='text-left destaque' width='20%'>Total em Compras</td>
+        <td class='text-left' width='10%'>{$valorTotalAcao} Moedas</td>
+        <td class='text-left'></td>
+        <td class='text-left'></td>                
       </tr>";
 
   $tabela .= $linhas;
