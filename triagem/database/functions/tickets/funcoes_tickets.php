@@ -56,7 +56,7 @@ function consultaDadosDoTicket($cliente, $db)
 }
 
 /**
- * consulta o prazo de agendamento do ticket
+ * consulta o prazo de agendamento e validade do ticket
  * @param - string com o número do ticket
  * @param - objeto com uma conexão aberta
  */
@@ -70,7 +70,8 @@ function consultaPrazoDoAgendamentoDoTicket($ticket, $db)
         WHEN (CURRENT_TIME() > DATE_FORMAT(agendado, '%T'))
           THEN TIMEDIFF(CURRENT_TIME(), DATE_FORMAT(agendado, '%T'))
         ELSE '0'
-      END AS diferenca
+      END AS diferenca,
+      validade
     FROM av_tickets
     WHERE (ticket = $ticket);";
 
@@ -82,8 +83,9 @@ function consultaPrazoDoAgendamentoDoTicket($ticket, $db)
       'data_atual'    => date('Y-m-d'),
       'data_agendada' => '', 
       'hora_atual'    => date('H:i:s'),      
-      'hora_agendata' => '',
-      'diferenca'     => ''
+      'hora_agendada' => '',
+      'diferenca'     => '',
+      'validade'      => ''
 
     );
 
@@ -93,6 +95,7 @@ function consultaPrazoDoAgendamentoDoTicket($ticket, $db)
       $agendado['data_agendada'] = $registro['data'];
       $agendado['hora_agendada'] = $registro['hora'];
       $agendado['diferenca']     = $registro['diferenca'];
+      $agendado['validade']      = $registro['validade'];
 
     }
 
