@@ -14,7 +14,20 @@ function verificaPrazoDoAgendamentoDoTicket($cliente, $colaboradores)
   # chamando função que retorna uma conexão com a base de dados
   $db = abre_conexao();
   
+  # chamando função que consulta o prazo de agendamento e validade do ticket
   $agendado = consultaPrazoDoAgendamentoDoTicket($cliente['ticket'], $db);
+
+  # verificando se o ticket já está invalidado
+  if ($agendado['validade'] == false) {
+
+    $msg = 'Ticket Finalizado!';
+
+    #retornando mensagem para o portal avanço
+    echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+
+    exit;
+
+  }
   
   # verificando se a data agendada do ticket já passou
   if ($agendado['data_atual'] > $agendado['data_agendada']) {
@@ -28,9 +41,8 @@ function verificaPrazoDoAgendamentoDoTicket($cliente, $colaboradores)
     echo json_encode($msg, JSON_UNESCAPED_UNICODE);
 
     exit;
-
-  # verificando se o cliente está chamando na data agendada
-  } else if ($agendado['data_atual'] == $agendado['data_agendada']) {
+  
+  } else if ($agendado['data_atual'] == $agendado['data_agendada']) { # verificando se o cliente está chamando na data agendada
 
     # verificando se existe uma diferença maior que 30 minutos no horário que o cliente chamou
     if ($agendado['diferenca'] > '00:30:00') {
