@@ -17,10 +17,10 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
       <table class='table'>
         <thead>
           <tr>
-            <th class='text-left' width='29%'>Total em Compras</th>
-            <th class='text-left' width='28%'>Total em Atividades Diárias</th>
-            <th class='text-left' width='27%'>Total em Atividades Mensais</th>
-            <th class='text-left' width='16%'>Total em Atividades Esporádicas</th>
+            <th class='text-left' width='25%'>Total em Compras na Loja</th>
+            <th class='text-left' width='25%'>Total em Atividades Diárias</th>
+            <th class='text-left' width='25%'>Total em Atividades Mensais</th>
+            <th class='text-left' width='25%'>Total em Atividades Esporádicas</th>
           </tr>
         </thead>
 
@@ -33,10 +33,10 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
       <table class='table'>
         <thead>
           <tr>
-            <th class='text-left' width='29%'>Total em Compras</th>
-            <th class='text-left' width='28%'>Total em Atividades Diárias</th>
-            <th class='text-left' width='27%'>Total em Atividades Mensais</th>
-            <th class='text-left' width='16%'>Total em Atividades Esporádicas</th>
+            <th class='text-left' width='25%'>Total em Compras na Loja</th>
+            <th class='text-left' width='25%'>Total em Atividades Diárias</th>
+            <th class='text-left' width='25%'>Total em Atividades Mensais</th>
+            <th class='text-left' width='25%'>Total em Atividades Esporádicas</th>
           </tr>
         </thead>
 
@@ -60,8 +60,8 @@ function criaTabelaDeTotais($valoresTotaisDasAcoes, $nivel, $nome = null, $sobre
 
   $linhas .=
       "<tr>
-        <td class='text-left destaque' width='20%'>Total em Avancoins</td>
-        <td class='text-left' width='10%'>{$total} Moedas</td>
+        <td class='text-left destaque'>Total de Avancoins</td>
+        <td class='text-left'>{$total} Moedas</td>
         <td class='text-left'></td>
         <td class='text-left'></td>
       </tr>";
@@ -90,10 +90,10 @@ function criaTabelaDeCompras($compras, $valorTotalAcao)
     <table class='table'>
     <thead>
         <tr>
-        <th class='text-left' width='10%'>Data</th>
-        <th class='text-left' width='5%'>Horário</th>        
-        <th class='text-left' width='70%'>Produto</th>
-        <th class='text-left' width='15%'>Valor</th>
+        <th class='text-left' width='5%'>Data</th>
+        <th class='text-left' width='7%'>Horário</th>        
+        <th class='text-left' width='86%'>Produto</th>
+        <th class='text-left' width='2%'>Valor</th>
         </tr>
     </thead>
 
@@ -113,119 +113,10 @@ function criaTabelaDeCompras($compras, $valorTotalAcao)
 
   $linhas .=
       "<tr>
-        <td class='text-left destaque' width='20%'>Total em Compras</td>
-        <td class='text-left' width='10%'>{$valorTotalAcao} Moedas</td>
+        <td class='text-left destaque'>Total</td>
+        <td class='text-left'>{$valorTotalAcao} Moedas</td>
         <td class='text-left'></td>
         <td class='text-left'></td>                
-      </tr>";
-
-  $tabela .= $linhas;
-
-  $tabela .=
-    "</tbody>
-  </table>";
-
-  return $tabela;
-
-}
-
-/**
- * cria uma tabela de extrato com o detalhamento e o total das ações diárias do colaborador
- * @param - array com as ações diárias do colaborador
- */
-function criaTabelaDeAcoesDiarias($acoesDiarias, $valorTotalAcao)
-{
-  $tabela = '';
-  $linhas = '';
-
-  $tabela .=
-    "<br><h4 class='text-left'>Atividades Diárias</h4><br>
-    <table class='table'>
-    <thead>
-        <tr>
-        <th class='text-left' width='10%'>Data</th>
-        <th class='text-left' width='5%'>Horário</th>
-        <th class='text-left' width='10%'>Chat</th>
-        <th class='text-left' width='60%'>Atividade</th>
-        <th class='text-left' width='15%'>Valor</th>
-        </tr>
-    </thead>
-
-    <tbody>";
-
-  foreach ($acoesDiarias as $acaoDiaria) {
-
-    $linhas .=
-      "<tr>
-        <td class='text-left'>{$acaoDiaria['data_acao']}</td>
-        <td class='text-left'>{$acaoDiaria['horario_acao']}</td>
-        <td class='text-left'>{$acaoDiaria['id_chat']}</td>
-        <td class='text-left'>{$acaoDiaria['descricao']}</td>
-        <td class='text-left'>{$acaoDiaria['valor']}</td>
-      </tr>";
-
-  }
-
-  $linhas .=
-      "<tr>
-        <td class='text-left destaque' width='20%'>Total em Atividades Diárias</td>
-        <td class='text-left' width='10%'>{$valorTotalAcao} Moedas</td>
-        <td class='text-left'></td>
-        <td class='text-left'></td>        
-        <td class='text-left'></td>        
-      </tr>";
-
-  $tabela .= $linhas;
-
-  $tabela .=
-    "</tbody>
-  </table>";
-
-  return $tabela;
-
-}
-
-/**
- * cria uma tabela de extrato com o detalhamento e o total das ações mensais do colaborador
- * @param - array com as ações mensais do colaborador
- */
-function criaTabelaDeAcoesMensais($acoesMensais, $valorTotalAcao)
-{
-  $tabela = '';
-  $linhas = '';
-
-  $tabela .=
-    "<br><h4 class='text-left'>Atividades Mensais</h4><br>
-    <table class='table'>
-      <thead>
-        <tr>
-          <th class='text-left' width='10%'>Data</th>
-          <th class='text-left' width='5%'>Horário</th>
-          <th class='text-left' width='70%'>Atividade</th>
-          <th class='text-left' width='15%'>Valor</th>
-        </tr>
-      </thead>
-
-      <tbody>";
-
-  foreach ($acoesMensais as $acaoMensal) {
-
-    $linhas .=
-      "<tr>
-        <td class='text-left'>{$acaoMensal['data_acao']}</td>
-        <td class='text-left'>{$acaoMensal['horario_acao']}</td>
-        <td class='text-left'>{$acaoMensal['descricao']}</td>
-        <td class='text-left'>{$acaoMensal['valor']}</td>
-      </tr>";
-
-  }
-
-  $linhas .=
-      "<tr>
-        <td class='text-left destaque' width='20%'>Total em Atividades Mensais</td>
-        <td class='text-left' width='10%'>{$valorTotalAcao} Moedas</td>
-        <td class='text-left'></td>
-        <td class='text-left'></td>
       </tr>";
 
   $tabela .= $linhas;
@@ -252,13 +143,13 @@ function criaTabelaDeAcoesEsporadicas($acoesEsporadicas, $valorTotalAcao)
     <table class='table'>
       <thead>
         <tr>
-          <th class='text-left' width='10%'>Data</th>
-          <th class='text-left' width='5%'>Horário</th>
-          <th class='text-left' width='10%'>Supervisor</th>
-          <th class='text-left' width='10%'>Lançamento</th>
-          <th class='text-left' width='25%'>Observação</th>
+          <th class='text-left' width='5%'>Data</th>
+          <th class='text-left' width='7%'>Horário</th>
+          <th class='text-left' width='9%'>Supervisor</th>
+          <th class='text-left' width='7%'>Lançamento</th>
+          <th class='text-left' width='45%'>Observação</th>
           <th class='text-left' width='25%'>Atividade</th>
-          <th class='text-left' width='15%'>Valor</th>
+          <th class='text-left' width='2%'>Valor</th>
         </tr>
       </thead>
 
@@ -281,13 +172,122 @@ function criaTabelaDeAcoesEsporadicas($acoesEsporadicas, $valorTotalAcao)
 
   $linhas .=
       "<tr>
-        <td class='text-left destaque' width='20%'>Total em Atividades Esporádicas</td>
-        <td class='text-left' width='10%'>{$valorTotalAcao} Moedas</td>
+        <td class='text-left destaque'>Total</td>
+        <td class='text-left'>{$valorTotalAcao} Moedas</td>
         <td class='text-left'></td>
         <td class='text-left'></td>
         <td class='text-left'></td>
         <td class='text-left'></td>
         <td class='text-left'></td>
+      </tr>";
+
+  $tabela .= $linhas;
+
+  $tabela .=
+    "</tbody>
+  </table>";
+
+  return $tabela;
+
+}
+
+/**
+ * cria uma tabela de extrato com o detalhamento e o total das ações mensais do colaborador
+ * @param - array com as ações mensais do colaborador
+ */
+function criaTabelaDeAcoesMensais($acoesMensais, $valorTotalAcao)
+{
+  $tabela = '';
+  $linhas = '';
+
+  $tabela .=
+    "<br><h4 class='text-left'>Atividades Mensais</h4><br>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th class='text-left' width='5%'>Data</th>
+          <th class='text-left' width='7%'>Horário</th>
+          <th class='text-left' width='86%'>Atividade</th>
+          <th class='text-left' width='2%'>Valor</th>
+        </tr>
+      </thead>
+
+      <tbody>";
+
+  foreach ($acoesMensais as $acaoMensal) {
+
+    $linhas .=
+      "<tr>
+        <td class='text-left'>{$acaoMensal['data_acao']}</td>
+        <td class='text-left'>{$acaoMensal['horario_acao']}</td>
+        <td class='text-left'>{$acaoMensal['descricao']}</td>
+        <td class='text-left'>{$acaoMensal['valor']}</td>
+      </tr>";
+
+  }
+
+  $linhas .=
+      "<tr>
+        <td class='text-left destaque'>Total</td>
+        <td class='text-left'>{$valorTotalAcao} Moedas</td>
+        <td class='text-left'></td>
+        <td class='text-left'></td>
+      </tr>";
+
+  $tabela .= $linhas;
+
+  $tabela .=
+    "</tbody>
+  </table>";
+
+  return $tabela;
+
+}
+
+/**
+ * cria uma tabela de extrato com o detalhamento e o total das ações diárias do colaborador
+ * @param - array com as ações diárias do colaborador
+ */
+function criaTabelaDeAcoesDiarias($acoesDiarias, $valorTotalAcao)
+{
+  $tabela = '';
+  $linhas = '';
+
+  $tabela .=
+    "<br><h4 class='text-left'>Atividades Diárias</h4><br>
+    <table class='table'>
+    <thead>
+        <tr>
+        <th class='text-left' width='5%'>Data</th>
+        <th class='text-left' width='7%'>Horário</th>
+        <th class='text-left' width='9%'>Chat</th>
+        <th class='text-left' width='77%'>Atividade</th>
+        <th class='text-left' width='2%'>Valor</th>
+        </tr>
+    </thead>
+
+    <tbody>";
+
+  foreach ($acoesDiarias as $acaoDiaria) {
+
+    $linhas .=
+      "<tr>
+        <td class='text-left'>{$acaoDiaria['data_acao']}</td>
+        <td class='text-left'>{$acaoDiaria['horario_acao']}</td>
+        <td class='text-left'>{$acaoDiaria['id_chat']}</td>
+        <td class='text-left'>{$acaoDiaria['descricao']}</td>
+        <td class='text-left'>{$acaoDiaria['valor']}</td>
+      </tr>";
+
+  }
+
+  $linhas .=
+      "<tr>
+        <td class='text-left destaque'>Total</td>
+        <td class='text-left'>{$valorTotalAcao} Moedas</td>
+        <td class='text-left'></td>
+        <td class='text-left'></td>        
+        <td class='text-left'></td>        
       </tr>";
 
   $tabela .= $linhas;
