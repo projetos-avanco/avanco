@@ -3,7 +3,7 @@
 header('Content-Type: text/html; charset=utf-8');
 
 /**
- * consulta os tickets válidos referentes a uma conta contrato
+ * consulta os tickets referentes a uma conta contrato
  * @param - string com o código de conta contrato
  * @param - objeto com uma conexão aberta
  */
@@ -16,9 +16,9 @@ function consultaTicketsValidos($conta_contrato, $db)
       a.agendado,
       a.tecnico,
       CASE
-        WHEN ((a.validade = true OR a.validade = false) AND a.chat_id > 0)
+        WHEN (a.validade = false AND a.chat_id > 0)
           THEN ('Atendido')
-        WHEN (a.validade = true AND a.chat_id = 0)	
+        WHEN (a.validade = true AND (a.chat_id = 0 OR a.chat_id > 0))	
           THEN ('Em Aberto')
         WHEN (a.validade = false AND a.chat_id = 0)
           THEN ('Finalizado')
@@ -39,9 +39,9 @@ function consultaTicketsValidos($conta_contrato, $db)
         t.validade
       FROM av_tickets AS t
       INNER JOIN lh_users AS u
-      ON u.id = t.colaborador) AS a
-    WHERE (conta_contrato = $conta_contrato)
-    ORDER BY a.agendado DESC, a.ticket DESC;";
+        ON u.id = t.colaborador) AS a
+      WHERE (conta_contrato = $conta_contrato)
+        ORDER BY a.agendado DESC, status DESC;";
 
   # verificando se é possível executar a consulta
   if ($resultado = $db->query($query)) {
