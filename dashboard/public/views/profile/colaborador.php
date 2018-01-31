@@ -15,16 +15,16 @@
 <?php
 
   # chamando função responsável por atualizar as ações diárias do colaborador no período atual
-  atualizaAcoesDiarias();
+  atualizaAcoesDiarias($_SESSION['colaborador']['id']);
 
   # chamando função responsável por atualizar as ações mensais do colaborador no período atual
-  atualizaAcoesMensais();
+  atualizaAcoesMensais($_SESSION['colaborador']['id']);
 
   # chamando função responsável por atualizar a quantidade de moedas na carteira do colaborador
-  atualizaCarteira();
+  atualizaCarteira($_SESSION['colaborador']['id']);
 
   # chamando função responsável por retornar a quantidade atual de moedas do colaborador
-  $avancoins = retornaQuantidadeDeMoedasDaCarteira();
+  $avancoins = retornaQuantidadeDeMoedasDaCarteira($_SESSION['colaborador']['id']);
 
 ?>
 
