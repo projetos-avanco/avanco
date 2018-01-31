@@ -8,8 +8,9 @@ require DIRETORIO_FUNCTIONS . 'avancoins/carteira.php';
 
 /*
  * responsável por atualizar as ações diárias do colaborador no período atual
+ * @param - string com o id do colaborador
  */
-function atualizaAcoesDiarias()
+function atualizaAcoesDiarias($id)
 {
   # chamando função que abre uma conexão com a base de dados
   $db = abre_conexao();
@@ -17,8 +18,8 @@ function atualizaAcoesDiarias()
   # chamando função que cria uma array modelo de carteira de avancoins
   $carteira = defineArrayModeloDeCarteiraAvancoins();
 
-  # recuperando id do colaborador
-  $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
+  # recuperando id do colaborador  
+  $carteira['id_colaborador'] = $id;
 
   # chamando função que retorna o período do mês atual
   $carteira = verificaPeriodoAtivo($db, $carteira);
@@ -60,8 +61,9 @@ function atualizaAcoesDiarias()
 
 /*
  * responsável por atualizar as ações mensais do colaborador no período atual
+ * @param - string com o id do colaborador
  */
-function atualizaAcoesMensais()
+function atualizaAcoesMensais($id)
 {
   # chamando função que abre uma conexão com a base de dados
   $db = abre_conexao();
@@ -69,8 +71,8 @@ function atualizaAcoesMensais()
   # chamando função que cria uma array modelo de carteira de avancoins
   $carteira = defineArrayModeloDeCarteiraAvancoins();
 
-  # recuperando id do colaborador
-  $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
+  # recuperando id do colaborador  
+  $carteira['id_colaborador'] = $id;
 
   # chamando função que retorna o período do mês atual
   $carteira = verificaPeriodoAtivo($db, $carteira);
@@ -98,8 +100,9 @@ function atualizaAcoesMensais()
 
 /*
  * responsável por atualizar a quantidade de moedas na carteira de avancoins
+ * @param - string com o id do colaborador
  */
-function atualizaCarteira()
+function atualizaCarteira($id)
 {
   # chamando função que abre uma conexão com a base de dados
   $db = abre_conexao();
@@ -107,8 +110,8 @@ function atualizaCarteira()
   # chamando função que cria uma array modelo de carteira de avancoins
   $carteira = defineArrayModeloDeCarteiraAvancoins();
 
-  # recuperando id do colaborador
-  $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
+  # recuperando id do colaborador  
+  $carteira['id_colaborador'] = $id;
 
   # chamando função que retorna o período do mês atual
   $carteira = verificaPeriodoAtivo($db, $carteira);
@@ -122,8 +125,9 @@ function atualizaCarteira()
 
 /*
  * responsável por retornar para o dashboard a quantidade atual de moedas do colaborador
+ * @param - string com o id do colaborador
  */
-function retornaQuantidadeDeMoedasDaCarteira()
+function retornaQuantidadeDeMoedasDaCarteira($id)
 {
   # chamando função que abre uma conexão com a base de dados
   $db = abre_conexao();
@@ -131,8 +135,8 @@ function retornaQuantidadeDeMoedasDaCarteira()
   # chamando função que cria uma array modelo de carteira de avancoins
   $carteira = defineArrayModeloDeCarteiraAvancoins();
 
-  # recuperando id do colaborador
-  $carteira['id_colaborador'] = $_SESSION['colaborador']['id'];
+  # recuperando id do colaborador  
+  $carteira['id_colaborador'] = $id;
 
   # chamando função que retorna a quantidade atual de moedas do colaborador
   $carteira['moedas'] = consultaQuantidadeDeMoedas($db, $carteira);
