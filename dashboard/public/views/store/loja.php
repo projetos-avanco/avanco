@@ -9,17 +9,36 @@
 
 <?php
 
-  # chamando função responsável por atualizar as ações diárias do colaborador no período atual
-  atualizaAcoesDiarias();
+  # verificando se o usuário que está logado é do atendimento (se sim, será enviado o id do dele)
+  if ($_SESSION['usuario']['nivel'] == 1) {
 
-  # chamando função responsável por atualizar as ações mensais do colaborador no período atual
-  atualizaAcoesMensais();
+    # chamando função responsável por atualizar as ações diárias do colaborador no período atual
+    atualizaAcoesDiarias($_SESSION['colaborador']['id']);
 
-  # chamando função responsável por atualizar a quantidade de moedas na carteira do colaborador
-  atualizaCarteira();
+    # chamando função responsável por atualizar as ações mensais do colaborador no período atual
+    atualizaAcoesMensais($_SESSION['colaborador']['id']);
 
-  # chamando função responsável por retornar a quantidade atual de moedas do colaborador
-  $avancoins = retornaQuantidadeDeMoedasDaCarteira();
+    # chamando função responsável por atualizar a quantidade de moedas na carteira do colaborador
+    atualizaCarteira($_SESSION['colaborador']['id']);
+
+    # chamando função responsável por retornar a quantidade atual de moedas do colaborador
+    $avancoins = retornaQuantidadeDeMoedasDaCarteira($_SESSION['colaborador']['id']);
+
+  } else { # verificando se o usuário que está logado é supervisor (se sim, será enviado o id do wellington felix para retorno 0 avancoins)
+
+    # chamando função responsável por atualizar as ações diárias do colaborador no período atual
+    atualizaAcoesDiarias('35');
+
+    # chamando função responsável por atualizar as ações mensais do colaborador no período atual
+    atualizaAcoesMensais('35');
+
+    # chamando função responsável por atualizar a quantidade de moedas na carteira do colaborador
+    atualizaCarteira('35');
+
+    # chamando função responsável por retornar a quantidade atual de moedas do colaborador
+    $avancoins = retornaQuantidadeDeMoedasDaCarteira('35');
+
+  }
 
   # chamando função responsável por retornar os dados dos produtos disponíveis na loja avanção
   $produtos = retornaProdutosDaLojaAvancao();
