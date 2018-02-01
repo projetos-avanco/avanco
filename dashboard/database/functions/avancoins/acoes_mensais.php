@@ -421,9 +421,11 @@ function insereLogsIntegrantesTimeVencedor($db, $carteira)
 
     $query =
       "SELECT
-      	id_colaborador
+        id_colaborador
       FROM av_dashboard_colaborador_times
-      WHERE (id_times = $codigoTime)";
+      WHERE (id_times = $codigoTime)
+        AND (data_saida IS NULL)
+      ORDER BY id_colaborador";
 
     if ($resultado = $db->query($query)) {
 
