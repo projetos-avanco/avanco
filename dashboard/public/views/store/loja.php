@@ -25,6 +25,8 @@
     $avancoins = retornaQuantidadeDeMoedasDaCarteira($_SESSION['colaborador']['id']);
 
   } else { # verificando se o usuário que está logado é supervisor (se sim, será enviado o id do wellington felix para retorno 0 avancoins)
+    
+    $_SESSION['colaborador']['id'] = '35';
 
     # chamando função responsável por atualizar as ações diárias do colaborador no período atual
     atualizaAcoesDiarias('35');
