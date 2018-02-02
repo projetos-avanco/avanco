@@ -40,4 +40,9 @@ if ($db) {
 
   $db->close();
 
+  # printando tickets invalidados no log
+  print_r($tickets);
+
+  echo "Script Executado!\n";
+
 }

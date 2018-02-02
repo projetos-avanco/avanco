@@ -19,7 +19,7 @@ if ($db) {
     # recuperando todos os ids dos colaboradores que recebem avancoins
     while ($registro = $resultado->fetch_assoc()) {
 
-      $ids[] = $registro['id'];
+      $ids[] = $registro['id'];      
 
     }
 
@@ -40,5 +40,10 @@ if ($db) {
   }
 
   fecha_conexao($db);
+
+  # printando ids atualizados no log
+  print_r($ids);
+
+  echo "Script Executado!\n";
 
 }
