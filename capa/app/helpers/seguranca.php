@@ -57,7 +57,8 @@ function verificaUsuarioLogado($pagina)
       }
 
       # páginas que usuários de nível 1 não possuem permissão para acessar
-      if ($pagina == 'nova_atividade.php') {
+      if ($pagina == 'nova_atividade.php' OR
+          $pagina == 'registro_horas.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -78,7 +79,8 @@ function verificaUsuarioLogado($pagina)
          $pagina == 'nova_atividade.php'        OR
          $pagina == 'extrato.php'               OR
          $pagina == 'conta.php'                 OR
-         $pagina == 'loja.php') {
+         $pagina == 'loja.php'                  OR
+         $pagina == 'registro_horas.php') {
 
         return true;
 
