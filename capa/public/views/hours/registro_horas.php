@@ -147,7 +147,7 @@
                       <div class="col-sm-3">
                         <div class="form-group">
                           <label for="total-despesas">Total Despesas</label>
-                          <input class="form-control required" id="total-despesas" type="text" name="despesas[total-despesas]" value="0" readonly="true">
+                          <input class="form-control" id="total-despesas" type="text" name="despesas[total-despesas]" value="0" readonly="true">
                         </div>
                       </div> 
                     </div>
@@ -156,7 +156,7 @@
                       <div class="col-sm-3">
                         <div class="form-group">
                           <label for="deslocamento">Deslocamento</label>
-                          <input class="form-control required" id="deslocamento" type="text" name="despesas[deslocamento]" value="0">
+                          <input class="form-control" id="deslocamento" type="text" name="despesas[deslocamento]" value="0">
                         </div>
                       </div> 
                     </div>
@@ -165,7 +165,7 @@
                       <div class="col-sm-3">
                         <div class="form-group">
                           <label for="alimentacao">Alimentação</label>
-                          <input class="form-control required" id="alimentacao" type="text" name="despesas[alimentacao]" value="0">
+                          <input class="form-control" id="alimentacao" type="text" name="despesas[alimentacao]" value="0">
                         </div>
                       </div> 
                     </div>
@@ -174,7 +174,7 @@
                       <div class="col-sm-3">
                         <div class="form-group">
                           <label for="hospedagem">Hospedagem</label>
-                          <input class="form-control required" id="hospedagem" type="text" name="despesas[hospedagem]" value="0">
+                          <input class="form-control" id="hospedagem" type="text" name="despesas[hospedagem]" value="0">
                         </div>
                       </div> 
                     </div>
