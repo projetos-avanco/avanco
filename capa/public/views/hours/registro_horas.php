@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/hours/validacao.css">
   
 </head>
 
@@ -76,21 +77,21 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <label for="razao-social">Razão Social</label>
-                    <input class="form-control required" id="razao-social" type="text" name="issue[razao-social]" value="" placeholder="Razão Social" readonly="true">
+                    <input class="form-control required" id="razao-social" type="text" name="issues[razao-social]" value="" placeholder="Razão Social" readonly="true">
                   </div>
                 </div>
 
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label for="cnpj">CNPJ</label>
-                    <input class="form-control required" id="cnpj" type="text" name="issue[cnpj]" value="" placeholder="CNPJ" readonly="true">
+                    <input class="form-control required" id="cnpj" type="text" name="issues[cnpj]" value="" placeholder="CNPJ" readonly="true">
                   </div>
                 </div>
 
                 <div class="col-sm-3">
                   <div class="form-group">
                     <label for="conta-contrato">Conta Contrato</label>
-                    <input class="form-control required" id="conta-contrato" type="text" name="issue[conta-contrato]" value="" placeholder="Conta Contrato" readonly="true">
+                    <input class="form-control required" id="conta-contrato" type="text" name="issues[conta-contrato]" value="" placeholder="Conta Contrato" readonly="true">
                   </div>
                 </div>
               </div>
@@ -103,10 +104,10 @@
                   <div class="row">
                     <div class="col-sm-12">                      
                       <label class="radio-inline">
-                        <input type="radio" name="issue[tipo]" id="remoto" value="remoto" checked> Atendimento Remoto
+                        <input type="radio" name="issues[tipo]" id="remoto" value="remoto" checked> Atendimento Remoto
                       </label>                                    
                       <label class="radio-inline">
-                        <input type="radio" name="issue[tipo]" id="in-loco" value="in-loco"> Atendimento In-Loco
+                        <input type="radio" name="issues[tipo]" id="in-loco" value="in-loco"> Atendimento In-Loco
                       </label>                      
                     </div>
                   </div>
@@ -116,7 +117,7 @@
                   <div class="row"> 
                     <div class="col-sm-3">
                       <label for="issue">Issue</label>
-                        <input class="form-control required" type="text" name="issue[issue]" placeholder="Número da Issue">
+                        <input class="form-control required" type="text" name="issues[issue]" placeholder="Número da Issue">
                     </div>
                   </div>
 
@@ -125,7 +126,7 @@
                   <div class="row">          
                     <div class="col-sm-4">
                       <label for="colaborador">Colaborador</label>
-                      <select class="form-control required" id="colaborador" name="issue[colaborador]">
+                      <select class="form-control required" id="colaborador" name="issues[colaborador]">
                         <option value="0">Selecione um Colaborador</option>
                       </select>
                     </div>
@@ -133,7 +134,7 @@
 
                   <div class="row">          
                     <div class="col-sm-4">                      
-                      <input id="supervisor" type="hidden" value="<?php echo $_SESSION['usuario']['id']; ?>">                      
+                      <input id="supervisor" type="hidden" name="issues[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
                     </div>
                   </div>
 
@@ -185,8 +186,10 @@
               <br> 
 
               <div class="row">
-                <div class="col-sm-12">
-                  <button type="button" id="botao">Mais</button>
+                <div class="col-sm-1 col-sm-offset-11">
+                  <button class="btn btn-primary btn-block" id="botao" type="button">
+                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  </button>                  
                 </div>
               </div>
               
@@ -199,7 +202,7 @@
                     <div class="row"> 
                       <div class="col-sm-2">
                         <label for="data">Data</label>
-                        <input class="form-control required" id="data" type="date" name="lancamento[0][data]" numero="0">
+                        <input class="form-control required" id="data" type="date" name="lancamentos[0][data]" numero="0">
                       </div>
                     </div>
 
@@ -208,7 +211,7 @@
                     <div class="row">
                       <div class="col-sm-2">
                         <label for="produto">Produto</label>
-                        <select class="form-control required" id="produto" name="lancamento[0][produto]" numero="0">
+                        <select class="form-control required" id="produto" name="lancamentos[0][produto]" numero="0">
                           <option value="0">Selecione um Produto</option>
                           <option value="1">Integral</option>
                           <option value="2">Frente de Loja</option>
@@ -223,12 +226,12 @@
                     <div class="row"> 
                       <div class="col-sm-2">
                         <label for="horas-trabalhadas">Horas Trabalhadas</label>
-                        <input class="form-control required" id="horas-trabalhadas" type="time" name="lancamento[0][horas-trabalhadas]" numero="0">
+                        <input class="form-control required" id="horas-trabalhadas" type="time" name="lancamentos[0][horas-trabalhadas]" numero="0">
                       </div>
 
                       <div class="col-sm-2">
                         <label for="horas-faturadas">Horas Faturadas</label>
-                        <input class="form-control required" id="horas-faturadas" type="time" name="lancamento[0][horas-faturadas]" numero="0">
+                        <input class="form-control required" id="horas-faturadas" type="time" name="lancamentos[0][horas-faturadas]" numero="0">
                       </div>                    
                     </div>
 
@@ -237,12 +240,12 @@
                     <div class="row"> 
                       <div class="col-sm-2">
                         <label for="valor-horas">Valor Horas</label>
-                        <input class="form-control required" id="valor-horas" type="text" name="lancamento[0][valor-horas]" value="0" numero="0">
+                        <input class="form-control required" id="valor-horas" type="text" name="lancamentos[0][valor-horas]" value="0" numero="0">
                       </div>
 
                       <div class="col-sm-2">
                         <label for="valor-toral">Valor Total</label>
-                        <input class="form-control required" id="valor-total" type="text" name="lancamento[0][valor-total]" value="0" numero="0">
+                        <input class="form-control required" id="valor-total" type="text" name="lancamentos[0][valor-total]" value="0" numero="0">
                       </div>
                     </div>
 
@@ -263,6 +266,8 @@
                 </div>
               </div>
             </form>
+
+            <br> 
 
             <div class="row">
               <div class="col-sm-12">
@@ -290,7 +295,7 @@
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/pesquisa.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/seleciona.js"></script>
-  <!--<script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/validacao.js"></script> -->
+  <script src="<?php echo BASE_URL; ?>/public/js/hours/validacao.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/hours/lancamentos.js"></script>
