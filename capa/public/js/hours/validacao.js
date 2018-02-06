@@ -6,7 +6,7 @@ $('document').ready(function() {
 
     $('input.required').each(function() {
 
-      if ($(this).val() == '' || $(this).val() == 0) {
+      if ($(this).val() == '') {
 
         $(this).addClass('erro');
 
