@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="<?php echo BASE_URL; ?>../capa/public/home.php">
         <img id="logo" src="<?php echo BASE_URL; ?>../capa/public/img/logo.png" alt="Novo Capa">
         <p id="novo-capa">
-          Novo Capa
+          Portal Avanção
         </p>
       </a>
       <a href="#menu-toggle" title="Menu Lateral" id="menu-toggle">

@@ -99,7 +99,7 @@
       <li class="bordermenu">
         <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu5">
           <span class="nav-header-primary">
-            <i class="fa fa-tags" aria-hidden="true"></i> Registro
+            <i class="fa fa-calendar" aria-hidden="true"></i> Registro
             <span class="pull-right">
                 <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
             </span>
