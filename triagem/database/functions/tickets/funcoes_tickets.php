@@ -67,7 +67,7 @@ function consultaPrazoDoAgendamentoDoTicket($ticket, $db)
       DATE_FORMAT(agendado, '%Y-%m-%d') AS data,
       DATE_FORMAT(agendado, '%T') AS hora,
       CASE
-        WHEN (CURRENT_TIME() > DATE_FORMAT(agendado, '%T'))
+        WHEN (CURRENT_TIME() >= DATE_FORMAT(agendado, '%T'))
           THEN TIMEDIFF(CURRENT_TIME(), DATE_FORMAT(agendado, '%T'))
         ELSE '0'
       END AS diferenca,
