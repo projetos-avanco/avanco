@@ -43,7 +43,7 @@ function verificaPrazoDoAgendamentoDoTicket($cliente, $colaboradores)
     exit;
   
   } else if ($agendado['data_atual'] == $agendado['data_agendada']) { # verificando se o cliente está chamando na data agendada
-
+    
     # verificando se existe uma diferença maior que 30 minutos no horário que o cliente chamou
     if ($agendado['diferenca'] > '00:30:00') {
 
@@ -58,18 +58,33 @@ function verificaPrazoDoAgendamentoDoTicket($cliente, $colaboradores)
       exit;
     
     # verificando se existe uma diferença menor que 30 minutos no horário que o cliente chamou
-    } else {
+    } elseif ($agendado['diferenca'] > '00:00:00' AND $agendado['diferenca'] <= '00:30:00') {
 
       # chamando função responsável por redirecionar o cliente para o colaborador agendado
       redirecionaParaColaboradorResponsavel($cliente, $colaboradores);
+
+      exit;
+
+    } else {
+
+      $msg = 'Aguarde até o horário agendado para o seu Ticket e tente novamente!';
+
+      #retornando mensagem para o portal avanço
+      echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+
+      exit;
 
     }
   
   # verificando se o cliente está chamando antes da data agendada
   } else {
 
-      # chamando função responsável por redirecionar o cliente para o colaborador agendado
-      redirecionaParaColaboradorResponsavel($cliente, $colaboradores);
+    $msg = 'Aguarde até a data e o horário agendado para o seu Ticket e tente novamente!';
+
+    #retornando mensagem para o portal avanço
+    echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+
+    exit;
 
   }
 
