@@ -92,6 +92,11 @@ $('document').ready(function() {
           type: 'get',
           url: url + '?idcolaborador=' + idColaborador + '&idproduto=' + idProduto + '&email=' + email,
           dataType: 'json',
+          beforeSend: function() {
+
+            $('.comprar').addClass('hidden');            
+
+          },
           success: function(resposta) {
 
             alert(resposta);
