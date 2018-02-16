@@ -234,21 +234,28 @@ function insereLogsPercentualDeFilaAte15Minutos($db, $carteira)
         "SELECT
         	ROUND(100 * (
         		(SELECT
-        			COUNT(id) AS atendimentos_realizados_ate_15_minutos
-        		FROM lh_chat
-        		WHERE (user_id = {$arrays[$i]['id_colaborador']})
-        			AND (status = 2)
-        			AND (wait_time <= 900)
-        			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))
+        			COUNT(c.id) AS atendimentos_realizados_ate_15_minutos
+        		FROM lh_chat AS c
+        		WHERE (c.user_id = {$arrays[$i]['id_colaborador']})        			
+        			AND (c.wait_time <= 900)
+              AND (c.chat_duration > 0)
+              AND (c.status = 2)
+        			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))
 
         		/
 
-        		(SELECT
-        			COUNT(id) AS atendimentos_demandados
-        		FROM lh_chat
-        		WHERE (user_id = {$arrays[$i]['id_colaborador']})
-        			AND (status = 2)
-        			AND (FROM_UNIXTIME(time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))), 0) AS percentual_atendimentos_15_minutos;";
+            (SELECT
+              COUNT(d.id) atendimentos_demandados
+            FROM
+              (SELECT
+                c.id,
+                c.chat_duration,
+                TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+              FROM lh_chat AS c
+              WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
+                AND (c.status = 2)
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+            WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_atendimentos_15_minutos;";
 
       # verificando se a consulta pode ser executada
       if ($resultado = $db->query($query)) {
