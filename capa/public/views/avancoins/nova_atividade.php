@@ -68,6 +68,7 @@
                 <option value="5">Ausência na Gestão do Conhecimento</option>
                 <option value="6">SLA fora da Meta (por Protocolo)</option>
                 <option value="7">Issue (Aguardando Cliente) fora do Padrão</option>
+                <option value="8">Evento Especial</option>
               </select>
             </div>
 
