@@ -139,32 +139,37 @@ function calculaPercentualDePerda($objeto, $modelo, $datas)
  */
 function calculaPercentualDeFilaAte15Minutos($objeto, $modelo, $datas)
 {
-  $query =
+	$query =
 		"SELECT
 			ROUND(100 * (
 				(SELECT
-					COUNT(c.id) AS atendimentos_realizados_ate_15_minutos
-				FROM lh_chat AS c
-				WHERE (c.user_id = {$modelo['pessoal']['id']})
-					AND (c.wait_time <= 900)
-					AND (c.chat_duration > 0)
-					AND (c.status = 2)
-					AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}'))
+					COUNT(d.id)
+				FROM
+					(SELECT
+						c.id,
+						c.chat_duration,
+						TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+					FROM lh_chat AS c
+					WHERE (c.user_id = {$modelo['pessoal']['id']})
+						AND (c.wait_time < 900)
+						AND (c.status = 2)
+						AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}')) AS d
+				WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))
 
 				/
 
 
 				(SELECT
-					COUNT(d.id) atendimentos_demandados
+					COUNT(d.id)
 				FROM
-				(SELECT
-					c.id,
-					c.chat_duration,
-					TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
-				FROM lh_chat AS c
-				WHERE (c.user_id = {$modelo['pessoal']['id']})
-					AND (c.status = 2)
-					AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}')) AS d
+					(SELECT
+						c.id,
+						c.chat_duration,
+						TIMEDIFF(FROM_UNIXTIME(c.user_closed_ts, '%H:%i:%s'), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS time_diff
+					FROM lh_chat AS c
+					WHERE (c.user_id = {$modelo['pessoal']['id']})
+						AND (c.status = 2)
+						AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$datas['data_1']}' AND '{$datas['data_2']}')) AS d
 				WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_atendimentos_15_minutos;";
 
   $resultado = mysqli_query($objeto, $query);
