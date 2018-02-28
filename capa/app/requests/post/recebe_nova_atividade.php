@@ -22,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $form['id_acao_esporadica'] = isset($_POST['form']['atividade'])   ? $_POST['form']['atividade']   : null;
   $form['id_supervisor']      = isset($_POST['form']['supervisor'])  ? $_POST['form']['supervisor']  : null;
   $form['data_acao']          = isset($_POST['form']['data'])        ? $_POST['form']['data']        : null;
-  $form['horario_acao']       = isset($_POST['form']['horario'])     ? $_POST['form']['horario']     : null;
-  $form['observacao']         = isset($_POST['form']['observacao'])  ? $_POST['form']['observacao']  : '';
+  $form['horario_acao']       = isset($_POST['form']['horario'])     ? $_POST['form']['horario']     : null;  
+  $form['observacao']         = isset($_POST['form']['observacao'])  ? addslashes($_POST['form']['observacao'])  : '';
 
   # verificando se todos os dados obrigatórios foram enviados
   if
