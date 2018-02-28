@@ -73,10 +73,12 @@
                   <th class="text-left">Produto</th>
                   <th class="text-left">Módulo</th>
                   <th class="text-left">Assunto</th>
+
                   <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
                     <th class="text-left"></th>
                     <th class="text-left"></th>
                   <?php endif; ?>
+
                 </tr>
               </thead>
               <tbody>
@@ -84,7 +86,17 @@
                 <tr>
                   <td class="text-left" width="5%"><?php echo $ticket['data']; ?></td>
                   <td class="text-left"><?php echo $ticket['ticket']; ?></td>
+
+                <?php if ($ticket['chat_id'] != 0) : ?>
+                  <td class="text-left">
+                    <a href="<?php echo BASE_URL; ?>app/requests/get/recebe_chat_id.php?chat=<?php echo $ticket['chat_id']; ?>" target="_blank">
+                      <?php echo $ticket['chat_id']; ?>
+                    </a>
+                  </td>
+                <?php else : ?>
                   <td class="text-left"><?php echo $ticket['chat_id']; ?></td>
+                <?php endif; ?>
+
                   <td class="text-left"><?php echo $ticket['validade']; ?></td>
                   <td class="text-left"><?php echo $ticket['contato']; ?></td>
                   <td class="text-left" width="8%"><?php echo $ticket['telefone']; ?></td>
@@ -95,6 +107,7 @@
                   <td class="text-left"><?php echo $ticket['produto']; ?></td>
                   <td class="text-left" width="8%"><?php echo $ticket['modulo']; ?></td>
                   <td class="text-justify"><?php echo $ticket['assunto']; ?></td>
+
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
                   <td class="text-left">
                     <a class="btn btn-sm btn-warning" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
