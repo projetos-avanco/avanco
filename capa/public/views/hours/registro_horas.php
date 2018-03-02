@@ -2,6 +2,15 @@
 
 <?php if (verificaUsuarioLogado('registro_horas.php')) : ?>
 
+<?php
+
+  $id = '';
+
+  # recuperando id do chat do supervisor que está logado
+  $id = $_SESSION['usuario']['id'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,7 +25,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <title>CAPA - Registro Horas</title>
+  <title>Portal Avanção - Registro Horas</title>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize_7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
@@ -134,7 +143,7 @@
 
                   <div class="row">          
                     <div class="col-sm-4">                      
-                      <input id="supervisor" type="hidden" name="issues[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
+                      <input id="supervisor" type="hidden" name="issues[supervisor]" value="<?php echo $id; ?>">
                     </div>
                   </div>
 
