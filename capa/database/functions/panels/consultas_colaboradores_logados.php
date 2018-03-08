@@ -16,6 +16,7 @@ function consultaAtendimentosEmAndamento($painel, $db)
         FROM lh_chat AS c
         WHERE (c.dep_id = {$painel[$i]['departamento']})
         	AND (c.status = 1)
+          AND (c.user_status = 0)
         	AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') = CURRENT_DATE())";
 
       if ($resultado = $db->query($query)) {
@@ -47,6 +48,7 @@ function consultaAtendimentosEmEspera($painel, $db)
       FROM lh_chat AS c
       WHERE (c.dep_id = {$painel[$i]['departamento']})
       	AND (c.status = 0)
+        AND (c.user_status = 0)
       	AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') = CURRENT_DATE())";
 
     if ($resultado = $db->query($query)) {
@@ -84,11 +86,11 @@ function consultaDadosDosColaboradores($painel, $db)
           THEN 'Não'
       END AS logado,
       CASE
-        WHEN (t.oculto = 1)
-          THEN 'Sim'
-        WHEN (t.oculto <> 1)
-          THEN 'Não'
-      END AS oculto
+        WHEN (t.status = 1)
+          THEN 'Offline'
+        WHEN (t.status <> 1)
+          THEN 'Online'
+      END AS status
     FROM
       (SELECT
         u.user_id AS id,
@@ -98,7 +100,7 @@ function consultaDadosDosColaboradores($painel, $db)
         FROM_UNIXTIME(u.last_activity, '%Y-%m-%d') AS data,    
         FROM_UNIXTIME(u.last_activity, '%H:%i:%s') AS horario_saida,    
         TIMEDIFF(FROM_UNIXTIME(u.last_activity, '%T'), CURRENT_TIME()) AS diferenca,
-        u.hide_online AS oculto
+        u.hide_online AS status
       FROM lh_userdep AS u
       INNER JOIN lh_users AS s
         ON s.id = u.user_id
@@ -129,7 +131,7 @@ function consultaDadosDosColaboradores($painel, $db)
         FROM_UNIXTIME(u.last_activity, '%Y-%m-%d') AS data,    
         FROM_UNIXTIME(u.last_activity, '%H:%i:%s') AS horario_saida,        
         TIMEDIFF(CURRENT_TIME(),FROM_UNIXTIME(u.last_activity, '%T')) AS diferenca,
-        u.hide_online AS oculto
+        u.hide_online AS status
       FROM lh_userdep AS u
       INNER JOIN lh_users AS s
         ON s.id = u.user_id
@@ -155,6 +157,7 @@ function consultaDadosDosColaboradores($painel, $db)
       while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
         $painel[] = array(
+
           'id'           => $registro['id'],
           'nome'         => $registro['nome'],
           'sobrenome'    => $registro['sobrenome'],
@@ -162,7 +165,9 @@ function consultaDadosDosColaboradores($painel, $db)
           'atendimento'  => 0,
           'espera'       => 0,
           'logado'       => $registro['logado'],
-          'oculto'       => $registro['oculto']
+          'status'       => $registro['status'],
+          'exibir'       => false
+
         );
 
       }
@@ -176,4 +181,75 @@ function consultaDadosDosColaboradores($painel, $db)
     }
 
     return $painel;
+}
+
+/**
+ * consulta id dos colaboradores do time do capitão logado no portal avanção
+ * @param - objeto com uma conexão aberta
+ * @param - array com o modelo de dados de opções
+ */
+function consultaIdDosColaboradoresDoTime($db, $dados)
+{
+  $query =
+  "SELECT 
+    id_colaborador 
+  FROM av_dashboard_colaborador_times 
+  WHERE (data_saida IS NULL) 
+    AND (id_times = {$dados['time']})";
+
+  if ($resultado = $db->query($query)) {
+
+    while ($registro = $resultado->fetch_assoc()) {
+
+      $dados['id'][] = $registro['id_colaborador'];
+
+    }
+
+  }
+  
+  return $dados;
+
+}
+
+/**
+ * consulta id de todos os colaboradores do chat
+ * @param - objeto com uma conexão aberta
+ * @param - array com o modelo de dados de opções
+ */
+function consultaIdDeTodosOsColaboradores($db, $dados)
+{
+  $query =
+    "SELECT
+      id
+    FROM lh_users
+    WHERE NOT 
+      (id = 1  OR
+       id = 2  OR
+       id = 3  OR
+       id = 4  OR
+       id = 5  OR
+       id = 6  OR
+       id = 36 OR
+       id = 37 OR
+       id = 38 OR
+       id = 39 OR
+       id = 40 OR
+       id = 41 OR
+       id = 42 OR
+       id = 44 OR
+       id = 61)
+      AND NOT (disabled = 1)";
+
+  if ($resultado = $db->query($query)) {
+
+    while ($registro = $resultado->fetch_assoc()) {
+
+      $dados['id'][] = $registro['id'];
+
+    }
+
+  }
+  
+  return $dados;
+
 }
