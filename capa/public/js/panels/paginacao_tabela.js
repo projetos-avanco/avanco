@@ -30,6 +30,6 @@ $('document').ready(function() {
   });
 
   // ordenando tabela pelas colunas logado e oculto
-  tabela.fnSort([[4, 'desc'], [5, 'desc']]);
+  tabela.fnSort([[5, 'desc'], [6, 'asc'], [2, 'asc']]);
 
 });
