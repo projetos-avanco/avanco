@@ -2,9 +2,9 @@ $('document').ready(function() {
 
   $('table tbody tr').each(function() {
 
-    var logado = $(this).find('td:nth-child(5)').html();
-    var status = $(this).find('td:nth-child(6)').html();
-    var classe = $(this).find('td:nth-child(7)').attr('class');
+    var logado = $(this).find('td:nth-child(6)').html();
+    var status = $(this).find('td:nth-child(7)').html();
+    var classe = $(this).find('td:nth-child(8)').attr('class');
     
     if (logado == 'Não') {
 
