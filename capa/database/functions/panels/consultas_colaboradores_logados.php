@@ -65,6 +65,45 @@ function consultaAtendimentosEmEspera($painel, $db)
 }
 
 /**
+ * consulta a quantidade de clientes que estão em espera acima de 10 minutos
+ * @param - array com os dados do painel de colaboradores logados
+ * @param - objeto com uma conexão aberta
+ */
+function consultaAtendimentosEmEsperaAcimaDe10Minutos($painel, $db)
+{
+  # consultando clientes que estão em espera
+  for ($i = 0; $i < count($painel); $i++) {
+
+    $query =
+      "SELECT
+        COUNT(a.id) espera_acima_10_min
+      FROM 
+        (SELECT
+          c.id,		
+          TIMEDIFF(CURRENT_TIME(), FROM_UNIXTIME(c.time, '%H:%i:%s')) AS tempo_espera
+        FROM lh_chat AS c
+        WHERE (c.dep_id = {$painel[$i]['departamento']})
+          AND (c.status = 0)
+          AND (c.user_status = 0)	
+          AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') = CURRENT_DATE())) AS a
+        WHERE (a.tempo_espera > '00:10:00')";
+
+    if ($resultado = $db->query($query)) {
+
+      while ($registro = $resultado->fetch_assoc()) {
+
+        $painel[$i]['espera_acima_10_min'] = $registro['espera_acima_10_min'];
+
+      }
+
+    }
+
+  }
+  
+  return $painel;
+}
+
+/**
  * consulta id, departamento, nome e sobrenome dos colaboradores
  * @param - array com os dados do painel de colaboradores logados
  * @param - objeto com uma conexão aberta
@@ -158,15 +197,16 @@ function consultaDadosDosColaboradores($painel, $db)
 
         $painel[] = array(
 
-          'id'           => $registro['id'],
-          'nome'         => $registro['nome'],
-          'sobrenome'    => $registro['sobrenome'],
-          'departamento' => $registro['departamento'],
-          'atendimento'  => 0,
-          'espera'       => 0,
-          'logado'       => $registro['logado'],
-          'status'       => $registro['status'],
-          'exibir'       => false
+          'id'                  => $registro['id'],
+          'nome'                => $registro['nome'],
+          'sobrenome'           => $registro['sobrenome'],
+          'departamento'        => $registro['departamento'],
+          'atendimento'         => 0,
+          'espera'              => 0,
+          'espera_acima_10_min' => 0,
+          'logado'              => $registro['logado'],
+          'status'              => $registro['status'],
+          'exibir'              => false
 
         );
 
@@ -177,6 +217,9 @@ function consultaDadosDosColaboradores($painel, $db)
 
       # chamando função que consulta a quantidade de clientes em espera
       $painel = consultaAtendimentosEmEspera($painel, $db);
+
+      # chamando função que consulta a quantidade de clientes em espera acima de 10 minutos
+      $painel = consultaAtendimentosEmEsperaAcimaDe10Minutos($painel, $db);
 
     }
 
