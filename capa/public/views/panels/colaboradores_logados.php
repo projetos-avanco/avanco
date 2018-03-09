@@ -122,13 +122,13 @@
 
                     <?php if ($suporte['status'] == 'Offline') : ?>
                     <td class="opcao text-center" width="10%">                  
-                      <a class="btn btn-sm btn-success" href="<?php echo BASE_URL; ?>app/requests/get/recebe_status.php?id=<?php echo $suporte['id']; ?>&status=0">
+                      <a class="btn btn-xs btn-success" href="<?php echo BASE_URL; ?>app/requests/get/recebe_status.php?id=<?php echo $suporte['id']; ?>&status=0">
                         <i class="fa fa-eye" aria-hidden="true"></i> Online
                       </a>                    
                     </td> 
                     <?php elseif ($suporte['status'] == 'Online') : ?>
                     <td class="opcao text-center" width="10%">                  
-                      <a class="btn btn-sm btn-danger" href="<?php echo BASE_URL; ?>app/requests/get/recebe_status.php?id=<?php echo $suporte['id']; ?>&status=1">
+                      <a class="btn btn-xs btn-danger" href="<?php echo BASE_URL; ?>app/requests/get/recebe_status.php?id=<?php echo $suporte['id']; ?>&status=1">
                         <i class="fa fa-eye-slash" aria-hidden="true"></i> Offline
                       </a>                    
                     </td>                                  
