@@ -14,7 +14,7 @@ table tbody tr td {
 }
 
 #tabela-suporte tbody tr td {
-  height: 2.5em; 
+  height: 1.5em; 
 }
 
 #tabela-suporte tbody tr td a {
@@ -22,5 +22,5 @@ table tbody tr td {
 }
 
 #tabela-externo tbody tr td {
-  height: 2.5em; 
+  height: 1.5em; 
 }
