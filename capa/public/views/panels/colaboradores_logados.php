@@ -26,7 +26,7 @@
       for ($j = 0; $j < count($paineis['suporte']); $j++) {
   
         if ($paineis['suporte'][$j]['id'] == $dados['id'][$i]) {
-  
+                    
           $paineis['suporte'][$j]['exibir'] = true;
   
         }
@@ -96,6 +96,7 @@
                   <th class="text-center">Colaborador</th>
                   <th class="text-center">Em Atendimento</th>
                   <th class="text-center">Em Espera</th>
+                  <th class="text-center">Em Espera Acima 10 Min</th>
                   <th class="text-center">Logado</th>
                   <th class="text-center">Status</th>
 
@@ -111,6 +112,7 @@
                   <td class="text-center"><?php echo $suporte['nome'] . ' ' . $suporte['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $suporte['atendimento']; ?></td>
                   <td class="text-center"><?php echo $suporte['espera']; ?></td>
+                  <td class="text-center"><?php echo $suporte['espera_acima_10_min']; ?></td>
                   <td class="text-center"><?php echo $suporte['logado']; ?></td>
                   <td class="text-center"><?php echo $suporte['status']; ?></td>
 
@@ -159,6 +161,7 @@
                   <th class="text-center">Colaborador</th>
                   <th class="text-center">Em Atendimento</th>
                   <th class="text-center">Em Espera</th>
+                  <th class="text-center">Em Espera Acima 10 Min</th>
                   <th class="text-center">Logado</th>
                   <th class="text-center">Status</th>
                 </tr>
@@ -170,6 +173,7 @@
                   <td class="text-center"><?php echo $externo['nome'] . ' ' . $externo['sobrenome']; ?></td>
                   <td class="text-center"><?php echo $externo['atendimento']; ?></td>
                   <td class="text-center"><?php echo $externo['espera']; ?></td>
+                  <td class="text-center"><?php echo $externo['espera_acima_10_min']; ?></td>
                   <td class="text-center"><?php echo $externo['logado']; ?></td>
                   <td class="text-center"><?php echo $externo['status']; ?></td>
                 </tr>
