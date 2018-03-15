@@ -71,7 +71,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <h2>Seleção Time</h2>
+            <h2>Período dos Resultados</h2>
 
             <hr>
           </div>

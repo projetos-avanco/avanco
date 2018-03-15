@@ -63,7 +63,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <h2>Painel Metas dos Capitães</h2>
+            <h2>Painel Metas Capitães</h2>
 
             <hr>
           </div>
