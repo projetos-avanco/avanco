@@ -1,7 +1,25 @@
 <?php
 
 /**
- * formata a data para aaaa-mm-dd caso ela esteja no formato dd-mm-aaaa
+ * formata uma data única para aaaa-mm-dd caso ela esteja no formato dd/mm/aaaa
+ * @param - array com a data inicial e a data final
+ */
+function formataDataUnicaParaMysql($data)
+{
+  $a = '';
+
+  # quebrando data onde possui /
+  $a = explode('/', $data);
+  
+  # formatando data para aaaa-mm-dd
+  $data = "{$a[2]}-{$a[1]}-{$a[0]}";
+
+  return $data;
+
+}
+
+/**
+ * formata a data para aaaa-mm-dd caso ela esteja no formato dd/mm/aaaa
  * @param - array com a data inicial e a data final
  */
 function formataDataParaMysql($datas)
