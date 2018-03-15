@@ -119,7 +119,12 @@
             </span>
           </span>
         </a>
-        <ul class="nav collapse"  id="submenu6">
+        <ul class="nav collapse"  id="submenu6">        
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/panels/metas_capitaes_selecao.php">
+              <p>Metas<p>
+            </a>
+          </li>        
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/panels/colaboradores_logados.php">
               <p>Logados<p>
