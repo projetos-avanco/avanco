@@ -123,13 +123,13 @@
                     <?php if ($suporte['status'] == 'Offline') : ?>
                     <td class="opcao text-center" width="10%">                  
                       <a class="btn btn-xs btn-success" href="<?php echo BASE_URL; ?>app/requests/get/recebe_status.php?id=<?php echo $suporte['id']; ?>&status=0">
-                        <i class="fa fa-eye" aria-hidden="true"></i> Online
+                        <i class="fa fa-eye" aria-hidden="true"></i> Ativar
                       </a>                    
                     </td> 
                     <?php elseif ($suporte['status'] == 'Online') : ?>
                     <td class="opcao text-center" width="10%">                  
                       <a class="btn btn-xs btn-danger" href="<?php echo BASE_URL; ?>app/requests/get/recebe_status.php?id=<?php echo $suporte['id']; ?>&status=1">
-                        <i class="fa fa-eye-slash" aria-hidden="true"></i> Offline
+                        <i class="fa fa-eye-slash" aria-hidden="true"></i> Inativar
                       </a>                    
                     </td>                                  
                     <?php endif; ?><!-- status --> 
