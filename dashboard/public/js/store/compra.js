@@ -7,7 +7,7 @@ $('document').ready(function() {
     var dia = data.getDate();
     
     
-    if (dia >= 10 && dia <= 15) { // verificando se o dia atual está entre dia 10 e 15 (entre essas datas que a loja estará disponível)
+    if (dia >= 10 && dia <= 20) { // verificando se o dia atual está entre dia 10 e 15 (entre essas datas que a loja estará disponível)
 
       var idProduto   = '';    
       var descricao   = '';    
