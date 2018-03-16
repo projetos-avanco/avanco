@@ -52,15 +52,13 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
 
   <style>
+
     form {
       margin: 10% 0 0 0;
-    }
-    #icone-2 {
-      padding-left: 20px;
-    }
+    }    
 
-    #times {
-      margin: 4% 0 0 0;
+    .col-sm-1 {
+      margin-right: 1%;
     }
   </style>
 </head>
@@ -82,75 +80,103 @@
       <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
         <form class="form-horizontal" action="<?php echo BASE_URL; ?>app/requests/post/recebe_time.php" method="post">
 
-        <div class="row">          
-          <div class="col-sm-6 col-sm-offset-4">   
-            <div class="form-inline">
-              <div class="form-group input-daterange">
-                <i class="fa fa-calendar" aria-hidden="true">
-                  <span class="calendario">De: </span>
-                </i>
+          <div class="row">          
+            <div class="col-sm-2 col-sm-offset-4">
+              <div class="form-inline input-daterange">
+                <div class="form-group">
+                  <i class="fa fa-calendar" aria-hidden="true">
+                    <span class="calendario">De: </span>
+                  </i>
 
-                <input type="text" class="form-control" id="data1" name="data-1" value="<?php echo $periodo['data_1']; ?>">
+                  <input type="text" class="form-control" id="data1" name="data-1" value="<?php echo $periodo['data_1']; ?>">
+                </div>
+              </div>
+            </div><!-- coluna 1 -->
 
-                <i class="fa fa-calendar" id="icone-2" aria-hidden="true">
-                  <span class="calendario">Até: </span>
-                </i>
+            <div class="col-sm-2">
+              <div class="form-inline input-daterange">
+                <div class="form-group">
+                  <i class="fa fa-calendar" id="icone-2" aria-hidden="true">
+                    <span class="calendario">Até: </span>
+                  </i>
 
-                <input type="text" class="form-control" id="data2" name="data-2" value="<?php echo $periodo['data_2']; ?>">
+                  <input type="text" class="form-control" id="data2" name="data-2" value="<?php echo $periodo['data_2']; ?>">
+                </div>
+              </div>
+            </div><!-- coluna 2 -->
+          </div><!-- linha -->
+          
+          <br>
 
-                <input type="hidden" name="time" value="<?php echo $time; ?>">
+          <div class="row"> 
+            <div class="col-sm-2 col-sm-offset-5">
+              <div class="form-group">
+                <div class="text-center">
+                  <input type="hidden" name="time" value="<?php echo $time; ?>">
 
-                <button type="submit" class="btn btn-primary">Gerar Relatório</button>
-              </div>              
-            </div>            
-          </div><!-- coluna -->
-        </div><!-- linha -->
+                  <button class="btn btn-primary btn-block" type="submit">Gerar Relatório</button>
+                </div>              
+              </div>
+            </div><!-- coluna -->
+          </div><!-- linha -->
       <?php elseif ($_SESSION['usuario']['nivel'] == 2) : ?>
         <form class="form-horizontal" action="<?php echo BASE_URL; ?>app/requests/post/recebe_time.php" method="post">
 
-        <div class="row">          
-          <div class="col-sm-6 col-sm-offset-4">   
-            <div class="form-inline">
-              <div class="form-group input-daterange">
-                <i class="fa fa-calendar" aria-hidden="true">
-                  <span class="calendario">De: </span>
-                </i>
+          <div class="row">          
+            <div class="col-sm-2 col-sm-offset-4">   
+              <div class="form-inline input-daterange">
+                <div class="form-group">
+                  <i class="fa fa-calendar" aria-hidden="true">
+                    <span class="calendario">De: </span>
+                  </i>
 
-                <input type="text" class="form-control" id="data1" name="data-1" value="<?php echo $periodo['data_1']; ?>">
+                  <input type="text" class="form-control" id="data1" name="data-1" value="<?php echo $periodo['data_1']; ?>">
+                </div>
+              </div>            
+            </div><!-- coluna 1 -->
 
-                <i class="fa fa-calendar" id="icone-2" aria-hidden="true">
-                  <span class="calendario">Até: </span>
-                </i>
+            <div class="col-sm-2">
+              <div class="form-inline input-daterange">
+                <div class="form-group">
+                  <i class="fa fa-calendar" id="icone-2" aria-hidden="true">
+                    <span class="calendario">Até: </span>
+                  </i>
 
-                <input type="text" class="form-control" id="data2" name="data-2" value="<?php echo $periodo['data_2']; ?>">
+                  <input type="text" class="form-control" id="data2" name="data-2" value="<?php echo $periodo['data_2']; ?>">
+                </div>
               </div>
-            </div>            
-          </div><!-- coluna -->
-        </div><!-- linha -->
+            </div><!-- coluna 2 -->
+          </div><!-- linha -->
 
-        <br>
+          <br>
 
-        <div class="row" id="times">
-          <div class="col-sm-6 col-sm-offset-5">
-            <div class="form-inline">
+          <div class="row">
+            <div class="col-sm-2 col-sm-offset-5">
               <div class="form-group">
-                <h3 class="text-center">Times</h3>
+                <h3 class="text-center">Time</h3>              
+              </div>            
+            </div><!-- coluna 1 -->                
+          </div><!-- linha -->
 
-                <br>
-
+          <div class="row">
+            <div class="col-sm-1 col-sm-offset-5">            
+              <div class="form-group">
                 <select class="form-control" name="time">
-                  <option value="1" checked>Todos os Times</option>
+                  <option value="1" checked>Todos</option>
                   <option value="2">Os Templários</option>
                   <option value="3">Divergente</option>
                   <option value="4">Gulliver</option>
                   <option value="5">Avalanche</option>                                            
-                </select>
+                </select>                
+              </div>                                     
+            </div>
 
-                <button type="submit" class="btn btn-primary">Gerar Relatório</button>
-              </div> 
-            </div>   
-          </div><!-- coluna -->
-        </div><!-- linha -->      
+            <div class="col-sm-1">
+              <div class="form-group">
+                <button class="btn btn-primary" type="submit">Gerar Relatório</button>
+              </div>
+            </div>
+          </div>
         </form>
       <?php endif; ?>
 
