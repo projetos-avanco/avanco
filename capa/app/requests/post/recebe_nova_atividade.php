@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
        $form['observacao'] = ucwords($form['observacao']);
 
-       # chamanfo função responsável por gravar uma nova atividade esporádica na tabela de ações esporádicas
+       # chamando função responsável por gravar uma nova atividade esporádica na tabela de ações esporádicas
        gravaNovaAtividadeEsporadica($form);
 
   }
