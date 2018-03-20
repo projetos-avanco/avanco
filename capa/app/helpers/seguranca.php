@@ -50,7 +50,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'colaboradores_logados.php' OR
           $pagina == 'extrato.php'               OR
           $pagina == 'conta.php'                 OR
-          $pagina == 'loja.php') {
+          $pagina == 'loja.php'                  OR
+          $pagina == 'consulta_atendimentos.php') {
 
         return true;
 
@@ -83,15 +84,16 @@ function verificaUsuarioLogado($pagina, $id = null)
 
       # páginas que usuários de nível 2 possuem permissão para acessar
       if
-        ($pagina == 'colaboradores_logados.php' OR
-         $pagina == 'consulta_tickets.php'      OR
-         $pagina == 'nova_atividade.php'        OR
-         $pagina == 'extrato.php'               OR
-         $pagina == 'conta.php'                 OR
-         $pagina == 'loja.php'                  OR
-         $pagina == 'registro_horas.php'        OR
-         $pagina == 'metas_capitaes.php'        OR
-         $pagina == 'metas_capitaes_selecao.php') {
+        ($pagina == 'colaboradores_logados.php'  OR
+         $pagina == 'consulta_tickets.php'       OR
+         $pagina == 'nova_atividade.php'         OR
+         $pagina == 'extrato.php'                OR
+         $pagina == 'conta.php'                  OR
+         $pagina == 'loja.php'                   OR
+         $pagina == 'registro_horas.php'         OR
+         $pagina == 'metas_capitaes.php'         OR
+         $pagina == 'metas_capitaes_selecao.php' OR
+         $pagina == 'consulta_atendimentos.php') {
 
         return true;
 
