@@ -139,8 +139,25 @@
       </li>
 
       <li class="bordermenu">
-        <a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i> Relatórios</a>
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu7">
+          <span class="nav-header-primary">
+            <i class="fa fa-bar-chart" aria-hidden="true"></i> Relatórios
+            <span class="pull-right">
+                <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </span>
+        </a>
+
+        <ul class="nav collapse"  id="submenu7">        
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/relatorio_consulta_atendimentos.php">
+              <p>Atendimentos<p>
+            </a>
+          </li>                  
+        </ul>        
       </li>
+
+
     </ul>
   </div><!-- sidebar -->
 
