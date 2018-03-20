@@ -68,34 +68,45 @@ function verificaColaboradorAgendadoOnlineNoChat($array, $db)
 function verificaColaboradoresOnlineNoChat($array, $db)
 {
   $query =
-    "SELECT DISTINCT
+  "SELECT 
+    DISTINCT
       u.user_id AS id,
       s.name AS nome,
       s.surname AS sobrenome,
       d.id AS id_departamento,
-      d.name AS departamento
-    FROM lh_departament AS d
-    INNER JOIN lh_userdep AS u
-      ON u.dep_id = d.id
-    INNER JOIN lh_users AS s
-      ON s.id = u.user_id
-    WHERE NOT (d.id = 1 OR d.id = 2 OR d.id = 3 OR d.id = 4 OR d.id = 6 OR d.id = 7 OR d.id = 8 OR d.id = 9 OR d.id = 10 OR d.id = 11)
-      AND (s.hide_online = 'false')
-      AND (d.disabled = 0)
-      AND (s.disabled = 0)
-      AND (u.last_activity > 0)
-      AND (s.id <> 5)
-      AND (s.id <> 36)
-      AND (s.id <> 37)
-      AND (s.id <> 38)
-      AND (s.id <> 39)
-      AND (s.id <> 40)
-      AND (s.id <> 41)
-      AND (s.id <> 42)
-      AND (s.id <> 43)
-      AND (s.id <> 61)
-      AND (FROM_UNIXTIME(u.last_activity, '%Y-%m-%d') = CURRENT_DATE())
-    ORDER BY id";
+      d.name AS departamento      
+  FROM lh_departament AS d
+  INNER JOIN lh_userdep AS u
+    ON u.dep_id = d.id
+  INNER JOIN lh_users AS s
+    ON s.id = u.user_id
+  WHERE NOT (d.id = 1  OR 
+             d.id = 2  OR 
+             d.id = 3  OR 
+             d.id = 4  OR 
+             d.id = 6  OR 
+             d.id = 7  OR 
+             d.id = 8  OR 
+             d.id = 9  OR 
+             d.id = 10 OR 
+             d.id = 11)	
+  AND (d.disabled = 0)
+  AND (s.disabled = 0)
+  AND (s.hide_online = 'false')	
+  AND (s.id <> 5)
+  AND (s.id <> 36)
+  AND (s.id <> 37)
+  AND (s.id <> 38)
+  AND (s.id <> 39)
+  AND (s.id <> 40)
+  AND (s.id <> 41)
+  AND (s.id <> 42)
+  AND (s.id <> 43)
+  AND (s.id <> 61)
+  AND (u.last_activity > 0)
+  AND (FROM_UNIXTIME(u.last_activity, '%Y-%m-%d') = CURRENT_DATE())
+  AND (TIMEDIFF(FROM_UNIXTIME(u.last_activity, '%H:%i:%s'), CURRENT_TIME()) < '00:00:30')
+  ORDER BY id;";
 
   # verificando se a query pode ser executada
   if ($resultado = $db->query($query)) {
