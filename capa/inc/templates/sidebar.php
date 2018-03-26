@@ -150,7 +150,7 @@
 
         <ul class="nav collapse"  id="submenu7">        
           <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/relatorio_consulta_atendimentos.php">
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/consulta_atendimentos.php">
               <p>Atendimentos<p>
             </a>
           </li>                  
