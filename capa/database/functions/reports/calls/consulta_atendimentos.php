@@ -179,7 +179,7 @@ function consultaAtendimentos($db, $dados)
 
       $registro['data']         = formataDataParaExibir($registro['data']);
       $registro['razao_social'] = strtoupper(decodificaCaracteresJSON($registro['razao_social']));
-      $registro['cliente']      = ucwords(strtolower($registro['cliente']));
+      $registro['cliente']      = ucwords(strtolower(decodificaCaracteresJSON($registro['cliente'])));
 
       $atendimentos[] = array(
 
