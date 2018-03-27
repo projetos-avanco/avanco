@@ -2,7 +2,7 @@
 
 # definindo constante com o endereço do host da base de dados
 if (! defined('DB_HOST'))
-  define('DB_HOST', '127.0.0.1');
+  define('DB_HOST', 'localhost');
 
 # definindo constante com o nome do usuário do base de dados
 if (! defined('DB_USER'))
