@@ -82,20 +82,92 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
  */
  function removeAcoesDiariasRepetidas($db, $carteira, $logs)
  {
-   $valores = null;
+  $valores = null;
 
-   # transformando os valores do array de ações diárias em uma string para consulta
-   foreach ($logs as $chave => $valor) {
+  # transformando os valores do array de ações diárias em uma string para consulta
+  foreach ($logs as $chave => $valor) {
 
-     $valores .= $valor;
+    $valores .= $valor;
 
-   }
+  }
 
-   $valores = rtrim($valores, ' OR ');
+  $valores = rtrim($valores, ' OR ');
 
-   $query =
-     "SELECT
-       c.user_id AS id_colaborador,
+  $data = date('Y-m-d');
+   
+  # verificando se a data atual está no período da campanha da base de conhecimento
+  if ($data >= '2018-04-02' AND $data <= '2018-04-06') {
+
+    $query =    
+      "SELECT
+        c.user_id AS id_colaborador,
+        CASE
+          WHEN (i.equipe <> 4 AND i.equipe <> 5 AND i.utilizou_base_conhecimento = 'Nao')
+            THEN 1
+          WHEN (i.equipe = 4)
+            THEN 2
+          WHEN (i.equipe = 5)
+            THEN 3
+          WHEN (i.equipe <> 4 AND i.equipe <> 5 AND i.utilizou_base_conhecimento = 'Sim')
+            THEN 4
+        END AS id_acao_diaria,
+        c.id AS id_chat,	
+        FROM_UNIXTIME(c.time, '%Y-%m-%d') AS data_acao,
+        FROM_UNIXTIME(c.last_user_msg_time, '%H:%i:%s') AS horario_acao
+      FROM lh_chat AS c
+      INNER JOIN av_questionario_interno AS i
+        ON i.id_chat = c.id
+      WHERE (c.user_id = {$carteira['id_colaborador']})
+        AND (c.status = 2)
+        AND NOT ($valores)
+        AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')
+      ORDER BY id_chat, data_acao, horario_acao;";
+
+    # verificando se a consulta pode ser executada
+    if ($resultado = $db->query($query)) {
+
+      $acoes = array();
+
+      # recuperando todas as ações diárias do colaborador no período atual
+      while ($registro = $resultado->fetch_assoc()) {
+
+        # verificando se a ação diária é de atendimento realizado com auxílio da base de conhecimento
+        if ($registro['id_acao_diaria'] == '4') {
+
+          $query = "SELECT id FROM lh_msg WHERE (chat_id = {$registro['id_chat']}) AND (msg LIKE '%bc.avancoinfo.com%');";
+          
+          $objeto = $db->query($query);
+          
+          # verificando se no atendimento não foi enviado o link do documento da base de conhecimento
+          if ($objeto->num_rows == 0) {
+
+            # alterando o id da ação diária para atendimento realizado
+            $registro['id_acao_diaria'] = '1';
+
+          }
+
+        }
+
+        $acoes[] = array(
+          
+          'id_colaborador' => $registro['id_colaborador'],
+          'id_acao_diaria' => $registro['id_acao_diaria'],
+          'id_chat'        => $registro['id_chat'],
+          'data_acao'      => $registro['data_acao'],
+          'horario_acao'   => $registro['horario_acao']
+
+        );
+        
+      }
+
+    }
+
+  # verificando se a data atual está fora do período da campanha da base de conhecimento  
+  } else {
+
+    $query =
+    "SELECT
+      c.user_id AS id_colaborador,
       CASE
         WHEN (i.equipe = 4)
           THEN 2
@@ -106,39 +178,40 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
       c.id AS id_chat,
       FROM_UNIXTIME(c.time, '%Y-%m-%d') AS data_acao,
       FROM_UNIXTIME(c.last_user_msg_time, '%H:%i:%s') AS horario_acao
-     FROM lh_chat AS c
-     INNER JOIN av_questionario_interno AS i
+    FROM lh_chat AS c
+    INNER JOIN av_questionario_interno AS i
       ON i.id_chat = c.id
-     WHERE (c.user_id = {$carteira['id_colaborador']})
+    WHERE (c.user_id = {$carteira['id_colaborador']})
       AND (c.status = 2)
-       AND NOT
-           ($valores)
+      AND NOT ($valores)
       AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')
-     ORDER BY id_chat, data_acao, horario_acao;";
+    ORDER BY id_chat, data_acao, horario_acao;";
 
-   # verificando se a consulta pode ser executada
-   if ($resultado = $db->query($query)) {
+    # verificando se a consulta pode ser executada
+    if ($resultado = $db->query($query)) {
 
-     $acoes = array();
+      $acoes = array();
 
-     # recuperando novas ações diárias
-     while ($registro = $resultado->fetch_assoc()) {
+      # recuperando novas ações diárias
+      while ($registro = $resultado->fetch_assoc()) {
 
-       $acoes[] = array(
+        $acoes[] = array(
 
-         'id_colaborador' => $registro['id_colaborador'],
-         'id_acao_diaria' => $registro['id_acao_diaria'],
-         'id_chat'        => $registro['id_chat'],
-         'data_acao'      => $registro['data_acao'],
-         'horario_acao'   => $registro['horario_acao']
+          'id_colaborador' => $registro['id_colaborador'],
+          'id_acao_diaria' => $registro['id_acao_diaria'],
+          'id_chat'        => $registro['id_chat'],
+          'data_acao'      => $registro['data_acao'],
+          'horario_acao'   => $registro['horario_acao']
 
-       );
+        );
 
-     }
+      }     
 
-     return $acoes;
+    }
 
-   }
+  }
+
+  return $acoes;
 
  }
 
@@ -149,44 +222,117 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
  */
 function consultaAcoesDiarias($db, $carteira)
 {
-  $query =
-    "SELECT
-      c.user_id AS id_colaborador,
-    	CASE
-    		WHEN (i.equipe = 4)
-    			THEN 2
-    		WHEN (i.equipe = 5)
-    			THEN 3
-    		ELSE 1
-    	END AS id_acao_diaria,
-    	c.id AS id_chat,
-    	FROM_UNIXTIME(c.time, '%Y-%m-%d') AS data_acao,
-    	FROM_UNIXTIME(c.last_user_msg_time, '%H:%i:%s') AS horario_acao
-    FROM lh_chat AS c
-    INNER JOIN av_questionario_interno AS i
-    	ON i.id_chat = c.id
-    WHERE (c.user_id = {$carteira['id_colaborador']})
-    	AND (c.status = 2)
-    	AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')
-    ORDER BY id_chat, data_acao, horario_acao;";
+  $data = date('Y-m-d');
+  
+  # verificando se a data atual está no período da campanha da base de conhecimento
+  if ($data >= '2018-04-02' AND $data <= '2018-04-06') {
 
-  # verificando se a consulta pode ser executada
-  if ($resultado = $db->query($query)) {
+    $query =
+      "SELECT
+        c.user_id AS id_colaborador,
+          CASE
+            WHEN (i.equipe <> 4 AND i.equipe <> 5 AND i.utilizou_base_conhecimento = 'Nao')
+              THEN 1
+            WHEN (i.equipe = 4)
+              THEN 2
+            WHEN (i.equipe = 5)
+              THEN 3
+            WHEN (i.equipe <> 4 AND i.equipe <> 5 AND i.utilizou_base_conhecimento = 'Sim')
+              THEN 4
+          END AS id_acao_diaria,
+        c.id AS id_chat,	
+        FROM_UNIXTIME(c.time, '%Y-%m-%d') AS data_acao,
+        FROM_UNIXTIME(c.last_user_msg_time, '%H:%i:%s') AS horario_acao
+      FROM lh_chat AS c
+      INNER JOIN av_questionario_interno AS i
+        ON i.id_chat = c.id
+      WHERE (c.user_id = {$carteira['id_colaborador']})
+        AND (c.status = 2)
+        AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')
+      ORDER BY id_chat, data_acao, horario_acao;";
 
-    $acoes = array();
+    # verificando se a consulta pode ser executada
+    if ($resultado = $db->query($query)) {
 
-    # recuperando todas as ações diárias do colaborador no período atual
-    while ($registro = $resultado->fetch_assoc()) {
+      $acoes = array();
 
-      $acoes[] = array(
+      # recuperando todas as ações diárias do colaborador no período atual
+      while ($registro = $resultado->fetch_assoc()) {
 
-        'id_colaborador' => $registro['id_colaborador'],
-        'id_acao_diaria' => $registro['id_acao_diaria'],
-        'id_chat'        => $registro['id_chat'],
-        'data_acao'      => $registro['data_acao'],
-        'horario_acao'   => $registro['horario_acao']
+        # verificando se a ação diária é de atendimento realizado com auxílio da base de conhecimento
+        if ($registro['id_acao_diaria'] == '4') {
 
-      );
+          $query = "SELECT id FROM lh_msg WHERE (chat_id = {$registro['id_chat']}) AND (msg LIKE '%bc.avancoinfo.com%');";
+          
+          $objeto = $db->query($query);
+          
+          # verificando se no atendimento não foi enviado o link do documento da base de conhecimento
+          if ($objeto->num_rows == 0) {
+
+            # alterando o id da ação diária para atendimento realizado
+            $registro['id_acao_diaria'] = '1';
+
+          }
+
+        }
+
+        $acoes[] = array(
+          
+          'id_colaborador' => $registro['id_colaborador'],
+          'id_acao_diaria' => $registro['id_acao_diaria'],
+          'id_chat'        => $registro['id_chat'],
+          'data_acao'      => $registro['data_acao'],
+          'horario_acao'   => $registro['horario_acao']
+
+        );
+        
+      }
+
+    }
+
+  # verificando se a data atual está fora do período da campanha da base de conhecimento
+  } else { 
+
+    $query =
+      "SELECT
+        c.user_id AS id_colaborador,
+          CASE
+            WHEN (i.equipe = 4)
+              THEN 2
+            WHEN (i.equipe = 5)
+              THEN 3
+            ELSE 1
+          END AS id_acao_diaria,
+        c.id AS id_chat,
+        FROM_UNIXTIME(c.time, '%Y-%m-%d') AS data_acao,
+        FROM_UNIXTIME(c.last_user_msg_time, '%H:%i:%s') AS horario_acao
+      FROM lh_chat AS c
+      INNER JOIN av_questionario_interno AS i
+        ON i.id_chat = c.id
+      WHERE (c.user_id = {$carteira['id_colaborador']})
+        AND (c.status = 2)
+        AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')
+      ORDER BY id_chat, data_acao, horario_acao;";
+
+    # verificando se a consulta pode ser executada
+    if ($resultado = $db->query($query)) {
+
+      $acoes = array();
+
+      # recuperando todas as ações diárias do colaborador no período atual
+      while ($registro = $resultado->fetch_assoc()) {
+
+        $acoes[] = array(
+
+          'id_colaborador' => $registro['id_colaborador'],
+          'id_acao_diaria' => $registro['id_acao_diaria'],
+          'id_chat'        => $registro['id_chat'],
+          'data_acao'      => $registro['data_acao'],
+          'horario_acao'   => $registro['horario_acao']
+
+        );
+
+      }
 
     }
 
