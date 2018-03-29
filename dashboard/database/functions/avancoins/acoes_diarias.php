@@ -134,7 +134,7 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
         # verificando se a ação diária é de atendimento realizado com auxílio da base de conhecimento
         if ($registro['id_acao_diaria'] == '4') {
 
-          $query = "SELECT id FROM lh_msg WHERE (chat_id = {$registro['id_chat']}) AND (msg LIKE '%bc.avancoinfo.com%');";
+          $query = "SELECT id FROM lh_msg WHERE (chat_id = {$registro['id_chat']}) AND (msg LIKE '%bc.avancoinfo.com.br%');";
           
           $objeto = $db->query($query);
           
@@ -262,7 +262,7 @@ function consultaAcoesDiarias($db, $carteira)
         # verificando se a ação diária é de atendimento realizado com auxílio da base de conhecimento
         if ($registro['id_acao_diaria'] == '4') {
 
-          $query = "SELECT id FROM lh_msg WHERE (chat_id = {$registro['id_chat']}) AND (msg LIKE '%bc.avancoinfo.com%');";
+          $query = "SELECT id FROM lh_msg WHERE (chat_id = {$registro['id_chat']}) AND (msg LIKE '%bc.avancoinfo.com.br%');";
           
           $objeto = $db->query($query);
           
