@@ -43,7 +43,6 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/dashboard.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/graficos.css">
-
 </head>
 
 <body>

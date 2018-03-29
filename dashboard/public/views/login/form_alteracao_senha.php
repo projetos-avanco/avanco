@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap-4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/form_login.css">
+   <!-- dispositivos com largura máxima de 769px (por exemplo tablets) -->
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)" />
+  <!-- dispositivos com largura máxima de 450px (por exemplo smartphones) -->
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>../capa/public/css/navbarsmart.css" type="text/css" media="screen and (max-width:450px)" />
 </head>
 
 <body>

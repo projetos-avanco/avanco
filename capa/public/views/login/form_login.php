@@ -25,6 +25,11 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/login/login.css">
+
+   <!-- dispositivos com largura máxima de 769px (por exemplo tablets) -->
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)" />
+  <!-- dispositivos com largura máxima de 450px (por exemplo smartphones) -->
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbarsmart.css" type="text/css" media="screen and (max-width:450px)" />
 </head>
 
 <body>

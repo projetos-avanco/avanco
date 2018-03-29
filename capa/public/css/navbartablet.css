@@ -57,3 +57,14 @@
  padding-left: 10px;
 }
 
+.dropdown-menu
+{
+  left: 75%;
+}
+
+.mensagemlog
+{
+  position: absolute;
+  left: 70%;
+  bottom: 15px;
+}
