@@ -17,8 +17,7 @@ function criaModeloDeProdutos()
 function criaArrayModeloDeCompra()
 {
   $compra = array(
-
-    'id'             => '',
+    
     'id_colaborador' => '',
     'id_produto'     => '',
     'data_compra'    => '',
