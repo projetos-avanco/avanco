@@ -165,6 +165,26 @@
           <div class="panel-body">
             <div class="text-center">
               <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[14]['imagem']; ?>" alt="<?php echo $produtos[14]['descricao']; ?>">
+                <h4><?php echo $produtos[14]['descricao']; ?></h4>                
+              </p>              
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <?php echo $produtos[14]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[14]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>        
+      </div>
+
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
                 <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[10]['imagem']; ?>" alt="<?php echo $produtos[10]['descricao']; ?>">
                 <h4><?php echo $produtos[10]['descricao']; ?></h4>                
               </p>              
@@ -198,6 +218,28 @@
             </div>
           </div>
         </div>        
+      </div>      
+    </div><!-- segunda seção de produtos -->
+
+    <div class="row"><!-- terceira seção de produtos -->
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[15]['imagem']; ?>" alt="<?php echo $produtos[15]['descricao']; ?>">
+                <h4><?php echo $produtos[15]['descricao']; ?></h4>
+              </p>              
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <?php echo $produtos[15]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[15]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="col-sm-4">
@@ -219,9 +261,7 @@
           </div>
         </div>        
       </div>
-    </div><!-- segunda seção de produtos -->
 
-    <div class="row"><!-- terceira seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -240,8 +280,10 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>      
+    </div><!-- terceira seção de produtos -->
 
+    <div class="row"><!-- quarta seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -281,9 +323,29 @@
           </div>
         </div>        
       </div>
-    </div><!-- terceira seção de produtos -->
 
-    <div class="row"><!-- quarta seção de produtos -->
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[16]['imagem']; ?>" alt="<?php echo $produtos[16]['descricao']; ?>">
+                <h4><?php echo $produtos[16]['descricao']; ?></h4>                
+              </p>              
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <?php echo $produtos[16]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[16]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>        
+      </div>      
+    </div><!-- quarta seção de produtos -->
+    
+    <div class="row"><!-- quinta seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -343,9 +405,9 @@
           </div>
         </div>        
       </div>
-    </div><!-- quarta seção de produtos -->
+    </div><!-- quinta seção de produtos -->
 
-    <div class="row"><!-- quinta seção de produtos -->
+    <div class="row"><!-- sexta seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -385,7 +447,7 @@
           </div>
         </div>        
       </div>
-    </div><!-- quinta seção de produtos -->
+    </div><!-- sexta seção de produtos -->
 
     <div class="row">
       <div class="col-sm-6">
