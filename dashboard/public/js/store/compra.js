@@ -6,8 +6,8 @@ $('document').ready(function() {
 
     var dia = data.getDate();
     
-    
-    if (dia >= 10 && dia <= 20) { // verificando se o dia atual está entre dia 10 e 15 (entre essas datas que a loja estará disponível)
+    // verificando se o dia atual está entre dia 10 e 15 (entre essas datas que a loja estará disponível)
+    if (dia >= 10 && dia <= 20) { 
 
       var idProduto   = '';    
       var descricao   = '';    
@@ -16,6 +16,18 @@ $('document').ready(function() {
       idProduto = $(this).val(); // recuperando id do produto clicado
 
       switch (idProduto) {
+
+        case '17':
+          descricao = 'Massagem Relaxante';
+            break;
+
+        case '16':
+          descricao = 'Vale Presente R$50,00 Lojas Americanas';
+            break;
+
+        case '15':
+          descricao = 'Vale Presente R$50,00 Livraria Cultura';
+            break;
 
         case '14':
           descricao = 'Açai 300ml';
@@ -75,7 +87,8 @@ $('document').ready(function() {
 
       }
 
-      confirmacao = confirm('Confirma a compra do produto ' + descricao + '?'); // aguardando confirmação da compra do produto clicado
+      // aguardando confirmação da compra do produto clicado
+      confirmacao = confirm('Confirma a compra do produto ' + descricao + '?'); 
       
       if (confirmacao) {
         
