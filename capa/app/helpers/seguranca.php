@@ -68,7 +68,8 @@ function verificaUsuarioLogado($pagina, $id = null)
       # páginas que usuários de nível 1 não possuem permissão para acessar
       if ($pagina == 'nova_atividade.php' OR
           $pagina == 'registro_horas.php' OR
-          $pagina == 'metas_capitaes_selecao.php') {
+          $pagina == 'metas_capitaes_selecao.php' OR
+          $pagina == 'cadastro.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -93,7 +94,8 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'registro_horas.php'         OR
          $pagina == 'metas_capitaes.php'         OR
          $pagina == 'metas_capitaes_selecao.php' OR
-         $pagina == 'consulta_atendimentos.php') {
+         $pagina == 'consulta_atendimentos.php'  OR 
+         $pagina == 'cadastro.php') {
 
         return true;
 
