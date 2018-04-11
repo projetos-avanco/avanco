@@ -11,6 +11,13 @@
           </span>
         </a>
         <ul class="nav collapse"  id="submenu1">
+        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/users/cadastro.php">
+              <p>Cadastro<p>
+            </a>
+          </li>
+        <?php endif; ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/users/conta.php">
               <p>Conta<p>
