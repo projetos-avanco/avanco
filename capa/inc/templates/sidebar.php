@@ -160,7 +160,14 @@
             <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/consulta_atendimentos.php">
               <p>Atendimentos<p>
             </a>
-          </li>                  
+          </li>
+        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/ranking/ranking_colaboradores.php">
+              <p>Ranking<p>
+            </a>
+          </li>
+        <?php endif; ?>
         </ul>        
       </li>
 
