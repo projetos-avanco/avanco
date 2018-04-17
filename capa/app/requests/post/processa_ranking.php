@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   );
 
   # recuperando data atual
-  $datas{'data1'} = $datas['data2'] = date('Y-m-d');
+  $datas['data1'] = $datas['data2'] = date('Y-m-d');
 
 }
 
