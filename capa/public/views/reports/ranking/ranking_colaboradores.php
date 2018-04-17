@@ -97,17 +97,17 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th class="text-center">Colaborador</th>                  
-                  <th class="text-center">Demandados</th>              
-                  <th class="text-center">Realizados</th>                  
-                  <th class="text-center">Perdidos</th>
-                  <th class="text-center">Perc. Perda</th>
-                  <th class="text-center">Perc. Fila Até 15 Min</th>
-                  <th class="text-center">TMA</th>
-                  <th class="text-center">Perc. Avancino</th>
-                  <th class="text-center">Perc. Eficiência</th>
-                  <th class="text-center">Perc. Quest. Internos</th>                  
-                  <th class="text-center">Avancoins</th>
+                  <th class="text-center" width="9%">Colaborador</th>                  
+                  <th class="text-center" width="9%">Demandados</th>              
+                  <th class="text-center" width="9%">Realizados</th>                  
+                  <th class="text-center" width="9%">Perdidos</th>
+                  <th class="text-center" width="9%">%Perda</th>
+                  <th class="text-center" width="9%">%Fila 15 Min</th>
+                  <th class="text-center" width="7%">TMA</th>
+                  <th class="text-center" width="9%">%Avancino</th>
+                  <th class="text-center" width="9%">%Eficiência</th>
+                  <th class="text-center" width="11%">%Questionários</th>                  
+                  <th class="text-center" width="9%">Avancoins</th>
                 </tr>
               </thead>
 
@@ -195,42 +195,26 @@
 
                 ?>
 
-              <?php endforeach; ?>                
+              <?php endforeach; ?>                               
               </tbody>
             </table>
 
-            <br>
+            <br><br><br>
 
             <table class="table">
-              <thead>
-                <tr>
-                  <th class="text-center" width="9%"></th>                  
-                  <th class="text-center">Demandados</th>              
-                  <th class="text-center">Realizados</th>                  
-                  <th class="text-center">Perdidos</th>
-                  <th class="text-center">Perc. Perda</th>
-                  <th class="text-center">Perc. Fila Até 15 Min</th>
-                  <th class="text-center">TMA</th>
-                  <th class="text-center">Perc. Avancino</th>
-                  <th class="text-center">Perc. Eficiência</th>
-                  <th class="text-center">Perc. Quest. Internos</th>                  
-                  <th class="text-center">Avancoins</th>
-                </tr>
-              </thead>
-
               <tbody>
                 <tr>
-                  <td class="text-left"><b>Totais</b></td>
-                  <td class="text-center"><?php echo $totalDemandados; ?></td>
-                  <td class="text-center"><?php echo $totalRealizados; ?></td>
-                  <td class="text-center"><?php echo $totalPerdidos; ?></td>
-                  <td class="text-center"><?php echo $totalPercPerda; ?>%</td>
-                  <td class="text-center"><?php echo $totalPercFila; ?>%</td>
-                  <td class="text-center"><?php echo $totalTma; ?></td>
-                  <td class="text-center"><?php echo $totalPercAvancino; ?>%</td>
-                  <td class="text-center"><?php echo $totalPercEficiencia; ?>%</td>
-                  <td class="text-center"><?php echo $totalPercQuestInterno; ?>%</td>
-                  <td class="text-right">
+                  <td class="text-left"   width="9%"><b>Totais</b></td>
+                  <td class="text-center" width="9%"><?php echo $totalDemandados; ?></td>
+                  <td class="text-center" width="9%"><?php echo $totalRealizados; ?></td>
+                  <td class="text-center" width="9%"><?php echo $totalPerdidos; ?></td>
+                  <td class="text-center" width="9%"><?php echo $totalPercPerda; ?>%</td>
+                  <td class="text-center" width="9%"><?php echo $totalPercFila; ?>%</td>
+                  <td class="text-center" width="7%"><?php echo $totalTma; ?></td>
+                  <td class="text-center" width="9%"><?php echo $totalPercAvancino; ?>%</td>
+                  <td class="text-center" width="9%"><?php echo $totalPercEficiencia; ?>%</td>
+                  <td class="text-center" width="11%"><?php echo $totalPercQuestInterno; ?>%</td>
+                  <td class="text-right"  width="9%">
                     <?php echo $totalAvancoins; ?>
                     <i class="fa fa-money" aria-hidden="true"></i>
                   </td>
