@@ -7,6 +7,7 @@
 
 <?php 
   
+  # recuperando dados da sessão
   $relatorios = $_SESSION['relatorio']['ranking'];
   $datas      = $_SESSION['relatorio']['datas'];
 
@@ -93,45 +94,147 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <h3 class="text-center">Relatório</h3>
-
-            <br>
-            
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th class="text-left">Colaborador</th>                  
+                  <th class="text-center">Colaborador</th>                  
                   <th class="text-center">Demandados</th>              
-                  <th class="text-center">Realizados</th>
+                  <th class="text-center">Realizados</th>                  
                   <th class="text-center">Perdidos</th>
                   <th class="text-center">Perc. Perda</th>
-                  <th class="text-center">Perc. Fila 15 Min</th>
+                  <th class="text-center">Perc. Fila Até 15 Min</th>
                   <th class="text-center">TMA</th>
                   <th class="text-center">Perc. Avancino</th>
                   <th class="text-center">Perc. Eficiência</th>
-                  <th class="text-center">Perc. Questionário</th>
-                  <th class="text-right">Avancoins</th>
+                  <th class="text-center">Perc. Quest. Internos</th>                  
+                  <th class="text-center">Avancoins</th>
                 </tr>
               </thead>
 
               <tbody>
-              <?php foreach($relatorios as $relatorio) : ?>
+              <?php foreach ($relatorios as $chave => $valor) : ?>
+                
+                <?php if (isset($valor['nome']) AND (isset($valor['sobrenome']))) : ?>
                 <tr>
-                  <td><?php echo $relatorio['nome'] . ' ' . $relatorio['sobrenome']; ?></td>                  
-                  <td class="text-center"><?php echo $relatorio['atendimentos_demandados']; ?></td>
-                  <td class="text-center"><?php echo $relatorio['atendimentos_realizados']; ?></td>
-                  <td class="text-center"><?php echo $relatorio['atendimentos_perdidos']; ?></td>
-                  <td class="text-center"><?php echo $relatorio['percentual_perda'] . '%'; ?></td>
-                  <td class="text-center"><?php echo $relatorio['percentual_fila'] . '%'; ?></td>
-                  <td class="text-center"><?php echo $relatorio['tma']; ?></td>
-                  <td class="text-center"><?php echo $relatorio['percentual_avancino'] . '%'; ?></td>
-                  <td class="text-center"><?php echo $relatorio['percentual_eficiencia'] . '%'; ?></td>
-                  <td class="text-center"><?php echo $relatorio['percentual_questionario'] .'%'; ?></td>
-                  <td class="text-right"><?php echo $relatorio['moedas'] . ' '; ?>
+                  <td><?php echo $valor['nome'] . ' ' . $valor['sobrenome']; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['atendimentos_demandados'])) : ?>
+                  <td class="text-center"><?php echo $valor['atendimentos_demandados']; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['atendimentos_realizados'])) : ?>
+                  <td class="text-center"><?php echo $valor['atendimentos_realizados']; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['atendimentos_perdidos'])) : ?>
+                  <td class="text-center"><?php echo $valor['atendimentos_perdidos']; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['percentual_perda'])) : ?>
+                  <td class="text-center"><?php echo $valor['percentual_perda'] . '%'; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['percentual_fila_ate_15_minutos'])) : ?>
+                  <td class="text-center"><?php echo $valor['percentual_fila_ate_15_minutos'] . '%'; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['tma'])) : ?>
+                  <td class="text-center"><?php echo $valor['tma']; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['percentual_avancino'])) : ?>
+                  <td class="text-center"><?php echo $valor['percentual_avancino'] . '%'; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['percentual_eficiencia'])) : ?>
+                  <td class="text-center"><?php echo $valor['percentual_eficiencia'] . '%'; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['percentual_questionario_respondido'])) : ?>
+                  <td class="text-center"><?php echo $valor['percentual_questionario_respondido'] .'%'; ?></td>
+                <?php endif; ?>
+
+                <?php if (isset($valor['moedas'])) : ?>
+                  <td class="text-right"><?php echo $valor['moedas'] . ' '; ?>
                     <i class="fa fa-money" aria-hidden="true"></i>
                   </td>
                 </tr>
-              <?php endforeach; ?>
+                <?php endif; ?>                
+
+                <?php 
+                  if (isset($valor['total_demandados']))
+                    $totalDemandados = $valor['total_demandados'];
+
+                  if (isset($valor['total_realizados']))
+                    $totalRealizados = $valor['total_realizados'];
+
+                  if (isset($valor['total_perdidos']))
+                    $totalPerdidos = $valor['total_perdidos'];
+
+                  if (isset($valor['total_perc_perda']))
+                    $totalPercPerda = $valor['total_perc_perda'];
+
+                  if (isset($valor['total_perc_fila']))
+                    $totalPercFila = $valor['total_perc_fila'];
+                  
+                  if (isset($valor['total_tma']))
+                    $totalTma = $valor['total_tma'];
+                  
+                  if (isset($valor['total_perc_avancino']))
+                    $totalPercAvancino = $valor['total_perc_avancino'];
+
+                  if (isset($valor['total_perc_eficiencia']))
+                    $totalPercEficiencia = $valor['total_perc_eficiencia'];
+
+                  if (isset($valor['total_perc_questionario_interno']))
+                    $totalPercQuestInterno = $valor['total_perc_questionario_interno'];
+                  
+                  if (isset($valor['total_avancoins']))
+                    $totalAvancoins = $valor['total_avancoins'];
+
+                ?>
+
+              <?php endforeach; ?>                
+              </tbody>
+            </table>
+
+            <br>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center" width="9%"></th>                  
+                  <th class="text-center">Demandados</th>              
+                  <th class="text-center">Realizados</th>                  
+                  <th class="text-center">Perdidos</th>
+                  <th class="text-center">Perc. Perda</th>
+                  <th class="text-center">Perc. Fila Até 15 Min</th>
+                  <th class="text-center">TMA</th>
+                  <th class="text-center">Perc. Avancino</th>
+                  <th class="text-center">Perc. Eficiência</th>
+                  <th class="text-center">Perc. Quest. Internos</th>                  
+                  <th class="text-center">Avancoins</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="text-left"><b>Totais</b></td>
+                  <td class="text-center"><?php echo $totalDemandados; ?></td>
+                  <td class="text-center"><?php echo $totalRealizados; ?></td>
+                  <td class="text-center"><?php echo $totalPerdidos; ?></td>
+                  <td class="text-center"><?php echo $totalPercPerda; ?>%</td>
+                  <td class="text-center"><?php echo $totalPercFila; ?>%</td>
+                  <td class="text-center"><?php echo $totalTma; ?></td>
+                  <td class="text-center"><?php echo $totalPercAvancino; ?>%</td>
+                  <td class="text-center"><?php echo $totalPercEficiencia; ?>%</td>
+                  <td class="text-center"><?php echo $totalPercQuestInterno; ?>%</td>
+                  <td class="text-right">
+                    <?php echo $totalAvancoins; ?>
+                    <i class="fa fa-money" aria-hidden="true"></i>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
