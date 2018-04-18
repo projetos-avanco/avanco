@@ -140,7 +140,7 @@
                 <?php endif; ?>
 
                 <?php if (isset($valor['tma'])) : ?>
-                  <td class="text-center"><?php echo $valor['tma']; ?></td>
+                  <td class="text-center"><?php echo $valor['tma'] . 'min'; ?></td>
                 <?php endif; ?>
 
                 <?php if (isset($valor['percentual_avancino'])) : ?>
@@ -210,7 +210,7 @@
                   <td class="text-center" width="9%"><?php echo $totalPerdidos; ?></td>
                   <td class="text-center" width="9%"><?php echo $totalPercPerda; ?>%</td>
                   <td class="text-center" width="9%"><?php echo $totalPercFila; ?>%</td>
-                  <td class="text-center" width="7%"><?php echo $totalTma; ?></td>
+                  <td class="text-center" width="7%"><?php echo $totalTma . 'min'; ?></td>
                   <td class="text-center" width="9%"><?php echo $totalPercAvancino; ?>%</td>
                   <td class="text-center" width="9%"><?php echo $totalPercEficiencia; ?>%</td>
                   <td class="text-center" width="11%"><?php echo $totalPercQuestInterno; ?>%</td>
