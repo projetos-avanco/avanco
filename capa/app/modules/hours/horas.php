@@ -69,3 +69,43 @@ function gravaRegistroDeHoras($issues, $despesas, $lancamentos)
   header('Location: ' . BASE_URL . 'public/views/hours/registro_horas.php');
   
 }
+
+/**
+ * responsável por recuperar todas as issues gravadas no registro de horas
+ */
+function recuperaTodasAsIssuesDoRegistroDeHoras()
+{
+  require DIRETORIO_FUNCTIONS . 'hours/consulta_horas.php';
+
+  $issues = array();
+
+  $db = abre_conexao();
+
+  # chamando função que consulta todos as issues gravadas no registro de horas
+  $issues = consultaTodasAsIssuesDoRegistroDeHoras($db, $issues);
+
+  fecha_conexao($db);
+
+  return $issues;
+
+}
+
+/**
+ * responsával por recuperar os dados de uma única issue
+ * @param - string com o número da issue
+ * @param - array modelo para os dados das issues
+ */
+function recuperaDadosDoRegistroDeHoras($issue, $dados)
+{
+  require DIRETORIO_FUNCTIONS . 'hours/consulta_horas.php';
+
+  $db = abre_conexao();
+
+  # chamando função que consulta os dados de uma única issue
+  $dados = consultaDadosDoRegistroDeHoras($db, $dados, $issue);
+
+  fecha_conexao($db);
+
+  return $dados;
+  
+}
