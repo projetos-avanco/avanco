@@ -4,7 +4,7 @@ a {
   margin-left: 10px;
 }
 
-table {
+table, a {
   font-family: 'Museosans 300',sans-serif;
 }
 
