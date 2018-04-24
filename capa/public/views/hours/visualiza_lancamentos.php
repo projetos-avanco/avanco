@@ -27,42 +27,13 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">  
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/hours/tabela_visualiza_lancamentos.css">
 
   <!-- dispositivos com largura máxima de 769px (por exemplo tablets) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)" />
   <!-- dispositivos com largura máxima de 450px (por exemplo smartphones) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbarsmart.css" type="text/css" media="screen and (max-width:450px)" />
-
-  <style>
-    .table {
-      font-family: 'Museosans 300',sans-serif;      
-    }
-
-    .table tbody tr td {      
-      font-size: 0.8em;        
-      vertical-align: middle;
-    }
-
-    .table tbody tr th {      
-      font-size: 0.9em;      
-      vertical-align: middle;
-    }
-
-    .cor-th-1 {
-      color: #585858;     
-      background-color: #F0F0F0;
-    }
-    
-    #titulo {
-      font-size: 0.95em;
-      height: 3.5em;
-    }
-
-    .tamanho {
-      height: 2.5em;
-    }
-  </style>  
 </head>
 
 <body>
@@ -86,11 +57,11 @@
               <table class="table table-bordered">            
                 <tbody>
                   <tr>
-                    <th class="text-center alert alert-success" role="alert" id="titulo" colspan="5">Registro de Horas</th>
+                    <th class="text-center cor-th-1" id="titulo" colspan="5">Registro de Horas</th>
                   </tr>
 
                   <tr>
-                    <th class="text-center alert alert-success" role="alert"rowspan="4">Dados do Registro</th>
+                    <th class="text-center cor-th-1" rowspan="4">Dados do Registro</th>
 
                     <th class="cor-th-1" width="20%">CNPJ</th>
                     <td class="text-left" width="20%"><?php echo $dados['cnpj']; ?></td>
@@ -120,7 +91,7 @@
                   </tr>
 
                   <tr>
-                    <th class="text-center alert alert-success" role="alert" rowspan="5">Dados de Despesas</th>               
+                    <th class="text-center cor-th-1" rowspan="5">Dados de Despesas</th>               
 
                     <th class="cor-th-1">Deslocamento</th>
                     <td class="text-left"><?php echo $dados['deslocamento']; ?></td>
@@ -169,9 +140,7 @@
                     </tr>
 
                     <tr>
-                      <th class="text-center alert alert-success" role="alert" rowspan="7" >
-                        Dados do Lançamento <?php echo $contador; ?>
-                      </th>
+                      <th class="text-center cor-th-1" rowspan="7" >Dados do Lançamento <?php echo $contador; ?></th>
                     </tr>                   
 
                     <tr>
