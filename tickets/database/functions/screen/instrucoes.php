@@ -58,7 +58,7 @@ function consultaColaboradores($options, $db)
       # verificando se a consulta pode ser executada
       if ($resultado = $db->query($query)) {
 
-        $options .= '<option value="0" selected>Selecione um Colaborador</option>';
+        $options .= '<option value="0">Selecione um Colaborador</option>';
 
         # montando options do select com os dados de todos os colaboradores
         while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
