@@ -43,7 +43,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <h2>Visualização de Lançamentos</h2>
+            <h2>Visualização Lançamentos</h2>
 
             <hr>
           </div>
@@ -115,25 +115,30 @@
                     <td class="text-left" colspan="5"><?php echo $dados['total_despesas']; ?></td>                    
                   </tr>
                                     
-                  <?php 
-                    unset(
-                      $dados['id'],
-                      $dados['supervisor'],
-                      $dados['colaborador'],
-                      $dados['cnpj'],
-                      $dados['conta_contrato'],
-                      $dados['razao_social'],
-                      $dados['issue'],
-                      $dados['tipo'],
-                      $dados['deslocamento'],
-                      $dados['alimentacao'],
-                      $dados['hospedagem'],
-                      $dados['total_despesas']
-                    );
+                  <?php
+
+                    # gravando o número da issue para usar no botão de edição
+                    $issue = $dados['issue'];
+
+                    # eliminando posição que não serão usadas
+                    unset($dados['id'],
+                          $dados['cnpj'],
+                          $dados['conta_contrato'],                    
+                          $dados['razao_social'],
+                          $dados['issue'],
+                          $dados['supervisor'],
+                          $dados['id_colaborador'],
+                          $dados['colaborador'],
+                          $dados['deslocamento'],
+                          $dados['alimentacao'],
+                          $dados['hospedagem'],
+                          $dados['total_despesas'],
+                          $dados['tipo']);
 
                     $contador = 1;
+
                   ?>
-                  <?php #exit(var_dump($dados)); ?>
+                  
                   <?php foreach ($dados as $chave => $valor) : ?>
                     <tr>
                       <th class="text-center tamanho" colspan="5"></th>
@@ -182,13 +187,13 @@
         
         <div class="row">
           <div class="col-sm-12">
-            <div class="text-right">
-              <a class="btn btn-warning" href="">
-                <i class="fa fa-pencil" aria-hidden="true"></i> Editar
-              </a>
-
+            <div class="text-right">              
               <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/hours/consulta_lancamentos.php">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+              </a>
+
+              <a class="btn btn-warning" href="<?php echo BASE_URL; ?>public/views/hours/edita_lancamentos.php?issue=<?php echo $issue; ?>">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Editar
               </a>
             </div>
           </div>
