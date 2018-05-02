@@ -90,7 +90,7 @@
                     <i class="fa fa-eye" aria-hidden="true"></i> Visualizar
                   </a>
 
-                  <a class="btn btn-warning btn-sm" href="<?php echo $issue['issue']; ?>">
+                  <a class="btn btn-warning btn-sm" href="<?php echo BASE_URL; ?>public/views/hours/edita_lancamentos.php?issue=<?php echo $issue['issue']; ?>">
                     <i class="fa fa-pencil" aria-hidden="true"></i> Editar
                   </a>
 
