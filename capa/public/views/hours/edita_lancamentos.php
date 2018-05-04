@@ -5,7 +5,7 @@
 <?php
 
   require DIRETORIO_REQUESTS . 'get/processa_lancamentos_horas.php';
-  
+
   $id = '';
 
   # recuperando id do chat do supervisor que está logado
@@ -78,9 +78,9 @@
         <div class="row"><!-- linha -->
           <div class="col-sm-12"><!-- coluna 1 tabela clientes e imagem loader -->
             <div id="bloco"><!-- tabela clientes -->
-              
+
             </div><!-- tabela clientes -->
-            
+
             <div class="hidden text-center" id="loader"><!-- imagem loader -->
               <img src="<?php echo BASE_URL; ?>../tickets/public/img/others/loader.gif" alt="loader" width="10%" height="10%">
             </div><!-- imagem loader -->
@@ -138,16 +138,16 @@
 
               <select class="form-control" name="issues[colaborador]" id="colaborador-registrado" readonly="true">
                 <option value="<?php echo $dados['id_colaborador']; ?>">
-                  <?php echo $dados['colaborador']; ?>                  
+                  <?php echo $dados['colaborador']; ?>
                 </option>
               </select>
             </div>
           </div><!-- coluna 2 campo colaborador registrado -->
 
           <div class="col-sm-2"><!-- coluna 3 campo colaboradores -->
-            <label for="colaborador">Lista Colaboradores</label>                  
+            <label for="colaborador">Lista Colaboradores</label>
             <select class="form-control required" id="colaborador">
-              
+
             </select>
           </div><!-- coluna 3 campo colaboradores -->
         </div><!-- linha -->
@@ -170,7 +170,7 @@
                 <label for="tipo">Tipo</label>
 
                 <?php if ($dados['tipo'] == 'Remoto') : ?>
-                  
+
                   <select class="form-control" name="issues[tipo]">
                     <option value="remoto" selected>Remoto</option>
                     <option value="in-loco">In-Loco</option>
@@ -181,7 +181,7 @@
                   <select class="form-control" name="issues[tipo]">
                     <option value="remoto">Remoto</option>
                     <option value="in-loco" selected>In-Loco</option>
-                  </select>                      
+                  </select>
 
                 <?php endif; ?>
 
@@ -200,7 +200,7 @@
                       </div>
                     </div><!-- coluna 1 da linha interna 1 campo deslocamento -->
                   </div><!-- linha interna 1 -->
-                  
+
                   <div class="row"><!-- linha interna 2 -->
                     <div class="col-sm-12"><!-- coluna 1 da linha interna 2 campo alimentação -->
                       <div class="form-group">
@@ -210,7 +210,7 @@
                       </div>
                     </div><!-- coluna 1 da linha interna 2 campo alimentação -->
                   </div><!-- linha interna 2 -->
-                  
+
                   <div class="row"><!-- linha interna 3 -->
                     <div class="col-sm-12"><!-- coluna 1 da linha interna 3 campo hospedagem -->
                       <div class="form-group">
@@ -239,13 +239,13 @@
           </div><!-- coluna -->
         </div><!-- linha -->
 
-        <?php 
+        <?php
 
           # limpando posições do array que não serão utilizadas nos lançamentos
-          unset($dados['id'], 
-                $dados['issue'], 
-                $dados['tipo'], 
-                $dados['cnpj'], 
+          unset($dados['id'],
+                $dados['issue'],
+                $dados['tipo'],
+                $dados['cnpj'],
                 $dados['conta_contrato'],
                 $dados['razao_social'],
                 $dados['supervisor'],
@@ -254,20 +254,20 @@
                 $dados['deslocamento'],
                 $dados['alimentacao'],
                 $dados['hospedagem'],
-                $dados['total_despesas']); 
-          
+                $dados['total_despesas']);
+
           # alterando o formato das datas dos lançamentos
           for ($i =0; $i < count($dados); $i++) {
 
             $dados[$i]['data'] = formataDataUnicaParaMysql($dados[$i]['data']);
 
           }
-          
+
           # contador usado nos attr's dos lançamentos
           $contador = 0;
 
         ?>
-        
+
         <br>
 
         <div class="row"><!-- linha -->
@@ -277,17 +277,17 @@
 
               <?php foreach ($dados as $chave => $valor) : ?>
 
-              <div class="row" numero-bloco="<?php echo $contador; ?>"><!-- linha 1-->               
-                <div class="col-sm-12"><!-- coluna 1 -->                
+              <div class="row" numero-bloco="<?php echo $contador; ?>"><!-- linha 1-->
+                <div class="col-sm-12"><!-- coluna 1 -->
                   <div class="row"><!-- linha interna 2 -->
-                    <div class="col-sm-2"><!-- coluna 1 da linha interna 2 campo data -->                    
+                    <div class="col-sm-2"><!-- coluna 1 da linha interna 2 campo data -->
                       <label for="data">Data</label>
 
                       <input class="form-control required" id="data" type="date" name="lancamentos[<?php echo $contador; ?>][data]" numero="<?php echo $contador; ?>" value="<?php echo $valor['data']; ?>">
                     </div><!-- coluna 1 da linha interna 2 campo data -->
                   </div><!-- linha interna 2 -->
 
-                  <br> 
+                  <br>
 
                   <div class="row"><!-- linha interna 3 -->
                     <div class="col-sm-2"><!-- coluna 1 da linha interna 3 campo produto -->
@@ -302,7 +302,7 @@
                         <option value="2">Frente de Loja</option>
                         <option value="3">Gestor</option>
                         <option value="4">Novo ERP</option>
-                      
+
                       <?php elseif ($valor['produto'] == 'Frente de Loja') : ?>
 
                         <option value="0">Selecione um Produto</option>
@@ -326,16 +326,16 @@
                         <option value="2">Frente de Loja</option>
                         <option value="3">Gestor</option>
                         <option value="4" selected>Novo ERP</option>
-                      
+
                       <?php endif; ?>
 
                       </select>
                     </div><!-- coluna 1 da linha interna 3 campo produto -->
                   </div><!-- linha interna 3 -->
 
-                  <br> 
+                  <br>
 
-                  <div class="row"><!-- linha interna 4 --> 
+                  <div class="row"><!-- linha interna 4 -->
                     <div class="col-sm-2"><!-- coluna 1 da linha interna 4 campo horas trabalhadas -->
                       <label for="horas-trabalhadas">Horas Trabalhadas</label>
 
@@ -349,7 +349,7 @@
                     </div><!-- coluna 2 da linha interna 4 campo horas faturadas -->
                   </div><!-- linha interna 4 -->
 
-                  <br> 
+                  <br>
 
                   <div class="row"><!-- linha interna 5 -->
                     <div class="col-sm-2"><!-- coluna 1 da linha interna 5 campo horas valor hora -->
@@ -374,7 +374,7 @@
                       </button>
                     </div>
                   </div>
-                                    
+
                   <hr>
 
                 </div><!-- coluna 1 -->
@@ -416,7 +416,7 @@
         </div><!-- linha -->
       </form><!-- formulário -->
 
-      <br> 
+      <br>
 
       <div class="row">
         <div class="col-sm-12">
@@ -429,7 +429,7 @@
           </div>
 
         <?php endif; ?>
-        
+
         </div>
       </div>
 
@@ -450,13 +450,13 @@
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/seleciona.js"></script>
   <!--<script src="<?php echo BASE_URL; ?>/public/js/hours/validacao.js"></script>-->
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>  
+  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/hours/edit/lancamentos.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/hours/edit/despesas.js"></script>  
-  <script src="<?php echo BASE_URL; ?>public/js/hours/edit/tipo_atendimento.js"></script>  
+  <script src="<?php echo BASE_URL; ?>public/js/hours/edit/despesas.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/hours/edit/tipo_atendimento.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/hours/edit/duplicar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/hours/edit/remover_lancamentos.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/hours/edit/altera_colaborador.js"></script>  
+  <script src="<?php echo BASE_URL; ?>public/js/hours/edit/altera_colaborador.js"></script>
 </body>
 </html>
 
