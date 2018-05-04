@@ -73,3 +73,38 @@ function geraTicket()
 
   return $ticket;
 }
+
+/**
+ * redireciona o usuário para a página de edição de lançamentos
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id da issue
+ */
+function redirecionaUsuarioParaEdicaoDeLancamentos($db, $issue)
+{
+  fecha_conexao($db);
+
+  # redirecionando usuário
+  header('Location: ' . BASE_URL . 'public/views/hours/edita_lancamentos.php?issue=' . $issue);
+
+  exit;
+
+}
+
+/**
+ * grava uma mensagem na sessão
+ * @param - string com o tipo da mensagem (success, info, warning ou danger)
+ * @param - booleno que informa se a mensagem deve ser exibe (true - exibe, false - não exibe)
+ * @param - string com o texto que fica em negrito
+ * @param - string com o texto que não fica em negrito
+ */
+function gravaMensagemNaSessao($tipo, $exibe, $primeiroTexto, $segundoTexto)
+{
+  $_SESSION['mensagens'] = array(
+
+    'tipo'     => $tipo,
+    'exibe'    => $exibe,
+    'mensagem' => '<p class="text-center"><strong>' . $primeiroTexto . '!</strong> ' . $segundoTexto . '.</p>'
+
+  );
+
+}
