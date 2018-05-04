@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * responsável por gravar os registros de horas na base de dados
@@ -18,11 +18,11 @@ function gravaRegistroDeHoras($issues, $despesas, $lancamentos)
   if ($retorno) {
 
     $retorno = insereRegistroDeLancamentos($db, $lancamentos, $issues['id']);
-    
+
     if ($retorno) {
 
       if ($issues['tipo'] == 'in-loco' AND $despesas['total-despesas'] > 0) {
-        
+
         $retorno = insereRegistroDeDespesas($db, $despesas, $issues['id']);
 
         if ($retorno) {
@@ -39,7 +39,7 @@ function gravaRegistroDeHoras($issues, $despesas, $lancamentos)
           $_SESSION['mensagens']['tipo']     = 'danger';
           $_SESSION['mensagens']['exibe']    = true;
         }
-        
+
       } else {
 
         # todos os registros foram gravados com sucesso
@@ -48,10 +48,10 @@ function gravaRegistroDeHoras($issues, $despesas, $lancamentos)
         $_SESSION['mensagens']['exibe']    = true;
 
       }
-      
+
     } else {
 
-      # erro ao inserir algum registro de lançamento      
+      # erro ao inserir algum registro de lançamento
       $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Ops!</strong> Algum lançamento não foi gravado! Houve erro de SQL.</p>';
       $_SESSION['mensagens']['tipo']     = 'danger';
       $_SESSION['mensagens']['exibe']    = true;
@@ -67,7 +67,7 @@ function gravaRegistroDeHoras($issues, $despesas, $lancamentos)
   }
 
   header('Location: ' . BASE_URL . 'public/views/hours/registro_horas.php');
-  
+
 }
 
 /**
@@ -107,5 +107,85 @@ function recuperaDadosDoRegistroDeHoras($issue, $dados)
   fecha_conexao($db);
 
   return $dados;
-  
+
+}
+
+/**
+ * responsável por alterar os dados nas tabelas
+ * @param - array com os dados da tabela de issues
+ * @param - array com os dados da tabela de despesas
+ * @param - array com os dados da tabela de lançamentos
+ */
+function alteraDadosDoRegistroDeHoras($issues, $despesas, $lancamentos)
+{
+  require DIRETORIO_HELPERS   . 'diversas.php';
+  require DIRETORIO_FUNCTIONS . 'hours/insere_horas.php';
+  require DIRETORIO_FUNCTIONS . 'hours/altera_horas.php';
+  require DIRETORIO_FUNCTIONS . 'hours/deleta_horas.php';
+
+  unset($_SESSION['mensagens']);
+
+  $db = abre_conexao();
+
+  # chamando função que edita os dados da tabela de issues
+  $resultado = editaDadosDaTabelaDeIssues($db, $issues);
+
+  # verificando se o tipo da issue foi alterado para in-loco ou alterado para remoto (in-loco possui despesas remoto não possui despesas)
+  if ($resultado && $issues['tipo'] == 'in-loco') {
+
+    # chamando função que edita os dados da tabela de despesas
+    $resultado = editaDadosDaTabelaDeDespesas($db, $issues['id'], $despesas);
+
+    if (! $resultado) {
+
+      # gravando mensagem de erro
+      gravaMensagemNaSessao('danger', true, 'Ops', 'Erro ao editar os dados na tabela de despesas');
+
+      redirecionaUsuarioParaEdicaoDeLancamentos($db, $issues['issue']);
+
+    }
+
+  } elseif ($resultado && $issues['tipo'] == 'remoto') {
+
+    # deletar despesas
+    $resultado = deletaDespesas($db, $issues['id']);
+
+    # verificando se houve erro ao deletar as despesas
+    if (! $resultado) {
+
+      # gravando mensagem de erro
+      gravaMensagemNaSessao('danger', true, 'Ops', 'Erro ao deletar os dados na tabela de despesas');
+
+      redirecionaUsuarioParaEdicaoDeLancamentos($db, $issues['issue']);
+
+    }
+
+  } else {
+
+    # gravando mensagem de erro
+    gravaMensagemNaSessao('danger', true, 'Ops', 'Erro ao alterar os dados na tabela de issues');
+
+    redirecionaUsuarioParaEdicaoDeLancamentos($db, $issues['issue']);
+
+  }
+
+  # chamando função que edita os dados da tabela de lançamentos
+  $resultado = editaDadosDaTabelaDeLancamentos($db, $issues['id'], $lancamentos);
+
+  if ($resultado) {
+
+    # gravando mensagem de sucesso
+    gravaMensagemNaSessao('success', true, 'Tudo Certo', 'Os dados foram alterados com sucesso');
+
+    redirecionaUsuarioParaEdicaoDeLancamentos($db, $issues['issue']);
+
+  } else {
+
+    # gravando mensagem de erro
+    gravaMensagemNaSessao('danger', true, 'Ops', 'Erro ao editar os dados da tabela de lançamentos');
+    
+    redirecionaUsuarioParaEdicaoDeLancamentos($db, $issues['issue']);
+
+  }
+
 }
