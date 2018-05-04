@@ -42,9 +42,11 @@
       # verificando se existe requisição via método POST
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+        require DIRETORIO_MODULES . 'hours/horas.php';
+
         # verficando se todas as informações da tabela issues foram enviadas
         if (isset($_POST['issues']) && count($_POST['issues']) == 8) {
-          
+
           $issues = array(
 
             'id' => '',
@@ -62,7 +64,7 @@
           if (isset($_POST['issues']['id']) && is_numeric($_POST['issues']['id'])) {
 
             $issues['id'] = $_POST['issues']['id'];
-            
+
           } else {
 
             echo '
@@ -79,7 +81,7 @@
 
           # validando o id do supervisor
           if (isset($_POST['issues']['supervisor']) && is_numeric($_POST['issues']['supervisor'])) {
-            
+
             $issues['supervisor'] = $_POST['issues']['supervisor'];
 
           } else {
@@ -115,17 +117,104 @@
 
           }
 
-          $issues['issue']           = isset($_POST['issues']['issue']) ? $_POST['issues']['issue'] : '';
-          $issues['tipo']            = isset($_POST['issues']['tipo']) ? $_POST['issues']['tipo'] : '';
-          $issues['cnpj']            = isset($_POST['issues']['cnpj']) ? $_POST['issues']['cnpj'] : '';
-          $issues['conta_contrato']  = isset($_POST['issues']['conta_contrato']) ? $_POST['issues']['conta_contrato'] : '';
-          $issues['razao_social']    = isset($_POST['issues']['razao_social']) ? $_POST['issues']['razao_social'] : '';
-          
-          $issues['issue'] = strtoupper($issues['issue']);
-          
+          # validando o número da issue
+          if (isset($_POST['issues']['issue']) && ! empty($_POST['issues']['issue'])) {
+
+            $issues['issue'] = strtoupper($_POST['issues']['issue']);
+
+          } else {
+
+            echo '
+              <p class="alert alert-danger" role="alert">O número da issue não foi enviado!</p>
+              <p>
+                <a class="btn btn-default" href="/avanco/capa/public/views/hours/edita_lancamentos.php?issue='.$_POST['issues']['issue'].'">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+                </a>
+              </p>';
+
+            exit;
+
+          }
+
+          # validando o tipo da issue
+          if (isset($_POST['issues']['tipo']) && ! empty($_POST['issues']['tipo'])) {
+
+            $issues['tipo'] = $_POST['issues']['tipo'];
+
+          } else {
+
+            echo '
+              <p class="alert alert-danger" role="alert">O tipo da issue não foi enviado!</p>
+              <p>
+                <a class="btn btn-default" href="/avanco/capa/public/views/hours/edita_lancamentos.php?issue='.$_POST['issues']['issue'].'">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+                </a>
+              </p>';
+
+            exit;
+
+          }
+
+          # validando o cnpj
+          if (isset($_POST['issues']['cnpj']) && ! empty($_POST['issues']['cnpj'])) {
+
+            $issues['cnpj'] = $_POST['issues']['cnpj'];
+
+          } else {
+
+            echo '
+              <p class="alert alert-danger" role="alert">O cnpj não foi enviado!</p>
+              <p>
+                <a class="btn btn-default" href="/avanco/capa/public/views/hours/edita_lancamentos.php?issue='.$_POST['issues']['issue'].'">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+                </a>
+              </p>';
+
+            exit;
+
+          }
+
+          # validando a conta contrato
+          if (isset($_POST['issues']['conta-contrato']) && ! empty($_POST['issues']['conta-contrato'])) {
+
+            $issues['conta_contrato'] = $_POST['issues']['conta-contrato'];
+
+          } else {
+
+            echo '
+              <p class="alert alert-danger" role="alert">A conta contrato não foi enviada!</p>
+              <p>
+                <a class="btn btn-default" href="/avanco/capa/public/views/hours/edita_lancamentos.php?issue='.$_POST['issues']['issue'].'">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+                </a>
+              </p>';
+
+            exit;
+
+          }
+
+          # validando a razão social
+          if (isset($_POST['issues']['razao-social']) && ! empty($_POST['issues']['razao-social'])) {
+
+            $issues['razao_social'] = $_POST['issues']['razao-social'];
+
+          } else {
+
+            echo '
+              <p class="alert alert-danger" role="alert">A razão social não foi enviada!</p>
+              <p>
+                <a class="btn btn-default" href="/avanco/capa/public/views/hours/edita_lancamentos.php?issue='.$_POST['issues']['issue'].'">
+                  <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+                </a>
+              </p>';
+
+            exit;
+
+          }
+
         } else {
 
-          echo '          
+          echo '
             <p class="alert alert-danger" role="alert">Não foram enviadas todas as informações da tabela de issues!</p>
             <p>
               <a class="btn btn-default" href="/avanco/capa/public/views/hours/edita_lancamentos.php?issue='.$_POST['issues']['issue'].'">
@@ -139,7 +228,7 @@
 
         # verificando se todas as informações da tabela despesas foram enviadas
         if (isset($_POST['despesas']) && count($_POST['despesas']) == 4) {
-          
+
           $despesas = array(
 
             'deslocamento' => '',
@@ -207,7 +296,7 @@
           }
 
           $despesas['total'] = isset($_POST['despesas']['total-despesas']) ? $_POST['despesas']['total-despesas'] : '';
-          
+
         } else {
 
           echo '
@@ -230,87 +319,81 @@
         # verificando se existem lançamentos para serem inseridos na tabela de lançamentos
         if (isset($_POST['lancamentos']) && count($_POST['lancamentos']) > 0) {
 
-          # verificando se o tipo de issue é in-loco (somente in-loco possui despesas)
-          if ($issues['tipo'] == 'in-loco') {
+          # reordenando os índices do array de lançamentos
+          $_POST['lancamentos'] = array_values($_POST['lancamentos']);
 
-            # reordenando os índices do array de lançamentos
-            $_POST['lancamentos'] = array_values($_POST['lancamentos']);
-            
-            $contador = 0;
+          $contador = 0;
 
-            # validando os dados de todos os lançamentos
-            foreach ($_POST['lancamentos'] as $chave => $valor) {
+          # validando os dados de todos os lançamentos
+          foreach ($_POST['lancamentos'] as $chave => $valor) {
 
-              # validando data
-              if ($valor['data'] == '') {
-                echo 
-                  '<p class="alert alert-warning" role="alert">A data do <b>lançamento</b> ' . $contador . ' está vazia!</p>';
-                $bandeira = false;
-              }          
-              
-              # validando produto
-              if ($valor['produto'] == '0') {          
-                echo 
-                  '<p class="alert alert-warning" role="alert">Nenhum produto foi selecionado no <b>lançamento</b> ' . $contador . '!</p>';
-                $bandeira = false;
-              }          
-              
-              # validando horas trabalhadas
-              if ($valor['horas-trabalhadas'] == '') {          
-                echo 
-                  '<p class="alert alert-warning" role="alert">Não foi informado a quantidade de horas trabalhadas no <b>lançamento</b> ' . $contador . '!</p>';
-                $bandeira = false;
-              }          
-
-              # validando horas faturadas
-              if ($valor['horas-faturadas'] == '') {          
-                echo 
-                  '<p class="alert alert-warning" role="alert">Não foi informado a quantidade de horas faturadas no <b>lançamento</b> ' . $contador . '!</p>';
-                $bandeira = false;
-              }          
-
-              # validando valor da hora
-              if ($valor['valor-horas'] == '0') {          
-                echo 
-                  '<p class="alert alert-warning" role="alert">Não foi informado o valor da hora no <b>lançamento</b> ' . $contador . '!</p>';
-                $bandeira = false;
-              }          
-
-              # validando total
-              if ($valor['valor-total'] == '0') {        
-                echo 
-                  '<p class="alert alert-warning" role="alert">Não foi informado o valor total no <b>lançamento</b> ' . $contador . '!</p>';
-                $bandeira = false;
-              }          
-              
-              $contador++;
-
+            # validando data
+            if ($valor['data'] == '') {
+              echo
+                '<p class="alert alert-warning" role="alert">A data do <b>lançamento</b> ' . $contador . ' está vazia!</p>';
+              $bandeira = false;
+            } else {
+              $lancamentos[$contador]['data'] = $_POST['lancamentos'][$contador]['data'];
             }
 
-            # recuperando os lançamentos
-            $lancamentos = $_POST['lancamentos'];
+            # validando produto
+            if ($valor['produto'] == '0') {
+              echo
+                '<p class="alert alert-warning" role="alert">Nenhum produto foi selecionado no <b>lançamento</b> ' . $contador . '!</p>';
+              $bandeira = false;
+            } else {
+              $lancamentos[$contador]['produto'] = $_POST['lancamentos'][$contador]['produto'];
+            }
 
-          } else {
+            # validando horas trabalhadas
+            if ($valor['horas-trabalhadas'] == '') {
+              echo
+                '<p class="alert alert-warning" role="alert">Não foi informado a quantidade de horas trabalhadas no <b>lançamento</b> ' . $contador . '!</p>';
+              $bandeira = false;
+            } else {
+              $lancamentos[$contador]['horas_trabalhadas'] = $_POST['lancamentos'][$contador]['horas-trabalhadas'];
+            }
 
-            # eliminando os lançamentos (o tipo é remoto)
-            unset ($_POST['lancamentos']);
+            # validando horas faturadas
+            if ($valor['horas-faturadas'] == '') {
+              echo
+                '<p class="alert alert-warning" role="alert">Não foi informado a quantidade de horas faturadas no <b>lançamento</b> ' . $contador . '!</p>';
+              $bandeira = false;
+            } else {
+              $lancamentos[$contador]['horas_faturadas'] = $_POST['lancamentos'][$contador]['horas-faturadas'];
+            }
+
+            # validando valor da hora
+            if ($valor['valor-horas'] == '0') {
+              echo
+                '<p class="alert alert-warning" role="alert">Não foi informado o valor da hora no <b>lançamento</b> ' . $contador . '!</p>';
+              $bandeira = false;
+            } else {
+              $lancamentos[$contador]['valor_horas'] = $_POST['lancamentos'][$contador]['valor-horas'];
+            }
+
+            # validando total
+            if ($valor['valor-total'] == '0') {
+              echo
+                '<p class="alert alert-warning" role="alert">Não foi informado o valor total no <b>lançamento</b> ' . $contador . '!</p>';
+              $bandeira = false;
+            } else {
+              $lancamentos[$contador]['valor_total'] = $_POST['lancamentos'][$contador]['valor-total'];
+            }
+
+            $contador++;
 
           }
-
+                    
           # verificando se não houve erros na validação dos lançamentos
           if ($bandeira) {
 
-            # chamar a função do módulo
-            print_r($issues);
-            echo '<br>';
-            print_r($despesas);
-            echo '<br>';
-            print_r($lancamentos);
+            # chamando função responsável por alterar os dados nas tabelas
+            alteraDadosDoRegistroDeHoras($issues, $despesas, $lancamentos);
 
           } else {
-
-            # tentar exibir um botão voltar
-            echo 
+            
+            echo
               '<p>
                 <a class="btn btn-default" href="/avanco/capa/public/views/hours/edita_lancamentos.php?issue='.$_POST['issues']['issue'].'">
                   <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
@@ -321,8 +404,20 @@
 
           }
 
+        } else {
+          
+          echo
+            '<p class="alert alert-warning" role="alert">Cada issue deve ter pelo menos um lançamento!</p>
+            <p>
+              <a class="btn btn-default" href="/avanco/capa/public/views/hours/edita_lancamentos.php?issue='.$_POST['issues']['issue'].'">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+              </a>
+            </p>';
+
+          exit;
+
         }
-        
+
       }
 
       ?>
