@@ -10,10 +10,9 @@ function gravaRegistroDeHoras($issues, $despesas, $lancamentos)
 
   $db = abre_conexao();
 
-  $issues['id'] = consultaUltimoId($db);
-  $issues['id'] += 1;
-
   $retorno = insereRegistroDeIssues($db, $issues);
+
+  $issues['id'] = consultaIdDaIssue($db, $issues['issue']);
 
   if ($retorno) {
 
