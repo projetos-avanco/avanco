@@ -126,7 +126,7 @@
             <div class="form-group">
               <label for="supervisor">Supervisor</label>
 
-              <input class="form-control" type="text" value="<?php echo $dados['supervisor']; ?>" readonly="true">
+              <input class="form-control required" type="text" value="<?php echo $dados['supervisor']; ?>" readonly="true">
 
               <input type="hidden" name="issues[supervisor]" value="<?php echo $id; ?>"><!-- id do supervisor -->
             </div>
@@ -136,7 +136,7 @@
             <div class="form-group">
               <label for="supervisor">Colaborador</label>
 
-              <select class="form-control" name="issues[colaborador]" id="colaborador-registrado" readonly="true">
+              <select class="form-control required" name="issues[colaborador]" id="colaborador-registrado" readonly="true">
                 <option value="<?php echo $dados['id_colaborador']; ?>">
                   <?php echo $dados['colaborador']; ?>
                 </option>
@@ -146,7 +146,7 @@
 
           <div class="col-sm-2"><!-- coluna 3 campo colaboradores -->
             <label for="colaborador">Lista Colaboradores</label>
-            <select class="form-control required" id="colaborador">
+            <select class="form-control" id="colaborador">
 
             </select>
           </div><!-- coluna 3 campo colaboradores -->
@@ -457,6 +457,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/hours/edit/duplicar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/hours/edit/remover_lancamentos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/hours/edit/altera_colaborador.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/hours/edit/validacao.js"></script>
 </body>
 </html>
 
