@@ -1,11 +1,11 @@
 <?php 
 
 /**
- * consulta o último id de issue inserido na tabela de issues
+ * consulta o id da issue inserido na tabela de issues
  */
-function consultaUltimoId($db)
+function consultaIdDaIssue($db, $issue)
 {
-  $query = "SELECT id FROM av_registro_horas_issues ORDER BY id DESC";
+  $query = "SELECT id FROM av_registro_horas_issues WHERE (issue = '$issue');";
 
   # verificando se a consulta pode ser executada
   if ($resultado = $db->query($query)) {
