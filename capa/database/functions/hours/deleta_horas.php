@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * deleta dados na tabela de issues
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id da issue
+ */
+function deletaIssues($db, $id)
+{
+  $query = "DELETE FROM av_registro_horas_issues WHERE (id = $id);";
+
+  $resultado = $db->query($query);
+
+  return $resultado;
+
+}
+
+/**
  * deleta dados na tabela de despesas
  * @param - objeto com uma conexão aberta
  * @param - string com o id da issue
