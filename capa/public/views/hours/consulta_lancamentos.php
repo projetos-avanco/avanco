@@ -66,13 +66,13 @@
             <table class="table"><!-- painel do suporte -->
               <thead>
                 <tr>
-                  <th class="hidden" width="10%">Id</th>
+                  <th class="hidden" width="5%">Id</th>
                   <th class="text-center" width="10%">Supervisor</th>
-                  <th class="text-center" width="10%">Issue</th>
-                  <th class="text-center" width="25%">Razão Social</th>       
+                  <th class="text-center" width="5%">Issue</th>
+                  <th class="text-center" width="20%">Razão Social</th>       
                   <th class="text-center" width="10%">CNPJ</th>
-                  <th class="text-center" width="10%">Conta</th>                  
-                  <th class="text-center" width="25%"></th>                
+                  <th class="text-center" width="5%">Conta</th>                  
+                  <th class="text-center" width="40%"></th>                
                 </tr>
               </thead>
 
@@ -85,7 +85,7 @@
                 <td class="text-left"><?php echo $issue['razao_social']; ?></td>     
                 <td class="text-center"><?php echo $issue['cnpj']; ?></td>
                 <td class="text-center"><?php echo $issue['conta_contrato']; ?></td>                
-                <td class="text-right">
+                <td class="text-center">
                   <a class="btn btn-success btn-sm" href="<?php echo BASE_URL; ?>public/views/hours/visualiza_lancamentos.php?issue=<?php echo $issue['issue']; ?>">
                     <i class="fa fa-eye" aria-hidden="true"></i> Visualizar
                   </a>
