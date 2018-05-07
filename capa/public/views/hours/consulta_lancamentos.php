@@ -94,7 +94,7 @@
                     <i class="fa fa-pencil" aria-hidden="true"></i> Editar
                   </a>
 
-                  <a class="btn btn-danger btn-sm" href="<?php echo $issue['issue']; ?>">
+                  <a class="btn btn-danger btn-sm" onclick="confirmaExclusao(<?php echo $issue['id']; ?>, '<?php echo $issue['issue']; ?>');">
                     <i class="fa fa-trash" aria-hidden="true"></i> Excluir
                   </a>
                 </td>                
@@ -115,7 +115,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/hours/paginacao_consulta_lancamentos_horas.js"></script>
-  <!--<script src="<?php echo BASE_URL; ?>public/js/tickets/exclusao_ticket.js"></script>-->
+  <script src="<?php echo BASE_URL; ?>public/js/hours/delete/exclusao_issues.js"></script>
 </body>
 </html>
 
