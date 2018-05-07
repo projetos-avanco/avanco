@@ -20,7 +20,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Portal Avanção - Consulta de Issues</title>
+  <title>Portal Avanção - Consulta Issues</title>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,7 +53,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <h2>Consulta de Issues</h2>
+            <h2>Consulta Issues</h2>
 
             <hr>
           </div>
