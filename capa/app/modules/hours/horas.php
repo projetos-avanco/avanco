@@ -189,3 +189,71 @@ function alteraDadosDoRegistroDeHoras($issues, $despesas, $lancamentos)
   }
 
 }
+
+/**
+ * responsável por deletar os dados da issue nas tabelas de issues, despesas e lançamentos
+ * @param - string com o id da issue
+ */
+function deletaDadosDoRegistroDeHoras($id)
+{
+  require DIRETORIO_FUNCTIONS . 'hours/deleta_horas.php';
+
+  $db = abre_conexao();
+
+  # chamando função que deleta os dados da tabela de lançamentos
+  $resultado = deletaLancamentos($db, $id);
+
+  # verificando se os dados da tabela de lançamentos foram deletados
+  if ($resultado) {
+
+    # chamando função que deleta os dados da tabela de despesas
+    $resultado = deletaDespesas($db, $id);
+
+    # verificando se os dados da tabela de despesas foram deletados
+    if ($resultado) {
+
+      # chamando função que deleta os dados da tabela de issues
+      $resultado = deletaIssues($db, $id);
+
+      # verificando se os dados da tabela de issues foram deletados
+      if ($resultado) {
+
+        fecha_conexao($db);
+
+        # redirecionando usuário para página de consulta de lançamentos
+        header('Location: ' . BASE_URL . 'public/views/hours/consulta_lancamentos.php');
+
+      } else {
+
+        echo 
+          '<h2>Os dados da tabela de issue não foram deletados!</h2>
+          <p>
+            <a href='.BASE_URL.'public/views/hours/consulta_lancamentos.php>Voltar</a>
+          </p>';
+          exit;
+
+      }
+
+    } else {
+
+      echo 
+        '<h2>Os dados da tabela de despesas não foram deletados!</h2>
+        <p>
+          <a href='.BASE_URL.'public/views/hours/consulta_lancamentos.php>Voltar</a>
+        </p>';
+        exit;
+
+    }
+
+  } else {
+
+    echo 
+      '<h2>Os dados da tabela de lançamentos não foram deletados!</h2>
+      <p>
+        <a href='.BASE_URL.'public/views/hours/consulta_lancamentos.php>Voltar</a>
+      </p>';
+      exit;
+
+  }
+
+}
