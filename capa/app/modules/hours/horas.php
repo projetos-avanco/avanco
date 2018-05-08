@@ -5,10 +5,29 @@
  */
 function gravaRegistroDeHoras($issues, $despesas, $lancamentos)
 {
+  require DIRETORIO_HELPERS   . 'diversas.php';
   require DIRETORIO_FUNCTIONS . 'hours/insere_horas.php';
   require DIRETORIO_FUNCTIONS . 'hours/consulta_horas.php';
 
   $db = abre_conexao();
+
+  # chamando função que verifica se já existe um registro com o número da issue informado
+  $duplicidade = verificaDuplicidadeDeIssue($db, $issues['issue']);
+
+  # verificando se já existe um registro de issue na tabela de issues
+  if ($duplicidade) {
+
+    # chamando função que grava mensagens na sessão
+    gravaMensagemNaSessao('danger', true, 'Ops', 'Já existe uma issue de número ' . $issues['issue'] . ' registrada no sistema.');
+
+    # redirecionando usuário para página de registro de horas
+    header('Location: ' . BASE_URL . 'public/views/hours/registro_horas.php');
+
+    fecha_conexao($db);
+
+    exit;
+
+  }
 
   $retorno = insereRegistroDeIssues($db, $issues);
 
