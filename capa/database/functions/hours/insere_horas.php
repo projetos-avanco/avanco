@@ -14,7 +14,8 @@ function insereRegistroDeIssues($db, $issues)
             '{$issues['conta_contrato']}',
             '{$issues['razao_social']}',
              {$issues['supervisor']},
-             {$issues['colaborador']});";
+             {$issues['colaborador']},
+            '{$issues['observacao']}');";
 
   if ($resultado = $db->query($query)) {
 
@@ -31,17 +32,17 @@ function insereRegistroDeIssues($db, $issues)
 /**
  * insere um registro de horas na tabela de lançamentos
  */
-function insereRegistroDeLancamentos($db, $lancamentos, $idIssue)
+function insereRegistroDeLancamentos($db, $lancamentos, $id)
 {
   $retorno = array();
 
   for ($i = 0; $i < count($lancamentos); $i++) {
 
     $query = "";
-    $query =
-      "INSERT INTO av_registro_horas_lancamentos
-       VALUES (null,
-               $idIssue,
+    $query = 
+      "INSERT INTO av_registro_horas_lancamentos 
+        VALUES (null,
+               $id,
                '{$lancamentos[$i]['data']}',
                 {$lancamentos[$i]['produto']},
                '{$lancamentos[$i]['horas_trabalhadas']}',
@@ -74,12 +75,12 @@ function insereRegistroDeLancamentos($db, $lancamentos, $idIssue)
 /**
  * insere um registro de horas na tabela de despesas
  */
-function insereRegistroDeDespesas($db, $despesas, $idIssue)
+function insereRegistroDeDespesas($db, $despesas, $id)
 {
   $query =
     "INSERT INTO av_registro_horas_despesas
-     VALUES (null,
-             {$idIssue},
+      VALUES (null,
+             $id,
              {$despesas['deslocamento']},
              {$despesas['alimentacao']},
              {$despesas['hospedagem']},
