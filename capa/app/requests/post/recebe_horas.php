@@ -5,6 +5,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   require '../../../init.php';
   require DIRETORIO_MODULES . 'hours/horas.php';
 
+  # reordenando os índices dos lançamentos
+  $_POST['lancamentos'] = array_values($_POST['lancamentos']);
+
   $issues = array(
     'id'             => 0,
     'razao_social'   => '',
@@ -12,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'conta_contrato' => '',
     'tipo'           => '',
     'issue'          => '',
-    'colaborador'    => ''
+    'colaborador'    => '',
+    'observacao'     => ''
   );
 
   $despesas = array(
@@ -31,6 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $issues['issue']          = isset($_POST['issues']['issue'])          ? $_POST['issues']['issue']          : null;
   $issues['supervisor']     = isset($_POST['issues']['supervisor'])     ? $_POST['issues']['supervisor']     : null;
   $issues['colaborador']    = isset($_POST['issues']['colaborador'])    ? $_POST['issues']['colaborador']    : null;
+  $issues['observacao']     = isset($_POST['issues']['observacao'])     ? $_POST['issues']['observacao']     : null;
+
+  # retirando quebras de linhas
+  $issues['observacao'] = preg_replace('/[\n|\r|\n\r|\r\n]{2,}/',' ', $issues['observacao']);
+  
+  # tratando apóstrofos e aspas
+  $issues['observacao'] = addslashes($issues['observacao']);
+
+  # tratando o tamanho do texto
+  $issues['observacao'] = strtolower($issues['observacao']);
 
   $despesas['total-despesas'] = isset($_POST['despesas']['total-despesas']) ? $_POST['despesas']['total-despesas'] : null;
   $despesas['deslocamento']   = isset($_POST['despesas']['deslocamento'])   ? $_POST['despesas']['deslocamento']   : null;
