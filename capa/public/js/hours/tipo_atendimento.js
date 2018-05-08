@@ -1,22 +1,22 @@
 $('document').ready(function() {
 
-  // ocultando bloco despesas
-  $('#remoto').click(function() {
+  // recuperando o valor do option alterado pelo supervisor
+  $('select[name="issues[tipo]"]').change(function() {
 
-    $('#bloco-despesas').addClass('hidden');
+    var tipo = $('select[name="issues[tipo]"]').val();
+    
+    if (tipo == 'remoto') {
 
-  });
+      // ocultando bloco despesas
+      $('#bloco-despesas').addClass('hidden');
 
-  // exibindo bloco despesas
-  $('#in-loco').click(function() {
+    } else {
 
-    $('#bloco-despesas').removeClass('hidden');
+      // exibindo bloco despesas
+      $('#bloco-despesas').removeClass('hidden');
 
-    $('#total-despesas').val(0);
-    $('#deslocamento').val(0);
-    $('#alimentacao').val(0);
-    $('#hospedagem').val(0);
-
-  });
+    }
+    
+  });  
   
 });
