@@ -1,6 +1,33 @@
 <?php 
 
 /**
+ * verifica se já existe um registro com o mesmo número de issue na tabela de issues
+ * @param - objeto com uma conexão aberta
+ * @param - string com o número da issue
+ */
+function verificaDuplicidadeDeIssue($db, $issue)
+{
+  $query = "SELECT * FROM av_registro_horas_issues WHERE (issue = '$issue');";
+
+  # verificando se a consulta pode ser executada
+  if ($resultado = $db->query($query)) {
+
+    # verificando se já existe um registro com o mesmo número de issue na tabela de issues
+    if ($resultado->num_rows > 0) {
+
+      return true;
+
+    } else {
+
+      return false;
+
+    }
+
+  }
+
+}
+
+/**
  * consulta o id da issue inserido na tabela de issues
  */
 function consultaIdDaIssue($db, $issue)
