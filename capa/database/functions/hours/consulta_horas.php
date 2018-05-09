@@ -111,7 +111,8 @@ function consultaDadosCadastraisDaIssue($db, $issue)
     'conta_contrato' => '',
     'razao_social'   => '',
     'supervisor'     => '',
-    'colaborador'    => ''
+    'colaborador'    => '',
+    'observacao'     => ''
 
   );
 
@@ -125,7 +126,8 @@ function consultaDadosCadastraisDaIssue($db, $issue)
       i.razao_social,
       CONCAT(s.name, ' ', s.surname) AS supervisor,
       c.id AS id_colaborador,
-      CONCAT(c.name, ' ', c.surname) AS colaborador
+      CONCAT(c.name, ' ', c.surname) AS colaborador,
+      i.observacao
     FROM av_registro_horas_issues AS i
     INNER JOIN lh_users AS s
       ON s.id = i.supervisor
@@ -151,6 +153,7 @@ function consultaDadosCadastraisDaIssue($db, $issue)
       $issues['supervisor']     = $registro['supervisor'];
       $issues['id_colaborador'] = $registro['id_colaborador'];
       $issues['colaborador']    = $registro['colaborador'];
+      $issues['observacao']     = $registro['observacao'];
 
     }
 
