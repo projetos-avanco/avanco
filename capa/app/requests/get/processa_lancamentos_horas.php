@@ -16,6 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     # chamando função que recupera os dados de uma única issue
     $dados = recuperaDadosDoRegistroDeHoras($issue, $dados);
     
+    # trantando o texto
+    $dados['observacao'] = ucwords($dados['observacao']);
   }
 
 }
