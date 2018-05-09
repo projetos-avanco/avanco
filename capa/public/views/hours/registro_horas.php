@@ -338,7 +338,11 @@
           </div><!-- coluna 1 -->
 
           <div class="col-sm-6 text-right"><!-- coluna 2 -->
-            <a class="btn btn-info" href="<?php echo BASE_URL; ?>public/views/hours/registro_horas.php"><!-- botão limpar -->
+            <a class="btn btn-info" href="<?php echo BASE_URL; ?>public/views/hours/consulta_lancamentos.php"><!-- botão consultar -->
+              <i class="fa fa-search" aria-hidden="true"></i> Consultar
+            </a><!-- botão consultar -->
+
+            <a class="btn btn-danger" href="<?php echo BASE_URL; ?>public/views/hours/registro_horas.php"><!-- botão limpar -->
               <i class="fa fa-eraser" aria-hidden="true"></i> Limpar
             </a><!-- botão limpar -->
 
