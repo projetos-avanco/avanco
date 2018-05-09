@@ -61,9 +61,9 @@
                   </tr>
 
                   <tr>
-                    <th class="text-center cor-th-1" rowspan="4">Dados do Registro</th>
+                    <th class="text-center cor-th-1" rowspan="5">Dados do Registro</th>
 
-                    <th class="cor-th-1" width="20%">CNPJ</th>
+                    <th class="cor-th-1" width="20%">Cnpj</th>
                     <td class="text-left" width="20%"><?php echo $dados['cnpj']; ?></td>
 
                     <th class="cor-th-1" width="20%">Issue</th>
@@ -84,6 +84,11 @@
 
                     <th class="cor-th-1">Colaborador</th>
                     <td class="text-left"><?php echo $dados['colaborador']; ?></td>
+                  </tr>
+
+                  <tr>
+                    <th class="cor-th-1">Observação</th>
+                    <td class="text-left" colspan="3"><?php echo $dados['observacao']; ?></td>
                   </tr>
 
                   <tr>
@@ -129,6 +134,7 @@
                           $dados['supervisor'],
                           $dados['id_colaborador'],
                           $dados['colaborador'],
+                          $dados['observacao'],
                           $dados['deslocamento'],
                           $dados['alimentacao'],
                           $dados['hospedagem'],
