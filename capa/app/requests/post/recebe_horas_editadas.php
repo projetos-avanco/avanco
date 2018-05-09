@@ -45,7 +45,7 @@
         require DIRETORIO_MODULES . 'hours/horas.php';
 
         # verficando se todas as informações da tabela issues foram enviadas
-        if (isset($_POST['issues']) && count($_POST['issues']) == 8) {
+        if (isset($_POST['issues']) && count($_POST['issues']) == 9) {
 
           $issues = array(
 
@@ -57,6 +57,7 @@
             'razao_social' => '',
             'supervisor' => '',
             'colaborador' => '',
+            'observacao' => ''
 
           );
 
@@ -223,6 +224,13 @@
             </p>';
 
           exit;
+
+        }
+
+        # validando a observação
+        if (isset($_POST['issues']['observacao']) && $_POST['issues']['observacao'] != '') {
+
+          $issues['observacao'] = $_POST['issues']['observacao'];
 
         }
 
