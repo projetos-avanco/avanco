@@ -269,7 +269,7 @@
           <div class="col-sm-12"><!-- coluna 1 -->
             <label for="observacao">Observação</label>
 
-            <textarea class="form-control" name="issues[observacao]" placeholder="Sua observação aqui..." cols="30" rows="5"></textarea>
+            <textarea class="form-control" name="issues[observacao]" placeholder="Sua observação aqui..." cols="30" rows="5"><?php echo $dados['observacao']; ?></textarea>
           </div><!-- coluna 1 -->
         </div><!-- linha -->
 
@@ -284,6 +284,7 @@
                 $dados['razao_social'],
                 $dados['supervisor'],
                 $dados['colaborador'],
+                $dados['observacao'],
                 $dados['id_colaborador'],
                 $dados['deslocamento'],
                 $dados['alimentacao'],
@@ -440,11 +441,11 @@
             </a><!-- botão cancelar -->
 
             <a class="btn btn-info" href="<?php echo BASE_URL; ?>public/views/hours/edita_lancamentos.php?issue=<?php echo $_GET['issue']; ?>"><!-- botão atualizar -->
-            <i class="fa fa-refresh" aria-hidden="true"></i> Atualizar
+            <i class="fa fa-refresh" aria-hidden="true"></i> Recarregar
             </a><!-- botão atualizar -->
 
             <button class="btn btn-success" type="submit"><!-- botão gravar -->
-              <i class="fa fa-floppy-o" aria-hidden="true"></i> Gravar
+              <i class="fa fa-floppy-o" aria-hidden="true"></i> Editar
             </button><!-- botão gravar -->
           </div><!-- coluna 2 -->
         </div><!-- linha -->
@@ -481,8 +482,7 @@
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/pesquisa.js"></script>
-  <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/seleciona.js"></script>
-  <!--<script src="<?php echo BASE_URL; ?>/public/js/hours/validacao.js"></script>-->
+  <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/seleciona.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/hours/edit/lancamentos.js"></script>
