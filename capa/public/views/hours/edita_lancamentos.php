@@ -102,7 +102,7 @@
         <br>
 
         <div class="row"><!-- linha -->
-          <div class="col-sm-8"><!-- coluna 1 campo cnpj -->
+          <div class="col-sm-6"><!-- coluna 1 campo cnpj -->
             <div class="form-group">
               <label for="cnpj">CNPJ</label>
 
@@ -110,7 +110,7 @@
             </div>
           </div><!-- coluna 1 campo cnpj -->
 
-          <div class="col-sm-4"><!-- coluna 2 campo conta contrato -->
+          <div class="col-sm-6"><!-- coluna 2 campo conta contrato -->
             <div class="form-group">
               <label for="conta-contrato">Conta Contrato</label>
 
@@ -122,121 +122,155 @@
         <br>
 
         <div class="row"><!-- linha -->
-          <div class="col-sm-8"><!-- coluna 1 campo supervisor -->
-            <div class="form-group">
-              <label for="supervisor">Supervisor</label>
+          <div class="col-sm-12"><!-- coluna 1 -->
 
-              <input class="form-control required" type="text" value="<?php echo $dados['supervisor']; ?>" readonly="true">
+            <div class="row"><!-- linha interna 1 -->
+              <div class="col-sm-6"><!-- coluna interna 1 -->
 
-              <input type="hidden" name="issues[supervisor]" value="<?php echo $id; ?>"><!-- id do supervisor -->
-            </div>
-          </div><!-- coluna 1 campo supervisor -->
+                <div class="row"><!-- linha -->
+                  <div class="col-sm-12"><!-- coluna 1 -->
 
-          <div class="col-sm-2"><!-- coluna 2 campo colaborador registrado -->
-            <div class="form-group">
-              <label for="supervisor">Colaborador</label>
+                    <div class="row"><!-- linha interna 1 -->
+                      <div class="col-sm-4"><!-- coluna 1 campo issue -->
+                        <div class="form-group">
+                          <label for="issue">Issue</label>
 
-              <select class="form-control required" name="issues[colaborador]" id="colaborador-registrado" readonly="true">
-                <option value="<?php echo $dados['id_colaborador']; ?>">
-                  <?php echo $dados['colaborador']; ?>
-                </option>
-              </select>
-            </div>
-          </div><!-- coluna 2 campo colaborador registrado -->
+                          <input class="form-control required" type="text" name="issues[issue]" value="<?php echo $dados['issue']; ?>" placeholder="Número da Issue">
 
-          <div class="col-sm-2"><!-- coluna 3 campo colaboradores -->
-            <label for="colaborador">Lista Colaboradores</label>
-            <select class="form-control" id="colaborador">
+                          <input type="hidden" name="issues[id]" value="<?php echo $dados['id']; ?>"> <!-- id da issue -->
+                        </div>
+                      </div><!-- coluna 1 campo issue -->
+                    </div><!-- linha interna 1 -->
+                    
+                    <div class="row"><!-- linha interna 2 -->
+                      <div class="col-sm-4"><!-- coluna 1 campo tipo -->
+                        <div class="form-group">
+                          <label for="tipo">Tipo</label>
 
-            </select>
-          </div><!-- coluna 3 campo colaboradores -->
+                          <?php if ($dados['tipo'] == 'Remoto') : ?>
+
+                            <select class="form-control" name="issues[tipo]">
+                              <option value="remoto" selected>Atendimento Remoto</option>
+                              <option value="in-loco">Atendimento In-Loco</option>
+                            </select>
+
+                          <?php else : ?>
+
+                            <select class="form-control" name="issues[tipo]">
+                              <option value="remoto">Atendimento Remoto</option>
+                              <option value="in-loco" selected>Atendimento In-Loco</option>
+                            </select>
+
+                          <?php endif; ?>
+                        </div>
+                      </div><!-- coluna 1 campo tipo -->
+                    </div><!-- linha interna 2 -->
+
+                    <div class="row"><!-- linha interna 3 -->
+                      <div class="col-sm-4"><!-- coluna 1 campo colaborador -->
+                        <div class="form-group">
+                          <label for="supervisor">Colaborador</label>
+
+                          <select class="form-control required" name="issues[colaborador]" id="colaborador-registrado" readonly="true">
+                            <option value="<?php echo $dados['id_colaborador']; ?>">
+                              <?php echo $dados['colaborador']; ?>
+                            </option>
+                          </select>
+                        </div>
+                      </div><!-- coluna 1 campo colaborador -->
+
+                      <div class="col-sm-4"><!-- coluna 1 campo lista colaborador -->
+                        <div class="form-group">
+                          <label for="colaborador">Lista</label>
+
+                          <select class="form-control" id="colaborador">
+                          </select>
+                        </div>
+                      </div><!-- coluna 1 campo lista colaborador -->
+                    </div><!-- linha interna 3 -->
+
+                    <div class="row"><!-- linha interna 4 -->
+                      <div class="col-sm-4"><!-- coluna 1 campo nome supervisor -->
+                        <div class="form-group">
+                          <label for="supervisor">Supervisor</label>
+
+                          <input class="form-control required" type="text" value="<?php echo $dados['supervisor']; ?>" readonly="true">
+
+                          <input type="hidden" name="issues[supervisor]" value="<?php echo $id; ?>"><!-- id do supervisor -->
+                        </div>
+                      </div><!-- coluna 1 campo nome supervisor -->
+                    </div><!-- linha interna 4 -->
+                  </div><!-- coluna 1 -->                  
+                </div><!-- linha -->
+
+              </div><!-- coluna interna 1 -->
+
+              <div class="col-sm-6"><!-- coluna interna 2 -->
+                
+                <div class="row"><!-- linha -->
+                  <div class="col-sm-4 col-sm-offset-8"><!-- coluna 1 -->
+
+                    <div class="hidden" id="bloco-despesas"><!-- bloco despesas -->
+
+                      <div class="row"><!-- linha interna 1 -->
+                        <div class="col-sm-12"><!-- coluna 1 da linha interna 1 campo deslocamento -->
+                          <div class="form-group">
+                            <label for="deslocamento">Deslocamento</label>
+
+                            <input class="form-control" id="deslocamento" type="text" name="despesas[deslocamento]" value="<?php echo $dados['deslocamento']; ?>">
+                          </div>
+                        </div><!-- coluna 1 da linha interna 1 campo deslocamento -->
+                      </div><!-- linha interna 1 -->
+
+                      <div class="row"><!-- linha interna 2 -->
+                        <div class="col-sm-12"><!-- coluna 1 da linha interna 2 campo alimentação -->
+                          <div class="form-group">
+                            <label for="alimentacao">Alimentação</label>
+
+                            <input class="form-control" id="alimentacao" type="text" name="despesas[alimentacao]" value="<?php echo $dados['alimentacao']; ?>">
+                          </div>
+                        </div><!-- coluna 1 da linha interna 2 campo alimentação -->
+                      </div><!-- linha interna 2 -->
+
+                      <div class="row"><!-- linha interna 3 -->
+                        <div class="col-sm-12"><!-- coluna 1 da linha interna 3 campo hospedagem -->
+                          <div class="form-group">
+                            <label for="hospedagem">Hospedagem</label>
+
+                            <input class="form-control" id="hospedagem" type="text" name="despesas[hospedagem]" value="<?php echo $dados['hospedagem']; ?>">
+                          </div>
+                        </div><!-- coluna 1 da linha interna 3 campo hospedagem -->
+                      </div><!-- linha interna 3 -->
+
+                      <div class="row"><!-- linha interna 4 -->
+                        <div class="col-sm-12"><!-- coluna 1 da linha interna 4 campo total -->
+                          <div class="form-group">
+                            <label for="total-despesas">Total Despesas</label>
+
+                            <input class="form-control" id="total-despesas" type="text" name="despesas[total-despesas]" value="<?php echo $dados['total_despesas']; ?>" readonly="true">
+                          </div>
+                        </div><!-- coluna 1 da linha interna 4 campo total -->
+                      </div><!-- linha interna 4 -->
+
+                    </div><!-- bloco despesas -->
+
+                  </div><!-- coluna 1 -->
+                </div><!-- linha -->
+
+              </div><!-- coluna interna 2 -->
+            </div><!-- linha interna 1 -->
+
+          </div><!-- coluna 1 -->
         </div><!-- linha -->
 
         <br>
 
         <div class="row"><!-- linha -->
-          <div class="col-sm-12"><!-- coluna -->
+          <div class="col-sm-12"><!-- coluna 1 -->
+            <label for="observacao">Observação</label>
 
-            <div class="row"><!-- linha interna 1 -->
-              <div class="col-sm-2"><!-- coluna 1 -->
-                <label for="issue">Issue</label>
-
-                <input class="form-control required" type="text" name="issues[issue]" value="<?php echo $dados['issue']; ?>" placeholder="Número da Issue">
-
-                <input type="hidden" name="issues[id]" value="<?php echo $dados['id']; ?>"> <!-- id da issue -->
-
-                <br>
-
-                <label for="tipo">Tipo</label>
-
-                <?php if ($dados['tipo'] == 'Remoto') : ?>
-
-                  <select class="form-control" name="issues[tipo]">
-                    <option value="remoto" selected>Remoto</option>
-                    <option value="in-loco">In-Loco</option>
-                  </select>
-
-                <?php else : ?>
-
-                  <select class="form-control" name="issues[tipo]">
-                    <option value="remoto">Remoto</option>
-                    <option value="in-loco" selected>In-Loco</option>
-                  </select>
-
-                <?php endif; ?>
-
-              </div><!-- coluna 1 -->
-
-              <div class="col-sm-4 col-sm-offset-6"><!-- coluna 2 -->
-
-                <div class="hidden" id="bloco-despesas"><!-- bloco despesas -->
-
-                  <div class="row"><!-- linha interna 1 -->
-                    <div class="col-sm-12"><!-- coluna 1 da linha interna 1 campo deslocamento -->
-                      <div class="form-group">
-                        <label for="deslocamento">Deslocamento</label>
-
-                        <input class="form-control" id="deslocamento" type="text" name="despesas[deslocamento]" value="<?php echo $dados['deslocamento']; ?>">
-                      </div>
-                    </div><!-- coluna 1 da linha interna 1 campo deslocamento -->
-                  </div><!-- linha interna 1 -->
-
-                  <div class="row"><!-- linha interna 2 -->
-                    <div class="col-sm-12"><!-- coluna 1 da linha interna 2 campo alimentação -->
-                      <div class="form-group">
-                        <label for="alimentacao">Alimentação</label>
-
-                        <input class="form-control" id="alimentacao" type="text" name="despesas[alimentacao]" value="<?php echo $dados['alimentacao']; ?>">
-                      </div>
-                    </div><!-- coluna 1 da linha interna 2 campo alimentação -->
-                  </div><!-- linha interna 2 -->
-
-                  <div class="row"><!-- linha interna 3 -->
-                    <div class="col-sm-12"><!-- coluna 1 da linha interna 3 campo hospedagem -->
-                      <div class="form-group">
-                        <label for="hospedagem">Hospedagem</label>
-
-                        <input class="form-control" id="hospedagem" type="text" name="despesas[hospedagem]" value="<?php echo $dados['hospedagem']; ?>">
-                      </div>
-                    </div><!-- coluna 1 da linha interna 3 campo hospedagem -->
-                  </div><!-- linha interna 3 -->
-
-                  <div class="row"><!-- linha interna 4 -->
-                    <div class="col-sm-12"><!-- coluna 1 da linha interna 4 campo total -->
-                      <div class="form-group">
-                        <label for="total-despesas">Total Despesas</label>
-
-                        <input class="form-control" id="total-despesas" type="text" name="despesas[total-despesas]" value="<?php echo $dados['total_despesas']; ?>" readonly="true">
-                      </div>
-                    </div><!-- coluna 1 da linha interna 4 campo total -->
-                  </div><!-- linha interna 4 -->
-
-                </div><!-- bloco despesas -->
-
-              </div><!-- coluna 2 -->
-            </div><!-- linha interna 1 -->
-
-          </div><!-- coluna -->
+            <textarea class="form-control" name="issues[observacao]" placeholder="Sua observação aqui..." cols="30" rows="5"></textarea>
+          </div><!-- coluna 1 -->
         </div><!-- linha -->
 
         <?php
@@ -269,10 +303,10 @@
         ?>
 
         <br>
+        <hr>
 
         <div class="row"><!-- linha -->
-          <div class="col-sm-12"><!-- coluna -->
-            <hr>
+          <div class="col-sm-12"><!-- coluna -->            
             <div id="lancamentos"><!-- bloco lançamentos -->
 
               <?php foreach ($dados as $chave => $valor) : ?>
@@ -375,7 +409,7 @@
                     </div>
                   </div>
 
-                  <hr>
+                  <hr style="height:1px"/>
 
                 </div><!-- coluna 1 -->
               </div><!-- linha 1 -->

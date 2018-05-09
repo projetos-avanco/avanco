@@ -119,94 +119,123 @@
         <br>
 
         <div class="row"><!-- linha -->
-          <div class="col-sm-12"><!-- coluna -->
+          <div class="col-sm-12"><!-- coluna 1 -->
 
             <div class="row"><!-- linha interna 1 -->
-              <div class="col-sm-2"><!-- coluna 1 -->
-              <label for="issue">Issue</label>
+              <div class="col-sm-6"><!-- coluna 1 -->
 
-              <input class="form-control required" type="text" name="issues[issue]" placeholder="Número da Issue"><!-- campo issue -->
+                <div class="row"><!-- linha interna 1 -->
+                  <div class="col-sm-12"><!-- coluna 1 -->
 
-              <br>
+                    <div class="row"><!-- linha 1 -->
+                      <div class="col-sm-4"><!-- coluna 1 campo issue -->
+                        <div class="form-group">
+                          <label for="issue">Issue</label>
 
-              <label for="tipo">Tipo</label>
+                          <input class="form-control required" type="text" name="issues[issue]" placeholder="Número da Issue"><!-- campo issue -->
+                        </div>
+                      </div><!-- coluna 1 campo issue -->
+                    </div><!-- linha 1 -->
 
-              <select class="form-control required" name="issues[tipo]"><!-- campo tipo -->
-                <option value="remoto" selected>Atendimento Remoto</option>
-                <option value="in-loco">Atendimento In-Loco</option>
-              </select><!-- campo tipo -->
+                    <div class="row"><!-- linha 2 -->
+                      <div class="col-sm-4"><!-- coluna 1 campo tipo -->
+                        <div class="form-group">
+                          <label for="tipo">Tipo</label>
 
-              <br>
+                          <select class="form-control required" name="issues[tipo]"><!-- campo tipo -->
+                            <option value="remoto" selected>Atendimento Remoto</option>
+                            <option value="in-loco">Atendimento In-Loco</option>
+                          </select><!-- campo tipo -->
+                        </div>
+                      </div><!-- coluna 1 campo tipo -->
+                    </div><!-- linha 2 -->
 
-              <label for="colaborador">Colaborador</label>
+                    <div class="row"><!-- linha 3 -->
+                      <div class="col-sm-4"><!-- coluna 1 campo colaborador -->
+                        <div class="form-group">
+                          <label for="colaborador">Colaborador</label>
 
-              <select class="form-control required" id="colaborador" name="issues[colaborador]"><!-- campo colaborador -->
-                <option value="0">Selecione um Colaborador</option>
-              </select><!-- campo colaborador -->
+                          <select class="form-control required" id="colaborador" name="issues[colaborador]"><!-- campo colaborador -->
+                            <option value="0">Selecione um Colaborador</option>
+                          </select><!-- campo colaborador -->
 
-              <input id="supervisor" type="hidden" name="issues[supervisor]" value="<?php echo $id; ?>"><!-- campo supervisor -->
+                          <input id="supervisor" type="hidden" name="issues[supervisor]" value="<?php echo $id; ?>"><!-- campo supervisor -->
+                        </div>
+                      </div><!-- coluna 1 campo colaborador -->
+                    </div><!-- linha 3 -->
+
+                  </div><!-- coluna 1 -->
+                </div><!-- linha interna 1 -->
+
               </div><!-- coluna 1 -->
 
-              <div class="col-sm-2 col-sm-offset-8"><!-- coluna 2 -->
-                <div class="hidden" id="bloco-despesas"><!-- bloco despesas -->
-                  
-                  <div class="row"><!-- linha interna 1 -->
-                    <div class="col-sm-12"><!-- coluna 1 campo deslocamento -->
-                      <div class="form-group">
-                        <label for="deslocamento">Deslocamento</label>
+              <div class="col-sm-6"><!-- coluna 2 -->
 
-                        <input class="form-control" id="deslocamento" type="text" name="despesas[deslocamento]" value="0">
-                      </div>
-                    </div><!-- coluna 1 campo deslocamento -->
-                  </div><!-- linha interna 1 -->
-                  
-                  <div class="row"><!-- linha interna 2 -->
-                    <div class="col-sm-12"><!-- coluna 1 campo alimentação -->
-                      <div class="form-group">
-                        <label for="alimentacao">Alimentação</label>
+                <div class="row"><!-- linha interna 1 -->
+                  <div class="col-sm-4 col-sm-offset-8"><!-- coluna 1 -->
 
-                        <input class="form-control" id="alimentacao" type="text" name="despesas[alimentacao]" value="0">
-                      </div>
-                    </div><!-- coluna 1 campo alimentação -->
-                  </div><!-- linha interna 2 -->
-                  
-                  <div class="row"><!-- linha interna 3 -->
-                    <div class="col-sm-12"><!-- coluna 1 campo hospedagem -->
-                      <div class="form-group">
-                        <label for="hospedagem">Hospedagem</label>
+                    <div class="hidden" id="bloco-despesas"><!-- bloco despesas -->
+                      
+                      <div class="row"><!-- linha interna 1 -->
+                        <div class="col-sm-12"><!-- coluna 1 campo deslocamento -->
+                          <div class="form-group">
+                            <label for="deslocamento">Deslocamento</label>
 
-                        <input class="form-control" id="hospedagem" type="text" name="despesas[hospedagem]" value="0">
-                      </div>
-                    </div><!-- coluna 1 campo hospedagem -->
-                  </div><!-- linha interna 3 -->
+                            <input class="form-control" id="deslocamento" type="text" name="despesas[deslocamento]" value="0">
+                          </div>
+                        </div><!-- coluna 1 campo deslocamento -->
+                      </div><!-- linha interna 1 -->
+                      
+                      <div class="row"><!-- linha interna 2 -->
+                        <div class="col-sm-12"><!-- coluna 1 campo alimentação -->
+                          <div class="form-group">
+                            <label for="alimentacao">Alimentação</label>
 
-                  <div class="row"><!-- linha interna 4 -->
-                    <div class="col-sm-12"><!-- coluna 1 campo total despesas -->
-                      <div class="form-group">
-                        <label for="total-despesas">Total Despesas</label>
+                            <input class="form-control" id="alimentacao" type="text" name="despesas[alimentacao]" value="0">
+                          </div>
+                        </div><!-- coluna 1 campo alimentação -->
+                      </div><!-- linha interna 2 -->
+                      
+                      <div class="row"><!-- linha interna 3 -->
+                        <div class="col-sm-12"><!-- coluna 1 campo hospedagem -->
+                          <div class="form-group">
+                            <label for="hospedagem">Hospedagem</label>
 
-                        <input class="form-control" id="total-despesas" type="text" name="despesas[total-despesas]" value="0" readonly="true">
-                      </div>
-                    </div><!-- coluna 1 campo total despesas -->
-                  </div><!-- linha interna 4 -->
+                            <input class="form-control" id="hospedagem" type="text" name="despesas[hospedagem]" value="0">
+                          </div>
+                        </div><!-- coluna 1 campo hospedagem -->
+                      </div><!-- linha interna 3 -->
 
-                </div><!-- bloco despesas -->
+                      <div class="row"><!-- linha interna 4 -->
+                        <div class="col-sm-12"><!-- coluna 1 campo total despesas -->
+                          <div class="form-group">
+                            <label for="total-despesas">Total Despesas</label>
+
+                            <input class="form-control" id="total-despesas" type="text" name="despesas[total-despesas]" value="0" readonly="true">
+                          </div>
+                        </div><!-- coluna 1 campo total despesas -->
+                      </div><!-- linha interna 4 -->
+
+                    </div><!-- bloco despesas -->
+
+                  </div><!-- coluna 1 -->
+                </div><!-- linha interna 1 -->
 
               </div><!-- coluna 2 -->
             </div><!-- linha interna 1 -->
 
-          </div><!-- coluna -->
+          </div><!-- coluna 1 -->
         </div><!-- linha -->
 
         <br>
 
-        <div class="row">
-          <div class="col-sm-12">
+        <div class="row"><!-- linha -->
+          <div class="col-sm-12"><!-- coluna 1 -->
             <label for="observacao">Observação</label>
 
-            <textarea class="form-control" name="issues[observacao]" cols="30" rows="5"></textarea>
-          </div>
-        </div>
+            <textarea class="form-control" name="issues[observacao]" placeholder="Sua observação aqui..." cols="30" rows="5"></textarea>
+          </div><!-- coluna 1 -->
+        </div><!-- linha -->
 
         <br> 
         <hr> 
@@ -309,7 +338,7 @@
           </div><!-- coluna 1 -->
 
           <div class="col-sm-6 text-right"><!-- coluna 2 -->
-            <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/hours/registro_horas.php"><!-- botão limpar -->
+            <a class="btn btn-info" href="<?php echo BASE_URL; ?>public/views/hours/registro_horas.php"><!-- botão limpar -->
               <i class="fa fa-eraser" aria-hidden="true"></i> Limpar
             </a><!-- botão limpar -->
 
