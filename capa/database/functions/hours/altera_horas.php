@@ -16,7 +16,8 @@ function editaDadosDaTabelaDeIssues($db, $issues)
         conta_contrato = '{$issues['conta_contrato']}',
         razao_social   = '{$issues['razao_social']}',
         supervisor     =  {$issues['supervisor']},
-        colaborador    =  {$issues['colaborador']}
+        colaborador    =  {$issues['colaborador']},
+        observacao     = '{$issues['observacao']}'
     WHERE (id = {$issues['id']});";
 
   $resultado = $db->query($query);
