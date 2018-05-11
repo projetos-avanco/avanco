@@ -233,7 +233,7 @@
           <div class="col-sm-12"><!-- coluna 1 -->
             <label for="observacao">Observação</label>
 
-            <textarea class="form-control" name="issues[observacao]" placeholder="Sua observação aqui..." cols="30" rows="5"></textarea>
+            <textarea class="form-control" name="issues[observacao]" placeholder="Sua observação aqui..." cols="30" rows="4"></textarea>
           </div><!-- coluna 1 -->
         </div><!-- linha -->
 
