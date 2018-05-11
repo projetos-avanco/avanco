@@ -1,0 +1,27 @@
+.table {
+  font-family: 'Museosans 300',sans-serif;      
+}
+
+.table tbody tr td {      
+  font-size: 0.8em;        
+  vertical-align: middle;
+}
+
+.table tbody tr th {      
+  font-size: 0.9em;      
+  vertical-align: middle;
+}
+
+.cor-th-1 {
+  color: #585858;     
+  background-color: #F0F0F0;
+}
+
+#titulo {
+  font-size: 0.95em;
+  height: 3.5em;
+}
+
+.tamanho {
+  height: 2.5em;
+}
