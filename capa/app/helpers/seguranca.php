@@ -51,7 +51,9 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'extrato.php'               OR
           $pagina == 'conta.php'                 OR
           $pagina == 'loja.php'                  OR
-          $pagina == 'consulta_atendimentos.php') {
+          $pagina == 'consulta_atendimentos.php' OR
+          $pagina == 'visualiza_tickets.php'     OR
+          $pagina == 'edita_tickets.php'){
 
         return true;
 
@@ -114,7 +116,9 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'ranking_colaboradores.php'  OR
          $pagina == 'consulta_lancamentos.php'   OR
          $pagina == 'visualiza_lancamentos.php'  OR
-         $pagina == 'edita_lancamentos.php') {
+         $pagina == 'edita_lancamentos.php'      OR
+         $pagina == 'visualiza_tickets.php'      OR
+         $pagina == 'edita_tickets.php') {
 
         return true;
 
