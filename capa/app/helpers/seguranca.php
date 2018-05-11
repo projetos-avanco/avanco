@@ -52,8 +52,7 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'conta.php'                 OR
           $pagina == 'loja.php'                  OR
           $pagina == 'consulta_atendimentos.php' OR
-          $pagina == 'visualiza_tickets.php'     OR
-          $pagina == 'edita_tickets.php'){
+          $pagina == 'visualiza_tickets.php'){
 
         return true;
 
@@ -86,7 +85,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'ranking_colaboradores.php'  OR
           $pagina == 'consulta_lancamentos.php'   OR
           $pagina == 'visualiza_lancamentos.php'  OR
-          $pagina == 'edita_lancamentos.php') {
+          $pagina == 'edita_lancamentos.php'      OR
+          $pagina == 'edita_tickets.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
