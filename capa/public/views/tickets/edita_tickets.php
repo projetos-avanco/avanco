@@ -537,7 +537,7 @@
           <div class="col-sm-4">
             <div class="form-group">
               <label for="chat">Chat</label>
-              <input class="form-control" type="text" name="" id="chat" value="<?php echo $dados['chat_id']; ?>">
+              <input class="form-control" type="text" name="" id="chat" value="<?php echo $dados['chat_id']; ?>" readonly="true">
             </div>
           </div>
         </div>

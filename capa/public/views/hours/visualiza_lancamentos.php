@@ -57,37 +57,37 @@
               <table class="table table-bordered">            
                 <tbody>
                   <tr>
-                    <th class="text-center cor-th-1" id="titulo" colspan="5">Registro de Horas</th>
+                    <th class="text-center bg-success" id="titulo" colspan="5">Registro de Horas</th>
                   </tr>
 
                   <tr>
-                    <th class="text-center cor-th-1" rowspan="5">Dados do Registro</th>
+                    <th class="text-center bg-success" width="10%" rowspan="5">Dados do Registro</th>
 
-                    <th class="cor-th-1" width="20%">Cnpj</th>
-                    <td class="text-left" width="20%"><?php echo $dados['cnpj']; ?></td>
+                    <th class="bg-success" width="10%">Cnpj</th>
+                    <td class="text-left" width="15%"><?php echo $dados['cnpj']; ?></td>
 
-                    <th class="cor-th-1" width="20%">Issue</th>
-                    <td class="text-left" width="20%"><?php echo $dados['issue']; ?></td>                    
+                    <th class="bg-success" width="10%">Issue</th>
+                    <td class="text-left" width="15%"><?php echo $dados['issue']; ?></td>                    
                   </tr>
 
                   <tr>
-                    <th class="cor-th-1">Conta Contrato</th>
+                    <th class="bg-success">Conta Contrato</th>
                     <td class="text-left"><?php echo $dados['conta_contrato']; ?></td>
 
-                    <th class="cor-th-1">Supervisor</th>
+                    <th class="bg-success">Supervisor</th>
                     <td class="text-left"><?php echo $dados['supervisor']; ?></td>                     
                   </tr>
 
                   <tr>                    
-                    <th class="cor-th-1">Razão Social</th>
+                    <th class="bg-success">Razão Social</th>
                     <td class="text-left"><?php echo $dados['razao_social']; ?></td>
 
-                    <th class="cor-th-1">Colaborador</th>
+                    <th class="bg-success">Colaborador</th>
                     <td class="text-left"><?php echo $dados['colaborador']; ?></td>
                   </tr>
 
                   <tr>
-                    <th class="cor-th-1">Observação</th>
+                    <th class="bg-success">Observação</th>
                     <td class="text-left" colspan="3"><?php echo $dados['observacao']; ?></td>
                   </tr>
 
@@ -96,27 +96,27 @@
                   </tr>
 
                   <tr>
-                    <th class="text-center cor-th-1" rowspan="5">Dados de Despesas</th>               
+                    <th class="text-center bg-success" rowspan="5">Dados de Despesas</th>               
 
-                    <th class="cor-th-1">Deslocamento</th>
+                    <th class="bg-success">Deslocamento</th>
                     <td class="text-left"><?php echo $dados['deslocamento']; ?></td>
 
-                    <th class="cor-th-1">Tipo</th>
+                    <th class="bg-success">Tipo</th>
                     <td class="text-left"><?php echo $dados['tipo']; ?></td>
                   </tr>
 
                   <tr>                  
-                    <th class="cor-th-1">Alimentação</th>
+                    <th class="bg-success">Alimentação</th>
                     <td class="text-left" colspan="5"><?php echo $dados['alimentacao']; ?></td>
                   </tr>
 
                   <tr>              
-                    <th class="cor-th-1">Hospedagem</th>
+                    <th class="bg-success">Hospedagem</th>
                     <td class="text-left" colspan="5"><?php echo $dados['hospedagem']; ?></td>
                   </tr>
 
                   <tr>                    
-                    <th class="cor-th-1">Total</th>
+                    <th class="bg-success">Total</th>
                     <td class="text-left" colspan="5"><?php echo $dados['total_despesas']; ?></td>                    
                   </tr>
                                     
@@ -151,34 +151,34 @@
                     </tr>
 
                     <tr>
-                      <th class="text-center cor-th-1" rowspan="7" >Dados do Lançamento <?php echo $contador; ?></th>
+                      <th class="text-center bg-success" rowspan="7" >Dados do Lançamento <?php echo $contador; ?></th>
                     </tr>                   
 
                     <tr>
-                      <th class="cor-th-1">Data</th>
+                      <th class="bg-success">Data</th>
                       <td class="text-left"><?php echo $valor['data']; ?></td>
 
-                      <th class="cor-th-1">Produto</th>
+                      <th class="bg-success">Produto</th>
                       <td class="text-left"><?php echo $valor['produto']; ?></td>                    
                     </tr>
 
                     <tr>
-                      <th class="cor-th-1">Horas Trabalhadas</th>
+                      <th class="bg-success">Horas Trabalhadas</th>
                       <td class="text-left" colspan="5"><?php echo $valor['horas_trabalhadas']; ?></td>
                     </tr>
 
                     <tr>
-                      <th class="cor-th-1">Horas Faturadas</th>
+                      <th class="bg-success">Horas Faturadas</th>
                       <td class="text-left" colspan="5"><?php echo $valor['horas_faturadas']; ?></td>                      
                     </tr>
 
                     <tr>
-                      <th class="cor-th-1">Valor da Hora</th>
+                      <th class="bg-success">Valor da Hora</th>
                       <td class="text-left" colspan="5"><?php echo $valor['valor_hora']; ?></td>                      
                     </tr>
 
                     <tr>
-                      <th class="cor-th-1">Total</th>
+                      <th class="bg-success">Total</th>
                       <td class="text-left" colspan="5"><?php echo $valor['total']; ?></td>                      
                     </tr>
 

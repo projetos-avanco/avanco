@@ -66,7 +66,7 @@
             <table class="table"><!-- painel do suporte -->
               <thead>
                 <tr>
-                  <th class="text-center">Criado</th>
+                  <th class="text-center">Data</th>
                   <th class="text-center">Ticket</th>
                   <th class="text-center">Colaborador</th>
                   <th class="text-center" width="10%">Agendamento</th>                  
@@ -103,7 +103,7 @@
                                     
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
                   <td class="text-right">
-                    <a class="btn btn-sm btn-default" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
+                    <a class="btn btn-sm btn-info" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
                       <i class="fa fa-times-circle" aria-hidden="true"></i> Invalidar
                     </a>
 

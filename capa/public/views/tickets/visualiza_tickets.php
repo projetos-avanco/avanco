@@ -57,31 +57,31 @@
               <table class="table table-bordered">            
                 <tbody>
                   <tr>
-                    <th class="text-center" id="titulo" colspan="5">Informações do Ticket</th>
+                    <th class="text-center bg-success" id="titulo" colspan="5">Informações do Ticket</th>
                   </tr>
 
                   <tr>
-                    <th class="text-center" rowspan="5" width="10%">Dados da Empresa</th>
+                    <th class="text-center bg-success" rowspan="5" width="10%">Dados da Empresa</th>
 
-                    <th>Criado</th>
-                    <td class="text-left"><?php echo $dados['supervisor']; ?></td>
+                    <th class="bg-success" width="10%">Gerado</th>
+                    <td class="text-left" width="15%"><?php echo $dados['supervisor']; ?></td>
 
-                    <th>Agendado</th>
-                    <td class="text-left"><?php echo $dados['colaborador']; ?></td>
+                    <th class="bg-success" width="10%">Agendado</th>
+                    <td class="text-left" width="15%"><?php echo $dados['colaborador']; ?></td>
                   </tr>
 
                   <tr>                
-                    <th width="10%">Cnpj</th>
-                    <td class="text-left" width="20%" colspan="3"><?php echo $dados['cnpj']; ?></td>                    
+                    <th class="bg-success">Cnpj</th>
+                    <td class="text-left" colspan="3"><?php echo $dados['cnpj']; ?></td>                    
                   </tr>
 
                   <tr>
-                    <th>Contrato</th>
+                    <th class="bg-success">Contrato</th>
                     <td class="text-left" colspan="3"><?php echo $dados['conta_contrato']; ?></td>                    
                   </tr>
 
                   <tr>                    
-                    <th>Razão Social</th>
+                    <th class="bg-success">Razão Social</th>
                     <td class="text-left" colspan="3"><?php echo $dados['razao_social']; ?></td>                    
                   </tr>
             
@@ -90,40 +90,40 @@
                   </tr>
                   
                   <tr>
-                    <th class="text-center" rowspan="7">Dados do Ticket</th>
+                    <th class="text-center bg-success" rowspan="7">Dados do Ticket</th>
 
-                    <th>Ticket</th>
+                    <th class="bg-success">Ticket</th>
                     <td class="text-left" colspan="3"><?php echo $dados['ticket']; ?></td>                    
                   </tr>
 
                   <tr>
-                    <th>Validade</th>
+                    <th class="bg-success">Validade</th>
                     <td class="text-left" colspan="3"><?php echo $dados['validade']; ?></td>
                   </tr>
 
                   <tr>
-                    <th>Data Criação</th>
+                    <th class="bg-success">Data</th>
                     <td class="text-left" class="text-left" colspan="3"><?php echo $dados['data']; ?></td>
                   </tr>
 
                   <tr>
-                    <th>Data Agendada</th>
+                    <th class="bg-success">Data Agendada</th>
                     <td class="text-left"><?php echo $dados['data_agendada']; ?></td>
 
-                    <th>Hora Agendada</th>
+                    <th class="bg-success">Hora Agendada</th>
                     <td class="text-left"><?php echo $dados['hora_agendada']; ?></td>
                   </tr>
 
                   <tr>
-                    <th>Sistema</th>
+                    <th class="bg-success">Sistema</th>
                     <td class="text-left"><?php echo $dados['produto']; ?></td>
 
-                    <th>Módulo</th>
+                    <th class="bg-success">Módulo</th>
                     <td class="text-left"><?php echo $dados['modulo']; ?></td>
                   </tr>
 
                   <tr>
-                    <th>Assunto</th>
+                    <th class="bg-success">Assunto</th>
                     <td class="text-left" colspan="3"><?php echo $dados['assunto']; ?></td>
                   </tr>
 
@@ -132,19 +132,19 @@
                   </tr>
 
                   <tr>
-                    <th class="text-center" rowspan="3">Dados do Contato</th>
+                    <th class="text-center bg-success" rowspan="3">Dados do Contato</th>
 
-                    <th>Chat</th>
+                    <th class="bg-success">Chat</th>
                     <td class="text-left" colspan="3"><?php echo $dados['chat_id']; ?></td>
                   </tr>
 
                   <tr>                  
-                    <th>Contato</th>
+                    <th class="bg-success">Contato</th>
                     <td class="text-left" colspan="3"><?php echo $dados['contato']; ?></td>                    
                   </tr>                  
 
                   <tr>
-                    <th>Telefone</th>
+                    <th class="bg-success">Telefone</th>
                     <td class="text-left" colspan="3"><?php echo $dados['telefone']; ?></td>
                   </tr>
                 </tbody>
