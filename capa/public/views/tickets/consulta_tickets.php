@@ -1,12 +1,13 @@
 <?php require '../../../init.php'; ?>
+
 <?php require DIRETORIO_MODULES . 'tickets/modulo_tickets.php'; ?>
 
 <?php
 
   $tickets = array();
 
-  # chamando função que consulta e recupera todos os tickets gerados
-  $tickets = recuperaTodosOsTicketsGerados();
+  # chamando função que consulta e recupera os dados da página de consulta de tickets
+  $tickets = recuperaDadosDaPaginaDeConsultaDeTickets();
 
 ?>
 
@@ -39,7 +40,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/tickets/tabela_tickets.css">
 
-   <!-- dispositivos com largura máxima de 769px (por exemplo tablets) -->
+  <!-- dispositivos com largura máxima de 769px (por exemplo tablets) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)" />
   <!-- dispositivos com largura máxima de 450px (por exemplo smartphones) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbarsmart.css" type="text/css" media="screen and (max-width:450px)" />
@@ -65,63 +66,57 @@
             <table class="table"><!-- painel do suporte -->
               <thead>
                 <tr>
-                  <th class="text-left">Data</th>
-                  <th class="text-left">Ticket</th>
-                  <th class="text-left">Chat</th>
-                  <th class="text-left">Validade</th>
-                  <th class="text-left">Contato</th>
-                  <th class="text-left">Telefone</th>
-                  <th class="text-left">CNPJ</th>
-                  <th class="text-left">Empresa</th>                  
-                  <th class="text-left">Gerado</th>
-                  <th class="text-left">Agendado</th>
-                  <th class="text-left">Produto</th>
-                  <th class="text-left">Módulo</th>
-                  <th class="text-left">Assunto</th>
+                  <th class="text-center">Criado</th>
+                  <th class="text-center">Ticket</th>
+                  <th class="text-center">Colaborador</th>
+                  <th class="text-center" width="10%">Agendamento</th>                  
+                  <th class="text-center">Chat</th>                  
+                  <th class="text-center" width="20%">Razão Social</th>                  
+                  <th class="text-center">Validade</th>
 
-                  <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
-                    <th class="text-left"></th>
-                    <th class="text-left"></th>
-                  <?php endif; ?>
+                <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>                    
+                  <th class="text-center" width="40%"></th>
+                <?php endif; ?>
 
                 </tr>
               </thead>
               <tbody>
               <?php foreach($tickets as $ticket) : ?>
                 <tr>
-                  <td class="text-left" width="5%"><?php echo $ticket['data']; ?></td>
-                  <td class="text-left"><?php echo $ticket['ticket']; ?></td>
+                  <td class="text-center"><?php echo $ticket['data']; ?></td>
+                  <td class="text-center"><?php echo $ticket['ticket']; ?></td>
+                  <td class="text-center"><?php echo $ticket['colaborador']; ?></td>
+                  <td class="text-center"><?php echo $ticket['data_agendada'] . ' ' . $ticket['hora_agendada']; ?></td>                  
 
                 <?php if ($ticket['chat_id'] != 0) : ?>
-                  <td class="text-left">
+                  <td class="text-center">
                     <a href="<?php echo BASE_URL; ?>app/requests/get/recebe_chat_id.php?chat=<?php echo $ticket['chat_id']; ?>" target="_blank">
                       <?php echo $ticket['chat_id']; ?>
                     </a>
                   </td>
                 <?php else : ?>
-                  <td class="text-left"><?php echo $ticket['chat_id']; ?></td>
+                  <td class="text-center"><?php echo $ticket['chat_id']; ?></td>
                 <?php endif; ?>
-
-                  <td class="text-left"><?php echo $ticket['validade']; ?></td>
-                  <td class="text-left"><?php echo $ticket['contato']; ?></td>
-                  <td class="text-left" width="8%"><?php echo $ticket['telefone']; ?></td>
-                  <td class="text-left"><?php echo $ticket['cnpj']; ?></td>
-                  <td class="text-left"><?php echo $ticket['razao_social']; ?></td>                  
-                  <td class="text-left" width="8%"><?php echo $ticket['supervisor']; ?></td>
-                  <td class="text-left" width="8%"><?php echo $ticket['colaborador']; ?></td>
-                  <td class="text-left"><?php echo $ticket['produto']; ?></td>
-                  <td class="text-left" width="8%"><?php echo $ticket['modulo']; ?></td>
-                  <td class="text-justify"><?php echo $ticket['assunto']; ?></td>
-
+                  
+                  <td class="text-left"><?php echo $ticket['razao_social']; ?></td>
+                  <td class="text-center"><?php echo $ticket['validade']; ?></td>
+                                    
                 <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
-                  <td class="text-left">
-                    <a class="btn btn-sm btn-warning" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
-                      <i class="fa fa-check-circle" aria-hidden="true"></i> Invalidar
+                  <td class="text-right">
+                    <a class="btn btn-sm btn-default" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
+                      <i class="fa fa-times-circle" aria-hidden="true"></i> Invalidar
                     </a>
-                  </td>
-                  <td class="text-left">
+
+                    <a class="btn btn-sm btn-success" href="<?php echo BASE_URL; ?>public/views/tickets/visualiza_tickets.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=visualiza">
+                      <i class="fa fa-eye" aria-hidden="true"></i> Visualizar
+                    </a>
+
+                    <a class="btn btn-sm btn-warning" href="<?php echo BASE_URL; ?>public/views/tickets/edita_tickets.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=edita">
+                      <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+                    </a>
+                
                     <a class="btn btn-sm btn-danger" onclick="confirmaExclusaoTicket();">
-                      <i class="fa fa-times-circle" aria-hidden="true"></i> Deletar
+                      <i class="fa fa-trash" aria-hidden="true"></i> Deletar
                     </a>
                   </td>
                 <?php endif; ?>
