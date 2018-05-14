@@ -28,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
       $dados = recuperaDadosDaPaginaDeVisualizacaoDeTickets($dados, $ticket);
       
+      $dados['data']          = formataDataUnicaParaMysql($dados['data']);
+      $dados['data_agendada'] = formataDataUnicaParaMysql($dados['data_agendada']);
+
     # verificando se será executada a função deleta
     } elseif ($funcao == 'deleta') {
 
