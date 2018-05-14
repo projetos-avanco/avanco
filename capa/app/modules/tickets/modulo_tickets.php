@@ -44,6 +44,36 @@ function recuperaDadosDaPaginaDeVisualizacaoDeTickets($dados, $ticket)
 }
 
 /**
+ * responsável por alterar um ticket
+ * @param - array com os dados do ticket que será alterado
+ */
+function alteraTicket($ticket)
+{
+  require DIRETORIO_FUNCTIONS . 'tickets/altera_tickets.php';
+
+  $db = abre_conexao();
+
+  # chamando função que altera os dados de um ticket
+  $resultado = alteraDadosDoTicket($db, $ticket);
+
+  # verificando se os dados foram alterados
+  if ($resultado) {
+
+    gravaMensagemNaSessao('success', true, 'Certo', 'Os dados do ticket foram alterados com sucesso');
+
+    redirecionaUsuarioParaEdicaoDeTickets($db, $_POST['ticket']['ticket']);
+
+  } else {
+
+    gravaMensagemNaSessao('danger', true, 'Ops', 'Os dados do ticket não foram alterados, houve erro durante a alteração dos dados');
+
+    redirecionaUsuarioParaEdicaoDeTickets($db, $_POST['ticket']['ticket']);
+
+  }
+
+}
+
+/**
  * responsável por deletar um ticket
  * @param - string com o número do ticket que será deletado
  */
