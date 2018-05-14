@@ -91,6 +91,22 @@ function redirecionaUsuarioParaEdicaoDeLancamentos($db, $issue)
 }
 
 /**
+ * redireciona o usuário para a página de edição de tickets
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id da issue
+ */
+function redirecionaUsuarioParaEdicaoDeTickets($db, $ticket = null)
+{
+  fecha_conexao($db);
+  
+  # redirecionando usuário
+  header('Location: ' . BASE_URL . 'public/views/tickets/edita_tickets.php?ticket=' . $ticket . '&funcao=edita');
+
+  exit;
+
+}
+
+/**
  * grava uma mensagem na sessão
  * @param - string com o tipo da mensagem (success, info, warning ou danger)
  * @param - booleno que informa se a mensagem deve ser exibe (true - exibe, false - não exibe)
