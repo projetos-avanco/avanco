@@ -11,9 +11,6 @@
   # recuperando id do chat do supervisor que está logado
   $id = $_SESSION['usuario']['id'];
 
-  $dados['data']          = formataDataUnicaParaMysql($dados['data']);
-  $dados['data_agendada'] = formataDataUnicaParaMysql($dados['data_agendada']);
-
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +55,7 @@
     <div class="col-sm-12">
       <h2>Edição Tickets</h2>
 
-      <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_horas_editadas.php" method="post" accept-charset="utf-8">
+      <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_tickets_editados.php" method="post" accept-charset="utf-8">
 
         <hr>
         
@@ -66,7 +63,7 @@
           <div class="col-sm-12">
             <div class="form-group">
               <label for="razao_social">Razão Social</label>
-              <input class="form-control" type="text" name="" id="razao-social" value="<?php echo $dados['razao_social']; ?>" readonly="true">
+              <input class="form-control" type="text" name="ticket[razao_social]" id="razao-social" value="<?php echo $dados['razao_social']; ?>" readonly="true">
             </div>
           </div>             
         </div>
@@ -75,14 +72,14 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="cnpj">Cnpj</label>
-              <input class="form-control" type="text" name="" id="cnpj" value="<?php echo $dados['cnpj']; ?>" readonly="true">
+              <input class="form-control" type="text" name="ticket[cnpj]" id="cnpj" value="<?php echo $dados['cnpj']; ?>" readonly="true">
             </div>
           </div>
 
           <div class="col-sm-6">
             <div class="form-group">
               <label for="conta-contrato">Contrato</label>
-              <input class="form-control" type="text" name="" id="conta-contrato" value="<?php echo $dados['conta_contrato']; ?>" readonly="true">
+              <input class="form-control" type="text" name="ticket[conta_contrato]" id="conta-contrato" value="<?php echo $dados['conta_contrato']; ?>" readonly="true">
             </div>
           </div>
         </div>
@@ -91,14 +88,14 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label for="supervisor">Gerado</label>
-              <input class="form-control" type="text" name="" id="supervisor" value="<?php echo $dados['supervisor']; ?>" readonly="true">
+              <input class="form-control" type="text" name="ticket[supervisor]" id="supervisor" value="<?php echo $dados['supervisor']; ?>" readonly="true">
             </div>
           </div>
 
           <div class="col-sm-3">
             <div class="form-group">
               <label for="agendado">Agendado</label>
-              <select class="form-control" name="" id="agendado" readonly="true">
+              <select class="form-control" name="ticket[colaborador]" id="agendado" readonly="true">
                 <option value="<?php echo $dados['id_colaborador']; ?>"><?php echo $dados['colaborador']; ?></option>
               </select>              
             </div>
@@ -122,7 +119,7 @@
               <div class="col-sm-2">
                 <div class="form-group">
                   <label for="ticket">Ticket</label>
-                  <input class="form-control" type="text" name="" id="ticket" value="<?php echo $dados['ticket']; ?>" readonly="true">
+                  <input class="form-control" type="text" name="ticket[ticket]" id="ticket" value="<?php echo $dados['ticket']; ?>" readonly="true">
                 </div>
               </div>
             </div>
@@ -131,7 +128,7 @@
               <div class="col-sm-2">
                 <div class="form-group">
                   <label for="validade">Validade</label>
-                  <input class="form-control" type="text" name="" id="validade" value="<?php echo $dados['validade']; ?>" readonly="true">
+                  <input class="form-control" type="text" name="ticket[validade]" id="validade" value="<?php echo $dados['validade']; ?>" readonly="true">
                 </div>
               </div>
             </div>
@@ -140,7 +137,7 @@
               <div class="col-sm-2">
                 <div class="form-group">
                   <label for="data">Data Criação</label>
-                  <input class="form-control" type="date" name="" id="data" value="<?php echo $dados['data']; ?>" readonly="true">
+                  <input class="form-control" type="date" name="ticket[data]" id="data" value="<?php echo $dados['data']; ?>" readonly="true">
                 </div>
               </div>
             </div>
@@ -149,14 +146,14 @@
               <div class="col-sm-2">
                 <div class="form-group">
                   <label for="data-agendada">Data Agendada</label>
-                  <input class="form-control" type="date" name="" id="data-agendada" value="<?php echo $dados['data_agendada']; ?>">
+                  <input class="form-control" type="date" name="ticket[data-agendada]" id="data-agendada" value="<?php echo $dados['data_agendada']; ?>">
                 </div>
               </div>
 
               <div class="col-sm-2">
                 <div class="form-group">
                   <label for="hora-agendada">Hora Agendada</label>
-                  <input class="form-control" type="time" name="" id="hora-agendada" value="<?php echo $dados['hora_agendada']; ?>">
+                  <input class="form-control" type="time" name="ticket[hora-agendada]" id="hora-agendada" value="<?php echo $dados['hora_agendada']; ?>">
                 </div>
               </div>
             </div>
@@ -166,7 +163,7 @@
                 <div class="form-group">
                   <label for="produto">Produto</label>
 
-                  <select class="form-control" name="" id="produto">
+                  <select class="form-control" name="ticket[produto]" id="produto">
                   <?php if ($dados['id_produto'] == '1') : ?>
 
                     <option value="1" selected>Integral</option>
@@ -204,7 +201,7 @@
                 <div class="form-group">
                   <label for="modulo">Módulo</label>
 
-                  <select class="form-control" name="" id="modulo">                  
+                  <select class="form-control" name="ticket[modulo]" id="modulo">                  
                   <?php if ($dados['id_modulo'] == '1'  && $dados['id_produto'] == '1') : ?>
                     
                     <option value="1" selected>Materiais</option>
@@ -509,7 +506,7 @@
               <div class="col-sm-12">
                 <div class="form-group">
                   <label for="assunto">Assunto</label>
-                  <textarea class="form-control" name="" id="assunto" cols="30" rows="4"><?php echo $dados['assunto']; ?></textarea>
+                  <textarea class="form-control" name="ticket[assunto]" id="assunto" cols="30" rows="4"><?php echo $dados['assunto']; ?></textarea>
                 </div>
               </div>
             </div>
@@ -523,21 +520,21 @@
           <div class="col-sm-4">
             <div class="form-group">
               <label for="contato">Contato</label>
-              <input class="form-control" type="text" name="" id="contato" value="<?php echo $dados['contato']; ?>">
+              <input class="form-control" type="text" name="ticket[contato]" id="contato" value="<?php echo $dados['contato']; ?>">
             </div>
           </div>
 
           <div class="col-sm-4">
             <div class="form-group">
               <label for="telefone">Telefone</label>
-              <input class="form-control" type="text" name="" id="telefone" value="<?php echo $dados['telefone']; ?>" placeholder="Telefone do Contato" maxlength="15" onkeyup="mascara(this, mtel);">
+              <input class="form-control" type="text" name="ticket[telefone]" id="telefone" value="<?php echo $dados['telefone']; ?>" placeholder="Telefone do Contato" maxlength="15" onkeyup="mascara(this, mtel);">
             </div>
           </div>
 
           <div class="col-sm-4">
             <div class="form-group">
               <label for="chat">Chat</label>
-              <input class="form-control" type="text" name="" id="chat" value="<?php echo $dados['chat_id']; ?>" readonly="true">
+              <input class="form-control" type="text" name="ticket[chat_id]" id="chat" value="<?php echo $dados['chat_id']; ?>" readonly="true">
             </div>
           </div>
         </div>
@@ -551,7 +548,7 @@
                 <i class="fa fa-times" aria-hidden="true"></i> Cancelar
               </a><!-- botão cancelar -->
 
-              <a class="btn btn-info" href="<?php echo BASE_URL; ?>public/views/tickets/edita_tickets.php?issue=<?php echo $_GET['ticket']; ?>"><!-- botão atualizar -->
+              <a class="btn btn-info" href="<?php echo BASE_URL; ?>public/views/tickets/edita_tickets.php?ticket=<?php echo $_GET['ticket']; ?>&funcao=edita"><!-- botão atualizar -->
               <i class="fa fa-refresh" aria-hidden="true"></i> Recarregar
               </a><!-- botão atualizar -->
 
@@ -591,13 +588,14 @@
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
   <script src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
-
-  <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/colaboradores.js"></script>  
-  <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/mascara.js"></script>
+  
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/tickets/edit/altera_colaborador.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/tickets/edit/validacao.js"></script>
+  <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/colaboradores.js"></script>  
+  <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/mascara.js"></script>
+  <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
 </body>
 </html>
 
