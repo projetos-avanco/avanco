@@ -74,8 +74,10 @@
                   <th class="text-center" width="20%">Razão Social</th>                  
                   <th class="text-center">Validade</th>
 
-                <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>                    
-                  <th class="text-center" width="40%"></th>
+                <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
+                  <th class="text-center" width="20%"></th>
+                <?php elseif ($_SESSION['usuario']['nivel'] == 2) : ?>                    
+                  <th class="text-center" width="40%"></th>                
                 <?php endif; ?>
 
                 </tr>
@@ -100,8 +102,14 @@
                   
                   <td class="text-left"><?php echo $ticket['razao_social']; ?></td>
                   <td class="text-center"><?php echo $ticket['validade']; ?></td>
-                                    
-                <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
+                
+                <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
+                  <td class="text-right">
+                    <a class="btn btn-sm btn-success" href="<?php echo BASE_URL; ?>public/views/tickets/visualiza_tickets.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=visualiza">
+                      <i class="fa fa-eye" aria-hidden="true"></i> Visualizar
+                    </a>
+                  </td>
+                <?php elseif ($_SESSION['usuario']['nivel'] == 2) : ?>
                   <td class="text-right">
                     <a class="btn btn-sm btn-info" href="<?php echo BASE_URL; ?>app/requests/get/processa_ticket.php?ticket=<?php echo $ticket['ticket']; ?>&funcao=invalida">
                       <i class="fa fa-times-circle" aria-hidden="true"></i> Invalidar
@@ -118,7 +126,7 @@
                     <a class="btn btn-sm btn-danger" onclick="confirmaExclusaoTicket();">
                       <i class="fa fa-trash" aria-hidden="true"></i> Deletar
                     </a>
-                  </td>
+                  </td>                
                 <?php endif; ?>
                 </tr>
               <?php endforeach; ?>
