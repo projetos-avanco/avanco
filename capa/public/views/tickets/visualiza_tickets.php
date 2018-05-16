@@ -134,8 +134,8 @@
                   <tr>
                     <th class="text-center bg-success" rowspan="3">Dados do Contato</th>
 
-                    <th class="bg-success">Chat</th>
-                    <td class="text-left" colspan="3"><?php echo $dados['chat_id']; ?></td>
+                    <th class="bg-success">Histórico Chats</th>
+                    <td class="text-left" colspan="3"><?php echo $dados['historico_chat_id']; ?></td>
                   </tr>
 
                   <tr>                  
@@ -160,9 +160,11 @@
                 <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
               </a>
 
+            <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
               <a class="btn btn-warning" href="<?php echo BASE_URL; ?>public/views/tickets/edita_tickets.php?ticket=<?php echo $dados['ticket']; ?>&funcao=edita">
                 <i class="fa fa-pencil" aria-hidden="true"></i> Editar
               </a>
+            <?php endif; ?>
             </div>
           </div>
         </div>

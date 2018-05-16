@@ -85,12 +85,7 @@ function consultaDadosDaPaginaDeVisualizaoDeTickets($db, $dados, $ticket)
       t.ticket,
       DATE_FORMAT(t.agendado, '%Y-%m-%d') AS data_agendada,
       DATE_FORMAT(t.agendado, '%H:%i:%s') AS hora_agendada,
-      CASE
-        WHEN (t.chat_id IS NULL)
-          THEN 0
-        ELSE
-          t.chat_id
-      END AS chat_id,
+      t.historico_chat_id,
       CASE
         WHEN (t.validade = 0)
           THEN 'Vencido'
@@ -133,26 +128,26 @@ function consultaDadosDaPaginaDeVisualizaoDeTickets($db, $dados, $ticket)
 
       $dados = array(
 
-        'data'           => $registro['data'],
-        'ticket'         => $registro['ticket'],
-        'data_agendada'  => $registro['data_agendada'],
-        'hora_agendada'  => $registro['hora_agendada'],
-        'chat_id'        => $registro['chat_id'],
-        'validade'       => $registro['validade'],
-        'contato'        => $registro['contato'],
-        'cnpj'           => $registro['cnpj'],
-        'conta_contrato' => $registro['conta_contrato'],
-        'razao_social'   => $registro['razao_social'],
-        'telefone'       => $registro['telefone'],
-        'id_supervisor'  => $registro['id_supervisor'],
-        'supervisor'     => $registro['supervisor'],
-        'id_colaborador' => $registro['id_colaborador'],
-        'colaborador'    => $registro['colaborador'],
-        'id_produto'     => $registro['id_produto'],
-        'produto'        => $registro['produto'],
-        'id_modulo'      => $registro['id_modulo'],
-        'modulo'         => $registro['modulo'],
-        'assunto'        => $registro['assunto']
+        'data'              => $registro['data'],
+        'ticket'            => $registro['ticket'],
+        'data_agendada'     => $registro['data_agendada'],
+        'hora_agendada'     => $registro['hora_agendada'],
+        'historico_chat_id' => $registro['historico_chat_id'],
+        'validade'          => $registro['validade'],
+        'contato'           => $registro['contato'],
+        'cnpj'              => $registro['cnpj'],
+        'conta_contrato'    => $registro['conta_contrato'],
+        'razao_social'      => $registro['razao_social'],
+        'telefone'          => $registro['telefone'],
+        'id_supervisor'     => $registro['id_supervisor'],
+        'supervisor'        => $registro['supervisor'],
+        'id_colaborador'    => $registro['id_colaborador'],
+        'colaborador'       => $registro['colaborador'],
+        'id_produto'        => $registro['id_produto'],
+        'produto'           => $registro['produto'],
+        'id_modulo'         => $registro['id_modulo'],
+        'modulo'            => $registro['modulo'],
+        'assunto'           => $registro['assunto']
 
       );
 
