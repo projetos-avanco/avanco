@@ -44,7 +44,7 @@
 
   # chamando função responsável por retornar os dados dos produtos disponíveis na loja avanção
   $produtos = retornaProdutosDaLojaAvancao();
-
+  
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +107,7 @@
                 <h4><?php echo $produtos[13]['descricao']; ?></h4>
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Açai 300ml">
                 <?php echo $produtos[13]['valor']; ?>                
               </p>
               <p class="comprar">
@@ -127,7 +127,7 @@
                 <h4><?php echo $produtos[12]['descricao']; ?></h4>
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Açai 500ml">
                 <?php echo $produtos[12]['valor']; ?>
               </p>
               <p class="comprar">
@@ -147,7 +147,7 @@
                 <h4><?php echo $produtos[11]['descricao']; ?></h4>
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Manicure e Pedicure">
                 <?php echo $produtos[11]['valor']; ?>
               </p>
               <p class="comprar">
@@ -169,7 +169,7 @@
                 <h4><?php echo $produtos[14]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Vale Presente R$50,00 Livraria Cultura">
                 <?php echo $produtos[14]['valor']; ?>
               </p>
               <p class="comprar">
@@ -189,7 +189,7 @@
                 <h4><?php echo $produtos[10]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Ventilador de Mesa">
                 <?php echo $produtos[10]['valor']; ?>
               </p>
               <p class="comprar">
@@ -209,7 +209,7 @@
                 <h4><?php echo $produtos[9]['descricao']; ?></h4>
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="PenDrive 64GB">
                 <?php echo $produtos[9]['valor']; ?>
               </p>
               <p class="comprar">
@@ -231,7 +231,7 @@
                 <h4><?php echo $produtos[15]['descricao']; ?></h4>
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Vale Presente R$50,00 Lojas Americanas">
                 <?php echo $produtos[15]['valor']; ?>
               </p>
               <p class="comprar">
@@ -251,7 +251,7 @@
                 <h4><?php echo $produtos[8]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Par de Ingressos para o Cinema">
                 <?php echo $produtos[8]['valor']; ?>
               </p>
               <p class="comprar">
@@ -271,7 +271,7 @@
                 <h4><?php echo $produtos[7]['descricao']; ?></h4>
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Rodízio de Pizza com Acompanhante">
                 <?php echo $produtos[7]['valor']; ?>
               </p>
               <p class="comprar">
@@ -293,7 +293,7 @@
                 <h4><?php echo $produtos[6]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Garrafa de Cachaça Vale Verde">
                 <?php echo $produtos[6]['valor']; ?>
               </p>
               <p class="comprar">
@@ -313,7 +313,7 @@
                 <h4><?php echo $produtos[5]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="1 Dia de Folga">
                 <?php echo $produtos[5]['valor']; ?>
               </p>
               <p class="comprar">
@@ -333,7 +333,7 @@
                 <h4><?php echo $produtos[16]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Massagem Relaxante">
                 <?php echo $produtos[16]['valor']; ?>
               </p>
               <p class="comprar">
@@ -355,7 +355,7 @@
                 <h4><?php echo $produtos[4]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Garrafa de Jack Daniels">
                 <?php echo $produtos[4]['valor']; ?>
               </p>
               <p class="comprar">
@@ -375,7 +375,7 @@
                 <h4><?php echo $produtos[3]['descricao']; ?></h4>
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Garrafa de Absolut">
                 <?php echo $produtos[3]['valor']; ?>
               </p>
               <p class="comprar">
@@ -395,7 +395,7 @@
                 <h4><?php echo $produtos[2]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Rodízio Baby Beef com Acompanhante">
                 <?php echo $produtos[2]['valor']; ?>
               </p>
               <p class="comprar">
@@ -417,7 +417,7 @@
                 <h4><?php echo $produtos[1]['descricao']; ?></h4>                
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Home Theater">
                 <?php echo $produtos[1]['valor']; ?>
               </p>
               <p class="comprar">
@@ -437,7 +437,7 @@
                 <h4><?php echo $produtos[0]['descricao']; ?></h4>
               </p>              
               <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Avancoins">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="1 Semana de Folga">
                 <?php echo $produtos[0]['valor']; ?>
               </p>
               <p class="comprar">
@@ -447,7 +447,49 @@
           </div>
         </div>        
       </div>
+
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[17]['imagem']; ?>" alt="<?php echo $produtos[17]['descricao']; ?>">
+                <h4><?php echo $produtos[17]['descricao']; ?></h4>                
+              </p>              
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Smarthphone Moto G5 Plus">
+                <?php echo $produtos[17]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[17]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>        
+      </div>
     </div><!-- sexta seção de produtos -->
+
+    <div class="row"><!-- sétima seção de produtos -->
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[18]['imagem']; ?>" alt="<?php echo $produtos[18]['descricao']; ?>">
+                <h4><?php echo $produtos[18]['descricao']; ?></h4>                
+              </p>              
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Smarthphone Asus Zenfone 3">
+                <?php echo $produtos[18]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[18]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div><!-- sétima seção de produtos -->
 
     <div class="row">
       <div class="col-sm-6">
