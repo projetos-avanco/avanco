@@ -17,6 +17,14 @@ $('document').ready(function() {
 
       switch (idProduto) {
 
+        case '19':
+          descricao = 'Smarthphone Asus Zenfone 3';
+            break;
+            
+        case '18':
+          descricao = 'Smarthphone Moto G5 Plus';
+            break;
+
         case '17':
           descricao = 'Massagem Relaxante';
             break;
