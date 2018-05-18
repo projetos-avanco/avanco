@@ -17,14 +17,13 @@ function criaModeloDeProdutos()
 function criaArrayModeloDeCompra()
 {
   $compra = array(
-    
+    'id'             => null,
     'id_colaborador' => '',
     'id_produto'     => '',
     'data_compra'    => '',
     'horario_compra' => '',
     'email'          => '',
     'envio_email'    => ''
-    
   );
 
   return $compra;
