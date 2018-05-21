@@ -139,7 +139,7 @@ $('document').ready(function() {
 
     } else {
 
-      alert('A Loja Avanção estará disponível para compras entre os dias 10 e 15 do mês!');
+      alert('A Loja Avanção estará disponível para compras entre os dias 10 e 20 do mês!');
 
     }
 
