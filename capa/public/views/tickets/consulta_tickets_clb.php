@@ -2,7 +2,7 @@
 
 <?php require DIRETORIO_MODULES . 'tickets/modulo_tickets.php'; ?>
 
-<?php if (verificaUsuarioLogado('consulta_tickets.php')) : ?>
+<?php if (verificaUsuarioLogado('consulta_tickets_clb.php')) : ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -65,10 +65,7 @@
                   <th>Chat</th>                  
                   <th width="20%">Razão Social</th>                  
                   <th>Validade</th>                  
-                  <th width="8%"></th>                    
-                  <th width="8%"></th>                    
-                  <th width="8%"></th>                    
-                  <th width="8%"></th>                    
+                  <th width="8%"></th>                                    
                 </tr>
               </thead>              
             </table><!-- painel do suporte -->
@@ -83,7 +80,7 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/tickets/paginacao_tabela.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/tickets/paginacao_tabela_clb.js"></script>
 </body>
 </html>
 
