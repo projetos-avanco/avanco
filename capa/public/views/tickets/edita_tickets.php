@@ -10,7 +10,7 @@
 
   # recuperando id do chat do supervisor que está logado
   $id = $_SESSION['usuario']['id'];
-
+  
 ?>
 
 <!DOCTYPE html>
@@ -534,7 +534,7 @@
           <div class="col-sm-4">
             <div class="form-group">
               <label for="chat">Chat</label>
-              <input class="form-control" type="text" name="ticket[chat_id]" id="chat" value="<?php echo $dados['chat_id']; ?>" readonly="true">
+              <input class="form-control" type="text" name="ticket[chat_id]" id="chat" value="<?php echo $dados['historico_chat_id']; ?>" readonly="true">
             </div>
           </div>
         </div>
@@ -553,7 +553,7 @@
               </a><!-- botão atualizar -->
 
               <button class="btn btn-success" type="submit"><!-- botão gravar -->
-                <i class="fa fa-floppy-o" aria-hidden="true"></i> Editar
+                <i class="fa fa-floppy-o" aria-hidden="true"></i> Gravar
               </button><!-- botão gravar -->
             </div>
           </div><!-- coluna 2 -->
