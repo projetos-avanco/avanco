@@ -182,10 +182,16 @@ for ($i = 0; $i <= count($chats); $i++) {
         
         <div class="row">
           <div class="col-sm-12">
-            <div class="text-right">              
-              <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/tickets/consulta_tickets.php">
+            <div class="text-right">
+            <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
+              <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/tickets/consulta_tickets_clb.php">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
               </a>
+            <?php elseif ($_SESSION['usuario']['nivel'] == 2) : ?>
+              <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/tickets/consulta_tickets_adm.php">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar
+              </a>
+            <?php endif; ?>
 
             <?php if ($_SESSION['usuario']['nivel'] == 2) : ?>
               <a class="btn btn-warning" href="<?php echo BASE_URL; ?>public/views/tickets/edita_tickets.php?ticket=<?php echo $dados['ticket']; ?>&funcao=edita">
