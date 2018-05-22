@@ -4,6 +4,25 @@
 
 <?php require DIRETORIO_REQUESTS . 'get/processa_ticket.php'; ?>
 
+<?php 
+
+# separando os ids dos chats por espaço
+$chats = explode(' ', $dados['historico_chat_id']);
+
+# eliminando espaços vazios
+for ($i = 0; $i <= count($chats); $i++) {
+  
+  # verificando se a posição do array é um espaço vazio
+  if (empty($chats[$i])) {
+
+    unset($chats[$i]);
+
+  }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -134,8 +153,16 @@
                   <tr>
                     <th class="text-center bg-success" rowspan="3">Dados do Contato</th>
 
-                    <th class="bg-success">Histórico Chats</th>
-                    <td class="text-left" colspan="3"><?php echo $dados['historico_chat_id']; ?></td>
+                    <th class="bg-success">Chats</th>                  
+                    <td class="text-left" colspan="3">
+
+                    <?php foreach ($chats as $chat) : ?>
+                      <a href="<?php echo BASE_URL; ?>app/requests/get/recebe_chat_id.php?chat=<?php echo $chat; ?>" target="_blank">
+                        <?php echo $chat; ?>
+                      </a>
+                    <?php endforeach; ?>
+
+                    </td>                  
                   </tr>
 
                   <tr>                  
