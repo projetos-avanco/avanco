@@ -90,7 +90,7 @@ function deletaTicket($ticket)
   fecha_conexao($db);
 
   # redirecionando usuário para a página de consulta de tickets
-  header('Location: ' . BASE_URL . 'public/views/tickets/consulta_tickets.php');
+  header('Location: ' . BASE_URL . 'public/views/tickets/consulta_tickets_adm.php');
 
   exit;
 
@@ -113,7 +113,7 @@ function invalidaTicket($ticket)
   fecha_conexao($db);
 
   # redirecionando usuário para a página de consulta de tickets
-  header('Location: ' . BASE_URL . 'public/views/tickets/consulta_tickets.php');
+  header('Location: ' . BASE_URL . 'public/views/tickets/consulta_tickets_adm.php');
 
   exit;
 
