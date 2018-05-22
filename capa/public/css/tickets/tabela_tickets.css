@@ -1,10 +1,19 @@
 @charset "UTF-8";
 
+#tabela, #btn-visualiza, #btn-invalida, #btn-edita, #btn-deleta {
+  font-family: 'Museosans 300', sans-serif;
+}
+
+table thead tr th {
+  font-size: 0.85em;
+  text-align: left;
+}
+
 table tbody tr td {
-  font-family: 'Museosans 300',sans-serif;
   font-size: 0.75em;  
   height: 3.5em;
 }
+
 
 .table tbody tr td {
   vertical-align: middle;
