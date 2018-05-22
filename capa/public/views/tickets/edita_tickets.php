@@ -544,7 +544,7 @@
         <div class="row"><!-- linha -->
           <div class="col-sm-12"><!-- coluna 2 -->
             <div class="text-right">
-              <a class="btn btn-danger" href="<?php echo BASE_URL; ?>public/views/tickets/consulta_tickets.php"><!-- botão cancelar -->
+              <a class="btn btn-danger" href="<?php echo BASE_URL; ?>public/views/tickets/consulta_tickets_adm.php"><!-- botão cancelar -->
                 <i class="fa fa-times" aria-hidden="true"></i> Cancelar
               </a><!-- botão cancelar -->
 
