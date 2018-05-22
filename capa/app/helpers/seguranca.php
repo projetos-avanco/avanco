@@ -46,7 +46,7 @@ function verificaUsuarioLogado($pagina, $id = null)
     case 1:
 
       # páginas que usuários de nível 1 possuem permissão para acessar
-      if ($pagina == 'consulta_tickets.php'      OR
+      if ($pagina == 'consulta_tickets_clb.php'  OR
           $pagina == 'colaboradores_logados.php' OR
           $pagina == 'extrato.php'               OR
           $pagina == 'conta.php'                 OR
@@ -86,7 +86,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'consulta_lancamentos.php'   OR
           $pagina == 'visualiza_lancamentos.php'  OR
           $pagina == 'edita_lancamentos.php'      OR
-          $pagina == 'edita_tickets.php') {
+          $pagina == 'edita_tickets.php'          OR
+          $pagina == 'consulta_tickets_adm.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -103,7 +104,7 @@ function verificaUsuarioLogado($pagina, $id = null)
       # páginas que usuários de nível 2 possuem permissão para acessar
       if
         ($pagina == 'colaboradores_logados.php'  OR
-         $pagina == 'consulta_tickets.php'       OR
+         $pagina == 'consulta_tickets_adm.php'   OR
          $pagina == 'nova_atividade.php'         OR
          $pagina == 'extrato.php'                OR
          $pagina == 'conta.php'                  OR
