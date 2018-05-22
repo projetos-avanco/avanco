@@ -98,8 +98,22 @@
           </span>
         </a>
         <ul class="nav collapse"  id="submenu4">
-          <li><a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php"><p>Novo<p></a></li>
-          <li><a href="<?php echo BASE_URL; ?>../capa/public/views/tickets/consulta_tickets.php"><p>Consultar<p></a></li>
+          <li>
+            <a href="<?php echo BASE_URL; ?>../tickets/public/views/screen/novo_ticket.php">
+              <p>Novo<p>              
+            </a>
+          </li>
+          <li>
+          <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/tickets/consulta_tickets_clb.php">
+              <p>Consultar<p>
+            </a>
+          <?php elseif ($_SESSION['usuario']['nivel'] == 2) : ?>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/tickets/consulta_tickets_adm.php">
+              <p>Consultar<p>
+            </a>
+          <?php endif; ?>
+          </li>
         </ul>
       </li>
 
