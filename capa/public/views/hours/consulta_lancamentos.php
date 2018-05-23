@@ -2,17 +2,6 @@
 
 <?php if (verificaUsuarioLogado('consulta_lancamentos.php')) : ?>
 
-<?php 
-
-  require DIRETORIO_MODULES  . 'hours/horas.php';
-
-  $issues = array();
-
-  # chamando função que recupera todas as issues gravadas no registro de horas
-  $issues = recuperaTodasAsIssuesDoRegistroDeHoras();
-  
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,7 +21,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize_7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.css"/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
@@ -63,44 +52,18 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <table class="table"><!-- painel do suporte -->
+            <table class="table" id="tabela"><!-- painel do suporte -->
               <thead>
                 <tr>
-                  <th class="text-center">Id</th>
-                  <th class="text-center">Supervisor</th>
+                  <th class="text-center">ID</th>                  
                   <th class="text-center">Issue</th>
-                  <th class="text-center" width="30%">Razão Social</th>       
-                  <th class="text-center">CNPJ</th>
-                  <th class="text-center">Contrato</th>                  
-                  <th class="text-center" width="30%"></th>                
+                  <th class="text-center">Razão Social</th>                         
+                  <th class="text-center" width="20%">Supervisor</th>
+                  <th class="text-center" width="9%"></th>               
+                  <th class="text-center" width="9%"></th>               
+                  <th class="text-center" width="9%"></th>               
                 </tr>
               </thead>
-
-              <tbody>
-              <?php foreach ($issues as $issue) : ?>
-              <tr>
-                <td class="text-center"><?php echo $issue['id']; ?></td>
-                <td class="text-center"><?php echo $issue['supervisor']; ?></td>
-                <td class="text-center"><?php echo $issue['issue']; ?></td>
-                <td class="text-left"><?php echo $issue['razao_social']; ?></td>     
-                <td class="text-center"><?php echo $issue['cnpj']; ?></td>
-                <td class="text-center"><?php echo $issue['conta_contrato']; ?></td>                
-                <td class="text-right">
-                  <a class="btn btn-success btn-sm" href="<?php echo BASE_URL; ?>public/views/hours/visualiza_lancamentos.php?issue=<?php echo $issue['issue']; ?>">
-                    <i class="fa fa-eye" aria-hidden="true"></i> Visualizar
-                  </a>
-
-                  <a class="btn btn-warning btn-sm" href="<?php echo BASE_URL; ?>public/views/hours/edita_lancamentos.php?issue=<?php echo $issue['issue']; ?>">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Editar
-                  </a>
-
-                  <a class="btn btn-danger btn-sm" onclick="confirmaExclusao(<?php echo $issue['id']; ?>, '<?php echo $issue['issue']; ?>');">
-                    <i class="fa fa-trash" aria-hidden="true"></i> Excluir
-                  </a>
-                </td>                
-              </tr>
-              <?php endforeach; ?>
-              </tbody>
             </table><!-- painel do suporte -->
           </div>
         </div>
@@ -108,14 +71,13 @@
       </div><!-- container -->
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->
-  <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
-  <script src="https://cdn.datatables.net/v/dt/dt-1.10.13/datatables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/hours/paginacao_consulta_lancamentos_horas.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/hours/delete/exclusao_issues.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/hours/paginacao_consulta_lancamentos_horas.js"></script>  
 </body>
 </html>
 
