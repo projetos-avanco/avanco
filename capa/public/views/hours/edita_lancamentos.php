@@ -445,7 +445,7 @@
             </a><!-- botão atualizar -->
 
             <button class="btn btn-success" type="submit"><!-- botão gravar -->
-              <i class="fa fa-floppy-o" aria-hidden="true"></i> Editar
+              <i class="fa fa-floppy-o" aria-hidden="true"></i> Gravar
             </button><!-- botão gravar -->
           </div><!-- coluna 2 -->
         </div><!-- linha -->
