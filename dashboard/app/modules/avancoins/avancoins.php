@@ -5,6 +5,7 @@ require DIRETORIO_FUNCTIONS . 'avancoins/periodo.php';
 require DIRETORIO_FUNCTIONS . 'avancoins/acoes_diarias.php';
 require DIRETORIO_FUNCTIONS . 'avancoins/acoes_mensais.php';
 require DIRETORIO_FUNCTIONS . 'avancoins/carteira.php';
+require DIRETORIO_FUNCTIONS . 'avancoins/ganhadores_avancao.php';
 
 /*
  * responsável por atualizar as ações diárias do colaborador no período atual
@@ -63,7 +64,7 @@ function atualizaAcoesDiarias($id)
  * responsável por atualizar as ações mensais do colaborador no período atual
  * @param - string com o id do colaborador
  */
-function atualizaAcoesMensais($id)
+function atualizaAcoesMensais($id = null)
 {
   # chamando função que abre uma conexão com a base de dados
   $db = abre_conexao();
@@ -83,9 +84,8 @@ function atualizaAcoesMensais($id)
     # chamando função que retorna o período do mês anterior
     $carteira = verificaPeriodoAnterior($db, $carteira);
 
-    # verificando se a data atual é igual ou maior que a data final do período anterior (para inserir os logs de ações mensais)
-    if ($carteira['data_atual'] == $carteira['periodo_anterior']['data_final'] OR
-        $carteira['data_atual'] > $carteira['periodo_anterior']['data_final']) {
+    # verificando se a data atual é maior que a data final do período anterior (para inserir os logs de ações mensais)
+    if ($carteira['data_atual'] > $carteira['periodo_anterior']['data_final']) {
 
       # chamando função que consulta todas as ações mensais do colaborador no período anterior
       consultaAcoesMensais($db, $carteira);
@@ -93,9 +93,7 @@ function atualizaAcoesMensais($id)
     }
 
   }
-
-  fecha_conexao($db);
-
+  
 }
 
 /*
@@ -202,4 +200,66 @@ function retornaQuantidadeDeMoedasDaCarteira($id)
 
   return $imagens;
 
+}
+
+/*
+ * responsável por verificar o ganhador do prêmio artilheiro no mês atual e inserir na tabela av_dashboard_colaborador_titulos
+ * @param - objeto com uma conexão aberta
+ * @param - string com a data do último dia do mês
+ */
+function verificaGanhadorDoPremioArtilheiro($db, $datas)
+{
+  $resutado = insereGanhadorDoPremioArtilheiro($db, $datas);
+
+  return $resutado;
+}
+
+/*
+ * responsável por verificar o ganhador do prêmio goleiro no mês atual e inserir na tabela av_dashboard_colaborador_titulos
+ * @param - objeto com uma conexão aberta
+ * @param - string com a data do primeiro dia do mês
+ * @param - string com a data do último dia do mês
+ */
+function verificaGanhadorDoPremioGoleiro($db, $datas)
+{
+  $resultado = insereGanhadorDoPremioGoleiro($db, $datas);
+
+  return $resultado;
+}
+
+/*
+ * responsável por verificar o ganhador do prêmio lateral no mês atual e inserir na tabela av_dashboard_colaborador_titulos
+ * @param - objeto com uma conexão aberta
+ * @param - string com a data do primeiro dia do mês
+ * @param - string com a data do último dia do mês
+ */
+function verificaGanhadorDoPremioLateral($db, $datas)
+{
+  $resultado = insereGanhadorDoPremioLateral($db, $datas);
+
+  return $resultado;
+}
+
+/*
+ * responsável por verificar o ganhador do prêmio meio campo no mês atual e inserir na tabela av_dashboard_colaborador_titulos
+ * @param - objeto com uma conexão aberta
+ * @param - string com a data do último dia do mês
+ */
+function verificaGanhadorDoPremioMeioCampo($db, $datas)
+{
+  $resultado = insereGanhadorDoPremioMeioCampo($db, $datas);
+
+  return $resultado;
+}
+
+/*
+ * responsável por verificar o ganhador do prêmio zagueiro no mês atual e inserir na tabela av_dashboard_colaborador_titulos
+ * @param - objeto com uma conexão aberta
+ * @param - string com a data do último dia do mês
+ */
+function verificaGanhadorDoPremioZagueiro($db, $datas)
+{
+  $resultado = insereGanhadorDoPremioZagueiro($db, $datas);
+
+  return $resultado;
 }
