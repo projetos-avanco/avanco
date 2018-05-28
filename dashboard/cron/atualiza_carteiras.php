@@ -1,49 +1,46 @@
-<?php 
+<?php
 
 require '../init.php';
-
 require DIRETORIO_MODULES  . 'avancoins/avancoins.php';
+require ABS_PATH . 'cron/funcoes.php';
 
 $db = abre_conexao();
 
 # verificando se a conexão com a base de dados foi realizada com sucesso
 if ($db) {
 
-  $query = "SELECT id FROM av_avancoins_carteiras ORDER BY id;";
+  $datas = array(    
+    'periodo_atual' => array(
+      'data_inicial' => '',
+      'data_final' => ''
+    ),
+    'periodo_anterior' => array(
+      'data_inicial' => '',
+      'data_final' => ''
+    ),
+    'mes_atual' => date('n'),
+    'data_atual' => date('Y-m-d'),
+    'horario_atual' => date('H:i:s')
+  );
 
-  # verificando se a consulta pode ser executada
-  if ($resultado = $db->query($query)) {
+  # chamando função que retorna o período atual e o passado
+  $datas = retornaPeriodos($db, $datas);
 
-    $ids = array();
+  # verificando se a data atual é o primeiro dia do mês
+  if ($datas['data_atual'] == $datas['periodo_atual']['data_inicial'] && $datas['horario_atual'] >= '20:00:00') {
 
-    # recuperando todos os ids dos colaboradores que recebem avancoins
-    while ($registro = $resultado->fetch_assoc()) {
-
-      $ids[] = $registro['id'];      
-
-    }
-
-  }
-
-  # atualizando a carteira de todos os colaboradores que recebem avancoins
-  foreach ($ids as $id) {
-
-    # chamando função responsável por atualizar as ações diárias do colaborador no período atual
-    atualizaAcoesDiarias($id);
-
-    # chamando função responsável por atualizar as ações mensais do colaborador no período atual
-    atualizaAcoesMensais($id);
-
-    # chamando função responsável por atualizar a quantidade de moedas na carteira do colaborador
-    atualizaCarteira($id);
+    # chamando função que atualiza as ações mensais
+    verificaAtualizacaoDasAcoesMensais($db, $datas);
 
   }
+
+  # chamando função que atualiza as ações diárias, mensais (se necessário) e a carteira
+  atualizaDados($db);
 
   fecha_conexao($db);
 
-  # printando ids atualizados no log
-  print_r($ids);
+} else {
 
-  echo "Script Executado!\n";
+  echo "A conexão não foi realizada com sucesso!\n <br><br>";
 
 }
