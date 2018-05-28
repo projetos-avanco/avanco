@@ -17,9 +17,6 @@
   # chamando função responsável por atualizar as ações diárias do colaborador no período atual
   atualizaAcoesDiarias($_SESSION['colaborador']['id']);
 
-  # chamando função responsável por atualizar as ações mensais do colaborador no período atual
-  atualizaAcoesMensais($_SESSION['colaborador']['id']);
-
   # chamando função responsável por atualizar a quantidade de moedas na carteira do colaborador
   atualizaCarteira($_SESSION['colaborador']['id']);
 
