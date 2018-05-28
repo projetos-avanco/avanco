@@ -570,33 +570,13 @@ function insereLogDeArtilheiro($db, $carteira)
  */
 function consultaAcoesMensais($db, $carteira)
 {
-  $query =
-    "SELECT
-    	COUNT(id)
-    FROM av_avancoins_acoes_mensais_logs
-    WHERE (data_acao = '{$carteira['periodo_anterior']['data_final']}');";
-
-  # verificando se a consulta pode ser executada
-  if ($resultado = $db->query($query)) {
-
-    $quantidadeRegistros = $resultado->fetch_row();
-    $quantidadeRegistros = $quantidadeRegistros[0];
-
-  }
-
-  # verificando se a quantidade de registros no banco é igual a zero (se for 0 as consultas de ações mensais ainda não foram executadas)
-  if ($quantidadeRegistros == 0) {
-
-    # chamando funções de inserem as ações mensais de todos os colaboradores no período anterior
-    insereLogDeArtilheiro($db, $carteira);
-    insereLogDeMeioCampo($db, $carteira);
-    insereLogDeGoleiro($db, $carteira);
-    insereLogsIntegrantesTimeVencedor($db, $carteira);
-    insereLogsPercentualDePerda($db, $carteira);
-    insereLogsPercentualDeFilaAte15Minutos($db, $carteira);
-    insereLogsPercentualAvancinoForaDaMeta($db, $carteira);
-    insereLogsPercentualQuestionarioInternoForaDaMeta($db, $carteira);
-
-  }
-
+  # chamando funções de inserem as ações mensais de todos os colaboradores no período anterior
+  insereLogDeArtilheiro($db, $carteira);
+  insereLogDeMeioCampo($db, $carteira);
+  insereLogDeGoleiro($db, $carteira);
+  insereLogsIntegrantesTimeVencedor($db, $carteira);
+  insereLogsPercentualDePerda($db, $carteira);
+  insereLogsPercentualDeFilaAte15Minutos($db, $carteira);
+  insereLogsPercentualAvancinoForaDaMeta($db, $carteira);
+  insereLogsPercentualQuestionarioInternoForaDaMeta($db, $carteira);
 }
