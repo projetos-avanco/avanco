@@ -88,7 +88,7 @@ function verificaPeriodoAnterior($db, $carteira)
   settype($carteira['mes_atual'], 'integer');
 
   # recuperando id do mês anterior
-  $mesAnterior =  $carteira['mes_atual'] - 1;
+  $mesAnterior = $carteira['mes_atual'] - 1;
 
   # verificando se o id está no mês de janeiro (se estiver no mês de janeiro, o período anterior será o mês de dezembro)
   if ($mesAnterior == 0) {
@@ -97,7 +97,7 @@ function verificaPeriodoAnterior($db, $carteira)
     $anoAnterior = date('Y') -1;
 
     $carteira['periodo_anterior']['data_inicial'] = $anoAnterior . '-12' . '-01';
-    $carteira['periodo_anterior']['data_final']    = $anoAnterior . '-12' . '-31';
+    $carteira['periodo_anterior']['data_final']   = $anoAnterior . '-12' . '-31';
 
   }
 
