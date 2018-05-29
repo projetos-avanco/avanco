@@ -15,10 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require DIRETORIO_HELPERS . 'datas.php';
     require DIRETORIO_MODULES . 'panels/modulo_metas_capitaes.php';
 
-    # chamando função que altera o formato da data aaaa-mm-dd
-    $data1 = formataDataUnicaParaMysql($data1);
-    $data2 = formataDataUnicaParaMysql($data2);
-
     # chamando função responsável por buscar os dados para o painel de metas capitães
     buscaDadosDoPainelMetaCapitaes($time, $data1, $data2);
 
