@@ -20,7 +20,7 @@
     $time = consultaTimeDoCapitaoLogado($db, $id);
 
   # recuperando a data do dia
-  $periodo['data_1'] = $periodo['data_2'] = date('d/m/Y');
+  $periodo['data_1'] = $periodo['data_2'] = date('Y-m-d');
 
   fecha_conexao($db);
   
@@ -83,106 +83,83 @@
         <br>
 
       <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
-        <form class="form-horizontal" action="<?php echo BASE_URL; ?>app/requests/post/recebe_time.php" method="post">
+      <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_time.php" method="post">
+        <div class="row text-center">
+          <div class="col-sm-4 col-sm-offset-4">
+            <div class="panel panel-info">
+              <div class="panel-heading"><b>Formulário</b></div>
+                            
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="form-inline">
+                        <input class="form-control" type="date" id="data1" name="data-1" value="<?php echo $periodo['data_1']; ?>">
+                        <input class="form-control" type="date" id="data1" name="data-2" value="<?php echo $periodo['data_2']; ?>">                 
+                      </div>
+                    </div>
+                  </div><!-- coluna interna -->                    
+                </div><!-- linha interna -->
 
-          <div class="row">          
-            <div class="col-sm-2 col-sm-offset-4">
-              <div class="form-inline input-daterange">
-                <div class="form-group">
-                  <i class="fa fa-calendar" aria-hidden="true">
-                    <span class="calendario">De: </span>
-                  </i>
-
-                  <input type="text" class="form-control" id="data1" name="data-1" value="<?php echo $periodo['data_1']; ?>">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input type="hidden" name="time" value="<?php echo $time; ?>">
+                  </div>
                 </div>
+
+                <div class="row">
+                  <div class="col-sm-12">                    
+                    <button class="btn btn-info btn-block" type="submit">Gerar</button>
+                  </div>
+                </div>                                          
               </div>
-            </div><!-- coluna 1 -->
-
-            <div class="col-sm-2">
-              <div class="form-inline input-daterange">
-                <div class="form-group">
-                  <i class="fa fa-calendar" id="icone-2" aria-hidden="true">
-                    <span class="calendario">Até: </span>
-                  </i>
-
-                  <input type="text" class="form-control" id="data2" name="data-2" value="<?php echo $periodo['data_2']; ?>">
-                </div>
-              </div>
-            </div><!-- coluna 2 -->
-          </div><!-- linha -->
-          
-          <br>
-
-          <div class="row"> 
-            <div class="col-sm-2 col-sm-offset-5">
-              <div class="form-group">
-                <div class="text-center">
-                  <input type="hidden" name="time" value="<?php echo $time; ?>">
-
-                  <button class="btn btn-primary btn-block" type="submit">Gerar Relatório</button>
-                </div>              
-              </div>
-            </div><!-- coluna -->
-          </div><!-- linha -->
+            </div><!-- painel -->
+          </div><!-- coluna -->            
+        </div><!-- linha -->
+      </form>      
       <?php elseif ($_SESSION['usuario']['nivel'] == 2) : ?>
-        <form class="form-horizontal" action="<?php echo BASE_URL; ?>app/requests/post/recebe_time.php" method="post">
+      <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_time.php" method="post">
+        <div class="row text-center">
+          <div class="col-sm-4 col-sm-offset-4">
+            <div class="panel panel-info">
+              <div class="panel-heading"><b>Formulário</b></div>
 
-          <div class="row">          
-            <div class="col-sm-2 col-sm-offset-4">   
-              <div class="form-inline input-daterange">
-                <div class="form-group">
-                  <i class="fa fa-calendar" aria-hidden="true">
-                    <span class="calendario">De: </span>
-                  </i>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <div class="form-inline">
+                        <input class="form-control" type="date" id="data1" name="data-1" value="<?php echo $periodo['data_1']; ?>">
+                        <input class="form-control" type="date" id="data1" name="data-2" value="<?php echo $periodo['data_2']; ?>">                 
+                      </div>
+                    </div>
+                  </div><!-- coluna interna -->                    
+                </div><!-- linha interna -->
 
-                  <input type="text" class="form-control" id="data1" name="data-1" value="<?php echo $periodo['data_1']; ?>">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <select class="form-control" name="time">
+                        <option value="1" checked>Todos os Times</option>
+                        <option value="2">Os Templários</option>
+                        <option value="3">Divergente</option>
+                        <option value="4">Gulliver</option>
+                        <option value="5">Avalanche</option>                                            
+                      </select>
+                    </div>
+                  </div>
                 </div>
-              </div>            
-            </div><!-- coluna 1 -->
 
-            <div class="col-sm-2">
-              <div class="form-inline input-daterange">
-                <div class="form-group">
-                  <i class="fa fa-calendar" id="icone-2" aria-hidden="true">
-                    <span class="calendario">Até: </span>
-                  </i>
-
-                  <input type="text" class="form-control" id="data2" name="data-2" value="<?php echo $periodo['data_2']; ?>">
-                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <button class="btn btn-info btn-block" type="submit">Gerar</button>
+                  </div>
+                </div>                                          
               </div>
-            </div><!-- coluna 2 -->
-          </div><!-- linha -->
-
-          <br>
-
-          <div class="row">
-            <div class="col-sm-2 col-sm-offset-5">
-              <div class="form-group">
-                <h3 class="text-center">Time</h3>              
-              </div>            
-            </div><!-- coluna 1 -->                
-          </div><!-- linha -->
-
-          <div class="row">
-            <div class="col-sm-1 col-sm-offset-5">            
-              <div class="form-group">
-                <select class="form-control" name="time">
-                  <option value="1" checked>Todos</option>
-                  <option value="2">Os Templários</option>
-                  <option value="3">Divergente</option>
-                  <option value="4">Gulliver</option>
-                  <option value="5">Avalanche</option>                                            
-                </select>                
-              </div>                                     
-            </div>
-
-            <div class="col-sm-1">
-              <div class="form-group">
-                <button class="btn btn-primary" type="submit">Gerar Relatório</button>
-              </div>
-            </div>
-          </div>
-        </form>
+            </div><!-- painel -->
+          </div><!-- coluna -->            
+        </div><!-- linha -->
+      </form>        
       <?php endif; ?>
 
       </div><!-- container -->

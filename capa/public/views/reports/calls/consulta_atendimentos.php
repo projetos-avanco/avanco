@@ -66,7 +66,7 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <h2>Consulta de Atendimentos</h2>
+            <h2>Consulta Atendimentos</h2>
 
             <hr>
           </div>
@@ -75,94 +75,80 @@
         <br>
 
         <form action="<?php echo BASE_URL; ?>app/requests/post/processa_consulta_atendimentos.php" method="post">
-          
-          <!-- teste -->
-          <div class="jumbotron">            
-            <h3>Filtros</h3><hr>            
+          <div class="row text-center">
+            <div class="col-sm-4 col-sm-offset-4">
+              <div class="panel panel-info">
+                <div class="panel-heading"><b>Filtros</b></div>
 
-            <div class="row">
-              <div class="form-inline">
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <input class="form-control" type="date" name="form[data-1]" value="<?php echo $periodo['data1']; ?>">
-                  </div>
-                </div>
+                <div class="panel-body">
+                  <div class="row">                    
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <div class="form-inline">
+                          <input class="form-control" type="date" name="form[data-1]" value="<?php echo $periodo['data1']; ?>">
+                          <input class="form-control" type="date" name="form[data-2]" value="<?php echo $periodo['data2']; ?>">
+                        </div>                    
+                      </div>
+                    </div><!-- coluna interna -->
+                  </div><!-- linha interna -->
 
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <i class="fa fa-calendar" aria-hidden="true"></i> 
-                    <input class="form-control" type="date" name="form[data-2]" value="<?php echo $periodo['data2']; ?>">
-                  </div>
-                </div>
-              </div>
-            </div>
+                  <div class="row">
+                    <div class="col-sm-8">
+                      <div class="form-group">                        
+                        <select class="form-control" name="form[tipo]" id="tipo">
+                          <option value="1">Empresa</option>
+                          <option value="2">Colaborador</option>
+                          <option value="3">Ambos</option>
+                        </select>                        
+                      </div>
+                    </div>
 
-            <br>
-
-            <div class="row">
-              <div class="form-inline">
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <i class="fa fa-filter" aria-hidden="true"></i>                
-                    <select class="form-control" name="form[tipo]" id="tipo">
-                      <option value="1">Empresa</option>
-                      <option value="2">Colaborador</option>
-                      <option value="3">Ambos</option>
-                    </select>
-                  </div>
-                </div>
-              </div>              
-            </div>
-
-            <br>
-            
-            <div class="row">
-              <div class="col-sm-3 col-sm-offset-1">
-                <div class="form-group" id="bloco-filtro">                  
-                  <label class="radio-inline">
-                    <input type="radio" name="form[filtro]" value="cnpj"checked> CNPJ
-                  </label>                                     
-                  <label class="radio-inline">
-                    <input type="radio" name="form[filtro]" value="contrato"> Contrato
-                  </label>
-                </div>
-              </div>
-            </div>            
-            
-            <div class="row">
-              <div class="form-inline">
-                <div class="col-sm-12">
-                  <div class="form-group" id="bloco-pesquisa">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                    <input class="form-control" type="text" id="pesquisa" placeholder="Pesquise por CNPJ ou Razão Social">
+                    <div class="col-sm-4" id="bloco-filtro">
+                      <div class="form-group">
+                        <select class="form-control" name="form[filtro]">
+                          <option value="cnpj" checked>Cnpj</option>
+                          <option value="contrato">Contrato</option>
+                        </select>
+                      </div>
+                    </div>
                   </div>
 
-                  <div class="form-group hidden espaco" id="bloco-colaborador">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <select class="form-control" id="colaborador" name="form[colaborador]">
-                      <option value="0" selected>Selecione um Colaborador</option>
-                    </select>
-                  </div>                  
-                </div>                
-              </div>
-            </div>
-
-            <br>
-
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-inline">
-                  <div class="form-group">
-                    <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/reports/calls/consulta_atendimentos.php">Limpar</a>                
-                    <button class="btn btn-primary" type="submit">Buscar</button>
+                  <div class="row" id="bloco-pesquisa">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <input class="form-control" type="text" id="pesquisa" placeholder="Pesquise por CNPJ ou Razão Social">
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>              
-            </div>
-          </div>
-          <!-- teste -->
+                  
+                  <div class="row" id="bloco-colaborador">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <select class="form-control" id="colaborador" name="form[colaborador]">
+                          <option value="0" selected>Selecione um Colaborador</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
 
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <a class="btn btn-danger btn-block" href="<?php echo BASE_URL; ?>public/views/reports/calls/consulta_atendimentos.php">Limpar</a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button class="btn btn-info btn-block" type="submit">Pesquisar</button>
+                    </div>
+                  </div>                                          
+                </div>
+              </div><!-- painel -->
+            </div><!-- coluna -->            
+          </div><!-- linha -->
+                  
           <div class="row hidden"><!-- campos do cliente -->
             <div class="col-sm-5">
               <div class="form-group">
@@ -185,7 +171,6 @@
               </div>
             </div>
           </div><!-- campos do cliente -->
-
         </form>
 
         <br>
@@ -205,8 +190,9 @@
 
         <?php if (isset($atendimentos) AND ! $mensagem) : ?><!-- exibindo tabela de atendimentos -->
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-12" id="atendimentos">
             <h3 class="text-center">Atendimentos</h3>
+
             <table class="table">
               <thead>
                 <tr>
@@ -235,7 +221,7 @@
                   <td class="text-center"><?php echo $atendimento['conta_contrato']; ?></td>
                   <td class="text-left"><?php echo $atendimento['produto']; ?></td>
                   <td class="text-left"><?php echo $atendimento['demanda']; ?></td>
-                  <td class="text-center"><?php echo $atendimento['cliente']; ?></td>
+                  <td class="text-left"><?php echo $atendimento['cliente']; ?></td>
                   <td class="text-center"><?php echo $atendimento['contato']; ?></td>
                   <td class="text-center">
                     <a class="btn btn-success btn-sm" href="<?php echo BASE_URL; ?>app/requests/get/recebe_chat_id.php?chat=<?php echo $atendimento['chat_id']; ?>" target="_blank">Conversa</a>
