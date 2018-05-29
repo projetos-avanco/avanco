@@ -5,6 +5,7 @@ $('document').ready(function() {
   var myEfficientFn = debounce(function() {
 
     $('#bloco').empty(); //limpando o bloco da tabela se a pesquisa for vazia
+    $('#atendimentos').empty();
     
     var pesquisa = $('#pesquisa').val();
 
