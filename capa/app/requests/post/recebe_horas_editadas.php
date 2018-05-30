@@ -372,21 +372,21 @@
             }
 
             # validando valor da hora
-            if ($valor['valor-horas'] == '0') {
+            if ($valor['valor-horas'] >= '0') {
+              $lancamentos[$contador]['valor_horas'] = $_POST['lancamentos'][$contador]['valor-horas'];
+            } else {
               echo
                 '<p class="alert alert-warning" role="alert">Não foi informado o valor da hora no <b>lançamento</b> ' . $contador . '!</p>';
-              $bandeira = false;
-            } else {
-              $lancamentos[$contador]['valor_horas'] = $_POST['lancamentos'][$contador]['valor-horas'];
+              $bandeira = false;              
             }
 
             # validando total
-            if ($valor['valor-total'] == '0') {
+            if ($valor['valor-total'] >= '0') {
+              $lancamentos[$contador]['valor_total'] = $_POST['lancamentos'][$contador]['valor-total'];
+            } else {
               echo
                 '<p class="alert alert-warning" role="alert">Não foi informado o valor total no <b>lançamento</b> ' . $contador . '!</p>';
-              $bandeira = false;
-            } else {
-              $lancamentos[$contador]['valor_total'] = $_POST['lancamentos'][$contador]['valor-total'];
+              $bandeira = false;              
             }
 
             $contador++;

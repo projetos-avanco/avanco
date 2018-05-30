@@ -390,13 +390,13 @@
                     <div class="col-sm-2"><!-- coluna 1 da linha interna 5 campo horas valor hora -->
                       <label for="valor-horas">Valor Horas</label>
 
-                      <input class="form-control required" id="valor-horas" type="text" name="lancamentos[<?php echo $contador; ?>][valor-horas]" numero="<?php echo $contador; ?>" value="<?php echo $valor['valor_hora']; ?>">
+                      <input class="form-control required" id="valor-horas" type="text" name="lancamentos[<?php echo $contador; ?>][valor-horas]" numero="<?php echo $contador; ?>" value="<?php echo $valor['valor_hora']; ?>" readonly="true">
                     </div><!-- coluna 1 da linha interna 5 campo horas valor hora -->
 
                     <div class="col-sm-2"><!-- coluna 2 da linha interna 5 campo total -->
                       <label for="valor-toral">Valor Total</label>
 
-                      <input class="form-control required" id="valor-total" type="text" name="lancamentos[<?php echo $contador; ?>][valor-total]" numero="<?php echo $contador; ?>" value="<?php echo $valor['total']; ?>">
+                      <input class="form-control required" id="valor-total" type="text" name="lancamentos[<?php echo $contador; ?>][valor-total]" numero="<?php echo $contador; ?>" value="<?php echo $valor['total']; ?>" readonly="true">
                     </div><!-- coluna 2 da linha interna 5 campo total -->
                   </div><!-- linha interna 5 -->
 
