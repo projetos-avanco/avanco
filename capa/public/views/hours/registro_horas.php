@@ -294,13 +294,13 @@
                     <div class="col-sm-2"><!-- coluna 1 campo valor hora -->
                       <label for="valor-horas">Valor Horas</label>
 
-                      <input class="form-control required" id="valor-horas" type="text" name="lancamentos[0][valor-horas]" value="0" numero="0">
+                      <input class="form-control required" id="valor-horas" type="text" name="lancamentos[0][valor-horas]" value="0" numero="0" readonly="true">
                     </div><!-- coluna 1 campo valor hora -->
 
                     <div class="col-sm-2"><!-- coluna 2 campo valor total -->
                       <label for="valor-toral">Valor Total</label>
 
-                      <input class="form-control required" id="valor-total" type="text" name="lancamentos[0][valor-total]" value="0" numero="0">
+                      <input class="form-control required" id="valor-total" type="text" name="lancamentos[0][valor-total]" value="0" numero="0" readonly="true">
                     </div><!-- coluna 2 campo valor total -->
                   </div><!-- ilnha interna 4 -->
 
