@@ -61,7 +61,7 @@ function verificaUsuarioLogado($pagina, $id = null)
       # páginas que os usuários nível 1 que são capitães possuem permissão para acessar
       if (($pagina == 'metas_capitaes_selecao.php') AND (
             $id == 14 OR 
-            $id == 17 OR 
+            $id == 23 OR 
             $id == 20 OR 
             $id == 25) 
             
@@ -69,7 +69,7 @@ function verificaUsuarioLogado($pagina, $id = null)
 
           ($pagina == 'metas_capitaes.php') AND (
             $id == 14 OR 
-            $id == 17 OR 
+            $id == 23 OR 
             $id == 20 OR 
             $id == 25)) {
 

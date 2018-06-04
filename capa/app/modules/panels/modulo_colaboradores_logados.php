@@ -66,7 +66,7 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
   
           break;
   
-      case '17':
+      case '23':
   
         $dados['time']    = 2;
         $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time os templários
