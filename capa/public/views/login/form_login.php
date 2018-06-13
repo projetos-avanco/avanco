@@ -47,7 +47,7 @@
                 <div class="panel-body">
                   <div class="form-group">
                     <label class="sr-only" for="email">Email</label>
-                    <input class="form-control" type="text" name="form[email]" placeholder="Email" required>
+                    <input class="form-control" type="text" name="form[email]" id="email" placeholder="Email" required>
                   </div>
 
                   <div class="form-group">
@@ -59,13 +59,13 @@
 
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox"> Lembre-me
+                      <input type="checkbox" name="form[lembre]" id="lembre" value="sim"> Lembre-me
                     </label>
                   </div>
 
                   <br>
 
-                  <button class="btn btn-block btn-success" type="submit"><b>Enviar</b></button>
+                  <button class="btn btn-block btn-success" type="submit" onclick="guardaEmail();"><b>Enviar</b></button>
                 </div>
               </div>
             </div>
@@ -99,5 +99,6 @@
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/login/lembre_me.js"></script>
 </body>
 </html>
