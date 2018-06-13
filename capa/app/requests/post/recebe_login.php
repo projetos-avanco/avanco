@@ -14,9 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $usuario = criaModeloDeUsuario();
 
   # recuperando dados do formulário de login
-  $login['email'] = isset($_POST['form']['email']) ? $_POST['form']['email'] : NULL;
-  $login['senha'] = isset($_POST['form']['senha']) ? $_POST['form']['senha'] : NULL;
-
+  $login['email'] = isset($_POST['form']['email']) ? $_POST['form']['email'] : null;
+  $login['senha'] = isset($_POST['form']['senha']) ? $_POST['form']['senha'] : null;
+  
   # verificando se os dados do formulário de login não estão vazios
   if (! empty($login['email']) OR ! empty($login['senha'])) {
 
