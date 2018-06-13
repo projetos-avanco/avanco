@@ -7,7 +7,9 @@ ini_set('log_errors', 1);
 error_reporting(E_ALL);
 
 # iniciando sessão
-session_start();
+session_start([
+  'cookie_lifetime' => 9999999999  
+]);
 
 # importando script com as rotas do servidor web
 require_once 'routes/servidor.php';
