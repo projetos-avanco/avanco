@@ -31,6 +31,7 @@ function consultaColaboradoresDoChat($objeto)
       sobrenome
     FROM av_usuarios_login
     WHERE (nivel = 1)
+    AND (ativo = true)
     ORDER BY nome";
 
   $resultado = mysqli_query($objeto, $query);
