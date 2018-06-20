@@ -40,11 +40,18 @@ function consultaChatSuporte()
     # chamando função que grava os colaboradores em uma sessão
     criaSessaoDeColaboradores($colaboradores, $quantidade);
 
-    # chamando função que elimina os colaboradores que possuem menos de 20% de conhecimento
-    $colaboradores = eliminaColaboradoresSemConhecimento($colaboradores, $quantidade);
+    $hora = date('H:i:s');
+    
+    # permitindo que qualquer colaborador sem conhecimento receba o atendimento durante o horário de almoço
+    if (($hora >= '08:00:00' && $hora <= '12:00:00') || ($hora >= '14:00:00' && $hora <= '18:00:00')) {
 
-    # recuperando a quantidade de colaboradores que possuem no mínimo 20% de conhecimento
-    $quantidade = count($colaboradores);
+      # chamando função que elimina os colaboradores que possuem menos de 20% de conhecimento
+      $colaboradores = eliminaColaboradoresSemConhecimento($colaboradores, $quantidade);
+
+      # recuperando a quantidade de colaboradores que possuem no mínimo 20% de conhecimento
+      $quantidade = count($colaboradores);
+
+    }
 
     # verificando se não existe nenhum colaborador online com no mínimo 20% de conhecimento
     if ($quantidade == 0) {
