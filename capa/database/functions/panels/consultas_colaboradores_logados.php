@@ -152,6 +152,8 @@ function consultaDadosDosColaboradores($painel, $db)
         u.user_id  = 4  OR
         u.user_id  = 5  OR
         u.user_id  = 6  OR
+        u.user_id  = 36 OR
+        u.user_id  = 39 OR
         u.user_id  = 42 OR
         u.user_id  = 44 OR
         u.user_id  = 61)
@@ -183,6 +185,8 @@ function consultaDadosDosColaboradores($painel, $db)
         u.user_id  = 4  OR
         u.user_id  = 5  OR
         u.user_id  = 6  OR
+        u.user_id  = 36 OR
+        u.user_id  = 39 OR
         u.user_id  = 42 OR
         u.user_id  = 44 OR
         u.user_id  = 61)
