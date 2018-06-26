@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * consulta o ramal do usuário
@@ -6,11 +6,11 @@
  * @param - array com os dados da conta do usuário
  */
 function retornaRamalDoUsuario($db, $usuario)
-{  
+{
   $query = "SELECT ramal FROM av_usuarios_login WHERE (id = {$usuario['id']});";
-  
+
   $ramal = null;
-  
+
   # verificando se a consulta pode ser executada
   if ($resultado = $db->query($query)) {
 
@@ -25,12 +25,12 @@ function retornaRamalDoUsuario($db, $usuario)
 
 /**
  * retorna todos os ramais dos usuários
- * @param - objeto com uma conexão aberta 
+ * @param - objeto com uma conexão aberta
  */
 function retornaTodosOsRamaisDosUsuarios($db)
 {
-  $query = 
-    "SELECT 
+  $query =
+    "SELECT
       id,
       nome,
       sobrenome,
@@ -49,20 +49,19 @@ function retornaTodosOsRamaisDosUsuarios($db)
 
       switch ($registro['id']) {
 
-        case '1':
-        case '4':
+        case '1':        
 
           $arr['comercial'][] = array(
-            
+
             'nome'      => $registro['nome'],
             'sobrenome' => $registro['sobrenome'],
             'email'     => $registro['email'],
             'ramal'     => $registro['ramal']
-    
+
           );
 
           break;
-        
+
         case '3':
 
           $arr['rh'][] = array(
@@ -71,7 +70,7 @@ function retornaTodosOsRamaisDosUsuarios($db)
             'sobrenome' => $registro['sobrenome'],
             'email'     => $registro['email'],
             'ramal'     => $registro['ramal']
-    
+
           );
 
           break;
@@ -100,6 +99,11 @@ function retornaTodosOsRamaisDosUsuarios($db)
         case '28':
         case '29':
         case '30':
+        case '33':
+        case '34':
+        case '35':
+        case '36':
+        case '37':
 
           $arr['suporte'][] = array(
 
@@ -107,12 +111,12 @@ function retornaTodosOsRamaisDosUsuarios($db)
             'sobrenome' => $registro['sobrenome'],
             'email'     => $registro['email'],
             'ramal'     => $registro['ramal']
-    
+
           );
 
           break;
 
-      }      
+      }
 
     }
 
