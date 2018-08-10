@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * consulta os atendimentos em um período e com os filtros desejados
@@ -28,11 +28,11 @@ function consultaAtendimentos($db, $dados)
         FROM lh_chat AS c
         INNER JOIN lh_users AS u
           ON u.id = c.user_id
-        INNER JOIN av_questionario_interno AS i
+        LEFT JOIN av_questionario_interno AS i
           ON i.id_chat = c.id
-        INNER JOIN av_base_equipe AS e
+        LEFT JOIN av_base_equipe AS e
           ON e.cod_equipe = i.equipe
-        INNER JOIN av_base_demanda AS d
+        LEFT JOIN av_base_demanda AS d
           ON d.cod_demanda = i.demanda
         WHERE (c.status = 2)
           AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$dados['periodo']['data1']}' AND '{$dados['periodo']['data2']}')
@@ -57,11 +57,11 @@ function consultaAtendimentos($db, $dados)
         FROM lh_chat AS c
         INNER JOIN lh_users AS u
           ON u.id = c.user_id
-        INNER JOIN av_questionario_interno AS i
+        LEFT JOIN av_questionario_interno AS i
           ON i.id_chat = c.id
-        INNER JOIN av_base_equipe AS e
+        LEFT JOIN av_base_equipe AS e
           ON e.cod_equipe = i.equipe
-        INNER JOIN av_base_demanda AS d
+        LEFT JOIN av_base_demanda AS d
           ON d.cod_demanda = i.demanda
         WHERE (c.status = 2)
           AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$dados['periodo']['data1']}' AND '{$dados['periodo']['data2']}')
@@ -69,7 +69,7 @@ function consultaAtendimentos($db, $dados)
         ORDER BY data;";
 
     }
-  
+
   # verificando se a consulta será realizada por colaborador
   } elseif ($dados['tipo'] == '2') {
 
@@ -88,15 +88,15 @@ function consultaAtendimentos($db, $dados)
       FROM lh_chat AS c
       INNER JOIN lh_users AS u
         ON u.id = c.user_id
-      INNER JOIN av_questionario_interno AS i
+      LEFT JOIN av_questionario_interno AS i
         ON i.id_chat = c.id
-      INNER JOIN av_base_equipe AS e
+      LEFT JOIN av_base_equipe AS e
         ON e.cod_equipe = i.equipe
-      INNER JOIN av_base_demanda AS d
+      LEFT JOIN av_base_demanda AS d
         ON d.cod_demanda = i.demanda
       WHERE (c.status = 2)
         AND (c.user_id = {$dados['colaborador']})
-        AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$dados['periodo']['data1']}' AND '{$dados['periodo']['data2']}')	
+        AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$dados['periodo']['data1']}' AND '{$dados['periodo']['data2']}')
       ORDER BY data;";
 
   # verificando se a consulta será realizada por ambos (empresa e colaborador)
@@ -120,16 +120,16 @@ function consultaAtendimentos($db, $dados)
         FROM lh_chat AS c
         INNER JOIN lh_users AS u
           ON u.id = c.user_id
-        INNER JOIN av_questionario_interno AS i
+        LEFT JOIN av_questionario_interno AS i
           ON i.id_chat = c.id
-        INNER JOIN av_base_equipe AS e
+        LEFT JOIN av_base_equipe AS e
           ON e.cod_equipe = i.equipe
-        INNER JOIN av_base_demanda AS d
+        LEFT JOIN av_base_demanda AS d
           ON d.cod_demanda = i.demanda
         WHERE (c.status = 2)
           AND (c.user_id = {$dados['colaborador']})
           AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$dados['periodo']['data1']}' AND '{$dados['periodo']['data2']}')
-          AND (SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"', c.additional_data)+ 29)),'\"',1) = '{$dados['cnpj']}')	
+          AND (SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"', c.additional_data)+ 29)),'\"',1) = '{$dados['cnpj']}')
         ORDER BY data;";
 
     # verificando se a consulta será realizada por ambos pela conta contrato
@@ -150,16 +150,16 @@ function consultaAtendimentos($db, $dados)
         FROM lh_chat AS c
         INNER JOIN lh_users AS u
           ON u.id = c.user_id
-        INNER JOIN av_questionario_interno AS i
+        LEFT JOIN av_questionario_interno AS i
           ON i.id_chat = c.id
-        INNER JOIN av_base_equipe AS e
+        LEFT JOIN av_base_equipe AS e
           ON e.cod_equipe = i.equipe
-        INNER JOIN av_base_demanda AS d
+        LEFT JOIN av_base_demanda AS d
           ON d.cod_demanda = i.demanda
         WHERE (c.status = 2)
           AND (c.user_id = {$dados['colaborador']})
           AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$dados['periodo']['data1']}' AND '{$dados['periodo']['data2']}')
-          AND (SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"contaContratoContato\"', c.additional_data)+ 38)),'\"',1) = '{$dados['contrato']}')	
+          AND (SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"contaContratoContato\"', c.additional_data)+ 38)),'\"',1) = '{$dados['contrato']}')
         ORDER BY data;";
 
     }
