@@ -25,6 +25,12 @@ function consultaChatSuporte()
   # recuperando a quantidade de colaboradores online
   $quantidade = count($colaboradores);
 
+  ### === Curva ABC
+  if ($cliente['conta_contrato'] == '0000573' && $quantidade >= 1) {    
+    include 'customers/macdel.php';
+  }
+  ### === Curva ABC
+
   # verificando se existe um ou mais colaboradores online
   if ($quantidade == 1) {
 
