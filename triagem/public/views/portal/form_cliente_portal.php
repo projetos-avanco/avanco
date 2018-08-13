@@ -37,23 +37,23 @@
         <div class="col-sm-2">
           <div class="form-group">
             <label class="sr-only" for="cnpj">CNPJ: </label>
-            <input type="text" id="cnpj" name="cliente[cnpj]" value="07065445000107">
+            <input type="text" id="cnpj" name="cliente[cnpj]" value="00517780000141">
           </div>
         </div>
 
         <div class="col-sm-2">
           <div class="form-group">
             <label class="sr-only" for="conta_contrato">Conta Contrato: </label>
-            <input type="text" id="conta_contrato" name="cliente[conta_contrato]" value="0000337">
+            <input type="text" id="conta_contrato" name="cliente[conta_contrato]" value="0000573">
           </div>
         </div>
 
         <div class="col-sm-2">
           <div class="form-group">
             <label class="sr-only" for="razao_social">Razão Social: </label>
-            <input type="text" id="razao_social" name="cliente[razao_social]" value="Supermercado Ita">
+            <input type="text" id="razao_social" name="cliente[razao_social]" value="VALEMOS COMERCIO DE ROUPAS - MACDEL">
           </div>
-        </div>        
+        </div>
       </div>
 
       <div class="row">
