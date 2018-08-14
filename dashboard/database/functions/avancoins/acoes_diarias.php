@@ -94,11 +94,11 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
   $valores = rtrim($valores, ' OR ');
 
   $data = date('Y-m-d');
-   
-  # verificando se a data atual está no período da campanha da base de conhecimento
-  if ($data >= '2018-04-02' AND $data <= '2018-04-06') {
 
-    $query =    
+  # verificando se a data atual está no período da campanha da base de conhecimento
+  if ($data >= '2018-08-20' AND $data <= '2018-08-24') {
+
+    $query =
       "SELECT
         c.user_id AS id_colaborador,
         CASE
@@ -111,7 +111,7 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
           WHEN (i.equipe <> 4 AND i.equipe <> 5 AND i.utilizou_base_conhecimento = 'Sim')
             THEN 4
         END AS id_acao_diaria,
-        c.id AS id_chat,	
+        c.id AS id_chat,
         FROM_UNIXTIME(c.time, '%Y-%m-%d') AS data_acao,
         FROM_UNIXTIME(c.last_user_msg_time, '%H:%i:%s') AS horario_acao
       FROM lh_chat AS c
@@ -135,9 +135,9 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
         if ($registro['id_acao_diaria'] == '4') {
 
           $query = "SELECT id FROM lh_msg WHERE (chat_id = {$registro['id_chat']}) AND (msg LIKE '%bc.avancoinfo.com.br%');";
-          
+
           $objeto = $db->query($query);
-          
+
           # verificando se no atendimento não foi enviado o link do documento da base de conhecimento
           if ($objeto->num_rows == 0) {
 
@@ -149,7 +149,7 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
         }
 
         $acoes[] = array(
-          
+
           'id_colaborador' => $registro['id_colaborador'],
           'id_acao_diaria' => $registro['id_acao_diaria'],
           'id_chat'        => $registro['id_chat'],
@@ -157,12 +157,12 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
           'horario_acao'   => $registro['horario_acao']
 
         );
-        
+
       }
 
     }
 
-  # verificando se a data atual está fora do período da campanha da base de conhecimento  
+  # verificando se a data atual está fora do período da campanha da base de conhecimento
   } else {
 
     $query =
@@ -205,7 +205,7 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
 
         );
 
-      }     
+      }
 
     }
 
@@ -223,7 +223,7 @@ function retornaLogsDeAcoesDiarias($db, $carteira)
 function consultaAcoesDiarias($db, $carteira)
 {
   $data = date('Y-m-d');
-  
+
   # verificando se a data atual está no período da campanha da base de conhecimento
   if ($data >= '2018-04-02' AND $data <= '2018-04-06') {
 
@@ -240,7 +240,7 @@ function consultaAcoesDiarias($db, $carteira)
             WHEN (i.equipe <> 4 AND i.equipe <> 5 AND i.utilizou_base_conhecimento = 'Sim')
               THEN 4
           END AS id_acao_diaria,
-        c.id AS id_chat,	
+        c.id AS id_chat,
         FROM_UNIXTIME(c.time, '%Y-%m-%d') AS data_acao,
         FROM_UNIXTIME(c.last_user_msg_time, '%H:%i:%s') AS horario_acao
       FROM lh_chat AS c
@@ -263,9 +263,9 @@ function consultaAcoesDiarias($db, $carteira)
         if ($registro['id_acao_diaria'] == '4') {
 
           $query = "SELECT id FROM lh_msg WHERE (chat_id = {$registro['id_chat']}) AND (msg LIKE '%bc.avancoinfo.com.br%');";
-          
+
           $objeto = $db->query($query);
-          
+
           # verificando se no atendimento não foi enviado o link do documento da base de conhecimento
           if ($objeto->num_rows == 0) {
 
@@ -277,7 +277,7 @@ function consultaAcoesDiarias($db, $carteira)
         }
 
         $acoes[] = array(
-          
+
           'id_colaborador' => $registro['id_colaborador'],
           'id_acao_diaria' => $registro['id_acao_diaria'],
           'id_chat'        => $registro['id_chat'],
@@ -285,13 +285,13 @@ function consultaAcoesDiarias($db, $carteira)
           'horario_acao'   => $registro['horario_acao']
 
         );
-        
+
       }
 
     }
 
   # verificando se a data atual está fora do período da campanha da base de conhecimento
-  } else { 
+  } else {
 
     $query =
       "SELECT
