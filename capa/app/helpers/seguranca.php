@@ -60,17 +60,17 @@ function verificaUsuarioLogado($pagina, $id = null)
 
       # páginas que os usuários nível 1 que são capitães possuem permissão para acessar
       if (($pagina == 'metas_capitaes_selecao.php') AND (
-            $id == 14 OR 
-            $id == 23 OR 
-            $id == 20 OR 
-            $id == 25) 
-            
+            $id == 14 OR
+            $id == 23 OR
+            $id == 20 OR
+            $id == 25)
+
             OR
 
           ($pagina == 'metas_capitaes.php') AND (
-            $id == 14 OR 
-            $id == 23 OR 
-            $id == 20 OR 
+            $id == 14 OR
+            $id == 23 OR
+            $id == 20 OR
             $id == 25)) {
 
         return true;
@@ -87,7 +87,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'visualiza_lancamentos.php'  OR
           $pagina == 'edita_lancamentos.php'      OR
           $pagina == 'edita_tickets.php'          OR
-          $pagina == 'consulta_tickets_adm.php') {
+          $pagina == 'consulta_tickets_adm.php'   OR
+          $pagina == 'enderecos.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -112,14 +113,16 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'registro_horas.php'         OR
          $pagina == 'metas_capitaes.php'         OR
          $pagina == 'metas_capitaes_selecao.php' OR
-         $pagina == 'consulta_atendimentos.php'  OR 
+         $pagina == 'consulta_atendimentos.php'  OR
          $pagina == 'cadastro.php'               OR
          $pagina == 'ranking_colaboradores.php'  OR
          $pagina == 'consulta_lancamentos.php'   OR
          $pagina == 'visualiza_lancamentos.php'  OR
          $pagina == 'edita_lancamentos.php'      OR
          $pagina == 'visualiza_tickets.php'      OR
-         $pagina == 'edita_tickets.php') {
+         $pagina == 'edita_tickets.php'          OR
+         $pagina == 'tela_inicial.php'           OR
+         $pagina == 'enderecos.php') {
 
         return true;
 
