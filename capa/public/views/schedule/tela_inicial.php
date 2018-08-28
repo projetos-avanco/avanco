@@ -21,7 +21,6 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize_7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
@@ -123,7 +122,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
-  <!--<script src="<?php echo BASE_URL; ?>public/js/shedule/validacao.js"></script>-->
+  <script src="<?php echo BASE_URL; ?>public/js/shedule/validacao.js"></script>
 </body>
 </html>
 
