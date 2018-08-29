@@ -87,7 +87,7 @@
     $clientes[] = array(
       'contrato'     => $linha['contrato'],
       'cnpj'         => $linha['cnpj'],
-      'razao_social' => $linha['razao_social']
+      'razao_social' => decodificaCaracteresJSON($linha['razao_social'])
     );
   }
 
