@@ -21,7 +21,7 @@
 
     $id = 1;
 
-    for ($i = 0; $i < count($cnpjs); $i++) {      
+    for ($i = 0; $i < count($cnpjs); $i++) {
       $query =
         "SELECT
         	*
@@ -52,7 +52,7 @@
       $resultado = mysqli_query($dbc, $query);
 
       while ($linha = mysqli_fetch_array($resultado)) {
-        $cliente = decodificaCaracteresJSON($linha['cliente']);
+        $cliente = strtolower(decodificaCaracteresJSON($linha['cliente']));
 
         $insert = "INSERT INTO av_agenda_contatos VALUES (null, {$cnpjs[$i]['id']}, '$cliente')";
 

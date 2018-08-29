@@ -87,14 +87,13 @@
     $clientes[] = array(
       'contrato'     => $linha['contrato'],
       'cnpj'         => $linha['cnpj'],
-      'razao_social' => decodificaCaracteresJSON($linha['razao_social'])
+      'razao_social' => strtolower(decodificaCaracteresJSON($linha['razao_social']))
     );
   }
 
   for ($i = 0; $i < count($contratos); $i++) {
     for ($j = 0; $j < count($clientes); $j++) {
       if ($contratos[$i]['contrato'] == $clientes[$j]['contrato']) {
-        $query = '';
         $query = "INSERT INTO av_agenda_cnpjs VALUES (null, '{$contratos[$i]['id']}', '{$clientes[$j]['cnpj']}', '{$clientes[$j]['razao_social']}')";
 
         mysqli_query($dbc, $query);
