@@ -59,14 +59,14 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
-                <label for="cep">CEP</label>
-                <input class="form-control" id="cep" type="text" name="endereco[cep]" maxlength="9" placeholder="Número do CEP" onblur="pesquisaCEP(this.value);">
+                <label for="cep">CEP*</label>
+                <input class="form-control" id="cep" type="text" name="endereco[cep]" maxlength="9" placeholder="00000-000" onblur="pesquisaCEP(this.value);">
               </div>
             </div>
 
             <div class="col-sm-8">
               <div class="form-group">
-                <label for="tipo">Tipo</label>
+                <label for="tipo">Tipo*</label>
                 <select class="form-control" id="tipo" name="endereco[tipo]">
                   <option value="0">Selecione o Tipo do Endereço</option>
                   <option value="1">Apartamento</option>
@@ -81,28 +81,28 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
-                <label for="logradouro">Logradouro</label>
+                <label for="logradouro">Logradouro*</label>
                 <input class="form-control" id="logradouro" type="text" name="endereco[logradouro]" maxlength="100" placeholder="Nome do Logradouro (Avenida ou Rua)">
               </div>
             </div>
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="distrito">Bairro</label>
+                <label for="distrito">Bairro*</label>
                 <input class="form-control" id="distrito" type="text" name="endereco[distrito]" maxlength="100" placeholder="Nome do Distrito (Bairro)">
               </div>
             </div>
 
             <div class="col-sm-3">
               <div class="form-group">
-                <label for="localidade">Cidade</label>
+                <label for="localidade">Cidade*</label>
                 <input class="form-control" id="localidade" type="text" name="endereco[cidade]" maxlength="100" placeholder="Nome da Cidade">
               </div>
             </div>
 
             <div class="col-sm-2">
               <div class="form-group">
-                <label for="uf">Estado</label>
+                <label for="uf">Estado*</label>
                 <select class="form-control" id="uf" name="endereco[uf]">
                   <option value="0" selected>Selecione um Estado</option>
 
@@ -155,7 +155,7 @@
           <div class="row">
             <div class="col-sm-4">
               <div class="form-group">
-                <label for="numero">Número</label>
+                <label for="numero">Número*</label>
                 <input class="form-control" id="numero" type="text" name="endereco[numero]" maxlength="10" placeholder="Número da Residência">
               </div>
             </div>
@@ -218,6 +218,7 @@
         document.getElementById('logradouro').value = json.logradouro;
         document.getElementById('distrito').value = json.bairro;
         document.getElementById('localidade').value = json.localidade;
+        document.getElementById('complemento').value = json.complemento;
 
         switch (json.uf) {
           // região norte
@@ -355,6 +356,7 @@
           document.getElementById('logradouro').value = '...';
           document.getElementById('distrito').value = '...';
           document.getElementById('localidade').value = '...';
+          document.getElementById('complemento').value = '...';
 
           var script = document.createElement('script');
 
