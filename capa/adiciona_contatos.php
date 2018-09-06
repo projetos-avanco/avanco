@@ -5,70 +5,54 @@
 
   $dbc = abre_conexao();
 
+  /**
+   *
+   * NÃO É NECESSÁRIO RODAS ESSE SCRIPT, APENAS INSERIR MANUALMENTE OS CONTATOS QUE ESTÃO NO ARQUIVO contatos.sql NO DROPBOX
+   */
+
   if ($dbc) {
-    $query = "SELECT id, cnpj FROM av_agenda_cnpjs ORDER BY id";
-
-    $resultado = mysqli_query($dbc, $query);
-
-    $cnpjs = array();
-
-    while ($linha = mysqli_fetch_array($resultado)) {
-      $cnpjs[] = array(
-        'id'   => $linha['id'],
-        'cnpj' => $linha['cnpj']
-      );
-    }
-
-    $id = 1;
-
-    for ($i = 0; $i < count($cnpjs); $i++) {
-      $query =
-        "SELECT
-        	*
-        FROM
-        	(SELECT
-        		SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"', lh_chat.additional_data)+ 29)),'\"',1) AS cnpj,
-        		SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"nomeContato\"', lh_chat.additional_data)+ 29)),'\"',1) AS cliente,
-                SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"Telefone\"', lh_chat.additional_data)+ 26)),'\"',1) AS contato
-        	FROM
-        		lh_chat
-        	WHERE
-        		(FROM_UNIXTIME(lh_chat.time, '%Y-%m-%d') BETWEEN '2017-07-01' AND CURRENT_DATE())
-        		AND NOT (
-        			SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) = ''                  OR
-        			SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) = 'taContratoContato' OR
-        			SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"',lh_chat.additional_data)+ 29)),'\"',1) = 'eContato'          OR
-        			SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"contaContratoContato\"',lh_chat.additional_data)+ 38)),'\"',1) = ''         OR
-        			SUBSTRING_INDEX(SUBSTR(lh_chat.additional_data,(LOCATE('\"key\":\"empresaContato\"',lh_chat.additional_data)+ 32)),'\"',1) = ''
-        		)) AS c
-        WHERE (c.cnpj = '{$cnpjs[$i]['cnpj']}')
-        	AND (c.contato <> '' AND c.contato <> 'nomeContato')
-        	AND (c.cliente <> '' AND c.cliente <> '.' AND c.cliente <> ':' AND c.cliente <> '>62' AND c.cliente <> '(32) 3724-1228' AND c.cliente <> '(37) 9802-7812' AND c.cliente <> ',MERCADO VALOR DE SEROPEDICA')
-        GROUP BY
-        	c.contato
-        ORDER BY
-        	c.cliente";
+    $query =
+      "SELECT
+      	n.id,
+      	j.cliente
+      FROM av_agenda_cnpjs AS n
+      LEFT JOIN
+      	(SELECT DISTINCT
+      		SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"', c.additional_data)+ 29)),'\"',1) AS cnpj,
+      		SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) AS cliente
+      	FROM lh_chat AS c
+      	WHERE FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '2018-01-01' AND CURRENT_DATE()
+      		AND NOT SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"', c.additional_data)+ 29)),'\"',1) = ''
+      		AND NOT SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) = ''
+      		AND (SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> '' 			AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> '.' 			AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> ':' 			AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> '>62' 			AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> '(32) 3724-1228' 	AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> '(37) 9802-7812' 	AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> ',MERCADO VALOR DE SEROPEDICA' AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> '1' AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> '2' AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> 'A' AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> 'Aa' AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> 'Aaa' AND
+      			SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"nomeContato\"', c.additional_data)+ 29)),'\"',1) <> ',Edicelia')
+      	ORDER BY SUBSTRING_INDEX(SUBSTR(c.additional_data,(LOCATE('\"key\":\"cnpjEmpresa\"', c.additional_data)+ 29)),'\"',1)) AS j
+      ON j.cnpj = n.cnpj
+      ORDER BY n.id, j.cliente";
 
       $resultado = mysqli_query($dbc, $query);
 
+      $contador = 0;
+
       while ($linha = mysqli_fetch_array($resultado)) {
-        $cliente = strtolower(decodificaCaracteresJSON($linha['cliente']));
+        $linha['cliente'] = strtolower(decodificaCaracteresJSON($linha['cliente']));
 
-        $insert = "INSERT INTO av_agenda_contatos VALUES (null, {$cnpjs[$i]['id']}, '$cliente')";
+        $insert = "INSERT INTO av_agenda_contatos VALUES (null, {$linha['id']}, '{$linha['cliente']}')";
 
-        mysqli_query($dbc, $insert);
+        echo $insert . ';' . '<br>';
 
-        if (strlen($linha['contato']) <= 14) {
-          $insert = "INSERT INTO av_agenda_telefones_fixos VALUES (null, $id, '{$linha['contato']}')";
-
-          mysqli_query($dbc, $insert);
-        } else {
-          $insert = "INSERT INTO av_agenda_telefones_moveis VALUES (null, $id, '{$linha['contato']}')";
-
-          mysqli_query($dbc, $insert);
-        }
-
-        $id++;
+        $contador++;
       }
-    }
+      echo 'Total ' . $contador;
   }
