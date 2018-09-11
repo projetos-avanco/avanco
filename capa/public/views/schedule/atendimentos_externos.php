@@ -37,25 +37,6 @@
     .erro {
       border: 2px solid red;
     }
-
-    table thead tr th {
-      font-size: 0.85em;
-      text-align: left;
-    }
-
-    table tbody tr td {
-      font-size: 0.75em;
-      height: 1.5em;
-    }
-
-
-    .table tbody tr td {
-      vertical-align: middle;
-    }
-
-    .contatos {
-      font-size: 12px;
-    }
   </style>
 </head>
 
@@ -73,7 +54,7 @@
           </div>
         </div><!-- linha -->
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/processa_atendimento_remoto.php" method="post">
+        <form action="#" method="post">
 
           <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
@@ -113,7 +94,14 @@
           </div>
 
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-2">
+              <div class="form-group">
+                <label class="sr-only" for="id">ID</label>
+                <input class="form-control required" id="id" type="text" name="remoto['id-cnpj']" placeholder="ID" readonly="true">
+              </div>
+            </div>
+
+            <div class="col-sm-10">
               <div class="form-group">
                 <label class="sr-only" for="razao-social">Razão Social</label>
                 <input class="form-control required" id="razao-social" type="text" placeholder="Razão Social" readonly="true">
@@ -137,24 +125,105 @@
             </div>
           </div>
 
-          <input class="form-control required" id="id" type="hidden" name="remoto[id-cnpj]" value="">
+          <br>
 
           <div class="row">
-            <div class="col-sm-12">
-              <div class="form-group">
-                <h5>Dados do Contato</h5>
-              </div>
-            </div>
-          </div>
+            <div class="col-sm-6">
 
-          <div class="row">
-            <div class="col-sm-12">
               <div class="panel panel-default">
-                <div class="panel-body" id="contatos">
+                <div class="panel-heading text-center">Endereço</div>
+
+                <div class="panel-body">
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <dl class="dl-horizontal">
+                          <dt>Avenida:</dt>
+                          <dd></dd>
+                          <dt>Bairro:</dt>
+                          <dd></dd>
+                          <dt>Cidade:</dt>
+                          <dd></dd>
+                          <dt>Estado:</dt>
+                          <dd></dd>
+                          <dt>Tipo de Endereço:</dt>
+                          <dd></dd>
+                          <dt>Código Postal:</dt>
+                          <dd></dd>
+                          <dt>Número:</dt>
+                          <dd></dd>
+                          <dt>Complemento:</dt>
+                          <dd></dd>
+                          <dt>Referência:</dt>
+                          <dd></dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div><!-- linha -->
+
+                  <div class="row">
+                    <div class="col-sm-2 col-sm-offset-4">
+                      <div class="form-group">
+                        <button class="btn btn-sm btn-block btn-warning" id="editar-endereco" type="button">Editar</button>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                      <div class="form-group">
+                        <a class="btn btn-sm btn-block btn-success" id="cadastrar-endereco" type="button" onclick="cadastrarEndereco();">
+                          Cadastrar
+                        </a>
+                      </div>
+                    </div>
+                  </div><!-- linha -->
 
                 </div>
-              </div>
-            </div>
+              </div><!-- painel -->
+
+            </div><!-- coluna 1 -->
+
+            <div class="col-sm-6">
+              <div class="panel panel-default">
+                <div class="panel-heading text-center">Contato</div>
+
+                <div class="panel-body">
+
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <dl class="dl-horizontal">
+                          <dt>Nome:</dt>
+                          <dd></dd>
+                          <dt>Fixo:</dt>
+                          <dd></dd>
+                          <dt>Móvel:</dt>
+                          <dd></dd>
+                          <dt>Email:</dt>
+                          <dd></dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div><!-- linha -->
+
+                  <div class="row">
+                    <div class="col-sm-2 col-sm-offset-4">
+                      <div class="form-group">
+                        <button class="btn btn-sm btn-block btn-warning" id="editar-contato" type="button">Editar</button>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                      <div class="form-group">
+                        <button class="btn btn-sm btn-block btn-success" id="cadastrar-contato" type="button">Cadastrar</button>
+                      </div>
+                    </div>
+                  </div><!-- linha -->
+
+                </div>
+              </div><!-- painel -->
+
+            </div><!-- coluna 2 -->
           </div><!-- linha -->
 
           <div class="row">
@@ -172,7 +241,7 @@
                 <div class="col-sm-12">
                   <div class="form-group">
                     <label class="sr-only" for="colaborador">Colaborador</label>
-                    <select class="form-control required" id="colaborador" name="remoto[colaborador]">
+                    <select class="form-control required" id="colaborador" name="form[colaborador]">
                       <option value="0">Colaborador</option>
                     </select>
                   </div>
@@ -232,7 +301,6 @@
             </div><!-- coluna 1 -->
 
             <div class="col-sm-6">
-
               <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
@@ -277,8 +345,8 @@
                   <div class="form-group">
                     <label class="sr-only" for="cobranca">Cobrança</label>
 
-                    <select class="form-control" id="cobranca" name="remoto[cobranca]">
-                      <option value="0" selected>Tipo de Cobrança</option>
+                    <select class="form-control" id="cobranca">
+                      <option value="0">Tipo de Cobrança</option>
                       <option value="1">Hora</option>
                       <option value="2">Pacote</option>
                     </select>
@@ -368,43 +436,18 @@
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
 
   <script>
-    $(document).ready(function() {
-      $('#id').change(function() {
-        alert('mudou!');
-      });
+    function cadastrarEndereco()
+    {
+      var idCnpj = document.getElementById('id').value;
 
-      $('#faturado').change(function() {
-        var option = $('#faturado').val();
+      if (idCnpj) {
+        var url = 'enderecos.php?id-cnpj=' + idCnpj;
 
-        if (option == '2') {
-          $('#valor').attr('readonly', 'true');
-          $('#cobranca').attr('disabled', 'true');
-          $('#valor').val('0.00');
-        } else {
-          $('#cobranca').removeAttr('disabled');
-          $('#valor').val('');
-        }
-      });
-
-      $('#data').mask('00/00/0000');
-      $('#horario').mask('00:00');
-      $('#valor').mask('#0.00', {reverse: true});
-    })
-  </script>
-
-  <script>
-    $(function() {
-      $(document).on('click', '#contatos .btn-xs', function(e) {
-        e.preventDefault;
-
-        $('#contatos .btn-xs.btn-success').removeClass('btn-success').addClass('btn-default');
-        $(this).removeClass('btn-default').addClass('btn-success');
-
-        var id = $(this).closest('tr').find('td[data-id]').data('id');
-        var nome = $(this).closest('tr').find('td[data-nome]').data('nome');
-        var fixo = $(this).
-      });
-    });
+        window.open(url, '_self');
+      } else {
+        alert('Cliente não selecionado!');
+      }
+    }
   </script>
 </body>
 </html>

@@ -54,57 +54,38 @@
 
         <br>
 
-        <form action="#" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_endereco.php" method="post">
 
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-12">
               <div class="form-group">
-                <label for="cep">CEP*</label>
-                <input class="form-control" id="cep" type="text" name="endereco[cep]" maxlength="9" placeholder="00000-000" onblur="pesquisaCEP(this.value);">
-              </div>
-            </div>
-
-            <div class="col-sm-8">
-              <div class="form-group">
-                <label for="tipo">Tipo*</label>
-                <select class="form-control" id="tipo" name="endereco[tipo]">
-                  <option value="0">Selecione o Tipo do Endereço</option>
-                  <option value="1">Apartamento</option>
-                  <option value="2">Casa</option>
-                  <option value="3">Comercial</option>
-                  <option value="4">Outros</option>
-                </select>
+                <label class="sr-only" for="logradouro">Logradouro</label>
+                <input class="form-control" id="logradouro" type="text" name="endereco[logradouro]" maxlength="100" placeholder="Avenida">
               </div>
             </div>
           </div><!-- linha -->
 
           <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label class="sr-only" for="distrito">Bairro</label>
+                <input class="form-control" id="distrito" type="text" name="endereco[distrito]" maxlength="100" placeholder="Bairro">
+              </div>
+            </div>
+
             <div class="col-sm-4">
               <div class="form-group">
-                <label for="logradouro">Logradouro*</label>
-                <input class="form-control" id="logradouro" type="text" name="endereco[logradouro]" maxlength="100" placeholder="Nome do Logradouro (Avenida ou Rua)">
-              </div>
-            </div>
-
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label for="distrito">Bairro*</label>
-                <input class="form-control" id="distrito" type="text" name="endereco[distrito]" maxlength="100" placeholder="Nome do Distrito (Bairro)">
-              </div>
-            </div>
-
-            <div class="col-sm-3">
-              <div class="form-group">
-                <label for="localidade">Cidade*</label>
-                <input class="form-control" id="localidade" type="text" name="endereco[cidade]" maxlength="100" placeholder="Nome da Cidade">
+                <label class="sr-only" for="localidade">Cidade</label>
+                <input class="form-control" id="localidade" type="text" name="endereco[localidade]" maxlength="100" placeholder="Cidade">
               </div>
             </div>
 
             <div class="col-sm-2">
               <div class="form-group">
-                <label for="uf">Estado*</label>
+                <label class="sr-only" for="uf">Estado</label>
+
                 <select class="form-control" id="uf" name="endereco[uf]">
-                  <option value="0" selected>Selecione um Estado</option>
+                  <option value="0" selected>Estado</option>
 
                   <optgroup label="Região Norte">
                     <option value="1">Acre (AC)</option>
@@ -153,17 +134,38 @@
           </div><!-- linha -->
 
           <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-2">
               <div class="form-group">
-                <label for="numero">Número*</label>
-                <input class="form-control" id="numero" type="text" name="endereco[numero]" maxlength="10" placeholder="Número da Residência">
+                <label class="sr-only" for="tipo">Tipo</label>
+
+                <select class="form-control" id="tipo" name="endereco[tipo]">
+                  <option value="0">Tipo do Endereço</option>
+                  <option value="1">Apartamento</option>
+                  <option value="2">Casa</option>
+                  <option value="3">Comercial</option>
+                  <option value="4">Outros</option>
+                </select>
               </div>
             </div>
 
-            <div class="col-sm-8">
+            <div class="col-sm-4">
               <div class="form-group">
-                <label for="complemento">Complemento</label>
-                <input class="form-control" id="complemento" type="text" name="endereco[complemento]" maxlength="30" placeholder="Complemento do Endereço">
+                <label class="sr-only" for="cep">Código Postal</label>
+                <input class="form-control" id="cep" type="text" name="endereco[cep]" maxlength="9" placeholder="CEP" onblur="pesquisaCEP(this.value);">
+              </div>
+            </div>
+
+            <div class="col-sm-2">
+              <div class="form-group">
+                <label class="sr-only" for="numero">Número</label>
+                <input class="form-control" id="numero" type="text" name="endereco[numero]" maxlength="10" placeholder="Número">
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label class="sr-only" for="complemento">Complemento</label>
+                <input class="form-control" id="complemento" type="text" name="endereco[complemento]" maxlength="30" placeholder="Complemento">
               </div>
             </div>
           </div><!-- linha -->
@@ -171,19 +173,24 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="referencia">Referência</label>
-                <input class="form-control" id="referencia" type="text" name="endereco[referencia]" maxlength="100" placeholder="Referência do Endereço">
+                <label class="sr-only" for="referencia">Referência</label>
+                <input class="form-control" id="referencia" type="text" name="endereco[referencia]" maxlength="100" placeholder="Referência">
               </div>
             </div>
-          </div>
+          </div><!-- linha -->
+
+          <input id="id-cnpj" type="hidden" name="endereco[id-cnpj]">
 
           <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-2 col-sm-offset-8">
               <div class="form-group">
-                <div class="text-right">
-                  <button class="btn btn-default" type="reset">Limpar</button>
-                  <button class="btn btn-success"type="submit">Gravar</button>
-                </div>
+                <button class="btn btn-block btn-default" type="reset">Limpar</button>
+              </div>
+            </div>
+
+            <div class="col-sm-2">
+              <div class="form-group">
+                <button class="btn btn-block btn-success"type="submit">Gravar</button>
               </div>
             </div>
           </div><!-- linha -->
@@ -203,6 +210,11 @@
   <script>
     $('document').ready(function() {
       $('#cep').mask('00000-000');
+
+      var url = window.location.href;
+      var arr = url.split('=');
+
+      document.getElementById('id-cnpj').value = arr[1];
     })
   </script>
 

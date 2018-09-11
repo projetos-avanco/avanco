@@ -23,7 +23,7 @@
 
       # gravando id do colaborador na sessão
       $_SESSION['atividades']['colaborador'] = $_POST['colaborador'];
-      
+
       # verificando qual atividade o usuário deseja realizar
       switch ($_POST['atividade']) {
         case '1':
@@ -31,7 +31,7 @@
           break;
 
         case '2':
-          echo 'Atendimento Remoto';
+          header('Location: ' . BASE_URL . 'public/views/schedule/atendimentos_remotos.php');
           break;
 
         case '3':
