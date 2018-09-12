@@ -16,6 +16,18 @@ $('document').ready(function() {
       idProduto = $(this).val(); // recuperando id do produto clicado
 
       switch (idProduto) {
+        
+        case '22':
+          descricao = 'Vale Presente R$50,00 Mercado Livre';
+            break;
+
+        case '21':
+          descricao = 'Vale Crédito R$10,00 Udemy';
+            break;
+        
+        case '20':
+          descricao = 'Garrafa de Jack Daniels Honey';
+            break;
 
         case '19':
           descricao = 'Smarthphone Asus Zenfone 3';
