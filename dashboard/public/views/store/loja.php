@@ -38,7 +38,7 @@
 
   # chamando função responsável por retornar os dados dos produtos disponíveis na loja avanção
   $produtos = retornaProdutosDaLojaAvancao();
-
+  
 ?>
 
 <!DOCTYPE html>
@@ -117,6 +117,26 @@
           <div class="panel-body">
             <div class="text-center">
               <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[20]['imagem']; ?>" alt="<?php echo $produtos[20]['descricao']; ?>">
+                <h4><?php echo $produtos[20]['descricao']; ?></h4>
+              </p>
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Açai 300ml">
+                <?php echo $produtos[20]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[20]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
                 <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[12]['imagem']; ?>" alt="<?php echo $produtos[12]['descricao']; ?>">
                 <h4><?php echo $produtos[12]['descricao']; ?></h4>
               </p>
@@ -131,7 +151,9 @@
           </div>
         </div>
       </div>
+    </div><!-- primeira seção de produtos -->
 
+    <div class="row"><!-- segunda seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -151,9 +173,7 @@
           </div>
         </div>
       </div>
-    </div><!-- primeira seção de produtos -->
-
-    <div class="row"><!-- segunda seção de produtos -->
+      
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -193,26 +213,6 @@
           </div>
         </div>
       </div>
-
-      <div class="col-sm-4">
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <div class="text-center">
-              <p>
-                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[9]['imagem']; ?>" alt="<?php echo $produtos[9]['descricao']; ?>">
-                <h4><?php echo $produtos[9]['descricao']; ?></h4>
-              </p>
-              <p class="preco">
-                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="PenDrive 64GB">
-                <?php echo $produtos[9]['valor']; ?>
-              </p>
-              <p class="comprar">
-                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[9]['id']; ?>">Comprar</button>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
     </div><!-- segunda seção de produtos -->
 
     <div class="row"><!-- terceira seção de produtos -->
@@ -236,7 +236,47 @@
           </div>
         </div>
       </div>
+    
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[9]['imagem']; ?>" alt="<?php echo $produtos[9]['descricao']; ?>">
+                <h4><?php echo $produtos[9]['descricao']; ?></h4>
+              </p>
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="PenDrive 64GB">
+                <?php echo $produtos[9]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[9]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     -->
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[21]['imagem']; ?>" alt="<?php echo $produtos[21]['descricao']; ?>">
+                <h4><?php echo $produtos[21]['descricao']; ?></h4>
+              </p>
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Ventilador de Mesa">
+                <?php echo $produtos[21]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[21]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -276,7 +316,9 @@
           </div>
         </div>
       </div>
+    </div><!-- terceira seção de produtos -->
 
+    <div class="row"><!-- quarta seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -296,9 +338,7 @@
           </div>
         </div>
       </div>
-    </div><!-- terceira seção de produtos -->
 
-    <div class="row"><!-- quarta seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -338,7 +378,9 @@
           </div>
         </div>
       </div>
+    </div><!-- quarta seção de produtos -->
 
+    <div class="row"><!-- quinta seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -358,9 +400,7 @@
           </div>
         </div>
       </div>
-    </div><!-- quarta seção de produtos -->
 
-    <div class="row"><!-- quinta seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -400,6 +440,28 @@
           </div>
         </div>
       </div>
+    </div><!-- quinta seção de produtos -->
+
+    <div class="row"><!-- sexta seção de produtos -->
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div class="text-center">
+              <p>
+                <img class="img-thumbnail" src="<?php echo BASE_URL; ?><?php echo $produtos[19]['imagem']; ?>" alt="<?php echo $produtos[19]['descricao']; ?>">
+                <h4><?php echo $produtos[19]['descricao']; ?></h4>
+              </p>
+              <p class="preco">
+                <img src="<?php echo BASE_URL; ?>public/img/store/others/avancoins.png" alt="Rodízio Baby Beef com Acompanhante">
+                <?php echo $produtos[19]['valor']; ?>
+              </p>
+              <p class="comprar">
+                <button class="btn btn-info btn-lg btn-block" type="button" value="<?php echo $produtos[19]['id']; ?>">Comprar</button>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="col-sm-4">
         <div class="panel panel-default">
@@ -420,9 +482,7 @@
           </div>
         </div>
       </div>
-    </div><!-- quinta seção de produtos -->
 
-    <div class="row"><!-- sexta seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -442,7 +502,9 @@
           </div>
         </div>
       </div>
+    </div><!-- sexta seção de produtos -->
 
+    <div class="row"><!-- sétima seção de produtos -->
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -462,7 +524,7 @@
           </div>
         </div>
       </div>
-
+      
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -482,10 +544,6 @@
           </div>
         </div>
       </div>
-    </div><!-- sexta seção de produtos -->
-
-    <div class="row"><!-- sétima seção de produtos -->
-
     </div><!-- sétima seção de produtos -->
 
     <div class="row">
