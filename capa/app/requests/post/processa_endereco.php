@@ -2,9 +2,10 @@
 
 # verificando se foi enviado requisição via método GET
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  require '../../modules/schedule/enderecos.php';
+  require '../../../init.php';
+  require DIRETORIO_MODULES . '/schedule/modulo_enderecos.php';
 
-  if (! empty($_GET['id-cnpj'])) {
-    retornaEndereco($_GET['id-cnpj']);
+  if ((! empty($_GET['id-cnpj']))) {
+    consultaEnderecoAjax($_GET['id-cnpj']);
   }
 }
