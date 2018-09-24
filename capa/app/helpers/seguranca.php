@@ -88,9 +88,11 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'edita_lancamentos.php'      OR
           $pagina == 'edita_tickets.php'          OR
           $pagina == 'consulta_tickets_adm.php'   OR
-          $pagina == 'enderecos.php'              OR
-          $pagina == 'contatos.php'               OR
-          $pagina == 'atendimentos_remotos.php') {
+          $pagina == 'endereco.php'               OR
+          $pagina == 'contato.php'                OR
+          $pagina == 'atendimento_remoto.php'     OR
+          $pagina == 'atendimento_externo.php'    OR
+          $pagina == 'empresa.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -124,9 +126,11 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'visualiza_tickets.php'      OR
          $pagina == 'edita_tickets.php'          OR
          $pagina == 'tela_inicial.php'           OR
-         $pagina == 'enderecos.php'              OR
-         $pagina == 'contatos.php'               OR
-         $pagina == 'atendimentos_remotos.php') {
+         $pagina == 'endereco.php'               OR
+         $pagina == 'contato.php'                OR
+         $pagina == 'atendimento_remoto.php'     OR
+         $pagina == 'atendimento_externo.php'    OR
+         $pagina == 'empresa.php') {
 
         return true;
 
