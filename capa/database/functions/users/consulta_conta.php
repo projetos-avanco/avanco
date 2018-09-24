@@ -1,6 +1,22 @@
 <?php
 
 /**
+ * consulta o nome do usuário
+ * @param - objeto com uma conexão aberta
+ * @param - id do usuário no chat
+ */
+function retornaNomeDoColaborador($db, $id)
+{
+  $query = "SELECT CONCAT(name, ' ', surname) FROM lh_users AS nome WHERE id = $id";
+
+  $resultado = $db->query($query);
+
+  $nome = $resultado->fetch_row();
+    
+  return $nome[0];
+}
+
+/**
  * consulta o ramal do usuário
  * @param - objeto com uma conexão aberta
  * @param - array com os dados da conta do usuário
@@ -49,7 +65,7 @@ function retornaTodosOsRamaisDosUsuarios($db)
 
       switch ($registro['id']) {
 
-        case '1':        
+        case '1':
 
           $arr['comercial'][] = array(
 
