@@ -126,54 +126,44 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
   }
 
   if ($resultado = $db->query($query)) {
-
-    $tabela .=
-      "<table class='table table-condensed' id='tabela'>
+    $tr    = '';
+    $table = "
+      <table class='table table-condensed' id='lista-empresas'>
         <thead>
-          <tr>
-            <th class='text-center'>ID</th>
-            <th class='text-center'>CNPJ</th>
-            <th class='text-center'>Conta Contrato</th>
-            <th class='text-center'>Razão Social</th>
-            <th class='text-center' width='10%'>Selecione</th>
-          </tr>
+        <tr>
+          <th class='text-center' width='65%'>Razão Social</th>
+          <th class='text-center' width='15%'>CNPJ</th>
+          <th class='text-center' width='5%'>Contrato</th>
+          <th class='text-center' width='15%'></th>
+        </tr>
         </thead>
 
-        <tbody>";
-
-    $razaoSocial = array();
-    $contador    = 0;
-    $linhas      = '';
+        <tbody>
+    ";
 
     while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
       # chamando função que decodifica os caracteres JSON para UTF-8
-      $razaoSocial[$contador] = decodificaCaracteresJSON($registro['razao_social']);
+      $razaoSocial = $registro['razao_social'];
+      $cnpj        = $registro['cnpj'];
+      $contrato    = $registro['conta_contrato'];
+      $id          = $registro['id'];
 
-      $razaoSocial[$contador] = strtoupper($razaoSocial[$contador]);
+      $razaoSocial = strtoupper($razaoSocial);
 
-      $linhas .=
-        "<tr>
-          <td class='text-center' data-id='{$registro['id']}'>{$registro['id']}</td>
-          <td class='text-center' data-cnpj='{$registro['cnpj']}'>{$registro['cnpj']}</td>
-          <td class='text-center' data-conta='{$registro['conta_contrato']}'>{$registro['conta_contrato']}</td>
-          <td class='text-left'   data-razao='{$razaoSocial[$contador]}'>{$razaoSocial[$contador]}</td>
-          <td class='text-center'>
+      $tr .= "
+        <tr>
+          <td class='text-left'>$razaoSocial</td>
+          <td class='text-center'>$cnpj</td>
+          <td class='text-center'>$contrato</td>
+          <td class='text-center' data-id='$id'>
             <button class='btn btn-xs btn-default btn-block' type='button'>
-              <span class='glyphicon glyphicon-ok'></span>
+              <i class='fa fa-check' aria-hidden='true'></i>
             </button>
           </td>
-        </tr>";
-
-      $contador++;
-
+        </tr>
+      ";
     }
-
-    $tabela .= $linhas;
-    $tabela .=
-      "</tbody>
-    </table>";
-
   } else {
 
     # erro durante a execução da consulta
@@ -183,7 +173,15 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
 
   $db->close();
 
-  return $tabela;
+  $table .= $tr;
+
+  $table .=
+    '</tbody>
+    </table>';
+
+  sleep(1);
+
+  return $table;
 
 }
 

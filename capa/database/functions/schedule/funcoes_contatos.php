@@ -10,7 +10,7 @@ function consultaEmails($db, $id, $tr)
 
   $resultado = mysqli_query($db, $query);
 
-  $tr .= "<td class='text-left' data-fixo=''>";
+  $tr .= "<td class='text-left' data-email=''>";
 
   while ($linha = mysqli_fetch_array($resultado)) {
     $tr .= "{$linha['endereco']}<br>";
@@ -31,7 +31,7 @@ function consultaTelefonesMoveis($db, $id, $tr)
 
   $resultado = mysqli_query($db, $query);
 
-  $tr .= "<td class='text-center'>";
+  $tr .= "<td class='text-center' data-movel=''>";
 
   while ($linha = mysqli_fetch_array($resultado)) {
     $tr .= "{$linha['movel']}<br>";
@@ -52,10 +52,10 @@ function consultaTelefonesFixos($db, $id, $tr)
 
   $resultado = mysqli_query($db, $query);
 
-  $tr .= "<td class='text-center'>";
+  $tr .= "<td class='text-center' data-fixo=''>";
 
   while ($linha = mysqli_fetch_array($resultado)) {
-    $tr .= "{$linha['fixo']}<br>";
+    $tr .= "{$linha['fixo']} <br>";
   }
 
   $tr .= "</td>";
@@ -81,23 +81,22 @@ function consultaContatos($db, $idCnpj)
 
   $resultado = mysqli_query($db, $query);
 
-  $table =
-    "<table class='table table-condensed'>
+  $tr = '';
+  $table = '
+    <table class="table table-condensed" id="lista-contatos">
       <thead>
         <tr>
-          <th class='text-center' width='10%'>ID</th>
-          <th class='text-center' width='10%'>Nome</th>
-          <th class='text-center' width='10%'>Tel. Fixo</th>
-          <th class='text-center' width='10%'>Tel. Móvel</th>
-          <th class='text-center' width='25%'>Email</th>
-          <th class='text-center' width='8%'></th>
-          <th class='text-center' width='8%'></th>
-          <th class='text-center' width='8%'></th>
+          <th class="text-center" width="20%">Nome</th>
+          <th class="text-center" width="15%">Fixo</th>
+          <th class="text-center" width="15%">Móvel</th>
+          <th class="text-center" width="25%">Email</th>
+          <th class="text-center" width="8%"></th>
+          <th class="text-center" width="8%"></th>
+          <th class="text-center" width="8%"></th>
         </tr>
       </thead>
-      <tbody>";
-
-  $tr = '';
+      <tbody>
+  ';
 
   while ($linha = mysqli_fetch_array($resultado)) {
     $id   = $linha['id'];
@@ -105,7 +104,6 @@ function consultaContatos($db, $idCnpj)
 
     $tr .=
       "<tr>
-        <td class='text-center' data-id='$id'>$id</td>
         <td class='text-left' data-nome='$nome'>$nome</td>";
 
     $tr = consultaTelefonesFixos($db, $id, $tr);
@@ -116,19 +114,16 @@ function consultaContatos($db, $idCnpj)
       "<td>
         <button class='btn btn-block btn-xs btn-danger' type='button'>
           <i class='fa fa-trash' aria-hidden='true'></i>
-          Excluir
         </button>
       </td>
       <td>
         <button class='btn btn-block btn-xs btn-warning' type='button'>
           <i class='fa fa-pencil' aria-hidden='true'></i>
-          Editar
         </button>
       </td>
-      <td>
+      <td data-id='$id'>
         <button class='btn btn-block btn-xs btn-default' id='slc' type='button'>
           <i class='fa fa-check' aria-hidden='true'></i>
-          Selecionar
         </button>
       </td>";
 
@@ -136,9 +131,10 @@ function consultaContatos($db, $idCnpj)
   }
 
   $table .= $tr;
-  $table .=
-    "</tbody>
-      </table>";
+  $table .= '
+      <tbody>
+    </table>
+  ';
 
   echo $table;
 }
