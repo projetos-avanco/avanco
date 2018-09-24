@@ -27,32 +27,32 @@
       # verificando qual atividade o usuário deseja realizar
       switch ($_POST['atividade']) {
         case '1':
-          echo 'Atendimento Externo';
-          break;
+          header('Location: ' . BASE_URL . 'public/views/schedule/atendimento_externo.php');
+            break;
 
         case '2':
-          header('Location: ' . BASE_URL . 'public/views/schedule/atendimentos_remotos.php');
-          break;
+          header('Location: ' . BASE_URL . 'public/views/schedule/atendimento_remoto.php');
+            break;
 
         case '3':
           echo 'Registro de Folgas';
-          break;
+            break;
 
         case '4':
           echo 'Registro de Faltas';
-          break;
+            break;
 
         case '5':
           echo 'Registros de Atrasos';
-          break;
+            break;
 
         case '6':
           echo 'Registros de Extras';
-          break;
+            break;
 
         case '7':
           echo 'Registros de Férias';
-          break;
+            break;
       }
     }
   }
