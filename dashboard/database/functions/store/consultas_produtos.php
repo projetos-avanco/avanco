@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 /**
  * responsável por retornar as informações dos produtos da loja
  * @param - objeto com uma conexão aberta
  */
-function consultaProdutosDaLojaAvancao($db, $produtos) 
+function consultaProdutosDaLojaAvancao($db, $produtos)
 {
   $query = "SELECT * FROM av_avancoins_produtos";
 
@@ -24,7 +24,7 @@ function consultaProdutosDaLojaAvancao($db, $produtos)
     }
 
   }
-  
+
   return $produtos;
 
 }
@@ -52,7 +52,7 @@ function consultaNomeDoProduto($db, $id)
 }
 
 /*
- * consulta o nome do colaborador 
+ * consulta o nome do colaborador
  * @param - objeto com uma conexão aberta
  * @param - array com os dados da compra
  */
@@ -61,7 +61,7 @@ function consultaNomeDoColaborador($db, $id)
   $query = "SELECT name, surname FROM lh_users WHERE (id = $id);";
 
   $colaborador = '';
-  
+
   if ($resultado = $db->query($query)) {
 
     $colaborador = $resultado->fetch_row();
@@ -77,9 +77,10 @@ function consultaNomeDoColaborador($db, $id)
  * consulta se a quantidade de moedas que o colaborador possui pode realizar a compra do produto
  * @param - objeto com uma conexão aberta
  * @param - string com o id do produto
- * @param - string com o id do colaborador 
+ * @param - string com o id do colaborador
+ * @param - string com a quantidade do produto
  */
-function consultaQuantidadeDeMoedasParaCompra($db, $idProduto, $idColaborador)
+function consultaQuantidadeDeMoedasParaCompra($db, $idProduto, $idColaborador, $quantidade)
 {
   $query = "SELECT moedas FROM av_avancoins_carteiras WHERE (id = $idColaborador)";
 
@@ -103,11 +104,19 @@ function consultaQuantidadeDeMoedasParaCompra($db, $idProduto, $idColaborador)
 
   $retorno = false;
 
-  # verificando se a quantidade de moedas e maior ou igual ao preco do produto
-  if ($moedas >= $preco) {
+  if ($quantidade == 'null') {
+    # verificando se a quantidade de moedas e maior ou igual ao preco do produto
+    if ($moedas >= $preco) {
+      $retorno = true;
+    }
+  } else {
+    # multiplicando o preço pela quantidade do produto
+    $preco *= (int)$quantidade;
 
-    $retorno = true;
-
+    # verificando se a quantidade de moedas e maior ou igual ao preco do produto
+    if ($moedas >= $preco) {
+      $retorno = true;
+    }
   }
 
   return $retorno;

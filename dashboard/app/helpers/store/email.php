@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -15,62 +15,71 @@ require_once '../../../libs/PHPMailer/src/SMTP.php';
  * @param - array com os dados da compra
  */
 function enviaEmailDeCompraNaLoja($produto, $colaborador, $compra)
-{    
+{
   require DIRETORIO_HELPERS   . 'data.php';
 
   # chamando função que formata a data para o formato dd/mm/aaaa
   $compra['data_compra'] = formataDataParaExibir($compra['data_compra']);
 
-  # escrevendo a mensagem para o corpo do e-mail
-  $mensagem = htmlentities(
-      "Foi solicitado a compra do produto $produto, 
-       na data {$compra['data_compra']}, 
-       no horário {$compra['horario_compra']} pelo colaborador(a) $colaborador.");
+  # verificando se foi solicitado a compra de um produto que possui o campo quantidade
+  if ($compra['quantidade'] == 'null') {
+    # escrevendo a mensagem para o corpo do e-mail
+    $mensagem = htmlentities(
+        "Foi solicitado a compra do produto $produto,
+         na data {$compra['data_compra']},
+         no horário {$compra['horario_compra']} pelo colaborador(a) $colaborador.");
+  } else {
+    # escrevendo a mensagem para o corpo do e-mail
+    $mensagem = htmlentities(
+        "Foi solicitado a compra do produto $produto, na quantidade de {$compra['quantidade']} unidades,
+         na data {$compra['data_compra']},
+         no horário {$compra['horario_compra']} pelo colaborador(a) $colaborador.");
+  }
 
-  $email = new PHPMailer(true);    
-  
+  $email = new PHPMailer(true);
+
   # chamando função que formata a data para o formato aaaa-mm-dd
   $compra['data_compra'] = formataUnicaDataParaMysql($compra['data_compra']);
 
   try {
 
-    # configurações de servidor 
-    #$email->SMTPDebug  = 2;                                 
-    $email->isSMTP();                                      
-    $email->Host       = 'email-ssl.com.br';  
-    $email->SMTPAuth   = true;                               
-    $email->Username   = 'loja.avancao@avancoinfo.com.br';                 
-    $email->Password   = 'Avanco123';                           
-    $email->SMTPSecure = 'ssl';                            
-    $email->Port       = 465;                                    
+    # configurações de servidor
+    #$email->SMTPDebug  = 2;
+    $email->isSMTP();
+    $email->Host       = 'email-ssl.com.br';
+    $email->SMTPAuth   = true;
+    $email->Username   = 'loja.avancao@avancoinfo.com.br';
+    $email->Password   = 'Avanco123';
+    $email->SMTPSecure = 'ssl';
+    $email->Port       = 465;
 
-    # destinatários 
+    # destinatários
     $email->setFrom('loja.avancao@avancoinfo.com.br', 'Loja');
-    $email->addAddress('badaro@avancoinfo.com.br', 'Adilson Badaro');     
-    $email->addAddress('bruno@avancoinfo.com.br', 'Bruno Cesar');               
+    $email->addAddress('badaro@avancoinfo.com.br', 'Adilson Badaro');
+    $email->addAddress('bruno@avancoinfo.com.br', 'Bruno Cesar');
     #$email->addReplyTo('info@example.com', 'Information');
     $email->addCC('wellington.felix@avancoinfo.com.br');
-    $email->addCC('lucas.aguiar@avancoinfo.com.br');
+    #$email->addCC('lucas.aguiar@avancoinfo.com.br');
     $email->addCC("{$compra['email']}"); #email do colaborador
     #$email->addBCC('bcc@example.com');
 
     # anexos
-    #$email->addAttachment('/var/tmp/file.tar.gz');         
-    #$email->addAttachment('/tmp/image.jpg', 'new.jpg');    
+    #$email->addAttachment('/var/tmp/file.tar.gz');
+    #$email->addAttachment('/tmp/image.jpg', 'new.jpg');
 
     # conteúdo
-    $email->isHTML(true);                                  
+    $email->isHTML(true);
     $email->Subject = 'Compra de Produto na Loja';
     $email->Body    = $mensagem;
     #$email->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $email->send();
-    
+
     # confirmando o envio do e-mail
     $compra['envio_email'] = true;
 
   } catch (Exception $e) {
-    
+
     # confirmando o não envio do e-mail
     $compra['envio_email'] = false;
 

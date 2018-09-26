@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /*
  * cria um array modelo para receber os dados dos produtos da loja avanção
@@ -23,9 +23,10 @@ function criaArrayModeloDeCompra()
     'data_compra'    => '',
     'horario_compra' => '',
     'email'          => '',
-    'envio_email'    => ''
+    'envio_email'    => '',
+    'quantidade'     => null
   );
 
   return $compra;
-  
+
 }

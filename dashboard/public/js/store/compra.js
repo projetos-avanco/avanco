@@ -5,18 +5,24 @@ $('document').ready(function() {
     var data = new Date();
 
     var dia = data.getDate();
-    
+        
     // verificando se o dia atual está entre dia 10 e 15 (entre essas datas que a loja estará disponível)
-    if (dia >= 10 && dia <= 20) { 
+    if (dia >= 10 && dia <= 20) {
 
-      var idProduto   = '';    
-      var descricao   = '';    
+      var idProduto   = '';
+      var descricao   = '';
       var confirmacao = false;
-      
+      var quantidade  = null;
+
       idProduto = $(this).val(); // recuperando id do produto clicado
 
       switch (idProduto) {
-        
+
+        case '24':
+          descricao = 'Vale Crédito R$1,00 Udemy';
+          quantidade = $('#quant-udemy').val();
+            break;
+
         case '22':
           descricao = 'Vale Presente R$50,00 Mercado Livre';
             break;
@@ -24,7 +30,7 @@ $('document').ready(function() {
         case '21':
           descricao = 'Vale Crédito R$10,00 Udemy';
             break;
-        
+
         case '20':
           descricao = 'Garrafa de Jack Daniels Honey';
             break;
@@ -32,7 +38,7 @@ $('document').ready(function() {
         case '19':
           descricao = 'Smarthphone Asus Zenfone 3';
             break;
-            
+
         case '18':
           descricao = 'Smarthphone Moto G5 Plus';
             break;
@@ -52,7 +58,7 @@ $('document').ready(function() {
         case '14':
           descricao = 'Açai 300ml';
             break;
-        
+
         case '13':
           descricao = 'Açai 500ml';
             break;
@@ -108,45 +114,49 @@ $('document').ready(function() {
       }
 
       // aguardando confirmação da compra do produto clicado
-      confirmacao = confirm('Confirma a compra do produto ' + descricao + '?'); 
-      
+      if (quantidade == null) {
+        confirmacao = confirm('Confirma a compra do produto ' + descricao + '?');
+      } else {
+        confirmacao = confirm('Confirma a compra do produto ' + descricao + '? \n Quantidade: ' + quantidade);
+      }
+
       if (confirmacao) {
-        
-        var idColaborador = ''; 
-        var email         = '';     
+
+        var idColaborador = '';
+        var email         = '';
         var url           = '';
 
         idColaborador = $('#colaborador').val(); // recuperando id do colaborador que está logado na loja
         email         = $('#email').val();      // recuperando email do colaborador que está logado na loja
-              
+
         url = '../../../app/requests/ajax/compra_produtos.php'; // path do script que realiza a compra do produto
 
         $.ajax({
           type: 'get',
-          url: url + '?idcolaborador=' + idColaborador + '&idproduto=' + idProduto + '&email=' + email,
+          url: url + '?idcolaborador=' + idColaborador + '&idproduto=' + idProduto + '&email=' + email + '&quantidade=' + quantidade,
           dataType: 'json',
           beforeSend: function() {
 
-            $('.comprar').addClass('hidden');            
+            $('.comprar').addClass('hidden');
 
           },
           success: function(resposta) {
 
             alert(resposta);
-            
+
             window.location.reload(true); // atualizando página
 
           },
           error: function(resposta) {
-            
+
             alert('Erro: ' + resposta);
 
             window.location.reload(true); // atualizando página
-            
+
           }
 
         });
-        
+
       }
 
     } else {
