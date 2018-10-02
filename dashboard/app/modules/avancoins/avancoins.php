@@ -84,8 +84,8 @@ function atualizaAcoesMensais($id = null)
     # chamando função que retorna o período do mês anterior
     $carteira = verificaPeriodoAnterior($db, $carteira);
 
-    # verificando se a data atual é maior que a data final do período anterior (para inserir os logs de ações mensais)
-    if ($carteira['data_atual'] > $carteira['periodo_anterior']['data_final']) {
+    # verificando se a data atual é o último dia do mês atual
+    if ($carteira['data_atual'] == $carteira['periodo_atual']['data_final']) {
 
       # chamando função que consulta todas as ações mensais do colaborador no período anterior
       consultaAcoesMensais($db, $carteira);

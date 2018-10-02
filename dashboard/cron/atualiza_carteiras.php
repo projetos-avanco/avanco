@@ -97,7 +97,7 @@ function atualizaDados($db, $mensal = null)
     # recuperando todos os ids dos colaboradores que recebem avancoins
     while ($registro = $resultado->fetch_assoc()) {
 
-      $ids[] = $registro['id'];      
+      $ids[] = $registro['id'];
 
     }
 
@@ -127,7 +127,7 @@ function atualizaDados($db, $mensal = null)
     echo "Atualizou as Ações Diárias e a Carteira!\n";
 
   }
-  
+
   # printando ids atualizados no log
   print_r($ids);
 
@@ -153,10 +153,10 @@ function verificaAtualizacaoDasAcoesMensais($db, $datas)
 
   # verificando se foram verificados todos os prêmios
   if ($resultadoArtilheiro && $resultadoGoleiro && $resultadoLateral && $resultadoMeioCampo && $resultadoZagueiro) {
-    
+
     # chamando função que atualiza as ações diárias, mensais (se necessário) e a carteira
     atualizaDados($db, true);
-    
+
   }
 
 }
@@ -169,7 +169,7 @@ $db = abre_conexao();
 # verificando se a conexão com a base de dados foi realizada com sucesso
 if ($db) {
 
-  $datas = array(    
+  $datas = array(
     'periodo_atual' => array(
       'data_inicial' => '',
       'data_final' => ''
@@ -185,9 +185,9 @@ if ($db) {
 
   # chamando função que retorna o período atual e o passado
   $datas = retornaPeriodos($db, $datas);
-
-  # verificando se a data atual é o primeiro dia do mês
-  if ($datas['data_atual'] == $datas['periodo_atual']['data_inicial'] && $datas['horario_atual'] >= '20:00:00') {
+  
+  # verificando se a data atual é o último dia do mês atual
+  if ($datas['data_atual'] == $datas['periodo_atual']['data_final'] && $datas['horario_atual'] >= '20:00:00') {
 
     # chamando função que atualiza as ações mensais
     verificaAtualizacaoDasAcoesMensais($db, $datas);

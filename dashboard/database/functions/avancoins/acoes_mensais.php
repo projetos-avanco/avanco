@@ -50,7 +50,7 @@ function insereLogsPercentualQuestionarioInternoForaDaMeta($db, $carteira)
                 ON c.id = i.id_chat
               WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
                 AND (c.status = 2)
-                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')) AS d
               WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))
 
             /
@@ -65,7 +65,7 @@ function insereLogsPercentualQuestionarioInternoForaDaMeta($db, $carteira)
               FROM lh_chat AS c
               WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
                 AND (c.status = 2)
-                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')) AS d
               WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_questionario_respondido;";
       
       # verificando se a consulta pode ser executada
@@ -85,7 +85,7 @@ function insereLogsPercentualQuestionarioInternoForaDaMeta($db, $carteira)
       if ($arrays[$i]['indice_questionario_interno'] > 0 AND $arrays[$i]['indice_questionario_interno'] < 99) {
 
         $query = '';
-        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 8, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 8, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
         $db->query($query);
 
@@ -147,7 +147,7 @@ function insereLogsPercentualAvancinoForaDaMeta($db, $carteira)
                 ON e.id_chat = c.id
               WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
                 AND (e.avaliacao_colaborador = 'Otimo' OR e.avaliacao_colaborador = 'Bom')
-                AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+                AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')) AS d
               WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))
 
             /
@@ -163,7 +163,7 @@ function insereLogsPercentualAvancinoForaDaMeta($db, $carteira)
               INNER JOIN av_questionario_externo AS e
                 ON e.id_chat = c.id
               WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
-                AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+                AND (DATE_FORMAT(e.data_pesquisa, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')) AS d
               WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_indice_avancino;";
       
       # verificando se a consulta pode ser executada
@@ -183,7 +183,7 @@ function insereLogsPercentualAvancinoForaDaMeta($db, $carteira)
       if ($arrays[$i]['indice_avancino'] > 0 AND $arrays[$i]['indice_avancino'] <= 94) {
 
         $query = '';
-        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 7, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 7, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
         $db->query($query);
 
@@ -240,7 +240,7 @@ function insereLogsPercentualDeFilaAte15Minutos($db, $carteira)
         			AND (c.wait_time <= 900)
               AND (c.chat_duration > 0)
               AND (c.status = 2)
-        			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}'))
+        			AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}'))
 
         		/
 
@@ -254,7 +254,7 @@ function insereLogsPercentualDeFilaAte15Minutos($db, $carteira)
               FROM lh_chat AS c
               WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
                 AND (c.status = 2)
-                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')) AS d
             WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_atendimentos_15_minutos;";
 
       # verificando se a consulta pode ser executada
@@ -284,14 +284,14 @@ function insereLogsPercentualDeFilaAte15Minutos($db, $carteira)
       if ($arrays[$i]['percentual_fila'] != null AND $arrays[$i]['percentual_fila'] < 50) {
 
         $query = '';
-        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 10, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 10, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
         $db->query($query);
 
       } elseif ($arrays[$i]['percentual_fila'] != null AND $arrays[$i]['percentual_fila'] >= 80) {
 
         $query = '';
-        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 6, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 6, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
         $db->query($query);
 
@@ -351,7 +351,7 @@ function insereLogsPercentualDePerda($db, $carteira)
               WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
                 AND (c.status = 2)
                 AND (c.chat_duration = 0)
-                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')) AS d
               WHERE (d.time_diff >= '00:03:00'))
 
             /
@@ -366,7 +366,7 @@ function insereLogsPercentualDePerda($db, $carteira)
               FROM lh_chat AS c
               WHERE (c.user_id = {$arrays[$i]['id_colaborador']})
                 AND (c.status = 2)
-                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_anterior']['data_inicial']}' AND '{$carteira['periodo_anterior']['data_final']}')) AS d
+                AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') BETWEEN '{$carteira['periodo_atual']['data_inicial']}' AND '{$carteira['periodo_atual']['data_final']}')) AS d
               WHERE NOT (d.time_diff < '00:03:00' AND d.chat_duration = 0))), 0) AS percentual_perda;";
       
       # verificando se a consulta pode ser executada
@@ -383,17 +383,17 @@ function insereLogsPercentualDePerda($db, $carteira)
     for ($i = 0; $i < count($arrays); $i++) {
 
       # verificando se o colaborador está com o percentual de perda na meta ou fora da meta
-      if ($arrays[$i]['percentual_perda'] > 0 AND $arrays[$i]['percentual_perda'] <= 15) {
+      if ($arrays[$i]['percentual_perda'] >= 0 AND $arrays[$i]['percentual_perda'] <= 15) {
 
         $query = '';
-        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 5, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 5, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
         $db->query($query);
 
       } elseif ($arrays[$i]['percentual_perda'] > 20) {
 
         $query = '';
-        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 9, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        $query = "INSERT INTO av_avancoins_acoes_mensais_logs VALUES ('', {$arrays[$i]['id_colaborador']}, 9, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
         $db->query($query);
 
@@ -418,7 +418,7 @@ function insereLogsIntegrantesTimeVencedor($db, $carteira)
       codigo_time,
       pontuacao_time
     FROM av_times_avancao
-    WHERE (data_partida_time = '{$carteira['periodo_anterior']['data_final']}')
+    WHERE (data_partida_time = '{$carteira['periodo_atual']['data_final']}')
     ORDER BY pontuacao_time DESC";
 
   if ($resultado = $db->query($query)) {
@@ -451,7 +451,7 @@ function insereLogsIntegrantesTimeVencedor($db, $carteira)
           "INSERT INTO
             av_avancoins_acoes_mensais_logs
           VALUES
-            ('', $valor, 4, '{$carteira['periodo_anterior']['data_final']}', '21:00:00')";
+            ('', $valor, 4, '{$carteira['periodo_atual']['data_final']}', '21:00:00')";
 
         $db->query($query);
 
@@ -477,7 +477,7 @@ function insereLogDeGoleiro($db, $carteira)
       data_premiacao
     FROM av_dashboard_colaborador_titulos
     WHERE (id_titulos = 2)
-      AND (data_premiacao = '{$carteira['periodo_anterior']['data_final']}');";
+      AND (data_premiacao = '{$carteira['periodo_atual']['data_final']}');";
 
   if ($resultado = $db->query($query)) {
 
@@ -488,7 +488,7 @@ function insereLogDeGoleiro($db, $carteira)
       "INSERT INTO
         av_avancoins_acoes_mensais_logs
       VALUES
-        ('', $idColaborador, 3, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        ('', $idColaborador, 3, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
     $db->query($query);
 
@@ -510,7 +510,7 @@ function insereLogDeMeioCampo($db, $carteira)
       data_premiacao
     FROM av_dashboard_colaborador_titulos
     WHERE (id_titulos = 4)
-      AND (data_premiacao = '{$carteira['periodo_anterior']['data_final']}');";
+      AND (data_premiacao = '{$carteira['periodo_atual']['data_final']}');";
 
   if ($resultado = $db->query($query)) {
 
@@ -521,7 +521,7 @@ function insereLogDeMeioCampo($db, $carteira)
       "INSERT INTO
         av_avancoins_acoes_mensais_logs
       VALUES
-        ('', $idColaborador, 2, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        ('', $idColaborador, 2, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
     $db->query($query);
 
@@ -543,7 +543,7 @@ function insereLogDeArtilheiro($db, $carteira)
       data_premiacao
     FROM av_dashboard_colaborador_titulos
     WHERE (id_titulos = 1)
-      AND (data_premiacao = '{$carteira['periodo_anterior']['data_final']}');";
+      AND (data_premiacao = '{$carteira['periodo_atual']['data_final']}');";
 
   if ($resultado = $db->query($query)) {
 
@@ -554,7 +554,7 @@ function insereLogDeArtilheiro($db, $carteira)
       "INSERT INTO
         av_avancoins_acoes_mensais_logs
       VALUES
-        ('', $idColaborador, 1, '{$carteira['periodo_anterior']['data_final']}', '21:00:00');";
+        ('', $idColaborador, 1, '{$carteira['periodo_atual']['data_final']}', '21:00:00');";
 
     $db->query($query);
 
