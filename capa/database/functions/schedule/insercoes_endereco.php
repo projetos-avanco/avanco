@@ -8,7 +8,7 @@
  */
 function insereNovoEndereco($db, $endereco, $distrito)
 {
-  $insert = "INSERT INTO av_agenda_enderecos VALUES (null, {$endereco['id']}, $distrito, '{$endereco['tipo']}', '{$endereco['logradouro']}', '{$endereco['complemento']}', '{$endereco['numero']}', '{$endereco['cep']}', '{$endereco['referencia']}')";
+  $insert = "INSERT INTO av_agenda_enderecos VALUES (0, {$endereco['id']}, $distrito, '{$endereco['tipo']}', '{$endereco['logradouro']}', '{$endereco['complemento']}', '{$endereco['numero']}', '{$endereco['cep']}', '{$endereco['referencia']}')";
 
   mysqli_query($db, $insert);
 }
@@ -21,7 +21,7 @@ function insereNovoEndereco($db, $endereco, $distrito)
  */
 function insereNovoDistrito($db, $localidade, $distrito)
 {
-  $insert = "INSERT INTO av_agenda_bairros VALUES (null, $localidade, '$distrito')";
+  $insert = "INSERT INTO av_agenda_bairros VALUES (0, $localidade, '$distrito')";
 
   mysqli_query($db, $insert);
 }
@@ -34,7 +34,7 @@ function insereNovoDistrito($db, $localidade, $distrito)
  */
 function insereNovaLocalidade($db, $uf, $localidade)
 {
-  $insert = "INSERT INTO av_agenda_cidades VALUES (null, $uf, '$localidade')";
+  $insert = "INSERT INTO av_agenda_cidades VALUES (0, $uf, '$localidade')";
 
   mysqli_query($db, $insert);
 }
