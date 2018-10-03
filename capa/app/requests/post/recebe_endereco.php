@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Location:' . BASE_URL . 'public/views/schedule/endereco.php?id=' . $endereco['id']);
     exit;
   } else {
-    require DIRETORIO_MODULES . '/schedule/modulo_enderecos.php';
+    require DIRETORIO_MODULES . '/schedule/modulo_endereco.php';
 
     # chamando função responsável por solicitar a inserção do endereço no banco de dados
     recebeNovoEndereco($endereco);
