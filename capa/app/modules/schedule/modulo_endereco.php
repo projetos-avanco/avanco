@@ -40,7 +40,7 @@ function recebeNovoEndereco($endereco)
 
   $_SESSION['atividades']['tipo'] = 'success';
   $_SESSION['atividades']['exibe'] = true;
-  $_SESSION['atividades']['mensagens'][] = 'Endereço cadastrado com sucesso. Volte para página de Atendimento Externo e pesquisa a Empresa novamente.';
+  $_SESSION['atividades']['mensagens'][] = 'Endereço cadastrado com sucesso. Volte para página de Atendimento Externo e pesquise a Empresa novamente.';
 
   header('Location:' . BASE_URL . 'public/views/schedule/endereco.php?id=' . $endereco['id']);
   exit;
