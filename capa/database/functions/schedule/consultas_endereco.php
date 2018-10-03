@@ -35,8 +35,9 @@ function verificaLocalidadeCadastrada($db, $uf, $localidade)
 }
 
 /**
- *
- *
+ * retorna o endereço completo de um cnpj
+ * @param - objeto com uma conexão aberta
+ * @param - id do cnpj
  */
 function retornaEnderecoAjax($db, $id)
 {
