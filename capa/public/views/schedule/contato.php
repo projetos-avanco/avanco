@@ -151,13 +151,13 @@
 
                           <div class="row">
                             <div class="col-sm-4 col-sm-offset-2">
-                              <button class="btn btn-block btn-info" id="duplicar-fixo" type="button">
+                              <button class="btn btn-block btn-info btn-sm" id="duplicar-fixo" type="button">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                               </button>
                             </div>
 
                             <div class="col-sm-4">
-                              <button class="btn btn-block btn-danger" id="remover-fixo" type="button">
+                              <button class="btn btn-block btn-danger btn-sm" id="remover-fixo" type="button">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                               </button>
                             </div>
@@ -231,13 +231,13 @@
 
                           <div class="row">
                             <div class="col-sm-4 col-sm-offset-2">
-                              <button class="btn btn-block btn-info" id="duplicar-movel" type="button">
+                              <button class="btn btn-block btn-info btn-sm" id="duplicar-movel" type="button">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                               </button>
                             </div>
 
                             <div class="col-sm-4">
-                              <button class="btn btn-block btn-danger" id="remover-movel" type="button">
+                              <button class="btn btn-block btn-danger btn-sm" id="remover-movel" type="button">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                               </button>
                             </div>
@@ -312,13 +312,13 @@
 
                           <div class="row">
                             <div class="col-sm-2 col-sm-offset-4">
-                              <button class="btn btn-block btn-info" id="duplicar-email" type="button">
+                              <button class="btn btn-block btn-info btn-sm" id="duplicar-email" type="button">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                               </button>
                             </div>
 
                             <div class="col-sm-2">
-                              <button class="btn btn-block btn-danger" id="remover-email" type="button">
+                              <button class="btn btn-block btn-danger btn-sm" id="remover-email" type="button">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                               </button>
                             </div>
@@ -330,7 +330,7 @@
                       <div class="row">                        
                         <div class="col-sm-3 col-sm-offset-9">
                           <div class="form-group">
-                            <button class="btn btn-block btn-success" type="submit" name="submit" value="submit">
+                            <button class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="submit">
                               <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                               Gravar
                             </button>
@@ -355,7 +355,7 @@
           <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
             <div class="row">
               <div class="col-sm-12">
-                <div class="text-left">
+                <div class="text-center">
                   <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
                       <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
                         <strong>Ops!</strong>
@@ -372,7 +372,7 @@
 
         <?php endif; ?>
 
-        <?php unset($_SESSION['atividades']['mensagens'], $_SESSION['atividades']['tipo']); ?>
+        <?php unset($_SESSION['atividades']); ?>
       </div><!-- container -->
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->
