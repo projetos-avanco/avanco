@@ -468,7 +468,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_empresa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_contatos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/altera_cobranca.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/remote/direciona_usuario.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/direciona_usuario.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
 </body>
 </html>
