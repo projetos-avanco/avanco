@@ -87,19 +87,6 @@ function consultaTelefonesFixos($db, $id, $tr)
  */
 function consultaContatos($db, $idCnpj)
 {
-  $query =
-    "SELECT
-    	t.id,
-    	t.nome
-    FROM av_agenda_cnpjs AS c
-    INNER JOIN av_agenda_contatos AS t
-    	ON t.id_cnpj = c.id
-    WHERE (c.id = $idCnpj)
-    ORDER BY t.nome";
-
-  $resultado = mysqli_query($db, $query);
-
-  $tr = '';
   $table = '
     <table class="table table-condensed" id="lista-contatos">
       <thead>
@@ -116,6 +103,20 @@ function consultaContatos($db, $idCnpj)
       <tbody>
   ';
 
+  $query =
+    "SELECT
+    	t.id,
+    	t.nome
+    FROM av_agenda_cnpjs AS c
+    INNER JOIN av_agenda_contatos AS t
+    	ON t.id_cnpj = c.id
+    WHERE (c.id = $idCnpj)
+    ORDER BY t.nome";
+
+  $resultado = mysqli_query($db, $query);
+
+  $tr = '';
+  
   while ($linha = mysqli_fetch_array($resultado)) {
     $id   = $linha['id'];
     $nome = mb_strtoupper($linha['nome'], 'utf-8');
