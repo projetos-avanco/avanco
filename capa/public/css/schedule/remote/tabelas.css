@@ -1,0 +1,17 @@
+table thead tr th {
+  font-size: 0.85em;
+  text-align: left;
+}
+
+table tbody tr td {
+  height: 0.75em;
+}
+
+.table tbody tr td {
+  font-size: 11px;
+  vertical-align: middle;
+}
+
+.table {
+  font-family: 'Museosans 300', sans-serif;
+}  
