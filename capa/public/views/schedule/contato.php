@@ -53,10 +53,10 @@
 
         <br>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/recebe_contato.php" method="post">
 
           <div class="row">
-            <div class="col-sm-6 col-sm-offset-6">
+            <div class="col-sm-6">
               <div class="form-group">
 
                 <div class="panel panel-info">
@@ -72,7 +72,7 @@
                       <div class="col-sm-12">
                         <div class="form-group">
                           <label class="sr-only" for="nome">Nome</label>
-                          <input class="form-control" id="nome" type="text" name="contato[nome]" maxlength="100" placeholder="Nome">
+                          <input class="form-control" id="nome" type="text" name="contato[nome]" value="<?php echo (isset($_SESSION['contatos']['nome'])) ? $_SESSION['contatos']['nome'] : ''; ?>" maxlength="100" placeholder="Nome">
                         </div>
                       </div>
                     </div>
@@ -113,24 +113,51 @@
                                       </button>
                                     </span>
 
-                                    <label class="sr-only" for="fixo">Telefone Fixo</label>
-                                    <input class="form-control" id="fixo-0" type="tel" name="contato[fixo][0]" maxlength="14" placeholder="(00) 0000-0000">
+                                    <label class="sr-only" for="fixo-0">Telefone Fixo</label>
+                                    <input class="form-control" id="fixo-0" type="tel" name="contato[fixo][0]" value="<?php echo (isset($_SESSION['contatos']['fixo'][0])) ? $_SESSION['contatos']['fixo'][0] : ''; ?>" maxlength="14" placeholder="(00) 0000-0000">
                                   </div>
                                 </div>
                               </div>
                             </div>
 
+                            <!-- exibindo contatos gravados na sessão -->
+                            <?php if (isset($_SESSION['contatos']['fixo']) && count($_SESSION['contatos']['fixo']) > 1) : ?>
+
+                              <?php for ($i = 1; $i < count($_SESSION['contatos']['fixo']); $i++) : ?>
+
+                                <div class="row" id="linha-fixo-<?php echo $i; ?>">
+                                  <div class="col-sm-12">
+                                    <div class="form-group">
+                                      <div class="input-group">
+                                        <span class="input-group-btn">
+                                          <button type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span>
+                                          </button>
+                                        </span>
+
+                                        <label class="sr-only" for="fixo-<?php echo $i; ?>">Telefone Fixo</label>
+                                        <input class="form-control" id="fixo-<?php echo $i; ?>" type="tel" name="contato[fixo][<?php echo $i; ?>]" value="<?php echo $_SESSION['contatos']['fixo'][$i]; ?>" maxlength="14" placeholder="(00) 0000-0000">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              <?php endfor; ?>
+
+                            <?php endif; ?>
+                            <!-- exibindo contatos gravados na sessão -->
+
                           </div>
 
                           <div class="row">
-                            <div class="col-sm-4 col-sm-offset-4">
-                              <button class="btn btn-block btn-default" id="duplicar-fixo" type="button">
+                            <div class="col-sm-4 col-sm-offset-2">
+                              <button class="btn btn-block btn-info" id="duplicar-fixo" type="button">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                               </button>
                             </div>
 
                             <div class="col-sm-4">
-                              <button class="btn btn-block btn-default" id="remover-fixo" type="button">
+                              <button class="btn btn-block btn-danger" id="remover-fixo" type="button">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                               </button>
                             </div>
@@ -166,24 +193,51 @@
                                       </button>
                                     </span>
 
-                                    <label class="sr-only" for="movel">Telefone Móvel</label>
-                                    <input class="form-control" id="movel-0" type="tel" name="contato[movel][0]" maxlength="15" placeholder="(00) 00000-0000">
+                                    <label class="sr-only" for="movel-0">Telefone Móvel</label>
+                                    <input class="form-control" id="movel-0" type="tel" name="contato[movel][0]" value="<?php echo (isset($_SESSION['contatos']['movel'][0])) ? $_SESSION['contatos']['movel'][0] : ''; ?>" maxlength="15" placeholder="(00) 00000-0000">
                                   </div>
                                 </div>
                               </div>
                             </div>
 
+                            <!-- exibindo contatos gravados na sessão -->
+                            <?php if (isset($_SESSION['contatos']['movel']) && count($_SESSION['contatos']['movel']) > 1) : ?>
+
+                              <?php for ($i = 1; $i < count($_SESSION['contatos']['movel']); $i++) : ?>
+
+                                <div class="row" id="linha-movel-<?php echo $i; ?>">
+                                  <div class="col-sm-12">
+                                    <div class="form-group">
+                                      <div class="input-group">
+                                        <span class="input-group-btn">
+                                          <button type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-phone" aria-hidden="true"></span>
+                                          </button>
+                                        </span>
+
+                                        <label class="sr-only" for="movel-<?php echo $i; ?>">Telefone Móvel</label>
+                                        <input class="form-control" id="movel-<?php echo $i; ?>" type="tel" name="contato[movel][<?php echo $i; ?>]" value="<?php echo $_SESSION['contatos']['movel'][$i]; ?>" maxlength="15" placeholder="(00) 00000-0000">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              <?php endfor; ?>
+
+                            <?php endif; ?>
+                            <!-- exibindo contatos gravados na sessão -->
+
                           </div>
 
                           <div class="row">
-                            <div class="col-sm-4 col-sm-offset-4">
-                              <button class="btn btn-block btn-default" id="duplicar-movel" type="button">
+                            <div class="col-sm-4 col-sm-offset-2">
+                              <button class="btn btn-block btn-info" id="duplicar-movel" type="button">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                               </button>
                             </div>
 
                             <div class="col-sm-4">
-                              <button class="btn btn-block btn-default" id="remover-movel" type="button">
+                              <button class="btn btn-block btn-danger" id="remover-movel" type="button">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                               </button>
                             </div>
@@ -219,24 +273,52 @@
                                       </button>
                                     </span>
 
-                                    <label class="sr-only" for="email">E-mail</label>
-                                    <input class="form-control" id="email-0" type="email" name="contato[email][0]" maxlength="100" placeholder="exemplo@exemplo.com.br">
+                                    <label class="sr-only" for="email-0">E-mail</label>
+                                    <input class="form-control" id="email-0" type="email" name="contato[email][0]" value="<?php echo (isset($_SESSION['contatos']['email'][0])) ? $_SESSION['contatos']['email'][0] : ''; ?>" maxlength="100" placeholder="exemplo@exemplo.com.br">
                                   </div>
                                 </div>
                               </div>
                             </div>
 
+
+                            <!-- exibindo contatos gravados na sessão -->
+                            <?php if (isset($_SESSION['contatos']['email']) && count($_SESSION['contatos']['email']) > 1) : ?>
+
+                              <?php for ($i = 1; $i < count($_SESSION['contatos']['email']); $i++) : ?>
+
+                                <div class="row" id="linha-email-<?php echo $i; ?>">
+                                  <div class="col-sm-12">
+                                    <div class="form-group">
+                                      <div class="input-group">
+                                        <span class="input-group-btn">
+                                          <button type="button" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                          </button>
+                                        </span>
+
+                                        <label class="sr-only" for="email-<?php echo $i; ?>">E-mail</label>
+                                        <input class="form-control" id="email-<?php echo $i; ?>" type="email" name="contato[email][<?php echo $i; ?>]" value="<?php echo $_SESSION['contatos']['email'][$i]; ?>" maxlength="100" placeholder="exemplo@exemplo.com.br">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                              <?php endfor; ?>
+
+                            <?php endif; ?>
+                            <!-- exibindo contatos gravados na sessão -->
+
                           </div>
 
                           <div class="row">
-                            <div class="col-sm-2 col-sm-offset-8">
-                              <button class="btn btn-block btn-default" id="duplicar-email" type="button">
+                            <div class="col-sm-2 col-sm-offset-4">
+                              <button class="btn btn-block btn-info" id="duplicar-email" type="button">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                               </button>
                             </div>
 
                             <div class="col-sm-2">
-                              <button class="btn btn-block btn-default" id="remover-email" type="button">
+                              <button class="btn btn-block btn-danger" id="remover-email" type="button">
                                 <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                               </button>
                             </div>
@@ -245,19 +327,10 @@
                         </div>
                       </div>
 
-                      <div class="row">
-                        <div class="col-sm-3 col-sm-offset-6">
+                      <div class="row">                        
+                        <div class="col-sm-3 col-sm-offset-9">
                           <div class="form-group">
-                            <button class="btn btn-block btn-default" type="reset">
-                              <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
-                              Limpar
-                            </button>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-3">
-                          <div class="form-group">
-                            <button class="btn btn-block btn-success" type="submit">
+                            <button class="btn btn-block btn-success" type="submit" name="submit" value="submit">
                               <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                               Gravar
                             </button>
@@ -273,7 +346,33 @@
             </div>
           </div>
 
+          <input id="id" type="hidden" name="contato[id]">
+
         </form>
+
+        <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+          <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="text-left">
+                  <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                      <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                        <strong>Ops!</strong>
+                      <?php else : ?>
+                        <strong>Tudo Certo!</strong>
+                      <?php endif; ?>
+
+                      <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php endfor; ?>
+
+        <?php endif; ?>
+
+        <?php unset($_SESSION['atividades']['mensagens'], $_SESSION['atividades']['tipo']); ?>
       </div><!-- container -->
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->
@@ -284,19 +383,14 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/recupera_id_cnpj.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/mascaras.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/duplica_fixo.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/duplica_movel.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/duplica_email.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/remove_fixo.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/remove_movel.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/remove_email.js"></script>
-
-  <script>
-    $('document').ready(function() {
-      $('#fixo-0').mask('(00) 0000-0000');
-      $('#movel-0').mask('(00) 00000-0000');
-    })
-  </script>
 </body>
 </html>
 
