@@ -20,7 +20,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
 
   # verificando se o nome do contato não foi enviado
   if (!empty($_POST['contato']['nome'])) {
-    $nome = $_POST['contato']['nome'];    
+    $nome = addslashes(mb_strtolower($_POST['contato']['nome'], 'utf-8'));
   } else {    
     $validacao['flag']    = true;
     $validacao['erros'][] = 'O Nome do Contato não foi Informado';
@@ -71,7 +71,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
 
       # verificando se o(s) endereço(s) de e-mail(s) enviado(s) são(é) válido(s)
       if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emails[] = strtolower($email);
+        $emails[] = addslashes(mb_strtolower($email, 'utf-8'));
       } else {
         $validacao['flag']    = true;
         $validacao['erros'][] = 'Endereço(s) de E-mail(s) Inválido(s).';    
@@ -106,8 +106,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
       $_SESSION['atividades']['mensagens'][] = $validacao['erros'][$i];
     }
 
-    # redirecionando usuário para página de endereço
-    header('Location:' . BASE_URL . 'public/views/schedule/contato.php?id=' . $id); exit;    
+    # redirecionando usuário para página de contato
+    header('Location:' . BASE_URL . 'public/views/schedule/contato.php?id=' . $id); exit;
   } else {
     unset($_SESSION['contatos']);
 
