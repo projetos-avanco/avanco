@@ -270,6 +270,7 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/address/recupera_id_cnpj.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/address/mascaras.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/address/pesquisa_cep.js"></script>
 </body>
