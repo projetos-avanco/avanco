@@ -16,9 +16,7 @@ $(function() {
 
     // recuperando o último id do último campo de telefone
     seletor += $(arr).get(-1);
-
-    console.log(seletor);
-
+    
     $(seletor).remove();
   });
 });
