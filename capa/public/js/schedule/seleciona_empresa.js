@@ -44,10 +44,30 @@ $(function() {
         url: '../../../app/requests/post/processa_endereco.php?id-cnpj=' + id,
         dataType: 'json',
         success: function(retorno) {
+          var tipo = null;
+
+          switch (retorno.tipo) {
+            case '1':
+              retorno.tipo = 'Apartamento';
+                break;
+            
+            case '2':
+              retorno.tipo = 'Casa';
+                break;
+
+            case '3':
+              retorno.tipo = 'Comercial'
+                break;
+
+            case '4':
+              retorno.tipo = 'Outros';
+                break;
+          }
+
           $('#logradouro').val(retorno.logradouro);
           $('#distrito').val(retorno.distrito);
           $('#localidade').val(retorno.localidade);
-          $('#uf').val(retorno.uf);
+          $('#uf').val(retorno.uf);          
           $('#tipo').val(retorno.tipo);
           $('#cep').val(retorno.cep);
           $('#numero').val(retorno.numero);
