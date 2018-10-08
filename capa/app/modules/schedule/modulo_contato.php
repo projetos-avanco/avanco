@@ -13,6 +13,8 @@ function recebeContato($id, $nome, $fixos, $moveis, $emails)
   require_once DIRETORIO_FUNCTIONS . 'schedule/insercoes_contato.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_contato.php';
 
+  $erros = array();
+
   $db = abre_conexao();
 
   # chamando função que insere o nome de um contato
@@ -22,6 +24,8 @@ function recebeContato($id, $nome, $fixos, $moveis, $emails)
   if ($resultado) {
     # chamando função que retorna o id do novo contato
     $idContato = retornaIdDoContato($db, $id, $nome);    
+  } else {
+    $erros[] = 'Erro ao inserir o Nome do Contato. Procure por Wellington Felix!';
   }
 
   # verificando se o id do novo contato foi adicionado
@@ -34,7 +38,25 @@ function recebeContato($id, $nome, $fixos, $moveis, $emails)
 
     # chamando função que insere o(s) email(s)
     insereEmails($db, $idContato, $emails);
+  } else {
+    $erros[] = 'ID do Contato não foi recuperado. Procure por Wellington Felix!';
   }
+
+  $_SESSION['atividades']['exibe'] = true;
+
+  # verificando se houveram erros durante a inserções dos dados do contato
+  if ($erros) {
+    # repassando mensagens de erros para sessão
+    for ($i = 0; $i < count($validacao['erros']); $i++) {
+      $_SESSION['atividades']['mensagens'][] = $validacao['erros'][$i];
+    }
+  } else {
+    $_SESSION['atividades']['tipo'] = 'success';
+    $_SESSION['atividades']['mensagens'][] = 'Contato cadastrado com sucesso. Feche essa aba e na página de Atendimento selectione a Empresa novamente.';
+  }
+
+  # redirecionando usuário para página de contato
+  header('Location:' . BASE_URL . 'public/views/schedule/contato.php?id=' . $id);
 
   fecha_conexao($db);
   
