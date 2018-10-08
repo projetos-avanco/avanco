@@ -44,8 +44,6 @@ $(function() {
         url: '../../../app/requests/post/processa_endereco.php?id-cnpj=' + id,
         dataType: 'json',
         success: function(retorno) {
-          var tipo = null;
-
           switch (retorno.tipo) {
             case '1':
               retorno.tipo = 'Apartamento';
