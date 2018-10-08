@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/schedule/remote/tabelas.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/schedule/tabelas.css">
 
   <!-- dispositivos com largura máxima de 769px (por exemplo tablets) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)" />
@@ -188,7 +188,7 @@
                             <textarea class="form-control required" id="observacao" name="remoto[assunto]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
-                      </div>                                              
+                      </div>                                         
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
