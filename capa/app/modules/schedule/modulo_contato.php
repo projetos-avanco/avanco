@@ -2,7 +2,7 @@
 
 /**
  * responsável por solicitar a inserção dos dados de um contato nas tabelas de contatos, emails, telefones fixos e móveis
- * @param - string com o id da empresa
+ * @param - string com o id do cnpj da empresa
  * @param - string com o nome do contato
  * @param - array com o(s) telefone(s) fixo(s)
  * @param - array com o(s) telefone(s) movel(éis)
@@ -35,18 +35,24 @@ function recebeContato($id, $nome, $fixos, $moveis, $emails)
     # chamando função que insere o(s) email(s)
     insereEmails($db, $idContato, $emails);
   }
+
+  fecha_conexao($db);
   
 }
 
 /**
- *
- *
+ * responsável por retornar todos os contatos de um cnpj 
+ * @param - string com o id do cnpj da empresa
  */
-function retornaContatos($idCnpj)
+function retornaContatos($id)
 {
-  require DIRETORIO_FUNCTIONS . 'schedule/funcoes_contatos.php';
+  require DIRETORIO_FUNCTIONS . 'schedule/consultas_contato.php';
 
   $db = abre_conexao();
 
-  consultaContatos($db, $idCnpj);
+  $table = consultaContatos($db, $id);
+
+  echo $table;
+
+  fecha_conexao($db);
 }
