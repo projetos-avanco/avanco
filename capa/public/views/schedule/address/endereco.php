@@ -54,7 +54,7 @@
 
         <br>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_endereco.php" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/address/recebe_endereco.php" method="post">
 
           <div class="row">
             <div class="col-sm-7"><!-- coluna 1 -->
@@ -215,14 +215,14 @@
 
                 <div class="row">
                   <div class="col-sm-4 col-sm-offset-4">
-                    <button class="btn btn-block btn-default"type="reset">
-                      <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
-                      Limpar
+                    <button class="btn btn-block btn-default btn-sm"type="reset">
+                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                      Resetar
                     </button>
                   </div>
 
                   <div class="col-sm-4">
-                    <button class="btn btn-block btn-success" type="submit" name="submit">
+                    <button class="btn btn-block btn-success btn-sm" type="submit" name="submit">
                       <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                       Gravar
                     </button>
