@@ -124,8 +124,7 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'visualiza_lancamentos.php'  OR
          $pagina == 'edita_lancamentos.php'      OR
          $pagina == 'visualiza_tickets.php'      OR
-         $pagina == 'edita_tickets.php'          OR
-         $pagina == 'tela_inicial.php'           OR
+         $pagina == 'edita_tickets.php'          OR      
          $pagina == 'endereco.php'               OR
          $pagina == 'contato.php'                OR
          $pagina == 'atendimento_remoto.php'     OR
