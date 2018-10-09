@@ -3,7 +3,7 @@
 # verificando se foi enviado uma requisição via método post
 if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   # requisitando script de configurações
-  require_once '../../../../init.php';
+  require_once '../../../../../init.php';
 
   $validacao = array(
     'flag'  => false,
