@@ -98,29 +98,48 @@
           </span>
         </a>
         <ul class="nav collapse"  id="submenu4">
-        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
+        
           <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/tela_inicial.php">
-              <p>Atividades<p>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_externo.php">
+              <p>Atendimento Externo<p>
             </a>
           </li>
-        <?php elseif(isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
+        
           <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/avancoins/nova_atividade.php">
-              <p>Opção 2<p>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_remoto.php">
+              <p>Atendimento Remoto<p>
             </a>
           </li>
+
           <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/avancoins/extrato.php">
-              <p>Opção 3<p>
+            <a href="<?php echo BASE_URL; ?>">
+              <p>Registro de Férias<p>
             </a>
           </li>
-        <?php endif; ?>
-        <li>
-          <a href="<?php echo BASE_URL; ?>../dashboard/public/views/store/loja.php" target="_blank">
-            <p>Opção 4<p>
-          </a>
-        </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>">
+              <p>Registro de Folgas<p>
+            </a>
+          </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>">
+              <p>Registro de Faltas<p>
+            </a>
+          </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>">
+              <p>Registro de Atrasos<p>
+            </a>
+          </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>">
+              <p>Registro de Extras<p>
+            </a>
+          </li>
         </ul>
       </li>
 
