@@ -53,7 +53,7 @@
 
         <br>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/recebe_contato.php" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/contact/recebe_contato.php" method="post">
 
           <div class="row">
             <div class="col-sm-6">
