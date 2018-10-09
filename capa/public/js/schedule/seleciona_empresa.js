@@ -15,7 +15,7 @@ $(function() {
     if (script[8] == 'atendimento_remoto.php') {
       $.ajax({
         type: 'get',
-        url: '../../../app/requests/post/processa_contato.php?id-cnpj=' + id,
+        url: '../../../app/requests/post/schedule/contact/processa_contato.php?id-cnpj=' + id,
         dataType: 'html',
         success: function(tr) {
           $('#contatos').html(tr);
@@ -27,7 +27,7 @@ $(function() {
     } else if (script[8] == 'atendimento_externo.php') {
       $.ajax({
         type: 'get',
-        url: '../../../app/requests/post/processa_contato.php?id-cnpj=' + id,
+        url: '../../../app/requests/post/schedule/contact/processa_contato.php?id-cnpj=' + id,
         dataType: 'html',
         success: function(tr) {
           $('#contatos').html(tr);
@@ -39,7 +39,7 @@ $(function() {
 
       $.ajax({
         type: 'get',
-        url: '../../../app/requests/post/processa_endereco.php?id-cnpj=' + id,
+        url: '../../../app/requests/post/schedule/address/processa_endereco.php?id-cnpj=' + id,
         dataType: 'json',
         success: function(retorno) {
           switch (retorno.tipo) {
