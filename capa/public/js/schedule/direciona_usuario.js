@@ -2,7 +2,7 @@ $(function() {
   $(document).on('click', '#nova-empresa', function(e) {
     e.preventDefault;
 
-    var url = '/avanco/capa/public/views/schedule/empresa.php';
+    var url = '/avanco/capa/public/views/schedule/company/empresa.php';
 
     window.open(url, '_blank');
   });
@@ -13,7 +13,7 @@ $(function() {
     var idCnpj = $('#id').val();
 
     if (idCnpj != '') {
-      var url = '/avanco/capa/public/views/schedule/contato.php?id=' + idCnpj;
+      var url = '/avanco/capa/public/views/schedule/contact/contato.php?id=' + idCnpj;
 
       window.open(url, '_blank');
     } else {
@@ -27,7 +27,7 @@ $(function() {
     var idCnpj = $('#id').val();
 
     if (idCnpj != '') {
-      var url = '/avanco/capa/public/views/schedule/endereco.php?id=' + idCnpj;
+      var url = '/avanco/capa/public/views/schedule/address/endereco.php?id=' + idCnpj;
 
       window.open(url, '_blank');
     } else {
