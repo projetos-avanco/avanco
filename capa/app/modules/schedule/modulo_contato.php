@@ -79,7 +79,7 @@ function recebeContato($id, $nome, $fixos, $moveis, $emails)
   }
 
   # redirecionando usuário para página de contato
-  header('Location:' . BASE_URL . 'public/views/schedule/contato.php?id=' . $id);
+  header('Location:' . BASE_URL . 'public/views/schedule/contact/contato.php?id=' . $id);
 
   fecha_conexao($db);
   
