@@ -1,4 +1,4 @@
-<?php require '../../../init.php'; ?>
+<?php require '../../../../init.php'; ?>
 
 <?php if (verificaUsuarioLogado('contato.php')) : ?>
 
