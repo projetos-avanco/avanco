@@ -1,12 +1,6 @@
 <?php require '../../../init.php'; ?>
-<?php require DIRETORIO_MODULES . '/schedule/modulo_remoto.php'; ?>
 
 <?php if (verificaUsuarioLogado('atendimento_remoto.php')) : ?>
-
-<?php
-  # chamando função que recupera o nome do colaborador selecionado na tela inicial
-  $colaborador = consultaNomeDoColaborador($_SESSION['atividades']['colaborador']);
-?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -128,7 +122,7 @@
                           <div class="form-group">
                             <label class="sr-only" for="colaborador">Colaborador</label>
                             <select class="form-control required" id="colaborador" name="remoto[colaborador]">
-                              <option value="<?php echo $colaborador['id']; ?>"><?php echo $colaborador['nome']; ?></option>
+                              <option value="0" selected>Selecione um Colaborador</option>
                             </select>
                           </div>
                         </div>
@@ -197,6 +191,43 @@
                   <input type="hidden" name="remoto[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
                 </div>
               </div><!-- painel atendimentos -->
+
+            </div><!-- primeira coluna principal -->
+
+            <div class="col-sm-7"><!-- segunda coluna principal -->
+
+              <div class="row"><!-- painel contatos -->
+                <div class="col-sm-12">
+
+                  <div class="panel panel-info"><!-- panel -->
+                    <div class="panel-heading">
+                      <strong>Contato</strong>
+                    </div>
+
+                    <div class="panel-body"><!-- panel-body -->
+                      <div class="row">
+                        <div class="col-sm-3 col-sm-offset-9">
+                          <div class="form-group">
+                            <button class="btn btn-success btn-sm btn-block" id="novo-contato" type="button">
+                              <i class="fa fa-user-plus" aria-hidden="true"></i> Novo Contato
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="text-center" id="contatos"><!-- tabela contatos -->
+
+                      </div><!-- tabela contatos -->                      
+                    </div><!-- panel-body -->
+                  </div><!-- panel -->
+
+                  <input type="hidden" name="remoto[id-contato]"    id="id-contato">
+                  <input type="hidden" name="remoto[nome-contato]"  id="nome-contato">
+                  <input type="hidden" name="remoto[fixo-contato]"  id="fixo-contato">
+                  <input type="hidden" name="remoto[movel-contato]" id="movel-contato">
+                  <input type="hidden" name="remoto[email-contato]" id="email-contato">
+                </div>
+              </div><!-- painel contatos -->
 
               <div class="row"><!-- painel financeiro -->
                 <div class="col-sm-12">
@@ -273,43 +304,6 @@
                 </div>
               </div><!-- painel financeiro -->
 
-            </div><!-- primeira coluna principal -->
-
-            <div class="col-sm-7"><!-- segunda coluna principal -->
-
-              <div class="row"><!-- painel contatos -->
-                <div class="col-sm-12">
-
-                  <div class="panel panel-info"><!-- panel -->
-                    <div class="panel-heading">
-                      <strong>Contato</strong>
-                    </div>
-
-                    <div class="panel-body"><!-- panel-body -->
-                      <div class="row">
-                        <div class="col-sm-3 col-sm-offset-9">
-                          <div class="form-group">
-                            <button class="btn btn-success btn-sm btn-block" id="novo-contato" type="button">
-                              <i class="fa fa-user-plus" aria-hidden="true"></i> Novo Contato
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="text-center" id="contatos"><!-- tabela contatos -->
-
-                      </div><!-- tabela contatos -->                      
-                    </div><!-- panel-body -->
-                  </div><!-- panel -->
-
-                  <input type="hidden" name="remoto[id-contato]"    id="id-contato">
-                  <input type="hidden" name="remoto[nome-contato]"  id="nome-contato">
-                  <input type="hidden" name="remoto[fixo-contato]"  id="fixo-contato">
-                  <input type="hidden" name="remoto[movel-contato]" id="movel-contato">
-                  <input type="hidden" name="remoto[email-contato]" id="email-contato">
-                </div>
-              </div><!-- painel contatos -->
-
               <div class="row"><!-- painel registro -->
                 <div class="col-sm-12">
 
@@ -341,13 +335,15 @@
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
                   <button class="btn btn-block btn-default btn-sm" type="reset">
-                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Voltar
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    Voltar
                   </button>
                 </div>
 
                 <div class="col-sm-3">
                   <button class="btn btn-block btn-success btn-sm" type="submit">
-                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Gravar
+                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                    Gravar
                   </button>
                 </div>
               </div>
@@ -374,6 +370,8 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_contatos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/altera_cobranca.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/direciona_usuario.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/deleta_contato.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
 </body>
 </html>
