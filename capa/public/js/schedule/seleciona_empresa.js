@@ -1,7 +1,5 @@
 $(function() {
-
   $(document).on('click', '#lista-empresas .btn-xs', function(e) {
-
     e.preventDefault;
 
     $('#lista-empresas .btn-xs.btn-success').removeClass('btn-success').addClass('btn-default');
