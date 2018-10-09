@@ -1,6 +1,29 @@
 <?php
 
 /**
+ * responsável por deletar um contato das tabelas de contatos, emails, telefones fixos e movéis
+ * @param - string com o id do contato
+ */
+function recebeContatoParaDelecao($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'schedule/contact/delecoes_contato.php';
+
+  $db = abre_conexao();
+
+  # chamando função que deleta os dados do contato
+  $resultados = deletaContato($db, $id);
+
+  # verificando se todos os dados do contato foram deletados
+  if ($resultados['email'] && $resultados['fixo'] && $resultados['movel'] && $resultados['contato']) {
+    echo json_encode('Dados do contato deletados com sucesso! Selecione a empresa novamente.');
+  } else {
+    echo json_encode('Erro ao deletar os dados do contato! Informe ao Wellington Felix');
+  }
+
+  exit;
+}
+
+/**
  * responsável por solicitar a inserção dos dados de um contato nas tabelas de contatos, emails, telefones fixos e móveis
  * @param - string com o id do cnpj da empresa
  * @param - string com o nome do contato
