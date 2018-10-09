@@ -2,7 +2,7 @@
 
 # verificando se houve requisição via método post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  require '../../../init.php';
+  require '../../../../../init.php';
 
   $validacao = array(
     'flag'  => false,
