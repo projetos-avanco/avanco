@@ -81,5 +81,11 @@ function retornaEnderecoAjax($db, $id)
     );
   }
 
+  $endereco['logradouro']  = mb_convert_case($endereco['logradouro'],  MB_CASE_TITLE, 'utf-8');
+  $endereco['distrito']    = mb_convert_case($endereco['distrito'],    MB_CASE_TITLE, 'utf-8');
+  $endereco['localidade']  = mb_convert_case($endereco['localidade'],  MB_CASE_TITLE, 'utf-8');
+  $endereco['complemento'] = mb_convert_case($endereco['complemento'], MB_CASE_TITLE, 'utf-8');
+  $endereco['referencia']  = mb_convert_case($endereco['referencia'],  MB_CASE_TITLE, 'utf-8');
+
   return $endereco;
 }
