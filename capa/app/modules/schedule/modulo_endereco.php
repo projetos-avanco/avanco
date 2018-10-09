@@ -6,8 +6,8 @@
  */
 function recebeNovoEndereco($endereco)
 {
-  require DIRETORIO_FUNCTIONS . 'schedule/consultas_endereco.php';
-  require DIRETORIO_FUNCTIONS . 'schedule/insercoes_endereco.php';
+  require DIRETORIO_FUNCTIONS . 'schedule/address/consultas_endereco.php';
+  require DIRETORIO_FUNCTIONS . 'schedule/address/insercoes_endereco.php';
 
   $db = abre_conexao();
 
@@ -52,10 +52,11 @@ function recebeNovoEndereco($endereco)
  */
 function consultaEnderecoAjax($id)
 {
-  require DIRETORIO_FUNCTIONS . 'schedule/consultas_endereco.php';
+  require DIRETORIO_FUNCTIONS . 'schedule/address/consultas_endereco.php';
 
   $db = abre_conexao();
 
+  # chamando função que retorna um endereço completo de um cnpj
   $endereco = retornaEnderecoAjax($db, $id);
 
   echo json_encode($endereco);

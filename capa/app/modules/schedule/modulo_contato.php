@@ -33,8 +33,8 @@ function recebeContatoParaDelecao($id)
  */
 function recebeContato($id, $nome, $fixos, $moveis, $emails)
 {
-  require_once DIRETORIO_FUNCTIONS . 'schedule/insercoes_contato.php';
-  require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_contato.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/contact/insercoes_contato.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
 
   $erros = array();
 
@@ -91,7 +91,7 @@ function recebeContato($id, $nome, $fixos, $moveis, $emails)
  */
 function retornaContatos($id)
 {
-  require DIRETORIO_FUNCTIONS . 'schedule/consultas_contato.php';
+  require DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
 
   $db = abre_conexao();
 
