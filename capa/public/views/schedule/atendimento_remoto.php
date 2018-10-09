@@ -58,7 +58,7 @@
         <form action="<?php echo BASE_URL; ?>app/requests/post/processa_atendimento_remoto.php" method="post">
 
           <div class="row">
-            <div class="col-sm-5">
+            <div class="col-sm-7 col-sm-offset-5">
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-btn">
@@ -122,7 +122,7 @@
                           <div class="form-group">
                             <label class="sr-only" for="colaborador">Colaborador</label>
                             <select class="form-control required" id="colaborador" name="remoto[colaborador]">
-                              <option value="0" selected>Selecione um Colaborador</option>
+
                             </select>
                           </div>
                         </div>
@@ -335,8 +335,8 @@
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
                   <button class="btn btn-block btn-default btn-sm" type="reset">
-                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-                    Voltar
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                    Resetar
                   </button>
                 </div>
 

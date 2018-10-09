@@ -56,7 +56,7 @@
         <form action="<?php echo BASE_URL; ?>app/requests/post/processa_atendimento_externo.php" method="post">
 
           <div class="row">
-            <div class="col-sm-5">
+            <div class="col-sm-7 col-sm-offset-5">
               <div class="form-group">
                 <div class="input-group">
                   <span class="input-group-btn">
@@ -120,7 +120,7 @@
                           <div class="form-group">
                             <label class="sr-only" for="colaborador">Colaborador</label>
                             <select class="form-control required" id="colaborador" name="remoto[colaborador]">
-                              <option value="<?php echo $colaborador['id']; ?>"><?php echo $colaborador['nome']; ?></option>
+
                             </select>
                           </div>
                         </div>
@@ -227,79 +227,6 @@
                 </div>
               </div><!-- painel contato -->
 
-              <div class="row"><!-- painel financeiro -->
-                <div class="col-sm-12">
-
-                  <div class="panel panel-info"><!-- panel -->
-                    <div class="panel-heading">
-                      <strong>Financeiro</strong>
-                    </div>
-
-                    <div class="panel-body"><!-- panel-body -->
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="sr-only" for="tipo-atendimento">Tipo</label>
-                            <select class="form-control" id="tipo-atendimento" name="remoto[tipo-atendimento]">
-                              <option value="0" selected>Tipo de Atendimento</option>
-                              <option value="1">Suporte ao Cliente</option>
-                              <option value="2">Projeto Mais Gestão</option>
-                              <option value="3">Implantação</option>
-                              <option value="4">Treinamento Avanço</option>
-                              <option value="5">Instalação</option>
-                              <option value="6">Atualização</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="sr-only" for="faturado">Faturado</label>
-                            <select class="form-control" id="faturado" name="remoto[faturado]">
-                              <option value="0" selected>Pedido Faturado?</option>
-                              <option value="1">Sim</option>
-                              <option value="2">Não</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <label class="sr-only" for="cobranca">Cobrança</label>
-                            <select class="form-control" id="cobranca" name="remoto[cobranca]">
-                              <option value="0" selected>Tipo de Cobrança</option>
-                              <option value="1">Hora</option>
-                              <option value="2">Pacote</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="form-group">
-                            <div class="input-group">
-                              <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                  <span class="glyphicon glyphicon-usd"></span>
-                                </button>
-                              </span>
-                              <label class="sr-only" for="valor">Valor</label>
-                              <input class="form-control" id="valor" type="text" name="remoto[valor]" placeholder="0.00">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div><!-- panel-body -->
-                  </div><!-- panel -->
-
-                </div>
-              </div><!-- painel financeiro -->
-
               <div class="row"><!-- painel endereço -->
                 <div class="col-sm-12">
                 
@@ -398,6 +325,79 @@
 
                 </div>
               </div><!-- painel endereço -->
+              
+              <div class="row"><!-- painel financeiro -->
+                <div class="col-sm-12">
+
+                  <div class="panel panel-info"><!-- panel -->
+                    <div class="panel-heading">
+                      <strong>Financeiro</strong>
+                    </div>
+
+                    <div class="panel-body"><!-- panel-body -->
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="sr-only" for="tipo-atendimento">Tipo</label>
+                            <select class="form-control" id="tipo-atendimento" name="remoto[tipo-atendimento]">
+                              <option value="0" selected>Tipo de Atendimento</option>
+                              <option value="1">Suporte ao Cliente</option>
+                              <option value="2">Projeto Mais Gestão</option>
+                              <option value="3">Implantação</option>
+                              <option value="4">Treinamento Avanço</option>
+                              <option value="5">Instalação</option>
+                              <option value="6">Atualização</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="sr-only" for="faturado">Faturado</label>
+                            <select class="form-control" id="faturado" name="remoto[faturado]">
+                              <option value="0" selected>Pedido Faturado?</option>
+                              <option value="1">Sim</option>
+                              <option value="2">Não</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label class="sr-only" for="cobranca">Cobrança</label>
+                            <select class="form-control" id="cobranca" name="remoto[cobranca]">
+                              <option value="0" selected>Tipo de Cobrança</option>
+                              <option value="1">Hora</option>
+                              <option value="2">Pacote</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                  <span class="glyphicon glyphicon-usd"></span>
+                                </button>
+                              </span>
+                              <label class="sr-only" for="valor">Valor</label>
+                              <input class="form-control" id="valor" type="text" name="remoto[valor]" placeholder="0.00">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div><!-- panel-body -->
+                  </div><!-- panel -->
+
+                </div>
+              </div><!-- painel financeiro -->
 
               <div class="row"><!-- painel registro -->
                 <div class="col-sm-12">
@@ -430,8 +430,8 @@
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
                   <button class="btn btn-block btn-default btn-sm" type="reset">
-                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-                    Voltar
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                    Resetar
                   </button>
                 </div>
 
