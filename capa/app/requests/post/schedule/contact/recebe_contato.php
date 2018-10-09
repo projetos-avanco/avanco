@@ -107,7 +107,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     }
 
     # redirecionando usuário para página de contato
-    header('Location:' . BASE_URL . 'public/views/schedule/contato.php?id=' . $id); exit;
+    header('Location:' . BASE_URL . 'public/views/schedule/contact/contato.php?id=' . $id); exit;
   } else {
     unset($_SESSION['contatos']);
 
