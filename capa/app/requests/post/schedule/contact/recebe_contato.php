@@ -54,7 +54,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
         $moveis[] = $_POST['contato']['movel'][$i];
       } else {
         $validacao['flag']    = true;
-        $validacao['erros'][] = 'Telefone(s) Movél(eis) Inválido(s).';
+        $validacao['erros'][] = 'Telefone(s) Móvel(eis) Inválido(s).';
       }
     }
   } else {    
