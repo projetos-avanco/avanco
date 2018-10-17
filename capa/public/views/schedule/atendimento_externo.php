@@ -56,15 +56,15 @@
         <form action="<?php echo BASE_URL; ?>app/requests/post/processa_atendimento_externo.php" method="post">
 
           <div class="row">
-            <div class="col-sm-7 col-sm-offset-5">
+            <div class="col-sm-4 col-sm-offset-8">
               <div class="form-group">
-                <div class="input-group">
+                <div class="input-group">                  
+                  <input class="form-control" id="pesquisa" type="text" placeholder="Digite a Razão Social ou CNPJ da Empresa">
                   <span class="input-group-btn">
                     <button class="btn btn-info" type="button">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Pesquisa
                     </button>
                   </span>
-                  <input class="form-control" id="pesquisa" type="text" placeholder="Digite a Razão Social ou CNPJ da Empresa">
                 </div>
               </div>
             </div>
