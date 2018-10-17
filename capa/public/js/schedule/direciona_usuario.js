@@ -34,4 +34,14 @@ $(function() {
       alert('É necessário selecionar uma Empresa antes de cadastrar um Novo Endereço!');
     }
   });
+
+  $(document).on('click', '#lista-contatos .btn-warning', function(e) {
+    e.preventDefault;
+
+    var idContato = $(this).closest('tr').find('td[data-id]').data('id');
+
+    var url = '/avanco/capa/public/views/schedule/contact/edita_contato.php?id=' + idContato;
+
+    window.open(url, '_blank');
+  })
 });
