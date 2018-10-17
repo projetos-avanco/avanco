@@ -55,18 +55,18 @@
           </div>
         </div>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/processa_atendimento_remoto.php" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/remote/processa_atendimento_remoto.php" method="post">
 
           <div class="row">
-            <div class="col-sm-7 col-sm-offset-5">
+            <div class="col-sm-4 col-sm-offset-8">
               <div class="form-group">
-                <div class="input-group">
+                <div class="input-group">                  
+                  <input class="form-control" id="pesquisa" type="text" placeholder="Informe a Razão Social ou CNPJ da Empresa">
                   <span class="input-group-btn">
                     <button class="btn btn-info" type="button">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Pesquisa
                     </button>
                   </span>
-                  <input class="form-control" id="pesquisa" type="text" placeholder="Digite a Razão Social ou CNPJ da Empresa">
                 </div>
               </div>
             </div>
@@ -181,7 +181,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="observacao">Observação</label>
-                            <textarea class="form-control required" id="observacao" name="remoto[assunto]" rows="4" cols="30" placeholder="Observações..."></textarea>
+                            <textarea class="form-control required" id="observacao" name="remoto[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
                       </div>
@@ -221,11 +221,11 @@
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
-                  <input type="hidden" name="remoto[id-contato]"    id="id-contato">
-                  <input type="hidden" name="remoto[nome-contato]"  id="nome-contato">
-                  <input type="hidden" name="remoto[fixo-contato]"  id="fixo-contato">
-                  <input type="hidden" name="remoto[movel-contato]" id="movel-contato">
-                  <input type="hidden" name="remoto[email-contato]" id="email-contato">
+                  <input type="hidden" name="contato[id-contato]"    id="id-contato">
+                  <input type="hidden" name="contato[nome-contato]"  id="nome-contato">
+                  <input type="hidden" name="contato[fixo-contato]"  id="fixo-contato">
+                  <input type="hidden" name="contato[movel-contato]" id="movel-contato">
+                  <input type="hidden" name="contato[email-contato]" id="email-contato">
                 </div>
               </div><!-- painel contatos -->
 
@@ -242,8 +242,8 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="tipo-atendimento">Tipo</label>
-                            <select class="form-control" id="tipo-atendimento" name="remoto[tipo-atendimento]">
+                            <label class="sr-only" for="tipo">Tipo</label>
+                            <select class="form-control" id="tipo" name="remoto[tipo]">
                               <option value="0" selected>Tipo de Atendimento</option>
                               <option value="1">Suporte ao Cliente</option>
                               <option value="2">Projeto Mais Gestão</option>
@@ -334,17 +334,21 @@
 
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
-                  <button class="btn btn-block btn-default btn-sm" type="reset">
-                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                    Resetar
-                  </button>
+                  <div class="form-group">
+                    <button class="btn btn-block btn-default btn-sm" type="reset">
+                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                      Resetar
+                    </button>
+                  </div>
                 </div>
 
                 <div class="col-sm-3">
-                  <button class="btn btn-block btn-success btn-sm" type="submit">
-                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
-                    Gravar
-                  </button>
+                  <div class="form-group">
+                    <button class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="submit">
+                      <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                      Gravar
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -352,6 +356,30 @@
           </div><!-- linha principal -->
 
         </form>
+
+        <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+          <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="text-center">
+                  <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                      <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                        <strong>Ops!</strong>
+                      <?php else : ?>
+                        <strong>Tudo Certo!</strong>
+                      <?php endif; ?>
+
+                      <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php endfor; ?>
+
+      <?php endif; ?>
+
+      <?php unset($_SESSION['atividades']); ?>
 
       </div><!-- container -->
     </div><!-- conteúdo da página -->
