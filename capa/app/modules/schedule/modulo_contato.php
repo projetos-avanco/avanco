@@ -10,12 +10,16 @@
 function recebeContatoParaEdicao($id, $nome, $fixos, $moveis, $emails)
 {
   require_once DIRETORIO_FUNCTIONS . 'schedule/contact/insercoes_contato.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/contact/atualizacoes_contato.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/contact/delecoes_contato.php';
 
   $db = abre_conexao();
 
   $resultados = array();
 
+  # chamando função que atualiza o nome do contato
+  atualizaNomeDeUmContato($db, $id, $nome);
+  
   # chamando funções que deletam os números fixos, móveis e e-mails do contato
   $resultados['fixos']  = deletaFixos($db, $id);
   $resultados['moveis'] = deletaMoveis($db, $id);
