@@ -1,6 +1,92 @@
 <?php
 
 /**
+ * retorna todos os e-mails de um contato
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do contato
+ * @param - array com todos os dados do contato
+ */
+function consultaEnderecosEmailsDeUmContato($db, $id, $contato)
+{
+  $query = "SELECT endereco FROM av_agenda_emails WHERE id_contato = $id";
+
+  $resultado = mysqli_query($db, $query);
+
+  while ($linha = mysqli_fetch_array($resultado)) {
+    $contato['emails'][] = $linha['endereco'];
+  }
+
+  return $contato;
+}
+
+/**
+ * retorna todos os números movéis de um contato
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do contato
+ * @param - array com todos os dados do contato
+ */
+function consultaNumerosMoveisDeUmContato($db, $id, $contato)
+{
+  $query = "SELECT movel FROM av_agenda_telefones_moveis WHERE id_contato = $id";
+
+  $resultado = mysqli_query($db, $query);
+
+  while ($linha = mysqli_fetch_array($resultado)) {
+    $contato['moveis'][] = $linha['movel'];
+  }
+
+  return $contato;
+}
+
+/**
+ * retorna todos os números fixos de um contato
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do contato
+ * @param - array com todos os dados do contato
+ */
+function consultaNumerosFixosDeUmContato($db, $id, $contato)
+{
+  $query = "SELECT fixo FROM av_agenda_telefones_fixos WHERE id_contato = $id";
+
+  $resultado = mysqli_query($db, $query);
+
+  while ($linha = mysqli_fetch_array($resultado)) {
+    $contato['fixos'][] = $linha['fixo'];
+  }
+
+  return $contato;
+}
+
+/**
+ * retorna número(s) fixo(s), número(s) movél(eis) e e-mail(s) de um contato
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id de um contato
+ */
+function consultaDadosDeUmContato($db, $id)
+{
+  $contato = array();
+
+  $query = "SELECT nome FROM av_agenda_contatos WHERE id = $id";
+
+  $resultado = mysqli_query($db, $query);
+
+  while ($linha = mysqli_fetch_array($resultado)) {    
+    $contato['nome'] = ucwords($linha['nome']);    
+  }
+
+  # chamando função que retorna os números fixos de um contato
+  $contato = consultaNumerosFixosDeUmContato($db, $id, $contato);
+
+  # chamando função que retorna os números fixos de um contato
+  $contato = consultaNumerosMoveisDeUmContato($db, $id, $contato);
+
+  # chamando função que retorna os números fixos de um contato
+  $contato = consultaEnderecosEmailsDeUmContato($db, $id, $contato);
+
+  return $contato;
+}
+
+/**
  * retorna o id de um contato
  * @param - objeto com uma conexão aberta
  * @param - string com o id da empresa
@@ -18,8 +104,10 @@ function retornaIdDoContato($db, $id, $nome)
 }
 
 /**
- *
- *
+ * retorna o(s) endereço(s) de e-mail(s) de um contato em HTML
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id da empresa
+ * @param - string com o nome do contato
  */
 function consultaEmails($db, $id, $tr)
 {
@@ -30,7 +118,7 @@ function consultaEmails($db, $id, $tr)
   $tr .= "<td class='text-left' data-email=''>";
 
   while ($linha = mysqli_fetch_array($resultado)) {
-    $tr .= "{$linha['endereco']}<br>";
+    $tr .= "{$linha['endereco']} <br>";
   }
 
   $tr .= "</td>";
@@ -39,8 +127,10 @@ function consultaEmails($db, $id, $tr)
 }
 
 /**
- *
- *
+ * retorna o(s) número(s) movél(eis) de um contato em HTML
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id da empresa
+ * @param - string com o nome do contato
  */
 function consultaTelefonesMoveis($db, $id, $tr)
 {
@@ -51,7 +141,7 @@ function consultaTelefonesMoveis($db, $id, $tr)
   $tr .= "<td class='text-center' data-movel=''>";
 
   while ($linha = mysqli_fetch_array($resultado)) {
-    $tr .= "{$linha['movel']}<br>";
+    $tr .= "{$linha['movel']} <br>";
   }
 
   $tr .= "</td>";
@@ -60,8 +150,10 @@ function consultaTelefonesMoveis($db, $id, $tr)
 }
 
 /**
- *
- *
+ * retorna o(s) número(s) fixo(s) de um contato em HTML
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id da empresa
+ * @param - string com o nome do contato
  */
 function consultaTelefonesFixos($db, $id, $tr)
 {
@@ -119,7 +211,7 @@ function consultaContatos($db, $idCnpj)
   
   while ($linha = mysqli_fetch_array($resultado)) {
     $id   = $linha['id'];
-    $nome = mb_strtoupper($linha['nome'], 'utf-8');
+    $nome = ucwords($linha['nome']);
 
     $tr .=
       "<tr>
