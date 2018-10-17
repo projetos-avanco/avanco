@@ -211,7 +211,7 @@ function consultaContatos($db, $idCnpj)
   
   while ($linha = mysqli_fetch_array($resultado)) {
     $id   = $linha['id'];
-    $nome = ucwords($linha['nome']);
+    $nome = mb_strtoupper(($linha['nome']), 'utf-8');
 
     $tr .=
       "<tr>
