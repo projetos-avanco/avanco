@@ -17,7 +17,7 @@ $(function() {
       $('#nome').val(contato.nome);
       
       // verificando se o contato possui números fixos
-      if (typeof contato.fixos == 'object') {
+      if (typeof contato.fixos === 'object') {
         $('#fixo-0').val(contato.fixos[0]); // adicionando o primeiro número fixo no campo obrigatório
 
         for (var i = 1; i < contato.fixos.length; i++) {
@@ -33,7 +33,7 @@ $(function() {
       }
 
       // verificando se o contato possui números móveis
-      if (typeof contato.moveis == 'object') {
+      if (typeof contato.moveis === 'object') {
         $('#movel-0').val(contato.moveis[0]); // adicionando o primeiro número móvel no campo obrigatório
 
         for (var i = 1; i < contato.moveis.length; i++) {
@@ -49,7 +49,7 @@ $(function() {
       }
 
       // verificando se o contato possui endereços de e-mails
-      if (typeof contato.emails == 'object') {
+      if (typeof contato.emails === 'object') {
         $('#email-0').val(contato.emails[0]); // adicionando o primeiro endereço de e-mail no campo obrigatório
 
         for (var i = 1; i < contato.emails.length; i++) {
