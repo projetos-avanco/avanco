@@ -43,6 +43,7 @@ function retornaEnderecoAjax($db, $id)
 {
   $select =
     "SELECT
+      e.id,
     	e.tipo,
     	e.logradouro,
     	e.complemento,
@@ -69,6 +70,7 @@ function retornaEnderecoAjax($db, $id)
 
   while ($linha = mysqli_fetch_array($resultado)) {
     $endereco = array(
+      'id'          => $linha['id'],
       'logradouro'  => $linha['logradouro'],
       'distrito'    => $linha['distrito'],
       'localidade'  => $linha['localidade'],
@@ -80,12 +82,16 @@ function retornaEnderecoAjax($db, $id)
       'referencia'  => $linha['referencia']
     );
   }
-
-  $endereco['logradouro']  = mb_convert_case($endereco['logradouro'],  MB_CASE_TITLE, 'utf-8');
-  $endereco['distrito']    = mb_convert_case($endereco['distrito'],    MB_CASE_TITLE, 'utf-8');
-  $endereco['localidade']  = mb_convert_case($endereco['localidade'],  MB_CASE_TITLE, 'utf-8');
-  $endereco['complemento'] = mb_convert_case($endereco['complemento'], MB_CASE_TITLE, 'utf-8');
-  $endereco['referencia']  = mb_convert_case($endereco['referencia'],  MB_CASE_TITLE, 'utf-8');
+  
+  if (count($endereco) > 0) {
+    $endereco['logradouro']  = mb_convert_case($endereco['logradouro'],  MB_CASE_TITLE, 'utf-8');
+    $endereco['distrito']    = mb_convert_case($endereco['distrito'],    MB_CASE_TITLE, 'utf-8');
+    $endereco['localidade']  = mb_convert_case($endereco['localidade'],  MB_CASE_TITLE, 'utf-8');
+    $endereco['complemento'] = mb_convert_case($endereco['complemento'], MB_CASE_TITLE, 'utf-8');
+    $endereco['referencia']  = mb_convert_case($endereco['referencia'],  MB_CASE_TITLE, 'utf-8');
+  } else {
+    $endereco = null;
+  }
 
   return $endereco;
 }
