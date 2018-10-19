@@ -41,34 +41,52 @@ $(function() {
         type: 'get',
         url: '../../../app/requests/post/schedule/address/processa_endereco.php?id-cnpj=' + id,
         dataType: 'json',
-        success: function(retorno) {
-          switch (retorno.tipo) {
-            case '1':
-              retorno.tipo = 'Apartamento';
-                break;
-            
-            case '2':
-              retorno.tipo = 'Casa';
-                break;
+        success: function(retorno) {                          
+          if (typeof retorno === 'object' && retorno) {            
+            $('#novo-endereco').removeClass('btn-success').addClass('btn-warning').attr('id', 'editar-endereco');
+            $('#editar-endereco').html('<i class="fa fa-map-marker" aria-hidden="true"></i> Editar Contato');
 
-            case '3':
-              retorno.tipo = 'Comercial'
-                break;
+            switch (retorno.tipo) {
+              case '1':
+                retorno.tipo = 'Apartamento';
+                  break;
+              
+              case '2':
+                retorno.tipo = 'Casa';
+                  break;
+  
+              case '3':
+                retorno.tipo = 'Comercial'
+                  break;
+  
+              case '4':
+                retorno.tipo = 'Outros';
+                  break;
+            }
+    
+            $('#logradouro').val(retorno.logradouro);
+            $('#distrito').val(retorno.distrito);
+            $('#localidade').val(retorno.localidade);
+            $('#uf').val(retorno.uf);          
+            $('#tipo').val(retorno.tipo);
+            $('#cep').val(retorno.cep);
+            $('#numero').val(retorno.numero);
+            $('#complemento').val(retorno.complemento);
+            $('#referencia').val(retorno.referencia);
+          } else {
+            $('#editar-endereco').removeClass('btn-warning').addClass('btn-success').attr('id', 'novo-endereco');            
+            $('#novo-endereco').html('<i class="fa fa-map-marker" aria-hidden="true"></i> Novo Contato');
 
-            case '4':
-              retorno.tipo = 'Outros';
-                break;
+            $('#logradouro').val('');
+            $('#distrito').val('');
+            $('#localidade').val('');
+            $('#uf').val('');          
+            $('#tipo').val('');
+            $('#cep').val('');
+            $('#numero').val('');
+            $('#complemento').val('');
+            $('#referencia').val('');
           }
-
-          $('#logradouro').val(retorno.logradouro);
-          $('#distrito').val(retorno.distrito);
-          $('#localidade').val(retorno.localidade);
-          $('#uf').val(retorno.uf);          
-          $('#tipo').val(retorno.tipo);
-          $('#cep').val(retorno.cep);
-          $('#numero').val(retorno.numero);
-          $('#complemento').val(retorno.complemento);
-          $('#referencia').val(retorno.referencia);
         },
         error: function(retorno) {
           console.log(retorno);
