@@ -35,6 +35,20 @@ $(function() {
     }
   });
 
+  $(document).on('click', '#editar-endereco', function(e) {
+    e.preventDefault;
+        
+    var idCnpj = $('#id').val();
+
+    if (idCnpj != '') {
+      var url = '/avanco/capa/public/views/schedule/address/edita_endereco.php?id=' + idCnpj;
+
+      window.open(url, '_blank');
+    } else {
+      alert('É necessário selecionar uma Empresa antes de cadastrar um Novo Endereço!');
+    }
+  });
+  
   $(document).on('click', '#lista-contatos .btn-warning', function(e) {
     e.preventDefault;
 
