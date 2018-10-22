@@ -10,6 +10,7 @@ function insereRegistroDeIssues($db, $issues)
      VALUES (null,
             '{$issues['issue']}',
             '{$issues['tipo']}',
+            '{$issues['status']}',
             '{$issues['cnpj']}',
             '{$issues['conta_contrato']}',
             '{$issues['razao_social']}',
