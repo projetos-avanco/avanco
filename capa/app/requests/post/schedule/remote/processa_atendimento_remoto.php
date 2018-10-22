@@ -5,7 +5,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   # requisitando script de configurações
   require_once '../../../../../init.php';
 
-  # importando script
+  # requisitando script
   require_once DIRETORIO_HELPERS . 'datas.php';
 
   # definindo array que será gravado em tabela
@@ -234,7 +234,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (isset($_POST['contato']['nome-contato']) && (!empty($_POST['contato']['nome-contato']))) {
     # verificando se o nome do contato é uma string
     if (is_string($_POST['contato']['nome-contato'])) {
-      $contato['nome'] = $_POST['contato']['nome-contato'];
+      $contato['nome'] = mb_strtolower($_POST['contato']['nome-contato'], 'utf-8');
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados do nome do contato não está correto.';
@@ -326,8 +326,13 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
       $_SESSION['atividades']['mensagens'][] = $erros[$i];
     }
 
+    # redirecionando usuário para página de atendimento remoto
     header('location:' . BASE_URL . 'public/views/schedule/atendimento_remoto.php'); exit;
   } else {
-    var_dump($contato); exit;
+    # requisitando script
+    require_once DIRETORIO_MODULES . 'schedule/modulo_remoto.php';
+
+    # chamando função responsável por gravar um atendimento remoto
+    recebeAtendimentoRemoto($remoto, $contato);
   }
 }
