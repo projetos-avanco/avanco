@@ -75,6 +75,33 @@ function geraTicket()
 }
 
 /**
+ * gera um código de registro único com 7 dígitos
+ * @param - objeto com uma conexão aberta
+ * @param - string com o nome da tabela
+ */
+function geraRegistro($db, $tabela)
+{
+  $registro = null;
+
+  # gerando código de ticket
+  for ($i = 1; $i <= 7; $i++) {
+    $registro .= rand(1, 9);
+  }
+
+  $query = "SELECT id FROM $tabela WHERE registro = $registro";
+
+  $resultado = mysqli_query($db, $query);
+
+  # verificando se o número de registro gerado já existe na tabela
+  if (mysqli_num_rows($resultado) > 0) {
+    # chamando função novamente para gerar um novo número
+    geraRegistro($db, $tabela);
+  }
+
+  return $registro;
+}
+
+/**
  * redireciona o usuário para a página de edição de lançamentos
  * @param - objeto com uma conexão aberta
  * @param - string com o id da issue
