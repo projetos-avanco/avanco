@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'cnpj'           => '',
     'conta_contrato' => '',
     'tipo'           => '',
+    'status'         => '2',
     'issue'          => '',
     'colaborador'    => '',
     'observacao'     => ''
