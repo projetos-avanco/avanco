@@ -54,7 +54,7 @@
 
         <br>
 
-        <form action="#" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/schedule/company/recebe_empresa.php" method="post">
 
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
@@ -107,7 +107,7 @@
 
                   <div class="col-sm-2">
                     <div class="form-group">
-                      <button class="btn btn-block btn-success" type="submit">
+                      <button class="btn btn-block btn-success" type="submit" name="submit" value="submit">
                         <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                         Gravar
                       </button>
