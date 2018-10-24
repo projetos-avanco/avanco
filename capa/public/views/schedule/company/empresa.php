@@ -54,7 +54,7 @@
 
         <br>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/schedule/company/recebe_empresa.php" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/company/recebe_empresa.php" method="post">
 
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
@@ -71,14 +71,14 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label class="sr-only" for="cnpj">CNPJ</label>
-                          <input class="form-control" id="cnpj" type="text" name="empresa[cnpj]" maxlength="18" placeholder="CNPJ">
+                          <input class="form-control" id="cnpj" type="text" name="empresa[cnpj]" value="<?php echo (isset($_SESSION['empresa']['cnpj'])) ? $_SESSION['empresa']['cnpj'] : null; ?>" maxlength="18" placeholder="CNPJ">
                         </div>
                       </div>
 
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label class="sr-only" for="contrato">Contrato</label>
-                          <input class="form-control" id="contrato" type="text" name="empresa[contrato]" maxlength="8" placeholder="Conta Contrato">
+                          <input class="form-control" id="contrato" type="text" name="empresa[contrato]" value="<?php echo (isset($_SESSION['empresa']['contrato'])) ? $_SESSION['empresa']['contrato'] : null; ?>" maxlength="8" placeholder="Conta Contrato">
                         </div>
                       </div>
                     </div>
@@ -87,7 +87,7 @@
                       <div class="col-sm-12">
                         <div class="form-group">
                           <label class="sr-only" for="razao-social">Razão Social</label>
-                          <input class="form-control" id="razao-social" type="text" name="empresa[razao-social]" maxlength="100" placeholder="Razão Social">
+                          <input class="form-control" id="razao-social" type="text" name="empresa[razao-social]" value="<?php echo (isset($_SESSION['empresa']['razao_social'])) ? $_SESSION['empresa']['razao_social'] : null; ?>" maxlength="100" placeholder="Razão Social">
                         </div>
                       </div>
                     </div>
@@ -96,16 +96,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-sm-2 col-sm-offset-8">
-                    <div class="form-group">
-                      <button class="btn btn-block btn-default" type="reset">
-                        <span class="glyphicon glyphicon-erase" aria-hidden="true"></span>
-                        Limpar
-                      </button>
-                    </div>
-                  </div>
-
-                  <div class="col-sm-2">
+                  <div class="col-sm-2 col-sm-offset-10">
                     <div class="form-group">
                       <button class="btn btn-block btn-success" type="submit" name="submit" value="submit">
                         <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
@@ -120,6 +111,33 @@
           </div>
 
         </form>
+
+        <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+          <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="text-center">
+                  <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                      <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                        <strong>Ops!</strong>
+                      <?php elseif ($_SESSION['atividades']['tipo'] == 'warning') : ?>
+                        <strong>Sinto Muito!</strong>
+                      <?php else : ?>
+                        <strong>Tudo Certo!</strong>
+                      <?php endif; ?>
+
+                      <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php endfor; ?>
+
+        <?php endif; ?>
+
+        <?php unset($_SESSION['atividades'], $_SESSION['empresa']); ?>
+
       </div><!-- container -->
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->
