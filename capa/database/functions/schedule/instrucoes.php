@@ -131,8 +131,8 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
       <table class='table table-condensed' id='lista-empresas'>
         <thead>
         <tr>
-          <th class='text-center' width='65%'>Razão Social</th>
-          <th class='text-center' width='15%'>CNPJ</th>
+          <th class='text-center' width='55%'>Razão Social</th>
+          <th class='text-center' width='20%'>CNPJ</th>
           <th class='text-center' width='5%'>Contrato</th>
           <th class='text-center' width='15%'></th>
         </tr>
@@ -151,6 +151,10 @@ function consultaDadosCadastraisDosClientes($pesquisa, $tipo, $tabela, $db)
 
       $razaoSocial = strtoupper($razaoSocial);
 
+      $cnpj = substr($cnpj, 0, 2) . '.'. substr($cnpj, 2, 3) . '.' . substr($cnpj, 5, 3) . '/' . substr($cnpj, 8, 4) . '-' . substr($cnpj, 12, 2);
+
+      $contrato = substr($contrato, 0, 4) . '-' . substr($contrato, 4, 3);
+      
       $tr .= "
         <tr>
           <td class='text-left'>$razaoSocial</td>
