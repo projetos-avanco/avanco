@@ -71,7 +71,7 @@
           </div>
 
           <div class="row"><!-- linha principal -->
-            <div class="col-sm-5"><!-- primeira coluna principal -->
+            <div class="col-sm-6"><!-- primeira coluna principal -->
 
               <div class="row"><!-- painel empresa -->
                 <div class="col-sm-12">
@@ -265,7 +265,7 @@
 
             </div><!-- primeira coluna principal -->
 
-            <div class="col-sm-7"><!-- segunda coluna principal -->
+            <div class="col-sm-6"><!-- segunda coluna principal -->
 
               <div class="row"><!-- painel contato -->
                 <div class="col-sm-12">
