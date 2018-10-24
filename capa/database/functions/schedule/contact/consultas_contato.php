@@ -118,6 +118,7 @@ function consultaEmails($db, $id, $tr)
   $tr .= "<td class='text-left' data-email=''>";
 
   while ($linha = mysqli_fetch_array($resultado)) {
+    $linha['endereco'] = mb_strtoupper($linha['endereco'], 'utf-8');
     $tr .= "{$linha['endereco']} <br>";
   }
 
