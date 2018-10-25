@@ -43,8 +43,8 @@ $(function() {
         dataType: 'json',
         success: function(retorno) {                          
           if (typeof retorno === 'object' && retorno) {            
-            $('#novo-endereco').removeClass('btn-success').addClass('btn-warning').attr('id', 'editar-endereco');
-            $('#editar-endereco').html('<i class="fa fa-map-marker" aria-hidden="true"></i> Editar Contato');
+            $('#novo-endereco').removeClass('btn-info').addClass('btn-warning').attr('id', 'editar-endereco');
+            $('#editar-endereco').html('<i class="fa fa-map-marker" aria-hidden="true"></i> Editar Endereço');
 
             switch (retorno.tipo) {
               case '1':
@@ -74,8 +74,8 @@ $(function() {
             $('#complemento').val(retorno.complemento);
             $('#referencia').val(retorno.referencia);
           } else {
-            $('#editar-endereco').removeClass('btn-warning').addClass('btn-success').attr('id', 'novo-endereco');            
-            $('#novo-endereco').html('<i class="fa fa-map-marker" aria-hidden="true"></i> Novo Contato');
+            $('#editar-endereco').removeClass('btn-warning').addClass('btn-info').attr('id', 'novo-endereco');            
+            $('#novo-endereco').html('<i class="fa fa-map-marker" aria-hidden="true"></i> Novo Endereço');
 
             $('#logradouro').val('');
             $('#distrito').val('');
