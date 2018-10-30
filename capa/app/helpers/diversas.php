@@ -378,7 +378,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
 }
 
 /**
- * 
+ * retorna uma cópia da folha de estilo do bootstrap
  */
 function retornaCssDoBootstrap()
 {
