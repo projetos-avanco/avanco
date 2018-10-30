@@ -7,7 +7,7 @@ function insereRegistroDeIssues($db, $issues)
 {
   $query =
     "INSERT INTO av_registro_horas_issues
-     VALUES (null,
+     VALUES (0,
             '{$issues['issue']}',
             '{$issues['tipo']}',
             '{$issues['status']}',
@@ -42,7 +42,7 @@ function insereRegistroDeLancamentos($db, $lancamentos, $id)
     $query = "";
     $query = 
       "INSERT INTO av_registro_horas_lancamentos 
-        VALUES (null,
+        VALUES (0,
                $id,
                '{$lancamentos[$i]['data']}',
                 {$lancamentos[$i]['produto']},
@@ -80,7 +80,7 @@ function insereRegistroDeDespesas($db, $despesas, $id)
 {
   $query =
     "INSERT INTO av_registro_horas_despesas
-      VALUES (null,
+      VALUES (0,
              $id,
              {$despesas['deslocamento']},
              {$despesas['alimentacao']},
