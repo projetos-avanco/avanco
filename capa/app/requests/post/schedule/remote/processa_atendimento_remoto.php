@@ -50,7 +50,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (!empty($_POST['remoto']['id-cnpj'])) {
     # verificando se o id do cnpj da empresa é uma string numérica
     if (is_numeric($_POST['remoto']['id-cnpj'])) {
-      $remoto['id_cnpj'] = $_POST['remoto']['id-cnpj'];
+      $remoto['id_cnpj'] = (int)$_POST['remoto']['id-cnpj'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados do código da Empresa não está correto.';
@@ -78,7 +78,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (!empty($_POST['remoto']['supervisor'])) {
     # verificando se o id do supervisor é uma string numérica
     if (is_numeric($_POST['remoto']['supervisor'])) {
-      $remoto['supervisor'] = $_POST['remoto']['supervisor'];
+      $remoto['supervisor'] = (int)$_POST['remoto']['supervisor'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados do id do supervisor não está correto.';
@@ -92,7 +92,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (!empty($_POST['remoto']['colaborador'])) {
     # verificando se o id do colaborador é uma string numérica
     if (is_numeric($_POST['remoto']['colaborador'])) {
-      $remoto['colaborador'] = $_POST['remoto']['colaborador'];
+      $remoto['colaborador'] = (int)$_POST['remoto']['colaborador'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados do id do colaborador não está correto.';
@@ -177,7 +177,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (!empty($_POST['remoto']['faturado'])) {
     # verificando se o valor do campo faturado é uma string numérica
     if (is_numeric($_POST['remoto']['faturado'])) {
-      $remoto['faturado'] = $_POST['remoto']['faturado'];
+      $remoto['faturado'] = (int)$_POST['remoto']['faturado'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados do valor do campo faturado não está correto.';
@@ -210,7 +210,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   }
 
   # verificando se o atendimento é faturado
-  if ($remoto['faturado'] == '1') {
+  if ($remoto['faturado'] == 1) {
     # verificando se a cobrança e o valor foram definidos
     if (isset($cobranca) && isset($valor)) {
       # verificando se a cobrança é por hora
@@ -220,6 +220,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
         $remoto['valor_pacote'] = (float)$valor;        
       }
     }
+  } else {
+    $remoto['faturado'] = 0;
   }
   
   $remoto['registrado'] = date('Y-m-d H:i:s');
@@ -234,7 +236,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (isset($_POST['contato']['nome-contato']) && (!empty($_POST['contato']['nome-contato']))) {
     # verificando se o nome do contato é uma string
     if (is_string($_POST['contato']['nome-contato'])) {
-      $contato['nome'] = mb_strtolower($_POST['contato']['nome-contato'], 'utf-8');
+      $contato['nome'] = ucwords(mb_strtolower($_POST['contato']['nome-contato'], 'utf-8'));
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados do nome do contato não está correto.';
@@ -299,7 +301,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     for ($i = 0; $i < count($str); $i++) {
       # verificando se cada posição do array não está vazia
       if (!empty($str[$i])) {
-        array_push($contato['emails'], trim($str[$i]));
+        array_push($contato['emails'], mb_strtolower(trim($str[$i]), 'utf-8'));
       }    
     }
 
