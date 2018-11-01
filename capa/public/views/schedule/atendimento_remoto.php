@@ -37,7 +37,7 @@
   <style>
     .erro {
       border: 2px solid red;
-    }
+    }    
   </style>
 </head>
 
@@ -229,6 +229,25 @@
                   <input type="hidden" name="contato[email-contato]" id="email-contato">
                 </div>
               </div><!-- painel contatos -->
+
+              <div class="row"><!-- painel id's dos contatos em cópia oculta -->
+                <div class="col-sm-12">
+
+                  <div class="panel panel-info"><!-- panel -->
+                    <div class="panel-heading">
+                      <strong>Complementar</strong>
+                    </div>
+
+                    <div class="panel-body"><!-- panel-body -->                    
+                      <div class="text-left">
+                        <ul class="list-group" id="contatos-copia"><!-- tabela contatos -->
+                          
+                        </ul><!-- tabela contatos -->
+                      </div>
+                    </div><!-- panel-body -->
+                  </div><!-- panel -->                  
+                </div>
+              </div><!-- painel id's dos contatos em cópia oculta -->
 
               <div class="row"><!-- painel financeiro -->
                 <div class="col-sm-12">
