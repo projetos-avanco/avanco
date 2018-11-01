@@ -33,6 +33,7 @@ function consultaRazaoSocialDaEmpresa($db, $id)
 }
 
 /**
+ * consulta a conta contrato de uma empresa
  * @param - objeto com uma conexão aberta
  * @param - string com o id do cnpj da empresa
  */
@@ -51,4 +52,20 @@ function consultaContratoDaEmpresa($db, $id)
   $contrato = mysqli_fetch_row($resultado);
   
   return $contrato[0];
+}
+
+/**
+ * consulta o endereço do e-mail do colaborador
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do colaborador
+ */
+function consultaEmailDoColaborador($db, $id)
+{
+  $query = "SELECT email FROM lh_users WHERE id = $id";
+
+  $resultado = mysqli_query($db, $query);
+
+  $email = mysqli_fetch_row($resultado);
+
+  return $email[0];
 }
