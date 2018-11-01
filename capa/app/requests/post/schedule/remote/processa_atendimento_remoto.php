@@ -36,6 +36,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     'emails' => array()
   );
 
+  $copia = array();
+
   $flag = false;
 
   $erros = array();
@@ -312,6 +314,20 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     }    
   }
 
+  /**
+   * -----------------------------------
+   * validando dados dos e-mails em cópia
+   * -----------------------------------
+   */
+
+  # verificando se foram enviados os id's do contatos em cópia
+  if (isset($_POST['copia']) && (!empty($_POST['copia']))) {    
+    # recuperando os id's dos contatos em cópia
+    for ($i = 0; $i < count($_POST['copia']); $i++) {
+      array_push($copia, $_POST['copia'][$i]);
+    }
+  }
+
   # abrindo sessão de validação
   $_SESSION['atividades'] = array(
     'tipo'      => 'danger',
@@ -333,8 +349,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   } else {
     # requisitando script
     require_once DIRETORIO_MODULES . 'schedule/modulo_remoto.php';
-
+    
     # chamando função responsável por gravar um atendimento remoto
-    recebeAtendimentoRemoto($remoto, $contato);
+    recebeAtendimentoRemoto($remoto, $contato, $copia);
   }
 }
