@@ -9,8 +9,9 @@ use PHPMailer\PHPMailer\Exception;
  * @param - objeto com uma conexão aberta
  * @param - array com os dados do atendimento remoto
  * @param - array com os dados de um contato
+ * @param - array com os e-mails dos contatos em cópia
  */
-function enviaEmail($db, $remoto, $contato)
+function enviaEmail($db, $remoto, $contato, $cc)
 {
   require_once '../../../../../libs/PHPMailer/src/Exception.php';
   require_once '../../../../../libs/PHPMailer/src/PHPMailer.php';
@@ -18,7 +19,11 @@ function enviaEmail($db, $remoto, $contato)
 
   # chamando função que gera a mensagem de e-mail em formato HTML
   $msg = geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato);
-  
+
+  # chamando função que consulta o endereço de e-mail do colaborador
+  $emailColaborador = consultaEmailDoColaborador($db, $remoto['colaborador']);
+  $emailSupervisor = $_SESSION['usuario']['email'];
+
   $email = new PHPMailer(true);
 
   try {
@@ -35,13 +40,23 @@ function enviaEmail($db, $remoto, $contato)
     # destinatários 
     $email->setFrom('wellington.felix@avancoinfo.com.br', 'Agenda');
     
-    for ($i = 0; $i < sizeof($contato['emails']); $i++) {
+    # adicionando todos os e-mail de contato do cliente
+    for ($i = 0; $i < count($contato['emails']); $i++) {
       $email->addAddress($contato['emails'][$i]);
     }
     
     $email->addReplyTo('wellington.felix@avancoinfo.com.br', 'Respostas');
     $email->addCC('wellington.felix@avancoinfo.com.br');
-    #$email->addBCC($_SESSION['usuario']['email']);
+
+    # verificando se existem e-mails em cópia para recebimento do agendamento remoto
+    if (count($cc) > 0) {
+      for ($i = 0; $i < count($cc); $i++)  {
+        $email->addCC($cc[$i]);
+      }
+    }
+
+    #$email->addBCC($emailSupervisor);
+    #$email->addBCC($emailColaborador);
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');         
@@ -52,6 +67,7 @@ function enviaEmail($db, $remoto, $contato)
     $email->Subject = 'Agendamento';
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
 
+    # verificando qual supervisor está logado e importando sua foto correspondente
     switch ($remoto['supervisor']) {
       case 05:
         $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/photos/05.png', 'foto', 'foto');
@@ -164,13 +180,15 @@ function solicitaGravacaoDeTicket($db, $remoto, $contato)
  * responsável por gravar um atendimento remoto
  * @param - array com os dados de um atendimento remoto
  * @param - array com os dados de um contato
+ * @param - array com os id's do contatos em cópia
  */
-function recebeAtendimentoRemoto($remoto, $contato)
+function recebeAtendimentoRemoto($remoto, $contato, $copia)
 {
   require_once DIRETORIO_HELPERS   . 'diversas.php';  
   require_once DIRETORIO_FUNCTIONS . 'schedule/remote/insercoes_remoto.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/remote/consultas_remoto.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/remote/delecoes_remoto.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
 
   $db = abre_conexao();
   
@@ -195,8 +213,14 @@ function recebeAtendimentoRemoto($remoto, $contato)
 
       # verificando se o registro de atendimento remoto foi gravado com sucesso
       if ($resultado) {
+        $cc = array();
+
+        for ($i = 0; $i < count($copia); $i++) {
+          $cc = consultaEnderecosEmailsDeUmContato($db, $copia[$i], $cc);
+        }
+
         # chamando função que realiza o envio dos e-mails
-        $resultado = enviaEmail($db, $remoto, $contato);
+        $resultado = enviaEmail($db, $remoto, $contato, $cc['emails']);
 
         # verificando se o e-mail foi enviado
         if ($resultado === true) {
