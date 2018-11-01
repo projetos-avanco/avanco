@@ -158,6 +158,14 @@ function geraRegistro($db, $tabela)
 }
 
 /**
+ * gera a mensagem de e-mail em formato texto
+ */
+function geraMensagemEmFormatoTexto()
+{
+
+}
+
+/**
  * gera a mensagem de email do atendimento remoto
  * @param - objeto com uma conexão aberta
  * @param - array com os dados do atendimento remoto
@@ -319,7 +327,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
       <div class='row'>
         <div class='col-sm-12'>
           <div class='text-left'>
-            <p>Favor entrar em contato pelo <strong>Chat</strong> (na opção <strong>Via Ticket Chat</strong>), na data e horário agendados para realização do atendimento.</p>
+            <p>Favor entrar em contato pelo <strong>Portal do Cliente</strong> (na opção <strong>Via Ticket Chat</strong>), na data e horário agendados para realização do atendimento.</p>
             <p>Qualquer dúvida, estamos a disposição.</p>
 
             <br>
