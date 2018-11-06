@@ -63,7 +63,7 @@ function verificaUsuarioLogado($pagina, $id = null)
             $id == 14 OR
             $id == 23 OR
             $id == 20 OR
-            $id == 25)
+            $id == 48)
 
             OR
 
@@ -71,7 +71,7 @@ function verificaUsuarioLogado($pagina, $id = null)
             $id == 14 OR
             $id == 23 OR
             $id == 20 OR
-            $id == 25)) {
+            $id == 48)) {
 
         return true;
 
