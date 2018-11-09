@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/processa_atendimento_externo.php" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/external/processa_atendimento_externo.php" method="post">
 
           <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
@@ -102,7 +102,7 @@
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
-                  <input class="form-control required" id="id" type="hidden" name="remoto[id-cnpj]" value="">                  
+                  <input class="form-control required" id="id" type="hidden" name="externo[id-cnpj]" value="">                  
                 </div>
               </div><!-- painel empresa -->
 
@@ -132,7 +132,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="logradouro">Logradouro</label>
-                            <input class="form-control" id="logradouro" type="text" placeholder="Avenida" readonly>
+                            <input class="form-control" id="logradouro" type="text" name="endereco[logradouro]" placeholder="Avenida" readonly>
                           </div>
                         </div>
                       </div>
@@ -141,21 +141,21 @@
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="distrito">Bairro</label>
-                            <input class="form-control" id="distrito" type="text" placeholder="Bairro" readonly>
+                            <input class="form-control" id="distrito" type="text" name="endereco[distrito]" placeholder="Bairro" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="localidade">Cidade</label>
-                            <input class="form-control" id="localidade" type="text" placeholder="Cidade" readonly>
+                            <input class="form-control" id="localidade" type="text" name="endereco[localidade]" placeholder="Cidade" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="uf">Estado</label>
-                            <input class="form-control" id="uf" type="text" placeholder="Estado" readonly>
+                            <input class="form-control" id="uf" type="text" name="endereco[uf]" placeholder="Estado" readonly>
                           </div>
                         </div>
                       </div>
@@ -164,28 +164,28 @@
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label class="sr-only" for="tipo">Tipo do Endereco</label>
-                            <input class="form-control" id="tipo" type="text" placeholder="Tipo do Endereço" readonly>
+                            <input class="form-control" id="tipo" type="text" name="endereco[tipo]" placeholder="Tipo do Endereço" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label class="sr-only" for="cep">Código Postal</label>
-                            <input class="form-control" id="cep" type="text" placeholder="Código Postal" readonly>
+                            <input class="form-control" id="cep" type="text" name="endereco[cep]" placeholder="Código Postal" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-2">
                           <div class="form-group">
                             <label class="sr-only" for="numero">Número</label>
-                            <input class="form-control" id="numero" type="text" placeholder="Número" readonly>
+                            <input class="form-control" id="numero" type="text" name="endereco[numero]" placeholder="Número" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="complemento">Complemento</label>
-                            <input class="form-control" id="complemento" type="text" placeholder="Complemento" readonly>
+                            <input class="form-control" id="complemento" type="text" name="endereco[complemento]" placeholder="Complemento" readonly>
                           </div>
                         </div>
                       </div>
@@ -194,7 +194,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="referencia">Referência</label>
-                            <input class="form-control" id="referencia" type="text" placeholder="Referência" readonly>
+                            <input class="form-control" id="referencia" type="text" name="endereco[referencia]" placeholder="Referência" readonly>
                           </div>
                         </div>
                       </div>
@@ -218,7 +218,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="colaborador">Colaborador</label>
-                            <select class="form-control required" id="colaborador" name="remoto[colaborador]">
+                            <select class="form-control required" id="colaborador" name="externo[colaborador]">
 
                             </select>
                           </div>
@@ -229,7 +229,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="produto">Produto</label>
-                            <select class="form-control required" id="produto" name="remoto[produto]">
+                            <select class="form-control required" id="produto" name="externo[produto]">
                               <option value="0">Produto</option>
                               <option value="1">Integral</option>
                               <option value="2">Frente de Loja</option>
@@ -244,7 +244,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="modulo">Módulo</label>
-                            <select class="form-control required" id="modulo" name="remoto[modulo]">
+                            <select class="form-control required" id="modulo" name="externo[modulo]">
                               <option value="0">Módulo</option>
                             </select>
                           </div>
@@ -252,14 +252,21 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="sr-only" for="data">Data</label>
-                            <input class="form-control required" id="data" type="text" name="remoto[data]" placeholder="Data">
+                            <label class="sr-only" for="data-inicial">Data</label>
+                            <input class="form-control required" id="data-inicial" type="text" name="externo[data-inicial]" placeholder="Data Inicial">
                           </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
+                          <div class="form-group">
+                            <label class="sr-only" for="data-final">Data</label>
+                            <input class="form-control required" id="data-final" type="text" name="externo[data-final]" placeholder="Data Final">
+                          </div>
+                        </div>
+
+                        <div class="col-sm-4">
                           <div class="form-group">
                             <div class="input-group">
                               <span class="input-group-btn">
@@ -268,7 +275,7 @@
                                 </button>
                               </span>
                               <label class="sr-only" for="horario">Horário</label>
-                              <input class="form-control required" id="horario" type="text" name="remoto[horario]" placeholder="Horário">
+                              <input class="form-control required" id="horario" type="text" name="externo[horario]" placeholder="Horário">
                             </div>
                           </div>
                         </div>
@@ -278,14 +285,14 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="observacao">Observação</label>
-                            <textarea class="form-control required" id="observacao" name="remoto[assunto]" rows="4" cols="30" placeholder="Observações..."></textarea>
+                            <textarea class="form-control required" id="observacao" name="externo[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
                       </div>                                         
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
-                  <input type="hidden" name="remoto[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
+                  <input type="hidden" name="externo[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
                 </div>
               </div><!-- painel atendimento -->
 
@@ -318,11 +325,11 @@
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
-                  <input type="hidden" name="remoto[id-contato]"    id="id-contato">
-                  <input type="hidden" name="remoto[nome-contato]"  id="nome-contato">
-                  <input type="hidden" name="remoto[fixo-contato]"  id="fixo-contato">
-                  <input type="hidden" name="remoto[movel-contato]" id="movel-contato">
-                  <input type="hidden" name="remoto[email-contato]" id="email-contato">
+                  <input type="hidden" name="contato[id-contato]"    id="id-contato">
+                  <input type="hidden" name="contato[nome-contato]"  id="nome-contato">
+                  <input type="hidden" name="contato[fixo-contato]"  id="fixo-contato">
+                  <input type="hidden" name="contato[movel-contato]" id="movel-contato">
+                  <input type="hidden" name="contato[email-contato]" id="email-contato">
                 </div>
               </div><!-- painel contato -->
 
@@ -358,7 +365,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="tipo-atendimento">Tipo</label>
-                            <select class="form-control" id="tipo-atendimento" name="remoto[tipo-atendimento]">
+                            <select class="form-control" id="tipo-atendimento" name="externo[tipo-atendimento]">
                               <option value="0" selected>Tipo de Atendimento</option>
                               <option value="1">Suporte ao Cliente</option>
                               <option value="2">Projeto Mais Gestão</option>
@@ -374,8 +381,21 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
+                            <label class="sr-only" for="despesa">Despesa</label>
+                            <select class="form-control" id="despesa" name="externo[despesa]">
+                              <option value="0">Cobrança de Despesas?</option>
+                              <option value="1">Sim</option>
+                              <option value="2">Não</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
                             <label class="sr-only" for="faturado">Faturado</label>
-                            <select class="form-control" id="faturado" name="remoto[faturado]">
+                            <select class="form-control" id="faturado" name="externo[faturado]">
                               <option value="0" selected>Pedido Faturado?</option>
                               <option value="1">Sim</option>
                               <option value="2">Não</option>
@@ -388,7 +408,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="cobranca">Cobrança</label>
-                            <select class="form-control" id="cobranca" name="remoto[cobranca]">
+                            <select class="form-control" id="cobranca" name="externo[cobranca]">
                               <option value="0" selected>Tipo de Cobrança</option>
                               <option value="1">Hora</option>
                               <option value="2">Pacote</option>
@@ -407,7 +427,7 @@
                                 </button>
                               </span>
                               <label class="sr-only" for="valor">Valor</label>
-                              <input class="form-control" id="valor" type="text" name="remoto[valor]" placeholder="0.00">
+                              <input class="form-control" id="valor" type="text" name="externo[valor]" placeholder="0.00">
                             </div>
                           </div>
                         </div>
@@ -432,8 +452,8 @@
                       <div class="text-center">
                         <h1>
                           <strong id="ticket">
-                            <?php if (isset($_SESSION['ticket'])) : ?>
-                              <?php echo $_SESSION['ticket']; ?>
+                            <?php if (isset($_SESSION['registro'])) : ?>
+                              <?php echo $_SESSION['registro']; ?>
                             <?php else : ?>
                               0
                             <?php endif; ?>
@@ -455,7 +475,7 @@
                 </div>
 
                 <div class="col-sm-3">
-                  <button class="btn btn-block btn-success btn-sm" type="submit">
+                  <button class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="submit">
                     <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                     Gravar
                   </button>
@@ -466,6 +486,30 @@
           </div><!-- linha principal -->
 
         </form>
+
+        <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+        <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="text-center">
+                <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                    <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                      <strong>Ops!</strong>
+                    <?php else : ?>
+                      <strong>Tudo Certo!</strong>
+                    <?php endif; ?>
+
+                    <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endfor; ?>
+
+        <?php endif; ?>
+
+        <?php unset($_SESSION['atividades'], $_SESSION['registro']); ?>
 
       </div><!-- container -->
     </div><!-- conteúdo da página -->
