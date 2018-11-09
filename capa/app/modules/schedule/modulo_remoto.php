@@ -11,7 +11,7 @@ use PHPMailer\PHPMailer\Exception;
  * @param - array com os dados de um contato
  * @param - array com os e-mails dos contatos em cópia
  */
-function enviaEmail($db, $remoto, $contato, $cc)
+function enviaEmailRemoto($db, $remoto, $contato, $cc)
 {
   require_once '../../../../../libs/PHPMailer/src/Exception.php';
   require_once '../../../../../libs/PHPMailer/src/PHPMailer.php';
@@ -55,8 +55,8 @@ function enviaEmail($db, $remoto, $contato, $cc)
       }
     }
 
-    #$email->addBCC($emailSupervisor);
-    #$email->addBCC($emailColaborador);
+    $email->addBCC($emailSupervisor);
+    $email->addBCC($emailColaborador);
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');         
@@ -83,7 +83,7 @@ function enviaEmail($db, $remoto, $contato, $cc)
     }
 
     $email->Body    = $msg;
-    $email->AltBody = 'Este é o corpo em texto sem formatação para clientes de email não HTML';
+    $email->AltBody = '';
 
     $email->send();
 
@@ -184,9 +184,9 @@ function solicitaGravacaoDeTicket($db, $remoto, $contato)
  */
 function recebeAtendimentoRemoto($remoto, $contato, $copia)
 {
-  require_once DIRETORIO_HELPERS   . 'diversas.php';  
+  require_once DIRETORIO_HELPERS   . 'diversas.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_agenda.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/remote/insercoes_remoto.php';
-  require_once DIRETORIO_FUNCTIONS . 'schedule/remote/consultas_remoto.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/remote/delecoes_remoto.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
 
@@ -215,12 +215,17 @@ function recebeAtendimentoRemoto($remoto, $contato, $copia)
       if ($resultado) {
         $cc = array();
 
-        for ($i = 0; $i < count($copia); $i++) {
-          $cc = consultaEnderecosEmailsDeUmContato($db, $copia[$i], $cc);
-        }
+        # verificando se foram enviados os id's do contatos que receberam o e-mail em cópia
+        if (count($cc) > 0) {
+          for ($i = 0; $i < count($copia); $i++) {
+            $cc = consultaEnderecosEmailsDeUmContato($db, $copia[$i], $cc);
+          }
+        } else {
+          $cc['emails'] = array();
+        }      
 
         # chamando função que realiza o envio dos e-mails
-        $resultado = enviaEmail($db, $remoto, $contato, $cc['emails']);
+        $resultado = enviaEmailRemoto($db, $remoto, $contato, $cc['emails']);
 
         # verificando se o e-mail foi enviado
         if ($resultado === true) {
