@@ -158,15 +158,273 @@ function geraRegistro($db, $tabela)
 }
 
 /**
- * gera a mensagem de e-mail em formato texto
+ * gera a mensagem de e-mail do atendimento externo
+ * @param - objeto com uma conexão aberta
+ * @param - array com os dados de um atendimento externo
+ * @param - array com os dados de um endereço
+ * @param - array com os dados de um contato
  */
-function geraMensagemEmFormatoTexto()
+function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $contato)
 {
+  require_once DIRETORIO_HELPERS . 'datas.php';
+  require_once ABS_PATH . '../tickets/database/functions/screen/instrucoes.php';
 
+  # verificando se o usuário logado é adilson badaró
+  if ($_SESSION['usuario']['id'] == 5) {
+    $supervisor = $_SESSION['usuario']['sobrenome'];
+  } else {
+    $supervisor = $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome'];
+  }
+
+  $email = $_SESSION['usuario']['email'];
+
+  # formatando dada e observação
+  $externo['data_inicial'] = formataDataParaExibir($externo['data_inicial']);
+  $externo['data_final'] = formataDataParaExibir($externo['data_final']);
+  $externo['observacao'] = mb_strtoupper($externo['observacao'], 'utf-8');
+  
+  # chamando funções que retornam o cnpj, razão social e conta contrato de uma empresa
+  $cnpj        = consultaCnpjDaEmpresa($db, $externo['id_cnpj']);
+  $razaoSocial = consultaRazaoSocialDaEmpresa($db, $externo['id_cnpj']);
+  $contrato    = consultaContratoDaEmpresa($db, $externo['id_cnpj']);
+
+  # formantando cnpj e contrato
+  $cnpj = substr($cnpj, 0, 2) . '.'. substr($cnpj, 2, 3) . '.' . substr($cnpj, 5, 3) . '/' . substr($cnpj, 8, 4) . '-' . substr($cnpj, 12, 2);
+  $contrato = substr($contrato, 0, 4) . '-' . substr($contrato, 4, 3);
+
+  # retirando ponto do final das frases
+  $externo['observacao'] = rtrim($externo['observacao'], '.');
+  $endereco['referencia'] = rtrim($endereco['referencia'], '.');
+  $endereco['complemento'] = rtrim($endereco['complemento'], '.');
+
+  # consultando nome do colaborador
+  $colaborador = consultaNomeDoColaborador($db, $externo['colaborador']) . ' ' . consultaSobrenomeDoColaborador($db, $externo['colaborador']);
+
+  # montando parágrafo com telefones fixos
+  $fixos = '<p><strong>Fixos:</strong> ';
+
+  foreach ($contato['fixos'] as $fixo) {
+    $fixos .= $fixo . ' / '  ;
+  }
+
+  # montando parágrafo com telefones móveis
+  $fixos = rtrim($fixos, '/ ');
+  $fixos .= '</p>'; 
+  
+  $moveis = '<p><strong>Móveis:</strong> ';
+
+  foreach ($contato['moveis'] as $movel) {
+    $moveis .= $movel . ' / ';
+  }
+
+  $moveis = rtrim($moveis, ' / ');
+  $moveis .= '</p>';
+
+  # chamando função que retorna a folha de estilo do bootstrap
+  $style = retornaCssDoBootstrap();
+
+  # montando mensagem no formato HTML
+  $msg = "
+    <!docytype html>
+    <html lang='pt-br'>
+    <head>
+      <meta http-equiv='content-type' content='text/html; charset=utf-8'>
+      <title>Agendamento de Atendimento Externo</title>
+
+      <style>
+        $style
+      </style>
+    </head>
+
+    <body>
+      <div class='container-fluid'>
+
+        <div class='row'>
+          <div class='col-sm-12'>
+            <div class='text-left'>
+              <h2>Agendamento de Atendimento Externo</h2>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class='row'>
+          <div class='col-sm-12'>
+            <div class='text-left'>
+              <p>Olá {$contato['nome']}, tudo bem?</p>
+
+              <p>Segue abaixo os dados da visita agendada.</p>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class='row'>
+          <div class='col-sm-12'>
+            <div class='text-left'>
+              <h4>Dados da Visita</h4>
+
+              <p><strong>Registro:</strong> {$externo['registro']}</p>
+              <p><strong>Período:</strong> {$externo['data_inicial']} até {$externo['data_final']} a partir das {$externo['horario']} horas</p>
+              <p><strong>Técnico Avanço:</strong> $colaborador</p>
+              <p><strong>Trabalho a ser Realizado:</strong> {$externo['observacao']}</p>
+            </div>
+          </div>
+        </div>
+              
+        <br>
+
+        <div class='row'>
+          <div class='col-sm-12'>
+            <div class='text-left'>
+              <h4>Dados da Empresa</h4>
+
+              <p><strong>Contrato:</strong> $contrato
+              <p><strong>CNPJ:</strong> $cnpj
+              <p><strong>Razão Social:</strong> $razaoSocial
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class='row'>
+          <div class='col-sm-12'>
+            <div class='text-left'>
+              <p><strong>Tipo do Endereço:</strong> {$endereco['tipo']}
+              <p><strong>Logradouro:</strong> {$endereco['logradouro']}
+              <p><strong>Número:</strong> {$endereco['numero']}
+              <p><strong>CEP:</strong> {$endereco['cep']}
+              <p><strong>Complemento:</strong> {$endereco['complemento']}
+              <p><strong>Referência:</strong> {$endereco['referencia']}
+              <p><strong>Bairro:</strong> {$endereco['distrito']}
+              <p><strong>Cidade:</strong> {$endereco['localidade']}
+              <p><strong>Estado:</strong> {$endereco['uf']}              
+            </div>
+          </div>
+        </div>
+        
+        <br>
+
+        <div class='row'>
+          <div class='col-sm-12'>
+            <div class='text-left'>
+              <h4>Dados do Contato</h4>
+
+              <p><strong>Nome:</strong> {$contato['nome']}</p>
+              $fixos
+
+              $moveis
+            </div>
+          </div>
+        </div>
+        
+        <br>";
+
+  # verificando se o atendimento é faturado              
+  if ($externo['faturado']) {
+    $msg .= 
+      "<div class='row'>
+        <div class='col-sm-12'>
+          <div class='text-left'>";
+
+    # verificando se o tipo de cobrança do atendimento é por hora
+    if ($externo['valor_hora'] > 0) {
+      $externo['valor_hora'] = number_format($externo['valor_hora'], 2, ',', '.');
+
+      $msg .= "<p>Serão cobradas horas técnicas no valor de <strong>R\${$externo['valor_hora']}</strong> por cada hora trabalhada.</p>";
+    } elseif ($externo['valor_pacote'] > 0) {
+      $externo['valor_pacote'] = number_format($externo['valor_pacote'], 2, ',', '.');
+
+      $msg .= "<p>O valor do atendimento foi negociado no total de <strong>R\${$externo['valor_pacote']}</strong>.</p>";
+    }
+
+    $msg .=
+        "</div>
+      </div>
+    </div>
+
+    <br>";
+  }
+
+  if ($externo['despesa'] == 1) {
+    $msg .= 
+      "<div class='row'>
+        <div class='col-sm-12'>
+          <div class='text-left'>
+            <p>As despesas com <strong>deslocamento</strong>, <strong>hospedagem</strong> e <strong>alimentação</strong> são por conta do cliente.</p>
+          </div>
+        </div>
+      </div>
+      
+      <br>";   
+  }
+
+  $msg .= 
+      "<div class='row'>
+        <div class='col-sm-12'>
+          <div class='text-left'>            
+            <p>Qualquer dúvida, estamos a disposição.</p>
+
+            <br>
+
+            <p>Atte,</p>
+            
+            <br>
+
+            <div style='text-size-adjust: none !important; -ms-text-size-adjust: none !important; -webkit-text-size-adjust: none !important;'>
+              <p style='font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; margin-bottom: 10px;'>
+                <a style='text-decoration:none' href='https://htmlsig.com/t/000001CHE435'>
+                  <img src='cid:foto' alt='Avanço Informática' border='0' height='80' width='80'>
+                </a>
+              </p>
+                
+              <p style='font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; color: rgb(33, 33, 33); margin-bottom: 10px;'>
+                <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'> $supervisor</span>
+                <span style='display: inline;'>/</span> <span style='color: rgb(33, 33, 33); display: inline;'>Atendimento</span>
+                <span style='display: inline;'><br></span>
+                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $email</a>
+                <span style='color: #212121;'></span>
+              </p>
+
+              <p style='font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; margin-bottom: 10px;'>
+                <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'>Avanço Informática</span>
+                <span style='display: inline;'><br></span>
+                <span style='color: rgb(33, 33, 33); display: inline;'>31 3025 1188</span>
+                <span style='color: #212121;'></span>
+                <span style='display: inline;'><br></span> <span style='color: rgb(33, 33, 33); display: inline;'>Avenida Brasil, 131, Santa Efigênia</span>
+                <span style='display: inline;'><br></span> <span style='color: rgb(33, 33, 33); display: inline;'>Belo Horizonte  -  Minas Gerais</span>
+                <span style='display: inline;'><br></span>
+                <a href='http://www.avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'>www.avancoinfo.com.br</a>
+              </p>
+
+              <p style='font-size: 0px; line-height: 0; font-family: Helvetica, Arial, sans-serif;'></p>
+
+              <p style='font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; margin-bottom: 10px;'>
+                <a href='http://avancoinfo.com.br/'>
+                  <img src='cid:tag' alt='avancoinfo.com.br' border='0' height='35' width='300' data-pin-nopin='true'>
+                </a>
+              </p> 
+
+              <p style='font-family: Helvetica, Arial, sans-serif; color: #212121; font-size: 9px; line-height: 12px;'></p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>";
+  
+  $msg = utf8_decode($msg);
+  
+  return $msg;
 }
 
 /**
- * gera a mensagem de email do atendimento remoto
+ * gera a mensagem de e-mail do atendimento remoto
  * @param - objeto com uma conexão aberta
  * @param - array com os dados do atendimento remoto
  * @param - array com os dados de um contato
@@ -197,6 +455,9 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
   $cnpj = substr($cnpj, 0, 2) . '.'. substr($cnpj, 2, 3) . '.' . substr($cnpj, 5, 3) . '/' . substr($cnpj, 8, 4) . '-' . substr($cnpj, 12, 2);
   $contrato = substr($contrato, 0, 4) . '-' . substr($contrato, 4, 3);
 
+  # retirando ponto do final das frases
+  $remoto['observacao'] = rtrim($remoto['observacao'], '.');
+  
   # consultando nome do colaborador
   $colaborador = consultaNomeDoColaborador($db, $remoto['colaborador']) . ' ' . consultaSobrenomeDoColaborador($db, $remoto['colaborador']);
 
@@ -229,7 +490,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
     <html lang='pt-br'>
     <head>
       <meta http-equiv='content-type' content='text/html; charset=utf-8'>
-      <title>Agendamento de Atendimento</title>
+      <title>Agendamento de Atendimento Remoto</title>
 
       <style>
         $style
@@ -242,7 +503,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
         <div class='row'>
           <div class='col-sm-12'>
             <div class='text-left'>
-              <h2>Agendamento Remoto</h2>
+              <h2>Agendamento de Atendimento Remoto</h2>
             </div>
           </div>
         </div>
@@ -267,11 +528,8 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
               <h4>Dados do Agendamento</h4>
 
               <p><strong>Ticket:</strong> {$remoto['registro']}</p>
-
-              <p><strong>Período:</strong> {$remoto['data']} às {$remoto['horario']}</p>
-
+              <p><strong>Período:</strong> {$remoto['data']} a partir das {$remoto['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
-
               <p><strong>Trabalho a ser Realizado:</strong> {$remoto['observacao']}</p>
             </div>
           </div>
@@ -282,7 +540,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
         <div class='row'>
           <div class='col-sm-12'>
             <div class='text-left'>
-              <h4>Dados do Cliente</h4>
+              <h4>Dados da Empresa</h4>
               <p><strong>Contrato:</strong> $contrato
               <p><strong>CNPJ:</strong> $cnpj
               <p><strong>Razão Social:</strong> $razaoSocial
@@ -295,29 +553,51 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
         <div class='row'>
           <div class='col-sm-12'>
             <div class='text-left'>
-              <p><strong>Nome:</strong> {$contato['nome']}</p>
+              <h4>Dados do Contato</h4>
 
+              <p><strong>Nome:</strong> {$contato['nome']}</p>
               $fixos
 
               $moveis
-              
-              <br>";
+            </div>
+          </div>
+        </div>
+        
+        <br>";
   
   # verificando se o atendimento é faturado              
   if ($remoto['faturado']) {
+    $msg .=
+      "<div class='row'>
+        <div class='col-sm-12'>
+          <div class='text-left'>";
+
     # verificando se o tipo de cobrança do atendimento é por hora
     if ($remoto['valor_hora'] > 0) {
       $remoto['valor_hora'] = number_format($remoto['valor_hora'], 2, ',', '.');
 
-      $msg .= '<p>Serão cobradas horas técnicas no valor de <strong>R$' . $remoto['valor_hora'] . '</strong> por cada hora trabalhada.';
+      $msg .= "<p>Serão cobradas horas técnicas no valor de <strong>R\${$remoto['valor_hora']}</strong> por cada hora trabalhada.</p>";
     } elseif ($remoto['valor_pacote'] > 0) {
       $remoto['valor_pacote'] = number_format($remoto['valor_pacote'], 2, ',', '.');
 
-      $msg .= '<p>O valor do atendimento foi negociado no total de <strong>R$' . $remoto['valor_pacote'] . '</strong>.';
+      $msg .= "<p>O valor do atendimento foi negociado no total de <strong>R\${$remoto['valor_pacote']}</strong>.</p>";
     }
+
+    $msg .=
+        "</div>
+      </div>
+    </div>
+
+    <br>";
   }
 
-  $msg .= "
+  $msg .= 
+      "<div class='row'>
+        <div class='col-sm-12'>
+          <div class='text-left'>
+            <p>
+              Favor entrar em contato pelo <strong><a href='http://portal.avancoinfo.com.br/#/login/' target='_blank'>Portal do Cliente</a></strong> (na opção <strong>Via Ticket Chat</strong>), na <strong>data</strong> e <strong>horário</strong> agendados para realização do atendimento.
+            </p>
           </div>
         </div>
       </div>
@@ -326,8 +606,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
 
       <div class='row'>
         <div class='col-sm-12'>
-          <div class='text-left'>
-            <p>Favor entrar em contato pelo <strong>Portal do Cliente</strong> (na opção <strong>Via Ticket Chat</strong>), na data e horário agendados para realização do atendimento.</p>
+          <div class='text-left'>            
             <p>Qualquer dúvida, estamos a disposição.</p>
 
             <br>
