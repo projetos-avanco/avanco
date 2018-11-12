@@ -1,6 +1,20 @@
 <?php
 
 /**
+ * insere um registro de pesquisa externa
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do atendimento externo
+ */
+function inserePesquisaExterna($db, $id)
+{
+  $query = "INSERT INTO av_agenda_pesquisas_externas VALUES (0, $id, '1')";
+
+  $resultado = mysqli_query($db, $query);
+
+  return $resultado;
+}
+
+/**
  * insere um atendimento externo
  * @param - objeto com uma conexão aberta
  * @param - array com o dados de um atendimento externo
