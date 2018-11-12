@@ -141,6 +141,7 @@ function recebeAtendimentoExterno($externo, $endereco, $contato, $copia)
 {
   require_once DIRETORIO_HELPERS   . 'diversas.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_agenda.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/external/consultas_externo.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/external/insercoes_externo.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/external/delecoes_externo.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
@@ -163,38 +164,61 @@ function recebeAtendimentoExterno($externo, $endereco, $contato, $copia)
     
     # verificando se o registro de atendimento remoto foi gravado com sucesso
     if ($resultado) {
-      $cc = array();
+      # chamando função que consulta o id do atendimento externo
+      $id = consultaIdDoAtendimentoExterno($db, $externo['registro']);
 
-      # verificando se foram enviados os id's do contatos que receberam o e-mail em cópia
-      if (count($copia) > 0) {
-        for ($i = 0; $i < count($copia); $i++) {
-          $cc = consultaEnderecosEmailsDeUmContato($db, $copia[$i], $cc);
+      # chamando função que insere um registro de pesquisa externa
+      $resultado = inserePesquisaExterna($db, $id);
+
+      # verificando se o registro de pesquisa externa foi gravado com sucesso
+      if ($resultado) {
+        $cc = array();
+      
+        # verificando se foram enviados os id's do contatos que receberam o e-mail em cópia
+        if (count($copia) > 0) {
+          for ($i = 0; $i < count($copia); $i++) {
+            $cc = consultaEnderecosEmailsDeUmContato($db, $copia[$i], $cc);
+          }
+        } else {
+          $cc['emails'] = array();
+        }    
+
+        # chamando função que realiza o envio dos e-mails
+        $resultado = enviaEmailExterno($db, $externo, $endereco, $contato, $cc['emails']);
+
+        # verificando se o e-mail foi enviado
+        if ($resultado === true) {
+          $_SESSION['atividades']['tipo'] = 'success';
+          $_SESSION['atividades']['exibe'] = true;
+          $_SESSION['atividades']['mensagens'][] = 'Registro gerado com sucesso.';
+        } else {
+          # e-mail não foi enviado
+          $_SESSION['atividades']['tipo'] = 'danger';
+          $_SESSION['atividades']['exibe'] = true;
+          $_SESSION['atividades']['mensagens'][] = 'Erro ao solicitar o envio de E-mail. Registro de Horas, Registro de Atendimento Externo e Pesquisa Externa deletados. Informe ao Wellington Felix.';
+          $_SESSION['atividades']['mensagens'][] = $resultado;
+
+          # chamando função que deleta um registro de pesquisa externa
+          deletaPesquisaExterna($db, $id);
+
+          # chamando função que deleta um registro de atendimento remoto
+          deletaAtendimentoExterno($db, $externo['registro']);
+
+          # chamando função que deleta um registro de issue
+          deletaIssues($db, $externo['id_issue']);
         }
       } else {
-        $cc['emails'] = array();
-      }    
-
-      # chamando função que realiza o envio dos e-mails
-      $resultado = enviaEmailExterno($db, $externo, $endereco, $contato, $cc['emails']);
-
-      # verificando se o e-mail foi enviado
-      if ($resultado === true) {
-        $_SESSION['atividades']['tipo'] = 'success';
-        $_SESSION['atividades']['exibe'] = true;
-        $_SESSION['atividades']['mensagens'][] = 'Registro gerado com sucesso.';          
-      } else {
-        # e-mail não foi enviado
+        # registro de atendimento remoto não foi inserido
         $_SESSION['atividades']['tipo'] = 'danger';
         $_SESSION['atividades']['exibe'] = true;
-        $_SESSION['atividades']['mensagens'][] = 'Erro ao solicitar o envio de E-mail. Registro de Horas e Registro de Atendimento Externo deletados. Informe ao Wellington Felix.';
-        $_SESSION['atividades']['mensagens'][] = $resultado;
+        $_SESSION['atividades']['mensagens'][] = 'Erro ao solicitar a gravação do Registro de Atendimento Externo. Registro de Horas deletado. Informe ao Wellington Felix.';
 
         # chamando função que deleta um registro de atendimento remoto
         deletaAtendimentoExterno($db, $externo['registro']);
 
         # chamando função que deleta um registro de issue
         deletaIssues($db, $externo['id_issue']);
-      }
+      }    
     } else {
       # registro de atendimento remoto não foi inserido
       $_SESSION['atividades']['tipo'] = 'danger';
