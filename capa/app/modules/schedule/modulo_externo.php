@@ -26,6 +26,7 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc)
   $emailSupervisor = $_SESSION['usuario']['email'];
 
   $email = new PHPMailer(true);
+  $email->CharSet = 'UTF-8';
 
   try {
     # configurações de servidor 
@@ -33,22 +34,21 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc)
     $email->isSMTP();                                      
     $email->Host       = 'email-ssl.com.br';  
     $email->SMTPAuth   = true;                               
-    $email->Username   = 'wellington.felix@avancoinfo.com.br';                 
-    $email->Password   = 'Avanco123';                           
+    $email->Username   = 'agenda@avancoinfo.com.br';                 
+    $email->Password   = 'Ag3nd@30251188#';                           
     $email->SMTPSecure = 'tls';                            
     $email->Port       = 587;                                    
 
     # destinatários 
-    $email->setFrom('wellington.felix@avancoinfo.com.br', 'Agenda');
+    $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
     
     # adicionando todos os e-mail de contato do cliente
     for ($i = 0; $i < count($contato['emails']); $i++) {
       $email->addAddress($contato['emails'][$i]);
     }
     
-    $email->addReplyTo('wellington.felix@avancoinfo.com.br', 'Respostas');
-    $email->addCC('wellington.felix@avancoinfo.com.br');
-
+    $email->addReplyTo('agenda@avancoinfo.com.br', 'Respostas');
+    
     # verificando se existem e-mails em cópia para recebimento do agendamento remoto
     if (count($cc) > 0) {
       for ($i = 0; $i < count($cc); $i++)  {
@@ -65,7 +65,7 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc)
 
     # conteúdo
     $email->isHTML(true);                                  
-    $email->Subject = 'Agendamento';
+    $email->Subject = 'Avanço | Agendamento';
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
 
     # verificando qual supervisor está logado e importando sua foto correspondente
@@ -166,7 +166,7 @@ function recebeAtendimentoExterno($externo, $endereco, $contato, $copia)
       $cc = array();
 
       # verificando se foram enviados os id's do contatos que receberam o e-mail em cópia
-      if (count($cc) > 0) {
+      if (count($copia) > 0) {
         for ($i = 0; $i < count($copia); $i++) {
           $cc = consultaEnderecosEmailsDeUmContato($db, $copia[$i], $cc);
         }
