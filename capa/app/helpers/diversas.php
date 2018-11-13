@@ -267,7 +267,7 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
               <h4>Dados da Visita</h4>
 
               <p><strong>Registro:</strong> {$externo['registro']}</p>
-              <p><strong>Período:</strong> {$externo['data_inicial']} até {$externo['data_final']} a partir das {$externo['horario']} horas</p>
+              <p><strong>Período:</strong> {$externo['data_inicial']} até {$externo['data_final']} às {$externo['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
               <p><strong>Trabalho a ser Realizado:</strong> {$externo['observacao']}</p>
             </div>
@@ -417,9 +417,7 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
     </div>
   </body>
 </html>";
-  
-  $msg = utf8_decode($msg);
-  
+
   return $msg;
 }
 
@@ -528,7 +526,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
               <h4>Dados do Agendamento</h4>
 
               <p><strong>Ticket:</strong> {$remoto['registro']}</p>
-              <p><strong>Período:</strong> {$remoto['data']} a partir das {$remoto['horario']} horas</p>
+              <p><strong>Período:</strong> {$remoto['data']} às {$remoto['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
               <p><strong>Trabalho a ser Realizado:</strong> {$remoto['observacao']}</p>
             </div>
@@ -658,9 +656,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
     </div>
   </body>
 </html>";
-  
-  $msg = utf8_decode($msg);
-  
+
   return $msg;
 }
 
