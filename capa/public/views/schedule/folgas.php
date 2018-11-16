@@ -109,7 +109,7 @@
     if ($flag) {
       $erros['exibe'] = true;
       $erros['tipo'] = 'danger';
-    } else {      
+    } else {
       recebeRegistroDeFolgas($folgas);
     }
   }
@@ -176,7 +176,7 @@
 
                   <div class="panel panel-info"><!-- panel -->
                     <div class="panel-heading">
-                      <div class="text-center">
+                      <div class="text-left">
                         <strong>Folgas</strong>
                       </div>
                     </div>
