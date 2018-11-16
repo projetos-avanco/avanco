@@ -14,7 +14,7 @@
   $db = abre_conexao();
 
   # verificando se o usuário logado é um capitão
-  if ($id == 14 OR $id == 23 OR $id == 20 OR $id == 25)
+  if ($id == 14 OR $id == 23 OR $id == 20 OR $id == 48)
     
     # chamando função que retorna o id do time atual do capitão
     $time = consultaTimeDoCapitaoLogado($db, $id);

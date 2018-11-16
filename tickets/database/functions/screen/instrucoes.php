@@ -1,6 +1,54 @@
 <?php
 
 /**
+ * consulta e retorna nome colaborador
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do colaborador
+ */
+function consultaNomeDoColaborador($db, $id)
+{
+  $query =
+    "SELECT
+      name AS nome
+    FROM lh_users
+    WHERE id = $id";
+
+  if ($resultado = $db->query($query)) {
+
+    $nome = $resultado->fetch_row();
+    $nome = $nome[0];
+
+  }
+
+  return $nome;
+
+}
+
+/**
+ * consulta e retorna sobrenome colaborador
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do colaborador
+ */
+function consultaSobrenomeDoColaborador($db, $id)
+{
+  $query =
+    "SELECT
+      surname AS sobrenome
+    FROM lh_users
+    WHERE id = $id";
+
+  if ($resultado = $db->query($query)) {
+
+    $sobrenome = $resultado->fetch_row();
+    $sobrenome = $sobrenome[0];
+
+  }
+
+  return $sobrenome;
+
+}
+
+/**
  * consulta e retorna um array com id, nome e sobrenome dos colaboradores existentes no chat
  * @param - string vazia que receberá os dados
  * @param - objeto com uma conexão aberta
@@ -288,7 +336,5 @@ function insereDadosDoFormularioNovoTicket($dados, $db)
     $_SESSION['mensagens']['exibe']    = true;
 
   }
-
-  $db->close();
 
 }

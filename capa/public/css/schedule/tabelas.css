@@ -1,0 +1,42 @@
+table thead tr th {
+  font-size: 0.85em;
+  text-align: left;
+}
+
+table tbody tr td {
+  height: 0.75em;
+}
+
+.table tbody tr td {
+  font-size: 10.5px;
+  vertical-align: middle;
+}
+
+.table {
+  font-family: 'Lato Regular', sans-serif;
+}
+
+/* box complementar */
+.checkbox {
+  margin: 1px;
+}
+
+.list-group {      
+  margin-bottom: 0;
+}
+
+.list-group-item {
+  font-family: 'Lato Regular', sans-serif;
+  padding: 5px 20px;
+}
+
+.checkbox label {      
+  font-size: 10.5px;      
+}
+
+input[type="checkbox"] {
+  margin: 0 12px 0 0;
+  vertical-align: middle;
+  position: relative;
+  top: 5px;
+}

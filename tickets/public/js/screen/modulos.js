@@ -62,9 +62,18 @@ $('document').ready(function() {
           '<option value="22">Financeiro</option>'                 +
           '<option value="23">Relatórios e Gráficos</option>'      +
           '<option value="24">Lançamentos</option>'                +
-          '<option value="25">Importação e Exportação</option>'   +
+          '<option value="25">Importação e Exportação</option>'    +
           '<option value="26">Configurações PDV</option>'          +
           '<option value="27">Poynt</option>';
+
+        $('#modulo').html(opcoes);
+
+          break;
+
+      case '5':
+
+        var opcoes =
+          '<option value="28">Outros</option>';
 
         $('#modulo').html(opcoes);
 

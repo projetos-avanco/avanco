@@ -12,6 +12,7 @@ function editaDadosDaTabelaDeIssues($db, $issues)
       SET
         issue          = '{$issues['issue']}',
         tipo           = '{$issues['tipo']}',
+        status         = '2',
         cnpj           = '{$issues['cnpj']}',
         conta_contrato = '{$issues['conta_contrato']}',
         razao_social   = '{$issues['razao_social']}',

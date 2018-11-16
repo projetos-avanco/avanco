@@ -49,7 +49,7 @@ function retornaTodosOsRamaisDosUsuarios($db)
 
       switch ($registro['id']) {
 
-        case '1':        
+        case '1':
 
           $arr['comercial'][] = array(
 
