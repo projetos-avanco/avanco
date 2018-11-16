@@ -91,53 +91,59 @@
       <li class="bordermenu">
         <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu4">
           <span class="nav-header-primary">
-            <i class="fa fa-book" aria-hidden="true"></i> Agenda
+            <i class="fa fa-calendar-check-o" aria-hidden="true"></i> Agenda
             <span class="pull-right">
                 <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
             </span>
           </span>
         </a>
         <ul class="nav collapse"  id="submenu4">
-        
+
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_externo.php">
-              <p>Atendimento Externo<p>
+              <p>Externo<p>
             </a>
           </li>
-        
+
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_remoto.php">
-              <p>Atendimento Remoto<p>
+              <p>Remoto<p>
             </a>
           </li>
+        </ul>
+      </li>
 
+      <li class="bordermenu">
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu9">
+          <span class="nav-header-primary">
+            <i class="fa fa-plus" aria-hidden="true"></i> Registros
+            <span class="pull-right">
+                <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </span>
+        </a>
+        <ul class="nav collapse"  id="submenu9">
           <li>
-            <a href="<?php echo BASE_URL; ?>">
-              <p>Registro de Férias<p>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo BASE_URL; ?>">
-              <p>Registro de Folgas<p>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/folgas.php">
+              <p>Folgas<p>
             </a>
           </li>
 
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/faltas.php">
-              <p>Registro de Faltas<p>
+              <p>Faltas<p>
             </a>
           </li>
 
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atrasos.php">
-              <p>Registro de Atrasos<p>
+              <p>Atrasos<p>
             </a>
           </li>
 
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/extras.php">
-              <p>Registro de Extras<p>
+              <p>Extras<p>
             </a>
           </li>
         </ul>
