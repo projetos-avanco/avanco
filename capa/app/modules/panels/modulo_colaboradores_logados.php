@@ -75,9 +75,10 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
   
         $dados['time']    = 5;
         $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time avalanche
+
           break;
   
-      case '25':
+      case '48':
   
         $dados['time']    = 4;
         $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time gulliver
