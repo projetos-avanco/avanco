@@ -176,7 +176,7 @@
 
                   <div class="panel panel-info"><!-- panel -->
                     <div class="panel-heading">
-                      <div class="text-center">
+                      <div class="text-left">
                         <strong>Extras</strong>
                       </div>
                     </div>
