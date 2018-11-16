@@ -124,19 +124,19 @@
           </li>
 
           <li>
-            <a href="<?php echo BASE_URL; ?>">
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/faltas.php">
               <p>Registro de Faltas<p>
             </a>
           </li>
 
           <li>
-            <a href="<?php echo BASE_URL; ?>">
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atrasos.php">
               <p>Registro de Atrasos<p>
             </a>
           </li>
 
           <li>
-            <a href="<?php echo BASE_URL; ?>">
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/extras.php">
               <p>Registro de Extras<p>
             </a>
           </li>
