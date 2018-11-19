@@ -230,10 +230,16 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (isset($_POST['externo']['valor']) && (!empty($_POST['externo']['valor']))) {
     # verificando se o tipo de dados do valor é uma string numérica e se a cobrança foi definida
     if (is_numeric($_POST['externo']['valor']) && isset($cobranca)) {
-      $valor = $_POST['externo']['valor'];      
+      # verificando se o pedido é faturado e se o valor é maior que 0
+      if ($externo['faturado'] == 1 && $_POST['externo']['valor'] > '0.00') {
+        $valor = $_POST['externo']['valor'];
+      } else {
+        $flag = true;
+        $erros[] = 'Não foi informado o valor a ser cobrado.';
+      }
     } else {
       $flag = true;
-      $erros[] = 'O tipo de dados do valor não está correto ou a cobrança não foi confirmada.';
+      $erros[] = 'Não foi informado se o pedido possui cobrança ou o tipo de dados do valor não está correto.';
     }
   }
 
