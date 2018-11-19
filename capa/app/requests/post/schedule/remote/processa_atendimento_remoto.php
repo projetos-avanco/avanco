@@ -56,7 +56,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados do código da Empresa não está correto.';
-    }   
+    }
   } else {
     $flag = true;
     $erros[] = 'Nenhuma empresa foi selecionada.';
@@ -197,17 +197,23 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados da cobrança não está correto.';
-    }    
+    }
   }
 
   # verificando se o valor da cobrança foi enviado
   if (isset($_POST['remoto']['valor']) && (!empty($_POST['remoto']['valor']))) {
     # verificando se o tipo de dados do valor é uma string numérica e se a cobrança foi definida
     if (is_numeric($_POST['remoto']['valor']) && isset($cobranca)) {
-      $valor = $_POST['remoto']['valor'];      
+      # verificando se o pedido é faturado e se o valor é maior que 0
+      if ($remoto['faturado'] == 1 && $_POST['remoto']['valor'] > '0.00') {
+        $valor = $_POST['remoto']['valor'];
+      } else {
+        $flag = true;
+        $erros[] = 'Não foi informado o valor a ser cobrado.';
+      }
     } else {
       $flag = true;
-      $erros[] = 'O tipo de dados do valor não está correto ou a cobrança não foi confirmada.';
+      $erros[] = 'Não foi informado se o pedido possui cobrança ou o tipo de dados do valor não está correto.';
     }
   }
 
@@ -217,15 +223,15 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     if (isset($cobranca) && isset($valor)) {
       # verificando se a cobrança é por hora
       if ($cobranca == '1') {
-        $remoto['valor_hora'] = (float)$valor;        
+        $remoto['valor_hora'] = (float)$valor;
       } else {
-        $remoto['valor_pacote'] = (float)$valor;        
+        $remoto['valor_pacote'] = (float)$valor;
       }
     }
   } else {
     $remoto['faturado'] = 0;
   }
-  
+
   $remoto['registrado'] = date('Y-m-d H:i:s');
 
   /**
@@ -261,7 +267,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
       # verificando se cada posição do array não está vazia
       if (!empty($str[$i])) {
         array_push($contato['fixos'], trim($str[$i]));
-      }       
+      }
     }
 
     # verificando se o contato possui pelo menos um número fixo
@@ -284,7 +290,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
       # verificando se cada posição do array não está vazia
       if (!empty($str[$i])) {
         array_push($contato['moveis'], trim($str[$i]));
-      }    
+      }
     }
 
     # verificando se o contato possui pelo menos um número móvel
@@ -304,14 +310,14 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
       # verificando se cada posição do array não está vazia
       if (!empty($str[$i])) {
         array_push($contato['emails'], mb_strtolower(trim($str[$i]), 'utf-8'));
-      }    
+      }
     }
 
     # verificando se o contato possui pelo menos um endereço de e-mail
     if (count($contato['emails']) < 1) {
       $flag = true;
       $erros[] = 'O contato selecionado não possui nenhum endereço de e-mail.';
-    }    
+    }
   }
 
   /**
@@ -321,7 +327,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
    */
 
   # verificando se foram enviados os id's do contatos em cópia
-  if (isset($_POST['copia']) && (!empty($_POST['copia']))) {    
+  if (isset($_POST['copia']) && (!empty($_POST['copia']))) {
     # recuperando os id's dos contatos em cópia
     for ($i = 0; $i < count($_POST['copia']); $i++) {
       array_push($copia, $_POST['copia'][$i]);
