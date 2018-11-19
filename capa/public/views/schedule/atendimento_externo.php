@@ -132,7 +132,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="logradouro">Logradouro</label>
-                            <input class="form-control" id="logradouro" type="text" name="endereco[logradouro]" placeholder="Avenida" readonly>
+                            <input class="form-control required" id="logradouro" type="text" name="endereco[logradouro]" placeholder="Avenida" readonly>
                           </div>
                         </div>
                       </div>
@@ -141,21 +141,21 @@
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="distrito">Bairro</label>
-                            <input class="form-control" id="distrito" type="text" name="endereco[distrito]" placeholder="Bairro" readonly>
+                            <input class="form-control required" id="distrito" type="text" name="endereco[distrito]" placeholder="Bairro" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="localidade">Cidade</label>
-                            <input class="form-control" id="localidade" type="text" name="endereco[localidade]" placeholder="Cidade" readonly>
+                            <input class="form-control required" id="localidade" type="text" name="endereco[localidade]" placeholder="Cidade" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="uf">Estado</label>
-                            <input class="form-control" id="uf" type="text" name="endereco[uf]" placeholder="Estado" readonly>
+                            <input class="form-control required" id="uf" type="text" name="endereco[uf]" placeholder="Estado" readonly>
                           </div>
                         </div>
                       </div>
@@ -164,21 +164,21 @@
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label class="sr-only" for="tipo">Tipo do Endereco</label>
-                            <input class="form-control" id="tipo" type="text" name="endereco[tipo]" placeholder="Tipo do Endereço" readonly>
+                            <input class="form-control required" id="tipo" type="text" name="endereco[tipo]" placeholder="Tipo do Endereço" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label class="sr-only" for="cep">Código Postal</label>
-                            <input class="form-control" id="cep" type="text" name="endereco[cep]" placeholder="Código Postal" readonly>
+                            <input class="form-control required" id="cep" type="text" name="endereco[cep]" placeholder="Código Postal" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-2">
                           <div class="form-group">
                             <label class="sr-only" for="numero">Número</label>
-                            <input class="form-control" id="numero" type="text" name="endereco[numero]" placeholder="Número" readonly>
+                            <input class="form-control required" id="numero" type="text" name="endereco[numero]" placeholder="Número" readonly>
                           </div>
                         </div>
 
@@ -285,7 +285,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="observacao">Observação</label>
-                            <textarea class="form-control required" id="observacao" name="externo[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
+                            <textarea class="form-control" id="observacao" name="externo[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
                       </div>                                         
@@ -365,7 +365,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="tipo-atendimento">Tipo</label>
-                            <select class="form-control" id="tipo-atendimento" name="externo[tipo-atendimento]">
+                            <select class="form-control required" id="tipo-atendimento" name="externo[tipo-atendimento]">
                               <option value="0" selected>Tipo de Atendimento</option>
                               <option value="1">Suporte ao Cliente</option>
                               <option value="2">Projeto Mais Gestão</option>
@@ -382,7 +382,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="despesa">Despesa</label>
-                            <select class="form-control" id="despesa" name="externo[despesa]">
+                            <select class="form-control required" id="despesa" name="externo[despesa]">
                               <option value="0">Cobrança de Despesas?</option>
                               <option value="1">Sim</option>
                               <option value="2">Não</option>
@@ -395,7 +395,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="faturado">Faturado</label>
-                            <select class="form-control" id="faturado" name="externo[faturado]">
+                            <select class="form-control required" id="faturado" name="externo[faturado]">
                               <option value="0" selected>Pedido Faturado?</option>
                               <option value="1">Sim</option>
                               <option value="2">Não</option>
@@ -408,7 +408,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="cobranca">Cobrança</label>
-                            <select class="form-control" id="cobranca" name="externo[cobranca]">
+                            <select class="form-control required" id="cobranca" name="externo[cobranca]">
                               <option value="0" selected>Tipo de Cobrança</option>
                               <option value="1">Hora</option>
                               <option value="2">Pacote</option>
@@ -427,7 +427,7 @@
                                 </button>
                               </span>
                               <label class="sr-only" for="valor">Valor</label>
-                              <input class="form-control" id="valor" type="text" name="externo[valor]" placeholder="0.00">
+                              <input class="form-control required" id="valor" type="text" name="externo[valor]" placeholder="0.00">
                             </div>
                           </div>
                         </div>
@@ -531,6 +531,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/deleta_contato.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/external/validacao.js"></script>
 </body>
 </html>
 
