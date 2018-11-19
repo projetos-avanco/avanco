@@ -8,9 +8,16 @@ $(function() {
     var id = $(this).closest('tr').find('td[data-id]').data('id');
 
     $('#id').val(id);
-
+    
     var url = window.location.href;
     var script = url.split('/');
+
+    // deixando id's vazios ao selecionar uma nova empresa
+    $('#id-contato').val('');
+    $('#nome-contato').val('');
+    $('#fixo-contato').val('');
+    $('#movel-contato').val('');
+    $('#email-contato').val('');
 
     if (script[8] == 'atendimento_remoto.php') {
       $.ajax({

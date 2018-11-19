@@ -17,6 +17,9 @@ $('document').ready(function() {
         },
         success: function(tabela)
         {
+          // deixando id vazio ao pesquisa uma nova empresa
+          $('#id').val('');
+
           if (tabela === 'erro') {
             alert('Ops! Houve um erro durante a execução da consulta de pesquisa.');
           } else {
