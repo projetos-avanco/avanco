@@ -28,24 +28,24 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc)
   $email->CharSet = 'UTF-8';
 
   try {
-    # configurações de servidor 
-    #$email->SMTPDebug  = 2;                                 
-    $email->isSMTP();                                      
-    $email->Host       = 'email-ssl.com.br';  
-    $email->SMTPAuth   = true;                               
-    $email->Username   = 'agenda@avancoinfo.com.br';                 
-    $email->Password   = 'Ag3nd@30251188#';                           
-    $email->SMTPSecure = 'tls';                            
-    $email->Port       = 587;                                    
+    # configurações de servidor
+    #$email->SMTPDebug  = 2;
+    $email->isSMTP();
+    $email->Host       = 'email-ssl.com.br';
+    $email->SMTPAuth   = true;
+    $email->Username   = 'agenda@avancoinfo.com.br';
+    $email->Password   = 'Ag3nd@30251188#';
+    $email->SMTPSecure = 'tls';
+    $email->Port       = 587;
 
-    # destinatários 
+    # destinatários
     $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
-    
+
     # adicionando todos os e-mail de contato do cliente
     for ($i = 0; $i < count($contato['emails']); $i++) {
       $email->addAddress($contato['emails'][$i]);
     }
-    
+
     $email->addReplyTo('agenda@avancoinfo.com.br', 'Respostas');
 
     # verificando se existem e-mails em cópia para recebimento do agendamento remoto
@@ -59,11 +59,11 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc)
     $email->addBCC($emailColaborador);
 
     # anexos
-    #$email->addAttachment('/var/tmp/file.tar.gz');         
-    #$email->addAttachment('/tmp/image.jpg', 'new.jpg');    
+    #$email->addAttachment('/var/tmp/file.tar.gz');
+    #$email->addAttachment('/tmp/image.jpg', 'new.jpg');
 
     # conteúdo
-    $email->isHTML(true);                                  
+    $email->isHTML(true);
     $email->Subject = 'Avanço | Agendamento';
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
 
@@ -76,7 +76,7 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc)
       case 42:
         $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/photos/42.jpg', 'foto', 'foto');
           break;
-      
+
       case 61:
         $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/photos/61.jpg', 'foto', 'foto');
           break;
@@ -88,7 +88,7 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc)
     $email->send();
 
     $resultado = true;
-  } catch (Exception $e) {    
+  } catch (Exception $e) {
     $resultado = $email->ErrorInfo;
   }
 
@@ -106,7 +106,7 @@ function solicitaGravacaoDeRegistroDeHoras($db, $remoto)
   require_once DIRETORIO_FUNCTIONS . 'hours/consulta_horas.php';
   require_once DIRETORIO_FUNCTIONS . 'hours/deleta_horas.php';
 
-  $issue = array(    
+  $issue = array(
     'issue'          => 'AT-REMOTO' . '-' . $remoto['registro'],
     'tipo'           => 'remoto',
     'status'         => '1',
@@ -122,7 +122,7 @@ function solicitaGravacaoDeRegistroDeHoras($db, $remoto)
   $issue['cnpj']           = consultaCnpjDaEmpresa($db, $remoto['id_cnpj']);
   $issue['razao_social']   = consultaRazaoSocialDaEmpresa($db, $remoto['id_cnpj']);
   $issue['conta_contrato'] = consultaContratoDaEmpresa($db, $remoto['id_cnpj']);
-  
+
   # chamando função que insere um registro de horas na tabela de issues
   $resultado = insereRegistroDeIssues($db, $issue);
 
@@ -168,9 +168,9 @@ function solicitaGravacaoDeTicket($db, $remoto, $contato)
 
   # verificando se o registro de ticket foi inserido com sucesso
   if (isset($_SESSION['mensagens']) && $_SESSION['mensagens']['tipo'] === 'success') {
-    $resultado = true;    
-  } else {    
-    $resultado = false;    
+    $resultado = true;
+  } else {
+    $resultado = false;
   }
 
   return $resultado;
@@ -191,13 +191,13 @@ function recebeAtendimentoRemoto($remoto, $contato, $copia)
   require_once DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
 
   $db = abre_conexao();
-  
+
   # chamando função que gera o número do registro
   $remoto['registro'] = geraRegistro($db, 'av_tickets');
-  
+
   # chamando função que solicita a gravação de um ticket
   $resultado = solicitaGravacaoDeTicket($db, $remoto, $contato);
-  
+
   # verificando se o ticket foi gravado com sucesso
   if ($resultado) {
     # chamando função que solicita a gravação de um registro de horas
@@ -222,7 +222,7 @@ function recebeAtendimentoRemoto($remoto, $contato, $copia)
           }
         } else {
           $cc['emails'] = array();
-        }      
+        }
 
         # chamando função que realiza o envio dos e-mails
         $resultado = enviaEmailRemoto($db, $remoto, $contato, $cc['emails']);
@@ -231,7 +231,7 @@ function recebeAtendimentoRemoto($remoto, $contato, $copia)
         if ($resultado === true) {
           $_SESSION['atividades']['tipo'] = 'success';
           $_SESSION['atividades']['exibe'] = true;
-          $_SESSION['atividades']['mensagens'][] = 'Ticket gerado com sucesso.';          
+          $_SESSION['atividades']['mensagens'][] = 'Ticket gerado com sucesso.';
         } else {
           # e-mail não foi enviado
           $_SESSION['atividades']['tipo'] = 'danger';
