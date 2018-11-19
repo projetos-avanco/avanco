@@ -37,7 +37,7 @@
   <style>
     .erro {
       border: 2px solid red;
-    }    
+    }
   </style>
 </head>
 
@@ -60,7 +60,7 @@
           <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
               <div class="form-group">
-                <div class="input-group">                  
+                <div class="input-group">
                   <input class="form-control" id="pesquisa" type="text" placeholder="Informe a Razão Social ou CNPJ da Empresa">
                   <span class="input-group-btn">
                     <button class="btn btn-info" type="button">
@@ -95,7 +95,7 @@
                       </div>
 
                       <div class="text-center" id="empresas"><!-- tabela de empresas -->
-                                            
+
                       </div><!-- tabela de empresas -->
 
                       <div class="hidden text-center" id="loader">
@@ -182,7 +182,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="observacao">Observação</label>
-                            <textarea class="form-control required" id="observacao" name="remoto[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
+                            <textarea class="form-control" id="observacao" name="remoto[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
                       </div>
@@ -218,7 +218,7 @@
 
                       <div class="text-center" id="contatos"><!-- tabela contatos -->
 
-                      </div><!-- tabela contatos -->                      
+                      </div><!-- tabela contatos -->
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
@@ -238,14 +238,14 @@
                       <strong>Complementar</strong>
                     </div>
 
-                    <div class="panel-body"><!-- panel-body -->                    
+                    <div class="panel-body"><!-- panel-body -->
                       <div class="text-left">
                         <ul class="list-group" id="contatos-copia"><!-- tabela contatos -->
-                          
+
                         </ul><!-- tabela contatos -->
                       </div>
                     </div><!-- panel-body -->
-                  </div><!-- panel -->                  
+                  </div><!-- panel -->
                 </div>
               </div><!-- painel id's dos contatos em cópia oculta -->
 
@@ -263,7 +263,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="tipo">Tipo</label>
-                            <select class="form-control" id="tipo" name="remoto[tipo]">
+                            <select class="form-control required" id="tipo" name="remoto[tipo]">
                               <option value="0" selected>Tipo de Atendimento</option>
                               <option value="1">Suporte ao Cliente</option>
                               <option value="2">Projeto Mais Gestão</option>
@@ -280,7 +280,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="faturado">Faturado</label>
-                            <select class="form-control" id="faturado" name="remoto[faturado]">
+                            <select class="form-control required" id="faturado" name="remoto[faturado]">
                               <option value="0" selected>Pedido Faturado?</option>
                               <option value="1">Sim</option>
                               <option value="2">Não</option>
@@ -293,7 +293,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="cobranca">Cobrança</label>
-                            <select class="form-control" id="cobranca" name="remoto[cobranca]">
+                            <select class="form-control required" id="cobranca" name="remoto[cobranca]">
                               <option value="0" selected>Tipo de Cobrança</option>
                               <option value="1">Hora</option>
                               <option value="2">Pacote</option>
@@ -312,7 +312,7 @@
                                 </button>
                               </span>
                               <label class="sr-only" for="valor">Valor</label>
-                              <input class="form-control" id="valor" type="text" name="remoto[valor]" placeholder="0.00">
+                              <input class="form-control required" id="valor" type="text" name="remoto[valor]" placeholder="0.00">
                             </div>
                           </div>
                         </div>
@@ -421,6 +421,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/deleta_contato.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/remote/validacao.js"></script>
 </body>
 </html>
 
