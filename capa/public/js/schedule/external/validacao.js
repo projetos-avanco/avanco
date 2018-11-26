@@ -75,6 +75,12 @@ $('document').ready(function() {
 
       contador = 1;
 
+      if ($('#cobranca').val() == '0') {
+
+        $('#cobranca').addClass('erro');
+
+      }
+
     } else if ($('#faturado').val() == '1') {
 
       // verificando se foi selecionado o tipo de cobrança
@@ -82,18 +88,26 @@ $('document').ready(function() {
 
         contador = 1;
 
-        alert('Por favor, informe se o tipo de cobrança do pedido é por hora ou pacote!');
-
-      } else if ($('#cobranca').val() == '1' || $('#cobranca').val() == '2') {
-
-          // verificando se o valor da cobrança é 0 ou menor que 0
-          if ($('#valor').val() <= '0.00') {
+        $('#cobranca').addClass('erro');
+        
+        if ($('#valor').val() <= '0.00') {
 
           $('#valor').addClass('erro');
 
           contador = 1;
 
-          alert('Por favor, informe o valor a ser cobrado!');
+        }
+
+      } else if ($('#cobranca').val() == '1' || $('#cobranca').val() == '2') {
+
+        $('#cobranca').removeClass('erro');
+
+        // verificando se o valor da cobrança é 0 ou menor que 0
+        if ($('#valor').val() <= '0.00') {
+
+          $('#valor').addClass('erro');
+
+          contador = 1;
 
         }
 
@@ -101,7 +115,7 @@ $('document').ready(function() {
 
     } else if ($('#faturado').val() == '2') {
 
-      $('#cobranca').removeClass('required erro');
+      $('#cobranca').removeClass('erro');
 
       $('#valor').removeClass('required erro');
       

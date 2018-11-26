@@ -408,7 +408,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="cobranca">Cobrança</label>
-                            <select class="form-control required" id="cobranca" name="externo[cobranca]">
+                            <select class="form-control" id="cobranca" name="externo[cobranca]">
                               <option value="0" selected>Tipo de Cobrança</option>
                               <option value="1">Hora</option>
                               <option value="2">Pacote</option>
