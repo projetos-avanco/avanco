@@ -25,12 +25,56 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">  
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
 
    <!-- dispositivos com largura máxima de 769px (por exemplo tablets) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)" />
   <!-- dispositivos com largura máxima de 450px (por exemplo smartphones) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbarsmart.css" type="text/css" media="screen and (max-width:450px)" />
+
+  <style>
+    .btn-file {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+    table thead tr th {
+      font-size: 0.85em;
+      text-align: left;
+    }
+
+    table tbody tr td {
+      height: 0.1em;      
+    }
+
+    .table tbody tr td {
+      font-size: 12px;
+      vertical-align: middle;
+      padding-top: 0.5%;
+      padding-left: 5%;
+      padding-bottom: 0.5%;
+    }
+
+    .table {
+      font-family: 'Lato Regular', sans-serif;
+    }
+  </style>
 </head>
 
 <body>
@@ -38,114 +82,686 @@
   <?php include ABS_PATH . 'inc/templates/navbar.php' ?>
   <?php include ABS_PATH . 'inc/templates/sidebar.php' ?>
 
-        <div class="row">
-          <div class="col-sm-12">
-            <h2>Cadastro de Usuário</h2>
-
-            <hr>
-          </div>
-        </div><!-- linha -->
-
-        <br>
-
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="alert alert-warning text-center" role="alert">
-              <strong>Atenção!</strong> O novo usuário deve ter sido cadastrado no chat.
-            </div>
-          </div>
-        </div>
-
-        <div class="form-inline">
-          <div class="form-group">
-            <label for="id">Usuário: </label>
-            <input class="form-control" id="id" type="text" name="id" placeholder="ID do Usuário no Chat">
-          </div>
-
-          <button class="btn btn-primary" type="submit">Buscar</button>
-        </div>
-
-        <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_conta.php" method="post" accept-charset="utf-8">
-        
-        <div class="row"> 
-          <div class="col-sm-4">
-            <div class="form-group">
-              <label for="nome">Nome</label>
-              <input class="form-control required" id="nome" type="text" name="form[nome]" value="<?php echo $usuario['nome']; ?>" readonly="true">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <h2>Cadastro de Usuário</h2>
+                <hr>
+              </div>
             </div>
           </div>
 
-          <div class="col-sm-4">
-            <div class="form-group">
-              <label for="sobrenome">Sobrenome</label>
-              <input class="form-control required" id="sobrenome" type="text" name="form[sobrenome]" value="<?php echo $usuario['sobrenome']; ?>" readonly="true">
+          <form action="<?php echo BASE_URL; ?>app/requests/post/users/recebe_usuario.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+          
+          <div class="row">
+            <div class="col-sm-3 col-sm-offset-9">
+              <div class="form-group">
+                <div class="input-group">                  
+                  <input class="form-control" id="id-chat" type="text" placeholder="ID do Usuário no Chat Avanço">
+                  <span class="input-group-btn">
+                    <button class="btn btn-info" type="button">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Pesquisa
+                    </button>
+                  </span>
+                </div>                
+              </div>
             </div>
           </div>
 
-          <div class="col-sm-4">
-            <div class="form-group">
-              <label for="usuario">Usuário</label>
-              <input class="form-control required" id="usuario" type="text" name="form[usuario]" value="<?php echo $usuario['usuario']; ?>" readonly="true">
-            </div>
-          </div>          
-        </div><!-- linha -->
+            <div class="row"><!-- linha principal -->
+              <div class="col-sm-6"><!-- primeira coluna principal -->
 
-        <div class="row"> 
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input class="form-control required" id="email" type="text" name="form[email]" value="<?php echo $usuario['email']; ?>" readonly="true">
-            </div>
-          </div>
+                <div class="row"><!-- painel dashboard -->
+                  <div class="col-sm-12">
 
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label for="ramal">Ramal</label>
-              <input class="form-control required" id="ramal" type="text" name="form[ramal]" value="<?php echo $usuario['ramal']; ?>" placeholder="Ramal">
-            </div>
-          </div>          
-        </div><!-- linha -->
+                    <div class="panel panel-info"><!-- panel -->
+                      <div class="panel-heading">
+                        <div class="text-left">
+                          <strong>Dashboard</strong>
+                        </div>
+                      </div>
 
-        <div class="row">
-          <div class="col-sm-2">
-            <input class="form-control required" id="id" type="hidden" name="form[id]" value="<?php echo $usuario['id']; ?>">
-          </div>
+                      <div class="panel-body"><!-- panel-body -->
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="sr-only" for="time">Times</label>
+                              <select class="form-control" id="time" name="cadastro[time]">
+                                <option value="1" selected>Times</option>
 
-          <div class="col-sm-10 text-right">            
-            <a class="btn btn-default" href="<?php echo BASE_URL; ?>public/views/users/conta.php">
-              Limpar Tela
-            </a>
-            <button class="btn btn-primary" type="submit">
-              Atualizar Dados
-            </button>
-          </div>
-        </div><!-- linha -->
+                                <optgroup label="Materiais">
+                                  <option value="2">Os Templários</option>
+                                </optgroup>
 
-        </form>
+                                <optgroup label="Financeiro">
+                                  <option value="3">Divergente</option>
+                                </optgroup>
 
-        <br> 
-        
-        <div class="row">
-          <div class="col-sm-12">
-          <?php if (! empty($_SESSION['mensagens']['mensagem']) AND $_SESSION['mensagens']['exibe'] == true) : ?>
+                                <optgroup label="Fiscal">
+                                  <option value="4">Gulliver</option>
+                                </optgroup>
 
-            <div class="alert alert-<?php echo $_SESSION['mensagens']['tipo']; ?>" role="alert">
-              <?php echo $_SESSION['mensagens']['mensagem']; ?>
-              <?php unset($_SESSION['mensagens']['mensagem'], $_SESSION['mensagens']['tipo']); ?>
-            </div>
+                                <optgroup label="Frente">
+                                  <option value="5">Avalanche</option>  
+                                </optgroup>                                                                                                                          
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-3">
+                            <div class="form-group">
+                              <label class="sr-only" for="foto">Foto</label>
+                              <span class="btn btn-danger btn-block btn-file">
+                                Anexar Foto <input id="foto" type="file" name="foto">
+                              </span>
+                            </div>
+                          </div>                          
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th class="text-center" colspan="4">Módulos</th>
+                                </tr>
+
+                                <tr>
+                                  <th class="text-center">Integral</th>
+                                  <th class="text-center">Frente</th>
+                                  <th class="text-center">Gestor</th>
+                                  <th class="text-center">Novo ERP</th>
+                                </tr>
+                              </thead>
+
+                              <tbody>
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][1]" value="1"> Materiais
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][8]" value="2"> Frente Windows
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][14]" value="3"> Instalação
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][19]" value="4"> Instalação
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][2]" value="1"> Fiscal
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][9]" value="2"> Frente Linux
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][15]" value="3"> Cadastro
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][20]" value="4"> Pessoas
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+                                
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][3]" value="1"> Financeiro
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][10]" value="2"> Supervisor
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][16]" value="3"> Movimento
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][21]" value="4"> Produtos
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][4]" value="1"> Contábil
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][11]" value="2"> Scanntech
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][17]" value="3"> Contábil
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][22]" value="4"> Fiscal
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][5]" value="1"> Cotação
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][12]" value="2"> Sitef
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][18]" value="3"> Fiscal
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][23]" value="4"> Financeiro
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][6]" value="1"> TNFE
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][13]" value="2"> Comandas
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][24]" value="4"> Lançamentos
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][7]" value="1"> WMS
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][25]" value="4"> Relatórios e Gráficos
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][26]" value="4"> Importação e Exportação
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][27]" value="4"> Configurações PDV
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" name="cadastro[opcoes][28]" value="4"> Minha Conta
+                                      </label>
+                                    </div>
+                                  </td>  
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </div>
+                        </div>
+
+                      </div><!-- panel-body -->
+                    </div><!-- panel -->
+
+                  </div>
+                </div><!-- painel dashboard -->
+
+              </div><!-- primeira coluna principal -->
+
+              <div class="col-sm-6"><!-- segunda coluna principal -->
+                <div class="row"><!-- painel usuário -->
+                  <div class="col-sm-12">
+
+                    <div class="panel panel-info"><!-- panel -->
+                      <div class="panel-heading">
+                        <div class="text-left">
+                          <strong>Usuário</strong>
+                        </div>
+                      </div>
+
+                      <div class="panel-body"><!-- panel-body -->                      
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="sr-only" for="nome">Nome</label>
+                              <input class="form-control" id="nome" type="text" name="cadastro[nome]" placeholder="Nome" readonly>
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="sr-only" for="sobrenome">Sobrenome</label>
+                              <input class="form-control" id="sobrenome" type="text" name="cadastro[sobrenome]" placeholder="Sobrenome" readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label class="sr-only" for="usuario">Usuário</label>
+                              <input class="form-control required" id="usuario" type="text" name="cadastro[usuario]" placeholder="Usuário" readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="form-group">
+                              <label class="sr-only" for="email">E-mail</label>
+                              <input class="form-control" id="email" type="text" name="cadastro[email]" placeholder="E-mail" readonly>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="sr-only" for="senha">Senha</label>
+                              <input class="form-control required" id="senha" type="password" name="cadastro[senha]" placeholder="Senha">
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="sr-only" for="repita-senha">Confirmação Senha</label>
+                              <input class="form-control required" id="repita-senha" type="password" name="cadastro[repita-senha]" placeholder="Confirmação Senha">
+                            </div>
+                          </div>                          
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="sr-only" for="nivel">Nível</label>
+                              <select class="form-control" id="nivel" name="cadastro[nivel]">
+                                <option value="0" selected>Nível Usuário</option>
+                                <option value="1">Suporte</option>
+                                <option value="2">Administrador</option>
+                              </select>
+                            </div>
+                          </div>                                                    
+                        </div>
+
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="sr-only" for="data-admissao">Data Admissão</label>
+                              <input class="form-control" id="data-admissao" type="text" name="cadastro[admissao]" placeholder="Admissão">
+                            </div>
+                          </div>
+
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label class="sr-only" for="ramal">Ramal</label>
+                              <input class="form-control" id="ramal" type="text" name="cadastro[ramal]" placeholder="Ramal">
+                            </div>
+                          </div>
+                        </div>
+
+                      </div><!-- panel-body -->
+                    </div><!-- panel -->
+
+                    <input id="id" type="hidden" name="cadastro[id]">
+
+                  </div>
+                </div><!-- painel usuário -->
+                
+                <div class="row">
+                  <div class="col-sm-3 col-sm-offset-6">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-default btn-sm" type="reset">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        Resetar
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="users">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                        Gravar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+              </div><!-- segunda coluna principal -->
+            </div><!-- linha principal -->
+
+          </form>
+
+          <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+            <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="text-center">
+                    <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                        <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                          <strong>Ops!</strong>
+                        <?php else : ?>
+                          <strong>Tudo Certo!</strong>
+                        <?php endif; ?>
+
+                        <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <?php endfor; ?>
 
           <?php endif; ?>
-          </div>
-        </div>
+
+          <?php unset($_SESSION['atividades']); ?>
 
       </div><!-- container -->
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->
   <script src="<?php echo BASE_URL; ?>libs/jquery/js/jquery_3.2.1.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>  
+  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
+  <script>
+    $(function() {
+      $('#data-admissao').mask('00/00/0000');
+
+      $(document).on('blur', '#id-chat', function(e) {
+        e.preventDefault;
+        
+        var idChat = parseInt($('#id-chat').val());
+
+        if (!isNaN(idChat)) {
+          $.ajax({
+            type: 'post',
+            url: '../../../app/requests/post/users/processa_usuario.php',
+            dataType: 'json',
+            data: {
+              id: idChat
+            },
+            success: function(dados) {
+              $('#id').val(dados.id);
+              $('#nome').val(dados.nome);
+              $('#sobrenome').val(dados.sobrenome);
+              $('#usuario').val(dados.usuario);
+              $('#email').val(dados.email);
+            },
+            error: function(dados) {
+              console.log(dados);
+            }
+          });
+        } else {
+          alert('ID não encontrado no banco de dados do Chat Avanço!');
+        }
+      });
+
+      $(document).on('focus', '#ramal', function(e) {
+        e.preventDefault;
+
+        var senha01 = $('#senha').val();
+        var senha02 = $('#repita-senha').val();
+
+        if (senha01 != senha02) {
+          $('#senha').val('');
+          $('#repita-senha').val('');
+
+          alert('As senhas estão diferentes!');
+        }
+      });
+
+      $(document).on('change', '#nivel', function(e) {
+        e.preventDefault;
+
+        var id = $('#nivel').val();
+        
+        // verificando se o usuário selecionou a opção administrador
+        if (id == '2') {
+          // adicionando classe disabled nos checkboxes
+          $('.checkbox').addClass('disabled');
+          
+          // adicionando atributo disabled nos inputs checkboxes
+          $('input:checkbox').prop('disabled', 'disabled');
+
+          // percorrendo e desmarcando todos os checkboxes que estiverem marcados
+          $('input:checkbox').each(function() {
+            $(this).prop('checked', false);
+          });
+
+          // adicionando atributo disabled no select de times
+          $('#time').prop('disabled', 'disabled');
+
+          // percorrendo options do select de times
+          $('#time option').each(function() {
+            // adicionando o atributo selected no option de valor 1, nos outros, retirando o selected
+            if ($(this).val() == 1) {
+              $(this).prop('selected', true);
+            } else {
+              $(this).prop('selected', false);
+            }
+          });
+          
+          // adicionando o atributo disabled do input file
+          $('#foto').prop('disabled', true);
+          $('#foto').val('');
+        } else if (id == '1') {
+          // removendo a classe disabled dos checkboxes
+          $('.checkbox').removeClass('disabled');
+
+          // removendo atributo disabled dos inputs checkboxes
+          $('input:checkbox').prop('disabled', false);
+          
+          // removendo atributo disabled do select de times
+          $('#time').prop('disabled', false);
+          
+          // removendo atributo disabled do input file
+          $('#foto').prop('disabled', false);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
 
