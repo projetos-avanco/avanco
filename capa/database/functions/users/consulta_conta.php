@@ -1,6 +1,58 @@
 <?php
 
 /**
+ * consulta se o usuário já possui registro no portal avanção
+ * @param - objeto com uma conexao aberta
+ * @param - string com o nome do usuário
+ * @param - string com o sobrenome do usuário
+ * @param - string com o nome de usuário
+ */
+function consultaRegistroExistenteDeUsuario($db, $nome, $sobrenome, $usuario)
+{
+  $query = 
+    "SELECT 
+      id 
+    FROM av_usuarios_login 
+    WHERE nome = '$nome'
+      AND (sobrenome = '$sobrenome') 
+      AND (usuario = '$usuario')";
+
+  $resultado = mysqli_query($db, $query);
+
+  $id = mysqli_fetch_row($resultado);
+
+  return $id[0];
+}
+
+/**
+ * consulta os dados de um usuário cadastrado no chat
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do chat
+ */
+function consultaDadosDoUsuarioDoChat($db, $id)
+{  
+  $query = 
+    "SELECT
+      u.id,
+      u.name AS nome,
+      u.surname AS sobrenome,
+      u.username AS usuario,
+      u.email
+    FROM lh_users AS u
+    WHERE u.id = $id";
+  
+  $resultado = mysqli_query($db, $query);
+
+  $dados = array();
+  
+  while ($linha = mysqli_fetch_assoc($resultado)) {
+    array_push($dados, $linha);
+  }
+
+  return $dados;
+}
+
+/**
  * consulta o ramal do usuário
  * @param - objeto com uma conexão aberta
  * @param - array com os dados da conta do usuário
