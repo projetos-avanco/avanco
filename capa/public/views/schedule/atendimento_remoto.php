@@ -293,7 +293,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="cobranca">Cobrança</label>
-                            <select class="form-control required" id="cobranca" name="remoto[cobranca]">
+                            <select class="form-control" id="cobranca" name="remoto[cobranca]">
                               <option value="0" selected>Tipo de Cobrança</option>
                               <option value="1">Hora</option>
                               <option value="2">Pacote</option>
@@ -312,7 +312,7 @@
                                 </button>
                               </span>
                               <label class="sr-only" for="valor">Valor</label>
-                              <input class="form-control required" id="valor" type="text" name="remoto[valor]" placeholder="0.00">
+                              <input class="form-control required" id="valor" type="text" name="remoto[valor]" placeholder="Valor da Cobrança">
                             </div>
                           </div>
                         </div>
