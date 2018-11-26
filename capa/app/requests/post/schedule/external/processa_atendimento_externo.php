@@ -27,6 +27,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     'faturado'     => null,
     'valor_hora'   => 0.0,
     'valor_pacote' => 0.0,
+    'despesa'      => null,
     'registrado'   => null
   );
 
@@ -530,7 +531,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   } else {
     # requisitando script
     require_once DIRETORIO_MODULES . 'schedule/modulo_externo.php';
-        
+    
     # chamando função responsável por gravar um atendimento remoto
     recebeAtendimentoExterno($externo, $endereco, $contato, $copia);
   }
