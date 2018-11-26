@@ -1,7 +1,7 @@
 $('document').ready(function() {
 
   $('form').submit(function() {
-//debugger;
+    
     var contador = 0;
 
     $('input.required').each(function() {
