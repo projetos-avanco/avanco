@@ -149,6 +149,38 @@
       </li>
 
       <li class="bordermenu">
+        <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu10">
+          <span class="nav-header-primary">
+            <i class="fa fa-plane" aria-hidden="true"></i> Férias
+            <span class="pull-right">
+                <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+            </span>
+          </span>
+        </a>
+        <ul class="nav collapse"  id="submenu10">
+        <?php if ($_SESSION['usuario']['nivel'] == '2') : ?>
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias.php">
+              <p>Exercício<p>
+            </a>
+          </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias_lancados.php">
+              <p>Lançados<p>
+            </a>
+          </li>
+        <?php elseif ($_SESSION['usuario']['nivel'] == '1') : ?>
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias_pedidos.php">
+              <p>Pedidos<p>
+            </a>
+          </li>
+        <?php endif; ?>
+        </ul>
+      </li>
+
+      <li class="bordermenu">
         <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu5">
           <span class="nav-header-primary">
             <i class="fa fa-tags" aria-hidden="true"></i> Tickets

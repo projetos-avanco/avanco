@@ -52,7 +52,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'conta.php'                 OR
           $pagina == 'loja.php'                  OR
           $pagina == 'consulta_atendimentos.php' OR
-          $pagina == 'visualiza_tickets.php'){
+          $pagina == 'visualiza_tickets.php'     OR
+          $pagina == 'exercicio_ferias_pedidos.php'){
 
         return true;
 
@@ -78,27 +79,29 @@ function verificaUsuarioLogado($pagina, $id = null)
       }
 
       # páginas que usuários de nível 1 não possuem permissão para acessar
-      if ($pagina == 'nova_atividade.php'         OR
-          $pagina == 'registro_horas.php'         OR
-          $pagina == 'metas_capitaes_selecao.php' OR
-          $pagina == 'cadastro.php'               OR
-          $pagina == 'ranking_colaboradores.php'  OR
-          $pagina == 'consulta_lancamentos.php'   OR
-          $pagina == 'visualiza_lancamentos.php'  OR
-          $pagina == 'edita_lancamentos.php'      OR
-          $pagina == 'edita_tickets.php'          OR
-          $pagina == 'consulta_tickets_adm.php'   OR
-          $pagina == 'endereco.php'               OR
-          $pagina == 'contato.php'                OR
-          $pagina == 'atendimento_remoto.php'     OR
-          $pagina == 'atendimento_externo.php'    OR
-          $pagina == 'empresa.php'                OR
-          $pagina == 'edita_contato.php'          OR
-          $pagina == 'edita_endereco.php'         OR
-          $pagina == 'extras.php'                 OR
-          $pagina == 'atrasos.php'                OR
-          $pagina == 'faltas.php'                 OR
-          $pagina == 'folgas.php') {
+      if ($pagina == 'nova_atividade.php'            OR
+          $pagina == 'registro_horas.php'            OR
+          $pagina == 'metas_capitaes_selecao.php'    OR
+          $pagina == 'cadastro.php'                  OR
+          $pagina == 'ranking_colaboradores.php'     OR
+          $pagina == 'consulta_lancamentos.php'      OR
+          $pagina == 'visualiza_lancamentos.php'     OR
+          $pagina == 'edita_lancamentos.php'         OR
+          $pagina == 'edita_tickets.php'             OR
+          $pagina == 'consulta_tickets_adm.php'      OR
+          $pagina == 'endereco.php'                  OR
+          $pagina == 'contato.php'                   OR
+          $pagina == 'atendimento_remoto.php'        OR
+          $pagina == 'atendimento_externo.php'       OR
+          $pagina == 'empresa.php'                   OR
+          $pagina == 'edita_contato.php'             OR
+          $pagina == 'edita_endereco.php'            OR
+          $pagina == 'extras.php'                    OR
+          $pagina == 'atrasos.php'                   OR
+          $pagina == 'faltas.php'                    OR
+          $pagina == 'folgas.php'                    OR
+          $pagina == 'exercicio_ferias.php'          OR
+          $pagina == 'exercicio_ferias_lancados.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -114,34 +117,36 @@ function verificaUsuarioLogado($pagina, $id = null)
 
       # páginas que usuários de nível 2 possuem permissão para acessar
       if
-        ($pagina == 'colaboradores_logados.php'  OR
-         $pagina == 'consulta_tickets_adm.php'   OR
-         $pagina == 'nova_atividade.php'         OR
-         $pagina == 'extrato.php'                OR
-         $pagina == 'conta.php'                  OR
-         $pagina == 'loja.php'                   OR
-         $pagina == 'registro_horas.php'         OR
-         $pagina == 'metas_capitaes.php'         OR
-         $pagina == 'metas_capitaes_selecao.php' OR
-         $pagina == 'consulta_atendimentos.php'  OR
-         $pagina == 'cadastro.php'               OR
-         $pagina == 'ranking_colaboradores.php'  OR
-         $pagina == 'consulta_lancamentos.php'   OR
-         $pagina == 'visualiza_lancamentos.php'  OR
-         $pagina == 'edita_lancamentos.php'      OR
-         $pagina == 'visualiza_tickets.php'      OR
-         $pagina == 'edita_tickets.php'          OR
-         $pagina == 'endereco.php'               OR
-         $pagina == 'contato.php'                OR
-         $pagina == 'atendimento_remoto.php'     OR
-         $pagina == 'atendimento_externo.php'    OR
-         $pagina == 'empresa.php'                OR
-         $pagina == 'edita_contato.php'          OR
-         $pagina == 'edita_endereco.php'         OR
-         $pagina == 'extras.php'                 OR
-         $pagina == 'atrasos.php'                OR
-         $pagina == 'faltas.php'                 OR
-         $pagina == 'folgas.php') {
+        ($pagina == 'colaboradores_logados.php'     OR
+         $pagina == 'consulta_tickets_adm.php'      OR
+         $pagina == 'nova_atividade.php'            OR
+         $pagina == 'extrato.php'                   OR
+         $pagina == 'conta.php'                     OR
+         $pagina == 'loja.php'                      OR
+         $pagina == 'registro_horas.php'            OR
+         $pagina == 'metas_capitaes.php'            OR
+         $pagina == 'metas_capitaes_selecao.php'    OR
+         $pagina == 'consulta_atendimentos.php'     OR
+         $pagina == 'cadastro.php'                  OR
+         $pagina == 'ranking_colaboradores.php'     OR
+         $pagina == 'consulta_lancamentos.php'      OR
+         $pagina == 'visualiza_lancamentos.php'     OR
+         $pagina == 'edita_lancamentos.php'         OR
+         $pagina == 'visualiza_tickets.php'         OR
+         $pagina == 'edita_tickets.php'             OR
+         $pagina == 'endereco.php'                  OR
+         $pagina == 'contato.php'                   OR
+         $pagina == 'atendimento_remoto.php'        OR
+         $pagina == 'atendimento_externo.php'       OR
+         $pagina == 'empresa.php'                   OR
+         $pagina == 'edita_contato.php'             OR
+         $pagina == 'edita_endereco.php'            OR
+         $pagina == 'extras.php'                    OR
+         $pagina == 'atrasos.php'                   OR
+         $pagina == 'faltas.php'                    OR
+         $pagina == 'folgas.php'                    OR
+         $pagina == 'exercicio_ferias.php'          OR
+         $pagina == 'exercicio_ferias_lancados.php') {
 
         return true;
 
