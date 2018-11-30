@@ -109,6 +109,8 @@
           </div>
         </div>
 
+        <form>
+
         <div class="row">
           <div class="col-sm-6">
 
@@ -120,58 +122,73 @@
               </div>
 
               <div class="panel-body"><!-- panel-body -->
-                <form>
-                  <div class="row">
-                    <div class="col-sm-5">
-                      <div class="form-group">
-                        <label for="data-inicial">Data Inicial</label>
-                        <input class="form-control required" id="data-inicial" type="date" name="data-inicial" readonly>
-                      </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="quantidade">Dias</label>
+                      <select class="form-control" id="quantidade" disabled>
+                        <option value="0" selected>Quantidade</option>
+                        <option value="30">30</option>
+                        <option value="20">20</option>
+                        <option value="15">15</option>
+                        <option value="8">8</option>
+                        <option value="7">7</option>
+                      </select>
                     </div>
+                  </div>
+                </div>
 
-                    <div class="col-sm-5">
-                      <div class="form-group">
-                        <label for="data-final">Data Final</label>
-                        <input class="form-control required" id="data-final" type="date" name="data-final" readonly>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-2">
-                      <div class="form-group">
-                        <label for="dias">Dias</label>
-                        <input class="form-control" id="dias" type="text" name="dias" placeholder="0" readonly>
-                      </div>
+                <div class="row">
+                  <div class="col-sm-5">
+                    <div class="form-group">
+                      <label for="data-inicial">Data Inicial</label>
+                      <input class="form-control required" id="data-inicial" type="date" name="data-inicial" readonly>
                     </div>
                   </div>
 
-                  <input class="form-control" id="id-exercicio" type="hidden" name="id-exercicio">
-
-                  <div class="row">
-                    <div class="col-sm-3 col-sm-offset-6">
-                      <div class="form-group">
-                        <button class="btn btn-block btn-default btn-sm" type="reset">
-                          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                          Resetar
-                        </button>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <button class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="submit">
-                          <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
-                          Gravar
-                        </button>
-                      </div>
+                  <div class="col-sm-5">
+                    <div class="form-group">
+                      <label for="data-final">Data Final</label>
+                      <input class="form-control required" id="data-final" type="date" name="data-final" readonly>
                     </div>
                   </div>
 
-                </form>
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <label for="dias">Quantidade</label>
+                      <output class="form-control" id="dias" for="quantidade" name="dias" readonly>
+                    </div>
+                  </div>                 
+                </div>
+
+                <input class="form-control" id="id-exercicio" type="hidden" name="id-exercicio">
               </div><!-- panel-body -->
             </div><!-- panel -->
 
+            <div class="row">
+              <div class="col-sm-3 col-sm-offset-6">
+                <div class="form-group">
+                  <button class="btn btn-block btn-default btn-sm" type="reset">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                    Resetar
+                  </button>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <button class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="submit">
+                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                    Gravar
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+
+        </form>
 
         <div class="row">
           <div class="col-sm-6">
@@ -215,9 +232,53 @@
   <script src="<?php echo BASE_URL; ?>libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script> 
 
   <script>
+    // retorna o dia do mês sem o 0
+    function retornaDiaSemZero(tmp) {
+      switch (tmp[2]) {
+          case '01':
+            tmp[2] = '1';
+              break;
+
+          case '02':
+            tmp[2] = '2';
+              break;
+
+          case '03':
+            tmp[2] = '3';
+              break;
+
+          case '04':
+            tmp[2] = '4';
+              break;
+
+          case '05':
+            tmp[2] = '5';
+              break;
+
+          case '06':
+            tmp[2] = '6';
+              break;
+
+          case '07':
+            tmp[2] = '7';
+              break;
+
+          case '08':
+            tmp[2] = '8';
+              break;
+
+          case '09':
+            tmp[2] = '9';
+              break;
+        }
+      
+      return tmp;
+    }
+
     $(function() {
       $(document).ready(function(e) {
         e.preventDefault;
+
         var id = $('#id').val();
 
         if (id != 0) {
@@ -226,8 +287,7 @@
             url: '../../../app/requests/post/vacation/recebe_pedido_exercicio.php',
             dataType: 'html',
             data: {
-              id: id,
-              status: status
+              id: id              
             },
             success: function(tr) {
               $('#tbody').html(tr);
@@ -241,6 +301,7 @@
         }
       });
 
+      // evento que é disparado ao se clicar no botão agendar
       $(document).on('click', '#agendar', function(e) {
         e.preventDefault;
 
@@ -257,29 +318,86 @@
 
         var tmp = '';
         
+        // dividindo a data do exercício final
         tmp = exercicio.final.split('/');        
         exercicio.final = tmp[2] + '-' + tmp[1] + '-' + tmp[0];
 
         tmp = exercicio.vencimento.split('/');
 
+        // verificando se o mês é janeiro
         if (tmp[1] == '01') {
           tmp[1] = '12';
           tmp[2] = parseInt(tmp[2]) - 1;
         } else {
           tmp[1] = parseInt(tmp[1]) - 1;
-        }        
-
+        }
+        
+        // verificando se o mês está entre janeiro até setembro
         if (tmp[1] <= 9) {
           tmp[1] = '0' + tmp[1];
         }
 
         exercicio.vencimento = tmp[2] + '-' + tmp[1] + '-' + tmp[0];
-        console.log(exercicio.vencimento);
-        $('#data-inicial').prop('readonly', false).prop('min', exercicio.final);
-        $('#data-final').prop('readonly', false).prop('max', exercicio.vencimento);
+
+        $('#quantidade').prop('disabled', false);
+        $('#data-inicial').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+        $('#data-final').prop('min', exercicio.final).prop('max', exercicio.vencimento);
 
         $('#id-exercicio').val(exercicio.id);
         $('#data-inicial').val(exercicio.final);
+      });
+
+      // evento que é disparado ao selecionar uma quantidade de dias
+      $(document).on('change', '#quantidade', function(e) {
+        e.preventDefault;
+
+        $('#data-inicial').prop('readonly', false);        
+      });
+
+      // evento que é disparado ao selecionar uma data inicial
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var quantidade = $('#quantidade').val();
+        var dataInicial = $('#data-inicial').val();
+        
+        var tmp = dataInicial.split('-');
+
+        tmp = retornaDiaSemZero(tmp);
+
+        dataInicial = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
+        
+        var date = new Date(dataInicial);
+
+        var diaDoMes = date.getDate();
+        date.setDate(diaDoMes + parseInt(quantidade));
+        
+        tmp = date.toISOString();
+
+        tmp = tmp.split('T');
+        
+        var dataFinal = tmp[0];
+
+        $('#data-final').val(dataFinal);
+
+        // calculando quantidade de dias pela diferença da data final e data inicial
+        dataInicial = $('#data-inicial').val();
+        dataFinal = $('#data-final').val();
+
+        tmp = dataInicial.split('-');
+        tmp = retornaDiaSemZero(tmp);
+        dataInicial = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
+
+        dtInicial = new Date(dataInicial);
+
+        tmp = dataFinal.split('-');
+        tmp = retornaDiaSemZero(tmp);
+        dataFinal = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
+
+        dtFinal = new Date(dataFinal);
+
+        var dias = dtFinal.getDate() - dtInicial.getDate();
+        console.log(dias);
       });
     });
   </script>

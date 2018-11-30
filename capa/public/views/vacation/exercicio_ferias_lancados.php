@@ -77,6 +77,45 @@
 
         <form>
 
+          <div class="row">
+            <div class="col-sm-12"><!-- segunda coluna principal -->
+
+              <div class="row">
+                <div class="col-sm-12">
+
+                  <div class="panel panel-info"><!-- panel -->
+                    <div class="panel-heading">
+                      <div class="text-left">
+                        <strong>Exercícios</strong>
+                      </div>
+                    </div>
+
+                    <div class="panel-body"><!-- panel-body -->
+                      <table class="table table-condesend">
+                        <thead>
+                          <tr>                            
+                            <th class="text-center">Supervisor</th>
+                            <th class="text-center">Colaborador</th>
+                            <th class="text-center">Situação</th>
+                            <th class="text-center">Exercício Inicial</th>
+                            <th class="text-center">Exercício Final</th>
+                            <th class="text-center">Vencimento</th>
+                            <th class="text-center">Registrado</th>
+                            <th class="text-center" width="192"></th>
+                          </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                      </table>
+                    </div><!-- panel-body -->
+                  </div><!-- panel -->
+
+                </div>
+              </div>
+
+            </div>
+          </div><!-- segunda coluna principal -->
+
           <div class="row"><!-- linha principal -->
             <div class="col-sm-6 col-sm-offset-6"><!-- primeira coluna principal -->
 
@@ -111,8 +150,8 @@
                             </select>
                           </div>
                         </div>
-                      </div>                      
-                    </div><!-- panel-body -->
+                      </div>                  
+                    </div><!-- panel-body -->                    
                   </div><!-- panel -->
 
                 </div>
@@ -139,47 +178,7 @@
               </div>
 
             </div><!-- primeira coluna principal -->
-
           </div><!-- linha principal -->
-
-          <div class="row">
-            <div class="col-sm-12"><!-- segunda coluna principal -->
-
-              <div class="row">
-                <div class="col-sm-12">
-
-                  <div class="panel panel-info"><!-- panel -->
-                    <div class="panel-heading">
-                      <div class="text-center">
-                        <strong>Exercícios</strong>
-                      </div>
-                    </div>
-
-                    <div class="panel-body"><!-- panel-body -->
-                      <table class="table table-condesend">
-                        <thead>
-                          <tr>                            
-                            <th class="text-center">Supervisor</th>
-                            <th class="text-center">Colaborador</th>
-                            <th class="text-center">Situação</th>
-                            <th class="text-center">Exercício Inicial</th>
-                            <th class="text-center">Exercício Final</th>
-                            <th class="text-center">Vencimento</th>
-                            <th class="text-center">Registrado</th>
-                            <th class="text-center" width="192"></th>
-                          </tr>
-                        </thead>
-                        <tbody id="tbody">
-                        </tbody>
-                      </table>
-                    </div><!-- panel-body -->
-                  </div><!-- panel -->
-
-                </div>
-              </div>
-
-            </div>
-          </div><!-- segunda coluna principal -->
 
         </form>
 
@@ -197,6 +196,27 @@
 
   <script>
     $(function() {
+      $(document).ready(function(e) {
+        e.preventDefault;
+        
+        var id = -1;
+
+        $.ajax({
+          type: 'post',
+          url: '../../../app/requests/post/vacation/recebe_pedido_exercicio.php',
+          dataType: 'html',
+          data: {
+            id: id              
+          },
+          success: function(tr) {
+            $('#tbody').html(tr);
+          },
+          error: function(resposta) {
+            console.log(resposta);
+          }
+        });
+      });
+
       $(document).on('click', '#btn', function(e) {
         e.preventDefault;
 
