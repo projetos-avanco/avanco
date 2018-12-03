@@ -125,8 +125,8 @@
                 <div class="row">
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <label for="quantidade">Dias</label>
-                      <select class="form-control" id="quantidade" disabled>
+                      <label for="dias">Dias</label>
+                      <select class="form-control" id="dias" disabled>
                         <option value="0" selected>Quantidade</option>
                         <option value="30">30</option>
                         <option value="20">20</option>
@@ -155,8 +155,8 @@
 
                   <div class="col-sm-2">
                     <div class="form-group">
-                      <label for="dias">Quantidade</label>
-                      <output class="form-control" id="dias" for="quantidade" name="dias" readonly>
+                      <label for="quantidade-dias">Quantidade</label>
+                      <output class="form-control" id="quantidade-dias" for="dias" name="quantidade-dias" readonly> 0 Dias
                     </div>
                   </div>                 
                 </div>
@@ -339,7 +339,7 @@
 
         exercicio.vencimento = tmp[2] + '-' + tmp[1] + '-' + tmp[0];
 
-        $('#quantidade').prop('disabled', false);
+        $('#dias').prop('disabled', false);
         $('#data-inicial').prop('min', exercicio.final).prop('max', exercicio.vencimento);
         $('#data-final').prop('min', exercicio.final).prop('max', exercicio.vencimento);
 
@@ -348,7 +348,7 @@
       });
 
       // evento que é disparado ao selecionar uma quantidade de dias
-      $(document).on('change', '#quantidade', function(e) {
+      $(document).on('change', '#dias', function(e) {
         e.preventDefault;
 
         $('#data-inicial').prop('readonly', false);        
@@ -357,47 +357,65 @@
       // evento que é disparado ao selecionar uma data inicial
       $(document).on('change', '#data-inicial', function(e) {
         e.preventDefault;
-
-        var quantidade = $('#quantidade').val();
-        var dataInicial = $('#data-inicial').val();
         
-        var tmp = dataInicial.split('-');
+        var exercicio = {};
+
+        exercicio.dias = $('#dias').val();
+        exercicio.inicial = $('#data-inicial').val();
+        
+        var tmp = exercicio.inicial.split('-');
 
         tmp = retornaDiaSemZero(tmp);
 
-        dataInicial = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
+        exercicio.inicial = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
         
-        var date = new Date(dataInicial);
+        var date = new Date(exercicio.inicial);
 
-        var diaDoMes = date.getDate();
-        date.setDate(diaDoMes + parseInt(quantidade));
+        exercicio.diaDoMes = date.getDate();
+        date.setDate(exercicio.diaDoMes + parseInt(exercicio.dias));
         
         tmp = date.toISOString();
 
         tmp = tmp.split('T');
         
-        var dataFinal = tmp[0];
+        exercicio.final = tmp[0];
+        exercicio.vencimento = $('#data-final').attr('max');
 
-        $('#data-final').val(dataFinal);
+        // verificando se a data final agendada é menor ou igual que a data de vencimento
+        if (exercicio.final <= exercicio.vencimento) {
+          $('#data-final').val(exercicio.final);
 
-        // calculando quantidade de dias pela diferença da data final e data inicial
-        dataInicial = $('#data-inicial').val();
-        dataFinal = $('#data-final').val();
+          // calculando quantidade de dias agendados pela diferença da data final e data inicial
+          exercicio.inicial = $('#data-inicial').val();
+          exercicio.final = $('#data-final').val();
 
-        tmp = dataInicial.split('-');
-        tmp = retornaDiaSemZero(tmp);
-        dataInicial = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
+          tmp = exercicio.inicial.split('-');
+          tmp = retornaDiaSemZero(tmp);
+          exercicio.inicial = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
 
-        dtInicial = new Date(dataInicial);
+          dataObjetoInicial = new Date(exercicio.inicial);
 
-        tmp = dataFinal.split('-');
-        tmp = retornaDiaSemZero(tmp);
-        dataFinal = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
+          tmp = exercicio.final.split('-');
+          tmp = retornaDiaSemZero(tmp);
+          exercicio.final = tmp[0] + '-' + tmp[1] + '-' + tmp[2];
 
-        dtFinal = new Date(dataFinal);
+          dataObjetoFinal = new Date(exercicio.final);
+          
+          // calculando a quantidade de dias agendados
+          exercicio.dia = 1000 * 60 * 60 * 24;
+          exercicio.inicialMilisegundos = dataObjetoInicial.getTime();
+          exercicio.finalMilisegundos = dataObjetoFinal.getTime();
+          exercicio.quantidadeDias = exercicio.finalMilisegundos - exercicio.inicialMilisegundos;
+          
+          exercicio.quantidadeDias = Math.round(exercicio.quantidadeDias / exercicio.dia);
 
-        var dias = dtFinal.getDate() - dtInicial.getDate();
-        console.log(dias);
+          $('#quantidade-dias').val(exercicio.quantidadeDias + ' Dias');
+        } else {
+          $('#data-final').val('');
+          $('#quantidade-dias').val('0 Dias');
+
+          alert('A data final do agendamento não pode ultrapassar 30 dias antes do vencimento!');
+        }        
       });
     });
   </script>
