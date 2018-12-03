@@ -109,6 +109,12 @@
               <p>Remoto<p>
             </a>
           </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_externo.php">
+              <p>Consulta Externo<p>
+            </a>
+          </li>
         </ul>
       </li>
 
