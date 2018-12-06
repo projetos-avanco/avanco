@@ -242,7 +242,7 @@
               </div>
 
               <div class="panel-body"><!-- panel-body -->
-                <table class="table table-striped table-condensed" id="relatorio">
+                <table class="table table-condensed" id="relatorio">
                   <thead>
                     <tr>
                       <th class="text-center" width="10%">Data</th>
@@ -299,7 +299,7 @@
           url: '../../../database/functions/schedule/external/ajax/paginacao_externo.php',
           dataType: 'json',
           data: {
-            data_inicial: '2018-12-04',
+            data_inicial: gerencial.dataInicial,
             data_final: gerencial.dataFinal
           },
           success: function(dados) {
@@ -366,14 +366,14 @@
                 tbody += 
                 '<td>' +
                   '<button class="btn btn-warning btn-sm btn-block" id="editar-pesquisa" type="button" value="' + dados[i].id_pesquisa + '">' +
-                    '<i class="fa fa-eye" aria-hidden="true"></i> Pesquisa' +
+                    '<i class="fa fa-pencil" aria-hidden="true"></i> Pesquisa' +
                   '</button' +
                 '</td>';
               }
 
               tbody +=
               '<td>' +
-                '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id_pesquisa + '">' +
+                '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
                   '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
                 '</button' +
               '</td>';
@@ -564,6 +564,34 @@
         // visualizando pesquisa externa
         $(document).on('click', '#visualizar-pesquisa', function(e) {
           e.preventDefault;
+
+          var id = $(this).val();
+
+          $.ajax({
+            type: 'post',
+            url: '../../../database/functions/schedule/external/ajax/dados_pesquisa.php',
+            dataType: 'json',
+            data: {
+              id: id
+            },
+            success: function(dados) {
+              // exibindo pesquisa externa alert
+              swal({
+                icon: 'info',
+                title: 'Pesquisa Externa!',
+                text:               
+                  'Data: '                 + dados.registrado    + "\n\n" +
+                  'Realizada: '            + dados.supervisor    + "\n\n" +
+                  'Situação: '             + dados.status        + "\n\n" +
+                  'Qualidade do Serviço: ' + dados.qualidade     + "\n\n" +
+                  'Serviço Realizado: '    + dados.entrega       + "\n\n" +
+                  'Considerações: '        + dados.consideracoes
+              });              
+            },
+            error: function(dados) {
+
+            }
+          });
         });
 
         $(document).on('click', '#editar-pesquisa', function(e) {
@@ -578,6 +606,27 @@
           url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/pesquisa_externa.php?id=' + id;          
 
           window.open(url, '_blank');
+        });
+
+        $(document).on('click', '#cancelar-atendimento', function(e) {
+          e.preventDefault;
+
+          var id = $(this).val();
+          var registro = $(this).closest('tr').attr('data-registro');
+
+          var url = window.location.href;
+          var tmp = url.split('/');
+
+          url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/app/requests/get/schedule/external/recebe_atendimento.php?id=' + id;
+
+          var resposta = confirm('Confirma a o cancelamento do atendimento de Registro - ' + registro + '?');
+
+          // verificando a resposta do usuário
+          if (resposta) {
+            window.open(url, '_self');
+          } else {
+            window.location.reload(true);            
+          }
         });
       });
     });    
