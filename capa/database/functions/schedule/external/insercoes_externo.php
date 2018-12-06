@@ -7,7 +7,7 @@
  */
 function inserePesquisaExterna($db, $id)
 {
-  $query = "INSERT INTO av_agenda_pesquisas_externas VALUES (0, $id, '1')";
+  $query = "INSERT INTO av_agenda_pesquisas_externas (id, id_atendimento_externo, status) VALUES (0, $id, '1')";
 
   $resultado = mysqli_query($db, $query);
 
@@ -28,6 +28,7 @@ function insereAtendimentoExterno($db, $externo)
       {$externo['id']},
       {$externo['id_cnpj']},
       {$externo['id_issue']},
+      {$externo['id_contato']},
       {$externo['registro']},
      '{$externo['tipo']}',
       {$externo['supervisor']},
