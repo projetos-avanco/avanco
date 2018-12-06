@@ -13,6 +13,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     'id'           => 0,
     'id_cnpj'      => null,
     'id_issue'     => null,
+    'id_contato'   => null,
     'registro'     => null,
     'tipo'         => null,
     'supervisor'   => null,
@@ -73,6 +74,20 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   } else {
     $flag = true;
     $erros[] = 'Nenhuma empresa foi selecionada.';
+  }
+
+  # verificando se o id do contato foi enviado
+  if (!empty($_POST['contato']['id-contato'])) {
+    # verificando se o id do contato é uma string numérica
+    if (is_numeric($_POST['contato']['id-contato'])) {
+      $externo['id_contato'] = (int) $_POST['contato']['id-contato'];
+    } else {
+      $flag = true;
+      $erros[] = 'O tipo de dados do id do contato não está correto';
+    }
+  } else {
+    $flag = true;
+    $erros[] = 'O id do contato não foi enviado.';
   }
 
   # verificando se o tipo de atendimento foi enviado
