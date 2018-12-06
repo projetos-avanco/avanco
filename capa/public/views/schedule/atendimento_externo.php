@@ -1,6 +1,12 @@
 <?php require '../../../init.php'; ?>
+<?php require_once DIRETORIO_HELPERS . 'datas.php'; ?>
 
 <?php if (verificaUsuarioLogado('atendimento_externo.php')) : ?>
+
+<?php
+  $dataInicial = formataDataParaExibir(date('Y-m-d'));
+  $dataFinal = formataDataParaExibir(date('Y-m-d'));
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -230,7 +236,7 @@
                           <div class="form-group">
                             <label class="sr-only" for="produto">Produto</label>
                             <select class="form-control required" id="produto" name="externo[produto]">
-                              <option value="0">Produto</option>
+                              <option value="0" selected>Produto</option>
                               <option value="1">Integral</option>
                               <option value="2">Frente de Loja</option>
                               <option value="3">Gestor</option>
@@ -255,14 +261,14 @@
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="data-inicial">Data</label>
-                            <input class="form-control required" id="data-inicial" type="text" name="externo[data-inicial]" placeholder="Data Inicial">
+                            <input class="form-control required" id="data-inicial" type="text" name="externo[data-inicial]" value="<?php echo $dataInicial; ?>" placeholder="Data Inicial">
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="data-final">Data</label>
-                            <input class="form-control required" id="data-final" type="text" name="externo[data-final]" placeholder="Data Final">
+                            <input class="form-control required" id="data-final" type="text" name="externo[data-final]" value="<?php echo $dataFinal; ?>" placeholder="Data Final">
                           </div>
                         </div>
 
@@ -383,7 +389,7 @@
                           <div class="form-group">
                             <label class="sr-only" for="despesa">Despesa</label>
                             <select class="form-control required" id="despesa" name="externo[despesa]">
-                              <option value="0">Cobrança de Despesas?</option>
+                              <option value="0" selected>Cobrança de Despesas?</option>
                               <option value="1">Sim</option>
                               <option value="2">Não</option>
                             </select>
