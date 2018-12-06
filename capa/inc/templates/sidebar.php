@@ -108,13 +108,7 @@
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_remoto.php">
               <p>Remoto<p>
             </a>
-          </li>
-
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_externo.php">
-              <p>Consulta Externo<p>
-            </a>
-          </li>
+          </li>          
         </ul>
       </li>
 
@@ -277,6 +271,12 @@
         </a>
 
         <ul class="nav collapse"  id="submenu8">
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_externo.php">
+              <p>Externo<p>
+            </a>
+          </li>
+
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/consulta_atendimentos.php">
               <p>Atendimentos<p>
