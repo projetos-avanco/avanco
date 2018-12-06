@@ -5,6 +5,22 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 /**
+ * responsável por solicitar o cancelamento do atendimento
+ * @param - inteiro com o id do atendimento
+ */
+function solicitaCancelamentoDeAtendimento($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'schedule/external/atualizacoes_externo.php';
+
+  $db = abre_conexao();
+
+  # chamando função que cancela um atendimento remoto
+  cancelaUmAtendimentoExterno($db, $id);
+
+  header('location: ' . BASE_URL . 'public/views/schedule/gerencial_atendimento_externo.php'); exit;
+}
+
+/**
  * responsável por solicitar o envio de email para o agenda, cliente e colaborador
  * @param - objeto com uma conexão aberta
  * @param - array com os dados de um atendimento externo
