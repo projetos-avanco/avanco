@@ -278,6 +278,12 @@
           </li>
 
           <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_remoto.php">
+              <p>Remoto<p>
+            </a>
+          </li>
+
+          <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/consulta_atendimentos.php">
               <p>Atendimentos<p>
             </a>
