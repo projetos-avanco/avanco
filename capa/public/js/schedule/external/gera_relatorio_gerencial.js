@@ -13,7 +13,7 @@ $(function() {
       url: '../../../database/functions/schedule/external/ajax/dados_paginacao_relatorio.php',
       dataType: 'json',
       data: {
-        data_inicial: '2018-12-04',
+        data_inicial: gerencial.dataInicial,
         data_final: gerencial.dataFinal
       },
       success: function(dados) {
