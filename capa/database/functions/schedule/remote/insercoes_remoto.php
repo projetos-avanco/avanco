@@ -14,6 +14,7 @@ function insereAtendimentoRemoto($db, $remoto)
       {$remoto['id']},
       {$remoto['id_cnpj']},
       {$remoto['id_issue']},
+      {$remoto['id_contato']},
       {$remoto['registro']},
      '{$remoto['tipo']}',
       {$remoto['supervisor']},
