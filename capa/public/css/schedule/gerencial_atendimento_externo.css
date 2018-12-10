@@ -1,0 +1,30 @@
+.erro {
+  border: 2px solid red;
+}
+
+table thead tr th {
+  font-size: 0.95em;
+  text-align: left;
+}
+
+table tbody tr td {
+  height: 0.75em;
+}
+
+.table tbody tr td {
+  font-size: 0.80em;
+  vertical-align: middle;
+}
+
+.table {
+  font-family: 'Lato Regular', sans-serif;
+}
+
+.swal-text {      
+  padding: 17px;      
+  display: block;
+  margin: 22px;
+  text-align: left;
+  color: #61534e;
+  font-size: 12.5px;
+}

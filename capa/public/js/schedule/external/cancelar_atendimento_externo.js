@@ -16,7 +16,7 @@ $(function() {
     if (resposta) {
       window.open(url, '_self');
     } else {
-      window.location.reload(true);            
+      window.location.reload(true);
     }
   });
 });

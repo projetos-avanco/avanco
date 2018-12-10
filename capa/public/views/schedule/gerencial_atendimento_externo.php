@@ -32,45 +32,13 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/sidebar.css">
-  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">  
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbar.css">
+  <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/schedule/gerencial_atendimento_externo.css">
 
   <!-- dispositivos com largura máxima de 769px (por exemplo tablets) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)" />
   <!-- dispositivos com largura máxima de 450px (por exemplo smartphones) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbarsmart.css" type="text/css" media="screen and (max-width:450px)" />
-
-  <style>
-    .erro {
-      border: 2px solid red;
-    }
-
-    table thead tr th {
-      font-size: 0.95em;
-      text-align: left;
-    }
-
-    table tbody tr td {
-      height: 0.75em;
-    }
-
-    .table tbody tr td {
-      font-size: 0.80em;
-      vertical-align: middle;
-    }
-
-    .table {
-      font-family: 'Lato Regular', sans-serif;
-    }
-
-    .swal-text {      
-      padding: 17px;      
-      display: block;
-      margin: 22px;
-      text-align: left;
-      color: #61534e;
-      font-size: 12.5px;
-    }
-  </style>
 </head>
 
 <body>
@@ -165,7 +133,7 @@
                     <div class="col-sm-12">
                       <div class="form-group">
                         <label for="colaborador">Colaborador</label>
-                        <select class="form-control required" id="colaborador" name="colaborador">
+                        <select class="form-control" id="colaborador" name="colaborador">
 
                         </select>
                       </div>
@@ -176,8 +144,8 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="tipo-atendimento">Tipo de Atendimento</label>
-                        <select class="form-control required" id="tipo-atendimento" name="tipo-atendimento">
-                          <option value="0" selected>Selecione um Tipo</option>
+                        <select class="form-control" id="tipo-atendimento" name="tipo-atendimento">
+                          <option value="" selected>Selecione um Tipo</option>
                           <option value="1">Suporte ao Cliente</option>
                           <option value="2">Projeto Mais Gestão</option>
                           <option value="3">Implantação</option>
@@ -191,8 +159,8 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="produto">Produto</label>
-                        <select class="form-control required" id="produto" name="externo[produto]">
-                          <option value="0" selected>Selecione um Produto</option>
+                        <select class="form-control" id="produto" name="produto">
+                          <option value="" selected>Selecione um Produto</option>
                           <option value="1">Integral</option>
                           <option value="2">Frente de Loja</option>
                           <option value="3">Gestor</option>
@@ -204,12 +172,12 @@
                 </div><!-- panel-body -->
               </div><!-- panel -->
 
-              <input type="hidden" name="extras[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
+              <input id="supervisor" type="hidden" name="supervisor" value="<?php echo $_SESSION['usuario']['id']; ?>">
 
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
                   <div class="form-group">
-                    <button class="btn btn-block btn-default btn-sm" type="reset">
+                    <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
                       <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                       Resetar
                     </button>
@@ -218,7 +186,7 @@
 
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <button class="btn btn-block btn-success btn-sm" id="btn" type="button">
+                    <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       Consultar
                     </button>
@@ -241,25 +209,8 @@
                 </div>
               </div>
 
-              <div class="panel-body"><!-- panel-body -->
-                <table class="table table-condensed" id="relatorio">
-                  <thead>
-                    <tr>
-                      <th class="text-center" width="10%">Data</th>
-                      <th class="text-center" width="5%">Registro</th>
-                      <th class="text-center" width="10%">Situação</th>
-                      <th class="text-center" width="15%">Colaborador</th>
-                      <th class="text-center" width="15%">Atendimento</th>
-                      <th class="text-center" width="30%">Empresa</th>                      
-                      <th class="text-center">Atendimento</th>
-                      <th class="text-center">Relatório</th>
-                      <th class="text-center">Pesquisa</th>
-                      <th class="text-center"></th>
-                    </tr>
-                  </thead>
-                  <tbody id="tbody">               
-                  </tbody>                                 
-                </table>
+              <div class="panel-body" id="tabela-relatorio"><!-- panel-body -->
+                
               </div><!-- panel-body -->
             </div><!-- panel -->
 
@@ -282,6 +233,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/pesquisa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_empresa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/direciona_usuario.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/external/atualiza_pagina.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/external/gera_relatorio_gerencial.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/external/visualizar_atendimento_externo.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/external/cancelar_atendimento_externo.js"></script>
