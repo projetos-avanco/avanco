@@ -46,14 +46,18 @@ function verificaUsuarioLogado($pagina, $id = null)
     case 1:
 
       # páginas que usuários de nível 1 possuem permissão para acessar
-      if ($pagina == 'consulta_tickets_clb.php'  OR
-          $pagina == 'colaboradores_logados.php' OR
-          $pagina == 'extrato.php'               OR
-          $pagina == 'conta.php'                 OR
-          $pagina == 'loja.php'                  OR
-          $pagina == 'consulta_atendimentos.php' OR
-          $pagina == 'visualiza_tickets.php'     OR
-          $pagina == 'exercicio_ferias_pedidos.php'){
+      if ($pagina == 'consulta_tickets_clb.php'     OR
+          $pagina == 'colaboradores_logados.php'    OR
+          $pagina == 'extrato.php'                  OR
+          $pagina == 'conta.php'                    OR
+          $pagina == 'loja.php'                     OR
+          $pagina == 'consulta_atendimentos.php'    OR
+          $pagina == 'visualiza_tickets.php'        OR
+          $pagina == 'exercicio_ferias_pedidos.php' OR
+          $pagina == 'relatorio_folgas.php'         OR
+          $pagina == 'relatorio_faltas.php'         OR
+          $pagina == 'relatorio_atrasos.php'        OR
+          $pagina == 'relatorio_extras.php'){
 
         return true;
 
@@ -152,7 +156,11 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'exercicio_ferias_lancados.php'     OR
          $pagina == 'gerencial_atendimento_externo.php' OR
          $pagina == 'gerencial_atendimento_remoto.php'  OR
-         $pagina == 'pesquisa_externa.php') {
+         $pagina == 'pesquisa_externa.php'              OR
+         $pagina == 'relatorio_folgas.php'              OR
+         $pagina == 'relatorio_faltas.php'              OR
+         $pagina == 'relatorio_atrasos.php'             OR
+         $pagina == 'relatorio_extras.php') {
 
         return true;
 
