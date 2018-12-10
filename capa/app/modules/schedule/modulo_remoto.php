@@ -5,6 +5,22 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 /**
+ * responsável por solicitar o cancelamento do atendimento
+ * @param - inteiro com o id do atendimento
+ */
+function solicitaCancelamentoDeAtendimento($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'schedule/remote/atualizacoes_remoto.php';
+
+  $db = abre_conexao();
+
+  # chamando função que cancela um atendimento remoto
+  cancelaUmAtendimentoRemoto($db, $id);
+
+  header('location: ' . BASE_URL . 'public/views/schedule/gerencial_atendimento_remoto.php'); exit;
+}
+
+/**
  * responsável por solicitar o envio de email para o agenda, cliente e colaborador
  * @param - objeto com uma conexão aberta
  * @param - array com os dados do atendimento remoto
@@ -57,6 +73,7 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc)
 
     $email->addBCC($emailSupervisor);
     $email->addBCC($emailColaborador);
+    $email->addBCC('agenda@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
