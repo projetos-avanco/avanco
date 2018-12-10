@@ -74,6 +74,7 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc)
 
     $email->addBCC($emailSupervisor);
     $email->addBCC($emailColaborador);
+    $email->addBCC('agenda@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');         
