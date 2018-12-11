@@ -317,7 +317,7 @@
             <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/ranking/ranking_colaboradores.php">
               <p>Ranking<p>
             </a>
-          </li>         
+          </li>                  
         </ul>
       </li>
 

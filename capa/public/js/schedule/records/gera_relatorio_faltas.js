@@ -3,24 +3,26 @@ $(function() {
   $(document).on('click', '#btn-consultar', function(e) {
     e.preventDefault;
 
-    var folgas = {};
+    var faltas = {};
     
-    folgas.nivel       = $('#nivel').val();
-    folgas.dataInicial = $('#data-inicial').val();
-    folgas.dataFinal   = $('#data-final').val();
-    folgas.colaborador = $('#colaborador').val();
-    folgas.motivo      = $('#motivo').val();
-    
+    faltas.nivel       = $('#nivel').val();
+    faltas.id          = $('#id-chat').val();
+    faltas.dataInicial = $('#data-inicial').val();
+    faltas.dataFinal   = $('#data-final').val();
+    faltas.colaborador = $('#colaborador').val();
+    faltas.motivo      = $('#motivo').val();
+
     $.ajax({
       type: 'post',
-      url: '../../../database/functions/schedule/records/ajax/dados_relatorio_folgas.php',
+      url: '../../../database/functions/schedule/records/ajax/dados_relatorio_faltas.php',
       dataType: 'json',
       data: {
-        nivel: folgas.nivel,
-        data_inicial: folgas.dataInicial,
-        data_final: folgas.dataFinal,
-        colaborador: folgas.colaborador,
-        motivo: folgas.motivo
+        nivel: faltas.nivel,
+        id: faltas.id,
+        data_inicial: faltas.dataInicial,
+        data_final: faltas.dataFinal,
+        colaborador: faltas.colaborador,
+        motivo: faltas.motivo
       },
       success: function(dados) {
         var table = '';
@@ -34,8 +36,10 @@ $(function() {
               '<th class="text-center" width="10%">Supervisor</th>' +
               '<th class="text-center" width="10%">Colaborador</th>' +
               '<th class="text-center" width="10%">Motivo</th>' +
+              '<th class="text-center">Atestado</th>' +
               '<th class="text-center" width="15%">Período</th>' +                
-              '<th class="text-center" width="25%">Observação</th>' +
+              '<th class="text-center" width="20%">Observação</th>' +
+              '<th class="text-center"></th>' +
             '</tr>' +
           '</thead>' +
           '<tbody>';
@@ -47,8 +51,22 @@ $(function() {
           tbody += '<td class="text-left">'   + dados[i].supervisor  + '</td>';
           tbody += '<td class="text-left">'   + dados[i].colaborador + '</td>';
           tbody += '<td class="text-left">'   + dados[i].motivo      + '</td>';
+          tbody += '<td class="text-center">' + dados[i].atestado    + '</td>';
           tbody += '<td class="text-center">' + dados[i].periodo     + '</td>';            
           tbody += '<td class="text-left">'   + dados[i].observacao  + '</td>';
+
+          if (dados[i].atestado === 'Sim') {
+            tbody += 
+            '<td>' +
+              '<a class="btn btn-info btn-sm btn-block" id="download-atestado" href="' + dados[i].arquivo + '" download>' +
+                '<i class="fa fa-download" aria-hidden="true"></i> Download' +
+              '</a' +
+            '</td>';
+          } else {
+            tbody += 
+            '<td></td>';
+          }
+
           tbody += '</tr>'
         }
 
@@ -82,11 +100,13 @@ $(function() {
             }
           }
         });
+        
+        $('#panel').removeClass('hidden');
       },
-      error: function() {
-
+      error: function(erro) {
+        console.log(erro);
       }
-    });
+    });    
   });
   
   // atualizando página

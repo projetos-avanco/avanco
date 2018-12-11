@@ -78,98 +78,179 @@
           </div>
         </div>
 
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">        
-          <div class="row"><!-- linha principal -->        
-            <div class="col-sm-8 col-sm-offset-2"><!-- primeira coluna principal -->
+        <?php if ($_SESSION['usuario']['nivel'] == '2') : ?>
+          <form>
+            <div class="row"><!-- linha principal -->        
+              <div class="col-sm-8 col-sm-offset-2"><!-- primeira coluna principal -->
 
-              <div class="panel panel-info"><!-- panel -->
-                <div class="panel-heading">
-                  <div class="text-left">
-                    <strong>Filtros</strong>
+                <div class="panel panel-info"><!-- panel -->
+                  <div class="panel-heading">
+                    <div class="text-left">
+                      <strong>Filtros</strong>
+                    </div>
+                  </div>
+
+                  <div class="panel-body"><!-- panel-body -->
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="data-inicial">Data Inicial</label>
+                          <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $dataInicial; ?>" placeholder="Data Inicial">
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="data-final">Data Final</label>
+                          <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $dataFinal; ?>" placeholder="Data Final">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="colaborador">Colaborador</label>
+                          <select class="form-control" id="colaborador" name="colaborador">
+
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="motivo">Motivo</label>
+                          <select class="form-control" id="motivo" name="motivo">
+                            <option value="0" selected>Selecione o Motivo</option>
+                            <optgroup label="Pessoal">
+                              <option value="1">Descontar o Dia</option>
+                            </optgroup>
+
+                            <optgroup label="Atestado">
+                              <option value="2">Atestado Médico</option>
+                              <option value="3">Atestado Óbito</option>
+                              <option value="4">Atestado Acompanhamento</option>
+                            </optgroup>
+                          </select>
+                        </div>
+                      </div>
+                    </div>                  
+                  </div><!-- panel-body -->
+                </div><!-- panel -->
+
+                <input id="id-chat" type="hidden" name="id-chat" value="<?php echo $_SESSION['usuario']['id']; ?>">
+                
+                <input id="nivel" type="hidden" name="nivel" value="<?php echo $_SESSION['usuario']['nivel']; ?>">
+
+                <div class="row">
+                  <div class="col-sm-3 col-sm-offset-6">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        Resetar
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        Consultar
+                      </button>
+                    </div>
                   </div>
                 </div>
+                
+              </div><!-- primeira coluna principal -->
+            </div><!-- linha principal -->
+          
+          </form>
+        <?php elseif ($_SESSION['usuario']['nivel'] == '1') : ?>
+          <form>        
+            <div class="row"><!-- linha principal -->        
+              <div class="col-sm-8 col-sm-offset-2"><!-- primeira coluna principal -->
 
-                <div class="panel-body"><!-- panel-body -->
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label for="data-inicial">Data Inicial</label>
-                        <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $dataInicial; ?>" placeholder="Data Inicial">
-                      </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label for="data-final">Data Final</label>
-                        <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $dataFinal; ?>" placeholder="Data Final">
-                      </div>
+                <div class="panel panel-info"><!-- panel -->
+                  <div class="panel-heading">
+                    <div class="text-left">
+                      <strong>Filtros</strong>
                     </div>
                   </div>
 
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label for="colaborador">Colaborador</label>
-                        <select class="form-control" id="colaborador" name="colaborador">
+                  <div class="panel-body"><!-- panel-body -->
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="data-inicial">Data Inicial</label>
+                          <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $dataInicial; ?>" placeholder="Data Inicial">
+                        </div>
+                      </div>
 
-                        </select>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="data-final">Data Final</label>
+                          <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $dataFinal; ?>" placeholder="Data Final">
+                        </div>
                       </div>
                     </div>
 
-                    <div class="col-sm-6">
-                      <div class="form-group">
-                        <label for="motivo">Motivo</label>
-                        <select class="form-control" id="motivo" name="motivo">
-                          <option value="0" selected>Selecione o Motivo</option>
-                          <optgroup label="Pessoal">
-                            <option value="1">Descontar o Dia</option>
-                          </optgroup>
+                    <div class="row">                  
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="motivo">Motivo</label>
+                          <select class="form-control" id="motivo" name="motivo">
+                            <option value="0" selected>Selecione o Motivo</option>
+                            <optgroup label="Pessoal">
+                              <option value="1">Descontar o Dia</option>
+                            </optgroup>
 
-                          <optgroup label="Atestado">
-                            <option value="2">Atestado Médico</option>
-                            <option value="3">Atestado Óbito</option>
-                            <option value="4">Atestado Acompanhamento</option>
-                          </optgroup>
-                        </select>
+                            <optgroup label="Atestado">
+                              <option value="2">Atestado Médico</option>
+                              <option value="3">Atestado Óbito</option>
+                              <option value="4">Atestado Acompanhamento</option>
+                            </optgroup>
+                          </select>
+                        </div>
                       </div>
+                    </div>                  
+                  </div><!-- panel-body -->
+                </div><!-- panel -->
+
+                <input id="id-chat" type="hidden" name="id-chat" value="<?php echo $_SESSION['usuario']['id']; ?>">
+                
+                <input id="nivel" type="hidden" name="nivel" value="<?php echo $_SESSION['usuario']['nivel']; ?>">
+
+                <div class="row">
+                  <div class="col-sm-3 col-sm-offset-6">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        Resetar
+                      </button>
                     </div>
-                  </div>                  
-                </div><!-- panel-body -->
-              </div><!-- panel -->
+                  </div>
 
-              <input id="supervisor" type="hidden" name="supervisor" value="<?php echo $_SESSION['usuario']['id']; ?>">
-              
-              <input id="nivel" type="hidden" name="nivel" value="<?php echo $_SESSION['usuario']['nivel']; ?>">
-
-              <div class="row">
-                <div class="col-sm-3 col-sm-offset-6">
-                  <div class="form-group">
-                    <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
-                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                      Resetar
-                    </button>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        Consultar
+                      </button>
+                    </div>
                   </div>
                 </div>
-
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
-                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                      Consultar
-                    </button>
-                  </div>
-                </div>
-              </div>
-              
-            </div><!-- primeira coluna principal -->
-          </div><!-- linha principal -->
-        
-        </form>
+                
+              </div><!-- primeira coluna principal -->
+            </div><!-- linha principal -->
+          
+          </form>
+        <?php endif; ?>
 
         <div class="row"><!-- painel registro -->
           <div class="col-sm-12">
 
-            <div class="panel panel-info"><!-- panel -->
+            <div class="panel panel-info hidden" id="panel"><!-- panel -->
               <div class="panel-heading">
                 <div class="text-left">
                   <strong>Relatório</strong>
@@ -196,7 +277,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/records/adm/gera_relatorio_faltas.js"></script>    
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/records/gera_relatorio_faltas.js"></script>    
 </body>
 </html>
 

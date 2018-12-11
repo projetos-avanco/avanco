@@ -3,24 +3,26 @@ $(function() {
   $(document).on('click', '#btn-consultar', function(e) {
     e.preventDefault;
 
-    var extras = {};
+    var atrasos = {};
     
-    extras.nivel       = $('#nivel').val();
-    extras.dataInicial = $('#data-inicial').val();
-    extras.dataFinal   = $('#data-final').val();
-    extras.colaborador = $('#colaborador').val();
-    extras.motivo      = $('#motivo').val();
+    atrasos.nivel       = $('#nivel').val();
+    atrasos.id          = $('#id-chat').val();
+    atrasos.dataInicial = $('#data-inicial').val();
+    atrasos.dataFinal   = $('#data-final').val();
+    atrasos.colaborador = $('#colaborador').val();
+    atrasos.motivo      = $('#motivo').val();
     
     $.ajax({
       type: 'post',
-      url: '../../../database/functions/schedule/records/ajax/dados_relatorio_extras.php',
+      url: '../../../database/functions/schedule/records/ajax/dados_relatorio_atrasos.php',
       dataType: 'json',
       data: {
-        nivel: extras.nivel,
-        data_inicial: extras.dataInicial,
-        data_final: extras.dataFinal,
-        colaborador: extras.colaborador,
-        motivo: extras.motivo
+        nivel: atrasos.nivel,
+        id: atrasos.id,
+        data_inicial: atrasos.dataInicial,
+        data_final: atrasos.dataFinal,
+        colaborador: atrasos.colaborador,
+        motivo: atrasos.motivo
       },
       success: function(dados) {        
         var table = '';
@@ -35,7 +37,7 @@ $(function() {
               '<th class="text-center" width="10%">Colaborador</th>' +
               '<th class="text-center" width="10%">Motivo</th>' +
               '<th class="text-center" width="10%">Data</th>' +
-              '<th class="text-center" width="15%">Tempo Extra</th>' +
+              '<th class="text-center" width="15%">Tempo Atraso</th>' +
               '<th class="text-center" width="30%">Observação</th>' +
             '</tr>' +
           '</thead>' +
@@ -49,7 +51,7 @@ $(function() {
           tbody += '<td class="text-left">'   + dados[i].colaborador  + '</td>';
           tbody += '<td class="text-left">'   + dados[i].motivo       + '</td>';
           tbody += '<td class="text-center">' + dados[i].data         + '</td>';
-          tbody += '<td class="text-center">' + dados[i].tempo_extra + '</td>';          
+          tbody += '<td class="text-center">' + dados[i].tempo_atraso + '</td>';          
           tbody += '<td class="text-left">'   + dados[i].observacao   + '</td>';
           tbody += '</tr>'          
         }
@@ -85,7 +87,7 @@ $(function() {
           }
         });
 
-        var total = dados[i - 1].total_extra;
+        var total = dados[i - 1].total_atraso;
 
         var horas = Math.floor(total / 3600);
         var minutos = Math.floor((total - (horas * 3600)) / 60);
@@ -103,8 +105,9 @@ $(function() {
           segundos = '0' + segundos;
         }
 
-        $('#total-extra').val(horas + ':' + minutos + ':' + segundos);
-        $('#form-total-extra').removeClass('hidden');
+        $('#total-atraso').val(horas + ':' + minutos + ':' + segundos);
+        
+        $('#panel').removeClass('hidden');
       },
       error: function(error) {
         console.log(error);
