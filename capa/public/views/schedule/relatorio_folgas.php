@@ -45,7 +45,7 @@
     }
 
     table tbody tr td {
-      height: 2em;
+      height: 2.5em;
     }
 
     .table tbody tr td {

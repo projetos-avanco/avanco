@@ -3,28 +3,31 @@ $(function() {
   $(document).on('click', '#btn-consultar', function(e) {
     e.preventDefault;
 
-    var faltas = {};
+    var atrasos = {};
     
-    faltas.nivel       = $('#nivel').val();
-    faltas.dataInicial = $('#data-inicial').val();
-    faltas.dataFinal   = $('#data-final').val();
-    faltas.colaborador = $('#colaborador').val();
-    faltas.motivo      = $('#motivo').val();
-
+    atrasos.nivel       = $('#nivel').val();
+    atrasos.dataInicial = $('#data-inicial').val();
+    atrasos.dataFinal   = $('#data-final').val();
+    atrasos.colaborador = $('#colaborador').val();
+    atrasos.motivo      = $('#motivo').val();
+    
     $.ajax({
       type: 'post',
-      url: '../../../database/functions/schedule/records/ajax/dados_relatorio_faltas.php',
+      url: '../../../database/functions/schedule/records/ajax/dados_relatorio_atrasos.php',
       dataType: 'json',
       data: {
-        nivel: faltas.nivel,
-        data_inicial: faltas.dataInicial,
-        data_final: faltas.dataFinal,
-        colaborador: faltas.colaborador,
-        motivo: faltas.motivo
+        nivel: atrasos.nivel,
+        data_inicial: atrasos.dataInicial,
+        data_final: atrasos.dataFinal,
+        colaborador: atrasos.colaborador,
+        motivo: atrasos.motivo
       },
-      success: function(dados) {
+      success: function(dados) {        
         var table = '';
         var tbody = '';
+        var totalTempoAtraso = dados['total_tempo_atraso'];
+
+        console.log(totalTempoAtraso);
 
         table += '<table class="table table-condensed" id="relatorio">' +
           '<thead>' +
@@ -34,37 +37,23 @@ $(function() {
               '<th class="text-center" width="10%">Supervisor</th>' +
               '<th class="text-center" width="10%">Colaborador</th>' +
               '<th class="text-center" width="10%">Motivo</th>' +
-              '<th class="text-center">Atestado</th>' +
-              '<th class="text-center" width="15%">Período</th>' +                
-              '<th class="text-center" width="20%">Observação</th>' +
-              '<th class="text-center"></th>' +
+              '<th class="text-center" width="10%">Data</th>' +
+              '<th class="text-center" width="15%">Tempo Atraso</th>' +
+              '<th class="text-center" width="30%">Observação</th>' +
             '</tr>' +
           '</thead>' +
           '<tbody>';
   
         for (var i = 0; i < dados.length; i++) {
           tbody += '<tr>';
-          tbody += '<td class="text-center">' + dados[i].registrado  + '</td>';
-          tbody += '<td class="text-center">' + dados[i].registro    + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].supervisor  + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].colaborador + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].motivo      + '</td>';
-          tbody += '<td class="text-center">' + dados[i].atestado    + '</td>';
-          tbody += '<td class="text-center">' + dados[i].periodo     + '</td>';            
-          tbody += '<td class="text-left">'   + dados[i].observacao  + '</td>';
-
-          if (dados[i].atestado === 'Sim') {
-            tbody += 
-            '<td>' +
-              '<a class="btn btn-info btn-sm btn-block" id="download-atestado" href="' + dados[i].arquivo + '" download>' +
-                '<i class="fa fa-download" aria-hidden="true"></i> Download' +
-              '</a' +
-            '</td>';
-          } else {
-            tbody += 
-            '<td></td>';
-          }
-
+          tbody += '<td class="text-center">' + dados[i].registrado   + '</td>';
+          tbody += '<td class="text-center">' + dados[i].registro     + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].supervisor   + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].colaborador  + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].motivo       + '</td>';
+          tbody += '<td class="text-center">' + dados[i].data         + '</td>';
+          tbody += '<td class="text-center">' + dados[i].tempo_atraso + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].observacao   + '</td>';
           tbody += '</tr>'
         }
 
@@ -77,7 +66,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[0, "desc"]],   
+          "aaSorting": [[5, "asc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -99,10 +88,10 @@ $(function() {
           }
         });
       },
-      error: function(erro) {
-        console.log(erro);
+      error: function() {
+
       }
-    });    
+    });
   });
   
   // atualizando página
