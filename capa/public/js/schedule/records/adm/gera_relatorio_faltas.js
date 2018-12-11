@@ -77,7 +77,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[0, "desc"]],   
+          "aaSorting": [[0, "asc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

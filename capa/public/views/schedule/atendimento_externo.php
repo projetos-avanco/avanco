@@ -3,11 +3,6 @@
 
 <?php if (verificaUsuarioLogado('atendimento_externo.php')) : ?>
 
-<?php
-  $dataInicial = formataDataParaExibir(date('Y-m-d'));
-  $dataFinal = formataDataParaExibir(date('Y-m-d'));
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -261,14 +256,14 @@
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="data-inicial">Data</label>
-                            <input class="form-control required" id="data-inicial" type="text" name="externo[data-inicial]" value="<?php echo $dataInicial; ?>" placeholder="Data Inicial">
+                            <input class="form-control required" id="data-inicial" type="text" name="externo[data-inicial]" placeholder="Data Inicial">
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label class="sr-only" for="data-final">Data</label>
-                            <input class="form-control required" id="data-final" type="text" name="externo[data-final]" value="<?php echo $dataFinal; ?>" placeholder="Data Final">
+                            <input class="form-control required" id="data-final" type="text" name="externo[data-final]" placeholder="Data Final">
                           </div>
                         </div>
 

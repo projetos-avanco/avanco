@@ -172,6 +172,15 @@
               <div class="panel-body" id="tabela-relatorio"><!-- panel-body -->
                 
               </div><!-- panel-body -->
+
+              <form class="form-horizontal hidden" id="form-total-atraso">
+                <div class="form-group">
+                  <label class="col-sm-1 control-label" for="total-atraso">Tempo Total:</label>
+                  <div class="col-sm-1">
+                    <input class="form-control" id="total-atraso" type="text" name="total-atraso" value="0" readonly>
+                  </div>                  
+                </div>
+              </form>
             </div><!-- panel -->
 
           </div>

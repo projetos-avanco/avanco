@@ -50,9 +50,9 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc)
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
     $email->Username   = 'agenda@avancoinfo.com.br';
-    $email->Password   = 'Ag3nd@30251188#';
-    $email->SMTPSecure = 'tls';
-    $email->Port       = 587;
+    $email->Password   = '@g3nD@Av@nc0131_1188';
+    $email->SMTPSecure = 'ssl';
+    $email->Port       = 465;
 
     # destinatários
     $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
