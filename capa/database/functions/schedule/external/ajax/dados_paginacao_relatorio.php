@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ON i.id = e.id_issue
       INNER JOIN av_agenda_pesquisas_externas AS x
         ON x.id = e.id
-      WHERE (DATE_FORMAT(e.registrado, '%Y-%m-%d') BETWEEN '{$gerencial['data_inicial']}' AND '{$gerencial['data_final']}')";
+      WHERE (e.data_inicial BETWEEN '{$gerencial['data_inicial']}' AND '{$gerencial['data_final']}')";
     
     $resultado = mysqli_query($db, $query);
 
@@ -314,7 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         t.id      LIKE '%{$filtros['colaborador']}%'  AND
         e.tipo    LIKE '%{$filtros['tipo']}%'         AND
         e.produto LIKE '%{$filtros['produto']}%'      AND
-        DATE_FORMAT(e.registrado, '%Y-%m-%d') BETWEEN '{$filtros['data_inicial']}' AND '{$filtros['data_final']}')";
+        e.data_inicial BETWEEN '{$filtros['data_inicial']}' AND '{$filtros['data_final']}')";
     
     $resultado = mysqli_query($db, $query);
 

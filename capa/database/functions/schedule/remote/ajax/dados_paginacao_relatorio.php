@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           ON c.id = e.id_contato
         INNER JOIN av_registro_horas_issues AS i
           ON i.id = e.id_issue	
-        WHERE (DATE_FORMAT(e.registrado, '%Y-%m-%d') BETWEEN '{$gerencial['data_inicial']}' AND '{$gerencial['data_final']}')";
+        WHERE (e.data BETWEEN '{$gerencial['data_inicial']}' AND '{$gerencial['data_final']}')";
 
     $resultado = mysqli_query($db, $query);
 
@@ -280,7 +280,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           t.id      LIKE '%{$filtros['colaborador']}%'  AND
           e.tipo    LIKE '%{$filtros['tipo']}%'         AND
           e.produto LIKE '%{$filtros['produto']}%'      AND
-        DATE_FORMAT(e.registrado, '%Y-%m-%d') BETWEEN '{$filtros['data_inicial']}' AND '{$filtros['data_final']}')";
+          e.data BETWEEN '{$filtros['data_inicial']}' AND '{$filtros['data_final']}')";
     
     $resultado = mysqli_query($db, $query);
 

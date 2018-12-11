@@ -26,9 +26,9 @@ $(function() {
     // exibindo relatório completo pelo alert
     swal({
       icon: 'info',
-      title: 'Atendimento Externo!',
+      title: 'Atendimento Remoto!',
       text:               
-        'Data: '                + gerencial.lancado            + "\n\n" +
+        'Lançado: '             + gerencial.lancado            + "\n\n" +
         'Registro: '            + gerencial.registro           + "\n\n" +
         'Situação: '            + gerencial.status             + "\n\n" +
         'Supervisor: '          + gerencial.supervisor         + "\n\n" +

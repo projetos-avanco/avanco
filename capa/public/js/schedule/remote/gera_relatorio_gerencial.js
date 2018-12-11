@@ -23,8 +23,8 @@ $(function() {
         table += '<table class="table table-condensed" id="relatorio">' +
           '<thead>' +
             '<tr>' +
-              '<th class="text-center" width="10%">Data</th>' +
-              '<th class="text-center" width="5%">Registro</th>' +
+              '<th class="text-center" width="10%">Registro</th>' +
+              '<th class="text-center" width="20%">Período</th>' +
               '<th class="text-center" width="10%">Situação</th>' +
               '<th class="text-center" width="15%">Colaborador</th>' +
               '<th class="text-center" width="15%">Atendimento</th>' +
@@ -55,11 +55,11 @@ $(function() {
               'data-observacao="' + dados[i].observacao + '"' +
               'data-faturado="' + dados[i].faturado + '"' +              
               'data-relatorio="' + dados[i].relatorio_entregue + '">';
-          tbody += '<td class="text-center">' + dados[i].registrado + '</td>';
           tbody += '<td class="text-center">' + dados[i].registro + '</td>';
-          tbody += '<td class="text-center">' + dados[i].status.toUpperCase() + '</td>';
-          tbody += '<td class="text-center">' + dados[i].colaborador.toUpperCase() + '</td>';
-          tbody += '<td class="text-center">' + dados[i].tipo.toUpperCase() + '</td>';
+          tbody += '<td class="text-center">' + dados[i].periodo + '</td>';
+          tbody += '<td class="text-center">' + dados[i].status + '</td>';
+          tbody += '<td class="text-left">' + dados[i].colaborador + '</td>';
+          tbody += '<td class="text-left">' + dados[i].tipo + '</td>';
           tbody += '<td class="text-left">' + dados[i].empresa.toUpperCase() + '</td>';              
           tbody += 
             '<td>' +
@@ -103,7 +103,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[0, "desc"]],   
+          "aaSorting": [[1, "desc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -167,8 +167,8 @@ $(function() {
         table += '<table class="table table-condensed" id="relatorio">' +
           '<thead>' +
             '<tr>' +
-              '<th class="text-center" width="10%">Data</th>' +
-              '<th class="text-center" width="5%">Registro</th>' +
+              '<th class="text-center" width="10%">Registro</th>' +
+              '<th class="text-center" width="20%">Período</th>' +
               '<th class="text-center" width="10%">Situação</th>' +
               '<th class="text-center" width="15%">Colaborador</th>' +
               '<th class="text-center" width="15%">Atendimento</th>' +
@@ -199,11 +199,11 @@ $(function() {
               'data-observacao="' + dados[i].observacao + '"' +
               'data-faturado="' + dados[i].faturado + '"' +              
               'data-relatorio="' + dados[i].relatorio_entregue + '">';
-          tbody += '<td class="text-center">' + dados[i].registrado + '</td>';
           tbody += '<td class="text-center">' + dados[i].registro + '</td>';
-          tbody += '<td class="text-center">' + dados[i].status.toUpperCase() + '</td>';
-          tbody += '<td class="text-center">' + dados[i].colaborador.toUpperCase() + '</td>';
-          tbody += '<td class="text-center">' + dados[i].tipo.toUpperCase() + '</td>';
+          tbody += '<td class="text-center">' + dados[i].periodo + '</td>';
+          tbody += '<td class="text-center">' + dados[i].status + '</td>';
+          tbody += '<td class="text-left">' + dados[i].colaborador + '</td>';
+          tbody += '<td class="text-left">' + dados[i].tipo + '</td>';
           tbody += '<td class="text-left">' + dados[i].empresa.toUpperCase() + '</td>';              
           tbody += 
             '<td>' +
@@ -247,7 +247,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[0, "desc"]],   
+          "aaSorting": [[1, "desc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",

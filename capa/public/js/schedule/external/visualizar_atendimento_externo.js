@@ -30,7 +30,7 @@ $(function() {
       icon: 'info',
       title: 'Atendimento Externo!',
       text:               
-        'Data: '                + gerencial.lancado            + "\n\n" +
+        'Lançado: '             + gerencial.lancado            + "\n\n" +
         'Registro: '            + gerencial.registro           + "\n\n" +
         'Situação: '            + gerencial.status             + "\n\n" +
         'Supervisor: '          + gerencial.supervisor         + "\n\n" +
