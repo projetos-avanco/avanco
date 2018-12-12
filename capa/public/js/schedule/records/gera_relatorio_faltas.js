@@ -28,46 +28,102 @@ $(function() {
         var table = '';
         var tbody = '';
 
-        table += '<table class="table table-condensed" id="relatorio">' +
+        if (faltas.nivel == '2') {
+          table += '<table class="table table-condensed" id="relatorio">' +
           '<thead>' +
-            '<tr>' +
-              '<th class="text-center" width="10%">Lançado</th>' +
-              '<th class="text-center" width="10%">Registro</th>' +
-              '<th class="text-center" width="10%">Supervisor</th>' +
-              '<th class="text-center" width="10%">Colaborador</th>' +
-              '<th class="text-center" width="10%">Motivo</th>' +
+            '<tr>' +              
+              '<th class="text-center">Registro</th>' +
+              '<th class="text-center">Supervisor</th>' +
+              '<th class="text-center">Colaborador</th>' +
+              '<th class="text-center">Motivo</th>' +
               '<th class="text-center">Atestado</th>' +
-              '<th class="text-center" width="15%">Período</th>' +                
-              '<th class="text-center" width="20%">Observação</th>' +
+              '<th class="text-center">Período</th>' +                
+              '<th class="text-center">Observação</th>' +
+              '<th class="text-center"></th>' +
+              '<th class="text-center"></th>' +
               '<th class="text-center"></th>' +
             '</tr>' +
           '</thead>' +
           '<tbody>';
   
-        for (var i = 0; i < dados.length; i++) {
-          tbody += '<tr>';
-          tbody += '<td class="text-center">' + dados[i].registrado  + '</td>';
-          tbody += '<td class="text-center">' + dados[i].registro    + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].supervisor  + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].colaborador + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].motivo      + '</td>';
-          tbody += '<td class="text-center">' + dados[i].atestado    + '</td>';
-          tbody += '<td class="text-center">' + dados[i].periodo     + '</td>';            
-          tbody += '<td class="text-left">'   + dados[i].observacao  + '</td>';
+          for (var i = 0; i < dados.length; i++) {
+            tbody += '<tr>';            
+            tbody += '<td class="text-center registro">' + dados[i].registro    + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].supervisor  + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].colaborador + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].motivo      + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].atestado    + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].periodo     + '</td>';            
+            tbody += '<td class="text-left">'            + dados[i].observacao  + '</td>';
 
-          if (dados[i].atestado === 'Sim') {
+            if (dados[i].atestado === 'Sim') {
+              tbody += 
+              '<td>' +
+                '<a class="btn btn-info btn-sm btn-block" id="btn-atestado" href="' + dados[i].arquivo + '" download>' +
+                  '<i class="fa fa-download" aria-hidden="true"></i> Atestado' +
+                '</a' +
+              '</td>';                
+            } else {
+              tbody += 
+              '<td></td>';
+            }
+
             tbody += 
-            '<td>' +
-              '<a class="btn btn-info btn-sm btn-block" id="download-atestado" href="' + dados[i].arquivo + '" download>' +
-                '<i class="fa fa-download" aria-hidden="true"></i> Download' +
-              '</a' +
-            '</td>';
-          } else {
+              '<td>' +
+                '<button class="btn btn-warning btn-sm btn-block" id="btn-editar" type="button" value="' + dados[i].id + '">' +
+                  '<i class="fa fa-pencil" aria-hidden="true"></i> Editar' +
+                '</button>' +
+              '</td>';
+
             tbody += 
-            '<td></td>';
+              '<td>' +
+                '<button class="btn btn-danger btn-sm btn-block" id="btn-deletar" type="button" value="' + dados[i].id + '">' +
+                  '<i class="fa fa-trash" aria-hidden="true"></i> Deletar' +
+                '</button>' +
+              '</td>';
+
+            tbody += '</tr>'
           }
+        } else if (faltas.nivel == '1') {
+          table += '<table class="table table-condensed" id="relatorio">' +
+          '<thead>' +
+            '<tr>' +              
+              '<th class="text-center">Registro</th>' +
+              '<th class="text-center">Supervisor</th>' +
+              '<th class="text-center">Colaborador</th>' +
+              '<th class="text-center">Motivo</th>' +
+              '<th class="text-center">Atestado</th>' +
+              '<th class="text-center">Período</th>' +                
+              '<th class="text-center">Observação</th>' +
+              '<th class="text-center"></th>' +              
+            '</tr>' +
+          '</thead>' +
+          '<tbody>';
+  
+          for (var i = 0; i < dados.length; i++) {
+            tbody += '<tr>';            
+            tbody += '<td class="text-center">' + dados[i].registro    + '</td>';
+            tbody += '<td class="text-center">' + dados[i].supervisor  + '</td>';
+            tbody += '<td class="text-center">' + dados[i].colaborador + '</td>';
+            tbody += '<td class="text-center">' + dados[i].motivo      + '</td>';
+            tbody += '<td class="text-center">' + dados[i].atestado    + '</td>';
+            tbody += '<td class="text-center">' + dados[i].periodo     + '</td>';            
+            tbody += '<td class="text-left">'   + dados[i].observacao  + '</td>';
 
-          tbody += '</tr>'
+            if (dados[i].atestado === 'Sim') {
+              tbody += 
+              '<td>' +
+                '<a class="btn btn-info btn-sm btn-block" id="btn-atestado" href="' + dados[i].arquivo + '" download>' +
+                  '<i class="fa fa-download" aria-hidden="true"></i> Atestado' +
+                '</a' +
+              '</td>';
+            } else {
+              tbody += 
+              '<td></td>';
+            }
+
+            tbody += '</tr>'
+          }          
         }
 
         table += tbody;
@@ -79,7 +135,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[0, "asc"]],   
+          "aaSorting": [[5, "desc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -114,5 +170,35 @@ $(function() {
     e.preventDefault;
 
     window.location.reload(true);
+  });
+
+  // deletando registro
+  $(document).on('click', '#btn-deletar', function(e) {
+    e.preventDefault;
+
+    var id = $(this).val();
+    var registro = $(this).closest('tr').find('.registro').html();
+
+    var confirmacao = confirm('Confirma a exclusão do Registro - ' + registro + '?');
+    
+    if (confirmacao) {
+      $.ajax({
+        type: 'post',
+        url: '../../../app/requests/post/schedule/records/recebe_exclusao.php',
+        dataType: 'json',
+        data: {          
+          id: id,
+          registro: 'faltas'
+        },
+        success: function(resposta) {
+          alert(resposta);
+          
+          window.location.reload(true);
+        },
+        error: function(erro) {
+          console.log(erro);
+        }
+      });      
+    }
   });
 });

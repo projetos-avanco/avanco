@@ -28,32 +28,72 @@ $(function() {
         var table = '';
         var tbody = '';
 
-        table += '<table class="table table-condensed" id="relatorio">' +
+        if (atrasos.nivel == '2') {
+          table += '<table class="table table-condensed" id="relatorio">' +
           '<thead>' +
-            '<tr>' +
-              '<th class="text-center" width="10%">Lançado</th>' +
-              '<th class="text-center" width="10%">Registro</th>' +
-              '<th class="text-center" width="10%">Supervisor</th>' +
-              '<th class="text-center" width="10%">Colaborador</th>' +
-              '<th class="text-center" width="10%">Motivo</th>' +
-              '<th class="text-center" width="10%">Data</th>' +
-              '<th class="text-center" width="15%">Tempo Atraso</th>' +
-              '<th class="text-center" width="30%">Observação</th>' +
+            '<tr>' +              
+              '<th class="text-center">Registro</th>' +
+              '<th class="text-center">Supervisor</th>' +
+              '<th class="text-center">Colaborador</th>' +
+              '<th class="text-center">Motivo</th>' +
+              '<th class="text-center">Data</th>' +
+              '<th class="text-center">Tempo Atraso</th>' +
+              '<th class="text-center">Observação</th>' +
+              '<th class="text-center"></th>' +
+              '<th class="text-center"></th>' +
             '</tr>' +
           '</thead>' +
           '<tbody>';
 
-        for (var i = 0; i < dados.length; i++) {
-          tbody += '<tr>';
-          tbody += '<td class="text-center">' + dados[i].registrado   + '</td>';
-          tbody += '<td class="text-center">' + dados[i].registro     + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].supervisor   + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].colaborador  + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].motivo       + '</td>';
-          tbody += '<td class="text-center">' + dados[i].data         + '</td>';
-          tbody += '<td class="text-center">' + dados[i].tempo_atraso + '</td>';          
-          tbody += '<td class="text-left">'   + dados[i].observacao   + '</td>';
-          tbody += '</tr>'          
+          for (var i = 0; i < dados.length; i++) {
+            tbody += '<tr>';            
+            tbody += '<td class="text-center registro">' + dados[i].registro     + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].supervisor   + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].colaborador  + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].motivo       + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].data         + '</td>';
+            tbody += '<td class="text-center">'          + dados[i].tempo_atraso + '</td>';          
+            tbody += '<td class="text-left">'            + dados[i].observacao   + '</td>';
+            tbody += 
+              '<td>' +
+                '<button class="btn btn-warning btn-sm btn-block" id="btn-editar" type="button" value="' + dados[i].id + '">' +
+                  '<i class="fa fa-pencil" aria-hidden="true"></i> Editar' +
+                '</button>' +
+              '</td>';
+            tbody += 
+              '<td>' +
+                '<button class="btn btn-danger btn-sm btn-block" id="btn-deletar" type="button" value="' + dados[i].id + '">' +
+                  '<i class="fa fa-trash" aria-hidden="true"></i> Deletar' +
+                '</button>' +
+              '</td>';
+            tbody += '</tr>';        
+          }
+        } else if (atrasos.nivel == '1') {
+          table += '<table class="table table-condensed" id="relatorio">' +
+          '<thead>' +
+            '<tr>' +              
+              '<th class="text-center">Registro</th>' +
+              '<th class="text-center">Supervisor</th>' +
+              '<th class="text-center">Colaborador</th>' +
+              '<th class="text-center">Motivo</th>' +
+              '<th class="text-center">Data</th>' +
+              '<th class="text-center">Tempo Atraso</th>' +
+              '<th class="text-center">Observação</th>' +              
+            '</tr>' +
+          '</thead>' +
+          '<tbody>';
+
+          for (var i = 0; i < dados.length; i++) {
+            tbody += '<tr>';            
+            tbody += '<td class="text-center">' + dados[i].registro     + '</td>';
+            tbody += '<td class="text-center">' + dados[i].supervisor   + '</td>';
+            tbody += '<td class="text-center">' + dados[i].colaborador  + '</td>';
+            tbody += '<td class="text-center">' + dados[i].motivo       + '</td>';
+            tbody += '<td class="text-center">' + dados[i].data         + '</td>';
+            tbody += '<td class="text-center">' + dados[i].tempo_atraso + '</td>';          
+            tbody += '<td class="text-left">'   + dados[i].observacao   + '</td>';            
+            tbody += '</tr>';        
+          }          
         }
 
         table += tbody;
@@ -65,7 +105,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          //"aaSorting": [[5, "desc"]],   
+          "aaSorting": [[4, "desc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -93,15 +133,15 @@ $(function() {
         var minutos = Math.floor((total - (horas * 3600)) / 60);
         var segundos = Math.floor(total % 60);
 
-        if (horas < 9) {
+        if (horas <= 9) {
           horas = '0' + horas;
         }
 
-        if (minutos < 9) {
+        if (minutos <= 9) {
           minutos = '0' + minutos;
         }
 
-        if (segundos < 9) {
+        if (segundos <= 9) {
           segundos = '0' + segundos;
         }
 
@@ -120,5 +160,35 @@ $(function() {
     e.preventDefault;
 
     window.location.reload(true);
+  });
+
+  // deletando registro
+  $(document).on('click', '#btn-deletar', function(e) {
+    e.preventDefault;
+
+    var id = $(this).val();
+    var registro = $(this).closest('tr').find('.registro').html();
+
+    var confirmacao = confirm('Confirma a exclusão do Registro - ' + registro + '?');
+    
+    if (confirmacao) {
+      $.ajax({
+        type: 'post',
+        url: '../../../app/requests/post/schedule/records/recebe_exclusao.php',
+        dataType: 'json',
+        data: {          
+          id: id,
+          registro: 'atrasos'
+        },
+        success: function(resposta) {
+          alert(resposta);
+          
+          window.location.reload(true);
+        },
+        error: function(erro) {
+          console.log(erro);
+        }
+      });      
+    }
   });
 });
