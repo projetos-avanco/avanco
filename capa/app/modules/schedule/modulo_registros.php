@@ -1,6 +1,90 @@
 <?php
 
 /**
+ * responsável por solicitar a deleção de um registro de folgas
+ * @param - inteiro com o id da folga
+ */
+function solicitaDelecaoDeRegistroDeFolga($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'schedule/records/delecoes_registros.php';
+
+  $db = abre_conexao();
+
+  $resultado = deletaRegistroDeFolga($db, $id);
+
+  if (!$resultado) {
+    echo json_encode('Não foi possível deletar o registro. Informe ao Wellington Felix');
+  } else {
+    echo json_encode('Registro deletado com sucesso!');    
+  }
+
+  exit;
+}
+
+/**
+ * responsável por solicitar a deleção de um registro de faltas
+ * @param - inteiro com o id da falta
+ */
+function solicitaDelecaoDeRegistroDeFalta($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'schedule/records/delecoes_registros.php';
+
+  $db = abre_conexao();
+
+  $resultado = deletaRegistroDeFalta($db, $id);
+
+  if (!$resultado) {
+    echo json_encode('Não foi possível deletar o registro. Informe ao Wellington Felix');
+  } else {
+    echo json_encode('Registro deletado com sucesso!');    
+  }
+
+  exit;
+}
+
+/**
+ * responsável por solicitar a deleção de um registro de atrasos
+ * @param - inteiro com o id da atraso
+ */
+function solicitaDelecaoDeRegistroDeAtraso($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'schedule/records/delecoes_registros.php';
+
+  $db = abre_conexao();
+
+  $resultado = deletaRegistroDeAtraso($db, $id);
+
+  if (!$resultado) {
+    echo json_encode('Não foi possível deletar o registro. Informe ao Wellington Felix');
+  } else {
+    echo json_encode('Registro deletado com sucesso!');    
+  }
+
+  exit;
+}
+
+/**
+ * responsável por solicitar a deleção de um registro de extras
+ * @param - inteiro com o id da extra
+ */
+function solicitaDelecaoDeRegistroDeExtra($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'schedule/records/delecoes_registros.php';
+
+  $db = abre_conexao();
+
+  $resultado = deletaRegistroDeExtra($db, $id);
+
+  if (!$resultado) {
+    echo json_encode('Não foi possível deletar o registro. Informe ao Wellington Felix');
+  } else {
+    echo json_encode('Registro deletado com sucesso!');    
+  }
+
+  exit;
+}
+
+/**
  * responsável por receber e solicitar a inserção do dados de um registro de folgas
  * @param - array com os dados de um registro de folgas
  */
