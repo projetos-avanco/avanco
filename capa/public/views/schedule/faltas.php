@@ -71,21 +71,9 @@
 
     # verificando se foi selecionado algum motivo que obriga o envio de algum arquivo em anexo
     if ($_POST['faltas']['motivo'] == '2' || $_POST['faltas']['motivo'] == '3' || $_POST['faltas']['motivo'] == '4') {
-      # verificando qual foi o motivo selecionado
-      switch ($_POST['faltas']['motivo']) {
-        case '2':
-          $target = ABS_PATH . 'public/files/medical/reg-' . $faltas['registro'] . '-' . strtolower($_FILES['atestado']['name']);
-            break;
-
-        case '3':
-          $target = ABS_PATH . 'public/files/death/reg-' . $faltas['registro'] . '-' . strtolower($_FILES['atestado']['name']);
-            break;
-
-        case '4':
-          $target = ABS_PATH . 'public/files/followup/reg-' . $faltas['registro'] . '-' . strtolower($_FILES['atestado']['name']);
-            break;
-      }
-
+      # criando path do arquivo
+      $target = ABS_PATH . 'public/files/attestation/reg-' . $faltas['registro'] . '-' . strtolower($_FILES['atestado']['name']);
+            
       # verificando se o arquivo em anexo é de extensão .png, .jpeg ou .pdf
       if ($_FILES['atestado']['type'] == 'image/jpeg' || $_FILES['atestado']['type'] == 'image/png' || $_FILES['atestado']['type'] == 'application/pdf') {
         # verificando se o tamanho do arquivo em anexo é menor ou igual a 1MB
@@ -289,7 +277,7 @@
                       </div>
 
                       <div class="row" id="bloco-atestado">
-                        <div class="col-sm-3">
+                        <div class="col-sm-12">
                           <div class="form-group">
                             <label class="sr-only" for="atestado">Atestado</label>
                             <span class="btn btn-danger btn-block btn-file">
