@@ -93,7 +93,7 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="novo-colaborador">Colaborador</label>
+                            <label for="novo-colaborador">Colaborador</label>
                             <select class="form-control required" id="novo-colaborador" name="extras[colaborador]" readonly>
                               <option value="<?php echo $extra['id_colaborador']; ?>"><?php echo $extra['nome_colaborador']; ?></option>
                             </select>
@@ -102,7 +102,7 @@
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador">
 
                             </select>
@@ -113,7 +113,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="motivo">Motivo</label>
+                            <label for="motivo">Motivo</label>
                             <select class="form-control required" id="motivo" name="extras[motivo]">
                               <option value="1" <?php echo ($extra['motivo'] == '1') ? 'selected' : '' ?>>Saiu Mais Tarde</option>
                             </select>
@@ -124,20 +124,20 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data">Data</label>
+                            <label for="data">Data</label>
                             <input class="form-control required" id="data" type="date" name="extras[data]" value="<?php echo $extra['data']; ?>" placeholder="Data">
                           </div>
                         </div>
 
                         <div class="col-sm-6">
                           <div class="form-group">
+                            <label for="tempo">Tempo Extra</label>
                             <div class="input-group">
                               <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                   <span class="glyphicon glyphicon-time"></span>
                                 </button>
-                              </span>
-                              <label class="sr-only" for="tempo">Tempo Extra</label>
+                              </span>                              
                               <input class="form-control required" id="tempo" type="text" name="extras[tempo]" value="<?php echo $extra['tempo_extra']; ?>" placeholder="Horas Extras">
                             </div>
                           </div>
@@ -147,7 +147,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control required" id="observacao" name="extras[observacao]" rows="4" cols="30" placeholder="Observações..."><?php echo $extra['observacao']; ?></textarea>
                           </div>
                         </div>

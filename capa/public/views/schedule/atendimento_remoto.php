@@ -2,6 +2,8 @@
 
 <?php if (verificaUsuarioLogado('atendimento_remoto.php')) : ?>
 
+<?php $data = date('Y-m-d'); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -120,7 +122,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador" name="remoto[colaborador]">
 
                             </select>
@@ -129,11 +131,11 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="produto">Produto</label>
+                            <label for="produto">Produto</label>
                             <select class="form-control required" id="produto" name="remoto[produto]">
-                              <option value="0">Produto</option>
+                              <option value="0">Selecione um Produto</option>
                               <option value="1">Integral</option>
                               <option value="2">Frente de Loja</option>
                               <option value="3">Gestor</option>
@@ -142,14 +144,12 @@
                             </select>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="modulo">Módulo</label>
+                            <label for="modulo">Módulo</label>
                             <select class="form-control required" id="modulo" name="remoto[modulo]">
-                              <option value="0">Módulo</option>
+                              <option value="0">Selecione um Módulo</option>
                             </select>
                           </div>
                         </div>
@@ -158,20 +158,20 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data">Data</label>
-                            <input class="form-control required" id="data" type="text" name="remoto[data]" placeholder="Data">
+                            <label for="data">Data</label>
+                            <input class="form-control required" id="data" type="date" name="remoto[data]" value="<?php echo $data; ?>">
                           </div>
                         </div>
 
                         <div class="col-sm-6">
                           <div class="form-group">
+                            <label for="horario">Horário</label>
                             <div class="input-group">
                               <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                   <span class="glyphicon glyphicon-time"></span>
                                 </button>
-                              </span>
-                              <label class="sr-only" for="horario">Horário</label>
+                              </span>                              
                               <input class="form-control required" id="horario" type="text" name="remoto[horario]" placeholder="Horário">
                             </div>
                           </div>
@@ -181,7 +181,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control" id="observacao" name="remoto[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
@@ -262,9 +262,9 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="tipo">Tipo</label>
+                            <label for="tipo">Tipo Atendimento</label>
                             <select class="form-control required" id="tipo" name="remoto[tipo]">
-                              <option value="0" selected>Tipo de Atendimento</option>
+                              <option value="0" selected>Selecione um Tipo de Atendimento</option>
                               <option value="1">Suporte ao Cliente</option>
                               <option value="2">Projeto Mais Gestão</option>
                               <option value="3">Implantação</option>
@@ -279,7 +279,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="faturado">Faturado</label>
+                            <label for="faturado">Faturado</label>
                             <select class="form-control required" id="faturado" name="remoto[faturado]">
                               <option value="0" selected>Pedido Faturado?</option>
                               <option value="1">Sim</option>
@@ -290,9 +290,9 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="cobranca">Cobrança</label>
+                            <label for="cobranca">Cobrança</label>
                             <select class="form-control" id="cobranca" name="remoto[cobranca]">
                               <option value="0" selected>Tipo de Cobrança</option>
                               <option value="1">Hora</option>
@@ -300,24 +300,21 @@
                             </select>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
+                            <label for="valor">Valor</label>
                             <div class="input-group">
                               <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                   <span class="glyphicon glyphicon-usd"></span>
                                 </button>
-                              </span>
-                              <label class="sr-only" for="valor">Valor</label>
-                              <input class="form-control required" id="valor" type="text" name="remoto[valor]" placeholder="Valor da Cobrança">
+                              </span>                              
+                              <input class="form-control required" id="valor" type="text" name="remoto[valor]" placeholder="0.00">
                             </div>
                           </div>
                         </div>
-                      </div>
-
+                      </div>                
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
@@ -412,8 +409,7 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/pesquisa.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/mascaras.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/pesquisa.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_empresa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_contatos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/altera_cobranca.js"></script>
@@ -422,6 +418,15 @@
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/remote/validacao.js"></script>
+
+  <script>
+    $(function() {
+      $(document).ready(function() {        
+        $('#horario').mask('00:00');
+        $('#valor').mask('#0.00', {reverse: true});
+      });
+    });
+  </script>
 </body>
 </html>
 

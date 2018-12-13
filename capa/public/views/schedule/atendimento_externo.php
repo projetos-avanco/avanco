@@ -3,6 +3,8 @@
 
 <?php if (verificaUsuarioLogado('atendimento_externo.php')) : ?>
 
+<?php $data = date('Y-m-d'); ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -132,7 +134,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="logradouro">Logradouro</label>
+                            <label for="logradouro">Logradouro</label>
                             <input class="form-control required" id="logradouro" type="text" name="endereco[logradouro]" placeholder="Avenida" readonly>
                           </div>
                         </div>
@@ -141,21 +143,21 @@
                       <div class="row">
                         <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="sr-only" for="distrito">Bairro</label>
+                            <label for="distrito">Bairro</label>
                             <input class="form-control required" id="distrito" type="text" name="endereco[distrito]" placeholder="Bairro" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="sr-only" for="localidade">Cidade</label>
+                            <label for="localidade">Cidade</label>
                             <input class="form-control required" id="localidade" type="text" name="endereco[localidade]" placeholder="Cidade" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="sr-only" for="uf">Estado</label>
+                            <label for="uf">Estado</label>
                             <input class="form-control required" id="uf" type="text" name="endereco[uf]" placeholder="Estado" readonly>
                           </div>
                         </div>
@@ -164,28 +166,28 @@
                       <div class="row">
                         <div class="col-sm-3">
                           <div class="form-group">
-                            <label class="sr-only" for="tipo">Tipo do Endereco</label>
+                            <label for="tipo">Tipo do Endereco</label>
                             <input class="form-control required" id="tipo" type="text" name="endereco[tipo]" placeholder="Tipo do Endereço" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-3">
                           <div class="form-group">
-                            <label class="sr-only" for="cep">Código Postal</label>
+                            <label for="cep">Código Postal</label>
                             <input class="form-control required" id="cep" type="text" name="endereco[cep]" placeholder="Código Postal" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-2">
                           <div class="form-group">
-                            <label class="sr-only" for="numero">Número</label>
+                            <label for="numero">Número</label>
                             <input class="form-control required" id="numero" type="text" name="endereco[numero]" placeholder="Número" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="sr-only" for="complemento">Complemento</label>
+                            <label for="complemento">Complemento</label>
                             <input class="form-control" id="complemento" type="text" name="endereco[complemento]" placeholder="Complemento" readonly>
                           </div>
                         </div>
@@ -194,7 +196,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="referencia">Referência</label>
+                            <label for="referencia">Referência</label>
                             <input class="form-control" id="referencia" type="text" name="endereco[referencia]" placeholder="Referência" readonly>
                           </div>
                         </div>
@@ -218,7 +220,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador" name="externo[colaborador]">
 
                             </select>
@@ -227,11 +229,11 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="produto">Produto</label>
+                            <label for="produto">Produto</label>
                             <select class="form-control required" id="produto" name="externo[produto]">
-                              <option value="0" selected>Produto</option>
+                              <option value="0" selected>Selecione um Produto</option>
                               <option value="1">Integral</option>
                               <option value="2">Frente de Loja</option>
                               <option value="3">Gestor</option>
@@ -239,14 +241,12 @@
                             </select>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="modulo">Módulo</label>
+                            <label for="modulo">Módulo</label>
                             <select class="form-control required" id="modulo" name="externo[modulo]">
-                              <option value="0">Módulo</option>
+                              <option value="0"> Selecione um Módulo</option>
                             </select>
                           </div>
                         </div>
@@ -255,27 +255,27 @@
                       <div class="row">
                         <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="sr-only" for="data-inicial">Data</label>
-                            <input class="form-control required" id="data-inicial" type="text" name="externo[data-inicial]" placeholder="Data Inicial">
+                            <label for="data-inicial">Data Inicial</label>
+                            <input class="form-control required" id="data-inicial" type="date" name="externo[data-inicial]" value="<?php echo $data; ?>">
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
-                            <label class="sr-only" for="data-final">Data</label>
-                            <input class="form-control required" id="data-final" type="text" name="externo[data-final]" placeholder="Data Final">
+                            <label for="data-final">Data Final</label>
+                            <input class="form-control required" id="data-final" type="date" name="externo[data-final]" value="<?php echo $data; ?>">
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
+                            <label for="horario">Horário</label>
                             <div class="input-group">
                               <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                   <span class="glyphicon glyphicon-time"></span>
                                 </button>
-                              </span>
-                              <label class="sr-only" for="horario">Horário</label>
+                              </span>                              
                               <input class="form-control required" id="horario" type="text" name="externo[horario]" placeholder="Horário">
                             </div>
                           </div>
@@ -285,7 +285,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control" id="observacao" name="externo[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
@@ -365,9 +365,9 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="tipo-atendimento">Tipo</label>
+                            <label for="tipo-atendimento">Tipo Atendimento</label>
                             <select class="form-control required" id="tipo-atendimento" name="externo[tipo-atendimento]">
-                              <option value="0" selected>Tipo de Atendimento</option>
+                              <option value="0" selected>Selecione um Tipo de Atendimento</option>
                               <option value="1">Suporte ao Cliente</option>
                               <option value="2">Projeto Mais Gestão</option>
                               <option value="3">Implantação</option>
@@ -380,9 +380,9 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="despesa">Despesa</label>
+                            <label for="despesa">Despesa</label>
                             <select class="form-control required" id="despesa" name="externo[despesa]">
                               <option value="0" selected>Cobrança de Despesas?</option>
                               <option value="1">Sim</option>
@@ -390,12 +390,10 @@
                             </select>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="faturado">Faturado</label>
+                            <label for="faturado">Faturado</label>
                             <select class="form-control required" id="faturado" name="externo[faturado]">
                               <option value="0" selected>Pedido Faturado?</option>
                               <option value="1">Sim</option>
@@ -406,33 +404,31 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="cobranca">Cobrança</label>
+                            <label for="cobranca">Tipo Cobrança</label>
                             <select class="form-control" id="cobranca" name="externo[cobranca]">
-                              <option value="0" selected>Tipo de Cobrança</option>
+                              <option value="0" selected>Selecione o Tipo de Cobrança</option>
                               <option value="1">Hora</option>
                               <option value="2">Pacote</option>
                             </select>
                           </div>
                         </div>
-                      </div>
 
-                      <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
                           <div class="form-group">
+                            <label for="valor">Valor</label>
                             <div class="input-group">
                               <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                   <span class="glyphicon glyphicon-usd"></span>
                                 </button>
-                              </span>
-                              <label class="sr-only" for="valor">Valor</label>
+                              </span>                              
                               <input class="form-control required" id="valor" type="text" name="externo[valor]" placeholder="0.00">
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </div>                      
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
@@ -523,8 +519,7 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/pesquisa.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/mascaras.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/pesquisa.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_empresa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_contatos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/altera_cobranca.js"></script>
@@ -533,6 +528,24 @@
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/external/validacao.js"></script>
+
+  <script>
+    $(function() {
+      $(document).ready(function() {        
+        $('#horario').mask('00:00');
+        $('#valor').mask('#0.00', {reverse: true});
+      });
+
+      // aterando data final caso a data inicial seja alterada
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var dataInicial = $('#data-inicial').val();
+
+        $('#data-final').val(dataInicial);
+      });
+    });
+  </script>
 </body>
 </html>
 

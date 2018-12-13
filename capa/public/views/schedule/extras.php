@@ -3,8 +3,7 @@
 <?php if (verificaUsuarioLogado('extras.php')) : ?>
 
 <?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require_once DIRETORIO_HELPERS . 'datas.php';
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {    
     require_once DIRETORIO_HELPERS . 'diversas.php';
     require_once DIRETORIO_MODULES . 'schedule/modulo_registros.php';
 
@@ -70,7 +69,7 @@
 
     if (!empty($_POST['extras']['data'])) {
       if (is_string($_POST['extras']['data'])) {
-        $extras['data'] = formataDataUnicaParaMysql($_POST['extras']['data']);
+        $extras['data'] = $_POST['extras']['data'];
       } else {
         $flag = true;
         $erros['mensagens'][] = 'O tipo de dados da data está incorreto.';
@@ -114,6 +113,8 @@
     }
   }
 ?>
+
+<?php $data = date('Y-m-d'); ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -185,7 +186,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador" name="extras[colaborador]">
 
                             </select>
@@ -196,7 +197,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="motivo">Motivo</label>
+                            <label for="motivo">Motivo</label>
                             <select class="form-control required" id="motivo" name="extras[motivo]">
                               <option value="1" selected>Saiu Mais Tarde</option>
                             </select>
@@ -207,20 +208,20 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data">Data</label>
-                            <input class="form-control required" id="data" type="text" name="extras[data]" placeholder="Data">
+                            <label for="data">Data</label>
+                            <input class="form-control required" id="data" type="date" name="extras[data]" value="<?php echo $data; ?>">
                           </div>
                         </div>
 
                         <div class="col-sm-6">
                           <div class="form-group">
+                            <label for="tempo">Tempo Extra</label>
                             <div class="input-group">
                               <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                   <span class="glyphicon glyphicon-time"></span>
                                 </button>
-                              </span>
-                              <label class="sr-only" for="tempo">Tempo Extra</label>
+                              </span>                              
                               <input class="form-control required" id="tempo" type="text" name="extras[tempo]" placeholder="Horas Extras">
                             </div>
                           </div>
@@ -230,7 +231,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control required" id="observacao" name="extras[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
@@ -352,9 +353,12 @@
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
 
   <script>
-    $(document).ready(function() {
-      $('#data').mask('00/00/0000');
-      $('#tempo').mask('00:00');
+    $(function() {
+      $(document).ready(function(e) {
+        e.preventDefault;
+
+        $('#tempo').mask('00:00');
+      });
     });
   </script>
 </body>

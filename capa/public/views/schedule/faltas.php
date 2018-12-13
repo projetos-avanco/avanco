@@ -3,8 +3,7 @@
 <?php if (verificaUsuarioLogado('faltas.php')) : ?>
 
 <?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require_once DIRETORIO_HELPERS . 'datas.php';
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {    
     require_once DIRETORIO_HELPERS . 'diversas.php';
     require_once DIRETORIO_MODULES . 'schedule/modulo_registros.php';
 
@@ -97,7 +96,7 @@
 
     if (!empty($_POST['faltas']['data-inicial'])) {
       if (is_string($_POST['faltas']['data-inicial'])) {
-        $faltas['data_inicial'] = formataDataUnicaParaMysql($_POST['faltas']['data-inicial']);
+        $faltas['data_inicial'] = $_POST['faltas']['data-inicial'];
       } else {
         $flag = true;
         $erros['mensagens'][] = 'O tipo de dados da data inicial está incorreto.';
@@ -109,7 +108,7 @@
 
     if (!empty($_POST['faltas']['data-final'])) {
       if (is_string($_POST['faltas']['data-final'])) {
-        $faltas['data_final'] = formataDataUnicaParaMysql($_POST['faltas']['data-final']);
+        $faltas['data_final'] = $_POST['faltas']['data-final'];
       } else {
         $flag = true;
         $erros['mensagens'][] = 'O tipo de dados da data final está incorreto.';
@@ -141,6 +140,8 @@
     }
   }
 ?>
+
+<?php $data = date('Y-m-d'); ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -233,7 +234,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador" name="faltas[colaborador]">
 
                             </select>
@@ -244,7 +245,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="motivo">Motivo</label>
+                            <label for="motivo">Motivo</label>
                             <select class="form-control required" id="motivo" name="faltas[motivo]">
                               <optgroup label="Pessoal">
                                 <option value="1" selected>Descontar o Dia</option>
@@ -263,15 +264,15 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data-inicial">Data Inicial</label>
-                            <input class="form-control required" id="data-inicial" type="text" name="faltas[data-inicial]" placeholder="Data Inicial">
+                            <label for="data-inicial">Data Inicial</label>
+                            <input class="form-control required" id="data-inicial" type="date" name="faltas[data-inicial]" value="<?php echo $data; ?>">
                           </div>
                         </div>
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data-final">Data Final</label>
-                            <input class="form-control required" id="data-final" type="text" name="faltas[data-final]" placeholder="Data Final">
+                            <label for="data-final">Data Final</label>
+                            <input class="form-control required" id="data-final" type="date" name="faltas[data-final]" value="<?php echo $data; ?>">
                           </div>
                         </div>
                       </div>
@@ -290,7 +291,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control required" id="observacao" name="faltas[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
@@ -410,9 +411,20 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/records/mascaras.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/records/motivos.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/records/datas.js"></script>
+
+  <script>
+    $(function() {
+      // aterando data final caso a data inicial seja alterada
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var dataInicial = $('#data-inicial').val();
+
+        $('#data-final').val(dataInicial);
+      });
+    });  
+  </script>
 </body>
 </html>
 

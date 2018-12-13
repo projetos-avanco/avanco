@@ -3,10 +3,7 @@
 
 <?php if (verificaUsuarioLogado('relatorio_extras.php')) : ?>
 
-<?php 
-  $dataInicial = date('Y-m-d');
-  $dataFinal = date('Y-m-d');
-?>
+<?php $data = date('Y-m-d'); ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -81,7 +78,7 @@
         <?php if ($_SESSION['usuario']['nivel'] == '2') : ?>
           <form>
             <div class="row"><!-- linha principal -->        
-              <div class="col-sm-8 col-sm-offset-2"><!-- primeira coluna principal -->
+              <div class="col-sm-6 col-sm-offset-6"><!-- primeira coluna principal -->
 
                 <div class="panel panel-info"><!-- panel -->
                   <div class="panel-heading">
@@ -95,14 +92,14 @@
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label for="data-inicial">Data Inicial</label>
-                          <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $dataInicial; ?>" placeholder="Data Inicial">
+                          <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $data; ?>">
                         </div>
                       </div>
 
                       <div class="col-sm-6">
                         <div class="form-group">
                           <label for="data-final">Data Final</label>
-                          <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $dataFinal; ?>" placeholder="Data Final">
+                          <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $data; ?>">
                         </div>
                       </div>
                     </div>
@@ -146,7 +143,7 @@
 
                   <div class="col-sm-3">
                     <div class="form-group">
-                      <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
+                      <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                         Consultar
                       </button>
@@ -161,7 +158,7 @@
         <?php elseif ($_SESSION['usuario']['nivel'] == '1') : ?>
         <form>
           <div class="row"><!-- linha principal -->        
-            <div class="col-sm-8 col-sm-offset-2"><!-- primeira coluna principal -->
+            <div class="col-sm-6 col-sm-offset-6"><!-- primeira coluna principal -->
 
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
@@ -175,14 +172,14 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="data-inicial">Data Inicial</label>
-                        <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $dataInicial; ?>" placeholder="Data Inicial">
+                        <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $data; ?>">
                       </div>
                     </div>
 
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="data-final">Data Final</label>
-                        <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $dataFinal; ?>" placeholder="Data Final">
+                        <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $data; ?>">
                       </div>
                     </div>
                   </div>
@@ -217,7 +214,7 @@
 
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
+                    <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       Consultar
                     </button>

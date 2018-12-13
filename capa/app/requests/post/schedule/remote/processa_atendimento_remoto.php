@@ -4,10 +4,7 @@
 if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   # requisitando script de configurações
   require_once '../../../../../init.php';
-
-  # requisitando script
-  require_once DIRETORIO_HELPERS . 'datas.php';
-
+  
   # definindo array que será gravado em tabela
   $remoto = array(
     'id'           => 0,
@@ -123,7 +120,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (!empty($_POST['remoto']['data'])) {
     # verificando se a data do atendimento é uma string
     if (is_string($_POST['remoto']['data'])) {
-      $remoto['data'] = formataDataUnicaParaMysql($_POST['remoto']['data']);
+      $remoto['data'] = $_POST['remoto']['data'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados da data do atendimento não está correto.';

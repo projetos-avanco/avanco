@@ -270,13 +270,7 @@
           </span>
         </a>
 
-        <ul class="nav collapse"  id="submenu8">
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/consulta_atendimentos.php">
-              <p>Atendimentos<p>
-            </a>
-          </li>
-
+        <ul class="nav collapse"  id="submenu8">      
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_externo.php">
               <p>Externo<p>
@@ -317,7 +311,13 @@
             <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/ranking/ranking_colaboradores.php">
               <p>Ranking<p>
             </a>
-          </li>                  
+          </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/consulta_atendimentos.php">
+              <p>Atendimentos<p>
+            </a>
+          </li>
         </ul>
       </li>
 

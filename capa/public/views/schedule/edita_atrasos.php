@@ -93,7 +93,7 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="novo-colaborador">Colaborador</label>
+                            <label for="novo-colaborador">Colaborador</label>
                             <select class="form-control required" id="novo-colaborador" name="atrasos[colaborador]" readonly>
                               <option value="<?php echo $atraso['id_colaborador']; ?>"><?php echo $atraso['nome_colaborador']; ?></option>
                             </select>
@@ -102,7 +102,7 @@
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador">
 
                             </select>
@@ -113,7 +113,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="motivo">Motivo</label>
+                            <label for="motivo">Motivo</label>
                             <select class="form-control required" id="motivo" name="atrasos[motivo]">
                               <option value="1" <?php echo ($atraso['motivo'] == '1') ? 'selected' : '' ?>>Saiu Mais Cedo</option>
                               <option value="2" <?php echo ($atraso['motivo'] == '2') ? 'selected' : '' ?>>Chegou Mais Tarde</option>
@@ -125,20 +125,20 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data">Data</label>
+                            <label for="data">Data</label>
                             <input class="form-control required" id="data" type="date" name="atrasos[data]" value="<?php echo $atraso['data']; ?>" placeholder="Data">
                           </div>
                         </div>
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <div class="input-group">
+                            <label for="tempo">Tempo Atraso</label>
+                            <div class="input-group">                              
                               <span class="input-group-btn">
                                 <button class="btn btn-default" type="button">
                                   <span class="glyphicon glyphicon-time"></span>
                                 </button>
-                              </span>
-                              <label class="sr-only" for="tempo">Tempo Atraso</label>
+                              </span>                              
                               <input class="form-control required" id="tempo" type="text" name="atrasos[tempo]" value="<?php echo $atraso['tempo_atraso']; ?>" placeholder="Horas Defasadas">
                             </div>
                           </div>
@@ -148,7 +148,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control required" id="observacao" name="atrasos[observacao]" rows="4" cols="30" placeholder="Observações..."><?php echo $atraso['observacao']; ?></textarea>
                           </div>
                         </div>

@@ -3,8 +3,7 @@
 <?php if (verificaUsuarioLogado('folgas.php')) : ?>
 
 <?php
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require_once DIRETORIO_HELPERS . 'datas.php';
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {    
     require_once DIRETORIO_HELPERS . 'diversas.php';
     require_once DIRETORIO_MODULES . 'schedule/modulo_registros.php';
 
@@ -70,7 +69,7 @@
 
     if (!empty($_POST['folgas']['data-inicial'])) {
       if (is_string($_POST['folgas']['data-inicial'])) {
-        $folgas['data_inicial'] = formataDataUnicaParaMysql($_POST['folgas']['data-inicial']);
+        $folgas['data_inicial'] = $_POST['folgas']['data-inicial'];
       } else {
         $flag = true;
         $erros['mensagens'][] = 'O tipo de dados da data inicial está incorreto.';
@@ -82,7 +81,7 @@
 
     if (!empty($_POST['folgas']['data-final'])) {
       if (is_string($_POST['folgas']['data-final'])) {
-        $folgas['data_final'] = formataDataUnicaParaMysql($_POST['folgas']['data-final']);
+        $folgas['data_final'] = $_POST['folgas']['data-final'];
       } else {
         $flag = true;
         $erros['mensagens'][] = 'O tipo de dados da data final está incorreto.';
@@ -114,6 +113,8 @@
     }
   }
 ?>
+
+<?php $data = date('Y-m-d'); ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -185,7 +186,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador" name="folgas[colaborador]">
 
                             </select>
@@ -196,7 +197,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="motivo">Motivo</label>
+                            <label for="motivo">Motivo</label>
                             <select class="form-control required" id="motivo" name="folgas[motivo]">
                               <optgroup label="Pessoal">
                                 <option value="1" selected>Abater nas Horas</option>
@@ -214,15 +215,15 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data-inicial">Data Inicial</label>
-                            <input class="form-control required" id="data-inicial" type="text" name="folgas[data-inicial]" placeholder="Data Inicial">
+                            <label for="data-inicial">Data Inicial</label>
+                            <input class="form-control required" id="data-inicial" type="date" name="folgas[data-inicial]" value="<?php echo $data; ?>">
                           </div>
                         </div>
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data-final">Data Final</label>
-                            <input class="form-control required" id="data-final" type="text" name="folgas[data-final]" placeholder="Data Final">
+                            <label for="data-final">Data Final</label>
+                            <input class="form-control required" id="data-final" type="date" name="folgas[data-final]" value="<?php echo $data; ?>">
                           </div>
                         </div>
                       </div>
@@ -230,7 +231,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control required" id="observacao" name="folgas[observacao]" rows="4" cols="30" placeholder="Observações..."></textarea>
                           </div>
                         </div>
@@ -350,12 +351,17 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/records/datas.js"></script>
 
   <script>
-    $(document).ready(function() {
-      $('#data-inicial').mask('00/00/0000');
-      $('#data-final').mask('00/00/0000');
+    $(function() {
+      // aterando data final caso a data inicial seja alterada
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var dataInicial = $('#data-inicial').val();
+
+        $('#data-final').val(dataInicial);
+      });
     });
   </script>
 </body>

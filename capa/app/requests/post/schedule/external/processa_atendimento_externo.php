@@ -4,10 +4,7 @@
 if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   # requisitando script de configurações
   require_once '../../../../../init.php';
-
-  # requisitando script
-  require_once DIRETORIO_HELPERS . 'datas.php';
-
+  
   # definindo array que será gravado em tabela
   $externo = array(
     'id'           => 0,
@@ -136,7 +133,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (!empty($_POST['externo']['data-inicial'])) {
     # verificando se a data do atendimento é uma string
     if (is_string($_POST['externo']['data-inicial'])) {
-      $externo['data_inicial'] = formataDataUnicaParaMysql($_POST['externo']['data-inicial']);
+      $externo['data_inicial'] = $_POST['externo']['data-inicial'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados da data inicial do atendimento não está correto.';
@@ -150,7 +147,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (!empty($_POST['externo']['data-final'])) {
     # verificando se a data do atendimento é uma string
     if (is_string($_POST['externo']['data-final'])) {
-      $externo['data_final'] = formataDataUnicaParaMysql($_POST['externo']['data-final']);
+      $externo['data_final'] = $_POST['externo']['data-final'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados da data final do atendimento não está correto.';

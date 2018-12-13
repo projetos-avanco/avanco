@@ -114,7 +114,7 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="novo-colaborador">Colaborador</label>
+                            <label for="novo-colaborador">Colaborador</label>
                             <select class="form-control required" id="novo-colaborador" name="faltas[colaborador]" readonly>
                               <option value="<?php echo $falta['id_colaborador']; ?>"><?php echo $falta['nome_colaborador']; ?></option>
                             </select>
@@ -123,7 +123,7 @@
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador">
 
                             </select>
@@ -134,7 +134,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="motivo">Motivo</label>
+                            <label for="motivo">Motivo</label>
                             <select class="form-control required" id="motivo" name="faltas[motivo]">
                               <optgroup label="Pessoal">
                                 <option value="1" <?php echo ($falta['motivo'] == '1') ? 'selected' : '' ?>>Descontar o Dia</option>
@@ -153,14 +153,14 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data-inicial">Data Inicial</label>
+                            <label for="data-inicial">Data Inicial</label>
                             <input class="form-control required" id="data-inicial" type="date" name="faltas[data-inicial]" value="<?php echo $falta['data_inicial']; ?>" placeholder="Data Inicial">
                           </div>
                         </div>
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data-final">Data Final</label>
+                            <label for="data-final">Data Final</label>
                             <input class="form-control required" id="data-final" type="date" name="faltas[data-final]" value="<?php echo $falta['data_final']; ?>">
                           </div>
                         </div>
@@ -206,7 +206,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control required" id="observacao" name="faltas[observacao]" rows="4" cols="30" placeholder="Observações..."><?php echo $falta['observacao']; ?></textarea>
                           </div>
                         </div>
@@ -328,6 +328,15 @@
           $('#bloco-atestado').removeClass('hidden');
           $('#bloco-alterar-atestado').removeClass('hidden');
         }  
+      });
+
+      // aterando data final caso a data inicial seja alterada
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var dataInicial = $('#data-inicial').val();
+
+        $('#data-final').val(dataInicial);
       });
 
       // alterando motivo

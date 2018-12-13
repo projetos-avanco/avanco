@@ -93,7 +93,7 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="novo-colaborador">Colaborador</label>
+                            <label for="novo-colaborador">Colaborador</label>
                             <select class="form-control required" id="novo-colaborador" name="folgas[colaborador]" readonly>
                               <option value="<?php echo $folga['id_colaborador']; ?>"><?php echo $folga['nome_colaborador']; ?></option>
                             </select>
@@ -102,7 +102,7 @@
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador">
 
                             </select>
@@ -113,7 +113,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="motivo">Motivo</label>
+                            <label for="motivo">Motivo</label>
                             <select class="form-control required" id="motivo" name="folgas[motivo]">
                               <optgroup label="Pessoal">
                                 <option value="1" <?php echo ($folga['motivo'] == '1') ? 'selected' : '' ?>>Abater nas Horas</option>
@@ -131,14 +131,14 @@
                       <div class="row">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data-inicial">Data Inicial</label>
+                            <label for="data-inicial">Data Inicial</label>
                             <input class="form-control required" id="data-inicial" type="date" name="folgas[data-inicial]" value="<?php echo $folga['data_inicial']; ?>">
                           </div>
                         </div>
 
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label class="sr-only" for="data-final">Data Final</label>
+                            <label for="data-final">Data Final</label>
                             <input class="form-control required" id="data-final" type="date" name="folgas[data-final]" value="<?php echo $folga['data_final']; ?>">
                           </div>
                         </div>
@@ -147,7 +147,7 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
-                            <label class="sr-only" for="observacao">Observação</label>
+                            <label for="observacao">Observação</label>
                             <textarea class="form-control required" id="observacao" name="folgas[observacao]" rows="4" cols="30" placeholder="Observações..."><?php echo $folga['observacao']; ?></textarea>
                           </div>
                         </div>
@@ -249,6 +249,15 @@
 
   <script>
     $(function() {
+      // aterando data final caso a data inicial seja alterada
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var dataInicial = $('#data-inicial').val();
+
+        $('#data-final').val(dataInicial);
+      });
+
       // editando colaborador
       $(document).on('change', '#colaborador', function(e) {
         e.preventDefault;
