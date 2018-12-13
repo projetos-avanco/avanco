@@ -98,20 +98,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $linha['data_inicial'] = formataDataParaExibir($linha['data_inicial']);
       $linha['data_final']   = formataDataParaExibir($linha['data_final']);
 
-      switch ($linha['motivo']) {
-        case 'Atestado Médico':
-          $linha['arquivo'] = BASE_URL . 'public/files/medical/' . $linha['arquivo'];
-            break;
-
-        case 'Atestado de Óbito':
-          $linha['arquivo'] = BASE_URL . 'public/files/death/' . $linha['arquivo'];
-            break;
-
-        case 'Atestado de Acompanhamento':
-          $linha['arquivo'] = BASE_URL . 'public/files/followup/' . $linha['arquivo'];
-            break;
-      }
-      
+      $linha['arquivo'] = BASE_URL . 'public/files/attestation/' . $linha['arquivo'];
+            
       $dados[] = array(
         'id'           => $linha['id'],
         'registro'     => $linha['registro'],
@@ -213,21 +201,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       $linha['registrado']   = formataDataParaExibir($linha['registrado']);
       $linha['data_inicial'] = formataDataParaExibir($linha['data_inicial']);
       $linha['data_final']   = formataDataParaExibir($linha['data_final']);
-
-      switch ($linha['motivo']) {
-        case 'Atestado Médico':
-          $linha['arquivo'] = BASE_URL . 'public/files/medical/' . $linha['arquivo'];
-            break;
-
-        case 'Atestado de Óbito':
-          $linha['arquivo'] = BASE_URL . 'public/files/death/' . $linha['arquivo'];
-            break;
-
-        case 'Atestado de Acompanhamento':
-          $linha['arquivo'] = BASE_URL . 'public/files/followup/' . $linha['arquivo'];
-            break;
-      }
       
+      $linha['arquivo'] = BASE_URL . 'public/files/attestation/' . $linha['arquivo'];
+
       $dados[] = array(
         'id'           => $linha['id'],
         'registro'     => $linha['registro'],
