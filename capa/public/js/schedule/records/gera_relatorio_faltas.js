@@ -172,6 +172,21 @@ $(function() {
     window.location.reload(true);
   });
 
+  // editando registro
+  $(document).on('click', '#btn-editar', function(e) {
+    e.preventDefault;
+
+    var id = $(this).val();
+    
+    var url = window.location.href;
+
+    var tmp = url.split('/');
+
+    url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/edita_faltas.php?id=' + id;
+
+    window.open(url, '_self');
+  });
+
   // deletando registro
   $(document).on('click', '#btn-deletar', function(e) {
     e.preventDefault;
