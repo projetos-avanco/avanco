@@ -96,8 +96,7 @@
             </span>
           </span>
         </a>
-        <ul class="nav collapse"  id="submenu4">
-
+        <ul class="nav collapse"  id="submenu4">                  
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_externo.php">
               <p>Externo<p>
@@ -108,7 +107,13 @@
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_remoto.php">
               <p>Remoto<p>
             </a>
-          </li>          
+          </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/agenda.php">
+              <p>Agenda<p>
+            </a>
+          </li>
         </ul>
       </li>
 
