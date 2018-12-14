@@ -3,10 +3,7 @@
 
 <?php if (verificaUsuarioLogado('gerencial_atendimento_externo.php')) : ?>
 
-<?php 
-  $dataInicial = date('Y-m-d');
-  $dataFinal = date('Y-m-d');
-?>
+<?php $data = date('Y-m-d'); ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -117,14 +114,14 @@
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="data-inicial">Data Inicial</label>
-                        <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $dataInicial; ?>" placeholder="Data Inicial">
+                        <input class="form-control" id="data-inicial" type="date" name="data-inicial" value="<?php echo $data; ?>">
                       </div>
                     </div>
 
                     <div class="col-sm-6">
                       <div class="form-group">
                         <label for="data-final">Data Final</label>
-                        <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $dataFinal; ?>" placeholder="Data Final">
+                        <input class="form-control" id="data-final" type="date" name="data-final" value="<?php echo $data; ?>">
                       </div>
                     </div>
                   </div>
@@ -132,7 +129,7 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
-                        <label for="colaborador">Colaborador</label>
+                        <label for="colaborador">Lista Colaboradores</label>
                         <select class="form-control" id="colaborador" name="colaborador">
 
                         </select>
@@ -145,7 +142,7 @@
                       <div class="form-group">
                         <label for="tipo-atendimento">Tipo de Atendimento</label>
                         <select class="form-control" id="tipo-atendimento" name="tipo-atendimento">
-                          <option value="" selected>Selecione um Tipo</option>
+                          <option value="" selected>Selecione um Tipo de Atendimento</option>
                           <option value="1">Suporte ao Cliente</option>
                           <option value="2">Projeto Mais Gestão</option>
                           <option value="3">Implantação</option>
@@ -186,7 +183,7 @@
 
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
+                    <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       Consultar
                     </button>
