@@ -32,15 +32,6 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)"/>
   <!-- dispositivos com largura máxima de 450px (por exemplo smartphones) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbarsmart.css" type="text/css" media="screen and (max-width:450px)"/>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
-  <script src="<?php echo BASE_URL; ?>libs/fullcalendar/lib/moment.min.js"></script>
-  <script src="<?php echo BASE_URL; ?>libs/fullcalendar/fullcalendar.min.js"></script>
-  <script src="<?php echo BASE_URL; ?>libs/fullcalendar/locale/pt-br.js"></script>
-
-  <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
 </head>
 
 <body>
@@ -60,55 +51,17 @@
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->
 
-  <script>
-    $(function() {
-      $(document).ready(function(e) {
-        e.preventDefault;
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>libs/fullcalendar/lib/moment.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>libs/fullcalendar/fullcalendar.min.js"></script>
+  <script src="<?php echo BASE_URL; ?>libs/fullcalendar/locale/pt-br.js"></script>
 
-        $('#calendario').fullCalendar({          
-          header: {
-              left: 'prev,next today',
-              center: 'title',
-              right: 'month,agendaWeek,agendaDay'
-          },          
-          editable: true,
-          eventLimit: true, 
-          eventSources: [
-            {
-              url: '../../../database/functions/schedule/dados_agenda_externo.php',              
-              color: '#FF7F50',
-              textColor: '#FFFFFF'
-            },
-            {
-              url: '../../../database/functions/schedule/dados_agenda_remoto.php',
-              color: '#FFD700',
-              textColor: '#FFFFFF'
-            },
-            {
-              url: '../../../database/functions/schedule/dados_agenda_folgas.php',
-              color: '#00FF00',
-              textColor: '#FFFFFF'
-            },
-            {
-              url: '../../../database/functions/schedule/dados_agenda_faltas.php',
-              color: '#8A2BE2',
-              textColor: '#FFFFFF'
-            },
-            {
-              url: '../../../database/functions/schedule/dados_agenda_atrasos.php',
-              color: '#FF00FF',
-              textColor: '#FFFFFF'
-            },
-            {
-              url: '../../../database/functions/schedule/dados_agenda_extras.php',
-              color: '#00FFFF',
-              textColor: '#FFFFFF'
-            }
-          ]
-        });
-      });
-    });
-  </script>
+  <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/exibe_eventos.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/atualiza_pagina.js"></script>
 </body>
 </html>
 
