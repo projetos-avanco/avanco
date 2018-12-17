@@ -22,7 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         DISTINCT
           a.id,
           a.registro,
+          r.cnpj,
           r.razao_social AS empresa,
+          CONCAT(s.name, ' ', s.surname) AS supervisor,
+          CONCAT(o.name, ' ', o.surname) AS colaborador,
           CASE 
             WHEN (a.tipo = 1)
               THEN 'Suporte ao Cliente'
@@ -65,8 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
               THEN 'Confirmada'
             WHEN (a.status = 3)
               THEN 'Cancelada'
-          END AS status
+          END AS status,
+          DATE_FORMAT(a.registrado, '%Y-%m-%d') AS registrado
       FROM av_agenda_atendimentos_externos AS a
+      INNER JOIN lh_users AS s
+        ON s.id = a.supervisor
+      INNER JOIN lh_users AS o
+        ON o.id = a.colaborador
       INNER JOIN av_agenda_cnpjs AS r
         ON r.id = a.id_cnpj
       INNER JOIN av_agenda_contatos AS c
@@ -94,7 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $dados = array();
 
     while ($linha = mysqli_fetch_array($resultado)) {
+      $linha['cnpj']     = substr($linha['cnpj'], 0, 2) . '.'. substr($linha['cnpj'], 2, 3) . '.' . substr($linha['cnpj'], 5, 3) . '/' . substr($linha['cnpj'], 8, 4) . '-' . substr($linha['cnpj'], 12, 2);
       $linha['empresa']    = strtoupper($linha['empresa']);
+
       $linha['contato']    = ucwords($linha['contato']);
       $linha['endereco']   = ucwords($linha['endereco']);
       $linha['observacao'] = ucwords($linha['observacao']);
@@ -102,7 +112,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $dados[] = array(
         'id'         => $linha['id'],
         'registro'   => $linha['registro'],
+        'cnpj'       => $linha['cnpj'],
         'empresa'    => $linha['empresa'],
+        'supervisor' => $linha['supervisor'],
+        'colaborador'=> $linha['colaborador'],
         'tipo'       => $linha['tipo'],
         'contato'    => $linha['contato'],
         'email'      => $linha['email'],
@@ -112,8 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         'periodo'    => formataDataParaExibir($linha['data_inicial']) . ' até ' . formataDataParaExibir($linha['data_final']) . ' às ' . $linha['horario'],
         'produto'    => $linha['produto'],
         'observacao' => $linha['observacao'],
+        'registrado' => formataDataParaExibir($linha['registrado']),
         'status'     => $linha['status'],
-        'title'      => $linha['empresa'],
+        'title'      => strtoupper('Atendimento Externo'),
         'start'      => $linha['data_inicial'],
         'end'        => $linha['data_final']
       );

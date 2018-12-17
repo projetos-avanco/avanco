@@ -62,16 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
       $dados[] = array(
         'id'           => $linha['id'],
+        'registrado'   => formataDataParaExibir($linha['registrado']),
         'registro'     => $linha['registro'],
         'supervisor'   => $linha['supervisor'],
         'colaborador'  => $linha['colaborador'],
         'motivo'       => $linha['motivo'],
         'atestado'     => $linha['atestado'],
         'arquivo'      => $linha['arquivo'],
-        'data_inicial' => formataDataParaExibir($linha['data_inicial']),
-        'data_final'   => formataDataParaExibir($linha['data_final']),
-        'observacao'   => $linha['observacao'],
-        'registrado'   => formataDataParaExibir($linha['registrado']),
+        'periodo'      => formataDataParaExibir($linha['data_inicial']) . ' até ' . formataDataParaExibir($linha['data_final']),        
+        'observacao'   => $linha['observacao'],        
         'title'        => mb_strtoupper($linha['motivo'], 'utf-8'),
         'start'        => $linha['data_inicial'],
         'end'          => $linha['data_final']
