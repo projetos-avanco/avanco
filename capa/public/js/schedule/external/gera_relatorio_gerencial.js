@@ -29,7 +29,7 @@ $(function() {
               '<th class="text-center">Período</th>'                 +
               '<th class="text-center">Situação</th>'                +              
               '<th class="text-center">Atendimento</th>'             +              
-              '<th class="text-center">Externo</th>'                 +
+              '<th class="text-center"></th>'                        +
               '<th class="text-center">Relatório</th>'               +
               '<th class="text-center">Pesquisa</th>'                +
               '<th class="text-center"></th>'                        +
@@ -41,6 +41,8 @@ $(function() {
           tbody += 
             '<tr ' +
               'data-id="'          + dados[i].id                 + '"' +
+              'data-id-contato="'  + dados[i].id_contato         + '"' +
+              'data-id-cnpj="'     + dados[i].id_cnpj            + '"' +
               'data-id-issue="'    + dados[i].id_issue           + '"' +
               'data-lancado="'     + dados[i].registrado         + '"' +
               'data-registro="'    + dados[i].registro           + '"' +
@@ -60,7 +62,7 @@ $(function() {
               'data-pesquisa="'    + dados[i].pesquisa_realizada + '">';
           tbody += '<td class="text-center">' + dados[i].registro              + '</td>';
           tbody += '<td class="text-left">'   + dados[i].empresa.toUpperCase() + '</td>';
-          tbody += '<td class="text-center">' + dados[i].colaborador           + '</td>';          
+          tbody += '<td class="text-left">'   + dados[i].colaborador           + '</td>';          
           tbody += '<td class="text-center">' + dados[i].periodo               + '</td>';
           tbody += '<td class="text-center">' + dados[i].status                + '</td>';          
           tbody += '<td class="text-center">' + dados[i].tipo                  + '</td>';          
@@ -192,7 +194,7 @@ $(function() {
               '<th class="text-center">Período</th>'     +
               '<th class="text-center">Situação</th>'    +
               '<th class="text-center">Atendimento</th>' +
-              '<th class="text-center">Externo</th>'     +
+              '<th class="text-center"></th>'            +
               '<th class="text-center">Relatório</th>'   +
               '<th class="text-center">Pesquisa</th>'    +
               '<th class="text-center"></th>'            +
@@ -204,6 +206,8 @@ $(function() {
           tbody += 
             '<tr ' +
               'data-id="'          + dados[i].id                 + '"' +
+              'data-id-contato="'  + dados[i].id_contato         + '"' +
+              'data-id-cnpj="'     + dados[i].id_cnpj            + '"' +
               'data-id-issue="'    + dados[i].id_issue           + '"' +
               'data-lancado="'     + dados[i].registrado         + '"' +
               'data-registro="'    + dados[i].registro           + '"' +
@@ -223,7 +227,7 @@ $(function() {
               'data-pesquisa="'    + dados[i].pesquisa_realizada + '">';
           tbody += '<td class="text-center">' + dados[i].registro              + '</td>';
           tbody += '<td class="text-left">'   + dados[i].empresa.toUpperCase() + '</td>';
-          tbody += '<td class="text-center">' + dados[i].colaborador           + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].colaborador           + '</td>';
           tbody += '<td class="text-center">' + dados[i].periodo               + '</td>';
           tbody += '<td class="text-center">' + dados[i].status                + '</td>';
           tbody += '<td class="text-center">' + dados[i].tipo                  + '</td>';
