@@ -9,9 +9,7 @@ function confirmaUmAtendimentoExterno($db, $id)
 {
   $query = "UPDATE av_agenda_atendimentos_externos SET status = '2' WHERE id = $id";
 
-  $resultado = mysqli_query($db, $id);
-
-  return $resultado;
+  mysqli_query($db, $query);
 }
 
 /**
