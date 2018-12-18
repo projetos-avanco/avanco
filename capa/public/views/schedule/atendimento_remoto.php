@@ -260,7 +260,17 @@
                     <div class="panel-body"><!-- panel-body -->
 
                       <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-6">
+                          <div class="form-group">
+                            <label for="situacao">Situação</label>
+                            <select class="form-control required" id="situacao" name="remoto[situacao]">                              
+                              <option value="1">Atendimento à Confirmar</option>
+                              <option value="2" selected>Atendimento Confirmado</option>                              
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-6">
                           <div class="form-group">
                             <label for="tipo">Tipo Atendimento</label>
                             <select class="form-control required" id="tipo" name="remoto[tipo]">
@@ -297,6 +307,7 @@
                               <option value="0" selected>Tipo de Cobrança</option>
                               <option value="1">Hora</option>
                               <option value="2">Pacote</option>
+                              <option value="3">Não Informado</option>
                             </select>
                           </div>
                         </div>
@@ -352,7 +363,7 @@
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
                   <div class="form-group">
-                    <button class="btn btn-block btn-default btn-sm" type="reset">
+                    <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
                       <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                       Resetar
                     </button>
@@ -424,6 +435,26 @@
       $(document).ready(function() {        
         $('#horario').mask('00:00');
         $('#valor').mask('#0.00', {reverse: true});
+      });
+
+      $(document).on('click', '#btn-atualizar', function(e) {
+        e.preventDefault;
+
+        window.location.reload(true);
+      });
+
+      $(document).on('change', '#cobranca', function(e) {
+        e.preventDefault;
+
+        var tipo = $(this).val();
+
+        if (tipo === '3') {
+          $('#valor').val('0.00');
+          $('#valor').attr('disabled', true);
+        } else {
+          $('#valor').val('0.00');
+          $('#valor').attr('disabled', false);
+        } 
       });
     });
   </script>
