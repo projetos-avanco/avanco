@@ -30,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query = 
       "SELECT
         e.id,
+        e.id_contato,
+        e.id_cnpj,
         e.id_issue,
         x.id AS id_pesquisa,
         e.registro,
@@ -130,6 +132,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       
       $dados[] = array(
         'id'                 => $linha['id'],
+        'id_contato'         => $linha['id_contato'],
+        'id_cnpj'            => $linha['id_cnpj'],
         'id_issue'           => $linha['id_issue'],
         'issue'              => null,
         'id_pesquisa'        => $linha['id_pesquisa'],
@@ -226,6 +230,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query =
       "SELECT
         e.id,
+        e.id_contato,
+        e.id_cnpj,
         e.id_issue,
         x.id AS id_pesquisa,
         e.registro,
@@ -331,6 +337,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       
       $dados[] = array(
         'id'                 => $linha['id'],
+        'id_contato'         => $linha['id_contato'],
+        'id_cnpj'            => $linha['id_cnpj'],
         'id_issue'           => $linha['id_issue'],
         'issue'              => null,
         'id_pesquisa'        => $linha['id_pesquisa'],
