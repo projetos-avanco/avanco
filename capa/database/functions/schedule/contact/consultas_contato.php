@@ -1,6 +1,40 @@
 <?php
 
 /**
+ * retorna os dados dos contatos de um cnpj
+ * @param - objeto com uma conexão aberta
+ * @param - inteiro com o id do cnpj
+ * @param - inteiro com o id do contato
+ */
+function consultaDadosDosContatosDeUmCnpj($db, $cnpj, $contato)
+{
+  $query =
+    "SELECT 
+      c.id, 
+      c.nome      
+    FROM av_agenda_contatos AS c
+    INNER JOIN av_agenda_emails AS e
+      ON e.id_contato = c.id
+    WHERE id_cnpj = $cnpj
+      AND NOT c.id = $contato";
+
+  $resultado = mysqli_query($db, $query);
+
+  $dados = array();
+
+  while ($linha = mysqli_fetch_array($resultado)) {
+    $linha['nome'] = strtoupper($linha['nome']);
+
+    $dados[] = array(
+      'id'       => $linha['id'],
+      'nome'     => $linha['nome']      
+    );
+  }
+
+  return $dados;
+}
+
+/**
  * retorna todos os e-mails de um contato
  * @param - objeto com uma conexão aberta
  * @param - string com o id do contato
