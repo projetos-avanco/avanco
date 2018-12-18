@@ -230,41 +230,48 @@ function recebeAtendimentoRemoto($remoto, $contato, $copia)
 
       # verificando se o registro de atendimento remoto foi gravado com sucesso
       if ($resultado) {
-        $cc = array();
+        # verificando se o agendamento já está confirmado
+        if ($remoto['status'] == '2') {
+          $cc = array();
 
-        # verificando se foram enviados os id's do contatos que receberam o e-mail em cópia
-        if (count($copia) > 0) {
-          for ($i = 0; $i < count($copia); $i++) {
-            $cc = consultaEnderecosEmailsDeUmContato($db, $copia[$i], $cc);
+          # verificando se foram enviados os id's do contatos que receberam o e-mail em cópia
+          if (count($copia) > 0) {
+            for ($i = 0; $i < count($copia); $i++) {
+              $cc = consultaEnderecosEmailsDeUmContato($db, $copia[$i], $cc);
+            }
+          } else {
+            $cc['emails'] = array();
+          }
+
+          # chamando função que realiza o envio dos e-mails
+          $resultado = enviaEmailRemoto($db, $remoto, $contato, $cc['emails']);
+
+          # verificando se o e-mail foi enviado
+          if ($resultado === true) {
+            $_SESSION['atividades']['tipo'] = 'success';
+            $_SESSION['atividades']['exibe'] = true;
+            $_SESSION['atividades']['mensagens'][] = 'Ticket gerado com sucesso.';
+          } else {
+            # e-mail não foi enviado
+            $_SESSION['atividades']['tipo'] = 'danger';
+            $_SESSION['atividades']['exibe'] = true;
+            $_SESSION['atividades']['mensagens'][] = 'Erro ao solicitar o envio de E-mail. Ticket, Registro de Horas e Registro de Atendimento Remoto deletados. Informe ao Wellington Felix.';
+            $_SESSION['atividades']['mensagens'][] = $resultado;
+
+            # chamando função que deleta um registro de atendimento remoto
+            deletaAtendimentoRemoto($db, $remoto['registro']);
+
+            # chamando função que deleta um registro de ticket na tabela de tickets
+            deletaTicketNoBancoDeDados($db, $remoto['registro']);
+
+            # chamando função que deleta um registro de issue
+            deletaIssues($db, $remoto['id_issue']);
           }
         } else {
-          $cc['emails'] = array();
-        }
-
-        # chamando função que realiza o envio dos e-mails
-        $resultado = enviaEmailRemoto($db, $remoto, $contato, $cc['emails']);
-
-        # verificando se o e-mail foi enviado
-        if ($resultado === true) {
           $_SESSION['atividades']['tipo'] = 'success';
           $_SESSION['atividades']['exibe'] = true;
           $_SESSION['atividades']['mensagens'][] = 'Ticket gerado com sucesso.';
-        } else {
-          # e-mail não foi enviado
-          $_SESSION['atividades']['tipo'] = 'danger';
-          $_SESSION['atividades']['exibe'] = true;
-          $_SESSION['atividades']['mensagens'][] = 'Erro ao solicitar o envio de E-mail. Ticket, Registro de Horas e Registro de Atendimento Remoto deletados. Informe ao Wellington Felix.';
-          $_SESSION['atividades']['mensagens'][] = $resultado;
-
-          # chamando função que deleta um registro de atendimento remoto
-          deletaAtendimentoRemoto($db, $remoto['registro']);
-
-          # chamando função que deleta um registro de ticket na tabela de tickets
-          deletaTicketNoBancoDeDados($db, $remoto['registro']);
-
-          # chamando função que deleta um registro de issue
-          deletaIssues($db, $remoto['id_issue']);
-        }
+        }        
       } else {
         # registro de atendimento remoto não foi inserido
         $_SESSION['atividades']['tipo'] = 'danger';
