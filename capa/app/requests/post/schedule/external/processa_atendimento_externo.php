@@ -15,7 +15,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     'tipo'         => null,
     'supervisor'   => null,
     'colaborador'  => null,
-    'status'       => '1',
+    'status'       => null,
     'data_inicial' => null,
     'data_final'   => null,
     'horario'      => null,
@@ -85,6 +85,25 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   } else {
     $flag = true;
     $erros[] = 'O id do contato não foi enviado.';
+  }
+  
+  # verificando se a situação do atendimento foi enviado
+  if (!empty($_POST['externo']['situacao'])) {
+    # verificando se o tipo de atendimento é uma string numérica
+    if (is_numeric($_POST['externo']['situacao'])) {
+      # verificando se a situação do atendimento não está confirmada
+      if ($_POST['externo']['situacao'] == '1') {
+        $externo['status'] = '1';
+      } else {
+        $externo['status'] = '2';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'O tipo de dados da situação do atendimento não está correto';
+    }
+  } else {
+    $flag = true;
+    $erros[] = 'A situção do atendimento não foi selecionado.';
   }
 
   # verificando se o tipo de atendimento foi enviado
@@ -232,7 +251,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (isset($_POST['externo']['cobranca']) && (!empty($_POST['externo']['cobranca']))) {
     # verificando se o tipo de dados do valor do campo cobrança é uma string numérica
     if (is_numeric($_POST['externo']['cobranca'])) {
-      $cobranca = $_POST['externo']['cobranca'];
+      $externo['cobranca'] = $_POST['externo']['cobranca'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados da cobrança não está correto.';
@@ -242,7 +261,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   # verificando se o valor da cobrança foi enviado
   if (isset($_POST['externo']['valor']) && (!empty($_POST['externo']['valor']))) {
     # verificando se o tipo de dados do valor é uma string numérica e se a cobrança foi definida
-    if (is_numeric($_POST['externo']['valor']) && isset($cobranca)) {
+    if (is_numeric($_POST['externo']['valor']) && isset($externo['cobranca'])) {
       # verificando se o pedido é faturado e se o valor é maior que 0
       if ($externo['faturado'] == 1 && $_POST['externo']['valor'] > '0.00') {
         $valor = $_POST['externo']['valor'];
@@ -259,9 +278,9 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   # verificando se o atendimento é faturado
   if ($externo['faturado'] == 1) {
     # verificando se a cobrança e o valor foram definidos
-    if (isset($cobranca) && isset($valor)) {
+    if (isset($externo['cobranca']) && isset($valor)) {
       # verificando se a cobrança é por hora
-      if ($cobranca == '1') {
+      if ($externo['cobranca'] == '1') {
         $externo['valor_hora'] = (float)$valor;        
       } else {
         $externo['valor_pacote'] = (float)$valor;        

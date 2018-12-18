@@ -15,7 +15,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     'tipo'         => null,
     'supervisor'   => null,
     'colaborador'  => null,
-    'status'       => '1',
+    'status'       => null,
     'data'         => null,
     'horario'      => null,
     'produto'      => null,
@@ -72,6 +72,25 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   } else {
     $flag = true;
     $erros[] = 'O id do contato não foi enviado.';
+  }
+
+  # verificando se a situação do atendimento foi enviado
+  if (!empty($_POST['remoto']['situacao'])) {
+    # verificando se a situação do atendimento é uma string numérica
+    if (is_numeric($_POST['remoto']['situacao'])) {
+      # verificando se a situação do atendimento não está confirmada
+      if ($_POST['remoto']['situacao'] == '1') {
+        $remoto['status'] = '1';
+      } else {
+        $remoto['status'] = '2';
+      }      
+    } else {
+      $flag = true;
+      $erros[] = 'O tipo de dados da situação do atendimento não está correto';
+    }
+  } else {
+    $flag = true;
+    $erros[] = 'A situação do atendimento não foi selecionado';
   }
 
   # verificando se o tipo de atendimento foi enviado
@@ -205,7 +224,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   if (isset($_POST['remoto']['cobranca']) && (!empty($_POST['remoto']['cobranca']))) {
     # verificando se o tipo de dados do valor do campo cobrança é uma string numérica
     if (is_numeric($_POST['remoto']['cobranca'])) {
-      $cobranca = $_POST['remoto']['cobranca'];
+      $remoto['cobranca'] = $_POST['remoto']['cobranca'];
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados da cobrança não está correto.';
@@ -215,7 +234,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   # verificando se o valor da cobrança foi enviado
   if (isset($_POST['remoto']['valor']) && (!empty($_POST['remoto']['valor']))) {
     # verificando se o tipo de dados do valor é uma string numérica e se a cobrança foi definida
-    if (is_numeric($_POST['remoto']['valor']) && isset($cobranca)) {
+    if (is_numeric($_POST['remoto']['valor']) && isset($remoto['cobranca'])) {
       # verificando se o pedido é faturado e se o valor é maior que 0
       if ($remoto['faturado'] == 1 && $_POST['remoto']['valor'] > '0.00') {
         $valor = $_POST['remoto']['valor'];
@@ -232,9 +251,9 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   # verificando se o atendimento é faturado
   if ($remoto['faturado'] == 1) {
     # verificando se a cobrança e o valor foram definidos
-    if (isset($cobranca) && isset($valor)) {
+    if (isset($remoto['cobranca']) && isset($valor)) {
       # verificando se a cobrança é por hora
-      if ($cobranca == '1') {
+      if ($remoto['cobranca'] == '1') {
         $remoto['valor_hora'] = (float)$valor;
       } else {
         $remoto['valor_pacote'] = (float)$valor;
