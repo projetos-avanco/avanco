@@ -5,6 +5,21 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 /**
+ * responsável por solicitar a confirmação do atendimento e solicitar o envio de e-mail para os envolvidos
+ * @param - inteiro com o id do atendimento
+ */
+function solicitaConfirmacaoDeAtendimento($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'schedule/external/atualizacoes_externo.php';
+
+  $db = abre_conexao();
+
+  confirmaUmAtendimentoExterno($db, $id);
+
+  header('location: ' . BASE_URL . 'public/views/schedule/gerencial_atendimento_externo.php'); exit;
+}
+
+/**
  * responsável por solicitar o cancelamento do atendimento
  * @param - inteiro com o id do atendimento
  */
