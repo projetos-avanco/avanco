@@ -113,7 +113,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'edita_faltas.php'                  OR
           $pagina == 'edita_atrasos.php'                 OR
           $pagina == 'edita_extras.php'                  OR
-          $pagina == 'agenda.php') {
+          $pagina == 'agenda.php'                        OR
+          $pagina == 'confirma_atendimento_externo.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -170,7 +171,8 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'edita_faltas.php'                  OR
          $pagina == 'edita_atrasos.php'                 OR
          $pagina == 'edita_extras.php'                  OR
-         $pagina == 'agenda.php') {
+         $pagina == 'agenda.php'                        OR
+         $pagina == 'confirma_atendimento_externo.php') {
 
         return true;
 
