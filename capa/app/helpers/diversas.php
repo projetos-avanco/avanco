@@ -322,32 +322,36 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
         </div>
         
         <br>";
+  
+  $msg .= 
+  "<div class='row'>
+    <div class='col-sm-12'>
+      <div class='text-left'>";
 
   # verificando se o atendimento é faturado              
   if ($externo['faturado']) {
-    $msg .= 
-      "<div class='row'>
-        <div class='col-sm-12'>
-          <div class='text-left'>";
-
     # verificando se o tipo de cobrança do atendimento é por hora
-    if ($externo['valor_hora'] > 0) {
+    if ($externo['cobranca'] == '3' && $externo['valor_hora'] == 0.00 && $externo['valor_pacote'] == 0.00) {
+      $msg .= "<p>Serão cobradas horas técnicas de acordo com os <strong>valores de horas contratuais</strong>.</p>";
+    } elseif ($externo['cobranca'] != '3' && $externo['valor_hora'] > 0) {
       $externo['valor_hora'] = number_format($externo['valor_hora'], 2, ',', '.');
 
       $msg .= "<p>Serão cobradas horas técnicas no valor de <strong>R\${$externo['valor_hora']}</strong> por cada hora trabalhada.</p>";
-    } elseif ($externo['valor_pacote'] > 0) {
+    } elseif ($externo['cobranca'] != '3' && $externo['valor_pacote'] > 0) {
       $externo['valor_pacote'] = number_format($externo['valor_pacote'], 2, ',', '.');
 
       $msg .= "<p>O valor do atendimento foi negociado no total de <strong>R\${$externo['valor_pacote']}</strong>.</p>";
     }
-
-    $msg .=
-        "</div>
-      </div>
-    </div>
-
-    <br>";
+  } else {
+    $msg .= "<p>As horas trabalhadas serão <strong>bonificadas</strong>.</p>";
   }
+
+  $msg .=
+      "</div>
+    </div>
+  </div>
+
+  <br>";
 
   if ($externo['despesa'] == 1) {
     $msg .= 
@@ -359,7 +363,18 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
         </div>
       </div>
       
-      <br>";   
+      <br>";
+  } else {
+    $msg .= 
+      "<div class='row'>
+        <div class='col-sm-12'>
+          <div class='text-left'>
+            <p>Não serão cobradas despesas com <strong>deslocamento</strong>, <strong>hospedagem</strong> e <strong>alimentação</strong>.</p>
+          </div>
+        </div>
+      </div>
+      
+      <br>";
   }
 
   $msg .= 
@@ -563,31 +578,35 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
         
         <br>";
   
+  $msg .=
+  "<div class='row'>
+    <div class='col-sm-12'>
+      <div class='text-left'>";
+
   # verificando se o atendimento é faturado              
   if ($remoto['faturado']) {
-    $msg .=
-      "<div class='row'>
-        <div class='col-sm-12'>
-          <div class='text-left'>";
-
     # verificando se o tipo de cobrança do atendimento é por hora
-    if ($remoto['valor_hora'] > 0) {
+    if ($remoto['cobranca'] == '3' && $remoto['valor_hora'] == 0.00 && $remoto['valor_pacote'] == 0.00) {
+      $msg .= "<p>Serão cobradas horas técnicas de acordo com os <strong>valores de horas contratuais</strong>.</p>";
+    } elseif ($remoto['cobranca'] != '3' && $remoto['valor_hora'] > 0) {
       $remoto['valor_hora'] = number_format($remoto['valor_hora'], 2, ',', '.');
 
       $msg .= "<p>Serão cobradas horas técnicas no valor de <strong>R\${$remoto['valor_hora']}</strong> por cada hora trabalhada.</p>";
-    } elseif ($remoto['valor_pacote'] > 0) {
+    } elseif ($remoto['cobranca'] != '3' && $remoto['valor_pacote'] > 0) {
       $remoto['valor_pacote'] = number_format($remoto['valor_pacote'], 2, ',', '.');
 
       $msg .= "<p>O valor do atendimento foi negociado no total de <strong>R\${$remoto['valor_pacote']}</strong>.</p>";
-    }
-
-    $msg .=
-        "</div>
-      </div>
-    </div>
-
-    <br>";
+    }    
+  } else {
+    $msg .= "<p>As horas trabalhadas serão <strong>bonificadas</strong>.</p>";
   }
+
+  $msg .=
+      "</div>
+    </div>
+  </div>
+
+  <br>";
 
   $msg .= 
       "<div class='row'>
