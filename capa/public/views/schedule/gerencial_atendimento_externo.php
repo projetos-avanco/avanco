@@ -238,6 +238,19 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/external/editar_relatorio_horas.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/external/visualizar_pesquisa_externa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/external/editar_pesquisa_externa.js"></script>
+
+  <script>
+    $(function() {
+      // aterando data final caso a data inicial seja alterada
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var dataInicial = $('#data-inicial').val();
+
+        $('#data-final').val(dataInicial);
+      });
+    });
+  </script>
 </body>
 </html>
 

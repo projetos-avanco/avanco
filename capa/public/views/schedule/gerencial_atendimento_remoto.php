@@ -236,6 +236,19 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/remote/cancelar_atendimento_remoto.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/remote/visualizar_relatorio_horas.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/remote/editar_relatorio_horas.js"></script>
+
+  <script>
+    $(function() {
+      // aterando data final caso a data inicial seja alterada
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var dataInicial = $('#data-inicial').val();
+
+        $('#data-final').val(dataInicial);
+      });
+    });
+  </script>
 </body>
 </html>
 

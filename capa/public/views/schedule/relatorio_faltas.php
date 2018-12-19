@@ -274,7 +274,20 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/records/gera_relatorio_faltas.js"></script>    
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/records/gera_relatorio_faltas.js"></script>
+
+  <script>
+    $(function() {
+      // aterando data final caso a data inicial seja alterada
+      $(document).on('change', '#data-inicial', function(e) {
+        e.preventDefault;
+
+        var dataInicial = $('#data-inicial').val();
+
+        $('#data-final').val(dataInicial);
+      });
+    });
+  </script>
 </body>
 </html>
 
