@@ -58,13 +58,15 @@ $(function() {
             visible: true
           }        
         }
-      }).then((confirmar) => {        
-        var url = window.location.href;
-        var tmp = url.split('/');
+      }).then((confirmar) => {
+        if (confirmar) {
+          var url = window.location.href;
+          var tmp = url.split('/');
 
-        url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/confirma_atendimento_externo.php?id=' + gerencial.id + '&id-cnpj=' + gerencial.id_cnpj + '&id-contato=' + gerencial.id_contato;
-        
-        window.open(url, '_self');
+          url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/confirma_atendimento_externo.php?id=' + gerencial.id + '&id-cnpj=' + gerencial.id_cnpj + '&id-contato=' + gerencial.id_contato;
+          
+          window.open(url, '_self');
+        }
       });
     } else {
       swal({
