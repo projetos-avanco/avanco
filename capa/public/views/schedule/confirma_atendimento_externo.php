@@ -10,6 +10,14 @@
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $db = abre_conexao();
 
+    # verificando se o id do atendimento externo existe e não está vazio
+    if (isset($_GET['id']) && (!empty($_GET['id']))) {
+      # verificando se o id do atendimento externo é uma string numérica
+      if (is_numeric($_GET['id'])) {
+        $id = (int) $_GET['id'];
+      }
+    }
+
     # verificando se o id do cnpj existe e não está vazio
     if (isset($_GET['id-cnpj']) && (!empty($_GET['id-cnpj']))) {
       # verificando se o id do cnpj é uma string numérica
@@ -26,7 +34,7 @@
       }
     }
 
-    $dados = consultaDadosDosContatosDeUmCnpj($db, $cnpj, $contato);    
+    $dados = consultaDadosDosContatosDeUmCnpj($db, $cnpj, $contato);
   }
 ?>
 
@@ -81,7 +89,7 @@
           </div>
         </div>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/external/recebe_confirmacao_atendimento.php" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/confirmation/recebe_confirmacao_atendimento.php" method="post">
 
           <div class="row">          
             <div class="col-sm-6 col-sm-offset-3">
@@ -110,7 +118,11 @@
                       <?php endforeach; ?>
                     </ul><!-- tabela contatos -->
                   </div>
-                </div><!-- panel-body -->                
+                </div><!-- panel-body -->  
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <input type="hidden" name="id-cnpj" value="<?php echo $cnpj; ?>">
+                <input type="hidden" name="id-contato" value="<?php echo $contato; ?>">
+                <input type="hidden" name="pagina" value="externo">
               </div><!-- panel -->
 
               <div class="row">
@@ -132,9 +144,33 @@
             </div>
           </div>
 
-          
-          
         </form>
+
+        <br>
+        
+        <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+        <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="text-center">
+                <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                    <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                      <strong>Ops!</strong>
+                    <?php else : ?>
+                      <strong>Tudo Certo!</strong>
+                    <?php endif; ?>
+
+                    <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endfor; ?>
+
+        <?php endif; ?>
+
+        <?php unset($_SESSION['atividades']); ?>
 
       </div><!-- container -->
     </div><!-- conteúdo da página -->
