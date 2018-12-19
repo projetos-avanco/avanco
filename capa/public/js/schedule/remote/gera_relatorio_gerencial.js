@@ -40,6 +40,8 @@ $(function() {
           tbody += 
             '<tr '                 +
               'data-id="'          + dados[i].id                 + '"' +
+              'data-id-cnpj="'     + dados[i].id_cnpj            + '"' +
+              'data-id-contato="'  + dados[i].id_contato         + '"' +
               'data-id-issue="'    + dados[i].id_issue           + '"' +
               'data-lancado="'     + dados[i].registrado         + '"' +
               'data-registro="'    + dados[i].registro           + '"' +
@@ -184,6 +186,8 @@ $(function() {
           tbody += 
             '<tr '                 +
               'data-id="'          + dados[i].id                 + '"' +
+              'data-id-cnpj="'     + dados[i].id_cnpj            + '"' +
+              'data-id-contato="'  + dados[i].id_contato         + '"' +
               'data-id-issue="'    + dados[i].id_issue           + '"' +
               'data-lancado="'     + dados[i].registrado         + '"' +
               'data-registro="'    + dados[i].registro           + '"' +
