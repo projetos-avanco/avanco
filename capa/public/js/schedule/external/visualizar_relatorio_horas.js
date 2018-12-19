@@ -74,8 +74,27 @@ $(function() {
             'Total Despesas: ' + despesas.total          + "\n\n\n\n" +
             lancamentos.map((l) => {
               return 'Data: ' + l.data + "\n\n" + 'Produto: ' + l.produto + "\n\n" + 'Horas Trabalhadas: ' + l.horas_trabalhadas + "\n\n" + 'Horas Faturadas: ' + l.horas_faturadas + "\n\n" + 'Valor Hora: ' + l.valor_hora + "\n\n" + 'Total: ' + l.total;
-          }).join("\n\n ---------- \n\n")
-        });                                      
+          }).join("\n\n ---------- \n\n"),
+          buttons: {
+            confirm: {
+              text: 'Editar Relatório'
+            },
+            cancel: {
+              text: 'Fechar',
+              closeModal: true,
+              visible: true
+            }        
+          }
+        }).then((confirmar) => {
+          if (confirmar) {
+            var url = window.location.href;
+            var tmp = url.split('/');
+  
+            url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/hours/edita_lancamentos.php?issue=' + registro.issue;
+            
+            window.open(url, '_self');
+          }
+        });
       },
       error: function(erro) {
         console.log(erro);
