@@ -9,6 +9,6 @@ $(function() {
 
     url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/hours/edita_lancamentos.php?issue=' + issue;          
 
-    window.open(url, '_blank');
+    window.open(url, '_self');
   });
 });
