@@ -6,8 +6,8 @@ $(function() {
     var gerencial = {};
 
     gerencial.id                 = $(this).closest('tr').attr('data-id');
-    gerencial.id_contato         = $(this).closest('tr').attr('data-id-contato');
     gerencial.id_cnpj            = $(this).closest('tr').attr('data-id-cnpj');
+    gerencial.id_contato         = $(this).closest('tr').attr('data-id-contato');    
     gerencial.lancado            = $(this).closest('tr').attr('data-lancado');
     gerencial.registro           = $(this).closest('tr').attr('data-registro');
     gerencial.status             = $(this).closest('tr').attr('data-status');
@@ -62,7 +62,7 @@ $(function() {
         var url = window.location.href;
         var tmp = url.split('/');
 
-        url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/confirma_atendimento_externo.php?id-cnpj=' + gerencial.id_cnpj + '&id-contato=' + gerencial.id_contato;
+        url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/confirma_atendimento_externo.php?id=' + gerencial.id + '&id-cnpj=' + gerencial.id_cnpj + '&id-contato=' + gerencial.id_contato;
         
         window.open(url, '_self');
       });
