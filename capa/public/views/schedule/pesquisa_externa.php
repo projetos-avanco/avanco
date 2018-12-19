@@ -263,9 +263,9 @@
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
                   <div class="form-group">
-                    <button class="btn btn-block btn-default btn-sm" type="reset">
-                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                      Resetar
+                    <button class="btn btn-block btn-default btn-sm" id="btn-voltar" type="reset">
+                      <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                      Voltar
                     </button>
                   </div>
                 </div>
@@ -342,9 +342,18 @@
   <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
 
   <script>
-    $(document).ready(function() {
-      $('#data').mask('00/00/0000');
-      $('#tempo').mask('00:00');
+    $(function() {
+      // voltando para página de relatório de atrasos
+      $(document).on('click', '#btn-voltar', function(e) {
+        e.preventDefault;
+
+        var url = window.location.href;
+        var tmp = url.split('/');
+
+        url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/gerencial_atendimento_externo.php';
+        
+        window.open(url, '_self');
+      });
     });
   </script>
 </body>
