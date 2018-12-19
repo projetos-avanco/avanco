@@ -9,7 +9,7 @@ function confirmaUmAtendimentoRemoto($db, $id)
 {
   $query = "UPDATE av_agenda_atendimentos_remotos SET status = '2' WHERE id = $id";
 
-  $resultado = mysqli_query($db, $id);
+  $resultado = mysqli_query($db, $query);
 
   return $resultado;
 }
