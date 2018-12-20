@@ -44,7 +44,16 @@ function retornaEnderecoAjax($db, $id)
   $select =
     "SELECT
       e.id,
-    	e.tipo,
+    	CASE
+        WHEN (e.tipo = '1')
+          THEN 'Apartamento'
+        WHEN (e.tipo = '2')
+          THEN 'Casa'
+        WHEN (e.tipo = '3')
+          THEN 'Comercial'
+        WHEN (e.tipo = '4')
+          THEN 'Outros'
+      END AS tipo,
     	e.logradouro,
     	e.complemento,
     	e.numero,
