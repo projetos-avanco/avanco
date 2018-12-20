@@ -57,7 +57,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'relatorio_folgas.php'         OR
           $pagina == 'relatorio_faltas.php'         OR
           $pagina == 'relatorio_atrasos.php'        OR
-          $pagina == 'relatorio_extras.php'){
+          $pagina == 'relatorio_extras.php'         OR
+          $pagina == 'agenda.php'){
 
         return true;
 
@@ -112,8 +113,7 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'edita_folgas.php'                  OR
           $pagina == 'edita_faltas.php'                  OR
           $pagina == 'edita_atrasos.php'                 OR
-          $pagina == 'edita_extras.php'                  OR
-          $pagina == 'agenda.php'                        OR
+          $pagina == 'edita_extras.php'                  OR          
           $pagina == 'confirma_atendimento_externo.php'  OR
           $pagina == 'confirma_atendimento_remoto.php'   OR
           $pagina == 'cancela_atendimento_externo.php'   OR
