@@ -109,8 +109,7 @@ function verificaColaboradoresOnlineNoChat($array, $db)
            s.id = 39 OR
            s.id = 40 OR
            s.id = 41 OR
-           s.id = 42 OR
-           s.id = 43 OR
+           s.id = 42 OR           
            s.id = 61)
     AND (d.disabled = 0)
     AND (s.disabled = 0)
