@@ -23,5 +23,7 @@ function cancelaUmAtendimentoRemoto($db, $id)
 {
   $query = "UPDATE av_agenda_atendimentos_remotos SET status = '3' WHERE id = $id";
 
-  mysqli_query($db, $query);
+  $resultado = mysqli_query($db, $query);
+
+  return $resultado;
 }
