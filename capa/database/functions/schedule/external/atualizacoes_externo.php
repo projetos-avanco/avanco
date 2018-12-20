@@ -23,5 +23,7 @@ function cancelaUmAtendimentoExterno($db, $id)
 {
   $query = "UPDATE av_agenda_atendimentos_externos SET status = '3' WHERE id = $id";
 
-  mysqli_query($db, $query);
+  $resultado = mysqli_query($db, $query);
+
+  return $resultado;
 }
