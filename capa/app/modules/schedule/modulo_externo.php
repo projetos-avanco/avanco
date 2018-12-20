@@ -14,6 +14,7 @@ function solicitaConfirmacaoDeAtendimento($id)
 
   $db = abre_conexao();
 
+  # chamando função que confirma um atendimento externo
   confirmaUmAtendimentoExterno($db, $id);
 
   header('location: ' . BASE_URL . 'public/views/schedule/gerencial_atendimento_externo.php'); exit;
@@ -29,10 +30,10 @@ function solicitaCancelamentoDeAtendimento($id)
 
   $db = abre_conexao();
 
-  # chamando função que cancela um atendimento remoto
-  cancelaUmAtendimentoExterno($db, $id);
+  # chamando função que cancela um atendimento externo
+  $resultado = cancelaUmAtendimentoExterno($db, $id);
 
-  header('location: ' . BASE_URL . 'public/views/schedule/gerencial_atendimento_externo.php'); exit;
+  echo json_encode($resultado);
 }
 
 /**
@@ -42,15 +43,21 @@ function solicitaCancelamentoDeAtendimento($id)
  * @param - array com os dados de um endereço
  * @param - array com os dados de um contato
  * @param - array com os e-mails dos contatos em cópia
+ * @param - string informando se é para enviar o e-mail de cancelamento
  */
-function enviaEmailExterno($db, $externo, $endereco, $contato, $cc)
+function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null)
 {
   require_once '../../../../../libs/PHPMailer/src/Exception.php';
   require_once '../../../../../libs/PHPMailer/src/PHPMailer.php';
   require_once '../../../../../libs/PHPMailer/src/SMTP.php';
 
-  # chamando função que gera a mensagem de e-mail em formato HTML
-  $msg = geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $contato);
+  if (isset($tipo) && $tipo === 'cancelamento') {
+    # chamando função que gera a mensagem de e-mail em formato HTML
+    $msg = geraMensagemDeEmailDoCancelamentoDoAtendimentoExterno($db, $externo, $endereco, $contato);
+  } else {
+    # chamando função que gera a mensagem de e-mail em formato HTML
+    $msg = geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $contato);
+  }  
 
   # chamando função que consulta o endereço de e-mail do colaborador
   $emailColaborador = consultaEmailDoColaborador($db, $externo['colaborador']);
@@ -71,8 +78,12 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc)
     $email->Port       = 465;                                    
 
     # destinatários 
-    $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
-    
+    if (isset($tipo) && $tipo === 'cancelamento') {
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Cancelamento');
+    } else {
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
+    }
+
     # adicionando todos os e-mail de contato do cliente
     for ($i = 0; $i < count($contato['emails']); $i++) {
       $email->addAddress($contato['emails'][$i]);
@@ -96,8 +107,14 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc)
     #$email->addAttachment('/tmp/image.jpg', 'new.jpg');    
 
     # conteúdo
-    $email->isHTML(true);                                  
-    $email->Subject = 'Avanço | Agendamento';
+    $email->isHTML(true);
+
+    if (isset($tipo) && $tipo === 'cancelamento') {
+      $email->Subject = 'Avanço | Cancelamento';
+    } else {
+      $email->Subject = 'Avanço | Agendamento';
+    }
+
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
 
     # verificando qual supervisor está logado e importando sua foto correspondente

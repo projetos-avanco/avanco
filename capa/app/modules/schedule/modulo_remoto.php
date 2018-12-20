@@ -15,9 +15,9 @@ function solicitaCancelamentoDeAtendimento($id)
   $db = abre_conexao();
 
   # chamando função que cancela um atendimento remoto
-  cancelaUmAtendimentoRemoto($db, $id);
+  $resultado = cancelaUmAtendimentoRemoto($db, $id);
 
-  header('location: ' . BASE_URL . 'public/views/schedule/gerencial_atendimento_remoto.php'); exit;
+  echo json_encode($resultado);
 }
 
 /**
@@ -26,15 +26,21 @@ function solicitaCancelamentoDeAtendimento($id)
  * @param - array com os dados do atendimento remoto
  * @param - array com os dados de um contato
  * @param - array com os e-mails dos contatos em cópia
+ * @param - string informando se é para enviar o e-mail de cancelamento
  */
-function enviaEmailRemoto($db, $remoto, $contato, $cc)
+function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null)
 {
   require_once '../../../../../libs/PHPMailer/src/Exception.php';
   require_once '../../../../../libs/PHPMailer/src/PHPMailer.php';
   require_once '../../../../../libs/PHPMailer/src/SMTP.php';
 
-  # chamando função que gera a mensagem de e-mail em formato HTML
-  $msg = geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato);
+  if (isset($tipo) && $tipo === 'cancelamento') {
+    # chamando função que gera a mensagem de e-mail em formato HTML
+    $msg = geraMensagemDeEmailDoCancelamentoDoAtendimentoRemoto($db, $remoto, $contato);
+  } else {
+    # chamando função que gera a mensagem de e-mail em formato HTML
+    $msg = geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato);
+  }
 
   # chamando função que consulta o endereço de e-mail do colaborador
   $emailColaborador = consultaEmailDoColaborador($db, $remoto['colaborador']);
@@ -55,7 +61,11 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc)
     $email->Port       = 465;
 
     # destinatários
-    $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
+    if (isset($tipo) && $tipo === 'cancelamento') {      
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Cancelamento');
+    } else {      
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
+    }    
 
     # adicionando todos os e-mail de contato do cliente
     for ($i = 0; $i < count($contato['emails']); $i++) {
@@ -81,7 +91,12 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc)
 
     # conteúdo
     $email->isHTML(true);
-    $email->Subject = 'Avanço | Agendamento';
+    if (isset($tipo) && $tipo === 'cancelamento') {
+      $email->Subject = 'Avanço | Cancelamento';
+    } else {
+      $email->Subject = 'Avanço | Agendamento';
+    }
+
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
 
     # verificando qual supervisor está logado e importando sua foto correspondente
