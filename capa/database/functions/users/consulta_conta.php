@@ -177,3 +177,32 @@ function retornaTodosOsRamaisDosUsuarios($db)
   return $arr;
 
 }
+
+/**
+ * retorna todos os colaboradores ativos no chat via ajax
+ * @param - objeto com uma conexão aberta
+ */
+function retornaTodosOsColaboradoresAtivosDoChat($db)
+{
+  $query =
+    "SELECT
+      id,
+      CONCAT(name, ' ', surname) AS nome
+    FROM lh_users
+    WHERE (disabled = 0)
+      AND NOT (id = 1 OR id = 2 OR id = 3 OR id = 4 OR id = 6 OR id = 44)
+    ORDER BY name";
+  
+  $resultado = mysqli_query($db, $query);
+
+  $dados = array();
+
+  while ($linha = mysqli_fetch_array($resultado)) {
+    $dados[] = array(
+      'id'   => $linha['id'],
+      'nome' => $linha['nome']
+    );
+  }
+
+  echo json_encode($dados); exit;
+}
