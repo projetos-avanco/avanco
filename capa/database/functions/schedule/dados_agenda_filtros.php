@@ -5,7 +5,7 @@ require_once DIRETORIO_HELPERS . 'datas.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $data = array();
-
+echo json_encode('wow'); exit;
   if (isset($_GET['start']) && isset($_GET['end'])) {
     if ((!empty($_GET['start'])) && is_string($_GET['start'])) {
       $data['inicial'] = $_GET['start'];
@@ -43,11 +43,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           c.nome AS contato,
           e.endereco AS email,
           f.fixo,
-          m.movel,
-          CONCAT(n.logradouro, ' ', n.numero, ' ', n.complemento, ' ', n.referencia, ' ', b.distrito, ' ', n.cep, ' ', d.localidade, ' ', t.uf) AS endereco,
-          a.data_inicial,
-          a.data_final,
-          a.horario,
+          m.movel,          
+          a.data,
+          a.horario,          
           CASE
             WHEN (a.produto = 1)
               THEN 'Integral'
@@ -70,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
               THEN 'Cancelada'
           END AS status,
           DATE_FORMAT(a.registrado, '%Y-%m-%d') AS registrado
-      FROM av_agenda_atendimentos_externos AS a
+      FROM av_agenda_atendimentos_remotos AS a
       INNER JOIN lh_users AS s
         ON s.id = a.supervisor
       INNER JOIN lh_users AS o
@@ -84,29 +82,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       INNER JOIN av_agenda_telefones_fixos AS f
         ON f.id_contato = c.id
       INNER JOIN av_agenda_telefones_moveis AS m
-        ON m.id_contato = c.id	
-      INNER JOIN av_agenda_enderecos AS n
-        ON n.id_cnpj = r.id
-      INNER JOIN av_agenda_bairros AS b
-        ON b.id = n.id_bairro
-      INNER JOIN av_agenda_cidades AS d
-        ON d.id = b.id_cidade
-      INNER JOIN av_agenda_estados AS t
-        ON t.id = d.id_estado
-      WHERE (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+        ON m.id_contato = c.id      
+      WHERE (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')
         GROUP BY a.registro
         ORDER BY a.id";
-
+        
     $resultado = mysqli_query($db, $query);
 
     $dados = array();
 
     while ($linha = mysqli_fetch_array($resultado)) {
       $linha['cnpj']     = substr($linha['cnpj'], 0, 2) . '.'. substr($linha['cnpj'], 2, 3) . '.' . substr($linha['cnpj'], 5, 3) . '/' . substr($linha['cnpj'], 8, 4) . '-' . substr($linha['cnpj'], 12, 2);
-      $linha['empresa']    = strtoupper($linha['empresa']);
 
-      $linha['contato']    = ucwords($linha['contato']);
-      $linha['endereco']   = ucwords($linha['endereco']);
+      $linha['empresa']    = strtoupper($linha['empresa']);
+      $linha['contato']    = ucwords($linha['contato']);      
       $linha['observacao'] = ucwords($linha['observacao']);
 
       $dados[] = array(
@@ -120,16 +109,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         'contato'    => $linha['contato'],
         'email'      => $linha['email'],
         'fixo'       => $linha['fixo'],
-        'movel'      => $linha['movel'],
-        'endereco'   => $linha['endereco'],
-        'periodo'    => formataDataParaExibir($linha['data_inicial']) . ' até ' . formataDataParaExibir($linha['data_final']) . ' às ' . $linha['horario'],
+        'movel'      => $linha['movel'],        
+        'data'       => formataDataParaExibir($linha['data']) . ' às ' . $linha['horario'],
         'produto'    => $linha['produto'],
         'observacao' => $linha['observacao'],
         'registrado' => formataDataParaExibir($linha['registrado']),
-        'status'     => $linha['status'],
-        'title'      => strtoupper($linha['colaborador'] . ' - ATD Externo'),
-        'start'      => $linha['data_inicial'] . 'T' . $linha['horario'],
-        'end'        => $linha['data_final'] . 'T23:59:59'
+        'status'     => $linha['status'],        
+        'title'      => mb_strtoupper($linha['colaborador'] . ' - ATD Remoto', 'utf-8'),
+        'start'      => $linha['data'] . 'T' . $linha['horario'],
+        'end'        => $linha['data'] . 'T' . $linha['horario']
       );
     }
 

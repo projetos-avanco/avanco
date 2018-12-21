@@ -71,9 +71,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         'arquivo'      => $linha['arquivo'],
         'periodo'      => formataDataParaExibir($linha['data_inicial']) . ' até ' . formataDataParaExibir($linha['data_final']),        
         'observacao'   => $linha['observacao'],        
-        'title'        => mb_strtoupper($linha['motivo'], 'utf-8'),
-        'start'        => $linha['data_inicial'],
-        'end'          => $linha['data_final']
+        'title'        => mb_strtoupper($linha['colaborador'] . ' - Falta', 'utf-8'),
+        'start'        => $linha['data_inicial'] . 'T08:00:00',
+        'end'          => $linha['data_final'] . 'T23:59:59'
       );
     }
 

@@ -115,9 +115,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         'observacao' => $linha['observacao'],
         'registrado' => formataDataParaExibir($linha['registrado']),
         'status'     => $linha['status'],        
-        'title'      => strtoupper('Atendimento Remoto'),
-        'start'      => $linha['data'],
-        'end'        => $linha['data']
+        'title'      => mb_strtoupper($linha['colaborador'] . ' - ATD Remoto', 'utf-8'),
+        'start'      => $linha['data'] . 'T' . $linha['horario'],
+        'end'        => $linha['data'] . 'T' . $linha['horario']
       );
     }
 
