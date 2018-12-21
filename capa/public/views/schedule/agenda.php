@@ -32,12 +32,84 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbartablet.css" type="text/css" media="screen and (max-width: 769px)"/>
   <!-- dispositivos com largura máxima de 450px (por exemplo smartphones) -->
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/navbarsmart.css" type="text/css" media="screen and (max-width:450px)"/>
+
+  <style>
+    .fc-sun {background-color: #FBEFEF;}
+    .fc-sat {background-color: #FBEFEF;}
+
+    #lista-colaboradores {
+      border: 2px solid #ccc;
+      width: 600px;
+      height: 150px;
+      overflow-y: scroll;
+    }
+
+    .checkbox {
+      padding-left: 2%;
+    }
+  </style>
 </head>
 
 <body>
 
   <?php include ABS_PATH . 'inc/templates/navbar.php' ?>
   <?php include ABS_PATH . 'inc/templates/sidebar.php' ?>
+
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <h2>Agenda Registros</h2>
+              <hr>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12">
+
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-left">
+                  <strong>Filtros</strong>
+                </div>
+              </div>
+
+              <div class="panel-body"><!-- panel-body -->
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="colaborador">Lista Colaboradores</label>
+                      <div id="lista-colaboradores">
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                  <div class="row">
+                    <div class="col-sm-2 col-sm-offset-8">
+                      <div class="form-group">
+                        <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
+                          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                          Resetar
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                      <div class="form-group">
+                        <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
+                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                          Consultar
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+              </div><!-- panel-body -->
+            </div><!-- panel -->
+
+          </div>
+        </div>
 
         <div class="row">
           <div class="col-sm-12">
@@ -59,8 +131,9 @@
   <script src="<?php echo BASE_URL; ?>libs/fullcalendar/locale/pt-br.js"></script>
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/schedule/exibe_eventos.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/filtros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/atualiza_pagina.js"></script>
 </body>
 </html>
