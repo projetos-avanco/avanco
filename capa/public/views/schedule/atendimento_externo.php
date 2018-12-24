@@ -41,6 +41,27 @@
     .erro {
       border: 2px solid red;
     }
+
+    .btn-file {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
   </style>
 </head>
 
@@ -56,7 +77,7 @@
           </div>
         </div>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/external/processa_atendimento_externo.php" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/external/processa_atendimento_externo.php" method="post" enctype="multipart/form-data">
 
           <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
@@ -283,6 +304,17 @@
                       </div>
 
                       <div class="row">
+                        <div class="col-sm-3">
+                          <div class="form-group">
+                            <label for="anexo">Anexo</label>
+                            <span class="btn btn-danger btn-block btn-file">
+                              Anexar Arquivo <input id="anexo" type="file" name="externo[anexo]">
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label for="observacao">Observação</label>
@@ -367,8 +399,9 @@
                           <div class="form-group">
                             <label for="situacao">Situação</label>
                             <select class="form-control required" id="situacao" name="externo[situacao]">                              
-                              <option value="1">Visita à Confirmar</option>
-                              <option value="2" selected>Visita Confirmada</option>                              
+                              <option value="1"selected>Visita Confirmada</option>
+                              <option value="2">Visita Não Confirmada</option>
+                              <option value="3">Visita Reservada</option>
                             </select>
                           </div>
                         </div>
@@ -386,7 +419,7 @@
                               <option value="6">Atualização</option>
                             </select>
                           </div>
-                        </div>
+                        </div>                        
                       </div>
 
                       <div class="row">
