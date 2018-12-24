@@ -7,7 +7,7 @@
  */
 function confirmaUmAtendimentoExterno($db, $id)
 {
-  $query = "UPDATE av_agenda_atendimentos_externos SET status = '2' WHERE id = $id";
+  $query = "UPDATE av_agenda_atendimentos_externos SET status = '1' WHERE id = $id";
 
   $resultado = mysqli_query($db, $query);
 
@@ -21,7 +21,7 @@ function confirmaUmAtendimentoExterno($db, $id)
  */
 function cancelaUmAtendimentoExterno($db, $id)
 {
-  $query = "UPDATE av_agenda_atendimentos_externos SET status = '3' WHERE id = $id";
+  $query = "UPDATE av_agenda_atendimentos_externos SET status = '4' WHERE id = $id";
 
   $resultado = mysqli_query($db, $query);
 

@@ -7,7 +7,7 @@
  */
 function confirmaUmAtendimentoRemoto($db, $id)
 {
-  $query = "UPDATE av_agenda_atendimentos_remotos SET status = '2' WHERE id = $id";
+  $query = "UPDATE av_agenda_atendimentos_remotos SET status = '1' WHERE id = $id";
 
   $resultado = mysqli_query($db, $query);
 
@@ -21,7 +21,7 @@ function confirmaUmAtendimentoRemoto($db, $id)
  */
 function cancelaUmAtendimentoRemoto($db, $id)
 {
-  $query = "UPDATE av_agenda_atendimentos_remotos SET status = '3' WHERE id = $id";
+  $query = "UPDATE av_agenda_atendimentos_remotos SET status = '4' WHERE id = $id";
 
   $resultado = mysqli_query($db, $query);
 
