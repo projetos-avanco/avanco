@@ -229,7 +229,7 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoExterno($db, $externo, $e
     <html lang='pt-br'>
     <head>
       <meta http-equiv='content-type' content='text/html; charset=utf-8'>
-      <title>Cancelamento de Atendimento Externo</title>
+      <title>Atendimento Externo Cancelado</title>
 
       <style>
         $style
@@ -242,7 +242,7 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoExterno($db, $externo, $e
         <div class='row'>
           <div class='col-sm-12'>
             <div class='text-left'>
-              <h2>Cancelamento de Atendimento Externo</h2>
+              <h2>Atendimento Externo Cancelado</h2>
             </div>
           </div>
         </div>
@@ -508,10 +508,14 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
     <html lang='pt-br'>
     <head>
       <meta http-equiv='content-type' content='text/html; charset=utf-8'>
-      <title>Agendamento de Atendimento Externo</title>
+      <title>Atendimento Externo Agendado</title>
 
       <style>
         $style
+
+        #observacao {
+          color: red;
+        }
       </style>
     </head>
 
@@ -521,7 +525,7 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
         <div class='row'>
           <div class='col-sm-12'>
             <div class='text-left'>
-              <h2>Agendamento de Atendimento Externo</h2>
+              <h2>Atendimento Externo Agendado</h2>
             </div>
           </div>
         </div>
@@ -656,10 +660,27 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
       <br>";
   }
 
+  if (isset($_FILES['externo']) && $_FILES['externo']['error']['anexo'] == 0) {
+    $msg .=
+      "<div class='row'>
+        <div class='col-sm-12'>
+          <div class='text-left'>
+            <p><strong>Segue anexo relacionado ao agendamento</strong>.</p>
+          </div>
+        </div>
+      </div>
+      
+      <br>";
+  }
+
   $msg .= 
       "<div class='row'>
         <div class='col-sm-12'>
-          <div class='text-left'>            
+          <div class='text-left'>
+            <p id='observacao'><strong>Por favor, responda este e-mail confirmando o agendamento.</strong></p>
+
+            <br>
+
             <p>Qualquer dúvida, estamos a disposição.</p>
 
             <br>
@@ -782,7 +803,7 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoRemoto($db, $remoto, $con
     <html lang='pt-br'>
     <head>
       <meta http-equiv='content-type' content='text/html; charset=utf-8'>
-      <title>Cancelamento de Atendimento Remoto</title>
+      <title>Atendimento Remoto Cancelado</title>
 
       <style>
         $style
@@ -795,7 +816,7 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoRemoto($db, $remoto, $con
         <div class='row'>
           <div class='col-sm-12'>
             <div class='text-left'>
-              <h2>Cancelamento de Atendimento Remoto</h2>
+              <h2>Atendimento Remoto Cancelado</h2>
             </div>
           </div>
         </div>
@@ -1025,10 +1046,14 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
     <html lang='pt-br'>
     <head>
       <meta http-equiv='content-type' content='text/html; charset=utf-8'>
-      <title>Agendamento de Atendimento Remoto</title>
+      <title>Atendimento Remoto Agendado</title>
 
       <style>
         $style
+
+        #observacao {
+          color: red;
+        }
       </style>
     </head>
 
@@ -1038,7 +1063,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
         <div class='row'>
           <div class='col-sm-12'>
             <div class='text-left'>
-              <h2>Agendamento de Atendimento Remoto</h2>
+              <h2>Atendimento Remoto Agendado</h2>
             </div>
           </div>
         </div>
@@ -1141,11 +1166,29 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
         </div>
       </div>
 
-      <br>
+      <br>";
 
-      <div class='row'>
+  if (isset($_FILES['remoto']) && $_FILES['remoto']['error']['anexo'] == 0) {
+    $msg .=
+      "<div class='row'>
         <div class='col-sm-12'>
-          <div class='text-left'>            
+          <div class='text-left'>
+            <p><strong>Segue anexo relacionado ao agendamento</strong>.</p>
+          </div>
+        </div>
+      </div>
+      
+      <br>";
+  }
+
+  $msg .=
+      "<div class='row'>
+        <div class='col-sm-12'>
+          <div class='text-left'>
+            <p id='observacao'><strong>Por favor, responda este e-mail confirmando o agendamento.</strong></p>
+
+            <br>
+
             <p>Qualquer dúvida, estamos a disposição.</p>
 
             <br>
