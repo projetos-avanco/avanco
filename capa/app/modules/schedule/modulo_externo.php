@@ -79,9 +79,9 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null
 
     # destinatários 
     if (isset($tipo) && $tipo === 'cancelamento') {
-      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Cancelamento');
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Externo Cancelado');
     } else {
-      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Externo Agendado');
     }
 
     # adicionando todos os e-mail de contato do cliente
@@ -103,16 +103,19 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null
     $email->addBCC('agenda@avancoinfo.com.br');
 
     # anexos
-    #$email->addAttachment('/var/tmp/file.tar.gz');         
+    if (isset($_FILES['externo']) && $_FILES['externo']['error']['anexo'] == 0) {
+      $email->addAttachment($_FILES['externo']['tmp_name']['anexo'], $_FILES['externo']['name']['anexo']);
+    }
+
     #$email->addAttachment('/tmp/image.jpg', 'new.jpg');    
 
     # conteúdo
     $email->isHTML(true);
 
     if (isset($tipo) && $tipo === 'cancelamento') {
-      $email->Subject = 'Avanço | Cancelamento';
+      $email->Subject = 'Avanço | Atendimento Externo Cancelado';
     } else {
-      $email->Subject = 'Avanço | Agendamento';
+      $email->Subject = 'Avanço | Atendimento Externo Agendado';
     }
 
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
@@ -221,8 +224,8 @@ function recebeAtendimentoExterno($externo, $endereco, $contato, $copia)
 
       # verificando se o registro de pesquisa externa foi gravado com sucesso
       if ($resultado) {
-        # verificando se a visita já está confirmada
-        if ($externo['status'] == '2') {
+        # verificando se a visita não é reservada (reservado não envia e-mail)
+        if ($externo['status'] != '3') {
           $cc = array();
       
           # verificando se foram enviados os id's do contatos que receberam o e-mail em cópia

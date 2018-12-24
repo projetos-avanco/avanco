@@ -62,9 +62,9 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null)
 
     # destinatários
     if (isset($tipo) && $tipo === 'cancelamento') {      
-      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Cancelamento');
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Remoto Cancelado');
     } else {      
-      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Agendamento');
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Remoto Agendado');
     }    
 
     # adicionando todos os e-mail de contato do cliente
@@ -86,15 +86,18 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null)
     $email->addBCC('agenda@avancoinfo.com.br');
 
     # anexos
-    #$email->addAttachment('/var/tmp/file.tar.gz');
+    if (isset($_FILES['remoto']) && $_FILES['remoto']['error']['anexo'] == 0) {
+      $email->addAttachment($_FILES['remoto']['tmp_name']['anexo'], $_FILES['remoto']['name']['anexo']);
+    }
+
     #$email->addAttachment('/tmp/image.jpg', 'new.jpg');
 
     # conteúdo
     $email->isHTML(true);
     if (isset($tipo) && $tipo === 'cancelamento') {
-      $email->Subject = 'Avanço | Cancelamento';
+      $email->Subject = 'Avanço | Atendimento Remoto Cancelado';
     } else {
-      $email->Subject = 'Avanço | Agendamento';
+      $email->Subject = 'Avanço | Atendimento Remoto Agendado';
     }
 
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
@@ -245,8 +248,8 @@ function recebeAtendimentoRemoto($remoto, $contato, $copia)
 
       # verificando se o registro de atendimento remoto foi gravado com sucesso
       if ($resultado) {
-        # verificando se o agendamento já está confirmado
-        if ($remoto['status'] == '2') {
+        # verificando se o agendamento não é reservado (reservado não envia e-mail)
+        if ($remoto['status'] != '3') {
           $cc = array();
 
           # verificando se foram enviados os id's do contatos que receberam o e-mail em cópia
