@@ -81,9 +81,11 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
       # verificando se a situação do atendimento não está confirmada
       if ($_POST['remoto']['situacao'] == '1') {
         $remoto['status'] = '1';
-      } else {
+      } elseif ($_POST['remoto']['situacao'] == '2') {
         $remoto['status'] = '2';
-      }      
+      } else {
+        $remoto['status'] = '3';
+      }
     } else {
       $flag = true;
       $erros[] = 'O tipo de dados da situação do atendimento não está correto';
@@ -218,6 +220,15 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   } else {
     $flag = true;
     $erros[] = 'Não foi informado se o atendimento é faturado ou não.';
+  }
+
+  # verificando se foi enviado algum arquivo em anexo
+  if (isset($_FILES['remoto']) && $_FILES['remoto']['error']['anexo'] == 0) {          
+    # verificando se o tamanho do arquivo em anexo é maior que 2MB
+    if ($_FILES['remoto']['size']['anexo'] > 2097152) {
+      $flag = true;
+      $erros['mensagens'][] = 'O arquivo em anexo deve ter o tamanho máximo de 2MB.';      
+    }
   }
 
   # verificando se o valor do campo cobrança foi enviado
