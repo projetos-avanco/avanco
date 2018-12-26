@@ -10,9 +10,20 @@ use PHPMailer\PHPMailer\Exception;
  */
 function solicitaCancelamentoDeAtendimento($id)
 {
+  require_once DIRETORIO_FUNCTIONS . 'tickets/instrucoes_tickets.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/remote/consultas_remoto.php';  
   require_once DIRETORIO_FUNCTIONS . 'schedule/remote/atualizacoes_remoto.php';
+  require_once DIRETORIO_FUNCTIONS . 'hours/deleta_horas.php';
 
   $db = abre_conexao();
+
+  $remoto = retornaDadosDoAtendimentoRemoto($db, $id);
+
+  # chamando função que deleta um registro de issue
+  deletaIssues($db, $remoto['id_issue']);
+
+  # chamando função que deleta um registro de ticket na tabela de tickets
+  deletaTicketNoBancoDeDados($db, $remoto['registro']);
 
   # chamando função que cancela um atendimento remoto
   $resultado = cancelaUmAtendimentoRemoto($db, $id);

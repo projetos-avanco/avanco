@@ -26,9 +26,20 @@ function solicitaConfirmacaoDeAtendimento($id)
  */
 function solicitaCancelamentoDeAtendimento($id)
 {
+  require_once DIRETORIO_FUNCTIONS . 'schedule/external/consultas_externo.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/external/atualizacoes_externo.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/external/delecoes_externo.php';
+  require_once DIRETORIO_FUNCTIONS . 'hours/deleta_horas.php';
 
   $db = abre_conexao();
+
+  $externo = retornaDadosDoAtendimentoExterno($db, $id);
+
+  # chamando função que deleta um registro de issue
+  deletaIssues($db, $externo['id_issue']);
+
+  # chamando função que deleta um registro de pesquisa externa
+  deletaPesquisaExterna($db, consultaIdDoAtendimentoExterno($db, $externo['registro']));
 
   # chamando função que cancela um atendimento externo
   $resultado = cancelaUmAtendimentoExterno($db, $id);
