@@ -911,18 +911,6 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoRemoto($db, $remoto, $con
   $msg .= 
       "<div class='row'>
         <div class='col-sm-12'>
-          <div class='text-left'>
-            <p>
-              Favor entrar em contato pelo <strong><a href='http://portal.avancoinfo.com.br/#/login/' target='_blank'>Portal do Cliente</a></strong> (na opção <strong>Via Ticket Chat</strong>), na <strong>data</strong> e <strong>horário</strong> agendados para realização do atendimento.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <br>
-
-      <div class='row'>
-        <div class='col-sm-12'>
           <div class='text-left'>            
             <p>Qualquer dúvida, estamos a disposição.</p>
 
