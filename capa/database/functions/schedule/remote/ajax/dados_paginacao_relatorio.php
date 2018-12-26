@@ -36,11 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         e.registro,
         CASE
           WHEN (e.status = 1)
-            THEN 'Pendente'
+            THEN 'Atendimento Confirmado'
           WHEN (e.status = 2)
-            THEN 'Confirmada'
+            THEN 'Atendimento à Confirmar'
           WHEN (e.status = 3)
-            THEN 'Cancelada'
+            THEN 'Atendimento Reservado'
+          WHEN (e.status = 4)
+            THEN 'Atendimento Cancelado'
         END AS status,
         CONCAT(s.name, ' ', s.surname) AS supervisor,
         CONCAT(t.name, ' ', t.surname) AS colaborador,	
@@ -98,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           ON t.id = e.colaborador
         INNER JOIN av_agenda_contatos AS c
           ON c.id = e.id_contato
-        INNER JOIN av_registro_horas_issues AS i
+        LEFT JOIN av_registro_horas_issues AS i
           ON i.id = e.id_issue	
         WHERE (e.data BETWEEN '{$gerencial['data_inicial']}' AND '{$gerencial['data_final']}')";
 
@@ -217,11 +219,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         e.registro,
         CASE
           WHEN (e.status = 1)
-            THEN 'Pendente'
+            THEN 'Atendimento Confirmado'
           WHEN (e.status = 2)
-            THEN 'Confirmada'
+            THEN 'Atendimento à Confirmar'
           WHEN (e.status = 3)
-            THEN 'Cancelada'
+            THEN 'Atendimento Reservado'
+          WHEN (e.status = 4)
+            THEN 'Atendimento Cancelado'
         END AS status,
         CONCAT(s.name, ' ', s.surname) AS supervisor,
         CONCAT(t.name, ' ', t.surname) AS colaborador,	
@@ -279,7 +283,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           ON t.id = e.colaborador
         INNER JOIN av_agenda_contatos AS c
           ON c.id = e.id_contato
-        INNER JOIN av_registro_horas_issues AS i
+        LEFT JOIN av_registro_horas_issues AS i
           ON i.id = e.id_issue
         WHERE 
           (r.id     LIKE '%{$filtros['id']}%'           AND
