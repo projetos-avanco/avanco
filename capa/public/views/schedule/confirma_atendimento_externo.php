@@ -74,6 +74,27 @@
     .erro {
       border: 2px solid red;
     }
+
+    .btn-file {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
   </style>
 </head>
 
@@ -89,10 +110,33 @@
           </div>
         </div>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/confirmation/recebe_confirmacao_atendimento.php" method="post">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/confirmation/recebe_confirmacao_atendimento.php" method="post" enctype="multipart/form-data">
 
-          <div class="row">          
-            <div class="col-sm-6 col-sm-offset-3">
+          <div class="row">
+            <div class="col-sm-6">
+            
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <strong>Atendimento</strong>
+              </div>
+
+              <div class="panel-body"><!-- panel-body -->
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="anexo">Anexo</label>
+                      <span class="btn btn-danger btn-block btn-file">
+                        Anexar Arquivo <input id="anexo" type="file" name="externo[anexo]">
+                      </span>
+                    </div>
+                  </div>
+                </div>                                                        
+              </div><!-- panel-body -->
+            </div><!-- panel -->
+
+            </div>
+
+            <div class="col-sm-6">
 
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
