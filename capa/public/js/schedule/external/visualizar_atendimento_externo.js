@@ -27,7 +27,7 @@ $(function() {
 
     gerencial.empresa = gerencial.empresa.substr(0, 32).toUpperCase();
     
-    if (gerencial.status === 'Pendente') {      
+    if (gerencial.status === 'Visita Reservada') {      
       swal({
         icon: 'info',
         title: 'Atendimento Externo!',
@@ -66,6 +66,69 @@ $(function() {
           url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/confirma_atendimento_externo.php?id=' + gerencial.id + '&id-cnpj=' + gerencial.id_cnpj + '&id-contato=' + gerencial.id_contato;
           
           window.open(url, '_self');
+        }
+      });
+    } else if (gerencial.status === 'Visita à Confirmar') {
+      swal({
+        icon: 'info',
+        title: 'Atendimento Externo!',
+        text:               
+          'Lançado: '             + gerencial.lancado            + "\n\n" +
+          'Registro: '            + gerencial.registro           + "\n\n" +
+          'Situação: '            + gerencial.status             + "\n\n" +
+          'Supervisor: '          + gerencial.supervisor         + "\n\n" +
+          'Colaborador: '         + gerencial.colaborador        + "\n\n" +
+          'Tipo de Atendimento: ' + gerencial.tipo               + "\n\n\n\n" +
+          'Empresa: '             + gerencial.empresa            + "\n\n" +
+          'CNPJ: '                + gerencial.cnpj               + "\n\n" +
+          'Contato: '             + gerencial.contato            + "\n\n" +
+          'Período: '             + gerencial.periodo            + "\n\n" +
+          'Produto: '             + gerencial.produto            + "\n\n" +
+          'Observacao: '          + gerencial.observacao         + "\n\n\n\n" +
+          'Faturado: '            + gerencial.faturado           + "\n\n" +
+          'Despesas: '            + gerencial.despesas           + "\n\n" +
+          'Relatório Entregue: '  + gerencial.relatorio_entregue + "\n\n" +
+          'Pesquisa Realizada: '  + gerencial.pesquisa_realizada,
+          buttons: {
+            confirm: {
+              text: 'Confirmar Visita'
+            },
+            cancel: {
+              text: 'Fechar',
+              closeModal: true,
+              visible: true
+            }        
+          }
+      }).then((confirmar) => {
+        if (confirmar) {          
+         $.ajax({
+          type: 'post',
+          url: '../../../app/requests/post/schedule/confirmation/processa_confirmacao_atendimento.php',
+          dataType: 'json',
+          data: {
+            id: gerencial.id,
+            pagina: 'externo'
+          },
+          success: function(confirmacao) {
+            swal({
+              icon: 'success',
+              title: 'Atendimento Externo!',
+              text: 'Atendimento confirmado com sucesso.',
+              buttons: {
+                confirm: {
+                  text: 'Ok'
+                },                
+              }
+            }).then((confirmar) => {
+              if (confirmar) {
+                location.reload();
+              }
+            });
+          },
+          error: function(erro) {
+            console.log(erro);
+          }
+         });
         }
       });
     } else {
