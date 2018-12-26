@@ -14,6 +14,7 @@ function solicitaEnvioDeEmailDeCancelamentoExterno($id, $idCnpj, $idContato, $co
   require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_agenda.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/external/atualizacoes_externo.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/external/consultas_externo.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/external/delecoes_externo.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/address/consultas_endereco.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
   require_once DIRETORIO_FUNCTIONS . 'hours/deleta_horas.php';
@@ -62,6 +63,9 @@ function solicitaEnvioDeEmailDeCancelamentoExterno($id, $idCnpj, $idContato, $co
 
     # chamando função que deleta um registro de issue
     deletaIssues($db, $externo['id_issue']);
+
+    # chamando função que deleta um registro de pesquisa externa
+    deletaPesquisaExterna($db, consultaIdDoAtendimentoExterno($db, $externo['registro']));
 
     # chamando função que realiza o envio dos e-mails
     if ($resultado = enviaEmailExterno($db, $externo, $endereco, $contato, $cc['emails'], 'cancelamento')) {
@@ -144,12 +148,12 @@ function solicitaEnvioDeEmailDeCancelamentoRemoto($id, $idCnpj, $idContato, $cop
       $cc['emails'] = array();
     }
 
-    # chamando função que deleta um registro de ticket na tabela de tickets
-    deletaTicketNoBancoDeDados($db, $remoto['registro']);
-
     # chamando função que deleta um registro de issue
     deletaIssues($db, $remoto['id_issue']);
 
+    # chamando função que deleta um registro de ticket na tabela de tickets
+    deletaTicketNoBancoDeDados($db, $remoto['registro']);
+    
     # chamando função que realiza o envio dos e-mails
     if ($resultado = enviaEmailRemoto($db, $remoto, $contato, $cc['emails'], 'cancelamento')) {
       # e-mail foi enviado
