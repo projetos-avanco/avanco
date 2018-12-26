@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ON c.id = e.id_contato
       LEFT JOIN av_registro_horas_issues AS i
         ON i.id = e.id_issue
-      INNER JOIN av_agenda_pesquisas_externas AS x
+      LEFT JOIN av_agenda_pesquisas_externas AS x
         ON x.id = e.id
       WHERE (e.data_inicial BETWEEN '{$gerencial['data_inicial']}' AND '{$gerencial['data_final']}')";
     
@@ -317,7 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ON c.id = e.id_contato
       LEFT JOIN av_registro_horas_issues AS i
         ON i.id = e.id_issue
-      INNER JOIN av_agenda_pesquisas_externas AS x
+      LEFT JOIN av_agenda_pesquisas_externas AS x
         ON x.id = e.id
       WHERE 
         (r.id     LIKE '%{$filtros['id']}%'           AND
