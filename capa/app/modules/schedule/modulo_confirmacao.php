@@ -16,14 +16,7 @@ function solicitaEnvioDeEmailDeConfirmacaoExterno($id, $idCnpj, $idContato, $cop
   require_once DIRETORIO_FUNCTIONS . 'schedule/external/consultas_externo.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/address/consultas_endereco.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
-
-  # abrindo sessão de validação
-  $_SESSION['atividades'] = array(
-    'tipo'      => 'danger',
-    'exibe'     => false,
-    'mensagens' => array()
-  );
-
+  
   $cc = array();
 
   $db = abre_conexao();
@@ -98,14 +91,7 @@ function solicitaEnvioDeEmailDeConfirmacaoRemoto($id, $idCnpj, $idContato, $copi
   require_once DIRETORIO_FUNCTIONS . 'schedule/remote/consultas_remoto.php';  
   require_once DIRETORIO_FUNCTIONS . 'schedule/contact/consultas_contato.php';
   require_once DIRETORIO_FUNCTIONS . 'avancoins/colaboradores.php';
-
-  # abrindo sessão de validação
-  $_SESSION['atividades'] = array(
-    'tipo'      => 'danger',
-    'exibe'     => false,
-    'mensagens' => array()
-  );
-
+  
   $cc = array();
 
   $db = abre_conexao();
