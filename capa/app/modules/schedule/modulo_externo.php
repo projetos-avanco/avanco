@@ -272,7 +272,7 @@ function recebeAtendimentoExterno($externo, $endereco, $contato, $copia)
             # chamando função que deleta um registro de issue
             deletaIssues($db, $externo['id_issue']);
           }
-        } elseif ($externo['status'] == '1') {
+        } else {
           $_SESSION['atividades']['tipo'] = 'success';
           $_SESSION['atividades']['exibe'] = true;
           $_SESSION['atividades']['mensagens'][] = 'Registro gerado com sucesso.';
