@@ -72,26 +72,32 @@ $(function() {
           
           if (dados[i].relatorio_entregue === 'Sim') {
             tbody += 
-            '<td>' +
-              '<button class="btn btn-success btn-sm btn-block" id="visualizar-relatorio" type="button" value="' + dados[i].issue + '">' +
-                '<i class="fa fa-eye" aria-hidden="true"></i> Visualizar' +
-              '</button' +
-            '</td>';
+              '<td>' +
+                '<button class="btn btn-success btn-sm btn-block" id="visualizar-relatorio" type="button" value="' + dados[i].issue + '">' +
+                  '<i class="fa fa-eye" aria-hidden="true"></i> Visualizar' +
+                '</button' +
+              '</td>';
+          } else if (dados[i].relatorio_entregue === null) {
+            tbody += '<td></td>';
           } else {
             tbody += 
-            '<td>' +
-              '<button class="btn btn-warning btn-sm btn-block" id="editar-relatorio" type="button" value="' + dados[i].issue + '">' +
-                '<i class="fa fa-pencil" aria-hidden="true"></i> Editar' +
-              '</button' +
-            '</td>';
+              '<td>' +
+                '<button class="btn btn-warning btn-sm btn-block" id="editar-relatorio" type="button" value="' + dados[i].issue + '">' +
+                  '<i class="fa fa-pencil" aria-hidden="true"></i> Editar' +
+                '</button' +
+              '</td>';
           }
 
-          tbody +=
-          '<td>' +
-            '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
-              '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
-            '</button' +
-          '</td>';
+          if (dados[i].status != 'Atendimento Cancelado') {
+            tbody +=
+              '<td>' +
+                '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
+                  '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
+                '</button' +
+              '</td>';
+          } else {
+            tbody += '<td></td>';
+          }
   
           tbody += '</tr>'
         }
@@ -218,26 +224,32 @@ $(function() {
           
           if (dados[i].relatorio_entregue === 'Sim') {
             tbody += 
-            '<td>' +
-              '<button class="btn btn-success btn-sm btn-block" id="visualizar-relatorio" type="button" value="' + dados[i].issue + '">' +
-                '<i class="fa fa-eye" aria-hidden="true"></i> Visualizar' +
-              '</button' +
-            '</td>';
+              '<td>' +
+                '<button class="btn btn-success btn-sm btn-block" id="visualizar-relatorio" type="button" value="' + dados[i].issue + '">' +
+                  '<i class="fa fa-eye" aria-hidden="true"></i> Visualizar' +
+                '</button' +
+              '</td>';
+          } else if (dados[i].relatorio_entregue === null) {
+            tbody += '<td></td>';
           } else {
             tbody += 
-            '<td>' +
-              '<button class="btn btn-warning btn-sm btn-block" id="editar-relatorio" type="button" value="' + dados[i].issue + '">' +
-                '<i class="fa fa-pencil" aria-hidden="true"></i> Editar' +
-              '</button' +
-            '</td>';
+              '<td>' +
+                '<button class="btn btn-warning btn-sm btn-block" id="editar-relatorio" type="button" value="' + dados[i].issue + '">' +
+                  '<i class="fa fa-pencil" aria-hidden="true"></i> Editar' +
+                '</button' +
+              '</td>';
           }
-                  
-          tbody +=
-          '<td>' +
-            '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
-              '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
-            '</button' +
-          '</td>';
+          
+          if (dados[i].status != 'Atendimento Cancelado') {
+            tbody +=
+              '<td>' +
+                '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
+                  '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
+                '</button' +
+              '</td>';
+          } else {
+            tbody += '<td></td>';
+          }
   
           tbody += '</tr>'
         }
