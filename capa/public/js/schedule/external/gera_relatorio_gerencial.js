@@ -29,7 +29,7 @@ $(function() {
               '<th class="text-center">Período</th>'                 +
               '<th class="text-center">Situação</th>'                +              
               '<th class="text-center">Atendimento</th>'             +              
-              '<th class="text-center"></th>'                        +
+              '<th class="text-center">Externo</th>'                 +
               '<th class="text-center">Relatório</th>'               +
               '<th class="text-center">Pesquisa</th>'                +
               '<th class="text-center"></th>'                        +
@@ -64,8 +64,8 @@ $(function() {
           tbody += '<td class="text-left">'   + dados[i].empresa.toUpperCase() + '</td>';
           tbody += '<td class="text-left">'   + dados[i].colaborador           + '</td>';          
           tbody += '<td class="text-center">' + dados[i].periodo               + '</td>';
-          tbody += '<td class="text-center">' + dados[i].status                + '</td>';          
-          tbody += '<td class="text-center">' + dados[i].tipo                  + '</td>';          
+          tbody += '<td class="text-left">'   + dados[i].status                + '</td>';          
+          tbody += '<td class="text-left">'   + dados[i].tipo                  + '</td>';          
           tbody +=
             '<td>' +
               '<button class="btn btn-success btn-sm btn-block" id="visualizar-atendimento" type="button" value="' + dados[i].id + '">' +
@@ -194,7 +194,7 @@ $(function() {
               '<th class="text-center">Período</th>'     +
               '<th class="text-center">Situação</th>'    +
               '<th class="text-center">Atendimento</th>' +
-              '<th class="text-center"></th>'            +
+              '<th class="text-center">Externo</th>'     +
               '<th class="text-center">Relatório</th>'   +
               '<th class="text-center">Pesquisa</th>'    +
               '<th class="text-center"></th>'            +
@@ -229,8 +229,8 @@ $(function() {
           tbody += '<td class="text-left">'   + dados[i].empresa.toUpperCase() + '</td>';
           tbody += '<td class="text-left">'   + dados[i].colaborador           + '</td>';
           tbody += '<td class="text-center">' + dados[i].periodo               + '</td>';
-          tbody += '<td class="text-center">' + dados[i].status                + '</td>';
-          tbody += '<td class="text-center">' + dados[i].tipo                  + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].status                + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].tipo                  + '</td>';
           
           tbody += 
             '<td>' +
