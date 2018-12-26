@@ -27,6 +27,16 @@ $(function() {
 
     gerencial.empresa = gerencial.empresa.substr(0, 32).toUpperCase();
     
+    // verificando se o relatorio de horas foi deletado, ou seja, o atendimento foi cancelado
+    if (gerencial.relatorio_entregue == 'null') {
+      gerencial.relatorio_entregue = 'Deletado';
+    }
+
+    // verificando se a pesquisa externa foi deletada, ou seja, o atendimento foi cancelado
+    if (gerencial.pesquisa_realizada == 'null') {
+      gerencial.pesquisa_realizada = 'Deletado';
+    }
+
     if (gerencial.status === 'Visita Reservada') {      
       swal({
         icon: 'info',
