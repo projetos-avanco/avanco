@@ -56,7 +56,7 @@ function solicitaCancelamentoDeAtendimento($id)
  * @param - array com os e-mails dos contatos em cópia
  * @param - string informando se é para enviar o e-mail de cancelamento
  */
-function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null)
+function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null, $alteracoes = null)
 {
   require_once '../../../../../libs/PHPMailer/src/Exception.php';
   require_once '../../../../../libs/PHPMailer/src/PHPMailer.php';
@@ -65,6 +65,9 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null
   if (isset($tipo) && $tipo === 'cancelamento') {
     # chamando função que gera a mensagem de e-mail em formato HTML
     $msg = geraMensagemDeEmailDoCancelamentoDoAtendimentoExterno($db, $externo, $endereco, $contato);
+  } elseif (isset($tipo) && $tipo === 'alteracao') {
+    # chamando função que gera a mensagem de e-mail em formato HTML
+    $msg = geraMensagemDeEmailDeAlteracaoDoAtendimentoExterno($db, $externo, $endereco, $contato, $alteracoes);
   } else {
     # chamando função que gera a mensagem de e-mail em formato HTML
     $msg = geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $contato);
@@ -91,6 +94,8 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null
     # destinatários 
     if (isset($tipo) && $tipo === 'cancelamento') {
       $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Externo Cancelado');
+    } elseif (isset($tipo) && $tipo === 'alteracao') {
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Externo Alterado');
     } else {
       $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Externo Agendado');
     }
@@ -125,6 +130,8 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null
 
     if (isset($tipo) && $tipo === 'cancelamento') {
       $email->Subject = 'Avanço | Atendimento Externo Cancelado';
+    } else if (isset($tipo) && $tipo === 'alteracao') {
+      $email->Subject = 'Avanço | Atendimento Externo Alterado';
     } else {
       $email->Subject = 'Avanço | Atendimento Externo Agendado';
     }
