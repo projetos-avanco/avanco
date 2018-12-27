@@ -62,20 +62,31 @@ $(function() {
           confirm: {
             text: 'Confirmar Visita'
           },
+          catch: {
+            text: 'Alterar Visita',
+            value: 'alterar'
+          },
           cancel: {
             text: 'Fechar',
             closeModal: true,
             visible: true
           }        
         }
-      }).then((confirmar) => {
-        if (confirmar) {
+      }).then((valor) => {
+        if (valor === true) {
           var url = window.location.href;
           var tmp = url.split('/');
 
           url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/confirma_atendimento_externo.php?id=' + gerencial.id + '&id-cnpj=' + gerencial.id_cnpj + '&id-contato=' + gerencial.id_contato;
           
           window.open(url, '_self');
+        } else if (valor === 'alterar') {
+          var url = window.location.href;
+          var tmp = url.split('/');
+
+          url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/edita_atendimento_externo.php?id=' + gerencial.id;
+          
+          window.open(url, '_self');          
         }
       });
     } else if (gerencial.status === 'Visita à Confirmar') {
@@ -103,14 +114,18 @@ $(function() {
             confirm: {
               text: 'Confirmar Visita'
             },
+            catch: {
+              text: 'Alterar Visita',
+              value: 'alterar'
+            },
             cancel: {
               text: 'Fechar',
               closeModal: true,
               visible: true
             }        
           }
-      }).then((confirmar) => {
-        if (confirmar) {          
+      }).then((valor) => {
+        if (valor === true) {
          $.ajax({
           type: 'post',
           url: '../../../app/requests/post/schedule/confirmation/processa_confirmacao_atendimento.php',
@@ -139,6 +154,13 @@ $(function() {
             console.log(erro);
           }
          });
+        } else if (valor === 'alterar') {
+          var url = window.location.href;
+          var tmp = url.split('/');
+
+          url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/edita_atendimento_externo.php?id=' + gerencial.id;
+          
+          window.open(url, '_self'); 
         }
       });
     } else {
@@ -162,12 +184,25 @@ $(function() {
           'Despesas: '            + gerencial.despesas           + "\n\n" +
           'Relatório Entregue: '  + gerencial.relatorio_entregue + "\n\n" +
           'Pesquisa Realizada: '  + gerencial.pesquisa_realizada,
-        buttons: {          
+        buttons: {
+          catch: {
+            text: 'Alterar Visita',
+            value: 'alterar'
+          },
           cancel: {
             text: 'Fechar',
             closeModal: true,
             visible: true
           }        
+        }
+      }).then((valor) => {
+        if (valor === 'alterar') {
+          var url = window.location.href;
+          var tmp = url.split('/');
+
+          url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/edita_atendimento_externo.php?id=' + gerencial.id;
+          
+          window.open(url, '_self');           
         }
       });
     }
