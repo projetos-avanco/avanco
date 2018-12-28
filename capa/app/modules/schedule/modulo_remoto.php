@@ -39,7 +39,7 @@ function solicitaCancelamentoDeAtendimento($id)
  * @param - array com os e-mails dos contatos em cópia
  * @param - string informando se é para enviar o e-mail de cancelamento
  */
-function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null)
+function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null, $alteracoes = null)
 {
   require_once '../../../../../libs/PHPMailer/src/Exception.php';
   require_once '../../../../../libs/PHPMailer/src/PHPMailer.php';
@@ -48,6 +48,9 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null)
   if (isset($tipo) && $tipo === 'cancelamento') {
     # chamando função que gera a mensagem de e-mail em formato HTML
     $msg = geraMensagemDeEmailDoCancelamentoDoAtendimentoRemoto($db, $remoto, $contato);
+  } elseif (isset($tipo) && $tipo === 'alteracao') {
+    # chamando função que gera a mensagem de e-mail em formato HTML
+    $msg = geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contato, $alteracoes);
   } else {
     # chamando função que gera a mensagem de e-mail em formato HTML
     $msg = geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato);
@@ -74,6 +77,8 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null)
     # destinatários
     if (isset($tipo) && $tipo === 'cancelamento') {      
       $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Remoto Cancelado');
+    } elseif (isset($tipo) && $tipo === 'alteracao') {
+      $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Remoto Alterado');
     } else {      
       $email->setFrom('agenda@avancoinfo.com.br', 'Avanço | Atendimento Remoto Agendado');
     }    
@@ -107,6 +112,8 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null)
     $email->isHTML(true);
     if (isset($tipo) && $tipo === 'cancelamento') {
       $email->Subject = 'Avanço | Atendimento Remoto Cancelado';
+    } elseif (isset($tipo) && $tipo === 'alteracao') {
+      $email->Subject = 'Avanço | Atendimento Remoto Alterado';
     } else {
       $email->Subject = 'Avanço | Atendimento Remoto Agendado';
     }
