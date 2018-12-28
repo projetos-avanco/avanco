@@ -39,13 +39,13 @@
 
     #lista-colaboradores {
       border: 2px solid #ccc;
-      width: 600px;
+      width: 300px;
       height: 150px;
       overflow-y: scroll;
     }
 
     .checkbox {
-      padding-left: 2%;
+      padding-left: 2.5%;
     }
   </style>
 </head>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-12">
+          <div class="col-sm-6 col-sm-offset-6">
 
             <div class="panel panel-info"><!-- panel -->
               <div class="panel-heading">
@@ -76,7 +76,7 @@
 
               <div class="panel-body"><!-- panel-body -->
                 <div class="row">
-                  <div class="col-sm-6">
+                  <div class="col-sm-12">
                     <div class="form-group">
                       <label for="colaborador">Lista Colaboradores</label>
                       <div id="lista-colaboradores">
@@ -87,7 +87,7 @@
                 </div>
 
                   <div class="row">
-                    <div class="col-sm-2 col-sm-offset-8">
+                    <div class="col-sm-3 col-sm-offset-6">
                       <div class="form-group">
                         <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
                           <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
@@ -96,7 +96,7 @@
                       </div>
                     </div>
 
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                       <div class="form-group">
                         <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
                           <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
