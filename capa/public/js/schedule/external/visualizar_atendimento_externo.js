@@ -37,7 +37,7 @@ $(function() {
       gerencial.pesquisa_realizada = 'Deletado';
     }
 
-    if (gerencial.status === 'Visita Reservada') {      
+    if (gerencial.status === 'Reservado') {      
       swal({
         icon: 'info',
         title: 'Atendimento Externo!',
@@ -60,10 +60,10 @@ $(function() {
           'Pesquisa Realizada: '  + gerencial.pesquisa_realizada,
         buttons: {
           confirm: {
-            text: 'Confirmar Visita'
+            text: 'Confirmar'
           },
           catch: {
-            text: 'Alterar Visita',
+            text: 'Alterar',
             value: 'alterar'
           },
           cancel: {
@@ -89,7 +89,7 @@ $(function() {
           window.open(url, '_self');          
         }
       });
-    } else if (gerencial.status === 'Visita à Confirmar') {
+    } else if (gerencial.status === 'À Confirmar') {
       swal({
         icon: 'info',
         title: 'Atendimento Externo!',
@@ -112,10 +112,10 @@ $(function() {
           'Pesquisa Realizada: '  + gerencial.pesquisa_realizada,
           buttons: {
             confirm: {
-              text: 'Confirmar Visita'
+              text: 'Confirmar'
             },
             catch: {
-              text: 'Alterar Visita',
+              text: 'Alterar',
               value: 'alterar'
             },
             cancel: {
@@ -186,7 +186,7 @@ $(function() {
           'Pesquisa Realizada: '  + gerencial.pesquisa_realizada,
         buttons: {
           catch: {
-            text: 'Alterar Visita',
+            text: 'Alterar',
             value: 'alterar'
           },
           cancel: {
