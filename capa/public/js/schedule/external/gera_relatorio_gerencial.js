@@ -64,8 +64,8 @@ $(function() {
           tbody += '<td class="text-left">'   + dados[i].empresa.toUpperCase() + '</td>';
           tbody += '<td class="text-left">'   + dados[i].colaborador           + '</td>';          
           tbody += '<td class="text-center">' + dados[i].periodo               + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].status                + '</td>';          
-          tbody += '<td class="text-left">'   + dados[i].tipo                  + '</td>';          
+          tbody += '<td class="text-center">' + dados[i].status                + '</td>';          
+          tbody += '<td class="text-center">' + dados[i].tipo                  + '</td>';          
           tbody +=
             '<td>' +
               '<button class="btn btn-success btn-sm btn-block" id="visualizar-atendimento" type="button" value="' + dados[i].id + '">' +
@@ -237,8 +237,8 @@ $(function() {
           tbody += '<td class="text-left">'   + dados[i].empresa.toUpperCase() + '</td>';
           tbody += '<td class="text-left">'   + dados[i].colaborador           + '</td>';
           tbody += '<td class="text-center">' + dados[i].periodo               + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].status                + '</td>';
-          tbody += '<td class="text-left">'   + dados[i].tipo                  + '</td>';
+          tbody += '<td class="text-center">' + dados[i].status                + '</td>';
+          tbody += '<td class="text-center">' + dados[i].tipo                  + '</td>';
           
           tbody += 
             '<td>' +
