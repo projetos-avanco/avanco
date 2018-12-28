@@ -503,15 +503,43 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoExterno($db, $externo, $ende
   $style = retornaCssDoBootstrap();
 
   $msgAlteracao = '';
+  $contador = 0;
 
   # verificando quais dados foram alterados
-  if ($alteracoes['colaborador']) {$msgAlteracao .= 'o <strong>técnico avanço</strong>, ';}
-  if ($alteracoes['data_inicial'] || $alteracoes['data_final']) {$msgAlteracao .= 'o <strong>período</strong>, ';}
-  if ($alteracoes['horario']) {$msgAlteracao .= 'o <strong>horário</strong>, ';}
-  if ($alteracoes['observacao']) {$msgAlteracao .= 'o <strong>trabalho a ser realizado</strong>, ';}
-  if ($alteracoes['faturado']) {$msgAlteracao .= 'informações sobre o <strong>faturamento da visita</strong>, ';}
-  if ($alteracoes['despesa']) {$msgAlteracao .= 'informações sobre as <strong>despesas da visita</strong>, ';}
-  if ($alteracoes['valor_hora'] || $alteracoes['valor_pacote']) {$msgAlteracao .= 'informações sobre <strong>valores da visita</strong>, ';}
+  if ($alteracoes['colaborador']) {
+    $msgAlteracao .= 'o <strong>técnico avanço</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['data_inicial'] || $alteracoes['data_final']) {
+    $msgAlteracao .= 'o <strong>período</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['horario']) {
+    $msgAlteracao .= 'o <strong>horário</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['observacao']) {
+    $msgAlteracao .= 'o <strong>trabalho a ser realizado</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['faturado']) {
+    $msgAlteracao .= 'informações sobre o <strong>faturamento da visita</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['despesa']) {
+    $msgAlteracao .= 'informações sobre as <strong>despesas da visita</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['valor_hora'] || $alteracoes['valor_pacote']) {
+    $msgAlteracao .= 'informações sobre <strong>valores do serviço</strong>, ';
+    $contador++;
+  }
+
+  if ($contador > 1) {
+    $msgAlteracao .= ' foram alterados.';
+  } else {
+    $msgAlteracao .= ' foi alterado.';
+  }
 
   # montando mensagem no formato HTML
   $msg = "
@@ -548,7 +576,7 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoExterno($db, $externo, $ende
             <div class='text-left'>
               <p>Olá {$contato['nome']}, tudo bem?</p>
 
-              <p>Houve alterações nos dados referentes ao seu atendimento: $msgAlteracao foi/foram alterado(s).</p>
+              <p>Houve alterações nos dados referentes ao seu atendimento: $msgAlteracao</p>
               
               <p>Segue abaixo os novos dados da visita agendada.</p>
             </div>
@@ -1342,14 +1370,39 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contat
   $style = retornaCssDoBootstrap();
 
   $msgAlteracao = '';
+  $contador = 0;
 
   # verificando quais dados foram alterados
-  if ($alteracoes['colaborador']) {$msgAlteracao .= 'o <strong>técnico avanço</strong>, ';}
-  if ($alteracoes['data']) {$msgAlteracao .= 'a <strong>data</strong>, ';}
-  if ($alteracoes['horario']) {$msgAlteracao .= 'o <strong>horário</strong>, ';}
-  if ($alteracoes['observacao']) {$msgAlteracao .= 'o <strong>trabalho a ser realizado</strong>, ';}
-  if ($alteracoes['faturado']) {$msgAlteracao .= 'informações sobre o <strong>faturamento da visita</strong>, ';}  
-  if ($alteracoes['valor_hora'] || $alteracoes['valor_pacote']) {$msgAlteracao .= 'informações sobre <strong>valores da visita</strong>, ';}
+  if ($alteracoes['colaborador']) {
+    $msgAlteracao .= 'o <strong>técnico avanço</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['data']) {
+    $msgAlteracao .= 'a <strong>data</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['horario']) {
+    $msgAlteracao .= 'o <strong>horário</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['observacao']) {
+    $msgAlteracao .= 'o <strong>trabalho a ser realizado</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['faturado']) {
+    $msgAlteracao .= 'informações sobre o <strong>faturamento do atendimento</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['valor_hora'] || $alteracoes['valor_pacote']) {
+    $msgAlteracao .= 'informações sobre <strong>valores do serviço</strong>, ';
+    $contador++;
+  }
+
+  if ($contador > 1) {
+    $msgAlteracao .= ' foram alterados.';
+  } else {
+    $msgAlteracao .= ' foi alterado.';
+  }
 
   # montando mensagem no formato HTML
   $msg = "
@@ -1357,7 +1410,7 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contat
     <html lang='pt-br'>
     <head>
       <meta http-equiv='content-type' content='text/html; charset=utf-8'>
-      <title>Atendimento Remoto Agendado</title>
+      <title>Atendimento Remoto Alterado</title>
 
       <style>
         $style
@@ -1374,7 +1427,7 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contat
         <div class='row'>
           <div class='col-sm-12'>
             <div class='text-left'>
-              <h2>Atendimento Remoto Agendado</h2>
+              <h2>Atendimento Remoto Alterado</h2>
             </div>
           </div>
         </div>
@@ -1386,7 +1439,7 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contat
             <div class='text-left'>
               <p>Olá {$contato['nome']}, tudo bem?</p>
 
-              <p>Houve alterações nos dados referentes ao seu atendimento: $msgAlteracao foi/foram alterado(s).</p>
+              <p>Houve alterações nos dados referentes ao seu atendimento: $msgAlteracao</p>
                                         
               <p>Segue abaixo os novos dados para o atendimento remoto agendado.</p>
             </div>
