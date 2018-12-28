@@ -1,6 +1,29 @@
 <?php
 
 /**
+ * altera os dados de um ticket solicitado pela página de atendimento remoto
+ * @param - objeto com uma conexão aberta
+ * @param - array com os dados do ticket
+ */
+function alteraDadosDoTicketPeloAtendimentoRemoto($db, $ticket)
+{  
+  $query = 
+    "UPDATE av_tickets 
+      SET colaborador =  {$ticket['colaborador']}, 
+          agendado    = '{$ticket['agendado']}', 
+          produto     =  {$ticket['produto']}, 
+          modulo      =  {$ticket['modulo']}, 
+          assunto     = '{$ticket['assunto']}'
+    WHERE (ticket = {$ticket['ticket']});";
+
+  # executando a consulta
+  $resultado = $db->query($query);
+
+  return $resultado;
+
+}
+
+/**
  * altera os dados de um ticket
  * @param - objeto com uma conexão aberta
  * @param - array com os dados do ticket
