@@ -272,7 +272,7 @@
                         <div class="col-sm-6">
                           <div class="form-group">
                             <label for="colaborador">Lista Colaboradores</label>
-                            <select class="form-control required" id="colaborador">
+                            <select class="form-control" id="colaborador">
 
                             </select>
                           </div>
