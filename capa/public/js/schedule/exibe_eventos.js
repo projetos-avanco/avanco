@@ -2,12 +2,12 @@ $(function() {
   $(document).ready(function(e) {
     e.preventDefault;
 
-    $('#calendario').fullCalendar({      
+    $('#calendario').fullCalendar({
       header: {        
         left: 'prev,next today',
         center: 'title',
         right: 'month, agendaWeek, agendaDay, listWeek'          
-      },          
+      },      
       editable: true,
       eventLimit: true,
       events: [ // adicionando cor de fundo para os feriados
@@ -89,12 +89,12 @@ $(function() {
         }
       ],
       timeFormat: 'HH:mm',
-      eventClick: function(evento) {      
+      eventClick: function(evento) {        
         var titulo = evento.title.toLowerCase();        
 
         titulo = titulo.split('-');
-        titulo = titulo[0].trim();
-
+        titulo = titulo[1].trim();
+        
         switch (titulo) {
           case 'atd externo':
             evento.empresa = evento.empresa.substr(0, 32);
@@ -189,6 +189,14 @@ $(function() {
               });
           break;
         }     
+      }
+    });    
+  });
+
+  $('#btn-consultar').click(function() {
+    $('input:checkbox').each(function() {              
+      if ($(this).is(':checked')) {
+        console.log($(this).val());
       }
     });
   });
