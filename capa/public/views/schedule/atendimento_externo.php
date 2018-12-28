@@ -399,9 +399,9 @@
                           <div class="form-group">
                             <label for="situacao">Situação</label>
                             <select class="form-control required" id="situacao" name="externo[situacao]">                              
-                              <option value="1"selected>Visita Confirmada</option>
-                              <option value="2">Visita à Confirmar</option>
-                              <option value="3">Visita Reservada</option>
+                              <option value="1"selected>Confirmado</option>
+                              <option value="2">À Confirmar</option>
+                              <option value="3">Reservado</option>
                             </select>
                           </div>
                         </div>
