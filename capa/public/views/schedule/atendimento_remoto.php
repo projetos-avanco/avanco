@@ -296,9 +296,9 @@
                           <div class="form-group">
                             <label for="situacao">Situação</label>
                             <select class="form-control required" id="situacao" name="remoto[situacao]">                              
-                              <option value="1" selected>Atendimento Confirmado</option>
-                              <option value="2">Atendimento à Confirmar</option>
-                              <option value="3">Atendimento Reservado</option>
+                              <option value="1" selected>Confirmado</option>
+                              <option value="2">À Confirmar</option>
+                              <option value="3">Reservado</option>
                             </select>
                           </div>
                         </div>
