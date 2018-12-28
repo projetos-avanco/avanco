@@ -645,7 +645,7 @@
                             <td class="text-left"><?php echo $dados['endereco']; ?></td>
                           </tr>
                         </tbody>
-                        </table>
+                      </table>
                     </div><!-- panel-body -->
                   </div><!-- panel -->                  
                 </div>
@@ -698,11 +698,11 @@
                             <label for="situacao">Situação</label>
                             <select class="form-control required" id="situacao" name="externo[situacao]" readonly>
                               <?php if ($externo['status'] == 1) : ?>
-                                <option value="1" selected>Visita Confirmada</option>
+                                <option value="1" selected>Confirmado</option>
                               <?php elseif ($externo['status'] == 2) : ?>
-                                <option value="2" selected>Visita à Confirmar</option>
+                                <option value="2" selected>À Confirmar</option>
                               <?php elseif ($externo['status'] == 3) : ?>
-                                <option value="3" selected>Visita Reservada</option>
+                                <option value="3" selected>Reservado</option>
                               <?php endif; ?>
                             </select>
                           </div>
