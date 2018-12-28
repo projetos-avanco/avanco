@@ -30,7 +30,7 @@ $(function() {
       gerencial.relatorio_entregue = 'Deletado';
     }
     
-    if (gerencial.status == 'Atendimento Reservado') {
+    if (gerencial.status == 'Reservado') {
       swal({
         icon: 'info',
         title: 'Atendimento Remoto!',
@@ -51,7 +51,11 @@ $(function() {
           'Relatório Entregue: '  + gerencial.relatorio_entregue,
           buttons: {
             confirm: {
-              text: 'Confirmar Atendimento'
+              text: 'Confirmar'
+            },
+            catch: {
+              text: 'Alterar',
+              value: 'alterar'
             },
             cancel: {
               text: 'Fechar',
@@ -59,17 +63,24 @@ $(function() {
               visible: true
             }        
           }
-      }).then((confirmar) => {
-        if (confirmar) {
+      }).then((valor) => {
+        if (valor === true) {
           var url = window.location.href;
           var tmp = url.split('/');
 
           url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/confirma_atendimento_remoto.php?id=' + gerencial.id + '&id-cnpj=' + gerencial.id_cnpj + '&id-contato=' + gerencial.id_contato;
           
           window.open(url, '_self');
+        } else if (valor === 'alterar') {
+          var url = window.location.href;
+          var tmp = url.split('/');
+
+          url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/edita_atendimento_remoto.php?id=' + gerencial.id;
+          
+          window.open(url, '_self');          
         }
       });
-    } else if (gerencial.status === 'Atendimento à Confirmar') {
+    } else if (gerencial.status === 'À Confirmar') {
       swal({
         icon: 'info',
         title: 'Atendimento Remoto!',
@@ -90,7 +101,11 @@ $(function() {
           'Relatório Entregue: '  + gerencial.relatorio_entregue,
           buttons: {
             confirm: {
-              text: 'Confirmar Atendimento'
+              text: 'Confirmar'
+            },
+            catch: {
+              text: 'Alterar',
+              value: 'alterar'
             },
             cancel: {
               text: 'Fechar',
@@ -98,8 +113,8 @@ $(function() {
               visible: true
             }        
           }
-      }).then((confirmar) => {
-        if (confirmar) {
+      }).then((valor) => {
+        if (valor === true) {
           $.ajax({
             type: 'post',
             url: '../../../app/requests/post/schedule/confirmation/processa_confirmacao_atendimento.php',
@@ -128,6 +143,13 @@ $(function() {
               console.log(erro);
             }
           });
+        } else if (valor === 'alterar') {
+          var url = window.location.href;
+          var tmp = url.split('/');
+
+          url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/edita_atendimento_remoto.php?id=' + gerencial.id;
+          
+          window.open(url, '_self');          
         }
       });
     } else {
@@ -148,7 +170,27 @@ $(function() {
           'Produto: '             + gerencial.produto            + "\n\n" +
           'Observacao: '          + gerencial.observacao         + "\n\n\n\n" +
           'Faturado: '            + gerencial.faturado           + "\n\n" +        
-          'Relatório Entregue: '  + gerencial.relatorio_entregue + "\n\n"        
+          'Relatório Entregue: '  + gerencial.relatorio_entregue,
+          buttons: {
+            catch: {
+              text: 'Alterar',
+              value: 'alterar'
+            },
+            cancel: {
+              text: 'Fechar',
+              closeModal: true,
+              visible: true
+            }        
+          }        
+      }).then((valor) => {
+        if (valor === 'alterar') {
+          var url = window.location.href;
+          var tmp = url.split('/');
+
+          url = tmp[0]+'//'+tmp[2]+'/'+tmp[3]+'/'+tmp[4]+'/public/views/schedule/edita_atendimento_remoto.php?id=' + gerencial.id;
+          
+          window.open(url, '_self');           
+        }
       });
     }
   });
