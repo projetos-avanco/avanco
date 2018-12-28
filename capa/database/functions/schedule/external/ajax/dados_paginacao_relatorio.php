@@ -37,13 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         e.registro,
         CASE
           WHEN (e.status = 1)
-            THEN 'Visita Confirmada'
+            THEN 'Confirmado'
           WHEN (e.status = 2)
-            THEN 'Visita à Confirmar'
+            THEN 'À Confirmar'
           WHEN (e.status = 3)
-            THEN 'Visita Reservada'
+            THEN 'Reservado'
           WHEN (e.status = 4)
-            THEN 'Visita Cancelada'
+            THEN 'Cancelado'
         END AS status,
         CONCAT(s.name, ' ', s.surname) AS supervisor,
         CONCAT(t.name, ' ', t.surname) AS colaborador,	
@@ -239,13 +239,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         e.registro,
         CASE
           WHEN (e.status = 1)
-            THEN 'Visita Confirmada'
+            THEN 'Confirmado'
           WHEN (e.status = 2)
-            THEN 'Visita à Confirmar'
+            THEN 'À Confirmar'
           WHEN (e.status = 3)
-            THEN 'Visita Reservada'
+            THEN 'Reservado'
           WHEN (e.status = 4)
-            THEN 'Visita Cancelada'
+            THEN 'Cancelado'
         END AS status,
         CONCAT(s.name, ' ', s.surname) AS supervisor,
         CONCAT(t.name, ' ', t.surname) AS colaborador,	
