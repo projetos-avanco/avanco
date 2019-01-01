@@ -97,7 +97,7 @@
 
                         <div class="col-sm-4">
                           <div class="form-group">
-                            <label for="vencimento">Vencimento</label>
+                            <label for="vencimento">Data Limite</label>
                             <input class="form-control required" id="vencimento" type="date" name="exercicio[vencimento]" placeholder="Vencimento" readonly>
                           </div>
                         </div>
@@ -173,9 +173,6 @@
   <script src="<?php echo BASE_URL; ?>public/js/vacation/mascaras.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/funcoes.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/admissao.js"></script>
-
-  <script>    
-  </script>
 </body>
 </html>
 

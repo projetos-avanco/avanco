@@ -89,6 +89,10 @@ $(function() {
         }
       ],
       timeFormat: 'HH:mm',
+      eventRender: function(event, element) {
+        console.log(element);
+        element.attr('href', 'javascript:void(0);');
+      },
       eventClick: function(evento) {        
         var titulo = evento.title.toLowerCase();        
 
@@ -190,14 +194,20 @@ $(function() {
           break;
         }     
       }
-    });    
-  });
-
-  $('#btn-consultar').click(function() {
-    $('input:checkbox').each(function() {              
-      if ($(this).is(':checked')) {
-        console.log($(this).val());
-      }
     });
-  });
+
+    $('#btn-consultar').click(function() {
+      /*
+      var id = [];
+
+      $('#calendario').fullCalendar('removeEventSource');
+      $('#calendario').fullCalendar('refetchEvents');
+      $('#calendario').fullCalendar('addEventSource', '../../../database/functions/schedule/dados_agenda_faltas.php');      
+      $('input:checkbox').each(function() {
+        if ($(this).is(':checked')) {
+          id.push($(this).val());
+        }
+      });*/
+    });
+  });  
 });

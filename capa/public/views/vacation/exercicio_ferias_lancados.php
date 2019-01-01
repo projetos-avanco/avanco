@@ -77,45 +77,6 @@
 
         <form>
 
-          <div class="row">
-            <div class="col-sm-12"><!-- segunda coluna principal -->
-
-              <div class="row">
-                <div class="col-sm-12">
-
-                  <div class="panel panel-info"><!-- panel -->
-                    <div class="panel-heading">
-                      <div class="text-left">
-                        <strong>Exercícios</strong>
-                      </div>
-                    </div>
-
-                    <div class="panel-body"><!-- panel-body -->
-                      <table class="table table-condesend">
-                        <thead>
-                          <tr>                            
-                            <th class="text-center">Supervisor</th>
-                            <th class="text-center">Colaborador</th>
-                            <th class="text-center">Situação</th>
-                            <th class="text-center">Exercício Inicial</th>
-                            <th class="text-center">Exercício Final</th>
-                            <th class="text-center">Vencimento</th>
-                            <th class="text-center">Registrado</th>
-                            <th class="text-center" width="192"></th>
-                          </tr>
-                        </thead>
-                        <tbody id="tbody">
-                        </tbody>
-                      </table>
-                    </div><!-- panel-body -->
-                  </div><!-- panel -->
-
-                </div>
-              </div>
-
-            </div>
-          </div><!-- segunda coluna principal -->
-
           <div class="row"><!-- linha principal -->
             <div class="col-sm-6 col-sm-offset-6"><!-- primeira coluna principal -->
 
@@ -125,7 +86,7 @@
                   <div class="panel panel-info"><!-- panel -->
                     <div class="panel-heading">
                       <div class="text-left">
-                        <strong>Formulário</strong>
+                        <strong>Filtros</strong>
                       </div>
                     </div>
 
@@ -134,7 +95,7 @@
                         <div class="col-sm-7">
                           <div class="form-group">
                             <label class="sr-only" for="colaborador">Colaborador</label>
-                            <select class="form-control required" id="colaborador" name="colaborador">
+                            <select class="form-control required" id="colaborador">
 
                             </select>
                           </div>
@@ -143,7 +104,7 @@
                         <div class="col-sm-5">
                           <div class="form-group">
                             <label class="sr-only" for="status">Status</label>
-                            <select class="form-control" id="status" name="status">
+                            <select class="form-control" id="status">
                               <option value="" selected>Situação</option>
                               <option value="0">Férias Não Agendadas</option>
                               <option value="1">Férias Agendadas</option>
@@ -169,7 +130,7 @@
 
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <button class="btn btn-block btn-success btn-sm" id="btn" type="button">
+                    <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       Consultar
                     </button>
@@ -180,6 +141,45 @@
             </div><!-- primeira coluna principal -->
           </div><!-- linha principal -->
 
+          <div class="row">
+            <div class="col-sm-12"><!-- segunda coluna principal -->
+
+              <div class="row">
+                <div class="col-sm-12">
+
+                  <div class="panel panel-info"><!-- panel -->
+                    <div class="panel-heading">
+                      <div class="text-left">
+                        <strong>Exercícios</strong>
+                      </div>
+                    </div>
+
+                    <div class="panel-body"><!-- panel-body -->
+                      <table class="table table-condesend">
+                        <thead>
+                          <tr>                            
+                            <th class="text-center">Supervisor</th>
+                            <th class="text-center">Colaborador</th>
+                            <th class="text-center">Situação</th>
+                            <th class="text-center">Exercício Inicial</th>
+                            <th class="text-center">Exercício Final</th>
+                            <th class="text-center">Data Limite</th>
+                            <th class="text-center">Registrado</th>
+                            <th class="text-center" width="192"></th>
+                          </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                      </table>
+                    </div><!-- panel-body -->
+                  </div><!-- panel -->
+
+                </div>
+              </div>
+
+            </div>
+          </div><!-- segunda coluna principal -->
+
         </form>
 
       </div><!-- container -->
@@ -189,6 +189,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
@@ -217,7 +218,8 @@
         });
       });
 
-      $(document).on('click', '#btn', function(e) {
+      // consultando exercícios de férias
+      $(document).on('click', '#btn-consultar', function(e) {
         e.preventDefault;
 
         var id = $('#colaborador').val();
@@ -244,15 +246,33 @@
         }
       });
 
-      $(document).on('click', '#deletar', function(e) {
+      // deletando um exercício de férias e seus pedidos de férias
+      $(document).on('click', '#btn-deletar', function(e) {
         e.preventDefault;
 
-        var id = $('#deletar').val();
+        var id = $(this).val();
+        
+        var confirmacao = confirm('Confirma a deleção do exercício de férias?');
 
-        if (id != '' && id > '0') {
-          // ajax para deletar os pedidos
-        } else {
-          alert('Erro ao recuperar o ID do registro. Informe ao Wellington Felix!');
+        if (confirmacao) {
+          $.ajax({
+            type: 'post',
+            url: '../../../app/requests/post/vacation/recebe_delecao_pedido_exercicio.php',
+            dataType: 'json',
+            data: {
+              id: id
+            },
+            success: function(resposta) {
+              if (resposta) {
+                location.reload();
+              } else {
+                alert(resposta);
+              }
+            },
+            error: function(resposta) {
+              console.log(resposta);
+            }
+          });
         }
       });
     });
