@@ -164,11 +164,13 @@
         </a>
         <ul class="nav collapse"  id="submenu10">
         <?php if ($_SESSION['usuario']['nivel'] == '2') : ?>
+          <?php if ($_SESSION['usuario']['id'] == '5') : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias.php">
               <p>Exercício<p>
             </a>
           </li>
+          <?php endif; ?>
 
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias_lancados.php">
