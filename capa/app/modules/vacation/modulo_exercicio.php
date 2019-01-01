@@ -1,6 +1,25 @@
 <?php
 
 /**
+ * responsável por solicitar a deleção dos pedidos de férias e do exercício de férias
+ * @param - inteiro com o id do exercício de férias
+ */
+function solicitaDelecaoDoExercicioDeFerias($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'vacation/delecoes_exercicio.php';
+
+  $db = abre_conexao();
+
+  # verificando se os pedidos de férias do exercício foram deletados
+  if (deletaPedidosDeFerias($db, $id)) {
+    # verificando se o exercício de férias foi deletado
+    if (deletaExercicioDeFerias($db, $id)) {
+      echo json_encode('1'); exit;
+    }
+  }  
+}
+
+/**
  * responsável por consultar e retornar os exercícios de férias lançados de um colaborador para tela de pedidos
  * @param - inteiro com o id do colaborador
  */

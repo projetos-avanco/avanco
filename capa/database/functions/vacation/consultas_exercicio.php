@@ -70,7 +70,7 @@ function consultaExerciciosDeFeriasLancadosDoColaborador($db, $id)
       $tr .= "<td class='text-center'>$registrado</td>";      
       $tr .= 
       "<td class='text-center'>
-        <button class='btn btn-sm btn-block btn-danger' id='deletar' type='submit' value='$id'>
+        <button class='btn btn-sm btn-block btn-danger' id='btn-deletar' type='submit' value='$id'>
           <i class='fa fa-trash' aria-hidden='true'></i> Deletar
         </button>
       </td>";
@@ -254,7 +254,7 @@ function consultaExerciciosDeFeriasLancados($db, $id, $status)
     $tr .= "<td class='text-center'>$registrado</td>";
     $tr .= 
     "<td class='text-center'>
-      <button class='btn btn-sm btn-block btn-danger' id='deletar' type='submit' value='$id'>
+      <button class='btn btn-sm btn-block btn-danger' id='btn-deletar' type='submit' value='$id'>
         <i class='fa fa-trash' aria-hidden='true'></i> Deletar
       </button>
     </td>";
