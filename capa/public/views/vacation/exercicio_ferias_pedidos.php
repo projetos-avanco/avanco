@@ -154,11 +154,11 @@
 
                 <div class="panel-body"><!-- panel-body -->
                   <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                       <div class="form-group">
                         <label for="periodos">Períodos</label>
                         <select class="form-control" id="periodos" disabled>
-                          <option value="0" selected>Selecione um Período</option>
+                          <option value="0" selected>Lista  de Períodos</option>
                           <option value="1">1 Período de 30 Dias</option>
                           <option value="2">2 Períodos de 15 Dias</option>
                           <option value="3">3 Períodos de 10 Dias</option>
@@ -186,7 +186,7 @@
                       <div class="col-sm-2">
                         <div class="form-group">
                           <label for="total-dias-1">Total</label>
-                          <input class="form-control" id="total-dias-1" type="text" value="0 Dias" readonly>
+                          <input class="form-control required" id="total-dias-1" type="text" value="0 Dias" readonly>
                         </div>
                       </div>
                     </div><!-- bloco 01 -->
@@ -209,7 +209,7 @@
                       <div class="col-sm-2">
                         <div class="form-group">
                           <label for="total-dias-2">Total</label>
-                          <input class="form-control" id="total-dias-2" type="text" value="0 Dias" readonly>
+                          <input class="form-control required" id="total-dias-2" type="text" value="0 Dias" readonly>
                         </div>
                       </div>
                     </div><!-- bloco 02 -->
@@ -232,7 +232,7 @@
                       <div class="col-sm-2">
                         <div class="form-group">
                           <label for="total-dias-3">Total</label>
-                          <input class="form-control" id="total-dias-3" type="text" value="0 Dias" readonly>
+                          <input class="form-control required" id="total-dias-3" type="text" value="0 Dias" readonly>
                         </div>
                       </div>
                     </div><!-- bloco 03 -->
@@ -254,7 +254,7 @@
 
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <button class="btn btn-block btn-success btn-sm" type="submit" name="submit" value="submit">
+                    <button class="btn btn-block btn-success btn-sm" id="btn-gravar" type="button">
                       <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                       Gravar
                     </button>
@@ -283,6 +283,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/vacation/periodos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/funcoes.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/pedidos.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/grava_pedido.js"></script>
 </body>
 </html>
 
