@@ -6792,6 +6792,10 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
             position: absolute;
             margin-top: -190px;
           }
+
+          #observacao {
+            color: red;
+          }
         </style>
       </head>
 
@@ -6826,7 +6830,7 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
 
                 <p><strong>Exercício Inicial</strong> em $inicial<p>
                 <p><strong>Exercício Final</strong> em $final</p>
-                <p><strong>Vencimento</strong> em $vencimento</p>
+                <p><strong>Data Limite</strong> em $vencimento</p>
               </div>
             </div>
           </div>
@@ -6838,6 +6842,18 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
               <div class='text-left'>
                 <p>
                   Acesse o <strong>Portal Avanção</strong> nas opções <strong>Menu -> Férias -> Pedidos</strong> e faça o agendamento dos dias.
+                </p>                
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+          <div class='row'>
+            <div class='col-sm-12'>
+              <div class='text-left'>
+                <p id='observacao'>
+                  <strong>Lembrando que, o período permitido para agendamento dos dias será apartir da data do Exerício Final até 30 dias antes da Data Limite.</strong>
                 </p>
               </div>
             </div>
