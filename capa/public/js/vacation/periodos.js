@@ -66,9 +66,9 @@ $(function() {
         $('#data-final-1').val('');
 
         $('#data-inicial-2').val('');
-        $('#data-inicial-3').val('');
-
         $('#data-final-2').val('');
+
+        $('#data-inicial-3').val('');
         $('#data-final-3').val('');
 
         $('#total-dias-1').val('0 Dias');
@@ -95,9 +95,9 @@ $(function() {
         $('#data-final-1').val('');
 
         $('#data-inicial-2').val('');
-        $('#data-inicial-3').val('');
-
         $('#data-final-2').val('');
+
+        $('#data-inicial-3').val('');
         $('#data-final-3').val('');
 
         $('#total-dias-1').val('0 Dias');
@@ -128,9 +128,9 @@ $(function() {
         $('#data-final-1').val('');
 
         $('#data-inicial-2').val('');
-        $('#data-inicial-3').val('');
-
         $('#data-final-2').val('');
+
+        $('#data-inicial-3').val('');
         $('#data-final-3').val('');
 
         $('#total-dias-1').val('0 Dias');
