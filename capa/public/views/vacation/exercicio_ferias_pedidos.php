@@ -119,32 +119,8 @@
 
         <form>
 
-          <div class="row">
-            <div class="col-sm-6"><!-- primeira coluna -->
-              <div class="panel panel-info"><!-- panel -->
-                <div class="panel-heading">
-                  <div class="text-center">
-                    <strong>Registro</strong>
-                  </div>
-                </div>
-
-                <div class="panel-body"><!-- panel-body -->
-                  <div class="text-center">
-                    <h1>
-                      <strong id="ticket">
-                        <?php if (isset($_SESSION['ticket'])) : ?>
-                          <?php echo $_SESSION['ticket']; ?>
-                        <?php else : ?>
-                          0
-                        <?php endif; ?>
-                      </strong>
-                    </h1>
-                  </div>
-                </div><!-- panel-body -->
-              </div><!-- panel -->
-            </div><!-- primeira coluna -->
-
-            <div class="col-sm-6"><!-- segunda coluna -->
+          <div class="row">          
+            <div class="col-sm-6 col-sm-offset-3"><!-- segunda coluna -->
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
                   <div class="text-left">
@@ -154,7 +130,7 @@
 
                 <div class="panel-body"><!-- panel-body -->
                   <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-12">
                       <div class="form-group">
                         <label for="periodos">Períodos</label>
                         <select class="form-control" id="periodos" disabled>
@@ -185,8 +161,8 @@
 
                       <div class="col-sm-2">
                         <div class="form-group">
-                          <label for="total-dias-1">Total</label>
-                          <input class="form-control required" id="total-dias-1" type="text" value="0 Dias" readonly>
+                          <label for="total-dias-1">Dias</label>
+                          <input class="form-control required" id="total-dias-1" type="text" value="0" readonly>
                         </div>
                       </div>
                     </div><!-- bloco 01 -->
@@ -208,8 +184,8 @@
 
                       <div class="col-sm-2">
                         <div class="form-group">
-                          <label for="total-dias-2">Total</label>
-                          <input class="form-control required" id="total-dias-2" type="text" value="0 Dias" readonly>
+                          <label for="total-dias-2">Dias</label>
+                          <input class="form-control required" id="total-dias-2" type="text" value="0" readonly>
                         </div>
                       </div>
                     </div><!-- bloco 02 -->
@@ -231,14 +207,14 @@
 
                       <div class="col-sm-2">
                         <div class="form-group">
-                          <label for="total-dias-3">Total</label>
-                          <input class="form-control required" id="total-dias-3" type="text" value="0 Dias" readonly>
+                          <label for="total-dias-3">Dias</label>
+                          <input class="form-control required" id="total-dias-3" type="text" value="0" readonly>
                         </div>
                       </div>
                     </div><!-- bloco 03 -->
                   </div><!-- bloco períodos -->
 
-                  <input class="form-control" id="id-exercicio" type="hidden" name="id-exercicio"><!-- id do exercício -->
+                  <input class="form-control" id="id-exercicio" type="hidden"><!-- id do exercício -->
                 </div><!-- panel-body -->
               </div><!-- panel -->
 
@@ -265,6 +241,32 @@
           </div>
 
         </form>
+
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3"><!-- primeira coluna -->
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-center">
+                  <strong>Registro</strong>
+                </div>
+              </div>
+
+              <div class="panel-body"><!-- panel-body -->
+                <div class="text-center">
+                  <h1>
+                    <strong id="ticket">
+                      <?php if (isset($_SESSION['ticket'])) : ?>
+                        <?php echo $_SESSION['ticket']; ?>
+                      <?php else : ?>
+                        0
+                      <?php endif; ?>
+                    </strong>
+                  </h1>
+                </div>
+              </div><!-- panel-body -->
+            </div><!-- panel -->
+          </div><!-- primeira coluna -->
+        </div>
 
       </div><!-- container -->
     </div><!-- conteúdo da página -->
