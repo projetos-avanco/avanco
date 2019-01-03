@@ -71,9 +71,12 @@ $(function() {
         $('#data-inicial-3').val('');
         $('#data-final-3').val('');
 
-        $('#total-dias-1').val('0 Dias');
-        $('#total-dias-2').val('0 Dias');
-        $('#total-dias-3').val('0 Dias');
+        $('#total-dias-1').val('0');
+        $('#total-dias-2').val('0');
+        $('#total-dias-3').val('0');
+
+        // removendo classe erro caso ela exista
+        $('.row #linha-1 #data-inicial-1').removeClass('erro');
 
         // setando data mínima e máxima de acorodo com o exercício
         $('#data-inicial-1').prop('min', exercicio.final).prop('max', exercicio.vencimento);
@@ -100,9 +103,13 @@ $(function() {
         $('#data-inicial-3').val('');
         $('#data-final-3').val('');
 
-        $('#total-dias-1').val('0 Dias');
-        $('#total-dias-2').val('0 Dias');
-        $('#total-dias-3').val('0 Dias');
+        $('#total-dias-1').val('0');
+        $('#total-dias-2').val('0');
+        $('#total-dias-3').val('0');
+
+        // removendo classe erro caso ela exista
+        $('.row #linha-1 #data-inicial-1').removeClass('erro');
+        $('.row #linha-2 #data-inicial-2').removeClass('erro');
 
         // setando data mínima e máxima de acorodo com o exercício
         $('#data-inicial-1').prop('min', exercicio.final).prop('max', exercicio.vencimento);
@@ -133,9 +140,14 @@ $(function() {
         $('#data-inicial-3').val('');
         $('#data-final-3').val('');
 
-        $('#total-dias-1').val('0 Dias');
-        $('#total-dias-2').val('0 Dias');
-        $('#total-dias-3').val('0 Dias');
+        $('#total-dias-1').val('0');
+        $('#total-dias-2').val('0');
+        $('#total-dias-3').val('0');
+
+        // removendo classe erro caso ela exista
+        $('.row #linha-1 #data-inicial-1').removeClass('erro');
+        $('.row #linha-2 #data-inicial-2').removeClass('erro');
+        $('.row #linha-3 #data-inicial-3').removeClass('erro');
 
         // setando data mínima e máxima de acorodo com o exercício
         $('#data-inicial-1').prop('min', exercicio.final).prop('max', exercicio.vencimento);
