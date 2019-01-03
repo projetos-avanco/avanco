@@ -74,12 +74,12 @@ $(function() {
       exercicio.quantidadeDias = Math.round(exercicio.quantidadeDias / exercicio.dia);
 
       // setando quantidade de dias no input text
-      $('#total-dias-1').val(exercicio.quantidadeDias + ' Dias');
+      $('#total-dias-1').val(exercicio.quantidadeDias);
     } else {
       // setando valor default
       $('#data-inicial-1').val('');
       $('#data-final-1').val('');
-      $('#total-dias-1').val('0 Dias');
+      $('#total-dias-1').val('0');
 
       swal({
         title: 'Aviso',
@@ -207,12 +207,12 @@ $(function() {
         exercicio.quantidadeDias = Math.round(exercicio.quantidadeDias / exercicio.dia);
 
         // setando quantidade de dias no input text
-        $('#total-dias-2').val(exercicio.quantidadeDias + ' Dias');
+        $('#total-dias-2').val(exercicio.quantidadeDias);
       } else {
         // setando valor default
         $('#data-inicial-2').val('');
         $('#data-final-2').val('');
-        $('#total-dias-2').val('0 Dias');
+        $('#total-dias-2').val('0');
 
         swal({
           title: 'Aviso',
@@ -263,7 +263,7 @@ $(function() {
       $('.row #linha-1 #data-inicial-1').addClass('erro');
 
       // setando valor default
-      $('#data-inicial-2').val('');
+      $('#data-inicial-3').val('');
 
       swal({
         title: 'Aviso',
@@ -358,12 +358,12 @@ $(function() {
         exercicio.quantidadeDias = Math.round(exercicio.quantidadeDias / exercicio.dia);
 
         // setando quantidade de dias no input text
-        $('#total-dias-3').val(exercicio.quantidadeDias + ' Dias');
+        $('#total-dias-3').val(exercicio.quantidadeDias);
       } else {
         // setando valor default
         $('#data-inicial-3').val('');
         $('#data-final-3').val('');
-        $('#total-dias-3').val('0 Dias');
+        $('#total-dias-3').val('0');
 
         swal({
           title: 'Aviso',
