@@ -5,21 +5,39 @@ $(function() {
 
     var flag = false;
 
-    var exercicio = {};
+    var pedido = {
+      id: null,
+      periodo: null,
+      periodo1: {
+        dataInicial: null,
+        dataFinal: null,
+      },
+      periodo2: {
+        dataInicial: null,
+        dataFinal: null,
+      },
+      periodo3: {
+        dataInicial: null,
+        dataFinal: null,
+      }
+    };
 
     // recuperando período selecionado pelo usuário
-    exercicio.periodo = $('#periodos').val();
+    pedido.periodo = $('#periodos').val();
 
+    // recuperando id do exercídio de férias
+    pedido.id = $('#id-exercicio').val();
+    
     // verificando qual foi o período selecionado pelo usuário e recuperando as datas
-    switch (exercicio.periodo) {
-      case '1':
-        var periodo1 = {};
-
-        periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
-        periodo1.dataFinal   = $('.row #linha-1 #data-final-1').val();
+    switch (pedido.periodo) {
+      case '1':      
+        // recuperando datas
+        pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
+        pedido.periodo1.dataFinal   = $('.row #linha-1 #data-final-1').val();
+        pedido.periodo1.totalDias   = $('.row #linha-1 #total-dias-1').val();
 
         // verificando se o período 1 foi preenchido
-        if (periodo1.dataInicial == '' || periodo1.dataFinal == '') {
+        if (pedido.periodo1.dataInicial == '' || pedido.periodo1.dataFinal == '') {
           flag = true;
 
           // adicionando classe erro
@@ -36,18 +54,18 @@ $(function() {
         }
       break;
 
-      case '2':
-        var periodo1 = {};
-        var periodo2 = {};
+      case '2':        
+        // recuperando datas
+        pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
+        pedido.periodo1.dataFinal   = $('.row #linha-1 #data-final-1').val();
+        pedido.periodo1.totalDias   = $('.row #linha-1 #total-dias-1').val();
 
-        periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
-        periodo1.dataFinal   = $('.row #linha-1 #data-final-1').val();
-
-        periodo2.dataInicial = $('.row #linha-2 #data-inicial-2').val();
-        periodo2.dataFinal   = $('.row #linha-2 #data-final-2').val();
+        pedido.periodo2.dataInicial = $('.row #linha-2 #data-inicial-2').val();
+        pedido.periodo2.dataFinal   = $('.row #linha-2 #data-final-2').val();
+        pedido.periodo2.totalDias   = $('.row #linha-2 #total-dias-2').val();
 
         // verificando se o período 1 foi preenchido
-        if (periodo1.dataInicial == '' || periodo1.dataFinal == '') {
+        if (pedido.periodo1.dataInicial == '' || pedido.periodo1.dataFinal == '') {
           flag = true;
 
           // adicionando classe erro
@@ -64,7 +82,7 @@ $(function() {
         }
 
         // verificando se o período 2 foi preenchido
-        if (periodo2.dataInicial == '' || periodo2.dataFinal == '') {
+        if (pedido.periodo2.dataInicial == '' || pedido.periodo2.dataFinal == '') {
           flag = true;
 
           // adicionando classe erro
@@ -81,22 +99,22 @@ $(function() {
         }
       break;
       
-      case '3':
-        var periodo1 = {};
-        var periodo2 = {};
-        var periodo3 = {};
+      case '3':        
+        // recuperando datas
+        pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
+        pedido.periodo1.dataFinal   = $('.row #linha-1 #data-final-1').val();
+        pedido.periodo1.totalDias   = $('.row #linha-1 #total-dias-1').val();
 
-        periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
-        periodo1.dataFinal   = $('.row #linha-1 #data-final-1').val();
+        pedido.periodo2.dataInicial = $('.row #linha-2 #data-inicial-2').val();
+        pedido.periodo2.dataFinal   = $('.row #linha-2 #data-final-2').val();
+        pedido.periodo2.totalDias   = $('.row #linha-2 #total-dias-2').val();
 
-        periodo2.dataInicial = $('.row #linha-2 #data-inicial-2').val();
-        periodo2.dataFinal   = $('.row #linha-2 #data-final-2').val();
-
-        periodo3.dataInicial = $('.row #linha-3 #data-inicial-3').val();
-        periodo3.dataFinal   = $('.row #linha-3 #data-final-3').val();
+        pedido.periodo3.dataInicial = $('.row #linha-3 #data-inicial-3').val();
+        pedido.periodo3.dataFinal   = $('.row #linha-3 #data-final-3').val();
+        pedido.periodo3.totalDias   = $('.row #linha-3 #total-dias-3').val();
 
         // verificando se o período 1 foi preenchido
-        if (periodo1.dataInicial == '' || periodo1.dataFinal == '') {
+        if (pedido.periodo1.dataInicial == '' || pedido.periodo1.dataFinal == '') {
           flag = true;
 
           // adicionando classe erro
@@ -113,7 +131,7 @@ $(function() {
         }
 
         // verificando se o período 2 foi preenchido
-        if (periodo2.dataInicial == '' || periodo2.dataFinal == '') {
+        if (pedido.periodo2.dataInicial == '' || pedido.periodo2.dataFinal == '') {
           flag = true;
 
           // adicionando classe erro
@@ -130,7 +148,7 @@ $(function() {
         }
 
         // verificando se o período 3 foi preenchido
-        if (periodo3.dataInicial == '' || periodo3.dataFinal == '') {
+        if (pedido.periodo3.dataInicial == '' || pedido.periodo3.dataFinal == '') {
           flag = true;
 
           // adicionando classe erro
@@ -147,18 +165,65 @@ $(function() {
         }
       break;
     }
-
+        
     // verificando se não houve erros de validação
     if (!flag) {
       $.ajax({
         type: 'post',
-        url: '../../../app/requests/post/vacation/.php',
-        dataType: 'html',
+        url: '../../../app/requests/post/vacation/processa_pedido_ferias.php',
+        dataType: 'json',
         data: {
-          id: id              
+          pedido: pedido
         },
+        beforeSend: function () {
+          swal({
+            title: 'Aviso',
+            text: 'Aguarde...',
+            icon: 'info',
+            buttons: false
+          });
+        }, 
         success: function(dados) {
-          console.log(dados);
+          // inserindo número do registro
+          $('#ticket').html(dados.registro);
+
+          // verificando se o pedido foi gravado com sucesso
+          if (dados.resultado) {
+            swal({
+              title: 'Aviso',
+              text: 'Pedido gravado com sucesso. Um e-mail solicitando a aprovação do pedido foi enviado para Adilson Badaró.',
+              icon: 'success'              
+            }).then((valor) => {
+              if (valor) {
+                var id = $('#id').val();
+
+                if (id != 0) {
+                  $.ajax({
+                    type: 'post',
+                    url: '../../../app/requests/post/vacation/recebe_pedido_exercicio.php',
+                    dataType: 'html',
+                    data: {
+                      id: id              
+                    },
+                    success: function(tr) {
+                      $('#tbody').html(tr);
+                    },
+                    error: function(resposta) {
+                      console.log(resposta);
+                    }
+                  });
+                } else {
+                  alert('Selecione um Colaborador!');
+                }
+              }
+            });
+          } else {
+            swal({
+              title: 'Aviso',
+              text: 'Erro ao tentar gravar o pedido, informe ao Wellington Felix.',
+              icon: 'warning'              
+            });            
+          }
         },
         error: function(erro) {
           console.log(erro);
