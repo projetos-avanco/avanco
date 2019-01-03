@@ -119,7 +119,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'cancela_atendimento_externo.php'   OR
           $pagina == 'cancela_atendimento_remoto.php'    OR
           $pagina == 'edita_atendimento_externo.php'     OR
-          $pagina == 'edita_atendimento_remoto.php') {
+          $pagina == 'edita_atendimento_remoto.php'      OR
+          $pagina == 'exercicio_ferias_manifestacao.php') {
 
         $_SESSION['mensagens']['mensagem'] = '<p class="text-center"><strong>Sinto Muito!</strong> Seu nível de usuário não permite acessar esse módulo.</p>';
         $_SESSION['mensagens']['tipo']     = 'danger';
@@ -182,7 +183,8 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'cancela_atendimento_externo.php'   OR
          $pagina == 'cancela_atendimento_remoto.php'    OR
          $pagina == 'edita_atendimento_externo.php'     OR
-         $pagina == 'edita_atendimento_remoto.php') {
+         $pagina == 'edita_atendimento_remoto.php'      OR
+         $pagina == 'exercicio_ferias_manifestacao.php') {
 
         return true;
 
