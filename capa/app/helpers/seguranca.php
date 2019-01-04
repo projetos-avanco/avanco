@@ -166,6 +166,7 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'folgas.php'                        OR
          $pagina == 'exercicio_ferias.php'              OR
          $pagina == 'exercicio_ferias_lancados.php'     OR
+         $pagina == 'exercicio_ferias_pedidos.php'      OR
          $pagina == 'gerencial_atendimento_externo.php' OR
          $pagina == 'gerencial_atendimento_remoto.php'  OR
          $pagina == 'pesquisa_externa.php'              OR
