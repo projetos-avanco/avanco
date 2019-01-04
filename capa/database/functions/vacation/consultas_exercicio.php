@@ -1,6 +1,30 @@
 <?php
 
 /**
+ * consulta registro de exercício de férias do ano vigente
+ * @param - objeto com uma conexão aberta
+ * @param - inteiro com o id do colaborador
+ */
+function consultaExercicioDeFeriasRegistrado($db, $id)
+{
+  $ano = date('Y');
+
+  $query = 
+    "SELECT
+      COUNT(id) AS exercicios
+    FROM av_agenda_exercicios_ferias
+    WHERE (colaborador = $id)
+      AND (DATE_FORMAT(exercicio_inicial, '%Y') = '$ano')";
+  
+  $resultado = mysqli_query($db, $query);
+
+  $quantidade = mysqli_fetch_row($resultado);
+  $quantidade = (int) $quantidade[0];
+
+  return $quantidade;
+}
+
+/**
  * consulta o último exercício de férias lançado
  * @param - objeto com uma conexão aberta
  */
