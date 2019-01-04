@@ -1,6 +1,21 @@
 <?php
 
 /**
+ * reponsável por retornar os pedidos de férias de um exercício
+ * @param - inteiro com o id do exercício de férias
+ */
+function retornaPedidosDeFerias($id)
+{
+  require_once DIRETORIO_FUNCTIONS . 'vacation/consultas_pedido.php';
+
+  $db = abre_conexao();
+
+  $pedidos = consultaPedidosDeFerias($db, $id);
+
+  echo $pedidos;
+}
+
+/**
  * solicita a gravação do pedido e o envio do e-mail de aprovação do pedido
  * @param - array com os dados do pedido
  * @param - string com o tipo do periodo selecionado pelo usuário

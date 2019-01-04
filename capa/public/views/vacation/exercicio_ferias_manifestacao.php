@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Portal Avanção - Exercício de Férias Manifestação</title>
+  <title>Portal Avanção - Manifestação de Pedidos</title>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -47,7 +47,7 @@
     }
 
     table tbody tr td {
-      height: 47px;
+      height: 0.75em;
     }
 
     .table tbody tr td {
@@ -57,14 +57,6 @@
 
     .table {
       font-family: 'Lato Regular', sans-serif;
-    }
-
-    .swal-text {     
-      padding: 17px;      
-      display: block;
-      margin: 22px;
-      text-align: center;
-      color: #61534e;
     }
   </style>
 </head>
@@ -77,34 +69,83 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <h2>Manisfestação dos Pedidos</h2>
+              <h2>Manifestação de Pedidos</h2>
               <hr>
             </div>
           </div>
         </div>
 
+        <form>
+          <div class="row"><!-- linha principal -->
+            <div class="col-sm-6 col-sm-offset-3"><!-- primeira coluna principal -->
+              <div class="row"><!-- painel atendimentos -->
+                <div class="col-sm-12">
+                  <div class="panel panel-info"><!-- panel -->
+                    <div class="panel-heading">
+                      <div class="text-left">
+                        <strong>Filtros</strong>
+                      </div>
+                    </div>
+
+                    <div class="panel-body"><!-- panel-body -->
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="colaborador">Lista Colaboradores</label>
+                            <select class="form-control required" id="colaborador">
+
+                            </select>
+                          </div>
+                        </div>                        
+                      </div>                  
+                    </div><!-- panel-body -->                    
+                  </div><!-- panel -->
+                </div>
+              </div><!-- painel atendimentos -->
+
+              <div class="row">
+                <div class="col-sm-3 col-sm-offset-6">
+                  <div class="form-group">
+                    <button class="btn btn-block btn-default btn-sm" type="reset">
+                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                      Resetar
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                      Consultar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div><!-- primeira coluna principal -->
+          </div><!-- linha principal -->
+        </form>
+
         <div class="row">
           <div class="col-sm-12">
-
             <div class="panel panel-info"><!-- panel -->
               <div class="panel-heading">
                 <div class="text-left">
-                  <strong>Pedidos</strong>
+                  <strong>Exercícios</strong>
                 </div>
               </div>
 
               <div class="panel-body"><!-- panel-body -->
                 <table class="table table-condesend">
                   <thead>
-                    <tr>                      
+                    <tr>                            
                       <th class="text-center">Supervisor</th>
                       <th class="text-center">Colaborador</th>
                       <th class="text-center">Situação</th>
                       <th class="text-center">Exercício Inicial</th>
                       <th class="text-center">Exercício Final</th>
                       <th class="text-center">Data Limite</th>
-                      <th class="text-center">Registrado</th>
-                      <th class="text-center" width="192"></th>
+                      <th class="text-center">Registrado</th>                            
                     </tr>
                   </thead>
                   <tbody id="tbody">
@@ -112,19 +153,36 @@
                 </table>
               </div><!-- panel-body -->
             </div><!-- panel -->
-
-            <input type="hidden" id="id" name="id" value="<?php echo $_SESSION['usuario']['id']; ?>">
           </div>
         </div>
 
-        <form>
+          <div class="row">
+            <div class="col-sm-6"><!-- primeira coluna principal -->
+              <div class="row">
+                <div class="col-sm-12">
 
-          <div class="row">          
-            <div class="col-sm-6 col-sm-offset-3"><!-- segunda coluna -->
+                  <div class="panel panel-info"><!-- panel -->
+                    <div class="panel-heading">
+                      <div class="text-left">
+                        <strong>Pedido</strong>
+                      </div>
+                    </div>
+
+                    <div class="panel-body"><!-- panel-body -->
+                      <div class="list-group">
+
+                      </div>
+                    </div><!-- panel-body -->
+                  </div><!-- panel -->
+                </div>
+              </div>
+            </div><!-- primeira coluna principal -->
+
+            <div class="col-sm-6"><!-- segunda coluna -->
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
                   <div class="text-left">
-                    <strong>Pedido</strong>
+                    <strong>Alteração</strong>
                   </div>
                 </div>
 
@@ -240,34 +298,6 @@
             </div><!-- segunda coluna -->
           </div>
 
-        </form>
-
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3"><!-- primeira coluna -->
-            <div class="panel panel-info"><!-- panel -->
-              <div class="panel-heading">
-                <div class="text-center">
-                  <strong>Registro</strong>
-                </div>
-              </div>
-
-              <div class="panel-body"><!-- panel-body -->
-                <div class="text-center">
-                  <h1>
-                    <strong id="ticket">
-                      <?php if (isset($_SESSION['ticket'])) : ?>
-                        <?php echo $_SESSION['ticket']; ?>
-                      <?php else : ?>
-                        0
-                      <?php endif; ?>
-                    </strong>
-                  </h1>
-                </div>
-              </div><!-- panel-body -->
-            </div><!-- panel -->
-          </div><!-- primeira coluna -->
-        </div>
-
       </div><!-- container -->
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->
@@ -279,13 +309,87 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/vacation/agendamento.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/vacation/datas.js"></script>  
-  <script src="<?php echo BASE_URL; ?>public/js/vacation/periodos.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/vacation/funcoes.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/vacation/pedidos.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/vacation/grava_pedido.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/colaboradores.js"></script>  
+
+  <script>
+    $(function() {
+      // consultando exercícios de férias
+      $(document).on('click', '#btn-consultar', function(e) {
+        e.preventDefault;
+
+        var id = $('#colaborador').val();
+
+        if (id != 0) {
+          // requisitando o exercício do colaborador
+          $.ajax({
+            type: 'post',
+            url: '../../../app/requests/post/vacation/recebe_consulta_manifestacao.php',
+            dataType: 'html',
+            data: {
+              id: id              
+            },
+            success: function(tr) {
+              $('#tbody').html(tr);
+
+              // recuperando o id do exercício
+              var exercicio = $('.table tbody').find('tr[data-id]').data('id');
+
+              // requisitando o pedido do colaborador
+              $.ajax({
+                type: 'post',
+                url: '../../../app/requests/post/vacation/recebe_consulta_pedido.php',
+                dataType: 'html',
+                data: {                  
+                  exercicio: exercicio
+                },
+                success: function(pedidos) {
+                  $('.list-group').html(pedidos);
+                },
+                error: function(resposta) {
+                  console.log(resposta);
+                }
+              });
+            },
+            error: function(resposta) {
+              console.log(resposta);
+            }
+          });          
+        } else {
+          alert('Selecione um Colaborador!');
+        }
+      });
+
+      // deletando um exercício de férias e seus pedidos de férias
+      $(document).on('click', '#btn-deletar', function(e) {
+        e.preventDefault;
+
+        var id = $(this).val();
+        
+        var confirmacao = confirm('Confirma a deleção do exercício de férias?');
+
+        if (confirmacao) {
+          $.ajax({
+            type: 'post',
+            url: '../../../app/requests/post/vacation/recebe_delecao_pedido_exercicio.php',
+            dataType: 'json',
+            data: {
+              id: id
+            },
+            success: function(resposta) {
+              if (resposta) {
+                location.reload();
+              } else {
+                alert(resposta);
+              }
+            },
+            error: function(resposta) {
+              console.log(resposta);
+            }
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
 
