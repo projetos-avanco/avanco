@@ -65,6 +65,16 @@
         </div>
 
         <div class="row">
+          <div class="col-sm-12">
+            <div id="calendario">
+
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row">
           <div class="col-sm-6 col-sm-offset-6">
 
             <div class="panel panel-info"><!-- panel -->
@@ -108,14 +118,6 @@
               </div><!-- panel-body -->
             </div><!-- panel -->
 
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-12">
-            <div id="calendario">
-
-            </div>
           </div>
         </div>
 
