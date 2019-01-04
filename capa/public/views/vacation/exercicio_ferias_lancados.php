@@ -94,7 +94,7 @@
                       <div class="row">
                         <div class="col-sm-7">
                           <div class="form-group">
-                            <label class="sr-only" for="colaborador">Colaborador</label>
+                            <label class="sr-only" for="colaborador">Lista Colaboradores</label>
                             <select class="form-control required" id="colaborador">
 
                             </select>
@@ -193,7 +193,7 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>  
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/colaboradores.js"></script>  
 
   <script>
     $(function() {

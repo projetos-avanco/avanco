@@ -569,7 +569,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/altera_cobranca.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/direciona_usuario.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/deleta_contato.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>../tickets/public/js/screen/modulos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/external/validacao.js"></script>
 

@@ -226,7 +226,7 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/avancoins/colaboradores.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/colaboradores.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/pesquisa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_empresa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/direciona_usuario.js"></script>
