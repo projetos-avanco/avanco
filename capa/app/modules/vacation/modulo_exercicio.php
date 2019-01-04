@@ -77,28 +77,32 @@ function recebeExercicioDeFerias($exercicio)
 
   $db = abre_conexao();
 
-  $resultado = insereExercicioDeFerias($db, $exercicio);
-
   $_SESSION['atividades']['exibe'] = true;
 
-  if (!$resultado) {
-    $_SESSION['atividades']['mensagens'][] = 'Erro ao gravar o exercício de férias. Informe ao Wellington Felix';
+  # verificando se já existe um exercício de férias gravado para o colaborador no ano vigente
+  if (consultaExercicioDeFeriasRegistrado($db, $exercicio['colaborador']) > 0) {    
+    $_SESSION['atividades']['mensagens'][] = 'Já existe um exercício de férias gravado para o colaborador no ano vigente.';
   } else {
-    $email = consultaEmailDoColaborador($db, $exercicio['colaborador']);
-
-    $exercicio['exercicio_inicial'] = formataDataParaExibir($exercicio['exercicio_inicial']);
-    $exercicio['exercicio_final'] = formataDataParaExibir($exercicio['exercicio_final']);
-    $exercicio['vencimento'] = formataDataParaExibir($exercicio['vencimento']);
-
-    if (enviaEmailDeConfirmacaoDeExercicioDeFerias($email, $exercicio['exercicio_inicial'], $exercicio['exercicio_final'], $exercicio['vencimento'])) {
-      $_SESSION['atividades']['tipo'] = 'success';
-      $_SESSION['atividades']['mensagens'][] = 'Exercício de férias gravado com sucesso.';
+    # verificando se o exercício de férias não foi gravado com sucesso
+    if (!insereExercicioDeFerias($db, $exercicio)) {
+      $_SESSION['atividades']['mensagens'][] = 'Erro ao gravar o exercício de férias. Informe ao Wellington Felix';
     } else {
-      $id = consultaUltimoExercicioDeFerias($db);
+      $email = consultaEmailDoColaborador($db, $exercicio['colaborador']);
 
-      deletaExercicioDeFerias($db,$id);
+      $exercicio['exercicio_inicial'] = formataDataParaExibir($exercicio['exercicio_inicial']);
+      $exercicio['exercicio_final'] = formataDataParaExibir($exercicio['exercicio_final']);
+      $exercicio['vencimento'] = formataDataParaExibir($exercicio['vencimento']);
 
-      $_SESSION['atividades']['mensagens'][] = 'Erro ao enviar o e-mail de confirmação do exercício. Exercício deletado. Informe ao Wellington Felix';
+      if (enviaEmailDeConfirmacaoDeExercicioDeFerias($email, $exercicio['exercicio_inicial'], $exercicio['exercicio_final'], $exercicio['vencimento'])) {
+        $_SESSION['atividades']['tipo'] = 'success';
+        $_SESSION['atividades']['mensagens'][] = 'Exercício de férias gravado com sucesso.';
+      } else {
+        $id = consultaUltimoExercicioDeFerias($db);
+
+        deletaExercicioDeFerias($db,$id);
+
+        $_SESSION['atividades']['mensagens'][] = 'Erro ao enviar o e-mail de confirmação do exercício. Exercício deletado. Informe ao Wellington Felix';
+      }
     }
   }
 
