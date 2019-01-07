@@ -78,7 +78,7 @@
         <form>
 
           <div class="row"><!-- linha principal -->
-            <div class="col-sm-6 col-sm-offset-6"><!-- primeira coluna principal -->
+            <div class="col-sm-6 col-sm-offset-3"><!-- primeira coluna principal -->
 
               <div class="row"><!-- painel atendimentos -->
                 <div class="col-sm-12">
@@ -130,7 +130,7 @@
 
                 <div class="col-sm-3">
                   <div class="form-group">
-                    <button class="btn btn-block btn-success btn-sm" id="btn-consultar" type="button">
+                    <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
                       <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                       Consultar
                     </button>
