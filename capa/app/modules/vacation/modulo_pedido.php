@@ -10,9 +10,59 @@ function retornaPedidosDeFerias($id)
 
   $db = abre_conexao();
 
-  $pedidos = consultaPedidosDeFerias($db, $id);
+  # chamando função que retorna a situação dos pedidos
+  $situacao = consultaSituacaoDosPedidosDeFerias($db, $id);
+
+  # verificando se a situação dos pedidos estão aguardando manisfestação de adilson badaró
+  if ($situacao == '1') {
+    # chamando função que retorna uma lista com os pedidos
+    $pedidos = consultaPedidosDeFerias($db, $id);
+  } else {
+    $pedidos =
+      "<div class='list-group'>
+        <a href='#' class='list-group-item active text-center'>Períodos</a>
+        <a class='list-group-item text-center'>
+          <strong>Não existe pedido de férias aguardando manifestação para esse exercício!</strong>
+        </a>
+      </div>";
+  }
 
   echo $pedidos;
+}
+
+/**
+ * reponsável por solicitação a aprovação dos pedidos de e o envio do e-mail de aprovação do pedido
+ * @param - inteiro com o id do exercicio de férias
+ * @param - inteiro om o id do colaborador
+ */
+function recebeAprovacaoDePedidoDeFerias($id, $colaborador)
+{
+  require_once DIRETORIO_HELPERS   . 'diversas.php';
+  require_once DIRETORIO_HELPERS   . 'datas.php';
+  require_once DIRETORIO_HELPERS   . 'vacation/envia_email.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_agenda.php';
+  require_once DIRETORIO_FUNCTIONS . 'vacation/consultas_pedido.php';  
+  require_once DIRETORIO_FUNCTIONS . 'vacation/atualizacoes_pedido.php';  
+
+  $db = abre_conexao();
+
+  # chamando função que consulta os pedidos de férias para aprovação
+  $pedido = consultaPedidosDeFeriasParaAprovacao($db, $id);
+
+  # verificando se a situação dos pedidos foram alteradas para aprovado  
+  if (alteraSituacaoDosPedidosParaAprovado($db, $id)) {
+    $tipo = (string) count($pedido);
+
+    # chamando função que consulta o e-mail de um colaborador
+    $email = consultaEmailDoColaborador($db, $colaborador);
+
+    # verificando se o e-mail de aprovação do pedido de férias foi enviado aos envolvidos
+    if (enviaEmailDeAprovacaoDeFerias($email, $pedido, $tipo)) {
+      echo json_encode(true); exit;
+    } else {
+      echo json_encode(false); exit;
+    }
+  }  
 }
 
 /**
@@ -28,11 +78,12 @@ function recebeAlteracaoDePedidoDeFerias($pedido, $tipo)
   require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_agenda.php';
   require_once DIRETORIO_FUNCTIONS . 'vacation/consultas_pedido.php';
   require_once DIRETORIO_FUNCTIONS . 'vacation/insercoes_pedido.php';
+  require_once DIRETORIO_FUNCTIONS . 'vacation/atualizacoes_pedido.php';
   require_once DIRETORIO_FUNCTIONS . 'vacation/delecoes_pedido.php';
   
   $db = abre_conexao();
 
-  $pedido['registro'] = consultaRegistroDeUmPedidoDeFerias($db, $pedido['id_exercicio']);# PAREI AQUI
+  $pedido['registro'] = (int) consultaRegistroDeUmPedidoDeFerias($db, $pedido['id_exercicio']);# PAREI AQUI
 
   # verificando se os pedidos foram deletados com sucesso
   if (deletaPedidos($db, $pedido['id_exercicio'])) {
