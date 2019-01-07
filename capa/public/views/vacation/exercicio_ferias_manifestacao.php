@@ -192,7 +192,7 @@
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
                   <div class="text-left">
-                    <strong>Filtros</strong>
+                    <strong>Formulário</strong>
                   </div>
                 </div>
 
@@ -324,6 +324,7 @@
   <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/consulta.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/periodos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/altera.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/aprova.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/datas.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/funcoes.js"></script>
 </body>
