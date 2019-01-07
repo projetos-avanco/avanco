@@ -68,13 +68,18 @@ $(function() {
       ],
       eventSources: [
         {
-          url: '../../../database/functions/schedule/dados_agenda_externo.php',              
-          color: '#00BFFF',
+          url: '../../../database/functions/vacation/dados_agenda_ferias.php',              
+          color: '#DF0101',
           textColor: '#FFFFFF'              
-        },            
+        },
+        {
+          url: '../../../database/functions/schedule/dados_agenda_externo.php',              
+          color: '#FF8000',
+          textColor: '#FFFFFF'              
+        },
         {
           url: '../../../database/functions/schedule/dados_agenda_remoto.php',
-          color: '#FF0000',
+          color: '#FACC2E',
           textColor: '#FFFFFF'
         },
         {
@@ -84,7 +89,7 @@ $(function() {
         },
         {
           url: '../../../database/functions/schedule/dados_agenda_faltas.php',
-          color: '#FF00FF',
+          color: '#8000FF',
           textColor: '#FFFFFF'
         }
       ],
@@ -98,8 +103,24 @@ $(function() {
 
         titulo = titulo.split('-');
         titulo = titulo[1].trim();
-        
+                        
         switch (titulo) {
+          case 'férias':
+          
+            swal({
+              icon: 'info',
+              title: 'Atendimento Externo!',
+              text:               
+                'Lançado: '             + evento.registrado         + "\n\n" +
+                'Registro: '            + evento.registro           + "\n\n" +
+                'Situação: '            + evento.status             + "\n\n" +
+                'Supervisor: '          + evento.supervisor         + "\n\n" +
+                'Colaborador: '         + evento.colaborador        + "\n\n" +
+                'Período: '             + evento.periodo            + "\n\n" +
+                'Dias: '                + evento.dias
+            });
+          break;
+
           case 'atd externo':
             evento.empresa = evento.empresa.substr(0, 32);
 
