@@ -52,8 +52,8 @@ function consultaExercicioAgendadoDoColaborador($db, $id)
       $tr .= "<td class='text-center'>$colaborador</td>";
       $tr .= "<td class='text-center'>$status</td>";
       $tr .= "<td class='text-center'>$inicial</td>";
-      $tr .= "<td class='text-center'>$final</td>";
-      $tr .= "<td class='text-center'>$vencimento</td>";
+      $tr .= "<td class='text-center' data-final='$final'>$final</td>";
+      $tr .= "<td class='text-center' data-vencimento='$vencimento'>$vencimento</td>";
       $tr .= "<td class='text-center'>$registrado</td>";    
     $tr .= "</tr>";
   }

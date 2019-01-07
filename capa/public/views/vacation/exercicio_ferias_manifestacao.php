@@ -58,6 +58,17 @@
     .table {
       font-family: 'Lato Regular', sans-serif;
     }
+
+    .list-group {
+      margin-bottom: 0px;
+    }
+
+    .swal-text {      
+      padding: 17px;      
+      display: block;
+      margin: 22px;
+      text-align: center;      
+    }
   </style>
 </head>
 
@@ -168,25 +179,24 @@
                       </div>
                     </div>
 
-                    <div class="panel-body"><!-- panel-body -->
-                      <div class="list-group">
+                    <div class="panel-body" id="pedido"><!-- panel-body -->
 
-                      </div>
-                    </div><!-- panel-body -->
+                    </div><!-- panel-body -->                    
                   </div><!-- panel -->
                 </div>
               </div>
             </div><!-- primeira coluna principal -->
-
+          
+          <form>
             <div class="col-sm-6"><!-- segunda coluna -->
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
                   <div class="text-left">
-                    <strong>Alteração</strong>
+                    <strong>Filtros</strong>
                   </div>
                 </div>
 
-                <div class="panel-body"><!-- panel-body -->
+                <div class="panel-body"><!-- panel-body -->                  
                   <div class="row">
                     <div class="col-sm-12">
                       <div class="form-group">
@@ -296,6 +306,7 @@
                 </div>
               </div>
             </div><!-- segunda coluna -->
+          </form>
           </div>
 
       </div><!-- container -->
@@ -309,87 +320,12 @@
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/vacation/colaboradores.js"></script>  
-
-  <script>
-    $(function() {
-      // consultando exercícios de férias
-      $(document).on('click', '#btn-consultar', function(e) {
-        e.preventDefault;
-
-        var id = $('#colaborador').val();
-
-        if (id != 0) {
-          // requisitando o exercício do colaborador
-          $.ajax({
-            type: 'post',
-            url: '../../../app/requests/post/vacation/recebe_consulta_manifestacao.php',
-            dataType: 'html',
-            data: {
-              id: id              
-            },
-            success: function(tr) {
-              $('#tbody').html(tr);
-
-              // recuperando o id do exercício
-              var exercicio = $('.table tbody').find('tr[data-id]').data('id');
-
-              // requisitando o pedido do colaborador
-              $.ajax({
-                type: 'post',
-                url: '../../../app/requests/post/vacation/recebe_consulta_pedido.php',
-                dataType: 'html',
-                data: {                  
-                  exercicio: exercicio
-                },
-                success: function(pedidos) {
-                  $('.list-group').html(pedidos);
-                },
-                error: function(resposta) {
-                  console.log(resposta);
-                }
-              });
-            },
-            error: function(resposta) {
-              console.log(resposta);
-            }
-          });          
-        } else {
-          alert('Selecione um Colaborador!');
-        }
-      });
-
-      // deletando um exercício de férias e seus pedidos de férias
-      $(document).on('click', '#btn-deletar', function(e) {
-        e.preventDefault;
-
-        var id = $(this).val();
-        
-        var confirmacao = confirm('Confirma a deleção do exercício de férias?');
-
-        if (confirmacao) {
-          $.ajax({
-            type: 'post',
-            url: '../../../app/requests/post/vacation/recebe_delecao_pedido_exercicio.php',
-            dataType: 'json',
-            data: {
-              id: id
-            },
-            success: function(resposta) {
-              if (resposta) {
-                location.reload();
-              } else {
-                alert(resposta);
-              }
-            },
-            error: function(resposta) {
-              console.log(resposta);
-            }
-          });
-        }
-      });
-    });
-  </script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/colaboradores.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/consulta.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/periodos.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/altera.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/datas.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/funcoes.js"></script>
 </body>
 </html>
 

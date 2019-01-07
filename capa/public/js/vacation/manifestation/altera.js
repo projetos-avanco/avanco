@@ -32,7 +32,7 @@ $(function() {
     if (pedido.periodo == 0) {
       swal({
         title: 'Aviso',
-        text: 'É necessário agendar um exercício de férias antes de gravar um pedido.',
+        text: 'É necessário selecionar um período antes de gravar a alteração de um pedido.',
         icon: 'warning'
       });      
     } else {
@@ -176,12 +176,16 @@ $(function() {
           
       // verificando se não houve erros de validação
       if (!flag) {
+        // recuperando o id do colaborador selecionado
+        var colaborador = $('#colaborador').val();
+        
         $.ajax({
           type: 'post',
-          url: '../../../app/requests/post/vacation/processa_pedido_ferias.php',
+          url: '../../../app/requests/post/vacation/processa_alteracao_pedido_ferias.php',
           dataType: 'json',
           data: {
-            pedido: pedido
+            pedido: pedido,
+            colaborador: colaborador
           },
           beforeSend: function () {
             swal({
@@ -191,15 +195,12 @@ $(function() {
               buttons: false
             });
           }, 
-          success: function(dados) {
-            // inserindo número do registro
-            $('#ticket').html(dados.registro);
-
+          success: function(dados) {            
             // verificando se o pedido foi gravado com sucesso
             if (dados.resultado) {
               swal({
                 title: 'Aviso',
-                text: 'Pedido gravado com sucesso. Um e-mail solicitando a aprovação do pedido foi enviado para Adilson Badaró.',
+                text: 'Pedido alterado com sucesso. Um e-mail informando a aprovação das férias foi enviado.',
                 icon: 'success'              
               }).then((valor) => {
                 if (valor) {

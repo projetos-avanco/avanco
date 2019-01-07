@@ -16,7 +16,52 @@ function retornaPedidosDeFerias($id)
 }
 
 /**
- * solicita a gravação do pedido e o envio do e-mail de aprovação do pedido
+ * responsável por solicitar a alteração do pedido e o envio do e-mail de aprovação do pedido
+ * @param - array com os dados do pedido
+ * @param - string com o tipo do periodo selecionado pelo usuário
+ */
+function recebeAlteracaoDePedidoDeFerias($pedido, $tipo)
+{
+  require_once DIRETORIO_HELPERS   . 'diversas.php';
+  require_once DIRETORIO_HELPERS   . 'datas.php';
+  require_once DIRETORIO_HELPERS   . 'vacation/envia_email.php';
+  require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_agenda.php';
+  require_once DIRETORIO_FUNCTIONS . 'vacation/consultas_pedido.php';
+  require_once DIRETORIO_FUNCTIONS . 'vacation/insercoes_pedido.php';
+  require_once DIRETORIO_FUNCTIONS . 'vacation/delecoes_pedido.php';
+  
+  $db = abre_conexao();
+
+  $pedido['registro'] = consultaRegistroDeUmPedidoDeFerias($db, $pedido['id_exercicio']);# PAREI AQUI
+
+  # verificando se os pedidos foram deletados com sucesso
+  if (deletaPedidos($db, $pedido['id_exercicio'])) {
+    # verificando se o pedido de férias foi inserido na tabela com sucesso
+    if (inserePedidosDeFerias($db, $pedido, $tipo)) {
+      # verificando se a situação dos pedidos foram alteradas para aprovado
+      if (alteraSituacaoDosPedidosParaAprovado($db, $pedido['id_exercicio'])) {
+        # chamando função que consulta o e-mail de um colaborador
+        $email = consultaEmailDoColaborador($db, $pedido['id_colaborador']);
+
+        # verificando se o e-mail de aprovação do pedido de férias foi enviado aos envolvidos
+        if (enviaEmailDeAprovacaoDeFerias($email, $pedido, $tipo)) {        
+          echo json_encode(true); exit;          
+        } else {
+          echo json_encode(false);
+        }
+      } else {
+        echo json_encode(false);
+      }
+    } else {
+      echo json_encode(false);
+    }
+  } else {
+    echo json_encode(false);
+  }
+}
+
+/**
+ * reponsável por solicitar a gravação do pedido e o envio do e-mail de solicitação de aprovação do pedido
  * @param - array com os dados do pedido
  * @param - string com o tipo do periodo selecionado pelo usuário
  */
