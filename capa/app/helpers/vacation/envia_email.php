@@ -7,11 +7,10 @@ use PHPMailer\PHPMailer\Exception;
 /**
  * envia um e-mail de aprovação do pedido de férias
  * @param - string com o e-mail do colaborador
- * @param - string com a data do exercício inicial
- * @param - string com a data do exercício final
- * @param - string com a data do vencimento do exercício
+ * @param - array com os dados do pedido
+ * @param - string com o tipo do período selecionado pelo usuário
  */
-function enviaEmailDeAprovacaoDeFerias($emailColaborador, $inicial, $final, $vencimento)
+function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
 {
   require_once '../../../../libs/PHPMailer/src/Exception.php';
   require_once '../../../../libs/PHPMailer/src/PHPMailer.php';
@@ -130,18 +129,6 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $inicial, $final, $ven
               "</div>
             </div>
           </div>
-                    
-          <br>
-
-          <div class='row'>
-            <div class='col-sm-12'>
-              <div class='text-left'>
-                <p id='observacao'>
-                  <strong>Lembrando que, o período permitido para agendamento dos dias será apartir da data do Exerício Final até 30 dias antes da Data Limite.</strong>
-                </p>
-              </div>
-            </div>
-          </div>
 
           <br>
 
@@ -211,7 +198,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $inicial, $final, $ven
     $email->Port       = 587;
 
     # destinatários
-    $email->setFrom('wellington.felix@avancoinfo.com.br', 'Avanço | Exercídio Férias');
+    $email->setFrom('wellington.felix@avancoinfo.com.br', 'Avanço | Pedido Férias');
     #$email->addAddress($emailColaborador);
     $email->addReplyTo('wellington.felix@avancoinfo.com.br', 'Respostas');
     #$email->addCC($emailSupervisor);
@@ -224,7 +211,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $inicial, $final, $ven
 
     # conteúdo
     $email->isHTML(true);
-    $email->Subject = 'Avanço | Exercício Férias';
+    $email->Subject = 'Avanço | Pedido Férias';
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
 
     # verificando qual supervisor está logado e importando sua foto correspondente
