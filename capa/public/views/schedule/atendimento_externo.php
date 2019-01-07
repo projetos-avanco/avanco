@@ -259,6 +259,7 @@
                               <option value="2">Frente de Loja</option>
                               <option value="3">Gestor</option>
                               <option value="4">Novo ERP</option>
+                              <option value="5">Outros</option>
                             </select>
                           </div>
                         </div>
