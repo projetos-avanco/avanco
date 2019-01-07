@@ -19,15 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['pedido']['id']) && (!empty($_POST['pedido']['id']))) {
       # verificando se o id do exercício de férias é uma string numérica
       if (is_numeric($_POST['pedido']['id'])) {
-        $pedido['id_exercicio'] = $_POST['pedido']['id'];
+        $pedido['id_exercicio'] = (int) $_POST['pedido']['id'];
       }
     }
 
     # verificando se o id do colaborador existe e não está vazio
-    if (isset($_POST['pedido']['colaborador']) && (!empty($_POST['pedido']['colaborador']))) {
+    if (isset($_POST['colaborador']) && (!empty($_POST['colaborador']))) {
       # verificando se o id do colaborador é uma string numérica
-      if (is_numeric($_POST['pedido']['colaborador'])) {
-        $pedido['id_colaborador'] = (int) $_POST['pedido']['colaborador'];
+      if (is_numeric($_POST['colaborador'])) {
+        $pedido['id_colaborador'] = (int) $_POST['colaborador'];
       }
     }
 
