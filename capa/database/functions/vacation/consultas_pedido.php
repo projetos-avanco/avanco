@@ -18,6 +18,66 @@ function consultaRegistroDeUmPedidoDeFerias($db, $id)
 }
 
 /**
+ * consulta a situação dos pedidos de férias
+ * @param - objeto com uma conexão aberta
+ * @param - inteiro com o id do exercício de férias
+ */
+function consultaSituacaoDosPedidosDeFerias($db, $id)
+{
+  $query = "SELECT situacao FROM av_agenda_pedidos_ferias WHERE id_exercicio = $id LIMIT 1";
+
+  $resultado = mysqli_query($db, $query);
+
+  $situacao = mysqli_fetch_row($resultado);
+  $situacao = $situacao[0]  ;
+
+  return $situacao;
+}
+
+/**
+ * consulta os pedidos de um exercício de férias sem enviar html
+ * @param - objeto com uma conexão aberta
+ * @param - inteiro com o id do exercício de férias
+ */
+function consultaPedidosDeFeriasParaAprovacao($db, $id)
+{
+  $query = 
+    "SELECT	
+      e.data_inicial,
+      e.data_final,
+      e.dias
+    FROM av_agenda_pedidos_ferias AS e
+    WHERE (e.id_exercicio = $id)
+      AND (e.situacao = 1)";
+  
+  $resultado = mysqli_query($db, $query);
+
+  $pedido = array();
+
+  $quantidade = $resultado->num_rows;
+
+  if ($quantidade == 1) {
+    while ($linha = mysqli_fetch_array($resultado)) {
+      $pedido['data_inicial'] = $linha['data_inicial'];
+      $pedido['data_final']   = $linha['data_final'];
+      $pedido['dias']         = $linha['dias'];
+    }    
+  } elseif ($quantidade > 1) {
+    $contador = 1;
+
+    while ($linha = mysqli_fetch_array($resultado)) {
+      $pedido['periodo' . $contador]['data_inicial'] = $linha['data_inicial'];
+      $pedido['periodo' . $contador]['data_final']   = $linha['data_final'];
+      $pedido['periodo' . $contador]['dias']         = $linha['dias'];
+
+      $contador++;
+    }
+  }
+
+  return $pedido;
+}
+
+/**
  * consulta os pedidos de um exercício de férias
  * @param - objeto com uma conexão aberta 
  * @param - inteiro com o id do exercício de férias
