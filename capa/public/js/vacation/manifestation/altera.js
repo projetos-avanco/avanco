@@ -195,9 +195,9 @@ $(function() {
               buttons: false
             });
           }, 
-          success: function(dados) {            
+          success: function(retorno) {            
             // verificando se o pedido foi gravado com sucesso
-            if (dados.resultado) {
+            if (retorno) {
               swal({
                 title: 'Aviso',
                 text: 'Pedido alterado com sucesso. Um e-mail informando a aprovação das férias foi enviado.',
@@ -226,32 +226,13 @@ $(function() {
                   $('#total-dias-2').val('0');
                   $('#total-dias-3').val('0');
 
-                  var id = $('#id').val();
-
-                  if (id != 0) {
-                    $.ajax({
-                      type: 'post',
-                      url: '../../../app/requests/post/vacation/recebe_pedido_exercicio.php',
-                      dataType: 'html',
-                      data: {
-                        id: id              
-                      },
-                      success: function(tr) {
-                        $('#tbody').html(tr);
-                      },
-                      error: function(resposta) {
-                        console.log(resposta);
-                      }
-                    });
-                  } else {
-                    alert('Selecione um Colaborador!');
-                  }
+                  location.reload();
                 }
               });
             } else {
               swal({
                 title: 'Aviso',
-                text: 'Erro ao tentar gravar o pedido, informe ao Wellington Felix.',
+                text: 'Erro ao tentar gravar a alteração do pedido, informe ao Wellington Felix.',
                 icon: 'warning'              
               });            
             }
