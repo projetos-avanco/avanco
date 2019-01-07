@@ -87,7 +87,7 @@
     $clientes[] = array(
       'contrato'     => $linha['contrato'],
       'cnpj'         => $linha['cnpj'],
-      'razao_social' => strtolower(decodificaCaracteresJSON($linha['razao_social']))
+      'razao_social' => mb_strtolower(decodificaCaracteresJSON($linha['razao_social']), 'utf-8')
     );
   }
 
