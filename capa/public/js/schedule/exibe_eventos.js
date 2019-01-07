@@ -75,6 +75,21 @@ $(function() {
         {
           url: '../../../database/functions/schedule/dados_agenda_externo.php',              
           color: '#FF8000',
+          data: function () {
+            var id = [];
+
+            // percorrendo todos os checkboxers
+            $('input:checkbox').each(function() {
+              // verificando se o checkbox está marcado
+              if ($(this).is(':checked')) {
+                id.push($(this).val());
+              }
+            });
+
+            return {
+              colaboradores: id
+            }
+          },
           textColor: '#FFFFFF'              
         },
         {
@@ -94,10 +109,6 @@ $(function() {
         }
       ],
       timeFormat: 'HH:mm',
-      eventRender: function(event, element) {
-        console.log(element);
-        element.attr('href', 'javascript:void(0);');
-      },
       eventClick: function(evento) {        
         var titulo = evento.title.toLowerCase();        
 
@@ -217,18 +228,11 @@ $(function() {
       }
     });
 
-    $('#btn-consultar').click(function() {
-      /*
-      var id = [];
+    // filtrando colaboradores
+    $(document).on('click', '#btn-consultar', function(e) {
+      e.preventDefault;
 
-      $('#calendario').fullCalendar('removeEventSource');
       $('#calendario').fullCalendar('refetchEvents');
-      $('#calendario').fullCalendar('addEventSource', '../../../database/functions/schedule/dados_agenda_faltas.php');      
-      $('input:checkbox').each(function() {
-        if ($(this).is(':checked')) {
-          id.push($(this).val());
-        }
-      });*/
     });
   });  
 });
