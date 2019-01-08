@@ -198,7 +198,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->Port       = 587;
 
     # destinatários
-    $email->setFrom('wellington.felix@avancoinfo.com.br', 'Avanço | Pedido Férias');
+    $email->setFrom('wellington.felix@avancoinfo.com.br', 'Avanço | Aprovação Férias');
     #$email->addAddress($emailColaborador);
     $email->addReplyTo('wellington.felix@avancoinfo.com.br', 'Respostas');
     #$email->addCC($emailSupervisor);
@@ -211,7 +211,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
 
     # conteúdo
     $email->isHTML(true);
-    $email->Subject = 'Avanço | Pedido Férias';
+    $email->Subject = 'Avanço | Aprovação Férias';
     $email->AddEmbeddedImage('/var/www/html/avanco/capa/public/img/tag-1.jpg', 'tag', 'tag');
 
     # verificando qual supervisor está logado e importando sua foto correspondente
