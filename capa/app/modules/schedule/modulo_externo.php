@@ -186,7 +186,7 @@ function solicitaGravacaoDeRegistroDeHoras($db, $externo)
     'razao_social'   => null,
     'supervisor'     => $externo['supervisor'],
     'colaborador'    => $externo['colaborador'],
-    'observacao'     => 'relatório pendente referente ao atendimento remoto de registro - ' . $externo['registro']
+    'observacao'     => $externo['observacao'] . ' Relatório pendente referente ao atendimento remoto de registro - ' . $externo['registro'] . '.'
   );
 
   # chamando funções que retornam o cnpj, razão social e conta contrato de uma empresa
