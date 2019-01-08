@@ -121,7 +121,26 @@ $('document').ready(function() {
           retorno.uf = '27';
               break;
       }
-      console.log(retorno);
+
+      // verificando qual foi o endereço retornado
+      switch (retorno.tipo) {
+        case 'Apartamento':
+          retorno.tipo = '1';
+            break;
+
+        case 'Casa':
+          retorno.tipo = '2';
+            break;
+
+        case 'Comercial':
+          retorno.tipo = '3';
+            break;
+
+        case 'Outros':
+          retorno.tipo = '4';
+            break;
+      }
+      
       $('#id-endereco').val(retorno.id);
       $('#logradouro').val(retorno.logradouro);
       $('#distrito').val(retorno.distrito);
