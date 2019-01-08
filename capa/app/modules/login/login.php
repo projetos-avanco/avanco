@@ -19,7 +19,7 @@ function realizaLoginNaAplicacao($login, $usuario)
   if ($controle) {
     
     # redirecionando usuário para a página home da aplicação
-    header('Location: ' . PAGE_HOME);
+    header('Location: ' . BASE_URL . 'public/views/schedule/agenda.php');
 
   } else {
 
