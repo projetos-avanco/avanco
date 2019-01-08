@@ -155,7 +155,7 @@
                             <option value="0">Tipo do Endereço</option>
                             <option value="1">Apartamento</option>
                             <option value="2">Casa</option>
-                            <option value="3">Comercial</option>
+                            <option value="3" selected>Comercial</option>
                             <option value="4">Outros</option>
                           </select>
                         </div>
