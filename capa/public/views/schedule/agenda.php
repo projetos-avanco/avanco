@@ -58,7 +58,7 @@
         <div class="row">
           <div class="col-sm-12">
             <div class="form-group">
-              <h2>Agenda Registros</h2>
+              <h2>Agenda do Atendimento</h2>
               <hr>
             </div>
           </div>
