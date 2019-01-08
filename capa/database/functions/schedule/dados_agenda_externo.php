@@ -112,7 +112,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           INNER JOIN av_agenda_estados AS t
             ON t.id = d.id_estado
           WHERE ($colaboradores)
-            AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')        
+            AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+            GROUP BY r.cnpj
             ORDER BY a.id";
       }
     } else {
@@ -192,7 +193,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           ON d.id = b.id_cidade
         INNER JOIN av_agenda_estados AS t
           ON t.id = d.id_estado
-        WHERE (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')        
+        WHERE (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+          GROUP BY r.cnpj
           ORDER BY a.id";         
     }
 

@@ -102,7 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           INNER JOIN av_agenda_telefones_moveis AS m
             ON m.id_contato = c.id      
           WHERE ($colaboradores)
-            AND (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')        
+            AND (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+            GROUP BY r.cnpj
             ORDER BY a.id";
       }
     } else {
@@ -172,7 +173,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           ON f.id_contato = c.id
         INNER JOIN av_agenda_telefones_moveis AS m
           ON m.id_contato = c.id      
-        WHERE (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')        
+        WHERE (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+          GROUP BY r.cnpj
           ORDER BY a.id";
     }
 
