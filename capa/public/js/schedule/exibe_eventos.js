@@ -186,7 +186,7 @@ $(function() {
                 'Registro: '            + evento.registro           + "\n\n" +
                 'Situação: '            + evento.status             + "\n\n" +
                 'Supervisor: '          + evento.supervisor         + "\n\n" +
-                'Colaborador: '         + evento.colaborador        + "\n\n" +
+                'Colaborador: '         + evento.colaborador        + "\n\n\n\n" +
                 'Período: '             + evento.periodo            + "\n\n" +
                 'Dias: '                + evento.dias
             });
@@ -205,10 +205,13 @@ $(function() {
                 'Supervisor: '          + evento.supervisor         + "\n\n" +
                 'Colaborador: '         + evento.colaborador        + "\n\n" +
                 'Período: '             + evento.periodo            + "\n\n" +
-                'Tipo de Atendimento: ' + evento.tipo               + "\n\n\n\n" +
+                'Atendimento: '         + evento.tipo               + "\n\n\n\n" +
                 'Empresa: '             + evento.empresa            + "\n\n" +
                 'CNPJ: '                + evento.cnpj               + "\n\n" +
-                'Contato: '             + evento.contato            + "\n\n" +                
+                'Contato: '             + evento.contato            + "\n\n" +
+                'Fixo: '                + evento.fixo               + "\n\n" +
+                'Móvel: '               + evento.movel              + "\n\n" +
+                'E-mail: '              + evento.email              + "\n\n" +
                 'Produto: '             + evento.produto            + "\n\n" +
                 'Observacao: '          + evento.observacao                  
             });
@@ -227,12 +230,15 @@ $(function() {
                   'Supervisor: '          + evento.supervisor         + "\n\n" +
                   'Colaborador: '         + evento.colaborador        + "\n\n" +
                   'Data: '                + evento.data               + "\n\n" +
-                  'Tipo de Atendimento: ' + evento.tipo               + "\n\n\n\n" +
+                  'Atendimento: '         + evento.tipo               + "\n\n\n\n" +
                   'Empresa: '             + evento.empresa            + "\n\n" +
                   'CNPJ: '                + evento.cnpj               + "\n\n" +
-                  'Contato: '             + evento.contato            + "\n\n" +                  
+                  'Contato: '             + evento.contato            + "\n\n" +
+                  'Fixo: '                + evento.fixo               + "\n\n" +
+                  'Móvel: '               + evento.movel              + "\n\n" +
+                  'E-mail: '              + evento.email              + "\n\n" +
                   'Produto: '             + evento.produto            + "\n\n" +
-                  'Observacao: '          + evento.observacao                  
+                  'Observacao: '          + evento.observacao
               });
           break;
 
@@ -244,7 +250,7 @@ $(function() {
                   'Lançado: '             + evento.registrado         + "\n\n" +
                   'Registro: '            + evento.registro           + "\n\n" +                      
                   'Supervisor: '          + evento.supervisor         + "\n\n" +
-                  'Colaborador: '         + evento.colaborador        + "\n\n" +
+                  'Colaborador: '         + evento.colaborador        + "\n\n\n\n" +
                   'Motivo: '              + evento.motivo             + "\n\n" +
                   'Período: '             + evento.periodo            + "\n\n" +                      
                   'Observacao: '          + evento.observacao                  
@@ -263,7 +269,7 @@ $(function() {
                   'Lançado: '             + evento.registrado         + "\n\n" +
                   'Registro: '            + evento.registro           + "\n\n" +                      
                   'Supervisor: '          + evento.supervisor         + "\n\n" +
-                  'Colaborador: '         + evento.colaborador        + "\n\n" +
+                  'Colaborador: '         + evento.colaborador        + "\n\n\n\n" +
                   'Motivo: '              + evento.motivo             + "\n\n" +
                   'Período: '             + evento.periodo            + "\n\n" +                      
                   'Observacao: '          + evento.observacao,
@@ -295,7 +301,7 @@ $(function() {
                   'Lançado: '             + evento.registrado         + "\n\n" +
                   'Registro: '            + evento.registro           + "\n\n" +                      
                   'Supervisor: '          + evento.supervisor         + "\n\n" +
-                  'Colaborador: '         + evento.colaborador        + "\n\n" +
+                  'Colaborador: '         + evento.colaborador        + "\n\n\n\n" +
                   'Motivo: '              + evento.motivo             + "\n\n" +
                   'Período: '             + evento.periodo            + "\n\n" +                      
                   'Observacao: '          + evento.observacao                  
