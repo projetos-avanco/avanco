@@ -69,12 +69,8 @@ $(function() {
       eventSources: [
         {
           url: '../../../database/functions/vacation/dados_agenda_ferias.php',              
-          color: '#DF0101',
-          textColor: '#FFFFFF'              
-        },
-        {
-          url: '../../../database/functions/schedule/dados_agenda_externo.php',              
-          color: '#FF8000',
+          color: '#FE2E2E',
+          textColor: '#FFFFFF',
           data: function () {
             var id = [];
 
@@ -90,22 +86,86 @@ $(function() {
               colaboradores: id
             }
           },
-          textColor: '#FFFFFF'              
+        },
+        {
+          url: '../../../database/functions/schedule/dados_agenda_externo.php',              
+          color: '#FF8000',
+          textColor: '#FFFFFF',
+          data: function () {
+            var id = [];
+
+            // percorrendo todos os checkboxers
+            $('input:checkbox').each(function() {
+              // verificando se o checkbox está marcado
+              if ($(this).is(':checked')) {
+                id.push($(this).val());
+              }
+            });
+
+            return {
+              colaboradores: id
+            }
+          }          
         },
         {
           url: '../../../database/functions/schedule/dados_agenda_remoto.php',
           color: '#FACC2E',
-          textColor: '#FFFFFF'
+          textColor: '#FFFFFF',
+          data: function () {
+            var id = [];
+
+            // percorrendo todos os checkboxers
+            $('input:checkbox').each(function() {
+              // verificando se o checkbox está marcado
+              if ($(this).is(':checked')) {
+                id.push($(this).val());
+              }
+            });
+
+            return {
+              colaboradores: id
+            }
+          },
         },
         {
           url: '../../../database/functions/schedule/dados_agenda_folgas.php',
           color: '#3ADF00',
-          textColor: '#FFFFFF'
+          textColor: '#FFFFFF',
+          data: function () {
+            var id = [];
+
+            // percorrendo todos os checkboxers
+            $('input:checkbox').each(function() {
+              // verificando se o checkbox está marcado
+              if ($(this).is(':checked')) {
+                id.push($(this).val());
+              }
+            });
+
+            return {
+              colaboradores: id
+            }
+          },
         },
         {
           url: '../../../database/functions/schedule/dados_agenda_faltas.php',
           color: '#8000FF',
-          textColor: '#FFFFFF'
+          textColor: '#FFFFFF',
+          data: function () {
+            var id = [];
+
+            // percorrendo todos os checkboxers
+            $('input:checkbox').each(function() {
+              // verificando se o checkbox está marcado
+              if ($(this).is(':checked')) {
+                id.push($(this).val());
+              }
+            });
+
+            return {
+              colaboradores: id
+            }
+          },
         }
       ],
       timeFormat: 'HH:mm',
@@ -232,6 +292,7 @@ $(function() {
     $(document).on('click', '#btn-consultar', function(e) {
       e.preventDefault;
 
+      // atualizando eventos
       $('#calendario').fullCalendar('refetchEvents');
     });
   });  
