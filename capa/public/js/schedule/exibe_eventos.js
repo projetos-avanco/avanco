@@ -251,8 +251,12 @@ $(function() {
               });
           break;
 
-          case 'falta':          
-            swal({
+          case 'falta':
+            var motivo = evento.motivo.toLowerCase();
+
+            // verificando se o motivo da falta exige a exibição do botão atestado
+            if (motivo == 'atestado médico' || motivo == 'atestado de óbito' || motivo == 'atestado de acompanhamento') {
+              swal({
                 icon: 'info',
                 title: 'Registro de Falta!',
                 text:               
@@ -283,6 +287,20 @@ $(function() {
                   window.open(url, '_blank');
                 }
               });
+            } else {
+              swal({
+                icon: 'info',
+                title: 'Registro de Falta!',
+                text:               
+                  'Lançado: '             + evento.registrado         + "\n\n" +
+                  'Registro: '            + evento.registro           + "\n\n" +                      
+                  'Supervisor: '          + evento.supervisor         + "\n\n" +
+                  'Colaborador: '         + evento.colaborador        + "\n\n" +
+                  'Motivo: '              + evento.motivo             + "\n\n" +
+                  'Período: '             + evento.periodo            + "\n\n" +                      
+                  'Observacao: '          + evento.observacao                  
+              });
+            }            
           break;
         }     
       }
