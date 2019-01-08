@@ -26,7 +26,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $supervisor = $_SESSION['usuario']['nome'] . ' ' . $_SESSION['usuario']['sobrenome'];
   }
 
-  $email = $_SESSION['usuario']['email'];
+  $emailSupervisor = $_SESSION['usuario']['email'];
 
   $msg = 
     "<!DOCTYPE html>
@@ -148,7 +148,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
                     <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'> $supervisor</span>
                     <span style='display: inline;'>/</span> <span style='color: rgb(33, 33, 33); display: inline;'>Atendimento</span>
                     <span style='display: inline;'><br></span>
-                      <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $email</a>
+                      <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $emailSupervisor</a>
                     <span style='color: #212121;'></span>
                   </p>
 
@@ -181,8 +181,6 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
       </body>
     </html>";
 
-  $emailSupervisor = $_SESSION['usuario']['email'];
-
   $email = new PHPMailer(true);
   $email->CharSet = 'UTF-8';
 
@@ -198,10 +196,10 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->Port       = 587;
 
     # destinatários
-    $email->setFrom('wellington.felix@avancoinfo.com.br', 'Avanço | Aprovação Férias');
-    #$email->addAddress($emailColaborador);
-    $email->addReplyTo('wellington.felix@avancoinfo.com.br', 'Respostas');
-    #$email->addCC($emailSupervisor);
+    $email->setFrom($emailSupervisor, 'Avanço | Aprovação Férias');
+    $email->addAddress($emailColaborador);
+    $email->addReplyTo($emailSupervisor, 'Respostas');
+    $email->addCC($emailSupervisor);
     $email->addCC('wellington_bhmg@hotmail.com');
     #$email->addBCC();    
 
