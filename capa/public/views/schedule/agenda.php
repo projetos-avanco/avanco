@@ -47,6 +47,15 @@
     .checkbox {
       padding-left: 2.5%;
     }
+
+    .swal-text {
+      font-size: 15px;
+      padding: 12px;
+      display: block;
+      margin: 22px;
+      text-align: left;
+      color: #61534e;
+    }
   </style>
 </head>
 
