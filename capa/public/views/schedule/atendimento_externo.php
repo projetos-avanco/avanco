@@ -77,6 +77,28 @@
           </div>
         </div>
 
+        <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+        <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="text-center">
+                <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                    <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                      <strong>Ops!</strong>
+                    <?php else : ?>
+                      <strong>Tudo Certo!</strong>
+                    <?php endif; ?>
+
+                    <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php endfor; ?>
+
+        <?php endif; ?>
+
         <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/external/processa_atendimento_externo.php" method="post" enctype="multipart/form-data">
 
           <div class="row">
@@ -526,30 +548,8 @@
 
             </div><!-- segunda coluna principal -->
           </div><!-- linha principal -->
-
+          
         </form>
-
-        <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
-
-        <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="text-center">
-                <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
-                    <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
-                      <strong>Ops!</strong>
-                    <?php else : ?>
-                      <strong>Tudo Certo!</strong>
-                    <?php endif; ?>
-
-                    <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
-                </div>
-              </div>
-            </div>
-          </div>
-        <?php endfor; ?>
-
-        <?php endif; ?>
 
         <?php unset($_SESSION['atividades'], $_SESSION['registro']); ?>
 
