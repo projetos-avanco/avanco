@@ -101,7 +101,7 @@
                       <div class="form-group">
                         <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
                           <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                          Resetar
+                          Atualizar
                         </button>
                       </div>
                     </div>
