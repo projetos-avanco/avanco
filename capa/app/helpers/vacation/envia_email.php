@@ -190,17 +190,17 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'wellington.felix@avancoinfo.com.br';
-    $email->Password   = 'Avanco123';
-    $email->SMTPSecure = 'tls';
-    $email->Port       = 587;
+    $email->Username   = 'agenda@avancoinfo.com.br';
+    $email->Password   = '@g3nD@Av@nc0131_1188';
+    $email->SMTPSecure = 'ssl';
+    $email->Port       = 465;
 
     # destinatários
-    $email->setFrom($emailSupervisor, 'Avanço | Aprovação Férias');
+    $email->setFrom($emailSupervisor, 'Avanço | Aprovação Férias');    
     $email->addAddress($emailColaborador);
     $email->addReplyTo($emailSupervisor, 'Respostas');    
     #$email->addCC();
-    $email->addBCC('wellington_bhmg@hotmail.com');    
+    $email->addBCC('wellington.felix@avancoinfo.com.br');    
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -410,17 +410,17 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'wellington.felix@avancoinfo.com.br';
-    $email->Password   = 'Avanco123';
-    $email->SMTPSecure = 'tls';
-    $email->Port       = 587;
+    $email->Username   = 'agenda@avancoinfo.com.br';
+    $email->Password   = '@g3nD@Av@nc0131_1188';
+    $email->SMTPSecure = 'ssl';
+    $email->Port       = 465;
 
     # destinatários
-    $email->setFrom($emailSupervisor, 'Avanço | Exercídio Férias');
+    $email->setFrom($emailSupervisor, 'Avanço | Exercídio Férias');    
     $email->addAddress($emailColaborador);
     $email->addReplyTo($emailSupervisor, 'Respostas');
     #$email->addCC();    
-    $email->addBCC('wellington_bhmg@hotmail.com');    
+    $email->addBCC('wellington.felix@avancoinfo.com.br');    
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -625,17 +625,17 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'wellington.felix@avancoinfo.com.br';
-    $email->Password   = 'Avanco123';
-    $email->SMTPSecure = 'tls';
-    $email->Port       = 587;
+    $email->Username   = 'agenda@avancoinfo.com.br';
+    $email->Password   = '@g3nD@Av@nc0131_1188';
+    $email->SMTPSecure = 'ssl';
+    $email->Port       = 465;
 
     # destinatários
-    $email->setFrom($emailColaborador, 'Avanço | Pedido Férias');
+    $email->setFrom($emailColaborador, 'Avanço | Pedido Férias');    
     $email->addAddress('badaro@avancoinfo.com.br');
     $email->addReplyTo($emailColaborador, 'Respostas');
     #$email->addCC();
-    $email->addBCC('wellington_bhmg@hotmail.com');
+    $email->addBCC('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
