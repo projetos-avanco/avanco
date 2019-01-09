@@ -169,15 +169,15 @@
             <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias.php">
               <p>Exercício<p>
             </a>
-          </li>
+          </li>          
+          <?php endif; ?>
 
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias_pedidos.php">
               <p>Pedidos<p>
             </a>
           </li>
-          <?php endif; ?>
-
+          
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias_lancados.php">
               <p>Lançados<p>
