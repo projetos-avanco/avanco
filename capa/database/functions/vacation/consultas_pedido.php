@@ -114,7 +114,7 @@ function consultaPedidosDeFerias($db, $id)
     
     $html .= 
       "<a class='list-group-item text-left'>
-        <strong>$contador º Período</strong> - De {$linha['data_inicial']} até {$linha['data_final']} - {$linha['dias']} Dias
+        <strong>$contador º Período</strong> - {$linha['data_inicial']} até {$linha['data_final']} - {$linha['dias']} Dias
       </a>";    
   }
 
@@ -125,7 +125,7 @@ function consultaPedidosDeFerias($db, $id)
 
   $html .=
     "<a class='list-group-item text-left'>
-      <strong>Solicitado</strong>: Dia $registrado Horas
+      <strong>Solicitado</strong>: $registrado
     </a>";
 
   $html .= 
