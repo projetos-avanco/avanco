@@ -37,7 +37,7 @@ $(function() {
 
     exercicio.diaDoMes = date.getDate();
 
-    date.setDate(exercicio.diaDoMes + exercicio.dias);
+    date.setDate(exercicio.diaDoMes + exercicio.dias - 1);
     tmp = date.toISOString();
     tmp = tmp.split('T');
 
@@ -74,7 +74,7 @@ $(function() {
       exercicio.quantidadeDias = Math.round(exercicio.quantidadeDias / exercicio.dia);
 
       // setando quantidade de dias no input text
-      $('#total-dias-1').val(exercicio.quantidadeDias);
+      $('#total-dias-1').val(exercicio.quantidadeDias + 1);
     } else {
       // setando valor default
       $('#data-inicial-1').val('');
@@ -170,7 +170,7 @@ $(function() {
 
       exercicio.diaDoMes = date.getDate();
 
-      date.setDate(exercicio.diaDoMes + exercicio.dias);
+      date.setDate(exercicio.diaDoMes + exercicio.dias - 1);
       tmp = date.toISOString();
       tmp = tmp.split('T');
 
@@ -207,7 +207,7 @@ $(function() {
         exercicio.quantidadeDias = Math.round(exercicio.quantidadeDias / exercicio.dia);
 
         // setando quantidade de dias no input text
-        $('#total-dias-2').val(exercicio.quantidadeDias);
+        $('#total-dias-2').val(exercicio.quantidadeDias + 1);
       } else {
         // setando valor default
         $('#data-inicial-2').val('');
@@ -321,7 +321,7 @@ $(function() {
 
       exercicio.diaDoMes = date.getDate();
 
-      date.setDate(exercicio.diaDoMes + exercicio.dias);
+      date.setDate(exercicio.diaDoMes + exercicio.dias - 1);
       tmp = date.toISOString();
       tmp = tmp.split('T');
 
@@ -358,7 +358,7 @@ $(function() {
         exercicio.quantidadeDias = Math.round(exercicio.quantidadeDias / exercicio.dia);
 
         // setando quantidade de dias no input text
-        $('#total-dias-3').val(exercicio.quantidadeDias);
+        $('#total-dias-3').val(exercicio.quantidadeDias + 1);
       } else {
         // setando valor default
         $('#data-inicial-3').val('');
