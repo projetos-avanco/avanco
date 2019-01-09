@@ -75,6 +75,24 @@
           </div>
         </div>
 
+        <div class="row"><!-- painel registro -->
+          <div class="col-sm-12">
+
+            <div class="panel panel-info hidden" id="panel"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-left">
+                  <strong>Relatório</strong>
+                </div>
+              </div>
+
+              <div class="panel-body" id="tabela-relatorio"><!-- panel-body -->
+                
+              </div><!-- panel-body -->
+            </div><!-- panel -->
+
+          </div>
+        </div><!-- painel registro -->
+        
         <?php if ($_SESSION['usuario']['nivel'] == '2') : ?>
           <form>
             <div class="row"><!-- linha principal -->        
@@ -241,24 +259,6 @@
         
         </form>
       <?php endif; ?>
-
-        <div class="row"><!-- painel registro -->
-          <div class="col-sm-12">
-
-            <div class="panel panel-info hidden" id="panel"><!-- panel -->
-              <div class="panel-heading">
-                <div class="text-left">
-                  <strong>Relatório</strong>
-                </div>
-              </div>
-
-              <div class="panel-body" id="tabela-relatorio"><!-- panel-body -->
-                
-              </div><!-- panel-body -->
-            </div><!-- panel -->
-
-          </div>
-        </div><!-- painel registro -->
 
       </div><!-- container -->
     </div><!-- conteúdo da página -->
