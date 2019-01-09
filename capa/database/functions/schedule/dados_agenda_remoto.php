@@ -103,8 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             ON m.id_contato = c.id      
           WHERE ($colaboradores)
             AND (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')
-            GROUP BY r.cnpj
-            ORDER BY a.id";
+          ORDER BY a.id
+          LIMIT 1";
       }
     } else {
       $query = 
@@ -174,8 +174,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         INNER JOIN av_agenda_telefones_moveis AS m
           ON m.id_contato = c.id      
         WHERE (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')
-          GROUP BY r.cnpj
-          ORDER BY a.id";
+        ORDER BY a.id
+        LIMIT 1";
     }
 
     $resultado = mysqli_query($db, $query);
