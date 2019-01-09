@@ -75,48 +75,72 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="col-sm-12"><!-- segunda coluna principal -->
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-left">
+                  <strong>Exercícios</strong>
+                </div>
+              </div>
+
+              <div class="panel-body"><!-- panel-body -->
+                <table class="table table-condesend">
+                  <thead>
+                    <tr>                            
+                      <th class="text-center">Supervisor</th>
+                      <th class="text-center">Colaborador</th>
+                      <th class="text-center">Situação</th>
+                      <th class="text-center">Exercício Inicial</th>
+                      <th class="text-center">Exercício Final</th>
+                      <th class="text-center">Data Limite</th>
+                      <th class="text-center">Registrado</th>
+                      <th class="text-center" width="192"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+                  </tbody>
+                </table>
+              </div><!-- panel-body -->
+            </div><!-- panel -->              
+          </div>
+        </div><!-- segunda coluna principal -->
+
         <form>
 
           <div class="row"><!-- linha principal -->
             <div class="col-sm-6 col-sm-offset-3"><!-- primeira coluna principal -->
+              <div class="panel panel-info"><!-- panel -->
+                <div class="panel-heading">
+                  <div class="text-left">
+                    <strong>Filtros</strong>
+                  </div>
+                </div>
 
-              <div class="row"><!-- painel atendimentos -->
-                <div class="col-sm-12">
+                <div class="panel-body"><!-- panel-body -->
+                  <div class="row">
+                    <div class="col-sm-7">
+                      <div class="form-group">
+                        <label class="sr-only" for="colaborador">Lista Colaboradores</label>
+                        <select class="form-control required" id="colaborador">
 
-                  <div class="panel panel-info"><!-- panel -->
-                    <div class="panel-heading">
-                      <div class="text-left">
-                        <strong>Filtros</strong>
+                        </select>
                       </div>
                     </div>
 
-                    <div class="panel-body"><!-- panel-body -->
-                      <div class="row">
-                        <div class="col-sm-7">
-                          <div class="form-group">
-                            <label class="sr-only" for="colaborador">Lista Colaboradores</label>
-                            <select class="form-control required" id="colaborador">
-
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-5">
-                          <div class="form-group">
-                            <label class="sr-only" for="status">Status</label>
-                            <select class="form-control" id="status">
-                              <option value="" selected>Situação</option>
-                              <option value="0">Férias Não Agendadas</option>
-                              <option value="1">Férias Agendadas</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>                  
-                    </div><!-- panel-body -->                    
-                  </div><!-- panel -->
-
-                </div>
-              </div><!-- painel atendimentos -->
+                    <div class="col-sm-5">
+                      <div class="form-group">
+                        <label class="sr-only" for="status">Status</label>
+                        <select class="form-control" id="status">
+                          <option value="" selected>Situação</option>
+                          <option value="0">Férias Não Agendadas</option>
+                          <option value="1">Férias Agendadas</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>                  
+                </div><!-- panel-body -->                    
+              </div><!-- panel -->
 
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
@@ -137,48 +161,8 @@
                   </div>
                 </div>
               </div>
-
             </div><!-- primeira coluna principal -->
           </div><!-- linha principal -->
-
-          <div class="row">
-            <div class="col-sm-12"><!-- segunda coluna principal -->
-
-              <div class="row">
-                <div class="col-sm-12">
-
-                  <div class="panel panel-info"><!-- panel -->
-                    <div class="panel-heading">
-                      <div class="text-left">
-                        <strong>Exercícios</strong>
-                      </div>
-                    </div>
-
-                    <div class="panel-body"><!-- panel-body -->
-                      <table class="table table-condesend">
-                        <thead>
-                          <tr>                            
-                            <th class="text-center">Supervisor</th>
-                            <th class="text-center">Colaborador</th>
-                            <th class="text-center">Situação</th>
-                            <th class="text-center">Exercício Inicial</th>
-                            <th class="text-center">Exercício Final</th>
-                            <th class="text-center">Data Limite</th>
-                            <th class="text-center">Registrado</th>
-                            <th class="text-center" width="192"></th>
-                          </tr>
-                        </thead>
-                        <tbody id="tbody">
-                        </tbody>
-                      </table>
-                    </div><!-- panel-body -->
-                  </div><!-- panel -->
-
-                </div>
-              </div>
-
-            </div>
-          </div><!-- segunda coluna principal -->
 
         </form>
 

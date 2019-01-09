@@ -86,9 +86,54 @@
           </div>
         </div>
 
-        <form>
-          <div class="row"><!-- linha principal -->
-            <div class="col-sm-6 col-sm-offset-3"><!-- primeira coluna principal -->
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-left">
+                  <strong>Exercícios</strong>
+                </div>
+              </div>
+
+              <div class="panel-body"><!-- panel-body -->
+                <table class="table table-condesend">
+                  <thead>
+                    <tr>                            
+                      <th class="text-center">Supervisor</th>
+                      <th class="text-center">Colaborador</th>
+                      <th class="text-center">Situação</th>
+                      <th class="text-center">Exercício Inicial</th>
+                      <th class="text-center">Exercício Final</th>
+                      <th class="text-center">Data Limite</th>
+                      <th class="text-center">Registrado</th>                            
+                    </tr>
+                  </thead>
+                  <tbody id="tbody">
+                  </tbody>
+                </table>
+              </div><!-- panel-body -->
+            </div><!-- panel -->
+          </div>
+        </div>
+
+        <div class="row"><!-- linha principal -->
+          <div class="col-sm-6"><!-- primeira coluna principal -->
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-left">
+                  <strong>Pedido</strong>
+                </div>
+              </div>
+
+              <div class="panel-body" id="pedido"><!-- panel-body -->
+
+              </div><!-- panel-body -->                    
+            </div><!-- panel -->            
+          </div><!-- primeira coluna principal -->
+
+          <div class="col-sm-6"><!-- primeira coluna principal -->
+            <form>
+
               <div class="row"><!-- painel atendimentos -->
                 <div class="col-sm-12">
                   <div class="panel panel-info"><!-- panel -->
@@ -133,180 +178,131 @@
                   </div>
                 </div>
               </div>
-            </div><!-- primeira coluna principal -->
-          </div><!-- linha principal -->
-        </form>
+              
+            </form>
+          </div><!-- primeira coluna principal -->
+        </div><!-- linha principal -->        
 
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-info"><!-- panel -->
-              <div class="panel-heading">
-                <div class="text-left">
-                  <strong>Exercícios</strong>
-                </div>
-              </div>
+          <div class="row">            
+            <div class="col-sm-6 col-sm-offset-3"><!-- segunda coluna -->
+              <form>
+                <div class="panel panel-info"><!-- panel -->
+                  <div class="panel-heading">
+                    <div class="text-left">
+                      <strong>Férias</strong>
+                    </div>
+                  </div>
 
-              <div class="panel-body"><!-- panel-body -->
-                <table class="table table-condesend">
-                  <thead>
-                    <tr>                            
-                      <th class="text-center">Supervisor</th>
-                      <th class="text-center">Colaborador</th>
-                      <th class="text-center">Situação</th>
-                      <th class="text-center">Exercício Inicial</th>
-                      <th class="text-center">Exercício Final</th>
-                      <th class="text-center">Data Limite</th>
-                      <th class="text-center">Registrado</th>                            
-                    </tr>
-                  </thead>
-                  <tbody id="tbody">
-                  </tbody>
-                </table>
-              </div><!-- panel-body -->
-            </div><!-- panel -->
-          </div>
-        </div>
-
-          <div class="row">
-            <div class="col-sm-6"><!-- primeira coluna principal -->
-              <div class="row">
-                <div class="col-sm-12">
-
-                  <div class="panel panel-info"><!-- panel -->
-                    <div class="panel-heading">
-                      <div class="text-left">
-                        <strong>Pedido</strong>
-                      </div>
+                  <div class="panel-body"><!-- panel-body -->                  
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="periodos">Períodos</label>
+                          <select class="form-control" id="periodos" disabled>
+                            <option value="0" selected>Lista  de Períodos</option>
+                            <option value="1">1 Período de 30 Dias</option>
+                            <option value="2">2 Períodos de 15 Dias</option>
+                            <option value="3">3 Períodos de 10 Dias</option>
+                          </select>
+                        </div>
+                      </div>                  
                     </div>
 
-                    <div class="panel-body" id="pedido"><!-- panel-body -->
+                    <div id="bloco-periodos"><!-- bloco períodos -->                  
+                      <div class="row hidden" id="linha-1"><!-- bloco 01 -->
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="data-inicial-1">Período 1 - Data Inicial</label>
+                            <input class="form-control required" id="data-inicial-1" type="date" readonly>
+                          </div>
+                        </div>
 
-                    </div><!-- panel-body -->                    
-                  </div><!-- panel -->
-                </div>
-              </div>
-            </div><!-- primeira coluna principal -->
-          
-          <form>
-            <div class="col-sm-6"><!-- segunda coluna -->
-              <div class="panel panel-info"><!-- panel -->
-                <div class="panel-heading">
-                  <div class="text-left">
-                    <strong>Formulário</strong>
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="data-final-1">Período 1 - Data Final</label>
+                            <input class="form-control required" id="data-final-1" type="date" readonly>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                            <label for="total-dias-1">Dias</label>
+                            <input class="form-control required" id="total-dias-1" type="text" value="0" readonly>
+                          </div>
+                        </div>
+                      </div><!-- bloco 01 -->
+
+                      <div class="row hidden" id="linha-2"><!-- bloco 02 -->
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="data-inicial-2">Período 2 - Data Inicial</label>
+                            <input class="form-control required" id="data-inicial-2" type="date" readonly>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="data-final-2">Período 2 - Data Final</label>
+                            <input class="form-control required" id="data-final-2" type="date" readonly>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                            <label for="total-dias-2">Dias</label>
+                            <input class="form-control required" id="total-dias-2" type="text" value="0" readonly>
+                          </div>
+                        </div>
+                      </div><!-- bloco 02 -->
+
+                      <div class="row hidden"  id="linha-3"><!-- bloco 03 -->
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="data-inicial-3">Período 3 - Data Inicial</label>
+                            <input class="form-control required" id="data-inicial-3" type="date" readonly>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                          <div class="form-group">
+                            <label for="data-final-3">Período 3 - Data Final</label>
+                            <input class="form-control required" id="data-final-3" type="date" readonly>
+                          </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                          <div class="form-group">
+                            <label for="total-dias-3">Dias</label>
+                            <input class="form-control required" id="total-dias-3" type="text" value="0" readonly>
+                          </div>
+                        </div>
+                      </div><!-- bloco 03 -->
+                    </div><!-- bloco períodos -->
+
+                    <input class="form-control" id="id-exercicio" type="hidden"><!-- id do exercício -->
+                  </div><!-- panel-body -->
+                </div><!-- panel -->
+
+                <div class="row">
+                  <div class="col-sm-3 col-sm-offset-6">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-default btn-sm" type="reset">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        Resetar
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-success btn-sm" id="btn-gravar" type="button">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                        Gravar
+                      </button>
                   </div>
                 </div>
-
-                <div class="panel-body"><!-- panel-body -->                  
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                        <label for="periodos">Períodos</label>
-                        <select class="form-control" id="periodos" disabled>
-                          <option value="0" selected>Lista  de Períodos</option>
-                          <option value="1">1 Período de 30 Dias</option>
-                          <option value="2">2 Períodos de 15 Dias</option>
-                          <option value="3">3 Períodos de 10 Dias</option>
-                        </select>
-                      </div>
-                    </div>                  
-                  </div>
-
-                  <div id="bloco-periodos"><!-- bloco períodos -->                  
-                    <div class="row hidden" id="linha-1"><!-- bloco 01 -->
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <label for="data-inicial-1">Período 1 - Data Inicial</label>
-                          <input class="form-control required" id="data-inicial-1" type="date" readonly>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <label for="data-final-1">Período 1 - Data Final</label>
-                          <input class="form-control required" id="data-final-1" type="date" readonly>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-2">
-                        <div class="form-group">
-                          <label for="total-dias-1">Dias</label>
-                          <input class="form-control required" id="total-dias-1" type="text" value="0" readonly>
-                        </div>
-                      </div>
-                    </div><!-- bloco 01 -->
-
-                    <div class="row hidden" id="linha-2"><!-- bloco 02 -->
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <label for="data-inicial-2">Período 2 - Data Inicial</label>
-                          <input class="form-control required" id="data-inicial-2" type="date" readonly>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <label for="data-final-2">Período 2 - Data Final</label>
-                          <input class="form-control required" id="data-final-2" type="date" readonly>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-2">
-                        <div class="form-group">
-                          <label for="total-dias-2">Dias</label>
-                          <input class="form-control required" id="total-dias-2" type="text" value="0" readonly>
-                        </div>
-                      </div>
-                    </div><!-- bloco 02 -->
-
-                    <div class="row hidden"  id="linha-3"><!-- bloco 03 -->
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <label for="data-inicial-3">Período 3 - Data Inicial</label>
-                          <input class="form-control required" id="data-inicial-3" type="date" readonly>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-5">
-                        <div class="form-group">
-                          <label for="data-final-3">Período 3 - Data Final</label>
-                          <input class="form-control required" id="data-final-3" type="date" readonly>
-                        </div>
-                      </div>
-
-                      <div class="col-sm-2">
-                        <div class="form-group">
-                          <label for="total-dias-3">Dias</label>
-                          <input class="form-control required" id="total-dias-3" type="text" value="0" readonly>
-                        </div>
-                      </div>
-                    </div><!-- bloco 03 -->
-                  </div><!-- bloco períodos -->
-
-                  <input class="form-control" id="id-exercicio" type="hidden"><!-- id do exercício -->
-                </div><!-- panel-body -->
-              </div><!-- panel -->
-
-              <div class="row">
-                <div class="col-sm-3 col-sm-offset-6">
-                  <div class="form-group">
-                    <button class="btn btn-block btn-default btn-sm" type="reset">
-                      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                      Resetar
-                    </button>
-                  </div>
-                </div>
-
-                <div class="col-sm-3">
-                  <div class="form-group">
-                    <button class="btn btn-block btn-success btn-sm" id="btn-gravar" type="button">
-                      <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
-                      Gravar
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div><!-- segunda coluna -->
-          </form>
+              </form>
+            </div>            
           </div>
 
       </div><!-- container -->

@@ -52,7 +52,24 @@
           </div>
         </div>
 
+        <div class="row"><!-- painel registro -->
+          <div class="col-sm-12">
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-left">
+                  <strong>Relatório</strong>
+                </div>
+              </div>
+
+              <div class="panel-body" id="tabela-relatorio"><!-- panel-body -->
+                
+              </div><!-- panel-body -->
+            </div><!-- panel -->
+          </div>
+        </div><!-- painel registro -->
+
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+        
           <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
               <div class="form-group">
@@ -70,7 +87,6 @@
 
           <div class="row"><!-- linha principal -->
             <div class="col-sm-6"><!-- primeira coluna principal -->
-
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
                   <strong>Empresa</strong>
@@ -101,7 +117,6 @@
             </div><!-- primeira coluna principal -->
 
             <div class="col-sm-6"><!-- segunda coluna principal -->
-
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
                   <div class="text-left">
@@ -189,30 +204,11 @@
                     </button>
                   </div>
                 </div>
-              </div>
-              
+              </div>              
             </div><!-- segunda coluna principal -->
           </div><!-- linha principal -->
         
         </form>
-
-        <div class="row"><!-- painel registro -->
-          <div class="col-sm-12">
-
-            <div class="panel panel-info"><!-- panel -->
-              <div class="panel-heading">
-                <div class="text-left">
-                  <strong>Relatório</strong>
-                </div>
-              </div>
-
-              <div class="panel-body" id="tabela-relatorio"><!-- panel-body -->
-                
-              </div><!-- panel-body -->
-            </div><!-- panel -->
-
-          </div>
-        </div><!-- painel registro -->
 
       </div><!-- container -->
     </div><!-- conteúdo da página -->
