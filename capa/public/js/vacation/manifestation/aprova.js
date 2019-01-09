@@ -40,7 +40,7 @@ $(function() {
         } else {
           swal({
             title: 'Aviso',
-            text: 'Erro ao tentar aprovar o pedido, informe ao Wellington Felix.',
+            text: 'Pedido aprovado, mas não foi possível enviar o e-mail de aprovação, consulte sua caixa de e-mail e refaça o envio.',
             icon: 'warning'              
           });            
         }
