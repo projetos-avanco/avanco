@@ -87,7 +87,7 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null
     $email->Host       = 'email-ssl.com.br';  
     $email->SMTPAuth   = true;                               
     $email->Username   = 'agenda@avancoinfo.com.br';
-    $email->Password   = '@g3nD@Av@nc0131_1188';                  
+    $email->Password   = 'Avanco@30251188';                  
     $email->SMTPSecure = 'ssl';                            
     $email->Port       = 465;                                    
 
