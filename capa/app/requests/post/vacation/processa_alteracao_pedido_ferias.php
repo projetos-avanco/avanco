@@ -214,6 +214,69 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
           }
         break;
+
+        case '4':
+        case '5':
+          /*
+           * ---------
+           * período 1
+           * ---------
+           */
+
+          # verificando se a data inicial do período 1 foi enviada e não está vazia
+          if (isset($_POST['pedido']['periodo1']['dataInicial']) && (!empty($_POST['pedido']['periodo1']['dataInicial']))) {
+            # verificando se a data inicial do período 1 é uma string numérica
+            if (is_string($_POST['pedido']['periodo1']['dataInicial'])) {
+              $pedido['periodo1']['data_inicial'] = $_POST['pedido']['periodo1']['dataInicial'];
+            }            
+          }
+
+          # verificando se a data final do período 1 foi enviada e não está vazia
+          if (isset($_POST['pedido']['periodo1']['dataFinal']) && (!empty($_POST['pedido']['periodo1']['dataFinal']))) {
+            # verificando se a data final do período 1 é uma string numérica
+            if (is_string($_POST['pedido']['periodo1']['dataFinal'])) {
+              $pedido['periodo1']['data_final'] = $_POST['pedido']['periodo1']['dataFinal'];
+            }            
+          }
+
+          # verificando se o total de dias do período 1 foi enviado e não está vazio
+          if (isset($_POST['pedido']['periodo1']['totalDias']) && (!empty($_POST['pedido']['periodo1']['totalDias']))) {
+            # verificando se o total de dias do período 1 é uma string numérica
+            if (is_numeric($_POST['pedido']['periodo1']['totalDias'])) {
+              $pedido['periodo1']['dias'] = (int) $_POST['pedido']['periodo1']['totalDias'];
+            }
+          }
+
+          /*
+           * ---------
+           * período 2
+           * ---------
+           */
+
+          # verificando se a data inicial do período 2 foi enviada e não está vazia
+          if (isset($_POST['pedido']['periodo2']['dataInicial']) && (!empty($_POST['pedido']['periodo2']['dataInicial']))) {
+            # verificando se a data inicial do período 2 é uma string numérica
+            if (is_string($_POST['pedido']['periodo2']['dataInicial'])) {
+              $pedido['periodo2']['data_inicial'] = $_POST['pedido']['periodo2']['dataInicial'];
+            }            
+          }
+
+          # verificando se a data final do período 2 foi enviada e não está vazia
+          if (isset($_POST['pedido']['periodo2']['dataFinal']) && (!empty($_POST['pedido']['periodo2']['dataFinal']))) {
+            # verificando se a data final do período 2 é uma string numérica
+            if (is_string($_POST['pedido']['periodo2']['dataFinal'])) {
+              $pedido['periodo2']['data_final'] = $_POST['pedido']['periodo2']['dataFinal'];
+            }            
+          }
+
+          # verificando se o total de dias do período 2 foi enviado e não está vazio
+          if (isset($_POST['pedido']['periodo2']['totalDias']) && (!empty($_POST['pedido']['periodo2']['totalDias']))) {
+            # verificando se o total de dias do período 2 é uma string numérica
+            if (is_numeric($_POST['pedido']['periodo2']['totalDias'])) {
+              $pedido['periodo2']['dias'] = (int) $_POST['pedido']['periodo2']['totalDias'];
+            }
+          }
+        break;
       }
 
       $pedido['registrado'] = date('Y-m-d H:i:s');

@@ -124,6 +124,20 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
                     <p><strong>3º - Período</strong> {$pedido['periodo3']['data_inicial']} até {$pedido['periodo3']['data_final']} - {$pedido['periodo3']['dias']} dias</p>
                   ";
                 break;
+
+                case '4':
+                case '5':
+                  $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
+                  $pedido['periodo1']['data_final']   = formataDataParaExibir($pedido['periodo1']['data_final']);
+
+                  $pedido['periodo2']['data_inicial'] = formataDataParaExibir($pedido['periodo2']['data_inicial']);
+                  $pedido['periodo2']['data_final']   = formataDataParaExibir($pedido['periodo2']['data_final']);
+
+                  $msg .= "
+                    <p><strong>1º - Período</strong> {$pedido['periodo1']['data_inicial']} até {$pedido['periodo1']['data_final']} - {$pedido['periodo1']['dias']} dias</p>
+                    <p><strong>2º - Período</strong> {$pedido['periodo2']['data_inicial']} até {$pedido['periodo2']['data_final']} - {$pedido['periodo2']['dias']} dias</p>
+                  ";
+                break;
               }
   $msg .=
               "</div>
@@ -190,14 +204,14 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'agenda@avancoinfo.com.br';
-    $email->Password   = 'Avanco@30251188';
+    $email->Username   = 'loja.avancao@avancoinfo.com.br';
+    $email->Password   = 'Avanco123';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
     # destinatários
     $email->setFrom($emailSupervisor, 'Avanço | Aprovação Férias');    
-    $email->addAddress($emailColaborador);
+    $email->addAddress($emailColaborador);    
     $email->addReplyTo($emailSupervisor, 'Respostas');    
     #$email->addCC();
     $email->addBCC('wellington.felix@avancoinfo.com.br');    
@@ -410,8 +424,8 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'agenda@avancoinfo.com.br';
-    $email->Password   = 'Avanco@30251188';
+    $email->Username   = 'loja.avancao@avancoinfo.com.br';
+    $email->Password   = 'Avanco123';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
@@ -573,6 +587,20 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
                       <p><strong>3º - Período</strong> {$pedido['periodo3']['data_inicial']} até {$pedido['periodo3']['data_final']} - {$pedido['periodo3']['dias']} dias</p>
                     ";
                   break;
+
+                  case '4':
+                  case '5':
+                    $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
+                    $pedido['periodo1']['data_final']   = formataDataParaExibir($pedido['periodo1']['data_final']);
+
+                    $pedido['periodo2']['data_inicial'] = formataDataParaExibir($pedido['periodo2']['data_inicial']);
+                    $pedido['periodo2']['data_final']   = formataDataParaExibir($pedido['periodo2']['data_final']);
+
+                    $msg .= "
+                      <p><strong>1º - Período</strong> {$pedido['periodo1']['data_inicial']} até {$pedido['periodo1']['data_final']} - {$pedido['periodo1']['dias']} dias</p>
+                      <p><strong>2º - Período</strong> {$pedido['periodo2']['data_inicial']} até {$pedido['periodo2']['data_final']} - {$pedido['periodo2']['dias']} dias</p>
+                    ";
+                  break;
                 }
   
   $msg .= "                
@@ -625,14 +653,14 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'agenda@avancoinfo.com.br';
-    $email->Password   = 'Avanco@30251188';
+    $email->Username   = 'loja.avancao@avancoinfo.com.br';
+    $email->Password   = 'Avanco123';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
     # destinatários
     $email->setFrom($emailColaborador, 'Avanço | Pedido Férias');    
-    $email->addAddress('badaro@avancoinfo.com.br');
+    $email->addAddress('badaro@avancoinfo.com.br');    
     $email->addReplyTo($emailColaborador, 'Respostas');
     #$email->addCC();
     $email->addBCC('wellington.felix@avancoinfo.com.br');

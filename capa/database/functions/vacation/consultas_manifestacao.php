@@ -7,7 +7,7 @@
  */
 function consultaExercicioAgendadoDoColaborador($db, $id)
 {
-  $ano = date('Y');
+  $ano = date('Y') - 1;
 
   $query = 
     "SELECT

@@ -138,6 +138,8 @@
                           <option value="1">1 Período de 30 Dias</option>
                           <option value="2">2 Períodos de 15 Dias</option>
                           <option value="3">3 Períodos de 10 Dias</option>
+                          <option value="4">1 Período de 10 Dias e 1 Período de 20 Dias</option>
+                          <option value="5">1 Período de 20 Dias e 1 Período de 10 Dias</option>
                         </select>
                       </div>
                     </div>                  

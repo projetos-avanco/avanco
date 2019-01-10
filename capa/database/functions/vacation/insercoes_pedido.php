@@ -24,7 +24,7 @@ function inserePedidosDeFerias($db, $pedido, $tipo)
         '{$pedido['registrado']}')";
     
     $resultado = mysqli_query($db, $query);
-  } elseif ($tipo == '2') {
+  } elseif ($tipo == '2' || $tipo == '4' || $tipo == '5') {
     $query = 
       "INSERT INTO 
         av_agenda_pedidos_ferias 
