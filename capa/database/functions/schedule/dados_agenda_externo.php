@@ -81,11 +81,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
               a.observacao,
               CASE
                 WHEN (a.status = 1)
-                  THEN 'Pendente'
+                  THEN 'Confirmado'
                 WHEN (a.status = 2)
-                  THEN 'Confirmada'
+                  THEN 'À Confirmar'
                 WHEN (a.status = 3)
-                  THEN 'Cancelada'
+                  THEN 'Reservado'                
               END AS status,
               DATE_FORMAT(a.registrado, '%Y-%m-%d') AS registrado
           FROM av_agenda_atendimentos_externos AS a
@@ -112,8 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           INNER JOIN av_agenda_estados AS t
             ON t.id = d.id_estado
           WHERE ($colaboradores)
+            AND NOT (a.status = 4)
             AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
-          GROUP BY r.cnpj
+          GROUP BY a.registro
           ORDER BY a.id";
       }
     } else {
@@ -163,11 +164,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             a.observacao,
             CASE
               WHEN (a.status = 1)
-                THEN 'Pendente'
+                THEN 'Confirmado'
               WHEN (a.status = 2)
-                THEN 'Confirmada'
+                THEN 'À Confirmar'
               WHEN (a.status = 3)
-                THEN 'Cancelada'
+                THEN 'Reservado'              
             END AS status,
             DATE_FORMAT(a.registrado, '%Y-%m-%d') AS registrado
         FROM av_agenda_atendimentos_externos AS a
@@ -193,8 +194,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           ON d.id = b.id_cidade
         INNER JOIN av_agenda_estados AS t
           ON t.id = d.id_estado
-        WHERE (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
-        GROUP BY r.cnpj
+        WHERE NOT (a.status = 4)
+          AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+        GROUP BY a.registro
         ORDER BY a.id";
     }
 

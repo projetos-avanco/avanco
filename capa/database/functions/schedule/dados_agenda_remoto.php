@@ -79,11 +79,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
               a.observacao,
               CASE
                 WHEN (a.status = 1)
-                  THEN 'Pendente'
+                  THEN 'Confirmado'
                 WHEN (a.status = 2)
-                  THEN 'Confirmada'
+                  THEN 'À Confirmar'
                 WHEN (a.status = 3)
-                  THEN 'Cancelada'
+                  THEN 'Reservado' 
               END AS status,
               DATE_FORMAT(a.registrado, '%Y-%m-%d') AS registrado
           FROM av_agenda_atendimentos_remotos AS a
@@ -102,8 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           INNER JOIN av_agenda_telefones_moveis AS m
             ON m.id_contato = c.id      
           WHERE ($colaboradores)
+            AND NOT (a.status = 4)
             AND (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')
-          GROUP BY r.cnpj
+          GROUP BY a.registro
           ORDER BY a.id";
       }
     } else {
@@ -151,11 +152,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             a.observacao,
             CASE
               WHEN (a.status = 1)
-                THEN 'Pendente'
+                THEN 'Confirmado'
               WHEN (a.status = 2)
-                THEN 'Confirmada'
+                THEN 'À Confirmar'
               WHEN (a.status = 3)
-                THEN 'Cancelada'
+                THEN 'Reservado' 
             END AS status,
             DATE_FORMAT(a.registrado, '%Y-%m-%d') AS registrado
         FROM av_agenda_atendimentos_remotos AS a
@@ -173,8 +174,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           ON f.id_contato = c.id
         INNER JOIN av_agenda_telefones_moveis AS m
           ON m.id_contato = c.id      
-        WHERE (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')
-        GROUP BY r.cnpj
+        WHERE NOT (a.status = 4)
+          AND (a.data BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+        GROUP BY a.registro
         ORDER BY a.id";
     }
 
