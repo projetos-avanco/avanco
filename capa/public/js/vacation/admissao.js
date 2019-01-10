@@ -21,9 +21,9 @@ $(function() {
             'vencimento': '',
             'tmp': '',
             'anoAdmissao': '',              
-            'anoAtual': data.getFullYear()
+            'anoAtual': data.getFullYear() - 1
           };
-
+          
           // dividindo data em array para recuperar o exercício inicial
           exercicio.tmp = admissao.split('-');
           exercicio.anoAdmissao = parseInt(exercicio.tmp[0]);

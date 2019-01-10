@@ -21,6 +21,14 @@ $(function() {
       case '3':
         exercicio.dias = 10;
       break;
+
+      case '4':
+        exercicio.dias = 10;        
+      break;
+
+      case '5':
+        exercicio.dias = 20;        
+      break;
     }
 
     // separando data inicial pelo -
@@ -153,6 +161,14 @@ $(function() {
 
         case '3':
           exercicio.dias = 10;
+        break;
+
+        case '4':
+          exercicio.dias = 20;        
+        break;
+
+        case '5':
+          exercicio.dias = 10;        
         break;
       }
 

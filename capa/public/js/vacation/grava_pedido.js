@@ -172,6 +172,96 @@ $(function() {
             $('.row #linha-3 #data-inicial-3').removeClass('erro');
           }
         break;
+
+        case '4':
+          // recuperando datas
+          pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
+          pedido.periodo1.dataFinal   = $('.row #linha-1 #data-final-1').val();
+          pedido.periodo1.totalDias   = $('.row #linha-1 #total-dias-1').val();
+
+          pedido.periodo2.dataInicial = $('.row #linha-2 #data-inicial-2').val();
+          pedido.periodo2.dataFinal   = $('.row #linha-2 #data-final-2').val();
+          pedido.periodo2.totalDias   = $('.row #linha-2 #total-dias-2').val();
+
+          // verificando se o período 1 foi preenchido
+          if (pedido.periodo1.dataInicial == '' || pedido.periodo1.dataFinal == '') {
+            flag = true;
+
+            // adicionando classe erro
+            $('.row #linha-1 #data-inicial-1').addClass('erro');
+
+            swal({
+              title: 'Aviso',
+              text: 'Preencha todas as datas do(s) período(s) selecionado(s).',
+              icon: 'warning'
+            });
+          } else {
+            // removendo classe erro
+            $('.row #linha-1 #data-inicial-1').removeClass('erro');
+          }
+
+          // verificando se o período 2 foi preenchido
+          if (pedido.periodo2.dataInicial == '' || pedido.periodo2.dataFinal == '') {
+            flag = true;
+
+            // adicionando classe erro
+            $('.row #linha-2 #data-inicial-2').addClass('erro');
+
+            swal({
+              title: 'Aviso',
+              text: 'Preencha todas as datas do(s) período(s) selecionado(s).',
+              icon: 'warning'
+            });
+          } else {
+            // removendo classe erro
+            $('.row #linha-2 #data-inicial-2').removeClass('erro');          
+          }
+        break;
+
+        case '5':
+          // recuperando datas
+          pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
+          pedido.periodo1.dataFinal   = $('.row #linha-1 #data-final-1').val();
+          pedido.periodo1.totalDias   = $('.row #linha-1 #total-dias-1').val();
+
+          pedido.periodo2.dataInicial = $('.row #linha-2 #data-inicial-2').val();
+          pedido.periodo2.dataFinal   = $('.row #linha-2 #data-final-2').val();
+          pedido.periodo2.totalDias   = $('.row #linha-2 #total-dias-2').val();
+
+          // verificando se o período 1 foi preenchido
+          if (pedido.periodo1.dataInicial == '' || pedido.periodo1.dataFinal == '') {
+            flag = true;
+
+            // adicionando classe erro
+            $('.row #linha-1 #data-inicial-1').addClass('erro');
+
+            swal({
+              title: 'Aviso',
+              text: 'Preencha todas as datas do(s) período(s) selecionado(s).',
+              icon: 'warning'
+            });
+          } else {
+            // removendo classe erro
+            $('.row #linha-1 #data-inicial-1').removeClass('erro');
+          }
+
+          // verificando se o período 2 foi preenchido
+          if (pedido.periodo2.dataInicial == '' || pedido.periodo2.dataFinal == '') {
+            flag = true;
+
+            // adicionando classe erro
+            $('.row #linha-2 #data-inicial-2').addClass('erro');
+
+            swal({
+              title: 'Aviso',
+              text: 'Preencha todas as datas do(s) período(s) selecionado(s).',
+              icon: 'warning'
+            });
+          } else {
+            // removendo classe erro
+            $('.row #linha-2 #data-inicial-2').removeClass('erro');          
+          }
+        break;
       }
           
       // verificando se não houve erros de validação

@@ -50,6 +50,19 @@ $(function() {
     // setando id do exercício no input hidden da página
     $('#id-exercicio').val(exercicio.id);
 
+    // setando valor default
+    $('#data-inicial-1').val('');
+    $('#data-inicial-2').val('');
+    $('#data-inicial-3').val('');
+
+    $('#data-final-1').val('');
+    $('#data-final-2').val('');
+    $('#data-final-3').val('');
+
+    $('#total-dias-1').val('0');
+    $('#total-dias-2').val('0');
+    $('#total-dias-3').val('0');
+
     // verificando qual foi o período de dias selecionado pelo usuário
     switch (exercicio.periodo) {
       case '1':
@@ -60,20 +73,6 @@ $(function() {
         $('.row #linha-1').removeClass('hidden');
         $('.row #linha-2').addClass('hidden');
         $('.row #linha-3').addClass('hidden');
-
-        // setando valor default
-        $('#data-inicial-1').val('');
-        $('#data-final-1').val('');
-
-        $('#data-inicial-2').val('');
-        $('#data-final-2').val('');
-
-        $('#data-inicial-3').val('');
-        $('#data-final-3').val('');
-
-        $('#total-dias-1').val('0');
-        $('#total-dias-2').val('0');
-        $('#total-dias-3').val('0');
 
         // removendo classe erro caso ela exista
         $('.row #linha-1 #data-inicial-1').removeClass('erro');
@@ -92,20 +91,6 @@ $(function() {
         $('.row #linha-1').removeClass('hidden');
         $('.row #linha-2').removeClass('hidden');
         $('.row #linha-3').addClass('hidden');
-
-        // setando valor default
-        $('#data-inicial-1').val('');
-        $('#data-final-1').val('');
-
-        $('#data-inicial-2').val('');
-        $('#data-final-2').val('');
-
-        $('#data-inicial-3').val('');
-        $('#data-final-3').val('');
-
-        $('#total-dias-1').val('0');
-        $('#total-dias-2').val('0');
-        $('#total-dias-3').val('0');
 
         // removendo classe erro caso ela exista
         $('.row #linha-1 #data-inicial-1').removeClass('erro');
@@ -130,20 +115,6 @@ $(function() {
         $('.row #linha-2').removeClass('hidden');
         $('.row #linha-3').removeClass('hidden');
 
-        // setando valor default
-        $('#data-inicial-1').val('');
-        $('#data-final-1').val('');
-
-        $('#data-inicial-2').val('');
-        $('#data-final-2').val('');
-
-        $('#data-inicial-3').val('');
-        $('#data-final-3').val('');
-
-        $('#total-dias-1').val('0');
-        $('#total-dias-2').val('0');
-        $('#total-dias-3').val('0');
-
         // removendo classe erro caso ela exista
         $('.row #linha-1 #data-inicial-1').removeClass('erro');
         $('.row #linha-2 #data-inicial-2').removeClass('erro');
@@ -158,6 +129,50 @@ $(function() {
 
         $('#data-inicial-3').prop('min', exercicio.final).prop('max', exercicio.vencimento);
         $('#data-final-3').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+      break;
+
+      case '4':        
+        // liberando data inicial para preenchimento
+        $('#data-inicial-1').prop('readonly', false);
+        $('#data-inicial-2').prop('readonly', false);
+
+        // removendo e adicionando classe hidden
+        $('.row #linha-1').removeClass('hidden');
+        $('.row #linha-2').removeClass('hidden');
+        $('.row #linha-3').addClass('hidden');
+        
+        // removendo classe erro caso ela exista
+        $('.row #linha-1 #data-inicial-1').removeClass('erro');
+        $('.row #linha-2 #data-inicial-2').removeClass('erro');
+
+        // setando data mínima e máxima de acorodo com o exercício
+        $('#data-inicial-1').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+        $('#data-final-1').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+
+        $('#data-inicial-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+        $('#data-final-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+      break;
+
+      case '5':
+        // liberando data inicial para preenchimento
+        $('#data-inicial-1').prop('readonly', false);
+        $('#data-inicial-2').prop('readonly', false);
+
+        // removendo e adicionando classe hidden
+        $('.row #linha-1').removeClass('hidden');
+        $('.row #linha-2').removeClass('hidden');
+        $('.row #linha-3').addClass('hidden');
+
+        // removendo classe erro caso ela exista
+        $('.row #linha-1 #data-inicial-1').removeClass('erro');
+        $('.row #linha-2 #data-inicial-2').removeClass('erro');
+
+        // setando data mínima e máxima de acorodo com o exercício
+        $('#data-inicial-1').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+        $('#data-final-1').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+
+        $('#data-inicial-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);
+        $('#data-final-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);
       break;
     }    
   });
