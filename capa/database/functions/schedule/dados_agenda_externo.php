@@ -113,8 +113,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             ON t.id = d.id_estado
           WHERE ($colaboradores)
             AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
-          ORDER BY a.id
-          LIMIT 1";
+          GROUP BY r.cnpj
+          ORDER BY a.id";
       }
     } else {
       $query = 
@@ -194,8 +194,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         INNER JOIN av_agenda_estados AS t
           ON t.id = d.id_estado
         WHERE (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
-        ORDER BY a.id
-        LIMIT 1";
+        GROUP BY r.cnpj
+        ORDER BY a.id";
     }
 
     $resultado = mysqli_query($db, $query);
