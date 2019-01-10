@@ -181,7 +181,7 @@
                       <?php endif; ?>
 
                       <div class="row" id="bloco-atestado">
-                        <div class="col-sm-12">
+                        <div class="col-sm-3">
                           <div class="form-group">
                             <label class="sr-only" for="atestado">Atestado</label>
                             <span class="btn btn-danger btn-block btn-file">
