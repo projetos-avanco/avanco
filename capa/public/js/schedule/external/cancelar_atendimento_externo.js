@@ -9,7 +9,7 @@ $(function() {
     var idContato = $(this).closest('tr').attr('data-id-contato');
     var status    = $(this).closest('tr').attr('data-status');
 
-    if (status === 'Visita Confirmada') {
+    if (status === 'Confirmado') {
       swal({
         icon: 'info',
         title: 'Atendimento Externo!',
