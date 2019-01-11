@@ -115,14 +115,36 @@
   <?php include ABS_PATH . 'inc/templates/navbar.php' ?>
   <?php include ABS_PATH . 'inc/templates/sidebar.php' ?>
 
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="form-group">
-              <h2>Edição Atendimento Remoto</h2>
-              <hr>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <h2>Edição Atendimento Remoto</h2>
+                <hr>
+              </div>
             </div>
           </div>
-        </div>
+
+          <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+            <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="text-center">
+                    <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                        <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                          <strong>Ops!</strong>
+                        <?php else : ?>
+                          <strong>Tudo Certo!</strong>
+                        <?php endif; ?>
+
+                        <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <?php endfor; ?>
+
+        <?php endif; ?>
 
         <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/remote/processa_edicao_atendimento_remoto.php" method="post" enctype="multipart/form-data">
 
@@ -722,29 +744,7 @@
 
         </form>
 
-        <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
-
-          <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="text-center">
-                  <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
-                      <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
-                        <strong>Ops!</strong>
-                      <?php else : ?>
-                        <strong>Tudo Certo!</strong>
-                      <?php endif; ?>
-
-                      <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <?php endfor; ?>
-
-      <?php endif; ?>
-
-      <?php unset($_SESSION['atividades'], $_SESSION['ticket']); ?>
+        <?php unset($_SESSION['atividades'], $_SESSION['ticket']); ?>
 
       </div><!-- container -->
     </div><!-- conteúdo da página -->
