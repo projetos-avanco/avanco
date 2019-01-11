@@ -109,7 +109,7 @@ $(function() {
         },
         {
           url: '../../../database/functions/schedule/dados_agenda_remoto.php',
-          color: '#FACC2E',
+          color: '#00BFFF',
           textColor: '#FFFFFF',
           data: function () {
             var id = [];
