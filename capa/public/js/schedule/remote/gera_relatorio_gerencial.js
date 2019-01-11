@@ -88,15 +88,17 @@ $(function() {
               '</td>';
           }
 
-          if (dados[i].status != 'Atendimento Cancelado') {
+          if (dados[i].status === 'Cancelado') {
+            tbody += '<td></td>';
+          } else if (dados[i].status === 'Confirmado' && dados[i].relatorio_entregue === 'Sim') {
+            tbody += '<td></td>';
+          } else {
             tbody +=
               '<td>' +
                 '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
                   '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
                 '</button' +
-              '</td>';
-          } else {
-            tbody += '<td></td>';
+              '</td>';            
           }
   
           tbody += '</tr>'
@@ -240,15 +242,17 @@ $(function() {
               '</td>';
           }
           
-          if (dados[i].status != 'Atendimento Cancelado') {
+          if (dados[i].status === 'Cancelado') {
+            tbody += '<td></td>';
+          } else if (dados[i].status === 'Confirmado' && dados[i].relatorio_entregue === 'Sim') {
+            tbody += '<td></td>';
+          } else {
             tbody +=
               '<td>' +
                 '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
                   '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
                 '</button' +
               '</td>';
-          } else {
-            tbody += '<td></td>';
           }
   
           tbody += '</tr>'

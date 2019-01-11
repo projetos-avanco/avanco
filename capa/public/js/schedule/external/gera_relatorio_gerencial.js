@@ -109,15 +109,17 @@ $(function() {
               '</td>';
           }
           
-          if (dados[i].status != 'Visita Cancelada') {
+          if (dados[i].status === 'Cancelado') {
+            tbody += '<td></td>';
+          } else if (dados[i].status === 'Confirmado' && (dados[i].relatorio_entregue === 'Sim' || dados[i].pesquisa_realizada === 'Sim')) {
+            tbody += '<td></td>';            
+          } else {
             tbody +=
               '<td>' +
                 '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
                   '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
                 '</button' +
-              '</td>';
-          } else {
-            tbody += '<td></td>';
+              '</td>';            
           }
   
           tbody += '</tr>'
@@ -192,7 +194,7 @@ $(function() {
       success: function(dados) {
         var table = '';
         var tbody = '';
-                
+
         table += '<table class="table table-condensed" id="relatorio">' +
           '<thead>'                                      +
             '<tr>'                                       +
@@ -283,15 +285,17 @@ $(function() {
               '</td>';
           }
           
-          if (dados[i].status != 'Visita Cancelada') {
+          if (dados[i].status === 'Cancelado') {
+            tbody += '<td></td>';
+          } else if (dados[i].status === 'Confirmado' && (dados[i].relatorio_entregue === 'Sim' || dados[i].pesquisa_realizada === 'Sim')) {
+            tbody += '<td></td>';
+          } else {
             tbody +=
               '<td>' +
                 '<button class="btn btn-danger btn-sm btn-block" id="cancelar-atendimento" type="button" value="' + dados[i].id + '">' +
                   '<i class="fa fa-times-circle" aria-hidden="true"></i> Cancelar' +
                 '</button' +
-              '</td>';
-          } else {
-            tbody += '<td></td>';
+              '</td>';            
           }
   
           tbody += '</tr>'
