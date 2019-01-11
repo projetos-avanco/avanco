@@ -114,7 +114,7 @@ function enviaEmailExterno($db, $externo, $endereco, $contato, $cc, $tipo = null
       }
     }
 
-    $email->addBCC($emailSupervisor);
+    #$email->addBCC($emailSupervisor);
     $email->addBCC($emailColaborador);
     $email->addBCC('agenda@avancoinfo.com.br');
 

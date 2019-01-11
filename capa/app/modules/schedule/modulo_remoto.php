@@ -97,7 +97,7 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null, $alteracoes
       }
     }
 
-    $email->addBCC($emailSupervisor);
+    #$email->addBCC($emailSupervisor);
     $email->addBCC($emailColaborador);
     $email->addBCC('agenda@avancoinfo.com.br');
 
