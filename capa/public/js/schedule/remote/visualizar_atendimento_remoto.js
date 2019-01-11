@@ -152,6 +152,33 @@ $(function() {
           window.open(url, '_self');          
         }
       });
+    } else if (gerencial.status === 'Cancelado') {
+      swal({
+        icon: 'info',
+        title: 'Atendimento Remoto!',
+        text:               
+          'Lançado: '             + gerencial.lancado            + "\n\n" +
+          'Registro: '            + gerencial.registro           + "\n\n" +
+          'Situação: '            + gerencial.status             + "\n\n" +
+          'Supervisor: '          + gerencial.supervisor         + "\n\n" +
+          'Colaborador: '         + gerencial.colaborador        + "\n\n" +
+          'Tipo de Atendimento: ' + gerencial.tipo               + "\n\n\n\n" +
+          'Empresa: '             + gerencial.empresa            + "\n\n" +
+          'CNPJ: '                + gerencial.cnpj               + "\n\n" +
+          'Contato: '             + gerencial.contato            + "\n\n" +
+          'Período: '             + gerencial.periodo            + "\n\n" +
+          'Produto: '             + gerencial.produto            + "\n\n" +
+          'Observacao: '          + gerencial.observacao         + "\n\n\n\n" +
+          'Faturado: '            + gerencial.faturado           + "\n\n" +        
+          'Relatório Entregue: '  + gerencial.relatorio_entregue,
+          buttons: {            
+            cancel: {
+              text: 'Fechar',
+              closeModal: true,
+              visible: true
+            }        
+          }        
+      });
     } else {
       swal({
         icon: 'info',
