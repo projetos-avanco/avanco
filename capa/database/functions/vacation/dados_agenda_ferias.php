@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             p.data_inicial,
             p.data_final,
             p.dias,
-            p.registrado
+            DATE_FORMAT(p.registrado, '%Y-%m-%d') AS registrado
           FROM av_agenda_exercicios_ferias AS e
           INNER JOIN av_agenda_pedidos_ferias AS p
             ON p.id_exercicio = e.id
@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           p.data_inicial,
           p.data_final,
           p.dias,
-          p.registrado
+          DATE_FORMAT(p.registrado, '%Y-%m-%d') AS registrado
         FROM av_agenda_exercicios_ferias AS e
         INNER JOIN av_agenda_pedidos_ferias AS p
           ON p.id_exercicio = e.id
