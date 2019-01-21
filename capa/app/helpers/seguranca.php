@@ -98,6 +98,7 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'contato.php'                       OR
           $pagina == 'atendimento_remoto.php'            OR
           $pagina == 'atendimento_externo.php'           OR
+          $pagina == 'atendimento_clientes.php'          OR
           $pagina == 'empresa.php'                       OR
           $pagina == 'edita_contato.php'                 OR
           $pagina == 'edita_endereco.php'                OR
@@ -157,6 +158,7 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'contato.php'                       OR
          $pagina == 'atendimento_remoto.php'            OR
          $pagina == 'atendimento_externo.php'           OR
+         $pagina == 'atendimento_clientes.php'          OR
          $pagina == 'empresa.php'                       OR
          $pagina == 'edita_contato.php'                 OR
          $pagina == 'edita_endereco.php'                OR
