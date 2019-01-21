@@ -108,6 +108,26 @@ $(function() {
           }          
         },
         {
+          url: '../../../database/functions/schedule/dados_agenda_gestao_clientes.php',              
+          color: '#FF00FF',
+          textColor: '#FFFFFF',
+          data: function () {
+            var id = [];
+
+            // percorrendo todos os checkboxers
+            $('input:checkbox').each(function() {
+              // verificando se o checkbox está marcado
+              if ($(this).is(':checked')) {
+                id.push($(this).val());
+              }
+            });
+
+            return {
+              colaboradores: id
+            }
+          },
+        },
+        {
           url: '../../../database/functions/schedule/dados_agenda_remoto.php',
           color: '#00BFFF',
           textColor: '#FFFFFF',
@@ -174,7 +194,7 @@ $(function() {
 
         titulo = titulo.split('-');
         titulo = titulo[1].trim();
-                        
+
         switch (titulo) {
           case 'férias':
           
@@ -198,6 +218,31 @@ $(function() {
             swal({
               icon: 'info',
               title: 'Atendimento Externo!',
+              text:               
+                'Lançado: '             + evento.registrado         + "\n\n" +
+                'Registro: '            + evento.registro           + "\n\n" +
+                'Situação: '            + evento.status             + "\n\n" +
+                'Supervisor: '          + evento.supervisor         + "\n\n" +
+                'Colaborador: '         + evento.colaborador        + "\n\n" +
+                'Período: '             + evento.periodo            + "\n\n" +
+                'Atendimento: '         + evento.tipo               + "\n\n\n\n" +
+                'Empresa: '             + evento.empresa            + "\n\n" +
+                'CNPJ: '                + evento.cnpj               + "\n\n" +
+                'Contato: '             + evento.contato            + "\n\n" +
+                'Fixo: '                + evento.fixo               + "\n\n" +
+                'Móvel: '               + evento.movel              + "\n\n" +
+                'E-mail: '              + evento.email              + "\n\n" +
+                'Produto: '             + evento.produto            + "\n\n" +
+                'Observacao: '          + evento.observacao                  
+            });
+          break;
+
+          case 'gestão clientes':
+            evento.empresa = evento.empresa.substr(0, 32);
+
+            swal({
+              icon: 'info',
+              title: 'Gestão de Clientes!',
               text:               
                 'Lançado: '             + evento.registrado         + "\n\n" +
                 'Registro: '            + evento.registro           + "\n\n" +
