@@ -110,7 +110,7 @@
           </li>
 
           <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_clientes.php">
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_gestao_clientes.php">
               <p>Gestão<p>
             </a>
           </li>
@@ -297,58 +297,110 @@
           </span>
         </a>
 
-        <ul class="nav collapse"  id="submenu8">      
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_externo.php">
-              <p>Externo<p>
-            </a>
+        <ul class="nav collapse"  id="submenu8">
+          <li class="bordermenu">
+            <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu11">
+            <span class="nav-header-primary">
+              Registros
+              <span class="pull-right">
+                  <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+              </span>
+            </span>
+
+            <ul class="nav collapse" id="submenu11">
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/relatorio_folgas.php">
+                  <p>Folgas<p>
+                </a>
+              </li>
+
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/relatorio_faltas.php">
+                  <p>Faltas<p>
+                </a>
+              </li>
+
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/relatorio_atrasos.php">
+                  <p>Atrasos<p>
+                </a>
+              </li>
+
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/relatorio_extras.php">
+                  <p>Extras<p>
+                </a>
+              </li>
+            </ul>
           </li>
 
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_remoto.php">
-              <p>Remoto<p>
-            </a>
+          <li class="bordermenu">
+            <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu12">
+            <span class="nav-header-primary">
+              Agendamento
+              <span class="pull-right">
+                  <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+              </span>
+            </span>
+
+            <ul class="nav collapse" id="submenu12">
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_externo.php">
+                  <p>Externo<p>
+                </a>
+              </li>
+
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_painel_cliente.php">
+                  <p>Gestão<p>
+                </a>
+              </li>
+
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_remoto.php">
+                  <p>Remoto<p>
+                </a>
+              </li>
+            </ul>
           </li>
 
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/relatorio_folgas.php">
-              <p>Folgas<p>
-            </a>
+          <li class="bordermenu">
+            <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu13">
+            <span class="nav-header-primary">
+              Avancoins
+              <span class="pull-right">
+                  <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+              </span>
+            </span>
+
+            <ul class="nav collapse" id="submenu13">
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/ranking/ranking_colaboradores.php">
+                  <p>Ranking<p>
+                </a>
+              </li>
+            </ul>
           </li>
 
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/relatorio_faltas.php">
-              <p>Faltas<p>
-            </a>
-          </li>
+          <li class="bordermenu">
+            <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu14">
+            <span class="nav-header-primary">
+              Outros
+              <span class="pull-right">
+                  <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
+              </span>
+            </span>
 
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/relatorio_atrasos.php">
-              <p>Atrasos<p>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/relatorio_extras.php">
-              <p>Extras<p>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/ranking/ranking_colaboradores.php">
-              <p>Ranking<p>
-            </a>
-          </li>
-
-          <li>
-            <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/consulta_atendimentos.php">
-              <p>Atendimentos<p>
-            </a>
+            <ul class="nav collapse" id="submenu14">
+              <li>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/reports/calls/consulta_atendimentos.php">
+                  <p>Atendimentos<p>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </li>
-
-
     </ul>
   </div><!-- sidebar -->
 
