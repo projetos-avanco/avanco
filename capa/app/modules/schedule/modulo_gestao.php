@@ -1,6 +1,15 @@
 <?php
 
 /**
+ * responsável por solicitar a gravação de um atendimento de gestão de clientes e o envio de e-mails aos envolvidos
+ * @param - array com os dados de um atendimento de gestão de clientes
+ */
+function recebeAtendimentoGestaoVisitaRelacionamento($gestao, $endereco, $contato, $copia)
+{
+  exit(var_dump($endereco));
+}
+
+/**
  * responsável por solicitar a gravação de um atendimento de gestão de clientes
  * @param - array com os dados de um atendimento de gestão de clientes
  */
