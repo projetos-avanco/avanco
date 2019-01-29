@@ -9,6 +9,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   $gestao = array(
     'id'           => 0,
     'id_cnpj'      => null,
+    'id_issue'     => null,
     'id_contato'   => null,
     'registro'     => null,
     'tipo'         => null,
@@ -292,6 +293,268 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
 
   $gestao['registrado'] = date('Y-m-d H:i:s');
 
+  # verificando se o tipo de atendimento é visita de relacionamento
+  if ($gestao['tipo'] === '1') {
+    # verificando se foi enviado algum arquivo em anexo
+    if (isset($_FILES['gestao']) && $_FILES['gestao']['error']['anexo'] == 0) {          
+      # verificando se o tamanho do arquivo em anexo é maior que 2MB
+      if ($_FILES['gestao']['size']['anexo'] > 2097152) {
+        $flag = true;
+        $erros['mensagens'][] = 'O arquivo em anexo deve ter o tamanho máximo de 2MB.';      
+      }
+    }
+
+    $endereco = array(
+      'logradouro'  => null,
+      'distrito'    => null,
+      'localidade'  => null,
+      'uf'          => null,
+      'tipo'        => null,
+      'cep'         => null,
+      'numero'      => null,
+      'complemento' => null
+    );
+  
+    $contato = array(
+      'nome'   => null,
+      'fixos'  => array(),
+      'moveis' => array(),
+      'emails' => array()
+    );
+  
+    $copia = array();
+
+    /**
+     * ---------------------------
+     * validando dados de endereço
+     * ---------------------------
+     */
+
+    # verificando se o valor do campo logradouro foi enviado
+    if (!empty($_POST['endereco']['logradouro'])) {
+      # verificando se o valor do campo logradouro é uma string
+      if (is_string($_POST['endereco']['logradouro'])) {
+        $endereco['logradouro'] = mb_strtoupper($_POST['endereco']['logradouro'], 'utf-8');
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados da avenida não está correto.';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'O nome da avenida não foi informado.';
+    }
+
+    # verificando se o valor do campo distrito foi enviado
+    if (!empty($_POST['endereco']['distrito'])) {
+      # verificando se o valor do campo distrito é uma string
+      if (is_string($_POST['endereco']['distrito'])) {
+        $endereco['distrito'] = mb_strtoupper($_POST['endereco']['distrito'], 'utf-8');
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados do bairro não está correto.';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'O nome do bairro não foi informado.';
+    }
+
+    # verificando se o valor do campo localidade foi enviado
+    if (!empty($_POST['endereco']['localidade'])) {
+      # verificando se o valor do campo localidade é uma string
+      if (is_string($_POST['endereco']['localidade'])) {
+        $endereco['localidade'] = mb_strtoupper($_POST['endereco']['localidade'], 'utf-8');
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados da cidade não está correto.';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'O nome da cidade não foi informado.';
+    }
+
+    # verificando se o valor do campo uf foi enviado
+    if (!empty($_POST['endereco']['uf'])) {
+      # verificando se o valor do campo uf é uma string
+      if (is_string($_POST['endereco']['uf'])) {
+        $endereco['uf'] = mb_strtoupper($_POST['endereco']['uf'], 'utf-8');
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados do estado não está correto.';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'O nome do estado não foi informado.';
+    }
+
+    # verificando se o valor do campo tipo do endereço foi enviado
+    if (!empty($_POST['endereco']['tipo'])) {
+      # verificando se o valor do campo tipo do endereço é uma string
+      if (is_string($_POST['endereco']['tipo'])) {
+        $endereco['tipo'] = mb_strtoupper($_POST['endereco']['tipo'], 'utf-8');
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados do campo tipo de endereço não está correto.';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'O tipo do endereço não foi informado.';
+    }
+
+    # verificando se o valor do campo cep foi enviado
+    if (!empty($_POST['endereco']['cep'])) {
+      # verificando se o valor do campo cep é uma string
+      if (is_string($_POST['endereco']['cep'])) {
+        $endereco['cep'] = $_POST['endereco']['cep'];
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados do cep não está correto.';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'O cep não foi informado.';
+    }
+
+    # verificando se o valor do campo número foi enviado
+    if (!empty($_POST['endereco']['numero'])) {
+      # verificando se o valor do campo número é uma string
+      if (is_string($_POST['endereco']['numero'])) {
+        $endereco['numero'] = mb_strtoupper($_POST['endereco']['numero'], 'utf-8');
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados do número não está correto.';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'O número do endereço não foi informado.';
+    }
+
+    # verificando se o valor do campo complemento foi enviado
+    if (!empty($_POST['endereco']['complemento'])) {
+      # verificando se o valor do campo complemento é uma string
+      if (is_string($_POST['endereco']['complemento'])) {
+        $endereco['complemento'] = mb_strtoupper($_POST['endereco']['complemento'], 'utf-8');      
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados do complemento não está correto.';
+      }
+    } else {
+      $endereco['complemento'] = '';
+    }
+
+    # verificando se o valor do campo referência foi enviado
+    if (!empty($_POST['endereco']['referencia'])) {
+      # verificando se o valor do campo complemento é uma string
+      if (is_string($_POST['endereco']['referencia'])) {
+        $endereco['referencia'] = mb_strtoupper($_POST['endereco']['referencia'], 'utf-8');
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados da referência não está correto.';
+      }
+    } else {
+      $endereco['referencia'] = '';
+    }
+
+    /**
+     * --------------------------
+     * validando dados do contato
+     * --------------------------
+     */
+
+    # verificando se o nome do contato foi enviado
+    if (isset($_POST['contato']['nome-contato']) && (!empty($_POST['contato']['nome-contato']))) {
+      # verificando se o nome do contato é uma string
+      if (is_string($_POST['contato']['nome-contato'])) {
+        $contato['nome'] = ucwords(mb_strtolower($_POST['contato']['nome-contato'], 'utf-8'));
+      } else {
+        $flag = true;
+        $erros[] = 'O tipo de dados do nome do contato não está correto.';
+      }
+    } else {
+      $flag = true;
+      $erros[] = 'Nenhum contato foi selecionado.';
+    }
+
+    # verificando se o contato possui números fixos
+    if (isset($contato['nome']) && (!empty($contato['nome']))) {
+      # adicionando um - ao final de cada número fixo na string
+      $str = str_replace(' (', ' - (', $_POST['contato']['fixo-contato']);
+
+      # separando cada número fixo em uma posição do array
+      $str = explode('- ', $str);
+
+      # gravando número(s) fixo(s) no array contato
+      for ($i = 0; $i < count($str); $i++) {
+        # verificando se cada posição do array não está vazia
+        if (!empty($str[$i])) {
+          array_push($contato['fixos'], trim($str[$i]));
+        }       
+      }
+
+      # verificando se o contato possui pelo menos um número fixo
+      if (count($contato['fixos']) < 1) {
+        $flag = true;
+        $erros[] = 'O contato selecionado não possui nenhum número fixo.';
+      }
+    }
+
+    # verificando se o contato possui números móveis
+    if (isset($contato['nome']) && (!empty($contato['nome']))) {
+      # adicionando um - ao final de cada número móvel na string
+      $str = str_replace(' (', ' - (', $_POST['contato']['movel-contato']);
+
+      # separando cada número móvel em uma posição do array
+      $str = explode('- ', $str);
+
+      # gravando número(s) móvel(eis) no array contato
+      for ($i = 0; $i < count($str); $i++) {
+        # verificando se cada posição do array não está vazia
+        if (!empty($str[$i])) {
+          array_push($contato['moveis'], trim($str[$i]));
+        }    
+      }
+
+      # verificando se o contato possui pelo menos um número móvel
+      if (count($contato['moveis']) < 1) {
+        $flag = true;
+        $erros[] = 'O contato selecionado não possui nenhum número móvel.';
+      }
+    }
+
+    # verificando se o contato possui endereços de e-mail
+    if (isset($contato['nome']) && (!empty($contato['nome']))) {
+      # separando cada endereço de e-mail em uma posição do array
+      $str = explode(' ', $_POST['contato']['email-contato']);
+
+      # gravando endereço(s) de e-mail(s) no array contato
+      for ($i = 0; $i < count($str); $i++) {
+        # verificando se cada posição do array não está vazia
+        if (!empty($str[$i])) {
+          array_push($contato['emails'], mb_strtolower(trim($str[$i]), 'utf-8'));
+        }    
+      }
+
+      # verificando se o contato possui pelo menos um endereço de e-mail
+      if (count($contato['emails']) < 1) {
+        $flag = true;
+        $erros[] = 'O contato selecionado não possui nenhum endereço de e-mail.';
+      }    
+    }
+
+    /**
+     * -----------------------------------
+     * validando dados dos e-mails em cópia
+     * -----------------------------------
+     */
+
+    # verificando se foram enviados os id's do contatos em cópia
+    if (isset($_POST['copia']) && (!empty($_POST['copia']))) {    
+      # recuperando os id's dos contatos em cópia
+      for ($i = 0; $i < count($_POST['copia']); $i++) {
+        array_push($copia, $_POST['copia'][$i]);
+      }
+    }
+  }
+
   # abrindo sessão de validação
   $_SESSION['atividades'] = array(
     'tipo'      => 'danger',
@@ -309,12 +572,18 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     }
 
     # redirecionando usuário para página de atendimento remoto
-    header('location:' . BASE_URL . 'public/views/schedule/atendimento_clientes.php'); exit;
+    header('location:' . BASE_URL . 'public/views/schedule/atendimento_gestao_clientes.php'); exit;
   } else {
     # requisitando script
     require_once DIRETORIO_MODULES . 'schedule/modulo_gestao.php';
     
-    # chamando função responsável por gravar um atendimento remoto
-    recebeAtendimentoGestao($gestao);
+    # verificando qual função será chamada
+    if ($gestao['tipo'] === '1') {
+      # chamando função responsável por gravar um atendimento remoto
+      recebeAtendimentoGestaoVisitaRelacionamento($gestao, $endereco, $contato, $copia);
+    } else {
+      # chamando função responsável por gravar um atendimento remoto
+      recebeAtendimentoGestao($gestao);
+    }    
   }
 }
