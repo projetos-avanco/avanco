@@ -31,7 +31,7 @@ $(function() {
           console.log(retorno);
         }
       });
-    } else if (script[8] == 'atendimento_externo.php' || script[8] == 'atendimento_clientes.php') {
+    } else if (script[8] == 'atendimento_externo.php' || script[8] == 'atendimento_gestao_clientes.php') {
       $.ajax({
         type: 'get',
         url: '../../../app/requests/post/schedule/contact/processa_contato.php?id-cnpj=' + id,
