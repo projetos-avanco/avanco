@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo json_encode($dados);
     
-  } elseif (sizeof($_POST) == 6) {# verificando se a requisição foi feita pelos filtros de pesquisa
+  } elseif ((sizeof($_POST) == 6) || (isset($_POST['data_inicial']) && isset($_POST['data_final']) && isset($_POST['id']))) {# verificando se a requisição foi feita pelos filtros de pesquisa
     $filtros = array();
   
     # verificando se o filtro de empresa foi enviado e não está vazio
