@@ -98,7 +98,7 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'contato.php'                       OR
           $pagina == 'atendimento_remoto.php'            OR
           $pagina == 'atendimento_externo.php'           OR
-          $pagina == 'atendimento_clientes.php'          OR
+          $pagina == 'atendimento_gestao_clientes.php'   OR
           $pagina == 'empresa.php'                       OR
           $pagina == 'edita_contato.php'                 OR
           $pagina == 'edita_endereco.php'                OR
@@ -110,6 +110,7 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'exercicio_ferias_lancados.php'     OR
           $pagina == 'gerencial_atendimento_externo.php' OR
           $pagina == 'gerencial_atendimento_remoto.php'  OR
+          $pagina == 'gerencial_painel_cliente.php'      OR
           $pagina == 'pesquisa_externa.php'              OR
           $pagina == 'edita_folgas.php'                  OR
           $pagina == 'edita_faltas.php'                  OR
@@ -158,7 +159,7 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'contato.php'                       OR
          $pagina == 'atendimento_remoto.php'            OR
          $pagina == 'atendimento_externo.php'           OR
-         $pagina == 'atendimento_clientes.php'          OR
+         $pagina == 'atendimento_gestao_clientes.php'   OR
          $pagina == 'empresa.php'                       OR
          $pagina == 'edita_contato.php'                 OR
          $pagina == 'edita_endereco.php'                OR
@@ -171,6 +172,7 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'exercicio_ferias_pedidos.php'      OR
          $pagina == 'gerencial_atendimento_externo.php' OR
          $pagina == 'gerencial_atendimento_remoto.php'  OR
+         $pagina == 'gerencial_painel_cliente.php'      OR
          $pagina == 'pesquisa_externa.php'              OR
          $pagina == 'relatorio_folgas.php'              OR
          $pagina == 'relatorio_faltas.php'              OR
