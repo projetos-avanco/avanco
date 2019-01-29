@@ -77,9 +77,37 @@ function redirecionaClienteParaDepartamento($colaboradores, $cliente, $curva = n
 
     } else {
 
-      # montando URL para atendimentos sem agendamento
-      $url =
+      # verificando se o cliente possui prioridade no atendimento (rede uniao)
+      if (
+        $cliente['conta_contrato'] === '0000027'||
+        $cliente['conta_contrato'] === '0000637'||
+        $cliente['conta_contrato'] === '0000193'||
+        $cliente['conta_contrato'] === '0000701'||
+        $cliente['conta_contrato'] === '0000108'||
+        $cliente['conta_contrato'] === '0000204'||
+        $cliente['conta_contrato'] === '0000075'||
+        $cliente['conta_contrato'] === '0000111'||
+        $cliente['conta_contrato'] === '0000429'||
+        $cliente['conta_contrato'] === '0000013'||
+        $cliente['conta_contrato'] === '0000043'||
+        $cliente['conta_contrato'] === '0000070'||
+        $cliente['conta_contrato'] === '0000090'||
+        $cliente['conta_contrato'] === '0000146'||
+        $cliente['conta_contrato'] === '0000435'||
+        $cliente['conta_contrato'] === '0000163'||
+        $cliente['conta_contrato'] === '0000207') {
+
+          # montando URL para atendimentos sem agendamento com prioridade
+          $url =
+          "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['razao_social']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome_usuario']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&value_items_admin[5]={$cliente['produto']}&nome_departamento={$colaboradores[0]['departamento']}&codigo_ticket=0&novo_erp={$cliente['novo_erp']}&prefill%5Bphone%5D={$colaboradores[0]['id_departamento']}&value_items_admin[6]={$cliente['telefone']}&value_items_admin[7]=2";
+          
+      } else {
+
+        # montando URL para atendimentos sem agendamento e sem prioridade
+        $url =
         "index.php/por/chat/startchat/(leaveamessage)/true?prefill%5Busername%5D={$cliente['razao_social']}&value_items_admin[0]={$cliente['duvida']}&value_items_admin[1]={$cliente['nome_usuario']}&value_items_admin[2]={$cliente['conta_contrato']}&value_items_admin[3]={$cliente['razao_social']}&value_items_admin[4]={$cliente['cnpj']}&value_items_admin[5]={$cliente['produto']}&nome_departamento={$colaboradores[0]['departamento']}&codigo_ticket=0&novo_erp={$cliente['novo_erp']}&prefill%5Bphone%5D={$colaboradores[0]['id_departamento']}&value_items_admin[6]={$cliente['telefone']}&value_items_admin[7]=0";
+
+      }
 
     }
 
