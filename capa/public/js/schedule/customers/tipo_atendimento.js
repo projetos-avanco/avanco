@@ -8,6 +8,14 @@ $(function() {
     // verificando se o tipo de atendimento é visita de relacionamento
     if (tipo == '1') {
       $('#bloco-endereco').removeClass('hidden');
+      
+      $('#logradouro').addClass('required');
+      $('#distrito').addClass('required');
+      $('#localidade').addClass('required');
+      $('#uf').addClass('required');
+      $('#tipo').addClass('required');
+      $('#cep').addClass('required');
+      $('#numero').addClass('required');
 
       $('#faturado').val('0');
       $('#valor').val('0.00');
@@ -23,6 +31,14 @@ $(function() {
       });
     } else {
       $('#bloco-endereco').addClass('hidden');
+
+      $('#logradouro').removeClass('required');
+      $('#distrito').removeClass('required');
+      $('#localidade').removeClass('required');
+      $('#uf').removeClass('required');
+      $('#tipo').removeClass('required');
+      $('#cep').removeClass('required');
+      $('#numero').removeClass('required');
 
       $('#faturado').val('2');
       $('#valor').val('0.00');
