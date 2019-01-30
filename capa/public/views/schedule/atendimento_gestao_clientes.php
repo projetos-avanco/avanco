@@ -178,7 +178,7 @@
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label for="logradouro">Logradouro</label>
-                            <input class="form-control required" id="logradouro" type="text" name="endereco[logradouro]" placeholder="Avenida" readonly>
+                            <input class="form-control" id="logradouro" type="text" name="endereco[logradouro]" placeholder="Avenida" readonly>
                           </div>
                         </div>
                       </div>
@@ -187,21 +187,21 @@
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label for="distrito">Bairro</label>
-                            <input class="form-control required" id="distrito" type="text" name="endereco[distrito]" placeholder="Bairro" readonly>
+                            <input class="form-control" id="distrito" type="text" name="endereco[distrito]" placeholder="Bairro" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label for="localidade">Cidade</label>
-                            <input class="form-control required" id="localidade" type="text" name="endereco[localidade]" placeholder="Cidade" readonly>
+                            <input class="form-control" id="localidade" type="text" name="endereco[localidade]" placeholder="Cidade" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-4">
                           <div class="form-group">
                             <label for="uf">Estado</label>
-                            <input class="form-control required" id="uf" type="text" name="endereco[uf]" placeholder="Estado" readonly>
+                            <input class="form-control" id="uf" type="text" name="endereco[uf]" placeholder="Estado" readonly>
                           </div>
                         </div>
                       </div>
@@ -210,21 +210,21 @@
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label for="tipo">Tipo do Endereco</label>
-                            <input class="form-control required" id="tipo" type="text" name="endereco[tipo]" placeholder="Tipo do Endereço" readonly>
+                            <input class="form-control" id="tipo" type="text" name="endereco[tipo]" placeholder="Tipo do Endereço" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-3">
                           <div class="form-group">
                             <label for="cep">Código Postal</label>
-                            <input class="form-control required" id="cep" type="text" name="endereco[cep]" placeholder="Código Postal" readonly>
+                            <input class="form-control" id="cep" type="text" name="endereco[cep]" placeholder="Código Postal" readonly>
                           </div>
                         </div>
 
                         <div class="col-sm-2">
                           <div class="form-group">
                             <label for="numero">Número</label>
-                            <input class="form-control required" id="numero" type="text" name="endereco[numero]" placeholder="Número" readonly>
+                            <input class="form-control" id="numero" type="text" name="endereco[numero]" placeholder="Número" readonly>
                           </div>
                         </div>
 
