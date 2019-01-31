@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             ON c.id = e.colaborador
           WHERE (e.status = true)
             AND ($colaboradores)
-            AND (p.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+            AND (p.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}' OR p.data_final BETWEEN '{$data['inicial']}' AND '{$data['final']}')
             ORDER BY p.id";
       }
     } else {
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         INNER JOIN lh_users AS c
           ON c.id = e.colaborador
         WHERE (e.status = true)
-          AND (p.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+          AND (p.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}' OR p.data_final BETWEEN '{$data['inicial']}' AND '{$data['final']}')
           ORDER BY p.id";
     }
 

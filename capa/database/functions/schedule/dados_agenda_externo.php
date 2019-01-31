@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
             ON t.id = d.id_estado
           WHERE ($colaboradores)
             AND NOT (a.status = 4)
-            AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+            AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}' OR a.data_final BETWEEN '{$data['inicial']}' AND '{$data['final']}')
           GROUP BY a.registro
           ORDER BY a.id";
       }
@@ -195,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         INNER JOIN av_agenda_estados AS t
           ON t.id = d.id_estado
         WHERE NOT (a.status = 4)
-          AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+          AND (a.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}' OR a.data_final BETWEEN '{$data['inicial']}' AND '{$data['final']}')
         GROUP BY a.registro
         ORDER BY a.id";
     }

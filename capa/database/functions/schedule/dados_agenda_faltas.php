@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           INNER JOIN lh_users AS c
             ON c.id = f.colaborador
           WHERE ($colaboradores)
-            AND (f.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+            AND (f.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}' OR f.data_final BETWEEN '{$data['inicial']}' AND '{$data['final']}')
             ORDER BY f.id";
       }
     } else {
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
           ON s.id = f.supervisor
         INNER JOIN lh_users AS c
           ON c.id = f.colaborador
-        WHERE (f.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}')
+        WHERE (f.data_inicial BETWEEN '{$data['inicial']}' AND '{$data['final']}' OR f.data_final BETWEEN '{$data['inicial']}' AND '{$data['final']}')
           ORDER BY f.id";
     }    
         
