@@ -200,7 +200,7 @@ $(function() {
           
             swal({
               icon: 'info',
-              title: 'Atendimento Externo!',
+              title: 'Período de Férias!',
               text:               
                 'Lançado: '             + evento.registrado         + "\n\n" +
                 'Registro: '            + evento.registro           + "\n\n" +
