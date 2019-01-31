@@ -29,7 +29,7 @@ $('document').ready(function() {
        }
      },
      "bFilter": true, //removendo a pesquisa
-     "pageLength": 10
+     "pageLength": 25
   });
 
 });
