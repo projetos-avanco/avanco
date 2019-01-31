@@ -5,7 +5,7 @@ function atualizacaoAutomatica() {
 
       window.location.reload(true);
 
-  }, 300000);
+  }, 600000);
 
 }
 
