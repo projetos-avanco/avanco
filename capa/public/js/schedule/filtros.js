@@ -20,6 +20,17 @@ $(function() {
         }
 
         $('#lista-colaboradores').append(colaboradores);
+
+        var string = localStorage.getItem('dadosForm');
+        var obj = JSON.parse(string);
+
+        $('input:checkbox').each(function() {
+          if (obj.listaColaboladores.length !== null) {
+            if (obj.listaColaboladores.indexOf($(this).val()) > -1) {
+              $(this).prop('checked', true);
+            }
+          }    
+        });
       },
       error: function(erro) {
         console.log(erro);

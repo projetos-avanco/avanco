@@ -39,7 +39,7 @@
 
     #lista-colaboradores {
       border: 2px solid #ccc;
-      width: 300px;
+      width: 230px;
       height: 150px;
       overflow-y: scroll;
     }
@@ -105,25 +105,49 @@
                   </div>
                 </div>
 
-                  <div class="row">
-                    <div class="col-sm-3 col-sm-offset-6">
-                      <div class="form-group">
-                        <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
-                          <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                          Atualizar
-                        </button>
-                      </div>
-                    </div>
-
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
-                          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                          Consultar
-                        </button>
-                      </div>
+                <div class="row">                  
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-info btn-sm" id="grupo-1" type="button">Atendimento Interno</button>
                     </div>
                   </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-info btn-sm" id="grupo-2" type="button">Atendimento Externo</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-info btn-sm" id="grupo-3" type="button">Desmarcar</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-3 col-sm-offset-6">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
+                        <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                        Atualizar
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button class="btn btn-block btn-info btn-sm" id="btn-consultar" type="button">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        Consultar
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div><!-- panel-body -->
             </div><!-- panel -->
 
@@ -145,7 +169,28 @@
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/schedule/exibe_eventos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/filtros.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/grupos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/atualiza_pagina.js"></script>
+
+  <script>
+    $(function() {
+      // executando ao clicar diretamente em um checkbox
+      $(document).on('click', '#lista-colaboradores', function(e) {
+        var id = [];
+
+        // percorrendo todos os checkboxers
+        $('input:checkbox').each(function() {
+          // verificando quais checkboxers estão marcados
+          if ($(this).is(':checked')) {
+            id.push($(this).val());
+          }
+        });
+        
+        // salvando id's no formato JSON
+        localStorage.setItem('dadosForm', JSON.stringify({listaColaboladores: id}));
+      });
+    });
+  </script>
 </body>
 </html>
 
