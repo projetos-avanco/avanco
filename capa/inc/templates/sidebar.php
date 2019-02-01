@@ -11,15 +11,17 @@
           </span>
         </a>
         <ul class="nav collapse"  id="submenu1">
+        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/users/cadastro.php">
-              <p>Cadastro<p>
+              <p>Novo Usuário<p>
             </a>
           </li>
+        <?php endif; ?>
 
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/users/conta.php">
-              <p>Conta<p>
+              <p>Minha Conta<p>
             </a>
           </li>
         </ul>
@@ -103,6 +105,7 @@
             </a>
           </li>
 
+        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_externo.php">
               <p>Externo<p>
@@ -119,10 +122,12 @@
             <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/atendimento_remoto.php">
               <p>Remoto<p>
             </a>
-          </li>          
+          </li>
+        <?php endif; ?>
         </ul>
       </li>
 
+    <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
       <li class="bordermenu">
         <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu9">
           <span class="nav-header-primary">
@@ -158,6 +163,7 @@
           </li>
         </ul>
       </li>
+    <?php endif; ?>
 
       <li class="bordermenu">
         <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu10">
@@ -334,6 +340,7 @@
             </ul>
           </li>
 
+        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
           <li class="bordermenu">
             <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu12">
             <span class="nav-header-primary">
@@ -363,6 +370,7 @@
               </li>
             </ul>
           </li>
+        <?php endif; ?>
 
           <li class="bordermenu">
             <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu13">
