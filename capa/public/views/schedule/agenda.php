@@ -220,26 +220,6 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/filtros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/grupos.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/atualiza_pagina.js"></script>
-
-  <script>
-    $(function() {
-      // executando ao clicar diretamente em um checkbox
-      $(document).on('click', '#lista-colaboradores', function(e) {
-        var id = [];
-
-        // percorrendo todos os checkboxers
-        $('input:checkbox').each(function() {
-          // verificando quais checkboxers estão marcados
-          if ($(this).is(':checked')) {
-            id.push($(this).val());
-          }
-        });
-        
-        // salvando id's no formato JSON
-        localStorage.setItem('dadosForm', JSON.stringify({listaColaboladores: id}));
-      });
-    });
-  </script>
 </body>
 </html>
 

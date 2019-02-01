@@ -41,4 +41,20 @@ $(function() {
       }    
     });
   });
+
+  // executando ao clicar diretamente em um checkbox
+  $(document).on('click', '#lista-colaboradores', function(e) {
+    var id = [];
+
+    // percorrendo todos os checkboxers
+    $('input:checkbox').each(function() {
+      // verificando quais checkboxers estão marcados
+      if ($(this).is(':checked')) {
+        id.push($(this).val());
+      }
+    });
+    
+    // salvando id's no formato JSON
+    localStorage.setItem('dadosForm', JSON.stringify({listaColaboladores: id}));
+  });
 });
