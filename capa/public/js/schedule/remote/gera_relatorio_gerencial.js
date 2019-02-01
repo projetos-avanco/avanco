@@ -113,7 +113,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[3, "desc"]],   
+          "aaSorting": [[3, "asc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -132,7 +132,8 @@ $(function() {
               "sFirst": "Primeiro",
               "sLast": "Último"
             }
-          }
+          },
+          "pageLength": 25
         });
       },
       error: function(erro) {
@@ -267,7 +268,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[3, "desc"]],   
+          "aaSorting": [[3, "asc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -286,7 +287,8 @@ $(function() {
               "sFirst": "Primeiro",
               "sLast": "Último"
             }
-          }
+          },
+          "pageLength": 25
         });
       },
       error: function(dados) {
