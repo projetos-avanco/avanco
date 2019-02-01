@@ -84,8 +84,7 @@
         <br>
 
         <div class="row">
-          <div class="col-sm-6 col-sm-offset-6">
-
+          <div class="col-sm-6 col-sm-offset-6"><!-- coluna 1 -->
             <div class="panel panel-info"><!-- panel -->
               <div class="panel-heading">
                 <div class="text-left">
@@ -95,42 +94,92 @@
 
               <div class="panel-body"><!-- panel-body -->
                 <div class="row">
-                  <div class="col-sm-12">
-                    <div class="form-group">
-                      <label for="colaborador">Lista Colaboradores</label>
-                      <div id="lista-colaboradores">
+                  <div class="col-sm-6"><!-- coluna 1 -->
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="form-group">
+                          <label for="colaborador">Lista Colaboradores</label>
+                          <div id="lista-colaboradores">
 
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">                  
+                      <div class="col-sm-6">                        
+                        <div class="form-group">
+                          <label for="grupos">Grupos</label>
+                          <button class="btn btn-block btn-info btn-sm" id="grupo-1" type="button">Interno</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <button class="btn btn-block btn-info btn-sm" id="grupo-2" type="button">Externo</button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <button class="btn btn-block btn-danger btn-sm" id="grupo-3" type="button">Desmarcar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div><!-- coluna 1 -->
+
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <label for="eventos">Lista Eventos</label>
+                        <div id="lista-eventos">
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="eventos" value="1"> Atendimento Externo
+                            </label>
+                          </div>
+
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="eventos" value="2"> Atendimento Remoto
+                            </label>
+                          </div>
+
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="eventos" value="3"> Gestão Clientes
+                            </label>
+                          </div>
+
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="eventos" value="4"> Férias
+                            </label>
+                          </div>
+
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="eventos" value="5"> Faltas
+                            </label>
+                          </div>
+
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" name="eventos" value="6"> Folgas
+                            </label>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div class="row">                  
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <button class="btn btn-block btn-info btn-sm" id="grupo-1" type="button">Atendimento Interno</button>
-                    </div>
-                  </div>
-                </div>
-
                 <div class="row">
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <button class="btn btn-block btn-info btn-sm" id="grupo-2" type="button">Atendimento Externo</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-3">
-                    <div class="form-group">
-                      <button class="btn btn-block btn-info btn-sm" id="grupo-3" type="button">Desmarcar</button>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-sm-3 col-sm-offset-6">
+                  <div class="col-sm-3 col-sm-offset-3">
                     <div class="form-group">
                       <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
                         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
@@ -148,10 +197,10 @@
                     </div>
                   </div>
                 </div>
+
               </div><!-- panel-body -->
             </div><!-- panel -->
-
-          </div>
+          </div><!-- coluna 1 -->          
         </div>
 
       </div><!-- container -->

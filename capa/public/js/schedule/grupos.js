@@ -8,7 +8,7 @@ $(function() {
     var id = [];
 
     // percorrendo todos os input checkboxers
-    $('input:checkbox').each(function() {
+    $('#lista-colaboradores input:checkbox').each(function() {
       //marcando colaboradores do atendimento interno e desmarcando colaboradores do atendimento externo
       if ($(this).val() == '37' || 
           $(this).val() == '38' || 
@@ -37,7 +37,7 @@ $(function() {
     var id = [];
 
     // percorrendo todos os input checkboxers
-    $('input:checkbox').each(function() {
+    $('#lista-colaboradores input:checkbox').each(function() {
       //marcando colaboradores do atendimento externo e desmarcando colaboradores do atendimento interno
       if ($(this).val() == '37' || 
           $(this).val() == '38' || 
@@ -66,8 +66,8 @@ $(function() {
 
     var id = [];
 
-    // percorrendo todos os input checkboxers
-    $('input:checkbox').each(function() {
+    // percorrendo todos os input checkboxers dos colaboradores
+    $('#lista-colaboradores input:checkbox').each(function() {
       // desmarcando todos os checkboxers      
       $(this).prop('checked', false);
     });

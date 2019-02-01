@@ -2,6 +2,12 @@ $(function() {
   $(document).ready(function(e) {
     e.preventDefault;
 
+    // percorrendo todos os checkboxers da lista de eventos
+    $('#lista-eventos input:checkbox').each(function() {
+      // marcando todos os checkboxers 
+      $(this).prop('checked', true)
+    });
+
     $('#calendario').fullCalendar({
       header: {        
         left: 'prev,next today',
@@ -68,64 +74,38 @@ $(function() {
       ],
       eventSources: [
         {
-          url: '../../../database/functions/vacation/dados_agenda_ferias.php',              
-          color: '#FE2E2E',
-          textColor: '#FFFFFF',
-          data: function () {
-            var id = [];
-
-            // percorrendo todos os checkboxers
-            $('input:checkbox').each(function() {
-              // verificando se o checkbox está marcado
-              if ($(this).is(':checked')) {
-                id.push($(this).val());
-              }
-            });
-
-            return {
-              colaboradores: id
-            }
-          },
-        },
-        {
-          url: '../../../database/functions/schedule/dados_agenda_externo.php',              
+          url: '../../../database/functions/schedule/dados_agenda_externo.php',
           color: '#FF8000',
           textColor: '#FFFFFF',
           data: function () {
             var id = [];
 
             // percorrendo todos os checkboxers
-            $('input:checkbox').each(function() {
+            $('#lista-colaboradores input:checkbox').each(function() {
               // verificando se o checkbox está marcado
               if ($(this).is(':checked')) {
                 id.push($(this).val());
               }
             });
 
-            return {
-              colaboradores: id
-            }
-          }          
-        },
-        {
-          url: '../../../database/functions/schedule/dados_agenda_gestao_clientes.php',              
-          color: '#FF00FF',
-          textColor: '#FFFFFF',
-          data: function () {
-            var id = [];
+            var evento = true;
 
             // percorrendo todos os checkboxers
-            $('input:checkbox').each(function() {
-              // verificando se o checkbox está marcado
-              if ($(this).is(':checked')) {
-                id.push($(this).val());
+            $('#lista-eventos input:checkbox').each(function() {
+              // verificando se o checkbox está desmarcado
+              if (! $(this).is(':checked')) {
+                // verificando se o checkbox é referente ao evento atendimento externo
+                if ($(this).val() == '1') {
+                  evento = false;
+                }
               }
             });
 
             return {
-              colaboradores: id
+              colaboradores: id,
+              evento: evento
             }
-          },
+          }          
         },
         {
           url: '../../../database/functions/schedule/dados_agenda_remoto.php',
@@ -135,35 +115,97 @@ $(function() {
             var id = [];
 
             // percorrendo todos os checkboxers
-            $('input:checkbox').each(function() {
+            $('#lista-colaboradores input:checkbox').each(function() {
               // verificando se o checkbox está marcado
               if ($(this).is(':checked')) {
                 id.push($(this).val());
               }
             });
 
+            var evento = true;
+
+            // percorrendo todos os checkboxers
+            $('#lista-eventos input:checkbox').each(function() {
+              // verificando se o checkbox está desmarcado
+              if (! $(this).is(':checked')) {
+                // verificando se o checkbox é referente ao evento atendimento remoto
+                if ($(this).val() == '2') {
+                  evento = false;
+                }
+              }
+            });
+
             return {
-              colaboradores: id
+              colaboradores: id,
+              evento: evento
             }
           },
         },
         {
-          url: '../../../database/functions/schedule/dados_agenda_folgas.php',
-          color: '#3ADF00',
+          url: '../../../database/functions/schedule/dados_agenda_gestao_clientes.php',              
+          color: '#FF00FF',
           textColor: '#FFFFFF',
           data: function () {
             var id = [];
 
             // percorrendo todos os checkboxers
-            $('input:checkbox').each(function() {
+            $('#lista-colaboradores input:checkbox').each(function() {
               // verificando se o checkbox está marcado
               if ($(this).is(':checked')) {
                 id.push($(this).val());
               }
             });
 
+            var evento = true;
+
+            // percorrendo todos os checkboxers
+            $('#lista-eventos input:checkbox').each(function() {
+              // verificando se o checkbox está desmarcado
+              if (! $(this).is(':checked')) {
+                // verificando se o checkbox é referente ao evento gestão de clientes
+                if ($(this).val() == '3') {
+                  evento = false;
+                }
+              }
+            });
+
             return {
-              colaboradores: id
+              colaboradores: id,
+              evento: evento
+            }
+          },
+        },
+        {
+          url: '../../../database/functions/vacation/dados_agenda_ferias.php',
+          color: '#FE2E2E',
+          textColor: '#FFFFFF',
+          data: function () {
+            var id = [];
+
+            // percorrendo todos os checkboxers
+            $('#lista-colaboradores input:checkbox').each(function() {
+              // verificando se o checkbox está marcado
+              if ($(this).is(':checked')) {
+                id.push($(this).val());
+              }
+            });
+
+            var evento = true;
+
+            // percorrendo todos os checkboxers
+            $('#lista-eventos input:checkbox').each(function() {
+              // verificando se o checkbox está desmarcado
+              if (! $(this).is(':checked')) {
+                // verificando se o checkbox é referente ao evento férias
+                if ($(this).val() == '4') {
+                  evento = false;
+                }
+              }
+            });
+
+            return {
+              colaboradores: id,
+              evento: evento
             }
           },
         },
@@ -175,18 +217,66 @@ $(function() {
             var id = [];
 
             // percorrendo todos os checkboxers
-            $('input:checkbox').each(function() {
+            $('#lista-colaboradores input:checkbox').each(function() {
               // verificando se o checkbox está marcado
               if ($(this).is(':checked')) {
                 id.push($(this).val());
               }
             });
 
+            var evento = true;
+
+            // percorrendo todos os checkboxers
+            $('#lista-eventos input:checkbox').each(function() {
+              // verificando se o checkbox está desmarcado
+              if (! $(this).is(':checked')) {
+                // verificando se o checkbox é referente ao evento faltas
+                if ($(this).val() == '5') {
+                  evento = false;
+                }
+              }
+            });
+
             return {
-              colaboradores: id
+              colaboradores: id,
+              evento: evento
             }
           },
-        }
+        },
+        {
+          url: '../../../database/functions/schedule/dados_agenda_folgas.php',
+          color: '#3ADF00',
+          textColor: '#FFFFFF',
+          data: function () {
+            var id = [];
+
+            // percorrendo todos os checkboxers
+            $('#lista-colaboradores input:checkbox').each(function() {
+              // verificando se o checkbox está marcado
+              if ($(this).is(':checked')) {
+                id.push($(this).val());
+              }
+            });
+
+            var evento = true;
+
+            // percorrendo todos os checkboxers
+            $('#lista-eventos input:checkbox').each(function() {
+              // verificando se o checkbox está desmarcado
+              if (! $(this).is(':checked')) {
+                // verificando se o checkbox é referente ao evento folgas
+                if ($(this).val() == '6') {
+                  evento = false;
+                }
+              }
+            });
+
+            return {
+              colaboradores: id,
+              evento: evento
+            }
+          },
+        }        
       ],
       timeFormat: 'HH:mm',
       eventClick: function(evento) {        
@@ -357,6 +447,13 @@ $(function() {
       }
     });
 
+    // atualizando página
+    $(document).on('click', '#btn-atualizar', function(e) {
+      e.preventDefault;
+
+      window.location.reload(true);
+    });
+
     // filtrando colaboradores
     $(document).on('click', '#btn-consultar', function(e) {
       e.preventDefault;
@@ -364,5 +461,5 @@ $(function() {
       // atualizando eventos
       $('#calendario').fullCalendar('refetchEvents');
     });
-  });  
+  });
 });

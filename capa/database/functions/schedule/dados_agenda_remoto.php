@@ -4,7 +4,7 @@ require_once '../../../init.php';
 require_once DIRETORIO_HELPERS . 'datas.php';
 
 # verificando se houve uma requisição via método get
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['evento'] == 'true') {
   $data = array();
 
   $db = abre_conexao();
@@ -216,4 +216,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     echo json_encode($dados);
   }
+} else {
+  $dados = array();
+
+  echo json_encode($dados);
 }
