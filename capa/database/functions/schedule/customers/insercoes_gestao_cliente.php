@@ -26,10 +26,6 @@ function insereAtendimentoGestaoVisitaRelacionamento($db, $gestao)
      '{$gestao['produto']}',
      '{$gestao['modulo']}',
      '{$gestao['observacao']}',
-      {$gestao['faturado']},
-      {$gestao['valor_hora']},
-      {$gestao['valor_pacote']},
-      {$gestao['despesa']},
      '{$gestao['registrado']}'
     )";
 
@@ -64,10 +60,6 @@ function insereAtendimentoGestao($db, $gestao)
      '{$gestao['produto']}',
      '{$gestao['modulo']}',
      '{$gestao['observacao']}',
-      {$gestao['faturado']},
-      {$gestao['valor_hora']},
-      {$gestao['valor_pacote']},
-      {$gestao['despesa']},
      '{$gestao['registrado']}'
     )";
 

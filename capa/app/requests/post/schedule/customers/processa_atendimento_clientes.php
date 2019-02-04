@@ -215,95 +215,10 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     $gestao['observacao'] = '';
   }
 
-  # verificando se o valor do campo faturado foi enviado
-  if (!empty($_POST['gestao']['faturado'])) {
-    # verificando se o valor do campo faturado é uma string numérica
-    if (is_numeric($_POST['gestao']['faturado'])) {
-      $gestao['faturado'] = (int)$_POST['gestao']['faturado'];
-    } else {
-      $flag = true;
-      $erros[] = 'O tipo de dados do valor do campo faturado não está correto.';
-    }
-  } else {
-    $flag = true;
-    $erros[] = 'Não foi informado se o atendimento é faturado ou não.';
-  }
-
-  # verificando se o valor do campo cobrança foi enviado
-  if (isset($_POST['gestao']['cobranca']) && (!empty($_POST['gestao']['cobranca']))) {
-    # verificando se o tipo de dados do valor do campo cobrança é uma string numérica
-    if (is_numeric($_POST['gestao']['cobranca'])) {
-      $gestao['cobranca'] = $_POST['gestao']['cobranca'];
-    } else {
-      $flag = true;
-      $erros[] = 'O tipo de dados da cobrança não está correto.';
-    }    
-  }
-
-  # verificando se o valor da cobrança foi enviado
-  if (isset($_POST['gestao']['valor']) && (!empty($_POST['gestao']['valor']))) {
-    # verificando se o tipo de dados do valor é uma string numérica e se a cobrança foi definida
-    if (is_numeric($_POST['gestao']['valor']) && isset($gestao['cobranca'])) {
-      # verificando se o pedido é faturado e se o valor é maior que 0
-      if ($gestao['faturado'] == 1 && $_POST['gestao']['valor'] > '0.00') {
-        $valor = $_POST['gestao']['valor'];
-      } else {
-        $flag = true;
-        $erros[] = 'Não foi informado o valor a ser cobrado.';
-      }
-    } else {
-      $flag = true;
-      $erros[] = 'Não foi informado se o pedido possui cobrança ou o tipo de dados do valor não está correto.';
-    }
-  }
-
-  # verificando se o atendimento é faturado
-  if ($gestao['faturado'] == 1) {
-    # verificando se a cobrança e o valor foram definidos
-    if (isset($gestao['cobranca']) && isset($valor)) {
-      # verificando se a cobrança é por hora
-      if ($gestao['cobranca'] == '1') {
-        $gestao['valor_hora'] = (float)$valor;        
-      } else {
-        $gestao['valor_pacote'] = (float)$valor;        
-      }
-    }
-  } else {
-    $gestao['faturado'] = 0;
-  }
-  
-  # verificando se o valor do campo despesa foi enviado
-  if (!empty($_POST['gestao']['despesa'])) {
-    # verificando se o valor do campo despesa é uma string numérica
-    if (is_numeric($_POST['gestao']['despesa'])) {
-      $gestao['despesa'] = (int)$_POST['gestao']['despesa'];
-    } else {
-      $flag = true;
-      $erros[] = 'O tipo de dados do valor do campo despesa não está correto.';
-    }
-  } else {
-    $flag = true;
-    $erros[] = 'Não foi informado se o atendimento possui despesas ou não.';
-  }
-
-  # verificando se não existe despesa, alterando o valor para 0
-  if ($gestao['despesa'] == 2) {
-    $gestao['despesa'] = 0;
-  }
-
   $gestao['registrado'] = date('Y-m-d H:i:s');
 
   # verificando se o tipo de atendimento é visita de relacionamento
   if ($gestao['tipo'] === '1') {
-    # verificando se foi enviado algum arquivo em anexo
-    if (isset($_FILES['gestao']) && $_FILES['gestao']['error']['anexo'] == 0) {          
-      # verificando se o tamanho do arquivo em anexo é maior que 2MB
-      if ($_FILES['gestao']['size']['anexo'] > 2097152) {
-        $flag = true;
-        $erros['mensagens'][] = 'O arquivo em anexo deve ter o tamanho máximo de 2MB.';      
-      }
-    }
-
     $endereco = array(
       'logradouro'  => null,
       'distrito'    => null,
