@@ -358,14 +358,14 @@
               </li>
 
               <li>
-                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_painel_cliente.php">
-                  <p>Gestão<p>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_remoto.php">
+                  <p>Remoto<p>
                 </a>
               </li>
 
               <li>
-                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_atendimento_remoto.php">
-                  <p>Remoto<p>
+                <a href="<?php echo BASE_URL; ?>../capa/public/views/schedule/gerencial_painel_cliente.php">
+                  <p>Painel Cliente<p>
                 </a>
               </li>
             </ul>
