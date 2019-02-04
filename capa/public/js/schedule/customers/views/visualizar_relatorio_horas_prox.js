@@ -1,13 +1,13 @@
 $(function() {
   // visualizando relatório de horas
-  $(document).on('click', '#visualizar-relatorio', function(e) {
+  $(document).on('click', '#visualizar-relatorio-prox', function(e) {
     e.preventDefault;
 
     var id = $(this).val();
 
     $.ajax({
       type: 'post',
-      url: '../../../database/functions/schedule/external/ajax/dados_relatorio.php',
+      url: '../../../database/functions/schedule/customers/ajax/dados_relatorio_prox.php',
       dataType: 'json',
       data: {
         id_issue: id

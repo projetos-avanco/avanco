@@ -118,37 +118,69 @@
           </div>
         </div><!-- indicadores de atendimento -->
 
-        <div class="row"><!-- painel registro -->
+        <div class="row"><!-- painel atendimento externo - últimos 6 meses -->
           <div class="col-sm-12">
             <div class="panel panel-info"><!-- panel -->
               <div class="panel-heading">
                 <div class="text-left">
-                  <strong>Atendimento Externo</strong>
+                  <strong>Atendimento Externo - Últimos 6 Meses</strong>
                 </div>
               </div>
 
-              <div class="panel-body" id="tabela-relatorio-externo"><!-- panel-body -->
+              <div class="panel-body" id="tabela-relatorio-externo-ulti"><!-- panel-body -->
                 
               </div><!-- panel-body -->
             </div><!-- panel -->
           </div>
-        </div><!-- painel registro -->
+        </div><!-- painel atendimento externo - últimos 6 meses -->
 
-        <div class="row"><!-- painel registro -->
+        <div class="row"><!-- painel gestão clientes - últimos 6 meses -->
           <div class="col-sm-12">
             <div class="panel panel-info"><!-- panel -->
               <div class="panel-heading">
                 <div class="text-left">
-                  <strong>Gestão Clientes</strong>
+                  <strong>Gestão Clientes - Últimos 6 Meses</strong>
                 </div>
               </div>
 
-              <div class="panel-body" id="tabela-relatorio-gestao"><!-- panel-body -->
+              <div class="panel-body" id="tabela-relatorio-gestao-ulti"><!-- panel-body -->
                 
               </div><!-- panel-body -->
             </div><!-- panel -->
           </div>
-        </div><!-- painel registro -->
+        </div><!-- painel gestão clientes - últimos 6 meses -->
+
+        <div class="row"><!-- painel atendimento externo - próximos 6 meses -->
+          <div class="col-sm-12">
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-left">
+                  <strong>Atendimento Externo - Próximos 6 Meses</strong>
+                </div>
+              </div>
+
+              <div class="panel-body" id="tabela-relatorio-externo-prox"><!-- panel-body -->
+                
+              </div><!-- panel-body -->
+            </div><!-- panel -->
+          </div>
+        </div><!-- painel atendimento externo - próximos 6 meses -->
+
+        <div class="row"><!-- painel gestão clientes - próximos 6 meses -->
+          <div class="col-sm-12">
+            <div class="panel panel-info"><!-- panel -->
+              <div class="panel-heading">
+                <div class="text-left">
+                  <strong>Gestão Clientes - Próximos 6 Meses</strong>
+                </div>
+              </div>
+
+              <div class="panel-body" id="tabela-relatorio-gestao-prox"><!-- panel-body -->
+                
+              </div><!-- panel-body -->
+            </div><!-- panel -->
+          </div>
+        </div><!-- painel gestão clientes - próximos 6 meses -->
         
         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         
@@ -267,13 +299,19 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_empresa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/direciona_usuario.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/atualiza_pagina.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/gera_relatorio_externo.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/gera_relatorio_gestao.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/visualizar_atendimento_gestao.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/visualizar_atendimento_externo.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/visualizar_pesquisa_externa.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/visualizar_relatorio_horas.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/gera_indicadores_atendimento.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/reports/gera_indicadores_atendimento.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/reports/gera_relatorio_externo_ulti.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/reports/gera_relatorio_gestao_ulti.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/reports/gera_relatorio_externo_prox.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/reports/gera_relatorio_gestao_prox.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/views/visualizar_atendimento_gestao_ulti.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/views/visualizar_atendimento_externo_ulti.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/views/visualizar_pesquisa_externa_ulti.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/views/visualizar_relatorio_horas_ulti.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/views/visualizar_atendimento_gestao_prox.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/views/visualizar_atendimento_externo_prox.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/views/visualizar_pesquisa_externa_prox.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/views/visualizar_relatorio_horas_prox.js"></script>
   <script>
     $(function() {
       // aterando data final caso a data inicial seja alterada

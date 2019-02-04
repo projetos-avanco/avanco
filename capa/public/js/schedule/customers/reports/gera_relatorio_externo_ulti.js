@@ -6,24 +6,24 @@ $(function() {
     var date = new Date();
     var tmp = null;
 
-    var gestao = {};
+    var externo = {};
 
-    gestao.id = $('#id').val();
+    externo.id = $('#id').val();
 
     tmp = date.toISOString();
     tmp = tmp.split('T');
 
-    gestao.dataFinal = tmp[0];
+    externo.dataFinal = tmp[0];
 
     date.setDate(- 182);
 
     tmp = date.toISOString();
     tmp = tmp.split('T');
 
-    gestao.dataInicial = tmp[0];
-    
+    externo.dataInicial = tmp[0];
+
     // verificando se alguma empresa foi selecionada
-    if (gestao.id === '') {
+    if (externo.id === '') {
       swal({
         title: "Aviso!",
         text: "Pesquise e selecione uma empresa antes de consultar.",
@@ -32,18 +32,18 @@ $(function() {
     } else {
       $.ajax({
         type: 'post',
-        url: '../../../database/functions/schedule/customers/ajax/dados_paginacao_gestao.php',
+        url: '../../../database/functions/schedule/customers/ajax/dados_paginacao_externo_ulti.php',
         dataType: 'json',
         data: {
-          id: gestao.id,
-          data_inicial: gestao.dataInicial,
-          data_final: gestao.dataFinal,
+          id: externo.id,
+          data_inicial: externo.dataInicial,
+          data_final: externo.dataFinal,
         },
         success: function(dados) {
           var table = '';
           var tbody = '';
   
-          table += '<table class="table table-condensed" id="relatorio-gestao">' +
+          table += '<table class="table table-condensed" id="relatorio-externo-ulti">' +
             '<thead>'                                      +
               '<tr>'                                       +
                 '<th class="text-center">Registro</th>'    +
@@ -52,7 +52,7 @@ $(function() {
                 '<th class="text-center">Período</th>'     +
                 '<th class="text-center">Situação</th>'    +
                 '<th class="text-center">Atendimento</th>' +
-                '<th class="text-center">Gestão</th>'      +
+                '<th class="text-center">Externo</th>'     +
                 '<th class="text-center">Relatório</th>'   +
                 '<th class="text-center">Pesquisa</th>'    +
               '</tr>'                                      +
@@ -65,6 +65,7 @@ $(function() {
                 'data-id="'          + dados[i].id                 + '"' +
                 'data-id-contato="'  + dados[i].id_contato         + '"' +
                 'data-id-cnpj="'     + dados[i].id_cnpj            + '"' +
+                'data-id-issue="'    + dados[i].id_issue           + '"' +
                 'data-lancado="'     + dados[i].registrado         + '"' +
                 'data-registro="'    + dados[i].registro           + '"' +
                 'data-status="'      + dados[i].status             + '"' +
@@ -78,7 +79,9 @@ $(function() {
                 'data-produto="'     + dados[i].produto            + '"' +
                 'data-observacao="'  + dados[i].observacao         + '"' +
                 'data-faturado="'    + dados[i].faturado           + '"' +
-                'data-despesas="'    + dados[i].despesas           + '">';
+                'data-despesas="'    + dados[i].despesas           + '"' +
+                'data-relatorio="'   + dados[i].relatorio_entregue + '"' +
+                'data-pesquisa="'    + dados[i].pesquisa_realizada + '">';
             tbody += '<td class="text-center">' + dados[i].registro              + '</td>';
             tbody += '<td class="text-left">'   + dados[i].empresa.toUpperCase() + '</td>';
             tbody += '<td class="text-left">'   + dados[i].colaborador           + '</td>';
@@ -88,10 +91,36 @@ $(function() {
             
             tbody += 
               '<td>' +
-                '<button class="btn btn-success btn-sm btn-block" id="visualizar-atendimento-gestao" type="button" value="' + dados[i].id + '">' +
+                '<button class="btn btn-success btn-sm btn-block" id="visualizar-atendimento-ulti" type="button" value="' + dados[i].id + '">' +
                   '<i class="fa fa-eye" aria-hidden="true"></i> Visualizar' +
                 '</button' +
               '</td>';
+            
+            if (dados[i].relatorio_entregue === 'Sim') {
+              tbody += 
+                '<td>' +
+                  '<button class="btn btn-success btn-sm btn-block" id="visualizar-relatorio-ulti" type="button" value="' + dados[i].issue + '">' +
+                    '<i class="fa fa-eye" aria-hidden="true"></i> Visualizar' +
+                  '</button' +
+                '</td>';
+            } else if (dados[i].relatorio_entregue === null) {
+              tbody += '<td></td>';
+            } else {
+              tbody += '<td></td>';
+            }
+    
+            if (dados[i].pesquisa_realizada === 'Sim') {
+              tbody += 
+                '<td>' +
+                  '<button class="btn btn-success btn-sm btn-block" id="visualizar-pesquisa-ulti" type="button" value="' + dados[i].id_pesquisa + '">' +
+                    '<i class="fa fa-eye" aria-hidden="true"></i> Visualizar' +
+                  '</button' +
+                '</td>';
+            } else if (dados[i].pesquisa_realizada === null) {
+              tbody += '<td></td>';            
+            } else {
+              tbody += '<td></td>';
+            }
 
             tbody += '</tr>'
           }
@@ -101,10 +130,10 @@ $(function() {
             '</tbody>' +
           '</table>';
     
-          $('#tabela-relatorio-gestao').html(table);
+          $('#tabela-relatorio-externo-ulti').html(table);
   
           // paginando a tabela
-          $('#relatorio-gestao').DataTable({
+          $('#relatorio-externo-ulti').DataTable({
             "aaSorting": [[3, "desc"]],   
             "oLanguage": {
               "sEmptyTable": "Nenhum registro encontrado",

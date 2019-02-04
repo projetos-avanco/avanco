@@ -99,7 +99,7 @@
 
         <?php endif; ?>
 
-        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/customers/processa_atendimento_clientes.php" method="post" enctype="multipart/form-data">
+        <form action="<?php echo BASE_URL; ?>app/requests/post/schedule/customers/processa_atendimento_clientes.php" method="post">
 
           <div class="row">
             <div class="col-sm-4 col-sm-offset-8">
@@ -327,17 +327,6 @@
                       </div>
 
                       <div class="row">
-                        <div class="col-sm-3">
-                          <div class="form-group">
-                            <label for="anexo">Anexo</label>
-                            <span class="btn btn-danger btn-block btn-file">
-                              Anexar Arquivo <input id="anexo" type="file" name="gestao[anexo]">
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
                             <label for="observacao">Observação</label>
@@ -436,63 +425,10 @@
                               <option value="0" selected>Selecione um Tipo de Atendimento</option>
                               <option value="1">Visita de Relacionamento</option>
                               <option value="2">Ligação para o Dono</option>
-                              <option value="3">Envio de E-mail</option>                              
                             </select>
                           </div>
                         </div>                        
                       </div>
-
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label for="despesa">Despesa</label>
-                            <select class="form-control required" id="despesa" name="gestao[despesa]">
-                              <option value="0" selected>Cobrança de Despesas?</option>
-                              <option value="1">Sim</option>
-                              <option value="2">Não</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label for="faturado">Faturado</label>
-                            <select class="form-control required" id="faturado" name="gestao[faturado]">
-                              <option value="0" selected>Pedido Faturado?</option>
-                              <option value="1">Sim</option>
-                              <option value="2">Não</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label for="cobranca">Tipo Cobrança</label>
-                            <select class="form-control" id="cobranca" name="gestao[cobranca]">
-                              <option value="0" selected>Selecione o Tipo de Cobrança</option>
-                              <option value="1">Hora</option>
-                              <option value="2">Pacote</option>
-                              <option value="3">Não Informado</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="col-sm-6">
-                          <div class="form-group">
-                            <label for="valor">Valor</label>
-                            <div class="input-group">
-                              <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                  <span class="glyphicon glyphicon-usd"></span>
-                                </button>
-                              </span>                              
-                              <input class="form-control required" id="valor" type="text" name="gestao[valor]" placeholder="0.00">
-                            </div>
-                          </div>
-                        </div>
-                      </div>                      
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
@@ -564,7 +500,6 @@
   <script src="<?php echo BASE_URL; ?>public/js/schedule/pesquisa.js"></script>  
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_empresa.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/seleciona_contatos.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/schedule/altera_cobranca.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/direciona_usuario.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/contact/deleta_contato.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/customers/tipo_atendimento.js"></script>
@@ -576,9 +511,9 @@
     $(function() {
       $(document).ready(function() {        
         $('#horario').mask('00:00');
-        $('#valor').mask('#0.00', {reverse: true});        
       });
 
+      // atualizando página
       $(document).on('click', '#btn-atualizar', function(e) {
         e.preventDefault;
 
@@ -594,18 +529,34 @@
         $('#data-final').val(dataInicial);
       });
 
-      $(document).on('change', '#cobranca', function(e) {
+      // alterando tipo de atendimento
+      $(document).on('change', '#tipo-atendimento', function(e) {
         e.preventDefault;
 
-        var tipo = $(this).val();
+        var tipo = $('#tipo-atendimento').val();
 
-        if (tipo === '3') {
-          $('#valor').val('0.00');
-          $('#valor').attr('disabled', true);
+        // verificando se o tipo de atendimento é visita de relacionamento
+        if (tipo == '1') {
+          $('#bloco-endereco').removeClass('hidden');
+          
+          $('#logradouro').addClass('required');
+          $('#distrito').addClass('required');
+          $('#localidade').addClass('required');
+          $('#uf').addClass('required');
+          $('#tipo').addClass('required');
+          $('#cep').addClass('required');
+          $('#numero').addClass('required');
         } else {
-          $('#valor').val('0.00');
-          $('#valor').attr('disabled', false);
-        } 
+          $('#bloco-endereco').addClass('hidden');
+
+          $('#logradouro').removeClass('required');
+          $('#distrito').removeClass('required');
+          $('#localidade').removeClass('required');
+          $('#uf').removeClass('required');
+          $('#tipo').removeClass('required');
+          $('#cep').removeClass('required');
+          $('#numero').removeClass('required');
+        }
       });
     });
   </script>

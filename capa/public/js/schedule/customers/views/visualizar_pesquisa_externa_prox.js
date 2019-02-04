@@ -1,13 +1,13 @@
 $(function() {
   // visualizando pesquisa externa
-  $(document).on('click', '#visualizar-pesquisa', function(e) {
+  $(document).on('click', '#visualizar-pesquisa-prox', function(e) {
     e.preventDefault;
 
     var id = $(this).val();
 
     $.ajax({
       type: 'post',
-      url: '../../../database/functions/schedule/external/ajax/dados_pesquisa.php',
+      url: '../../../database/functions/schedule/customers/ajax/dados_pesquisa_prox.php',
       dataType: 'json',
       data: {
         id: id
@@ -27,7 +27,7 @@ $(function() {
         });              
       },
       error: function(dados) {
-
+        console.log(dados);
       }
     });
   });

@@ -1,6 +1,6 @@
 $(function() {
   // visualizando relatório do atendimento externo
-  $(document).on('click', '#visualizar-atendimento-gestao', function(e) {
+  $(document).on('click', '#visualizar-atendimento-prox', function(e) {
     e.preventDefault;
 
     var gerencial = {};
@@ -26,10 +26,20 @@ $(function() {
     gerencial.pesquisa_realizada = $(this).closest('tr').attr('data-pesquisa');
 
     gerencial.empresa = gerencial.empresa.substr(0, 32).toUpperCase();
+    
+    // verificando se o relatorio de horas foi deletado, ou seja, o atendimento foi cancelado
+    if (gerencial.relatorio_entregue == 'null') {
+      gerencial.relatorio_entregue = 'Deletado';
+    }
+
+    // verificando se a pesquisa externa foi deletada, ou seja, o atendimento foi cancelado
+    if (gerencial.pesquisa_realizada == 'null') {
+      gerencial.pesquisa_realizada = 'Deletado';
+    }
 
     swal({
       icon: 'info',
-      title: 'Gestão Clientes!',
+      title: 'Atendimento Externo!',
       text:               
         'Lançado: '             + gerencial.lancado            + "\n\n" +
         'Registro: '            + gerencial.registro           + "\n\n" +
@@ -44,14 +54,9 @@ $(function() {
         'Produto: '             + gerencial.produto            + "\n\n" +
         'Observacao: '          + gerencial.observacao         + "\n\n\n\n" +
         'Faturado: '            + gerencial.faturado           + "\n\n" +
-        'Despesas: '            + gerencial.despesas,          
-      buttons: {          
-        cancel: {
-          text: 'Fechar',
-          closeModal: true,
-          visible: true
-        }        
-      }
+        'Despesas: '            + gerencial.despesas           + "\n\n" +
+        'Relatório Entregue: '  + gerencial.relatorio_entregue + "\n\n" +
+        'Pesquisa Realizada: '  + gerencial.pesquisa_realizada
     });
   });
 });
