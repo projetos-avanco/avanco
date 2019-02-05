@@ -80,6 +80,7 @@ function retornaDadosDoAtendimentoRemoto($db, $id)
     $remoto['horario']      = $linha['horario'];
     $remoto['produto']      = $linha['produto'];
     $remoto['modulo']       = $linha['modulo'];
+    $remoto['tarefa']       = $linha['tarefa'];
     $remoto['observacao']   = $linha['observacao'];
     $remoto['faturado']     = (int) $linha['faturado'];
     $remoto['valor_hora']   = (float) $linha['valor_hora'];
