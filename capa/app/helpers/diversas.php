@@ -181,6 +181,7 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoExterno($db, $externo, $e
   # formatando dada e observação
   $externo['data_inicial'] = formataDataParaExibir($externo['data_inicial']);
   $externo['data_final'] = formataDataParaExibir($externo['data_final']);
+  $externo['tarefa'] = mb_strtoupper($externo['tarefa'], 'utf-8');
   $externo['observacao'] = mb_strtoupper($externo['observacao'], 'utf-8');
   
   # chamando funções que retornam o cnpj, razão social e conta contrato de uma empresa
@@ -269,7 +270,8 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoExterno($db, $externo, $e
               <p><strong>Registro:</strong> {$externo['registro']}</p>
               <p><strong>Período:</strong> {$externo['data_inicial']} até {$externo['data_final']} às {$externo['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
-              <p><strong>Trabalho a ser Realizado:</strong> {$externo['observacao']}</p>
+              <p><strong>Trabalho a ser Realizado:</strong> {$externo['tarefa']}</p>
+              <p><strong>Observações:</strong> {$externo['observacao']}</p>
             </div>
           </div>
         </div>
@@ -460,6 +462,7 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoExterno($db, $externo, $ende
   # formatando dada e observação
   $externo['data_inicial'] = formataDataParaExibir($externo['data_inicial']);
   $externo['data_final'] = formataDataParaExibir($externo['data_final']);
+  $externo['tarefa'] = mb_strtoupper($externo['tarefa'], 'utf-8');
   $externo['observacao'] = mb_strtoupper($externo['observacao'], 'utf-8');
   
   # chamando funções que retornam o cnpj, razão social e conta contrato de uma empresa
@@ -593,7 +596,8 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoExterno($db, $externo, $ende
               <p><strong>Registro:</strong> {$externo['registro']}</p>
               <p><strong>Período:</strong> {$externo['data_inicial']} até {$externo['data_final']} às {$externo['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
-              <p><strong>Trabalho a ser Realizado:</strong> {$externo['observacao']}</p>
+              <p><strong>Trabalho a ser Realizado:</strong> {$externo['tarefa']}</p>
+              <p><strong>Observações:</strong> {$externo['observacao']}</p>
             </div>
           </div>
         </div>
@@ -801,6 +805,7 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
   # formatando dada e observação
   $externo['data_inicial'] = formataDataParaExibir($externo['data_inicial']);
   $externo['data_final'] = formataDataParaExibir($externo['data_final']);
+  $externo['tarefa'] = mb_strtoupper($externo['tarefa'], 'utf-8');
   $externo['observacao'] = mb_strtoupper($externo['observacao'], 'utf-8');
   
   # chamando funções que retornam o cnpj, razão social e conta contrato de uma empresa
@@ -893,7 +898,8 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
               <p><strong>Registro:</strong> {$externo['registro']}</p>
               <p><strong>Período:</strong> {$externo['data_inicial']} até {$externo['data_final']} às {$externo['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
-              <p><strong>Trabalho a ser Realizado:</strong> {$externo['observacao']}</p>
+              <p><strong>Trabalho a ser Realizado:</strong> {$externo['tarefa']}</p>
+              <p><strong>Observações:</strong> {$externo['observacao']}</p>
             </div>
           </div>
         </div>
