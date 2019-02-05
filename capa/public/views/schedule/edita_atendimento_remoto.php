@@ -525,6 +525,15 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
+                            <label for="tarefa">Tarefa</label>
+                            <input class="form-control required" id="tarefa" type="text" name="remoto[tarefa]" maxlength="255" value="<?php echo $remoto['tarefa']; ?>" placeholder="Descreva o trabalho a ser realizado...">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
                             <label for="observacao">Observação</label>
                             <textarea class="form-control" id="observacao" name="remoto[observacao]" rows="4" cols="30" placeholder="Observações..."><?php echo $remoto['observacao']; ?></textarea>
                           </div>
