@@ -521,8 +521,12 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoExterno($db, $externo, $ende
     $msgAlteracao .= 'o <strong>horário</strong>, ';
     $contador++;
   }
-  if ($alteracoes['observacao']) {
+  if ($alteracoes['tarefa']) {
     $msgAlteracao .= 'o <strong>trabalho a ser realizado</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['observacao']) {
+    $msgAlteracao .= 'as <strong>observações</strong>, ';
     $contador++;
   }
   if ($alteracoes['faturado']) {
