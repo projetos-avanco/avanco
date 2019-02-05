@@ -21,6 +21,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
     'horario'      => null,
     'produto'      => null,
     'modulo'       => null,
+    'tarefa'       => null,
     'observacao'   => null,
     'faturado'     => null,
     'valor_hora'   => 0.0,
@@ -218,6 +219,22 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'submit') {
   } else {
     $flag = true;
     $erros[] = 'Nenhum módulo foi selecionado.';
+  }
+
+  # verificando se o código do módulo foi enviado
+  if (!empty($_POST['externo']['tarefa'])) {
+    # verificando se o código do módulo é uma string numérica
+    if (is_string($_POST['externo']['tarefa'])) {
+      $externo['tarefa'] = $_POST['externo']['tarefa'];
+      $externo['tarefa'] = addslashes(mb_strtolower($externo['tarefa'], 'utf-8'));
+      $externo['tarefa'] = trim(str_replace("\r\n", ' ', $externo['tarefa']));
+    } else {
+      $flag = true;
+      $erros[] = 'O tipo de dados do tarefa a ser realizado não está correto.';
+    }
+  } else {
+    $flag = true;
+    $erros[] = 'Não foi informado o tarefa a ser realizado.';
   }
 
   # verificando se a observação foi enviada
