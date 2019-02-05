@@ -24,6 +24,7 @@ function insereAtendimentoRemoto($db, $remoto)
      '{$remoto['horario']}',
      '{$remoto['produto']}',
      '{$remoto['modulo']}',
+     '{$remoto['tarefa']}',
      '{$remoto['observacao']}',
       {$remoto['faturado']},
       {$remoto['valor_hora']},
