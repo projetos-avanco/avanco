@@ -1108,6 +1108,7 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoRemoto($db, $remoto, $con
 
   # formatando dada e observação
   $remoto['data'] = formataDataParaExibir($remoto['data']);
+  $remoto['tarefa'] = mb_strtoupper($remoto['tarefa'], 'utf-8');
   $remoto['observacao'] = mb_strtoupper($remoto['observacao'], 'utf-8');
   
   # chamando funções que retornam o cnpj, razão social e conta contrato de uma empresa
@@ -1194,7 +1195,8 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoRemoto($db, $remoto, $con
               <p><strong>Ticket:</strong> {$remoto['registro']}</p>
               <p><strong>Período:</strong> {$remoto['data']} às {$remoto['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
-              <p><strong>Trabalho a ser Realizado:</strong> {$remoto['observacao']}</p>
+              <p><strong>Trabalho a ser Realizado:</strong> {$remoto['tarefa']}</p>
+              <p><strong>Observações:</strong> {$remoto['observacao']}</p>
             </div>
           </div>
         </div>
@@ -1339,6 +1341,7 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contat
 
   # formatando dada e observação
   $remoto['data'] = formataDataParaExibir($remoto['data']);
+  $remoto['tarefa'] = mb_strtoupper($remoto['tarefa'], 'utf-8');
   $remoto['observacao'] = mb_strtoupper($remoto['observacao'], 'utf-8');
   
   # chamando funções que retornam o cnpj, razão social e conta contrato de uma empresa
@@ -1395,8 +1398,12 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contat
     $msgAlteracao .= 'o <strong>horário</strong>, ';
     $contador++;
   }
-  if ($alteracoes['observacao']) {
+  if ($alteracoes['tarefa']) {
     $msgAlteracao .= 'o <strong>trabalho a ser realizado</strong>, ';
+    $contador++;
+  }
+  if ($alteracoes['observacao']) {
+    $msgAlteracao .= 'as <strong>observações</strong>, ';
     $contador++;
   }
   if ($alteracoes['faturado']) {
@@ -1466,7 +1473,8 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contat
               <p><strong>Ticket:</strong> {$remoto['registro']}</p>
               <p><strong>Período:</strong> {$remoto['data']} às {$remoto['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
-              <p><strong>Trabalho a ser Realizado:</strong> {$remoto['observacao']}</p>
+              <p><strong>Trabalho a ser Realizado:</strong> {$remoto['tarefa']}</p>
+              <p><strong>Observações:</strong> {$remoto['observacao']}</p>
             </div>
           </div>
         </div>
@@ -1641,6 +1649,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
 
   # formatando dada e observação
   $remoto['data'] = formataDataParaExibir($remoto['data']);
+  $remoto['tarefa'] = mb_strtoupper($remoto['tarefa'], 'utf-8');
   $remoto['observacao'] = mb_strtoupper($remoto['observacao'], 'utf-8');
   
   # chamando funções que retornam o cnpj, razão social e conta contrato de uma empresa
@@ -1731,7 +1740,8 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
               <p><strong>Ticket:</strong> {$remoto['registro']}</p>
               <p><strong>Período:</strong> {$remoto['data']} às {$remoto['horario']} horas</p>
               <p><strong>Técnico Avanço:</strong> $colaborador</p>
-              <p><strong>Trabalho a ser Realizado:</strong> {$remoto['observacao']}</p>
+              <p><strong>Trabalho a ser Realizado:</strong> {$remoto['tarefa']}</p>
+              <p><strong>Observações:</strong> {$remoto['observacao']}</p>
             </div>
           </div>
         </div>
