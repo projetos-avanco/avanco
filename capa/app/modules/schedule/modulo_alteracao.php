@@ -24,6 +24,7 @@ function recebeAlteracaoDeAtendimentoExterno($alterar, $copia)
     'data_inicial' => false,
     'data_final'   => false,    
     'horario'      => false,
+    'tarefa'       => false,
     'observacao'   => false,
     'faturado'     => false,
     'despesa'      => false,
@@ -38,6 +39,7 @@ function recebeAlteracaoDeAtendimentoExterno($alterar, $copia)
   if ($alterar['data_inicial'] != $externo['data_inicial']) {$alteracoes['data_inicial'] = true;}
   if ($alterar['data_final']   != $externo['data_final'])   {$alteracoes['data_final']   = true;}
   if ($alterar['horario']      != $externo['horario'])      {$alteracoes['horario']      = true;}
+  if ($alterar['tarefa']       != $externo['tarefa'])       {$alteracoes['tarefa']       = true;}
   if ($alterar['observacao']   != $externo['observacao'])   {$alteracoes['observacao']   = true;}
   if ($alterar['faturado']     != $externo['faturado'])     {$alteracoes['faturado']     = true;}
   if ($alterar['despesa']      != $externo['despesa'])      {$alteracoes['despesa']      = true;}
