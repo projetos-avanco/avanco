@@ -81,6 +81,7 @@ function retornaDadosDoAtendimentoExterno($db, $id)
     $externo['horario']      = $linha['horario'];
     $externo['produto']      = $linha['produto'];
     $externo['modulo']       = $linha['modulo'];
+    $externo['tarefa']       = $linha['tarefa'];
     $externo['observacao']   = $linha['observacao'];
     $externo['faturado']     = (int) $linha['faturado'];
     $externo['valor_hora']   = (float) $linha['valor_hora'];
