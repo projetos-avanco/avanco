@@ -39,6 +39,7 @@ function insereAtendimentoExterno($db, $externo)
      '{$externo['horario']}',
      '{$externo['produto']}',
      '{$externo['modulo']}',
+     '{$externo['tarefa']}',
      '{$externo['observacao']}',
       {$externo['faturado']},
       {$externo['valor_hora']},
