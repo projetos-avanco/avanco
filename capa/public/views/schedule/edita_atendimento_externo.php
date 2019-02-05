@@ -623,6 +623,15 @@
                       <div class="row">
                         <div class="col-sm-12">
                           <div class="form-group">
+                            <label for="tarefa">Tarefa</label>
+                            <input class="form-control required" id="tarefa" type="text" name="externo[tarefa]" maxlength="255" value="<?php echo $externo['tarefa']; ?>" placeholder="Descreva o trabalho a ser realizado...">
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
                             <label for="observacao">Observação</label>
                             <textarea class="form-control" id="observacao" name="externo[observacao]" rows="4" cols="30" placeholder="Observações..."><?php echo $externo['observacao']; ?></textarea>
                           </div>
