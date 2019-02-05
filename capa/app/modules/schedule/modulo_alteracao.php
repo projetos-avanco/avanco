@@ -123,6 +123,7 @@ function recebeAlteracaoDeAtendimentoRemoto($alterar, $copia)
     'colaborador'  => false,
     'data'         => false,    
     'horario'      => false,
+    'tarefa'       => false,
     'observacao'   => false,
     'faturado'     => false,    
     'valor_hora'   => false,
@@ -135,6 +136,7 @@ function recebeAlteracaoDeAtendimentoRemoto($alterar, $copia)
   if ($alterar['colaborador']  != $remoto['colaborador'])  {$alteracoes['colaborador']  = true;}
   if ($alterar['data']         != $remoto['data'])         {$alteracoes['data']         = true;}  
   if ($alterar['horario']      != $remoto['horario'])      {$alteracoes['horario']      = true;}
+  if ($alterar['tarefa']       != $remoto['tarefa'])       {$alteracoes['tarefa']       = true;}
   if ($alterar['observacao']   != $remoto['observacao'])   {$alteracoes['observacao']   = true;}
   if ($alterar['faturado']     != $remoto['faturado'])     {$alteracoes['faturado']     = true;}  
   if ($alterar['valor_hora']   != $remoto['valor_hora'])   {$alteracoes['valor_hora']   = true;}
