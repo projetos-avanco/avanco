@@ -30,12 +30,12 @@ function solicitaEnvioDeEmailDeCancelamentoExterno($id, $idCnpj, $idContato, $co
 
   $db = abre_conexao();
 
-  # verificando se o atendimento externo foi confirmado com sucesso
+  # verificando se o atendimento externo foi cancelado com sucesso
   if (cancelaUmAtendimentoExterno($db, $id)) {
     # chamando função que retorna os dados de um atendimento externo
     $externo = retornaDadosDoAtendimentoExterno($db, $id);
 
-    # verificando se o atendimento externo é fatura e o tipo de cobrança
+    # verificando se o atendimento externo é faturado e o tipo de cobrança
     if ($externo['faturado']) {
       if ($externo['valor_hora'] > 0 && $externo['valor_pacote'] == 0) {
         $externo['cobranca'] = '1';
