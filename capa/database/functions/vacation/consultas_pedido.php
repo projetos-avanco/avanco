@@ -58,9 +58,9 @@ function consultaPedidosDeFeriasParaAprovacao($db, $id)
 
   if ($quantidade == 1) {
     while ($linha = mysqli_fetch_array($resultado)) {
-      $pedido['data_inicial'] = $linha['data_inicial'];
-      $pedido['data_final']   = $linha['data_final'];
-      $pedido['dias']         = $linha['dias'];
+      $pedido['periodo1']['data_inicial'] = $linha['data_inicial'];
+      $pedido['periodo1']['data_final']   = $linha['data_final'];
+      $pedido['periodo1']['dias']         = $linha['dias'];
     }    
   } elseif ($quantidade > 1) {
     $contador = 1;
