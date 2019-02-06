@@ -3,11 +3,20 @@ $(function() {
   $(document).on('click', '#btn-aprovar', function(e) {
     e.preventDefault;
 
-    // recuperando id do exercídio de férias
-    var id = $('.table tbody').find('tr[data-id]').data('id');
+    var id = undefined;
+    var colaborador = undefined;
 
-    // recuperando o id do colaborador selecionado
-    var colaborador = $('#colaborador').val();
+    // percorrendo botões da tabela de exercícios
+    $('#relatorio tbody .btn-sm').each(function() {
+      // verificando qual foi o botão selecionado pelo usuário
+      if ($(this).hasClass('btn-success')) {
+        // recuperando id do exercício de férias
+        id = $(this).val();
+
+        // recuperando o id do colaborador
+        colaborador = $(this).attr('data-id-colaborador');
+      }
+    });
 
     $.ajax({
       type: 'post',
