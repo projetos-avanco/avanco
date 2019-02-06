@@ -14,14 +14,20 @@ $(function() {
     var exercicio = {};
     var tmp = '';
 
-    // verificando se o botão percorrido é o botão clicado pelo usuário
-    exercicio.id         = $('.table tbody').find('tr[data-id]').data('id');
-    exercicio.final      = $('.table tbody tr').find('td[data-final]').data('final');
-    exercicio.vencimento = $('.table tbody tr').find('td[data-vencimento]').data('vencimento');
-
     // recuperando o período de férias selecionado
     exercicio.periodo = $(this).val();
 
+    // percorrendo botões da tabela de exercícios
+    $('#relatorio tbody .btn-sm').each(function() {
+      // verificando qual foi o botão selecionado pelo usuário
+      if ($(this).hasClass('btn-success')) {
+        // recuperando id do exercício de férias
+        exercicio.id = $(this).val();
+        exercicio.final = $(this).attr('data-final');
+        exercicio.vencimento = $(this).attr('data-vencimento');
+      }
+    });
+console.log(exercicio);
     // separando a data do exercício final pela /
     tmp = exercicio.final.split('/');
 
@@ -103,7 +109,7 @@ $(function() {
         $('#data-inicial-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);
         $('#data-final-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);        
       break;
-
+      /*
       case '3':
         // liberando data inicial para preenchimento
         $('#data-inicial-1').prop('readonly', false);
@@ -130,7 +136,7 @@ $(function() {
         $('#data-inicial-3').prop('min', exercicio.final).prop('max', exercicio.vencimento);
         $('#data-final-3').prop('min', exercicio.final).prop('max', exercicio.vencimento);
       break;
-
+      */
       case '4':        
         // liberando data inicial para preenchimento
         $('#data-inicial-1').prop('readonly', false);
