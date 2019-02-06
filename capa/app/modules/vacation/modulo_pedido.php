@@ -86,7 +86,7 @@ function recebeAlteracaoDePedidoDeFerias($pedido, $tipo)
   $pedido['registro'] = (int) consultaRegistroDeUmPedidoDeFerias($db, $pedido['id_exercicio']);# PAREI AQUI
 
   # verificando se os pedidos foram deletados com sucesso
-  if (deletaPedidos($db, $pedido['id_exercicio'])) {
+  if (deletaTodosOsPedidos($db, $pedido['id_exercicio'], $pedido['registro'])) {
     # verificando se o pedido de férias foi inserido na tabela com sucesso
     if (inserePedidosDeFerias($db, $pedido, $tipo)) {
       # verificando se a situação dos pedidos foram alteradas para aprovado
@@ -96,18 +96,18 @@ function recebeAlteracaoDePedidoDeFerias($pedido, $tipo)
 
         # verificando se o e-mail de aprovação do pedido de férias foi enviado aos envolvidos
         if (enviaEmailDeAprovacaoDeFerias($email, $pedido, $tipo)) {        
-          echo json_encode(true); exit;          
+          echo json_encode(1); exit;          
         } else {
-          echo json_encode(false);
+          echo json_encode(2);
         }
       } else {
-        echo json_encode(false);
+        echo json_encode(3);
       }
     } else {
-      echo json_encode(false);
+      echo json_encode(4);
     }
   } else {
-    echo json_encode(false);
+    echo json_encode(5);
   }
 }
 
