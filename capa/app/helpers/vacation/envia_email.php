@@ -87,11 +87,11 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
 
               switch ($tipo) {
                 case '1':
-                  $pedido['data_inicial'] = formataDataParaExibir($pedido['data_inicial']);
-                  $pedido['data_final']   = formataDataParaExibir($pedido['data_final']);
+                  $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);
+                  $pedido['periodo1']['data_final']   = formataDataParaExibir($pedido['periodo1']['data_final']);
 
                   $msg .= "
-                    <p><strong>1º - Período</strong> {$pedido['data_inicial']} até {$pedido['data_final']} - {$pedido['dias']} dias</p>
+                    <p><strong>1º - Período</strong> {$pedido['periodo1']['data_inicial']} até {$pedido['periodo1']['data_final']} - {$pedido['periodo1']['dias']} dias</p>
                   ";
                 break;
 
@@ -107,7 +107,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
                     <p><strong>2º - Período</strong> {$pedido['periodo2']['data_inicial']} até {$pedido['periodo2']['data_final']} - {$pedido['periodo2']['dias']} dias</p>
                   ";
                 break;
-
+                /*
                 case '3':
                   $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
                   $pedido['periodo1']['data_final']   = formataDataParaExibir($pedido['periodo1']['data_final']);
@@ -124,7 +124,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
                     <p><strong>3º - Período</strong> {$pedido['periodo3']['data_inicial']} até {$pedido['periodo3']['data_final']} - {$pedido['periodo3']['dias']} dias</p>
                   ";
                 break;
-
+                */
                 case '4':
                 case '5':
                   $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
@@ -214,7 +214,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->addAddress($emailColaborador);    
     $email->addReplyTo($emailSupervisor, 'Respostas');    
     #$email->addCC();
-    $email->addBCC('wellington.felix@avancoinfo.com.br');    
+    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -247,7 +247,8 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
 
     $resultado = true;
   } catch (Exception $e) {
-    $resultado = $email->ErrorInfo;
+    #$resultado = $email->ErrorInfo;
+    $resultado = false;
   }
 
   return $resultado;
@@ -434,7 +435,7 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
     $email->addAddress($emailColaborador);
     $email->addReplyTo($emailSupervisor, 'Respostas');
     #$email->addCC();    
-    $email->addBCC('wellington.felix@avancoinfo.com.br');    
+    $email->addAddress('wellington.felix@avancoinfo.com.br');    
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -570,7 +571,7 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
                       <p><strong>2º - Período</strong> {$pedido['periodo2']['data_inicial']} até {$pedido['periodo2']['data_final']} - {$pedido['periodo2']['dias']} dias</p>
                     ";
                   break;
-
+                  /*
                   case '3':
                     $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
                     $pedido['periodo1']['data_final']   = formataDataParaExibir($pedido['periodo1']['data_final']);
@@ -587,7 +588,7 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
                       <p><strong>3º - Período</strong> {$pedido['periodo3']['data_inicial']} até {$pedido['periodo3']['data_final']} - {$pedido['periodo3']['dias']} dias</p>
                     ";
                   break;
-
+                  */
                   case '4':
                   case '5':
                     $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
@@ -663,7 +664,7 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
     $email->addAddress('badaro@avancoinfo.com.br');    
     $email->addReplyTo($emailColaborador, 'Respostas');
     #$email->addCC();
-    $email->addBCC('wellington.felix@avancoinfo.com.br');
+    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
