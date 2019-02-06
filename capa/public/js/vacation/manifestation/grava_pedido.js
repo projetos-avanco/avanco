@@ -106,7 +106,7 @@ $(function() {
             $('.row #linha-2 #data-inicial-2').removeClass('erro');          
           }
         break;
-        
+        /*
         case '3':        
           // recuperando datas
           pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
@@ -172,7 +172,7 @@ $(function() {
             $('.row #linha-3 #data-inicial-3').removeClass('erro');
           }
         break;
-
+        */
         case '4':
           // recuperando datas
           pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
@@ -266,8 +266,16 @@ $(function() {
           
       // verificando se não houve erros de validação
       if (!flag) {
-        // recuperando o id do colaborador selecionado
-        var colaborador = $('#colaborador').val();
+        var colaborador = undefined;
+
+        // percorrendo botões da tabela de exercícios
+        $('#relatorio tbody .btn-sm').each(function() {
+          // verificando qual foi o botão selecionado pelo usuário
+          if ($(this).hasClass('btn-success')) {
+            // recuperando o id do colaborador
+            colaborador = $(this).attr('data-id-colaborador');
+          }
+        });
         
         $.ajax({
           type: 'post',
@@ -287,7 +295,7 @@ $(function() {
           }, 
           success: function(retorno) {            
             // verificando se o pedido foi gravado com sucesso
-            if (retorno) {
+            if (retorno == 1) {
               swal({
                 title: 'Aviso',
                 text: 'Pedido alterado com sucesso. Um e-mail informando a aprovação das férias foi enviado.',
@@ -320,11 +328,39 @@ $(function() {
                 }
               });
             } else {
-              swal({
-                title: 'Aviso',
-                text: 'Erro ao tentar gravar a alteração do pedido, informe ao Wellington Felix.',
-                icon: 'warning'              
-              });            
+              switch (retorno) {
+                case 2:
+                  swal({
+                    title: 'Aviso',
+                    text: 'Alteração realizada, mas houve erro ao tentar enviar o e-mail de aprovação, poder estar com problemas de SMTP, verifique com a tecnologia.',
+                    icon: 'warning'              
+                  });
+                break;
+
+                case 3:
+                  swal({
+                    title: 'Aviso',
+                    text: 'Erro ao alterar a situação do pedido para aprovado, informe ao Wellington Felix.',
+                    icon: 'warning'              
+                  });
+                break;
+
+                case 4:
+                  swal({
+                    title: 'Aviso',
+                    text: 'Erro ao tentar gravar a alteração do pedido, informe ao Wellington Felix.',
+                    icon: 'warning'              
+                  });
+                break;
+
+                case 5:
+                  swal({
+                    title: 'Aviso',
+                    text: 'Erro ao tentar deletar os pedidos existentes, informe ao Wellington Felix.',
+                    icon: 'warning'              
+                  });
+                break;
+              }
             }
           },
           error: function(erro) {
