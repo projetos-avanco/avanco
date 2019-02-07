@@ -52,42 +52,47 @@ function consultaExerciciosDeFeriasLancadosDoColaborador($db, $id)
       "SELECT
         e.id,
         CONCAT(s.name, ' ', s.surname) AS supervisor,
-        CONCAT(c.name, ' ', c.surname) AS colaborador,
         CASE
           WHEN (e.status = false)
             THEN 'Não Agendadas'
           WHEN (e.status = true)
             THEN 'Agendadas'
         END AS status,
-        DATE_FORMAT(e.exercicio_inicial, '%d/%m/%Y') AS exercicio_inicial,
-        DATE_FORMAT(e.exercicio_final, '%d/%m/%Y') AS exercicio_final,
-        DATE_FORMAT(e.vencimento, '%d/%m/%Y') AS vencimento,
-        DATE_FORMAT(e.registrado, '%d/%m/%Y %H:%i:%s') AS registrado
+        CONCAT(c.name, ' ', c.surname) AS colaborador,	
+        e.exercicio_inicial,
+        e.exercicio_final,
+        e.vencimento,
+        DATE_FORMAT(e.registrado, '%Y-%m-%d') AS registrado
       FROM av_agenda_exercicios_ferias AS e
       INNER JOIN lh_users AS s
         ON s.id = e.supervisor
       INNER JOIN lh_users AS c
         ON c.id = e.colaborador    
-      ORDER BY colaborador, status DESC, exercicio_final";
+      ORDER BY exercicio_inicial DESC";
 
     $resultado = mysqli_query($db, $query);
 
     $tr = '';
 
     while ($linha = mysqli_fetch_array($resultado)) {
-      $id = $linha['id'];
-      $supervisor = $linha['supervisor'];
+      $linha['exercicio_inicial'] = formataDataParaExibir($linha['exercicio_inicial']);
+      $linha['exercicio_final']   = formataDataParaExibir($linha['exercicio_final']);
+      $linha['vencimento']        = formataDataParaExibir($linha['vencimento']);
+      $linha['registrado']        = formataDataParaExibir($linha['registrado']);
+
+      $id          = $linha['id'];
+      $supervisor  = $linha['supervisor'];
       $colaborador = $linha['colaborador'];
-      $status = $linha['status'];
-      $inicial = $linha['exercicio_inicial'];
-      $final = $linha['exercicio_final'];
-      $vencimento = $linha['vencimento'];
-      $registrado = $linha['registrado'];
+      $status      = $linha['status'];
+      $inicial     = $linha['exercicio_inicial'];
+      $final       = $linha['exercicio_final'];
+      $vencimento  = $linha['vencimento'];
+      $registrado  = $linha['registrado'];
 
       $tr .= "<tr>";    
-      $tr .= "<td class='text-center'>$supervisor</td>";
-      $tr .= "<td class='text-center'>$colaborador</td>";
-      $tr .= "<td class='text-center'>$status</td>";
+      $tr .= "<td class='text-center' width='15%'>$supervisor</td>";
+      $tr .= "<td class='text-left' width='15%'>$status</td>";
+      $tr .= "<td class='text-left' width='15%'>$colaborador</td>";
       $tr .= "<td class='text-center'>$inicial</td>";
       $tr .= "<td class='text-center' data-final='$final'>$final</td>";
       $tr .= "<td class='text-center' data-vencimento='$vencimento'>$vencimento</td>";
@@ -106,43 +111,48 @@ function consultaExerciciosDeFeriasLancadosDoColaborador($db, $id)
       "SELECT
         e.id,
         CONCAT(s.name, ' ', s.surname) AS supervisor,
-        CONCAT(c.name, ' ', c.surname) AS colaborador,
         CASE
           WHEN (e.status = false)
             THEN 'Não Agendadas'
           WHEN (e.status = true)
             THEN 'Agendadas'
         END AS status,
-        DATE_FORMAT(e.exercicio_inicial, '%d/%m/%Y') AS exercicio_inicial,
-        DATE_FORMAT(e.exercicio_final, '%d/%m/%Y') AS exercicio_final,
-        DATE_FORMAT(e.vencimento, '%d/%m/%Y') AS vencimento,
-        DATE_FORMAT(e.registrado, '%d/%m/%Y %H:%i:%s') AS registrado
+        CONCAT(c.name, ' ', c.surname) AS colaborador,        
+        e.exercicio_inicial,
+        e.exercicio_final,
+        e.vencimento,
+        DATE_FORMAT(e.registrado, '%Y-%m-%d') AS registrado
       FROM av_agenda_exercicios_ferias AS e
       INNER JOIN lh_users AS s
         ON s.id = e.supervisor
       INNER JOIN lh_users AS c
         ON c.id = e.colaborador
       WHERE e.colaborador = $id
-      ORDER BY status DESC, exercicio_final";
+      ORDER BY exercicio_inicial DESC";
 
     $resultado = mysqli_query($db, $query);
 
     $tr = '';
 
     while ($linha = mysqli_fetch_array($resultado)) {
-      $id = $linha['id'];
-      $supervisor = $linha['supervisor'];
+      $linha['exercicio_inicial'] = formataDataParaExibir($linha['exercicio_inicial']);
+      $linha['exercicio_final']   = formataDataParaExibir($linha['exercicio_final']);
+      $linha['vencimento']        = formataDataParaExibir($linha['vencimento']);
+      $linha['registrado']        = formataDataParaExibir($linha['registrado']);
+
+      $id          = $linha['id'];
+      $supervisor  = $linha['supervisor'];
+      $status      = $linha['status'];
       $colaborador = $linha['colaborador'];
-      $status = $linha['status'];
-      $inicial = $linha['exercicio_inicial'];
-      $final = $linha['exercicio_final'];
-      $vencimento = $linha['vencimento'];
-      $registrado = $linha['registrado'];
+      $inicial     = $linha['exercicio_inicial'];
+      $final       = $linha['exercicio_final'];
+      $vencimento  = $linha['vencimento'];
+      $registrado  = $linha['registrado'];
 
       $tr .= "<tr>";    
-      $tr .= "<td class='text-center'>$supervisor</td>";
-      $tr .= "<td class='text-center'>$colaborador</td>";
-      $tr .= "<td class='text-center'>$status</td>";
+      $tr .= "<td class='text-center' width='15%'>$supervisor</td>";
+      $tr .= "<td class='text-left' width='15%'>$status</td>";
+      $tr .= "<td class='text-left' width='15%'>$colaborador</td>";
       $tr .= "<td class='text-center'>$inicial</td>";
       $tr .= "<td class='text-center' data-final='$final'>$final</td>";
       $tr .= "<td class='text-center' data-vencimento='$vencimento'>$vencimento</td>";
@@ -181,24 +191,24 @@ function consultaExerciciosDeFeriasLancados($db, $id, $status)
         "SELECT
           e.id,
           CONCAT(s.name, ' ', s.surname) AS supervisor,
-          CONCAT(c.name, ' ', c.surname) AS colaborador,
           CASE
             WHEN (e.status = false)
               THEN 'Não Agendadas'
             WHEN (e.status = true)
               THEN 'Agendadas'
           END AS status,
-          DATE_FORMAT(e.exercicio_inicial, '%d/%m/%Y') AS exercicio_inicial,
-          DATE_FORMAT(e.exercicio_final, '%d/%m/%Y') AS exercicio_final,
-          DATE_FORMAT(e.vencimento, '%d/%m/%Y') AS vencimento,
-          DATE_FORMAT(e.registrado, '%d/%m/%Y %H:%i:%s') AS registrado
+          CONCAT(c.name, ' ', c.surname) AS colaborador,	
+          e.exercicio_inicial,
+          e.exercicio_final,
+          e.vencimento,
+          DATE_FORMAT(e.registrado, '%Y-%m-%d') AS registrado
         FROM av_agenda_exercicios_ferias AS e
         INNER JOIN lh_users AS s
           ON s.id = e.supervisor
         INNER JOIN lh_users AS c
           ON c.id = e.colaborador
         WHERE e.colaborador = $id
-        ORDER BY colaborador, exercicio_inicial, status DESC";
+        ORDER BY exercicio_inicial DESC";
           break;
 
     case '0':
@@ -206,17 +216,17 @@ function consultaExerciciosDeFeriasLancados($db, $id, $status)
         "SELECT
           e.id,
           CONCAT(s.name, ' ', s.surname) AS supervisor,
-          CONCAT(c.name, ' ', c.surname) AS colaborador,
           CASE
             WHEN (e.status = false)
               THEN 'Não Agendadas'
             WHEN (e.status = true)
               THEN 'Agendadas'
           END AS status,
-          DATE_FORMAT(e.exercicio_inicial, '%d/%m/%Y') AS exercicio_inicial,
-          DATE_FORMAT(e.exercicio_final, '%d/%m/%Y') AS exercicio_final,
-          DATE_FORMAT(e.vencimento, '%d/%m/%Y') AS vencimento,
-          DATE_FORMAT(e.registrado, '%d/%m/%Y %H:%i:%s') AS registrado
+          CONCAT(c.name, ' ', c.surname) AS colaborador,	
+          e.exercicio_inicial,
+          e.exercicio_final,
+          e.vencimento,
+          DATE_FORMAT(e.registrado, '%Y-%m-%d') AS registrado
         FROM av_agenda_exercicios_ferias AS e
         INNER JOIN lh_users AS s
           ON s.id = e.supervisor
@@ -224,7 +234,7 @@ function consultaExerciciosDeFeriasLancados($db, $id, $status)
           ON c.id = e.colaborador
         WHERE e.colaborador = $id
           AND status = false
-        ORDER BY colaborador, exercicio_inicial";
+        ORDER BY exercicio_inicial DESC";
           break;
 
     case '1':
@@ -232,17 +242,17 @@ function consultaExerciciosDeFeriasLancados($db, $id, $status)
         "SELECT
           e.id,
           CONCAT(s.name, ' ', s.surname) AS supervisor,
-          CONCAT(c.name, ' ', c.surname) AS colaborador,
           CASE
             WHEN (e.status = false)
               THEN 'Não Agendadas'
             WHEN (e.status = true)
               THEN 'Agendadas'
           END AS status,
-          DATE_FORMAT(e.exercicio_inicial, '%d/%m/%Y') AS exercicio_inicial,
-          DATE_FORMAT(e.exercicio_final, '%d/%m/%Y') AS exercicio_final,
-          DATE_FORMAT(e.vencimento, '%d/%m/%Y') AS vencimento,
-          DATE_FORMAT(e.registrado, '%d/%m/%Y %H:%i:%s') AS registrado
+          CONCAT(c.name, ' ', c.surname) AS colaborador,	
+          e.exercicio_inicial,
+          e.exercicio_final,
+          e.vencimento,
+          DATE_FORMAT(e.registrado, '%Y-%m-%d') AS registrado
         FROM av_agenda_exercicios_ferias AS e
         INNER JOIN lh_users AS s
           ON s.id = e.supervisor
@@ -259,19 +269,24 @@ function consultaExerciciosDeFeriasLancados($db, $id, $status)
   $tr = '';
 
   while ($linha = mysqli_fetch_array($resultado)) {
-    $id = $linha['id'];
-    $supervisor = $linha['supervisor'];
+    $linha['exercicio_inicial'] = formataDataParaExibir($linha['exercicio_inicial']);
+    $linha['exercicio_final']   = formataDataParaExibir($linha['exercicio_final']);
+    $linha['vencimento']        = formataDataParaExibir($linha['vencimento']);
+    $linha['registrado']        = formataDataParaExibir($linha['registrado']);
+
+    $id          = $linha['id'];
+    $supervisor  = $linha['supervisor'];
     $colaborador = $linha['colaborador'];
-    $status = $linha['status'];
-    $inicial = $linha['exercicio_inicial'];
-    $final = $linha['exercicio_final'];
-    $vencimento = $linha['vencimento'];
-    $registrado = $linha['registrado'];
+    $status      = $linha['status'];
+    $inicial     = $linha['exercicio_inicial'];
+    $final       = $linha['exercicio_final'];
+    $vencimento  = $linha['vencimento'];
+    $registrado  = $linha['registrado'];
 
     $tr .= "<tr>";
-    $tr .= "<td class='text-center'>$supervisor</td>";
-    $tr .= "<td class='text-center'>$colaborador</td>";
-    $tr .= "<td class='text-center'>$status</td>";
+    $tr .= "<td class='text-center' width='15%'>$supervisor</td>";
+    $tr .= "<td class='text-left' width='15%'>$status</td>";
+    $tr .= "<td class='text-left' width='15%'>$colaborador</td>";    
     $tr .= "<td class='text-center'>$inicial</td>";
     $tr .= "<td class='text-center'>$final</td>";
     $tr .= "<td class='text-center'>$vencimento</td>";
