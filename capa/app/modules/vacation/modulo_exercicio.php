@@ -25,6 +25,7 @@ function solicitaDelecaoDoExercicioDeFerias($id)
  */
 function retornaExerciciosDeFeriasLancadosDoColaborador($id)
 {
+  require_once DIRETORIO_HELPERS   . 'datas.php';
   require_once DIRETORIO_FUNCTIONS . 'vacation/consultas_exercicio.php';
 
   $db = abre_conexao();
@@ -39,6 +40,7 @@ function retornaExerciciosDeFeriasLancadosDoColaborador($id)
  */
 function retornaExerciciosDeFeriasLancados($id, $status)
 {
+  require_once DIRETORIO_HELPERS   . 'datas.php';
   require_once DIRETORIO_FUNCTIONS . 'vacation/consultas_exercicio.php';
 
   $db = abre_conexao();
