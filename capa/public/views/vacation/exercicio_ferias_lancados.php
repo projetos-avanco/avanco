@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize_7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
@@ -89,8 +90,8 @@
                   <thead>
                     <tr>                            
                       <th class="text-center">Supervisor</th>
-                      <th class="text-center">Colaborador</th>
                       <th class="text-center">Situação</th>
+                      <th class="text-center">Colaborador</th>
                       <th class="text-center">Exercício Inicial</th>
                       <th class="text-center">Exercício Final</th>
                       <th class="text-center">Data Limite</th>
@@ -109,7 +110,7 @@
         <form>
 
           <div class="row"><!-- linha principal -->
-            <div class="col-sm-6 col-sm-offset-3"><!-- primeira coluna principal -->
+            <div class="col-sm-6 col-sm-offset-6"><!-- primeira coluna principal -->
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
                   <div class="text-left">
@@ -145,9 +146,9 @@
               <div class="row">
                 <div class="col-sm-3 col-sm-offset-6">
                   <div class="form-group">
-                    <button class="btn btn-block btn-default btn-sm" type="reset">
+                    <button class="btn btn-block btn-default btn-sm" id="btn-atualizar" type="button">
                       <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
-                      Resetar
+                      Atualizar
                     </button>
                   </div>
                 </div>
@@ -174,6 +175,7 @@
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
@@ -195,11 +197,43 @@
           },
           success: function(tr) {
             $('#tbody').html(tr);
+
+            // paginando a tabela
+            $('.table').DataTable({
+              //"aaSorting": [[3, "desc"]],   
+              "oLanguage": {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sInfoPostFix": "",
+                "sInfoThousands": ".",
+                "sLengthMenu": "_MENU_ Contratos exibidos por página",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                  "sNext": "Próximo",
+                  "sPrevious": "Anterior",
+                  "sFirst": "Primeiro",
+                  "sLast": "Último"
+                }
+              },
+              "pageLength": 10
+            });
           },
           error: function(resposta) {
             console.log(resposta);
           }
         });
+      });
+
+      // atualizando página
+      $(document).on('click', '#btn-atualizar', function(e) {
+        e.preventDefault;
+
+        window.location.reload(true);
       });
 
       // consultando exercícios de férias

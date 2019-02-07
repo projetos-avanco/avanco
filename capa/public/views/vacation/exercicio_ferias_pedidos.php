@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/normalize/css/normalize_7.0.0.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>libs/bootstrap/css/bootstrap_3.3.7.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/fontes.css">
   <link rel="stylesheet" href="<?php echo BASE_URL; ?>public/css/home.css">
@@ -46,8 +47,8 @@
       text-align: left;
     }
 
-    table tbody tr td {
-      height: 47px;
+    .table tbody tr td {
+      line-height: 3em;
     }
 
     .table tbody tr td {
@@ -94,12 +95,12 @@
               </div>
 
               <div class="panel-body"><!-- panel-body -->
-                <table class="table table-condesend">
+                <table class="table table-condensed">
                   <thead>
                     <tr>                      
                       <th class="text-center">Supervisor</th>
-                      <th class="text-center">Colaborador</th>
                       <th class="text-center">Situação</th>
+                      <th class="text-center">Colaborador</th>
                       <th class="text-center">Exercício Inicial</th>
                       <th class="text-center">Exercício Final</th>
                       <th class="text-center">Data Limite</th>
@@ -117,17 +118,41 @@
           </div>
         </div>
 
-        <form>
+        
 
-          <div class="row">          
-            <div class="col-sm-6 col-sm-offset-3"><!-- segunda coluna -->
+          <div class="row">
+            <div class="col-sm-6"><!-- primeira coluna -->
+              <div class="panel panel-info"><!-- panel -->
+                <div class="panel-heading">
+                  <div class="text-center">
+                    <strong>Registro</strong>
+                  </div>
+                </div>
+
+                <div class="panel-body"><!-- panel-body -->
+                  <div class="text-center">
+                    <h1>
+                      <strong id="ticket">
+                        <?php if (isset($_SESSION['ticket'])) : ?>
+                          <?php echo $_SESSION['ticket']; ?>
+                        <?php else : ?>
+                          0
+                        <?php endif; ?>
+                      </strong>
+                    </h1>
+                  </div>
+                </div><!-- panel-body -->
+              </div><!-- panel -->
+            </div><!-- primeira coluna -->
+
+            <div class="col-sm-6"><!-- segunda coluna -->
               <div class="panel panel-info"><!-- panel -->
                 <div class="panel-heading">
                   <div class="text-left">
                     <strong>Pedido</strong>
                   </div>
                 </div>
-
+        <form>
                 <div class="panel-body"><!-- panel-body -->
                   <div class="row">
                     <div class="col-sm-12">
@@ -243,33 +268,6 @@
           </div>
 
         </form>
-
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3"><!-- primeira coluna -->
-            <div class="panel panel-info"><!-- panel -->
-              <div class="panel-heading">
-                <div class="text-center">
-                  <strong>Registro</strong>
-                </div>
-              </div>
-
-              <div class="panel-body"><!-- panel-body -->
-                <div class="text-center">
-                  <h1>
-                    <strong id="ticket">
-                      <?php if (isset($_SESSION['ticket'])) : ?>
-                        <?php echo $_SESSION['ticket']; ?>
-                      <?php else : ?>
-                        0
-                      <?php endif; ?>
-                    </strong>
-                  </h1>
-                </div>
-              </div><!-- panel-body -->
-            </div><!-- panel -->
-          </div><!-- primeira coluna -->
-        </div>
-
       </div><!-- container -->
     </div><!-- conteúdo da página -->
   </div><!-- wrapper -->
@@ -278,6 +276,7 @@
   <script src="<?php echo BASE_URL; ?>libs/bootstrap/js/bootstrap_3.3.7.min.js"></script>
   <script src="<?php echo BASE_URL; ?>libs/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>

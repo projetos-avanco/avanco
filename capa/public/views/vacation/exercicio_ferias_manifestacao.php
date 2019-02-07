@@ -47,12 +47,22 @@
       text-align: left;
     }
 
-    table tbody tr td {
-      height: 0.75em;
+    #tabela-pedidos table tbody tr td {
+      line-height: 2.0em;
     }
 
     .table tbody tr td {
       font-size: 12px;
+      vertical-align: middle;
+    }
+
+    #tabela-pedidos table thead tr th {
+      font-size: 0.85em;
+      text-align: center;
+    }
+
+    #tabela-pedidos .table tbody tr td {
+      font-size: 0.85em;
       vertical-align: middle;
     }
 
@@ -133,22 +143,22 @@
                   <div class="row">
                     <div class="col-sm-12">
                       <button class="btn btn-block btn-warning btn-sm" id="btn-alterar" type="button">
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Alterar Pedido
                       </button>
                     </div>
                   </div>
                 </div>
 
                 <div class="row hidden" id="btn-aprovacao">
-                  <div class="col-sm-6">
+                  <div class="col-sm-3 col-sm-offset-3">
                     <button class="btn btn-block btn-warning btn-sm" id="btn-alterar" type="button">
-                      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Alterar
+                      <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Alterar Pedido
                     </button>
                   </div>
 
-                  <div class="col-sm-6">
+                  <div class="col-sm-3">
                     <button class="btn btn-block btn-success btn-sm" id="btn-aprovar" type="button">
-                      <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Aprovar
+                      <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Aprovar Pedido
                     </button>
                   </div>
                 </div>
@@ -255,14 +265,14 @@
                   </div><!-- bloco períodos -->
 
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-3 col-sm-offset-3">
                       <button class="btn btn-block btn-default btn-sm" type="reset">
                         <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
                         Resetar
                       </button>
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-3">
                       <button class="btn btn-block btn-success btn-sm" id="btn-gravar" type="button">
                         <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
                         Gravar
