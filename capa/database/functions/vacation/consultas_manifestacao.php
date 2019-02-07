@@ -68,28 +68,37 @@ function consultaExercicioAgendadoDoColaborador($db, $id)
 function consultaTodosOsExerciciosDeFerias($db)
 {
   $query = 
-    "SELECT	
-      e.id,
-      e.colaborador AS id_colaborador,
-      CONCAT(s.name, ' ', s.surname) AS supervisor,
-      CASE
-        WHEN (e.status = true)
-          THEN 'Agendadas'
-        WHEN (e.status = false)
-          THEN 'Não Agendadas'
-      END AS status,
-      CONCAT(c.name, ' ', c.surname) AS colaborador,
-      e.exercicio_inicial AS exercicio_inicial,
-      e.exercicio_final AS exercicio_final,
-      e.vencimento AS vencimento,
-      DATE_FORMAT(e.registrado, '%Y-%m-%d') AS registrado
+    "SELECT
+      DISTINCT
+        e.id,
+        e.colaborador AS id_colaborador,
+        CONCAT(s.name, ' ', s.surname) AS supervisor,
+        CASE
+          WHEN (e.status = true)
+            THEN 'Agendadas'
+          WHEN (e.status = false)
+            THEN 'Não Agendadas'
+        END AS status,
+        CASE
+          WHEN (p.situacao = '1')
+            THEN 'Aguardando Aprovação'
+          WHEN (p.situacao = '2')
+            THEN 'Aprovado'
+        END AS pedido,
+        CONCAT(c.name, ' ', c.surname) AS colaborador,
+        e.exercicio_inicial AS exercicio_inicial,
+        e.exercicio_final AS exercicio_final,
+        e.vencimento AS vencimento,
+        DATE_FORMAT(e.registrado, '%Y-%m-%d') AS registrado
     FROM av_agenda_exercicios_ferias AS e
+    LEFT JOIN av_agenda_pedidos_ferias AS p
+      ON p.id_exercicio = e.id
     INNER JOIN lh_users AS s
       ON s.id = e.supervisor
     INNER JOIN lh_users AS c
       ON c.id = e.colaborador
     WHERE (e.status = true)
-      ORDER BY e.exercicio_inicial DESC";
+    ORDER BY e.exercicio_inicial DESC";
   
   $resultado = mysqli_query($db, $query);
 
@@ -106,6 +115,7 @@ function consultaTodosOsExerciciosDeFerias($db)
       'id_colaborador'    => $linha['id_colaborador'],
       'supervisor'        => $linha['supervisor'],
       'status'            => $linha['status'],
+      'pedido'            => $linha['pedido'],
       'colaborador'       => $linha['colaborador'],
       'exercicio_inicial' => $linha['exercicio_inicial'],
       'exercicio_final'   => $linha['exercicio_final'],

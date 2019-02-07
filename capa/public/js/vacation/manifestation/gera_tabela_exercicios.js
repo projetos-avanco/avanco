@@ -15,6 +15,7 @@ $(function() {
             '<tr>'                                                   +
               '<th class="text-center">Supervisor</th>'              +
               '<th class="text-center">Colaborador</th>'             +
+              '<th class="text-center">Férias</th>'                  +
               '<th class="text-center">Situação</th>'                +
               '<th class="text-center">Exercício Inicial</th>'       +
               '<th class="text-center">Exercício Final</th>'         +
@@ -32,6 +33,7 @@ $(function() {
           tbody += '<td class="text-center">' + dados[i].supervisor        + '</td>';              
           tbody += '<td class="text-left">'   + dados[i].colaborador       + '</td>';          
           tbody += '<td class="text-center">' + dados[i].status            + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].pedido            + '</td>';
           tbody += '<td class="text-center">' + dados[i].exercicio_inicial + '</td>';          
           tbody += '<td class="text-center">' + dados[i].exercicio_final   + '</td>';         
           tbody += '<td class="text-center">' + dados[i].vencimento        + '</td>';           
