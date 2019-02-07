@@ -214,7 +214,6 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->addAddress($emailColaborador);    
     $email->addReplyTo($emailSupervisor, 'Respostas');    
     #$email->addCC();
-    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -434,8 +433,7 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
     $email->setFrom($emailSupervisor, 'Avanço | Exercídio Férias');    
     $email->addAddress($emailColaborador);
     $email->addReplyTo($emailSupervisor, 'Respostas');
-    #$email->addCC();    
-    $email->addAddress('wellington.felix@avancoinfo.com.br');    
+    #$email->addCC();
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -664,7 +662,6 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
     $email->addAddress('badaro@avancoinfo.com.br');    
     $email->addReplyTo($emailColaborador, 'Respostas');
     #$email->addCC();
-    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
