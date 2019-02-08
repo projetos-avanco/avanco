@@ -101,11 +101,16 @@
                             <input class="form-control required" id="vencimento" type="date" name="exercicio[vencimento]" placeholder="Vencimento" readonly>
                           </div>
                         </div>
-                      </div>                
+                      </div>
+
+                      <div class="text-center" id="contrato">
+
+                      </div>
                     </div><!-- panel-body -->
                   </div><!-- panel -->
 
                   <input type="hidden" name="exercicio[supervisor]" value="<?php echo $_SESSION['usuario']['id']; ?>">
+                  <input type="hidden" name="exercicio[regime]" id="regime">
                 </div>
               </div><!-- painel atendimentos -->
 

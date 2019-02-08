@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if (isset($_POST['id']) && is_numeric($_POST['id'])) {
     $id = (int) $_POST['id'];
 
-    # chamando função que consulta e retorna a data de admissão do colaborador
-    retornaDataDeAdmissao($id);
+    # chamando função que consulta e retorna a data de admissão, regime e contrato do colaborador
+    retornaDadosContratuais($id);
   }  
 }

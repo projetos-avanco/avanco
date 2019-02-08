@@ -49,18 +49,18 @@ function retornaExerciciosDeFeriasLancados($id, $status)
 }
 
 /**
- * responsável por consultar e retornar a data de admissão de um colaborador
+ * responsável por consultar e retornar a data de admissão, regime e contrato de um colaborador
  * @param - inteiro com o id do colaborador
  */
-function retornaDataDeAdmissao($id)
+function retornaDadosContratuais($id)
 {
   require_once DIRETORIO_FUNCTIONS . 'vacation/consultas_exercicio.php';
 
   $db = abre_conexao();
 
-  $admissao = consultaDataDeAdmissao($db, $id);
+  $dados = consultaDadosContratuais($db, $id);
 
-  echo json_encode($admissao);
+  echo json_encode($dados);
 
   exit;
 }
@@ -95,7 +95,7 @@ function recebeExercicioDeFerias($exercicio)
       $exercicio['exercicio_final'] = formataDataParaExibir($exercicio['exercicio_final']);
       $exercicio['vencimento'] = formataDataParaExibir($exercicio['vencimento']);
 
-      if (enviaEmailDeConfirmacaoDeExercicioDeFerias($email, $exercicio['exercicio_inicial'], $exercicio['exercicio_final'], $exercicio['vencimento'])) {
+      if (enviaEmailDeConfirmacaoDeExercicioDeFerias($email, $exercicio['exercicio_inicial'], $exercicio['exercicio_final'], $exercicio['vencimento'], $exercicio['regime'])) {
         $_SESSION['atividades']['tipo'] = 'success';
         $_SESSION['atividades']['mensagens'][] = 'Exercício de férias gravado com sucesso.';
       } else {

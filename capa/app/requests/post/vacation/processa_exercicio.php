@@ -8,7 +8,8 @@ require_once DIRETORIO_MODULES . 'vacation/modulo_exercicio.php';
 # verificando se houve uma requisição via método post
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $exercicio = array(
-    'id' => 0,      
+    'id' => 0,
+    'regime' => null,
     'supervisor' => null,
     'colaborador' => null,
     'status' => 0,
@@ -21,6 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $flag = false;
 
   $erros = array();
+
+  if (!empty($_POST['exercicio']['regime'])) {
+    if (is_numeric($_POST['exercicio']['regime'])) {
+      $exercicio['regime'] = (int)$_POST['exercicio']['regime'];
+    } else {
+      $flag = true;
+      $erros[] = 'O tipo de dados do código de regime está incorreto.';
+    }
+  } else {
+    $flag = true;
+    $erros[] = 'O código de regime não foi enviado. Informe ao Wellington Felix.';
+  }
 
   if (!empty($_POST['exercicio']['supervisor'])) {
     if (is_numeric($_POST['exercicio']['supervisor'])) {

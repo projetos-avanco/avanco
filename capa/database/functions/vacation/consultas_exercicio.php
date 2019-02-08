@@ -304,15 +304,17 @@ function consultaExerciciosDeFeriasLancados($db, $id, $status)
 }
 
 /**
- * consulta a data de admissão de um colaborador
+ * consulta a data de admissão, regime e contrato de um colaborador
  * @param - objeto com uma conexão aberta
  * @param - inteiro com o id do colaborador
  */
-function consultaDataDeAdmissao($db, $id)
+function consultaDadosContratuais($db, $id)
 {
   $query = 
     "SELECT      
-      l.admissao
+      l.admissao,
+      l.regime,
+      l.contrato
     FROM av_usuarios_login AS l
     INNER JOIN lh_users AS u
       ON u.username = l.usuario
@@ -320,7 +322,13 @@ function consultaDataDeAdmissao($db, $id)
 
   $resultado = mysqli_query($db, $query);
 
-  $admissao = mysqli_fetch_row($resultado);
+  $dados = array();
 
-  return $admissao[0];
+  while ($linha = mysqli_fetch_array($resultado)) {    
+    $dados['admissao'] = $linha['admissao'];
+    $dados['regime']   = $linha['regime'];
+    $dados['contrato'] = $linha['contrato'];
+  }
+
+  return $dados;
 }
