@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       # verificando qual foi o tipo do periodo selecionado pelo usuário
       switch ($_POST['pedido']['periodo']) {
         case '1':
+        case '6':
           # verificando se a data inicial do período 1 foi enviada e não está vazia
           if (isset($_POST['pedido']['periodo1']['dataInicial']) && (!empty($_POST['pedido']['periodo1']['dataInicial']))) {
             # verificando se a data inicial do período 1 é uma string numérica

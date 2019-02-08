@@ -93,7 +93,7 @@ function consultaExerciciosDeFeriasLancadosDoColaborador($db, $id)
       $tr .= "<td class='text-center' width='15%'>$supervisor</td>";
       $tr .= "<td class='text-left' width='15%'>$status</td>";
       $tr .= "<td class='text-left' width='15%'>$colaborador</td>";
-      $tr .= "<td class='text-center'>$inicial</td>";
+      $tr .= "<td class='text-center' data-inicial='$inicial'>$inicial</td>";
       $tr .= "<td class='text-center' data-final='$final'>$final</td>";
       $tr .= "<td class='text-center' data-vencimento='$vencimento'>$vencimento</td>";
       $tr .= "<td class='text-center'>$registrado</td>";      
@@ -153,7 +153,7 @@ function consultaExerciciosDeFeriasLancadosDoColaborador($db, $id)
       $tr .= "<td class='text-center' width='15%'>$supervisor</td>";
       $tr .= "<td class='text-left' width='15%'>$status</td>";
       $tr .= "<td class='text-left' width='15%'>$colaborador</td>";
-      $tr .= "<td class='text-center'>$inicial</td>";
+      $tr .= "<td class='text-center' data-inicial='$inicial'>$inicial</td>";
       $tr .= "<td class='text-center' data-final='$final'>$final</td>";
       $tr .= "<td class='text-center' data-vencimento='$vencimento'>$vencimento</td>";
       $tr .= "<td class='text-center'>$registrado</td>";      

@@ -211,9 +211,10 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
 
     # destinatários
     $email->setFrom($emailSupervisor, 'Avanço | Aprovação Férias');    
-    $email->addAddress($emailColaborador);    
-    $email->addReplyTo($emailSupervisor, 'Respostas');    
+    #$email->addAddress($emailColaborador);
+    #$email->addReplyTo($emailSupervisor, 'Respostas');    
     #$email->addCC();
+    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -259,8 +260,9 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
  * @param - string com a data do exercício inicial
  * @param - string com a data do exercício final
  * @param - string com a data do vencimento do exercício
+ * @param - inteiro que informa o regime do colaborador (1 - clt / 2 - estagio)
  */
-function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial, $final, $vencimento)
+function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial, $final, $vencimento, $regime)
 {
   require_once '../../../../libs/PHPMailer/src/Exception.php';
   require_once '../../../../libs/PHPMailer/src/PHPMailer.php';
@@ -357,9 +359,17 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
           <div class='row'>
             <div class='col-sm-12'>
               <div class='text-left'>
-                <p id='observacao'>
-                  <strong>Lembrando que, o período permitido para agendamento dos dias será apartir da data do Exerício Final até 30 dias antes da Data Limite.</strong>
-                </p>
+                <p id='observacao'>";
+                
+                if ($regime == 1) {
+                  $msg .= '<strong>Lembrando que, o período permitido para agendamento dos dias será apartir da data do Exerício Final até 2 meses antes da Data Limite.</strong>';
+                } else {
+                  $msg .= '<strong>Lembrando que, o período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.</strong>';
+                }
+
+              $msg .= 
+                  
+                "</p>
               </div>
             </div>
           </div>
@@ -431,9 +441,10 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
 
     # destinatários
     $email->setFrom($emailSupervisor, 'Avanço | Exercídio Férias');    
-    $email->addAddress($emailColaborador);
-    $email->addReplyTo($emailSupervisor, 'Respostas');
+    #$email->addAddress($emailColaborador);
+    #$email->addReplyTo($emailSupervisor, 'Respostas');
     #$email->addCC();
+    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -659,9 +670,10 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
 
     # destinatários
     $email->setFrom($emailColaborador, 'Avanço | Pedido Férias');    
-    $email->addAddress('badaro@avancoinfo.com.br');    
-    $email->addReplyTo($emailColaborador, 'Respostas');
+    #$email->addAddress('badaro@avancoinfo.com.br');
+    #$email->addReplyTo($emailColaborador, 'Respostas');
     #$email->addCC();
+    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
