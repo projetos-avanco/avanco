@@ -19,6 +19,8 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'users') {
     'senha' => null,
     'email' => null,
     'nivel' => null,
+    'regime' => null,
+    'contrato' => null,
     'ativo' => true,
     'ramal' => null,
     'admissao' => null,
@@ -157,8 +159,20 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'users') {
       $erros[] = 'Ramal só pode ser números.';
     }
   } else {
-    $flag = true;
-    $erros[] = 'Ramal não foi enviado.';
+    $cadastro['ramal'] = '0';
+  }
+
+  if ($cadastro['nivel'] == 1 || $cadastro['nivel'] == 2) {
+    $cadastro['regime'] = '1';
+    $cadastro['contrato'] = '0';
+  } elseif ($cadastro['nivel'] == 3) {
+    $cadastro['regime'] = '2';
+
+    if (isset($_POST['cadastro']['contrato']) && (!empty($_POST['cadastro']['contrato']))) {
+      if (is_numeric($_POST['cadastro']['contrato'])) {
+        $cadastro['contrato'] = $_POST['cadastro']['contrato'];
+      }
+    }
   }
 
   $cadastro['cadastro'] = date('Y-m-d H:i:s');
@@ -169,7 +183,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'users') {
    * ----------------------------
    */
 
-  if ($cadastro['nivel'] == 1) {
+  if ($cadastro['nivel'] == 1 || $cadastro['nivel'] == 3) {
     if (isset($_POST['cadastro']['opcoes']) && count($_POST['cadastro']['opcoes']) >= 1) {
       foreach ($_POST['cadastro']['opcoes'] AS $chave => $valor) {
         array_push($opcoes['modulo'], (int) $chave);
@@ -181,7 +195,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'users') {
     }
   }  
 
-  if ($cadastro['nivel'] == 1) {
+  if ($cadastro['nivel'] == 1 || $cadastro['nivel'] == 3) {
     if (isset($_POST['cadastro']['time']) && (!empty($_POST['cadastro']['time'])) && $_POST['cadastro']['time'] > 1) {
       if (is_numeric($_POST['cadastro']['time'])) {
         $time = (int) $_POST['cadastro']['time'];
@@ -195,7 +209,7 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'users') {
     }
   }  
 
-  if ($cadastro['nivel'] == 1) {
+  if ($cadastro['nivel'] == 1 || $cadastro['nivel'] == 3) {
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
       if (empty($flag)) {
         switch ($time) {
@@ -232,9 +246,6 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'users') {
           $erros[] = 'A foto deve possuir um tamanho de até 1MB.';
         }
       }    
-    } else {
-      $flag = true;
-      $erros[] = 'A foto não foi enviada.';
     }
   }
 
@@ -262,8 +273,17 @@ if (isset($_POST['submit']) && $_POST['submit'] == 'users') {
       # chamando função responsável por fazer o cadastro
       recebeCadastroDeUsuario($cadastro);
     } else {
-      # chamando função responsável por fazer o cadastro
-      recebeCadastroDeUsuario($cadastro, $target, $time, $opcoes);
+
+      # verificando se a foto foi enviada
+      if (isset($target)) {
+        # chamando função responsável por fazer o cadastro
+        recebeCadastroDeUsuario($cadastro, $target, $time, $opcoes);
+      } else {
+        $target = '';
+        
+        # chamando função responsável por fazer o cadastro
+        recebeCadastroDeUsuario($cadastro, $target, $time, $opcoes);
+      }
     }    
   }  
 }
