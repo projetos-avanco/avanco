@@ -91,6 +91,30 @@
             </div>
           </div>
 
+          <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
+
+            <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
+
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="text-center">
+                    <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
+                        <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
+                          <strong>Ops!</strong>
+                        <?php else : ?>
+                          <strong>Tudo Certo!</strong>
+                        <?php endif; ?>
+
+                        <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            <?php endfor; ?>
+
+          <?php endif; ?>
+
           <form action="<?php echo BASE_URL; ?>app/requests/post/users/recebe_usuario.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
           
           <div class="row">
@@ -521,15 +545,15 @@
                         <div class="row">
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label class="sr-only" for="nome">Nome</label>
-                              <input class="form-control" id="nome" type="text" name="cadastro[nome]" placeholder="Nome" readonly>
+                              <label for="nome">Nome</label>
+                              <input class="form-control" id="nome" type="text" name="cadastro[nome]" placeholder="Nome do Usuário" readonly>
                             </div>
                           </div>
 
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label class="sr-only" for="sobrenome">Sobrenome</label>
-                              <input class="form-control" id="sobrenome" type="text" name="cadastro[sobrenome]" placeholder="Sobrenome" readonly>
+                              <label for="sobrenome">Sobrenome</label>
+                              <input class="form-control" id="sobrenome" type="text" name="cadastro[sobrenome]" placeholder="Sobrenome do Usuário" readonly>
                             </div>
                           </div>
                         </div>
@@ -537,8 +561,8 @@
                         <div class="row">
                           <div class="col-sm-12">
                             <div class="form-group">
-                              <label class="sr-only" for="usuario">Usuário</label>
-                              <input class="form-control required" id="usuario" type="text" name="cadastro[usuario]" placeholder="Usuário" readonly>
+                              <label for="usuario">Usuário</label>
+                              <input class="form-control required" id="usuario" type="text" name="cadastro[usuario]" placeholder="Usuário do Chat" readonly>
                             </div>
                           </div>
                         </div>
@@ -546,8 +570,8 @@
                         <div class="row">
                           <div class="col-sm-12">
                             <div class="form-group">
-                              <label class="sr-only" for="email">E-mail</label>
-                              <input class="form-control" id="email" type="text" name="cadastro[email]" placeholder="E-mail" readonly>
+                              <label for="email">E-mail</label>
+                              <input class="form-control" id="email" type="text" name="cadastro[email]" placeholder="E-mail do Chat" readonly>
                             </div>
                           </div>
                         </div>
@@ -555,15 +579,15 @@
                         <div class="row">
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label class="sr-only" for="senha">Senha</label>
-                              <input class="form-control required" id="senha" type="password" name="cadastro[senha]" placeholder="Senha">
+                              <label for="senha">Senha</label>
+                              <input class="form-control required" id="senha" type="password" name="cadastro[senha]" placeholder="Senha para o Portal Avanção">
                             </div>
                           </div>
 
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label class="sr-only" for="repita-senha">Confirmação Senha</label>
-                              <input class="form-control required" id="repita-senha" type="password" name="cadastro[repita-senha]" placeholder="Confirmação Senha">
+                              <label for="repita-senha">Confirmação Senha</label>
+                              <input class="form-control required" id="repita-senha" type="password" name="cadastro[repita-senha]" placeholder="Confirmação de Senha para o Portal Avanção">
                             </div>
                           </div>                          
                         </div>
@@ -571,27 +595,40 @@
                         <div class="row">
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label class="sr-only" for="nivel">Nível</label>
+                              <label for="nivel">Nível</label>
                               <select class="form-control" id="nivel" name="cadastro[nivel]">
-                                <option value="0" selected>Nível Usuário</option>
+                                <option value="0" selected>Nível de Usuário</option>
                                 <option value="1">Suporte</option>
                                 <option value="2">Administrador</option>
+                                <option value="3">Estagiário</option>
                               </select>
                             </div>
                           </div>                                                    
                         </div>
 
+                        <div class="row hidden" id="bloco-contrato">
+                          <div class="col-sm-6">
+                            <div class="form-group">
+                              <label for="contrato">Contrato</label>
+                              <select class="form-control" name="cadastro[contrato]" id="contrato">
+                                <option value="1" selected>Contrato Semestral</option>
+                                <option value="2">Contrato Anual</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
                         <div class="row">
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label class="sr-only" for="data-admissao">Data Admissão</label>
+                              <label for="data-admissao">Data Admissão</label>
                               <input class="form-control" id="data-admissao" type="text" name="cadastro[admissao]" placeholder="Admissão">
                             </div>
                           </div>
 
                           <div class="col-sm-6">
                             <div class="form-group">
-                              <label class="sr-only" for="ramal">Ramal</label>
+                              <label for="ramal">Ramal</label>
                               <input class="form-control" id="ramal" type="text" name="cadastro[ramal]" placeholder="Ramal">
                             </div>
                           </div>
@@ -629,30 +666,6 @@
             </div><!-- linha principal -->
 
           </form>
-
-          <?php if ((!empty($_SESSION['atividades']['mensagens'])) && $_SESSION['atividades']['exibe'] == true) : ?>
-
-            <?php for ($i = 0; $i < count($_SESSION['atividades']['mensagens']); $i++) : ?>
-
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="text-center">
-                    <div class="alert alert-<?php echo $_SESSION['atividades']['tipo']; ?>" role="alert">
-                        <?php if ($_SESSION['atividades']['tipo'] == 'danger') : ?>
-                          <strong>Ops!</strong>
-                        <?php else : ?>
-                          <strong>Tudo Certo!</strong>
-                        <?php endif; ?>
-
-                        <?php echo $_SESSION['atividades']['mensagens'][$i]; ?>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            <?php endfor; ?>
-
-          <?php endif; ?>
 
           <?php unset($_SESSION['atividades']); ?>
 
@@ -746,6 +759,26 @@
           // adicionando o atributo disabled do input file
           $('#foto').prop('disabled', true);
           $('#foto').val('');
+
+          // ocultando bloco de contrato de estagiário
+          $('#bloco-contrato').addClass('hidden');
+          $('#bloco-contrato').prop('disabled', true);
+        } else if (id == '3') {
+          // removendo a classe disabled dos checkboxes
+          $('.checkbox').removeClass('disabled');
+
+          // removendo atributo disabled dos inputs checkboxes
+          $('input:checkbox').prop('disabled', false);
+          
+          // removendo atributo disabled do select de times
+          $('#time').prop('disabled', false);
+          
+          // removendo atributo disabled do input file
+          $('#foto').prop('disabled', false);
+
+          // exibindo bloco de contrato de estagiário
+          $('#bloco-contrato').removeClass('hidden');
+          $('#bloco-contrato').prop('disabled', false);
         } else if (id == '1') {
           // removendo a classe disabled dos checkboxes
           $('.checkbox').removeClass('disabled');
@@ -758,6 +791,10 @@
           
           // removendo atributo disabled do input file
           $('#foto').prop('disabled', false);
+
+          // ocultando bloco de contrato de estagiário
+          $('#bloco-contrato').addClass('hidden');
+          $('#bloco-contrato').prop('disabled', true);
         }
       });
     });
