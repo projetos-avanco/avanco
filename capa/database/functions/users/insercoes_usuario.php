@@ -769,6 +769,8 @@ function cadastraUsuario($db, $cadastro)
         '{$cadastro['senha']}',
         '{$cadastro['email']}',
          {$cadastro['nivel']},
+        '{$cadastro['regime']}',
+        '{$cadastro['contrato']}',
          {$cadastro['ativo']},
         '{$cadastro['ramal']}',
         '{$cadastro['admissao']}',
