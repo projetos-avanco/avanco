@@ -14,7 +14,7 @@
         <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/users/cadastro.php">
-              <p>Novo Usuário<p>
+              <p>Cadastro Usuário<p>
             </a>
           </li>
         <?php endif; ?>
