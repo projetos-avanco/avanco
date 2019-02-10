@@ -20,11 +20,41 @@ function recebeCadastroDeUsuario($cadastro, $target = null, $time = null, $opcoe
     # verificando se o usuário foi cadastrado com sucesso no portal avanção
     if (cadastraUsuario($db, $cadastro)) {
       # verificando se o usuário cadastrado é do suporte
-      if ($cadastro['nivel'] == 1) {
-        # verificando se a foto do usuário foi movida 
-        if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) {
+      if ($cadastro['nivel'] == 1 || $cadastro['nivel'] == 3) {
+        # verificando se a foto do usuário foi enviada
+        if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+          # verificando se a foto do usuário foi movida 
+          if (move_uploaded_file($_FILES['foto']['tmp_name'], $target)) {
+            $colaborador = defineArrayModeloDeColaborador();
+
+            $tmp = explode('/', $target);
+
+            $colaborador['pessoal']['id'] = $cadastro['id_colaborador'];
+            $colaborador['pessoal']['nome'] = $cadastro['nome'];
+            $colaborador['pessoal']['sobrenome'] = $cadastro['sobrenome'];
+            $colaborador['pessoal']['caminho_foto'] = '/' . $tmp[4] . '/' . $tmp[5] . '/' . $tmp[6] . '/' . $tmp[7] . '/' . $tmp[8] .  '/' . $tmp[9] . '/' . $tmp[10];
+            $colaborador['periodo']['data_1'] = date('Y-m-d');
+            $colaborador['periodo']['data_2'] = date('Y-m-d');
+        
+            unset($colaborador['pessoal']['usuario']);
+        
+            $query = criaQueryDeColaborador($colaborador, 0);
+            
+            # verificando se o registro da tabela de colaborador foi inserido com sucesso
+            if (insereRegistroDeColaborador($db, $query)) {
+              # verificando se o registro de histório de time foi inserido com sucesso
+              if (insereHistoricoDoTimeDoUsuario($db, $cadastro['id_colaborador'], $time)) {
+                # chamando função que insere as especialidades de acordo com os módulos selecionados
+                insereEspecialidadesDoUsuario($db, $cadastro['id_colaborador'], $opcoes);
+
+                # chamando função que insere um registro do usuário na carteira de avancoins
+                insereCarteiraAvancoinsDoUsuario($db, $cadastro['id_colaborador']);
+              }
+            }
+          }
+        } else {
           $colaborador = defineArrayModeloDeColaborador();
-    
+      
           $colaborador['pessoal']['id'] = $cadastro['id_colaborador'];
           $colaborador['pessoal']['nome'] = $cadastro['nome'];
           $colaborador['pessoal']['sobrenome'] = $cadastro['sobrenome'];    
@@ -46,7 +76,7 @@ function recebeCadastroDeUsuario($cadastro, $target = null, $time = null, $opcoe
               insereCarteiraAvancoinsDoUsuario($db, $cadastro['id_colaborador']);
             }
           }
-        }                  
+        }
       }
 
       $_SESSION['atividades']['tipo'] = 'success';
