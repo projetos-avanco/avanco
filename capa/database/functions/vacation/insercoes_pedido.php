@@ -9,7 +9,7 @@
 function inserePedidosDeFerias($db, $pedido, $tipo)
 {
   # verificando qual é o tipo do período selecionado pelo usuário
-  if ($tipo == '1') {
+  if ($tipo == '1' || $tipo == '6') {
     $query = 
       "INSERT INTO 
         av_agenda_pedidos_ferias 

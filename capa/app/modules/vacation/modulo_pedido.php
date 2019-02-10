@@ -53,6 +53,17 @@ function recebeAprovacaoDePedidoDeFerias($id, $colaborador)
   if (alteraSituacaoDosPedidosParaAprovado($db, $id)) {
     $tipo = (string) count($pedido);
 
+    # veficando se o pedido é do tipo 1 ou 6
+    if ($tipo == '1') {
+      # movendo valores para outros índices
+      $pedido['data_inicial'] = $pedido['periodo1']['data_inicial'];
+      $pedido['data_final']   = $pedido['periodo1']['data_final'];
+      $pedido['dias']         = $pedido['periodo1']['dias'];
+
+      # retirando índice periodo1
+      unset($pedido['periodo1']);
+    }
+
     # chamando função que consulta o e-mail de um colaborador
     $email = consultaEmailDoColaborador($db, $colaborador);
 

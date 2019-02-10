@@ -9,20 +9,24 @@ $(function() {
     // adicionando classe hidden nas linhas
     $('#linha-1').addClass('hidden');
     $('#linha-2').addClass('hidden');
-    $('#linha-3').addClass('hidden');
+    //$('#linha-3').addClass('hidden');
+    $('#linha-4').addClass('hidden');
 
     // setando valor default
     $('#data-inicial-1').val('');
     $('#data-inicial-2').val('');
-    $('#data-inicial-3').val('');
+    //$('#data-inicial-3').val('');
+    $('#data-inicial-4').val('');
 
     $('#data-final-1').val('');
     $('#data-final-2').val('');
-    $('#data-final-3').val('');
+    //$('#data-final-3').val('');
+    $('#data-final-4').val('');
 
     $('#total-dias-1').val('0');
     $('#total-dias-2').val('0');
-    $('#total-dias-3').val('0');
+    //$('#total-dias-3').val('0');
+    $('#total-dias-4').val('0');
 
     // removendo classe btn-success e removendo classe fa-check-square-o do botão selecionado
     $('tbody .btn-sm').removeClass('btn-success').addClass('btn-default');
@@ -79,9 +83,11 @@ $(function() {
 
         // verificando se o exercício selecionado já foi aprovado
         if (dados[0].situacao === 'Aprovado') {
+          // exibindo alerta de aprovado
           $('#alerta').removeClass('hidden');
           $('#btn-aprovacao').addClass('hidden');
         } else {
+          // ocultando alerta de aprovado
           $('#btn-aprovacao').removeClass('hidden');
           $('#alerta').addClass('hidden');
         }

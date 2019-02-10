@@ -437,7 +437,7 @@ $(function() {
         exercicio.dias = 15;
       break;
     }
-
+    debugger;
     // separando data inicial pelo -
     var tmp = exercicio.inicial.split('-');
 

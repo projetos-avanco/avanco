@@ -85,7 +85,7 @@ $(function() {
     // setando id do exercício no input hidden da página
     $('#id-exercicio').val(exercicio.id);
 
-    // verificando se o regime do colaborador é clt
+    // verificando se o regime do colaborador é contratado
     if (exercicio.regime == '1') {
       // verificando qual foi o período de dias selecionado pelo usuário
       switch (exercicio.periodo) {
@@ -199,7 +199,7 @@ $(function() {
           $('#data-final-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);
         break;
       }
-    // verificando se o regiem do colaborador é estágio
+    // verificando se o regime do colaborador é estágio
     } else if (exercicio.regime == '2') {
 
       // verificando se o contrato do colaborador é semestral
@@ -235,6 +235,7 @@ $(function() {
             $('.row #linha-1').removeClass('hidden');
             $('.row #linha-2').addClass('hidden');
             $('.row #linha-3').addClass('hidden');
+            $('.row #linha-4').addClass('hidden');
 
             // removendo classe erro caso ela exista
             $('.row #linha-1 #data-inicial-1').removeClass('erro');
@@ -253,6 +254,7 @@ $(function() {
             $('.row #linha-1').removeClass('hidden');
             $('.row #linha-2').removeClass('hidden');
             $('.row #linha-3').addClass('hidden');
+            $('.row #linha-4').addClass('hidden');
 
             // removendo classe erro caso ela exista
             $('.row #linha-1 #data-inicial-1').removeClass('erro');
@@ -302,6 +304,7 @@ $(function() {
             $('.row #linha-1').removeClass('hidden');
             $('.row #linha-2').removeClass('hidden');
             $('.row #linha-3').addClass('hidden');
+            $('.row #linha-4').addClass('hidden');
 
             // removendo classe erro caso ela exista
             $('.row #linha-1 #data-inicial-1').removeClass('erro');
@@ -324,6 +327,7 @@ $(function() {
             $('.row #linha-1').removeClass('hidden');
             $('.row #linha-2').removeClass('hidden');
             $('.row #linha-3').addClass('hidden');
+            $('.row #linha-4').addClass('hidden');
 
             // removendo classe erro caso ela exista
             $('.row #linha-1 #data-inicial-1').removeClass('erro');

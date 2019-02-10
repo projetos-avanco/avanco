@@ -183,11 +183,12 @@
                         <label for="periodos">Lista Períodos</label>
                         <select class="form-control" id="periodos" disabled>
                           <option value="0" selected>Lista  de Períodos</option>
-                          <option value="1">1 Período de 30 Dias</option>
-                          <option value="2">2 Períodos de 15 Dias</option>
+                          <option id="periodo-1" value="1">1 Período de 30 Dias</option>
+                          <option id="periodo-2" value="2">2 Períodos de 15 Dias</option>
                           <!--<option value="3">3 Períodos de 10 Dias</option>-->
-                          <option value="4">1 Período de 10 Dias e 1 Período de 20 Dias</option>
-                          <option value="5">1 Período de 20 Dias e 1 Período de 10 Dias</option>
+                          <option id="periodo-4" value="4">1 Período de 10 Dias e 1 Período de 20 Dias</option>
+                          <option id="periodo-5" value="5">1 Período de 20 Dias e 1 Período de 10 Dias</option>
+                          <option class="hidden" id="periodo-6" value="6">1 Período de 15 Dias</option>
                         </select>
                       </div>
                     </div>                  
@@ -264,6 +265,31 @@
                     </div><!-- bloco 03 -->
                   </div><!-- bloco períodos -->
 
+                  <div id="bloco-periodos-estagiarios">
+                    <div class="row hidden" id="linha-4"><!-- bloco 04 -->
+                      <div class="col-sm-5">
+                        <div class="form-group">
+                          <label for="data-inicial-4">Período 1 - Data Inicial</label>
+                          <input class="form-control required" id="data-inicial-4" type="date" readonly>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-5">
+                        <div class="form-group">
+                          <label for="data-final-4">Período 1 - Data Final</label>
+                          <input class="form-control required" id="data-final-4" type="date" readonly>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-2">
+                        <div class="form-group">
+                          <label for="total-dias-4">Dias</label>
+                          <input class="form-control required" id="total-dias-4" type="text" value="0" readonly>
+                        </div>
+                      </div>
+                    </div><!-- bloco 04 -->
+                  </div>
+
                   <div class="row">
                     <div class="col-sm-3 col-sm-offset-3">
                       <button class="btn btn-block btn-default btn-sm" type="reset">
@@ -281,6 +307,12 @@
                   </div>
 
                   <input class="form-control" id="id-exercicio" type="hidden"><!-- id do exercício -->
+                  <input class="form-control" id="regime" type="hidden"><!-- tipo do regime -->
+                  <input class="form-control" id="contrato" type="hidden"><!-- tipo do contrato -->
+
+                  <input class="form-control" id="exercicio-inicial" type="hidden">
+                  <input class="form-control" id="exercicio-final" type="hidden">
+                  <input class="form-control" id="exercicio-vencimento" type="hidden">
                 </div><!-- panel-body -->
               </div><!-- panel -->
             </form>
@@ -299,14 +331,15 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/colaboradores.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/dados_cadastrais.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/consulta.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/gera_tabela_exercicios.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/seleciona_exercicio.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/aprova.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/periodos.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/grava_pedido.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/datas.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/vacation/funcoes.js"></script>
-  <script src="<?php echo BASE_URL; ?>public/js/vacation/manifestation/grava_pedido.js"></script>
 </body>
 </html>
 

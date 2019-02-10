@@ -15,6 +15,8 @@ $(function() {
             '<tr>'                                                   +
               '<th class="text-center">Supervisor</th>'              +
               '<th class="text-center">Colaborador</th>'             +
+              '<th class="text-center">Regime</th>'                  +
+              '<th class="text-center">Contrato</th>'                +
               '<th class="text-center">Férias</th>'                  +
               '<th class="text-center">Situação</th>'                +
               '<th class="text-center">Exercício Inicial</th>'       +
@@ -31,7 +33,9 @@ $(function() {
             '<tr>';
 
           tbody += '<td class="text-center">' + dados[i].supervisor        + '</td>';              
-          tbody += '<td class="text-left">'   + dados[i].colaborador       + '</td>';          
+          tbody += '<td class="text-left">'   + dados[i].colaborador       + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].regime            + '</td>';
+          tbody += '<td class="text-left">'   + dados[i].contrato          + '</td>';
           tbody += '<td class="text-center">' + dados[i].status            + '</td>';
           tbody += '<td class="text-left">'   + dados[i].pedido            + '</td>';
           tbody += '<td class="text-center">' + dados[i].exercicio_inicial + '</td>';          
@@ -40,7 +44,7 @@ $(function() {
           tbody += '<td class="text-center">' + dados[i].registrado        + '</td>';          
           tbody +=
             '<td>' +
-              '<button class="btn btn-default btn-sm btn-block" id="selecionar" type="button" value="' + dados[i].id + '" data-id-colaborador="' + dados[i].id_colaborador + '" data-final="' + dados[i].exercicio_final + '" data-vencimento="' + dados[i].vencimento + '">' +
+              '<button class="btn btn-default btn-sm btn-block" id="selecionar" type="button" value="' + dados[i].id + '" data-id-colaborador="' + dados[i].id_colaborador + '" data-inicial="' + dados[i].exercicio_inicial +'" data-final="' + dados[i].exercicio_final + '" data-vencimento="' + dados[i].vencimento + '">' +
                 '<i class="fa fa-square-o" aria-hidden="true"></i> Selecionar' +
               '</button' +
             '</td>';

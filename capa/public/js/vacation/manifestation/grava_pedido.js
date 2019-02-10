@@ -262,6 +262,71 @@ $(function() {
             $('.row #linha-2 #data-inicial-2').removeClass('erro');          
           }
         break;
+
+        case '6':
+          // recuperando datas
+          pedido.periodo1.dataInicial = $('.row #linha-4 #data-inicial-4').val();
+          pedido.periodo1.dataFinal   = $('.row #linha-4 #data-final-4').val();
+          pedido.periodo1.totalDias   = $('.row #linha-4 #total-dias-4').val();
+
+          // verificando se o período 1 foi preenchido
+          if (pedido.periodo1.dataInicial == '' || pedido.periodo1.dataFinal == '') {
+            flag = true;
+
+            // adicionando classe erro
+            $('.row #linha-4 #data-inicial-4').addClass('erro');
+
+            swal({
+              title: 'Aviso',
+              text: 'Preencha todas as datas do(s) período(s) selecionado(s).',
+              icon: 'warning'
+            });
+          } else {
+            // removendo classe erro
+            $('.row #linha-4 #data-inicial-4').removeClass('erro');
+          }
+        break;
+      }
+
+      // verificando se o regime do colaborador é empregado
+      if ($('#regime').val() == '1') {
+        // verificando se a data agendada é menor que a data do exercício final
+        if (pedido.periodo1.dataInicial < $('#exercicio-final').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
+          flag = true;
+
+          swal({
+            title: 'Aviso',
+            text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Final até 2 meses antes da Data Limite.',
+            icon: 'warning'
+          });
+        }
+      // verificando se o regime do colaborador é estagiário
+      } else if ($('#regime').val() == '2') {
+        // verificando se o contrato do colaborador é semestral
+        if ($('#contrato').val() == '1') {
+          // verificando se a data agendada é menor que a data do exercício final
+          if (pedido.periodo1.dataInicial < $('#exercicio-inicial').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
+            flag = true;
+
+            swal({
+              title: 'Aviso',
+              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.',
+              icon: 'warning'
+            });
+          }
+        // verificando se o contrato do colaborador é anual
+        } else if ($('#contrato').val() == '2') {
+          // verificando se a data agendada é menor que a data do exercício final
+          if (pedido.periodo1.dataInicial < $('#exercicio-inicial').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
+            flag = true;
+
+            swal({
+              title: 'Aviso',
+              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.',
+              icon: 'warning'
+            });
+          }
+        }
       }
           
       // verificando se não houve erros de validação
@@ -276,7 +341,7 @@ $(function() {
             colaborador = $(this).attr('data-id-colaborador');
           }
         });
-        
+
         $.ajax({
           type: 'post',
           url: '../../../app/requests/post/vacation/processa_alteracao_pedido_ferias.php',
@@ -309,6 +374,7 @@ $(function() {
                   $('.row #linha-1').addClass('hidden');
                   $('.row #linha-2').addClass('hidden');
                   $('.row #linha-3').addClass('hidden');
+                  $('.row #linha-4').addClass('hidden');
 
                   // setando valor default
                   $('#data-inicial-1').val('');
@@ -317,12 +383,16 @@ $(function() {
                   $('#data-inicial-2').val('');
                   $('#data-final-2').val('');
 
-                  $('#data-inicial-3').val('');
-                  $('#data-final-3').val('');
+                  //$('#data-inicial-3').val('');
+                  //$('#data-final-3').val('');
+
+                  $('#data-inicial-4').val('');
+                  $('#data-final-4').val('');
 
                   $('#total-dias-1').val('0');
                   $('#total-dias-2').val('0');
                   $('#total-dias-3').val('0');
+                  $('#total-dias-4').val('0');
 
                   location.reload();
                 }
@@ -367,7 +437,23 @@ $(function() {
             console.log(erro);
           }
         });
+      } else {
+        // setando valor default
+        $('#data-inicial-1').val('');
+        $('#data-inicial-2').val('');
+        //$('#data-inicial-3').val('');
+        $('#data-inicial-4').val('');
+
+        $('#data-final-1').val('');
+        $('#data-final-2').val('');
+        //$('#data-final-3').val('');
+        $('#data-final-4').val('');
+
+        $('#total-dias-1').val('0');
+        $('#total-dias-2').val('0');
+        //$('#total-dias-3').val('0');
+        $('#total-dias-4').val('0');
       }
-    }    
+    }
   });
 });
