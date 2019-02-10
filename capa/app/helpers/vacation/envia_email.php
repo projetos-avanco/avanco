@@ -87,11 +87,12 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
 
               switch ($tipo) {
                 case '1':
-                  $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);
-                  $pedido['periodo1']['data_final']   = formataDataParaExibir($pedido['periodo1']['data_final']);
+                case '6':
+                  $pedido['data_inicial'] = formataDataParaExibir($pedido['data_inicial']);
+                  $pedido['data_final']   = formataDataParaExibir($pedido['data_final']);
 
                   $msg .= "
-                    <p><strong>1º - Período</strong> {$pedido['periodo1']['data_inicial']} até {$pedido['periodo1']['data_final']} - {$pedido['periodo1']['dias']} dias</p>
+                    <p><strong>1º - Período</strong> {$pedido['data_inicial']} até {$pedido['data_final']} - {$pedido['dias']} dias</p>
                   ";
                 break;
 
@@ -211,10 +212,9 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
 
     # destinatários
     $email->setFrom($emailSupervisor, 'Avanço | Aprovação Férias');    
-    #$email->addAddress($emailColaborador);
-    #$email->addReplyTo($emailSupervisor, 'Respostas');    
+    $email->addAddress($emailColaborador);
+    $email->addReplyTo($emailSupervisor, 'Respostas');    
     #$email->addCC();
-    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -441,10 +441,9 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
 
     # destinatários
     $email->setFrom($emailSupervisor, 'Avanço | Exercídio Férias');    
-    #$email->addAddress($emailColaborador);
-    #$email->addReplyTo($emailSupervisor, 'Respostas');
+    $email->addAddress($emailColaborador);
+    $email->addReplyTo($emailSupervisor, 'Respostas');
     #$email->addCC();
-    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
@@ -560,6 +559,7 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
 
                 switch ($tipo) {
                   case '1':
+                  case '6':
                     $pedido['data_inicial'] = formataDataParaExibir($pedido['data_inicial']);
                     $pedido['data_final']   = formataDataParaExibir($pedido['data_final']);
 
@@ -670,10 +670,9 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
 
     # destinatários
     $email->setFrom($emailColaborador, 'Avanço | Pedido Férias');    
-    #$email->addAddress('badaro@avancoinfo.com.br');
-    #$email->addReplyTo($emailColaborador, 'Respostas');
+    $email->addAddress('badaro@avancoinfo.com.br');
+    $email->addReplyTo($emailColaborador, 'Respostas');
     #$email->addCC();
-    $email->addAddress('wellington.felix@avancoinfo.com.br');
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');
