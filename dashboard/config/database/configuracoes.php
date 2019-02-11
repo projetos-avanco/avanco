@@ -6,11 +6,11 @@ if (! defined('DB_HOST'))
 
 # definindo constante com o nome do usuário do base de dados
 if (! defined('DB_USER'))
-  define('DB_USER', 'admin');
+  define('DB_USER', 'root');
 
 # definindo constante com a senha do usuário da base de dados
 if (! defined('DB_PASSWORD'))
-  define('DB_PASSWORD', 'admin@123');
+  define('DB_PASSWORD', 'super');
 
 # definindo constante o nome da base de dados
 if (! defined('DB_NAME'))
