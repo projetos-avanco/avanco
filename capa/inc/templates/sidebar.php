@@ -302,7 +302,7 @@
             </span>
           </span>
         </a>
-
+        
         <ul class="nav collapse"  id="submenu8">
           <li class="bordermenu">
             <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu11">
@@ -393,7 +393,7 @@
           <li class="bordermenu">
             <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu14">
             <span class="nav-header-primary">
-              Outros
+              Suporte
               <span class="pull-right">
                   <i id="setinha" class="fa fa-caret-down" aria-hidden="true"></i>
               </span>
