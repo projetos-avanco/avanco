@@ -32,17 +32,23 @@ $(function() {
     // alterando formato da data para aaaa-mm-dd
     exercicio.inicial = tmp[2] + '-' + tmp[1] + '-' + tmp[0];
 
+    $('#exercicio-inicial').val(exercicio.inicial);
+
     // separando a data do exercício final pela /
     tmp = exercicio.final.split('/');
 
     // alterando formato da data para aaaa-mm-dd
     exercicio.final = tmp[2] + '-' + tmp[1] + '-' + tmp[0];
 
+    $('#exercicio-final').val(exercicio.final);
+
     // separando a data de vencimento pela /
     tmp = exercicio.vencimento.split('/');
 
     // alterando formato da data de vencimento para aaaa-mm-dd
     exercicio.vencimento = tmp[2] + '-' + tmp[1] + '-' + tmp[0];
+
+    $('#exercicio-vencimento').val(exercicio.vencimento);
 
     var date = new Date(exercicio.vencimento);
 

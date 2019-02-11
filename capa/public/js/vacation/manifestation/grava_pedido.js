@@ -288,47 +288,50 @@ $(function() {
         break;
       }
 
-      // verificando se o regime do colaborador é empregado
-      if ($('#regime').val() == '1') {
-        // verificando se a data agendada é menor que a data do exercício final
-        if (pedido.periodo1.dataInicial < $('#exercicio-final').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
-          flag = true;
-
-          swal({
-            title: 'Aviso',
-            text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Final até 2 meses antes da Data Limite.',
-            icon: 'warning'
-          });
-        }
-      // verificando se o regime do colaborador é estagiário
-      } else if ($('#regime').val() == '2') {
-        // verificando se o contrato do colaborador é semestral
-        if ($('#contrato').val() == '1') {
+      // verificando se não houve erros de validação
+      if (!flag) {
+        // verificando se o regime do colaborador é empregado
+        if ($('#regime').val() == '1') {
           // verificando se a data agendada é menor que a data do exercício final
-          if (pedido.periodo1.dataInicial < $('#exercicio-inicial').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
+          if (pedido.periodo1.dataInicial < $('#exercicio-final').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
             flag = true;
 
             swal({
               title: 'Aviso',
-              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.',
+              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Final até 2 meses antes da Data Limite.',
               icon: 'warning'
             });
           }
-        // verificando se o contrato do colaborador é anual
-        } else if ($('#contrato').val() == '2') {
-          // verificando se a data agendada é menor que a data do exercício final
-          if (pedido.periodo1.dataInicial < $('#exercicio-inicial').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
-            flag = true;
+        // verificando se o regime do colaborador é estagiário
+        } else if ($('#regime').val() == '2') {
+          // verificando se o contrato do colaborador é semestral
+          if ($('#contrato').val() == '1') {
+            // verificando se a data agendada é menor que a data do exercício final
+            if (pedido.periodo1.dataInicial < $('#exercicio-inicial').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
+              flag = true;
 
-            swal({
-              title: 'Aviso',
-              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.',
-              icon: 'warning'
-            });
+              swal({
+                title: 'Aviso',
+                text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.',
+                icon: 'warning'
+              });
+            }
+          // verificando se o contrato do colaborador é anual
+          } else if ($('#contrato').val() == '2') {
+            // verificando se a data agendada é menor que a data do exercício final
+            if (pedido.periodo1.dataInicial < $('#exercicio-inicial').val() || pedido.periodo1.dataInicial > $('#exercicio-vencimento')) {
+              flag = true;
+
+              swal({
+                title: 'Aviso',
+                text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.',
+                icon: 'warning'
+              });
+            }
           }
         }
       }
-          
+
       // verificando se não houve erros de validação
       if (!flag) {
         var colaborador = undefined;

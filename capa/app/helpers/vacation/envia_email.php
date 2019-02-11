@@ -214,7 +214,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->setFrom($emailSupervisor, 'Avanço | Aprovação Férias');    
     $email->addAddress($emailColaborador);
     $email->addReplyTo($emailSupervisor, 'Respostas');    
-    #$email->addCC();
+    #$email->addCC();    
 
     # anexos
     #$email->addAttachment('/var/tmp/file.tar.gz');

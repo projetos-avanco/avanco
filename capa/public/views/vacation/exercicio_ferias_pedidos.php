@@ -270,6 +270,10 @@
                   <input class="form-control" id="id-exercicio" type="hidden"><!-- id do exercício -->
                   <input class="form-control" id="regime" type="hidden"><!-- tipo do regime -->
                   <input class="form-control" id="contrato" type="hidden"><!-- tipo do contrato -->
+
+                  <input class="form-control" id="exercicio-inicial" type="hidden">
+                  <input class="form-control" id="exercicio-final" type="hidden">
+                  <input class="form-control" id="exercicio-vencimento" type="hidden">
                 </div><!-- panel-body -->
               </div><!-- panel -->
 
