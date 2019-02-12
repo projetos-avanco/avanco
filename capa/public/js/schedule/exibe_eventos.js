@@ -322,6 +322,7 @@ $(function() {
                 'Fixo: '                + evento.fixo               + "\n\n" +
                 'Móvel: '               + evento.movel              + "\n\n" +
                 'E-mail: '              + evento.email              + "\n\n" +
+                'Tarefa: '              + evento.tarefa             + "\n\n" +
                 'Produto: '             + evento.produto            + "\n\n" +
                 'Observacao: '          + evento.observacao                  
             });
@@ -373,6 +374,7 @@ $(function() {
                   'Móvel: '               + evento.movel              + "\n\n" +
                   'E-mail: '              + evento.email              + "\n\n" +
                   'Produto: '             + evento.produto            + "\n\n" +
+                  'Tarefa: '              + evento.tarefa             + "\n\n" +
                   'Observacao: '          + evento.observacao
               });
           break;

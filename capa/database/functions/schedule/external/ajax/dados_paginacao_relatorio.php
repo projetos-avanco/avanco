@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           WHEN (e.produto = 5)
             THEN 'Outros'
         END AS produto,
+        e.tarefa,
         e.observacao,
         CASE
           WHEN (e.faturado = false)
@@ -124,8 +125,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dados = array();
 
     while ($linha = mysqli_fetch_array($resultado)) {        
-      $linha['cnpj']     = substr($linha['cnpj'], 0, 2) . '.'. substr($linha['cnpj'], 2, 3) . '.' . substr($linha['cnpj'], 5, 3) . '/' . substr($linha['cnpj'], 8, 4) . '-' . substr($linha['cnpj'], 12, 2);
-      $linha['contato'] = ucwords($linha['contato']);
+      $linha['cnpj'] = 
+        substr($linha['cnpj'], 0, 2) . '.'. 
+          substr($linha['cnpj'], 2, 3) . '.' . 
+            substr($linha['cnpj'], 5, 3) . '/' . 
+              substr($linha['cnpj'], 8, 4) . '-' . 
+                substr($linha['cnpj'], 12, 2);
+
+      $linha['contato']    = ucwords($linha['contato']);
+      $linha['tarefa']     = ucwords($linha['tarefa']);
       $linha['observacao'] = ucwords($linha['observacao']);
 
       $linha['registrado']   = formataDataParaExibir($linha['registrado']);
@@ -150,6 +158,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'registrado'         => $linha['registrado'],
         'periodo'            => $linha['data_inicial'] . ' até ' . $linha['data_final'],
         'produto'            => $linha['produto'],
+        'tarefa'             => $linha['tarefa'],
         'observacao'         => $linha['observacao'],
         'faturado'           => $linha['faturado'],
         'despesas'           => $linha['despesa'],
@@ -281,6 +290,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           WHEN (e.produto = 5)
             THEN 'Outros'
         END AS produto,
+        e.tarefa,
         e.observacao,
         CASE
           WHEN (e.faturado = false)
@@ -331,8 +341,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $dados = array();
 
     while ($linha = mysqli_fetch_array($resultado)) {        
-      $linha['cnpj']     = substr($linha['cnpj'], 0, 2) . '.'. substr($linha['cnpj'], 2, 3) . '.' . substr($linha['cnpj'], 5, 3) . '/' . substr($linha['cnpj'], 8, 4) . '-' . substr($linha['cnpj'], 12, 2);
-      $linha['contato'] = ucwords($linha['contato']);
+      $linha['cnpj'] = 
+        substr($linha['cnpj'], 0, 2) . '.'. 
+          substr($linha['cnpj'], 2, 3) . '.' . 
+            substr($linha['cnpj'], 5, 3) . '/' . 
+              substr($linha['cnpj'], 8, 4) . '-' . 
+                substr($linha['cnpj'], 12, 2);
+
+      $linha['contato']    = ucwords($linha['contato']);
+      $linha['tarefa']     = ucwords($linha['tarefa']);
       $linha['observacao'] = ucwords($linha['observacao']);
 
       $linha['registrado']   = formataDataParaExibir($linha['registrado']);
@@ -357,6 +374,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         'registrado'         => $linha['registrado'],
         'periodo'            => $linha['data_inicial'] . ' até ' . $linha['data_final'],
         'produto'            => $linha['produto'],
+        'tarefa'             => $linha['tarefa'],
         'observacao'         => $linha['observacao'],
         'faturado'           => $linha['faturado'],
         'despesas'           => $linha['despesa'],

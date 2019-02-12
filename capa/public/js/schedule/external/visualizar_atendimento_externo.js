@@ -19,6 +19,7 @@ $(function() {
     gerencial.contato            = $(this).closest('tr').attr('data-contato');
     gerencial.periodo            = $(this).closest('tr').attr('data-periodo');
     gerencial.produto            = $(this).closest('tr').attr('data-produto');
+    gerencial.tarefa             = $(this).closest('tr').attr('data-tarefa');
     gerencial.observacao         = $(this).closest('tr').attr('data-observacao');
     gerencial.faturado           = $(this).closest('tr').attr('data-faturado');
     gerencial.despesas           = $(this).closest('tr').attr('data-despesas');
@@ -53,6 +54,7 @@ $(function() {
           'Contato: '             + gerencial.contato            + "\n\n" +
           'Período: '             + gerencial.periodo            + "\n\n" +
           'Produto: '             + gerencial.produto            + "\n\n" +
+          'Tarefa: '              + gerencial.tarefa             + "\n\n" +
           'Observacao: '          + gerencial.observacao         + "\n\n\n\n" +
           'Faturado: '            + gerencial.faturado           + "\n\n" +
           'Despesas: '            + gerencial.despesas           + "\n\n" +
@@ -105,6 +107,7 @@ $(function() {
           'Contato: '             + gerencial.contato            + "\n\n" +
           'Período: '             + gerencial.periodo            + "\n\n" +
           'Produto: '             + gerencial.produto            + "\n\n" +
+          'Tarefa: '              + gerencial.tarefa             + "\n\n" +
           'Observacao: '          + gerencial.observacao         + "\n\n\n\n" +
           'Faturado: '            + gerencial.faturado           + "\n\n" +
           'Despesas: '            + gerencial.despesas           + "\n\n" +
@@ -179,6 +182,7 @@ $(function() {
           'Contato: '             + gerencial.contato            + "\n\n" +
           'Período: '             + gerencial.periodo            + "\n\n" +
           'Produto: '             + gerencial.produto            + "\n\n" +
+          'Tarefa: '              + gerencial.tarefa             + "\n\n" +
           'Observacao: '          + gerencial.observacao         + "\n\n\n\n" +
           'Faturado: '            + gerencial.faturado           + "\n\n" +
           'Despesas: '            + gerencial.despesas           + "\n\n" +
@@ -208,6 +212,7 @@ $(function() {
           'Contato: '             + gerencial.contato            + "\n\n" +
           'Período: '             + gerencial.periodo            + "\n\n" +
           'Produto: '             + gerencial.produto            + "\n\n" +
+          'Tarefa: '              + gerencial.tarefa             + "\n\n" +
           'Observacao: '          + gerencial.observacao         + "\n\n\n\n" +
           'Faturado: '            + gerencial.faturado           + "\n\n" +
           'Despesas: '            + gerencial.despesas           + "\n\n" +
