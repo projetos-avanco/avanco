@@ -88,6 +88,7 @@ function verificaUsuarioLogado($pagina, $id = null)
           $pagina == 'registro_horas.php'                OR
           $pagina == 'metas_capitaes_selecao.php'        OR
           $pagina == 'cadastro.php'                      OR
+          $pagina == 'edita_cadastro.php'                OR
           $pagina == 'ranking_colaboradores.php'         OR
           $pagina == 'consulta_lancamentos.php'          OR
           $pagina == 'visualiza_lancamentos.php'         OR
@@ -149,6 +150,7 @@ function verificaUsuarioLogado($pagina, $id = null)
          $pagina == 'metas_capitaes_selecao.php'        OR
          $pagina == 'consulta_atendimentos.php'         OR
          $pagina == 'cadastro.php'                      OR
+         $pagina == 'edita_cadastro.php'                OR
          $pagina == 'ranking_colaboradores.php'         OR
          $pagina == 'consulta_lancamentos.php'          OR
          $pagina == 'visualiza_lancamentos.php'         OR

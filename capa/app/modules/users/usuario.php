@@ -1,6 +1,21 @@
 <?php 
 
 /**
+ * responsável por verificar e retornar os dados de um usuário para edição
+ * @param - string com o id do usuário
+ */
+function retornaDadosDoUsuarioParaEdicao($id) {
+  require_once DIRETORIO_FUNCTIONS . 'users/consulta_conta.php';
+
+  $db = abre_conexao();
+
+  $dados['portal'] = consultaDadosDoUsuarioDoPortalAvancao($db, $id);
+  $dados['time']   = consultaTimeDoUsuario($db, $id);
+
+  echo json_encode($dados);
+}
+
+/**
  * responsável por cadastrar o usuário, registrar o time e cadastrar os módulos
  * @param - array com os dados do cadastro
  * @param - string com o código do time

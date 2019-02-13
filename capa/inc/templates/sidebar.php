@@ -17,6 +17,12 @@
               <p>Cadastro Usuário<p>
             </a>
           </li>
+
+          <li>
+            <a href="<?php echo BASE_URL; ?>../capa/public/views/users/edita_cadastro.php">
+              <p>Edita Usuário<p>
+            </a>
+          </li>
         <?php endif; ?>
 
           <li>

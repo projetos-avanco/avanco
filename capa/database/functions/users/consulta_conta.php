@@ -1,6 +1,52 @@
 <?php
 
 /**
+ * consulta o time atual do usuário
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do chat
+ */
+function consultaTimeDoUsuario($db, $id)
+{
+  
+}
+
+/**
+ * consulta os dados de um usuário cadastrado no portal avanção
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do chat
+ */
+function consultaDadosDoUsuarioDoPortalAvancao($db, $id)
+{
+  $query =
+    "SELECT
+      l.id,
+      l.nivel,
+      l.regime,
+      l.contrato,
+      l.admissao,
+      l.ramal
+    FROM av_usuarios_login AS l
+    INNER JOIN lh_users AS u
+      ON u.username = l.usuario
+    WHERE (u.id = $id)";
+  
+  $resultado = mysqli_query($db, $query);
+
+  $dados = array();
+
+  while ($linha = mysqli_fetch_array($resultado)) {
+    $dados['id']       = $linha['id'];
+    $dados['nivel']    = $linha['nivel'];
+    $dados['regime']   = $linha['regime'];
+    $dados['contrato'] = $linha['contrato'];
+    $dados['admissao'] = $linha['admissao'];
+    $dados['ramal']    = $linha['ramal'];
+  }
+
+  return $dados;
+}
+
+/**
  * consulta se o usuário já possui registro no portal avanção
  * @param - objeto com uma conexao aberta
  * @param - string com o nome do usuário
