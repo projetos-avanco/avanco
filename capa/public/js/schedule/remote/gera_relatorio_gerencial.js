@@ -54,6 +54,7 @@ $(function() {
               'data-contato="'     + dados[i].contato            + '"' +
               'data-periodo="'     + dados[i].periodo            + '"' +
               'data-produto="'     + dados[i].produto            + '"' +
+              'data-tarefa="'      + dados[i].tarefa             + '"' +
               'data-observacao="'  + dados[i].observacao         + '"' +
               'data-faturado="'    + dados[i].faturado           + '"' +              
               'data-relatorio="'   + dados[i].relatorio_entregue + '">';
@@ -209,6 +210,7 @@ $(function() {
               'data-contato="'     + dados[i].contato            + '"' +
               'data-periodo="'     + dados[i].periodo            + '"' +
               'data-produto="'     + dados[i].produto            + '"' +
+              'data-tarefa="'      + dados[i].tarefa             + '"' +
               'data-observacao="'  + dados[i].observacao         + '"' +
               'data-faturado="'    + dados[i].faturado           + '"' +              
               'data-relatorio="'   + dados[i].relatorio_entregue + '">';

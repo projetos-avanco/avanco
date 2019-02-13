@@ -76,6 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['evento'] == 'true') {
                 WHEN (a.produto = 5)
                   THEN 'Outros'
               END AS produto,
+              a.tarefa,
               a.observacao,
               CASE
                 WHEN (a.status = 1)
@@ -149,6 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['evento'] == 'true') {
               WHEN (a.produto = 5)
                 THEN 'Outros'
             END AS produto,
+            a.tarefa,
             a.observacao,
             CASE
               WHEN (a.status = 1)
@@ -189,6 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['evento'] == 'true') {
 
       $linha['empresa']    = strtoupper($linha['empresa']);
       $linha['contato']    = ucwords($linha['contato']);      
+      $linha['tarefa']     = ucwords($linha['tarefa']);
       $linha['observacao'] = ucwords($linha['observacao']);
 
       $dados[] = array(
@@ -205,6 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['evento'] == 'true') {
         'movel'      => $linha['movel'],        
         'data'       => formataDataParaExibir($linha['data']) . ' às ' . $linha['horario'],
         'produto'    => $linha['produto'],
+        'tarefa'     => $linha['tarefa'],
         'observacao' => $linha['observacao'],
         'registrado' => formataDataParaExibir($linha['registrado']),
         'status'     => $linha['status'],        
