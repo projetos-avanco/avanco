@@ -1,16 +1,74 @@
 <?php 
 
 /**
+ * responsável por solicitar a edição de um usuário 
+ * @param - array com os dados do cadastro
+ */
+function recebeEdicaoDeCadastroDeUsuario($cadastro)
+{
+  require_once DIRETORIO_FUNCTIONS . 'users/atualiza_conta.php';
+
+  $db = abre_conexao();
+
+  atualizaNivelDoUsuario($db, $cadastro['nivel'], $cadastro['id_portal']);
+
+  atualizaRegime($db, $cadastro['regime'], $cadastro['id_portal']);
+
+  atualizaDataDeAdmissao($db, $cadastro['admissao'], $cadastro['id_portal']);
+
+  atualizaRamal($db, $cadastro['ramal'], $cadastro['id_portal']);
+
+  if ((! empty($cadastro['senha']))) {
+    atualizaSenhaDoPortal($db, $cadastro['senha'], $cadastro['id_portal']);
+  }
+
+  $_SESSION['atividades']['tipo'] = 'success';
+  $_SESSION['atividades']['mensagens'][] = 'Dados alterados com sucesso.';
+  $_SESSION['atividades']['exibe'] = true;
+
+  header('location: ' . BASE_URL . 'public/views/users/edita_cadastro.php'); exit;
+}
+
+/**
+ * responsável por solicitar a edição de um usuário administrador
+ * @param - array com os dados do cadastro
+ */
+function recebeEdicaoDeCadastroDeAdministrador($cadastro)
+{
+  require_once DIRETORIO_FUNCTIONS . 'users/atualiza_conta.php';
+
+  $db = abre_conexao();
+
+  atualizaNivelParaAdministrador($db, $cadastro['id_portal']);
+
+  atualizaDataDeAdmissao($db, $cadastro['admissao'], $cadastro['id_portal']);
+
+  atualizaRamal($db, $cadastro['ramal'], $cadastro['id_portal']);
+
+  if ((! empty($cadastro['senha']))) {
+    atualizaSenhaDoPortal($db, $cadastro['senha'], $cadastro['id_portal']);
+  }
+
+  $_SESSION['atividades']['tipo'] = 'success';
+  $_SESSION['atividades']['mensagens'][] = 'Dados alterados com sucesso.';
+  $_SESSION['atividades']['exibe'] = true;
+
+  header('location: ' . BASE_URL . 'public/views/users/edita_cadastro.php'); exit;
+}
+
+/**
  * responsável por verificar e retornar os dados de um usuário para edição
  * @param - string com o id do usuário
  */
 function retornaDadosDoUsuarioParaEdicao($id) {
+  require_once DIRETORIO_HELPERS   . 'datas.php';
   require_once DIRETORIO_FUNCTIONS . 'users/consulta_conta.php';
 
   $db = abre_conexao();
 
-  $dados['portal'] = consultaDadosDoUsuarioDoPortalAvancao($db, $id);
-  $dados['time']   = consultaTimeDoUsuario($db, $id);
+  $dados['portal']         = consultaDadosDoUsuarioDoPortalAvancao($db, $id);
+  $dados['time']           = consultaTimeDoUsuario($db, $id);
+  $dados['especialidades'] = consultaEspecialidadesDoUsuario($db, $id);
 
   echo json_encode($dados);
 }

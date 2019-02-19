@@ -1,13 +1,52 @@
 <?php
 
 /**
+ * consulta as especialidades do usuário
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do chat
+ */
+function consultaEspecialidadesDoUsuario($db, $id)
+{
+  $query =
+    "SELECT
+      DISTINCT
+        ce.id_modulo
+    FROM av_dashboard_colaborador_especialidades AS ce
+    INNER JOIN av_dashboard_modulos AS m
+      ON m.id = ce.id_modulo
+    WHERE (ce.id_colaborador = $id)
+      AND (ce.conhecimento = 1)";
+  
+  $resultado = mysqli_query($db, $query);
+
+  $dados = array();
+
+  while ($linha = mysqli_fetch_array($resultado)) {
+    array_push($dados, $linha['id_modulo']);
+  }
+
+  return $dados;
+}
+
+/**
  * consulta o time atual do usuário
  * @param - objeto com uma conexão aberta
  * @param - string com o id do chat
  */
 function consultaTimeDoUsuario($db, $id)
 {
-  
+  $query =
+    "SELECT
+      c.id_times
+    FROM av_dashboard_colaborador_times AS c
+    WHERE (c.id_colaborador = $id)
+      AND (c.data_saida IS NULL)";
+
+  $resultado = mysqli_query($db, $query);
+
+  $time = mysqli_fetch_row($resultado);
+
+  return $time[0];
 }
 
 /**
@@ -20,6 +59,8 @@ function consultaDadosDoUsuarioDoPortalAvancao($db, $id)
   $query =
     "SELECT
       l.id,
+      u.name AS nome,
+      u.surname AS sobrenome,
       l.nivel,
       l.regime,
       l.contrato,
@@ -35,12 +76,14 @@ function consultaDadosDoUsuarioDoPortalAvancao($db, $id)
   $dados = array();
 
   while ($linha = mysqli_fetch_array($resultado)) {
-    $dados['id']       = $linha['id'];
-    $dados['nivel']    = $linha['nivel'];
-    $dados['regime']   = $linha['regime'];
-    $dados['contrato'] = $linha['contrato'];
-    $dados['admissao'] = $linha['admissao'];
-    $dados['ramal']    = $linha['ramal'];
+    $dados['id']        = $linha['id'];
+    $dados['nome']      = $linha['nome'];
+    $dados['sobrenome'] = $linha['sobrenome'];
+    $dados['nivel']     = $linha['nivel'];
+    $dados['regime']    = $linha['regime'];
+    $dados['contrato']  = $linha['contrato'];
+    $dados['admissao']  = $linha['admissao'];
+    $dados['ramal']     = $linha['ramal'];
   }
 
   return $dados;

@@ -115,7 +115,7 @@
 
           <?php endif; ?>
 
-          <form action="<?php echo BASE_URL; ?>app/requests/post/users/recebe_usuario.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
+          <form action="<?php echo BASE_URL; ?>app/requests/post/users/recebe_edicao_cadastro.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <div class="row"><!-- linha principal -->
               <div class="col-sm-6"><!-- primeira coluna principal -->
 
@@ -189,7 +189,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][1]" value="1"> Materiais
+                                        <input type="checkbox" id="1" name="cadastro[opcoes][1]" value="1"> Materiais
                                       </label>
                                     </div>
                                   </td>
@@ -197,7 +197,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][8]" value="2"> Frente Windows
+                                        <input type="checkbox" id="8" name="cadastro[opcoes][8]" value="2"> Frente Windows
                                       </label>
                                     </div>
                                   </td>
@@ -205,7 +205,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][14]" value="3"> Instalação
+                                        <input type="checkbox" id="14" name="cadastro[opcoes][14]" value="3"> Instalação
                                       </label>
                                     </div>
                                   </td>
@@ -213,7 +213,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][19]" value="4"> Instalação
+                                        <input type="checkbox" id="19" name="cadastro[opcoes][19]" value="4"> Instalação
                                       </label>
                                     </div>
                                   </td>
@@ -223,7 +223,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][2]" value="1"> Fiscal
+                                        <input type="checkbox" id="2" name="cadastro[opcoes][2]" value="1"> Fiscal
                                       </label>
                                     </div>
                                   </td>
@@ -231,7 +231,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][9]" value="2"> Frente Linux
+                                        <input type="checkbox" id="9" name="cadastro[opcoes][9]" value="2"> Frente Linux
                                       </label>
                                     </div>
                                   </td>
@@ -239,7 +239,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][15]" value="3"> Cadastro
+                                        <input type="checkbox" id="15" name="cadastro[opcoes][15]" value="3"> Cadastro
                                       </label>
                                     </div>
                                   </td>
@@ -247,7 +247,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][20]" value="4"> Pessoas
+                                        <input type="checkbox" id="20" name="cadastro[opcoes][20]" value="4"> Pessoas
                                       </label>
                                     </div>
                                   </td>
@@ -257,7 +257,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][3]" value="1"> Financeiro
+                                        <input type="checkbox" id="3" name="cadastro[opcoes][3]" value="1"> Financeiro
                                       </label>
                                     </div>
                                   </td>
@@ -265,7 +265,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][10]" value="2"> Supervisor
+                                        <input type="checkbox" id="10" name="cadastro[opcoes][10]" value="2"> Supervisor
                                       </label>
                                     </div>
                                   </td>
@@ -273,7 +273,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][16]" value="3"> Movimento
+                                        <input type="checkbox" id="16" name="cadastro[opcoes][16]" value="3"> Movimento
                                       </label>
                                     </div>
                                   </td>
@@ -281,41 +281,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][21]" value="4"> Produtos
-                                      </label>
-                                    </div>
-                                  </td>
-                                </tr>
-
-                                <tr>
-                                  <td>
-                                    <div class="checkbox">
-                                      <label>
-                                        <input type="checkbox" name="cadastro[opcoes][4]" value="1"> Contábil
-                                      </label>
-                                    </div>
-                                  </td>
-
-                                  <td>
-                                    <div class="checkbox">
-                                      <label>
-                                        <input type="checkbox" name="cadastro[opcoes][11]" value="2"> Scanntech
-                                      </label>
-                                    </div>
-                                  </td>
-
-                                  <td>
-                                    <div class="checkbox">
-                                      <label>
-                                        <input type="checkbox" name="cadastro[opcoes][17]" value="3"> Contábil
-                                      </label>
-                                    </div>
-                                  </td>
-
-                                  <td>
-                                    <div class="checkbox">
-                                      <label>
-                                        <input type="checkbox" name="cadastro[opcoes][22]" value="4"> Fiscal
+                                        <input type="checkbox" id="21" name="cadastro[opcoes][21]" value="4"> Produtos
                                       </label>
                                     </div>
                                   </td>
@@ -325,7 +291,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][5]" value="1"> Cotação
+                                        <input type="checkbox" id="4" name="cadastro[opcoes][4]" value="1"> Contábil
                                       </label>
                                     </div>
                                   </td>
@@ -333,7 +299,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][12]" value="2"> Sitef
+                                        <input type="checkbox" id="11" name="cadastro[opcoes][11]" value="2"> Scanntech
                                       </label>
                                     </div>
                                   </td>
@@ -341,7 +307,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][18]" value="3"> Fiscal
+                                        <input type="checkbox" id="17" name="cadastro[opcoes][17]" value="3"> Contábil
                                       </label>
                                     </div>
                                   </td>
@@ -349,39 +315,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][23]" value="4"> Financeiro
-                                      </label>
-                                    </div>
-                                  </td>
-                                </tr>
-
-                                <tr>
-                                  <td>
-                                    <div class="checkbox">
-                                      <label>
-                                        <input type="checkbox" name="cadastro[opcoes][6]" value="1"> TNFE
-                                      </label>
-                                    </div>
-                                  </td>
-
-                                  <td>
-                                    <div class="checkbox">
-                                      <label>
-                                        <input type="checkbox" name="cadastro[opcoes][13]" value="2"> Comandas
-                                      </label>
-                                    </div>
-                                  </td>
-
-                                  <td>
-                                    <div class="checkbox">
-                                      <label></label>
-                                    </div>
-                                  </td>
-
-                                  <td>
-                                    <div class="checkbox">
-                                      <label>
-                                        <input type="checkbox" name="cadastro[opcoes][24]" value="4"> Lançamentos
+                                        <input type="checkbox" id="22" name="cadastro[opcoes][22]" value="4"> Fiscal
                                       </label>
                                     </div>
                                   </td>
@@ -391,27 +325,31 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][7]" value="1"> WMS
+                                        <input type="checkbox" id="5" name="cadastro[opcoes][5]" value="1"> Cotação
                                       </label>
                                     </div>
                                   </td>
 
                                   <td>
                                     <div class="checkbox">
-                                      <label></label>
-                                    </div>
-                                  </td>
-
-                                  <td>
-                                    <div class="checkbox">
-                                      <label></label>
+                                      <label>
+                                        <input type="checkbox" id="12" name="cadastro[opcoes][12]" value="2"> Sitef
+                                      </label>
                                     </div>
                                   </td>
 
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][25]" value="4"> Relatórios e Gráficos
+                                        <input type="checkbox" id="18" name="cadastro[opcoes][18]" value="3"> Fiscal
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" id="23" name="cadastro[opcoes][23]" value="4"> Financeiro
                                       </label>
                                     </div>
                                   </td>
@@ -420,7 +358,41 @@
                                 <tr>
                                   <td>
                                     <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" id="6" name="cadastro[opcoes][6]" value="1"> TNFE
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" id="13" name="cadastro[opcoes][13]" value="2"> Comandas
+                                      </label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
                                       <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" id="24" name="cadastro[opcoes][24]" value="4"> Lançamentos
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" id="7" name="cadastro[opcoes][7]" value="1"> WMS
+                                      </label>
                                     </div>
                                   </td>
 
@@ -439,7 +411,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][26]" value="4"> Importação e Exportação
+                                        <input type="checkbox" id="25" name="cadastro[opcoes][25]" value="4"> Relatórios e Gráficos
                                       </label>
                                     </div>
                                   </td>
@@ -467,7 +439,7 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][27]" value="4"> Configurações PDV
+                                        <input type="checkbox" id="26" name="cadastro[opcoes][26]" value="4"> Importação e Exportação
                                       </label>
                                     </div>
                                   </td>
@@ -495,7 +467,35 @@
                                   <td>
                                     <div class="checkbox">
                                       <label>
-                                        <input type="checkbox" name="cadastro[opcoes][28]" value="4"> Minha Conta
+                                        <input type="checkbox" id="27" name="cadastro[opcoes][27]" value="4"> Configurações PDV
+                                      </label>
+                                    </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label></label>
+                                    </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" id="28" name="cadastro[opcoes][28]" value="4"> Minha Conta
                                       </label>
                                     </div>
                                   </td>  
@@ -583,7 +583,7 @@
                           <div class="col-sm-6">
                             <div class="form-group">
                               <label for="data-admissao">Data Admissão</label>
-                              <input class="form-control" id="data-admissao" type="text" name="cadastro[admissao]" placeholder="Admissão">
+                              <input class="form-control" id="data-admissao" type="date" name="cadastro[admissao]" placeholder="Admissão">
                             </div>
                           </div>
 
@@ -594,12 +594,12 @@
                             </div>
                           </div>
                         </div>
-
                       </div><!-- panel-body -->
-                    </div><!-- panel -->
 
-                    <input id="id" type="hidden" name="cadastro[id]">
-
+                      <input type="hidden" id="id-portal" name="cadastro[id-portal]">
+                      <input type="hidden" id="nome" name="cadastro[nome]">
+                      <input type="hidden" id="sobrenome" name="cadastro[sobrenome]">
+                    </div><!-- panel -->                  
                   </div>
                 </div><!-- painel usuário -->
                 
@@ -640,30 +640,56 @@
   <script src="<?php echo BASE_URL; ?>public/js/sidebar.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/outros.js"></script>
   <script src="<?php echo BASE_URL; ?>public/js/schedule/colaboradores.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/users/recupera_dados.js"></script>
+  <script src="<?php echo BASE_URL; ?>public/js/users/verifica_nivel.js"></script>
 
   <script>
     $(function() {
-      $('#data-admissao').mask('00/00/0000');
-
-      $(document).on('change', '#colaborador', function(e) {
+      $(document).ready(function(e) {
         e.preventDefault;
 
-        var idChat = $(this).val();
+        // adicionando classe disabled nos checkboxes
+        $('.checkbox').addClass('disabled');
 
-        $.ajax({
-          type: 'get',
-          url: '../../../app/requests/get/users/recebe_id_chat.php',
-          dataType: 'json',
-          data: {
-            id: idChat
-          },
-          success: function(dados) {
-            console.log(dados);
-          },
-          error: function(dados) {
-            console.log(dados);
+        // adicionando atributo disabled nos inputs checkboxes
+        $('input:checkbox').prop('disabled', 'disabled');
+
+        // percorrendo e desmarcando todos os checkboxes que estiverem marcados
+        $('input:checkbox').each(function () {
+          $(this).prop('checked', false);
+        });
+
+        // adicionando atributo disabled no select de times
+        $('#time').prop('disabled', 'disabled');
+
+        // percorrendo options do select de times
+        $('#time option').each(function () {
+          // adicionando o atributo selected no option de valor 1, nos outros, retirando o selected
+          if ($(this).val() == 1) {
+            $(this).prop('selected', true);
+          } else {
+            $(this).prop('selected', false);
           }
         });
+
+        // adicionando o atributo disabled do input file
+        $('#foto').prop('disabled', true);
+        $('#foto').val('');
+
+        // ocultando bloco de contrato de estagiário
+        $('#bloco-contrato').addClass('hidden');
+        $('#bloco-contrato').prop('disabled', true);
+
+        // ocultando bloco de contrato de estagiário
+        $('#bloco-contrato').addClass('hidden');
+        $('#bloco-contrato').prop('disabled', true);
+
+        $('#senha').prop('disabled', 'disabled');
+        $('#repita-senha').prop('disabled', 'disabled');
+        $('#nivel').prop('disabled', 'disabled');
+        $('#contrato').prop('disabled', 'disabled');
+        $('#data-admissao').prop('disabled', 'disabled');
+        $('#ramal').prop('disabled', 'disabled');
       });
     });
   </script>
