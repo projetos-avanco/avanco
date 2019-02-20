@@ -10,16 +10,27 @@ function recebeEdicaoDeCadastroDeUsuario($cadastro)
 
   $db = abre_conexao();
 
-  atualizaNivelDoUsuario($db, $cadastro['nivel'], $cadastro['id_portal']);
-
-  atualizaRegime($db, $cadastro['regime'], $cadastro['id_portal']);
-
-  atualizaDataDeAdmissao($db, $cadastro['admissao'], $cadastro['id_portal']);
-
-  atualizaRamal($db, $cadastro['ramal'], $cadastro['id_portal']);
+  atualizaDadosPortalUsuario($db, $cadastro);
 
   if ((! empty($cadastro['senha']))) {
     atualizaSenhaDoPortal($db, $cadastro['senha'], $cadastro['id_portal']);
+  }
+
+  # verificando se o time do colaborador foi alterado
+  if (verificaAlteracaoDoTime($db, $cadastro['time'], $cadastro['id_colaborador'])) {
+    # verificando se a data de saída do time foi atualizada
+    if (atualizaDataSaidaDoTime($db, $cadastro['id_colaborador'])) {
+      # chamando função que insere um novo histórico de time
+      insereHistoricoDoTimeDoUsuario($db, $cadastro['id_colaborador'], $cadastro['time']);
+    }
+  }
+
+  # verificando se a foto do usuário foi enviada
+  if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
+    # verificando se a foto do usuário foi movida 
+    if (move_uploaded_file($_FILES['foto']['tmp_name'], $cadastro['target'])) {
+
+    }
   }
 
   $_SESSION['atividades']['tipo'] = 'success';
@@ -39,11 +50,7 @@ function recebeEdicaoDeCadastroDeAdministrador($cadastro)
 
   $db = abre_conexao();
 
-  atualizaNivelParaAdministrador($db, $cadastro['id_portal']);
-
-  atualizaDataDeAdmissao($db, $cadastro['admissao'], $cadastro['id_portal']);
-
-  atualizaRamal($db, $cadastro['ramal'], $cadastro['id_portal']);
+  atualizaDadosPortalAdministrador($db, $cadastro);
 
   if ((! empty($cadastro['senha']))) {
     atualizaSenhaDoPortal($db, $cadastro['senha'], $cadastro['id_portal']);

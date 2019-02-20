@@ -1,6 +1,29 @@
 <?php
 
 /**
+ * consulta se o time do colaborador foi alterado
+ * @param - objeto com uma conexão aberta
+ * @param - inteiro com o id do time
+ * @param - string com o id do chat
+ */
+function verificaAlteracaoDoTime($db, $time, $id)
+{
+  $query =
+    "SELECT
+      id_times
+    FROM av_dashboard_colaborador_times AS t
+    WHERE (t.id_colaborador = $id)
+      AND (t.data_saida IS NULL)";
+  
+  $resultado = mysqli_query($db, $query);
+
+  $timeAtual = mysqli_fetch_row($resultado);
+  $timeAtual = (int) $timeAtual[0];
+
+  return ($timeAtual == $time);
+}
+
+/**
  * consulta as especialidades do usuário
  * @param - objeto com uma conexão aberta
  * @param - string com o id do chat
