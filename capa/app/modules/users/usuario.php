@@ -12,7 +12,9 @@ function recebeEdicaoDeCadastroDeUsuario($cadastro)
 
   atualizaDadosPortalUsuario($db, $cadastro);
 
+  # verificando se foi solicitado a alteração da senha
   if ((! empty($cadastro['senha']))) {
+    # chamando função que altera a senha
     atualizaSenhaDoPortal($db, $cadastro['senha'], $cadastro['id_portal']);
   }
 
@@ -27,10 +29,13 @@ function recebeEdicaoDeCadastroDeUsuario($cadastro)
 
   # verificando se a foto do usuário foi enviada
   if (isset($_FILES['foto']) && $_FILES['foto']['error'] == 0) {
-    # verificando se a foto do usuário foi movida 
-    if (move_uploaded_file($_FILES['foto']['tmp_name'], $cadastro['target'])) {
+    # movendo foto do usuário
+    move_uploaded_file($_FILES['foto']['tmp_name'], $cadastro['target']);
+  }
 
-    }
+  # verificando se o conhecimento do colaborador foi zerado
+  if (atualizaConhecimentoParaZero($db, $cadastro['id_colaborador'])) {
+
   }
 
   $_SESSION['atividades']['tipo'] = 'success';
