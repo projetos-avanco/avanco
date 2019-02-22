@@ -17,18 +17,20 @@ function atualizaConhecimentoParaZero($db, $id)
 /**
  * atualiza data de saída do colaborador de um time
  * @param - objeto com uma conexão aberta
- * @param - array com os dados de cadastro
+ * @param - inteiro com o id do colaborador
  */
-function atualizaDataSaidaDoTime($db, $cadastro)
+function atualizaDataSaidaDoTime($db, $id)
 {
   $query =
     "UPDATE av_dashboard_colaborador_times 
       SET 
         data_saida = NOW() 
-      WHERE (id_colaborador = {$cadastro['id_colaborador']})
+      WHERE (id_colaborador = $id)
         AND data_saida IS NULL";
   
-  mysqli_query($db, $query);
+  $resultado = mysqli_query($db, $query);
+
+  return $resultado;
 }
 
 /**
@@ -65,7 +67,7 @@ function atualizaDadosPortalAdministrador($db, $cadastro)
         regime   = '1',
         contrato = '0',
         admissao = '{$cadastro['admissao']}',
-        ramal    = '{$cadastro['ramal']}',
+        ramal    = '{$cadastro['ramal']}'
       WHERE id = {$cadastro['id_portal']}";
 
   mysqli_query($db, $query);

@@ -52,7 +52,7 @@ $(function () {
 
           // ocultando bloco de contrato de estagiário
           $('#bloco-contrato').addClass('hidden');
-          $('#bloco-contrato').prop('disabled', true);
+          $('#contrato').prop('disabled', true);
         } else if (dados.portal.nivel === '2') {
           // adicionando classe disabled nos checkboxes
           $('.checkbox').addClass('disabled');
@@ -110,7 +110,7 @@ $(function () {
 
           // exibindo bloco de contrato de estagiário
           $('#bloco-contrato').removeClass('hidden');
-          $('#bloco-contrato').prop('disabled', false);
+          $('#contrato').prop('disabled', false);
         }
       },
       error: function (dados) {

@@ -20,7 +20,7 @@ function verificaAlteracaoDoTime($db, $time, $id)
   $timeAtual = mysqli_fetch_row($resultado);
   $timeAtual = (int) $timeAtual[0];
 
-  return ($timeAtual == $time);
+  return ($timeAtual != $time);
 }
 
 /**

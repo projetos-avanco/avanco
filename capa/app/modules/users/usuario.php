@@ -4,9 +4,11 @@
  * responsável por solicitar a edição de um usuário 
  * @param - array com os dados do cadastro
  */
-function recebeEdicaoDeCadastroDeUsuario($cadastro)
+function recebeEdicaoDeCadastroDeUsuario($cadastro, $opcoes)
 {
   require_once DIRETORIO_FUNCTIONS . 'users/atualiza_conta.php';
+  require_once DIRETORIO_FUNCTIONS . 'users/consulta_conta.php';
+  require_once DIRETORIO_FUNCTIONS . 'users/insercoes_usuario.php';
 
   $db = abre_conexao();
 
@@ -35,7 +37,8 @@ function recebeEdicaoDeCadastroDeUsuario($cadastro)
 
   # verificando se o conhecimento do colaborador foi zerado
   if (atualizaConhecimentoParaZero($db, $cadastro['id_colaborador'])) {
-
+    # chamando função que atualiza o conhecimento do usuário
+    atualizaEspecialidadesDoUsuario($db, $cadastro['id_colaborador'], $opcoes);
   }
 
   $_SESSION['atividades']['tipo'] = 'success';
@@ -60,6 +63,8 @@ function recebeEdicaoDeCadastroDeAdministrador($cadastro)
   if ((! empty($cadastro['senha']))) {
     atualizaSenhaDoPortal($db, $cadastro['senha'], $cadastro['id_portal']);
   }
+
+  atualizaConhecimentoParaZero($db, $cadastro['id_colaborador']);
 
   $_SESSION['atividades']['tipo'] = 'success';
   $_SESSION['atividades']['mensagens'][] = 'Dados alterados com sucesso.';

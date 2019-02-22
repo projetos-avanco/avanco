@@ -36,11 +36,11 @@ $(function () {
 
       // ocultando bloco de contrato de estagiário
       $('#bloco-contrato').addClass('hidden');
-      $('#bloco-contrato').prop('disabled', true);
+      $('#contrato').prop('disabled', true);
     } else if (id == '3') {
       // removendo a classe disabled dos checkboxes
       $('.checkbox').removeClass('disabled');
-
+      
       // removendo atributo disabled dos inputs checkboxes
       $('input:checkbox').prop('disabled', false);
 
@@ -52,7 +52,7 @@ $(function () {
 
       // exibindo bloco de contrato de estagiário
       $('#bloco-contrato').removeClass('hidden');
-      $('#bloco-contrato').prop('disabled', false);
+      $('#contrato').prop('disabled', false);
     } else if (id == '1') {
       // removendo a classe disabled dos checkboxes
       $('.checkbox').removeClass('disabled');
@@ -68,7 +68,7 @@ $(function () {
 
       // ocultando bloco de contrato de estagiário
       $('#bloco-contrato').addClass('hidden');
-      $('#bloco-contrato').prop('disabled', true);
+      $('#contrato').prop('disabled', true);
     }
   });
 });
