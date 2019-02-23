@@ -3,25 +3,37 @@
 /**
  * consulta registro de exercício de férias do ano vigente
  * @param - objeto com uma conexão aberta
- * @param - inteiro com o id do colaborador
+ * @param - array com os dados do exercício
+ * @param - array com os dados do portal avanção
  */
-function consultaExercicioDeFeriasRegistrado($db, $id)
+function consultaExercicioDeFeriasRegistrado($db, $exercicio, $dados)
 {
-  $ano = date('Y') - 1;
+  # verificando se o colaborador é estagiário
+  if ($dados['regime'] === '2' && $dados['contrato'] === '1') {
+    return 0;
+  } else {
+    $query = 
+      "SELECT
+        DATE_FORMAT(exercicio_inicial, '%Y') AS exercicio_inicial
+      FROM av_agenda_exercicios_ferias
+      WHERE (colaborador = {$exercicio['colaborador']})
+      ORDER BY id DESC LIMIT 1";
+    
+    $resultado = mysqli_query($db, $query);
 
-  $query = 
-    "SELECT
-      COUNT(id) AS exercicios
-    FROM av_agenda_exercicios_ferias
-    WHERE (colaborador = $id)
-      AND (DATE_FORMAT(exercicio_inicial, '%Y') = '$ano')";
-  
-  $resultado = mysqli_query($db, $query);
+    $ano = mysqli_fetch_row($resultado);
 
-  $quantidade = mysqli_fetch_row($resultado);
-  $quantidade = (int) $quantidade[0];
+    $ano = $ano[0];
 
-  return $quantidade;
+    $tmp = explode('-', $exercicio['exercicio_inicial']);
+
+    # verificano se o ano do último registro de férias é igual ao do novo exercício lançado
+    if ($ano === $tmp[0]) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 }
 
 /**

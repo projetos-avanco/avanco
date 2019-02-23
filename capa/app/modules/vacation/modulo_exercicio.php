@@ -71,6 +71,7 @@ function retornaDadosContratuais($id)
  */
 function recebeExercicioDeFerias($exercicio)
 {
+  require_once DIRETORIO_FUNCTIONS . 'users/consulta_conta.php';
   require_once DIRETORIO_FUNCTIONS . 'schedule/consultas_agenda.php';
   require_once DIRETORIO_FUNCTIONS . 'vacation/consultas_exercicio.php';
   require_once DIRETORIO_FUNCTIONS . 'vacation/insercoes_exercicio.php';
@@ -81,8 +82,10 @@ function recebeExercicioDeFerias($exercicio)
 
   $_SESSION['atividades']['exibe'] = true;
 
+  $dados = consultaDadosDoUsuarioDoPortalAvancao($db, $exercicio['colaborador']);
+
   # verificando se já existe um exercício de férias gravado para o colaborador no ano vigente
-  if (consultaExercicioDeFeriasRegistrado($db, $exercicio['colaborador']) > 0) {    
+  if (consultaExercicioDeFeriasRegistrado($db, $exercicio, $dados) > 0) {    
     $_SESSION['atividades']['mensagens'][] = 'Já existe um exercício de férias gravado para o colaborador no ano vigente.';
   } else {
     # verificando se o exercício de férias não foi gravado com sucesso
