@@ -43,7 +43,7 @@
           </span>
         </a>
         <ul class="nav collapse"  id="submenu2">
-        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 1) : ?>
+        <?php if (isset($_SESSION['usuario']['nivel']) AND ($_SESSION['usuario']['nivel'] != 2)): ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../dashboard/public/views/profile/colaborador.php" target="_blank">
               <p>Colaborador<p>
@@ -69,7 +69,7 @@
           </span>
         </a>
         <ul class="nav collapse"  id="submenu3">
-        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 1) : ?>
+        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] != 2) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/avancoins/extrato.php">
               <p>Extrato<p>
@@ -209,7 +209,7 @@
             </a>
           </li>
           <?php endif; ?>
-        <?php elseif ($_SESSION['usuario']['nivel'] == '1') : ?>
+        <?php elseif ($_SESSION['usuario']['nivel'] != 2) : ?>
           <li>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/vacation/exercicio_ferias_pedidos.php">
               <p>Pedidos<p>
@@ -235,7 +235,7 @@
             </a>
           </li>
           <li>
-          <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
+          <?php if ($_SESSION['usuario']['nivel'] != 2) : ?>
             <a href="<?php echo BASE_URL; ?>../capa/public/views/tickets/consulta_tickets_clb.php">
               <p>Consultar<p>
             </a>
