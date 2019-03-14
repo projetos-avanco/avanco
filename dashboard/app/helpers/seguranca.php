@@ -11,8 +11,8 @@ function redirecionaUsuario()
     # verificando se o usuário está cadastrado
     if ($_SESSION['usuario']['id'] != '0' AND $_SESSION['usuario']['tipo'] == 1) {
 
-      # verificando se o nível de usuário é comun
-      if ($_SESSION['usuario']['nivel'] == 1) {
+      # verificando se o nível de usuário é do nível suporte ou estagiário
+      if ($_SESSION['usuario']['nivel'] == 1 || $_SESSION['usuario']['nivel'] == 3) {
 
         # redirecionando para a página de dashboard do colaborador
         header('Location: ' . BASE_URL . 'public/views/profile/colaborador.php');

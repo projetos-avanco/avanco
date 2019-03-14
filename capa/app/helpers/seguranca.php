@@ -44,6 +44,7 @@ function verificaUsuarioLogado($pagina, $id = null)
   switch ($nivel) {
 
     case 1:
+    case 3:
 
       # páginas que usuários de nível 1 possuem permissão para acessar
       if ($pagina == 'consulta_tickets_clb.php'     OR
@@ -136,9 +137,8 @@ function verificaUsuarioLogado($pagina, $id = null)
       break;
 
     case 2:
-    case 3:
 
-      # páginas que usuários de nível 2 ou 3 possuem permissão para acessar
+      # páginas que usuários de nível 2 possuem permissão para acessar
       if
         ($pagina == 'colaboradores_logados.php'         OR
          $pagina == 'consulta_tickets_adm.php'          OR
