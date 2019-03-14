@@ -18,6 +18,8 @@ function verificaFilaDosColaboradores($array, $quantidade, $db)
       	COUNT(c.id) AS fila
       FROM lh_chat AS c
       WHERE (c.status = 0 OR c.status = 1)
+        AND (c.user_status = 0)
+  	    AND (FROM_UNIXTIME(c.time, '%Y-%m-%d') = CURRENT_DATE())
       	AND (c.dep_id = {$array[$posicao]['id_departamento']})";
 
     # verificando se a query pode ser executada
