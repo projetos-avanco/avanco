@@ -135,7 +135,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[3, "asc"]],   
+          "aaSorting": [[8, "desc"], [3, "asc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
@@ -313,7 +313,7 @@ $(function() {
 
         // paginando a tabela
         $('#relatorio').DataTable({
-          "aaSorting": [[3, "asc"]],   
+          "aaSorting": [[8, "desc"], [3, "asc"]],   
           "oLanguage": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
