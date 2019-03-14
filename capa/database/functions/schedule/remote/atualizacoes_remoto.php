@@ -18,6 +18,7 @@ function alteraAtendimentoRemoto($db, $dados)
           horario      = '{$dados['horario']}',
           produto      = '{$dados['produto']}',
           modulo       = '{$dados['modulo']}',
+          tarefa       = '{$dados['tarefa']}',
           observacao   = '{$dados['observacao']}',
           faturado     =  {$dados['faturado']},
           valor_hora   =  {$dados['valor_hora']},
