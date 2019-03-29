@@ -71,7 +71,7 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
   
           break;
   
-      case '20':
+      case '30':
   
         $dados['time']    = 5;
         $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time avalanche
