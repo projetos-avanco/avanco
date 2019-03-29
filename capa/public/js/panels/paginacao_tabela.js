@@ -26,7 +26,7 @@ $('document').ready(function() {
        }
      },
      "bFilter": false, //removendo a pesquisa
-     "pageLength": 25
+     "pageLength": 50
   });
 
   // ordenando tabela pelas colunas logado e oculto
