@@ -19,7 +19,8 @@ function retornaDadosParaPainelDeColaboradoresLogados()
   for ($i = 0; $i < count($painel); $i++) {
 
     if
-      ($painel[$i]['id'] == 37 OR
+      ($painel[$i]['id'] == 20 OR
+       $painel[$i]['id'] == 37 OR
        $painel[$i]['id'] == 38 OR       
        $painel[$i]['id'] == 40 OR
        $painel[$i]['id'] == 41) {
