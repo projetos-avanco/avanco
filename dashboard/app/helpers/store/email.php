@@ -49,7 +49,7 @@ function enviaEmailDeCompraNaLoja($produto, $colaborador, $compra)
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
     $email->Username   = 'loja.avancao@avancoinfo.com.br';
-    $email->Password   = 'Avanco123';
+    $email->Password   = 'Avanco@30251188';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
