@@ -205,15 +205,15 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'loja.avancao@avancoinfo.com.br';
-    $email->Password   = 'Avanco@30251188';
+    $email->Username   = 'ferias@avancoinfo.com.br';
+    $email->Password   = 'Avanco@3025';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
     # destinatários
-    $email->setFrom($emailSupervisor, 'Avanço | Aprovação Férias');    
+    $email->setFrom('ferias@avancoinfo.com.br', 'Avanço | Aprovação Férias');    
     $email->addAddress($emailColaborador);
-    $email->addReplyTo($emailSupervisor, 'Respostas');    
+    $email->addReplyTo($emailSupervisor, 'Respostas');
     #$email->addCC();    
 
     # anexos
@@ -434,13 +434,13 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'loja.avancao@avancoinfo.com.br';
-    $email->Password   = 'Avanco@30251188';
+    $email->Username   = 'ferias@avancoinfo.com.br';
+    $email->Password   = 'Avanco@3025';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
     # destinatários
-    $email->setFrom($emailSupervisor, 'Avanço | Exercídio Férias');
+    $email->setFrom('ferias@avancoinfo.com.br', 'Avanço | Exercídio Férias');
     $email->addAddress($emailColaborador);
     $email->addReplyTo($emailSupervisor, 'Respostas');
     #$email->addCC();
@@ -663,13 +663,13 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
     $email->isSMTP();
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
-    $email->Username   = 'loja.avancao@avancoinfo.com.br';
-    $email->Password   = 'Avanco@30251188';
+    $email->Username   = 'ferias@avancoinfo.com.br';
+    $email->Password   = 'Avanco@3025';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
     # destinatários
-    $email->setFrom($emailColaborador, 'Avanço | Pedido Férias');    
+    $email->setFrom('ferias@avancoinfo.com.br', 'Avanço | Pedido Férias');    
     $email->addAddress('badaro@avancoinfo.com.br');
     $email->addReplyTo($emailColaborador, 'Respostas');
     #$email->addCC();
