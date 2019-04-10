@@ -50,7 +50,7 @@
 
           <hr>
 
-          <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
+          <?php if ($_SESSION['usuario']['nivel'] != 2) : ?>
             <div class="row">
               <div class="col-sm-6">
                 <label for="tipo">Tipo*</label>

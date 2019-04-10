@@ -248,6 +248,7 @@
         </ul>
       </li>
 
+      <?php if(isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
       <li class="bordermenu">
         <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu6">
           <span class="nav-header-primary">
@@ -270,6 +271,7 @@
           </li>
         </ul>
       </li>
+      <?php endif; ?>
 
       <li class="bordermenu">
         <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu7">
@@ -378,6 +380,7 @@
           </li>
         <?php endif; ?>
 
+        <?php if (isset($_SESSION['usuario']['nivel']) AND $_SESSION['usuario']['nivel'] == 2) : ?>
           <li class="bordermenu">
             <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu13">
             <span class="nav-header-primary">
@@ -395,6 +398,7 @@
               </li>
             </ul>
           </li>
+        <?php endif; ?>
 
           <li class="bordermenu">
             <a href="#" class="accordion-heading" data-toggle="collapse" data-target="#submenu14">

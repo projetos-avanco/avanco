@@ -183,7 +183,7 @@
             </div><!-- linha principal -->
           
           </form>
-        <?php elseif ($_SESSION['usuario']['nivel'] == '1') : ?>
+        <?php elseif ($_SESSION['usuario']['nivel'] != '2') : ?>
           <form>
             <div class="row"><!-- linha principal -->        
               <div class="col-sm-6 col-sm-offset-6"><!-- primeira coluna principal -->

@@ -10,7 +10,7 @@
 <?php
 
   # verificando se o usuário que está logado é do atendimento (se sim, será enviado o id do dele)
-  if ($_SESSION['usuario']['nivel'] == 1) {
+  if ($_SESSION['usuario']['nivel'] != 2) {
 
     # chamando função responsável por atualizar as ações diárias do colaborador no período atual
     atualizaAcoesDiarias($_SESSION['colaborador']['id']);
