@@ -59,7 +59,7 @@ function consultaColaboradores($options, $db)
   $nivel = $_SESSION['usuario']['nivel'];
 
   # verificando se o usuário é um colaborador
-  if ($nivel == 1) {
+  if ($nivel == 1 OR $nivel == 3) {
 
     # recuperando id do chat do colaborador
     $id = $_SESSION['usuario']['id'];
