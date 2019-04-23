@@ -10,7 +10,8 @@ $(function() {
     // percorrendo todos os input checkboxers
     $('#lista-colaboradores input:checkbox').each(function() {
       //marcando colaboradores do atendimento interno e desmarcando colaboradores do atendimento externo
-      if ($(this).val() == '37' || 
+      if ($(this).val() == '20' ||
+          $(this).val() == '37' ||
           $(this).val() == '38' || 
           $(this).val() == '39' || 
           $(this).val() == '40' || 
@@ -39,7 +40,8 @@ $(function() {
     // percorrendo todos os input checkboxers
     $('#lista-colaboradores input:checkbox').each(function() {
       //marcando colaboradores do atendimento externo e desmarcando colaboradores do atendimento interno
-      if ($(this).val() == '37' || 
+      if ($(this).val() == '20' ||
+          $(this).val() == '37' ||
           $(this).val() == '38' || 
           $(this).val() == '39' || 
           $(this).val() == '40' || 
