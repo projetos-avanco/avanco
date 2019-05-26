@@ -96,14 +96,14 @@ $(function() {
       if (exercicio.regime == '1') {
         swal({
           title: 'Aviso',
-          text: 'A data final do período não pode ultrapassar 60 dias antes da data limite!',
+          text: 'A data final do período não pode ultrapassar 30 dias da data limite!',
           icon: 'warning'
         });
       // verificando se o regime do colaborador é estágio
       } else if (exercicio.regime == '2') {
         swal({
           title: 'Aviso',
-          text: 'A data final do período não pode ultrapassar 30 dias antes da data limite!',
+          text: 'A data final do período não pode ultrapassar 30 dias da data limite!',
           icon: 'warning'
         });
       }
@@ -253,14 +253,14 @@ $(function() {
         if (exercicio.regime == '1') {
           swal({
             title: 'Aviso',
-            text: 'A data final do período não pode ultrapassar 60 dias antes da data limite!',
+            text: 'A data final do período não pode ultrapassar 30 dias da data limite!',
             icon: 'warning'
           });
         // verificando se o regime do colaborador é estágio
         } else if (exercicio.regime == '2') {
           swal({
             title: 'Aviso',
-            text: 'A data final do período não pode ultrapassar 30 dias antes da data limite!',
+            text: 'A data final do período não pode ultrapassar 30 dias da data limite!',
             icon: 'warning'
           });
         }
@@ -412,7 +412,7 @@ $(function() {
 
         swal({
           title: 'Aviso',
-          text: 'A data final do período não pode ultrapassar 30 dias antes da data limite!',
+          text: 'A data final do período não pode ultrapassar 30 dias da data limite!',
           icon: 'warning'
         });
       }
@@ -500,14 +500,14 @@ $(function() {
       if (exercicio.regime == '1') {
         swal({
           title: 'Aviso',
-          text: 'A data final do período não pode ultrapassar 60 dias antes da data limite!',
+          text: 'A data final do período não pode ultrapassar 30 dias da data limite!',
           icon: 'warning'
         });
       // verificando se o regime do colaborador é estágio
       } else if (exercicio.regime == '2') {
         swal({
           title: 'Aviso',
-          text: 'A data final do período não pode ultrapassar 30 dias antes da data limite!',
+          text: 'A data final do período não pode ultrapassar 30 dias da data limite!',
           icon: 'warning'
         });
       }

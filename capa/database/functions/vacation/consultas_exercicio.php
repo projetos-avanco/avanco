@@ -10,7 +10,26 @@ function consultaExercicioDeFeriasRegistrado($db, $exercicio, $dados)
 {
   # verificando se o colaborador é estagiário
   if ($dados['regime'] === '2' && $dados['contrato'] === '1') {
-    return 0;
+    $ano = date('Y') - 1;
+
+    $query =
+      "SELECT
+        COUNT(DATE_FORMAT(exercicio_inicial, '%Y')) AS exercicios
+      FROM av_agenda_exercicios_ferias
+      WHERE (colaborador = {$exercicio['colaborador']})
+        AND (DATE_FORMAT(exercicio_inicial, '%Y') = $ano)
+        ORDER BY id DESC";
+
+    $resultado = mysqli_query($db, $query);
+
+    $exercicios = mysqli_fetch_row($resultado);
+    $exercicios = $exercicios[0];
+
+    if ($exercicios >= 2) {
+      return 1;
+    } else {
+      return 0;
+    }
   } else {
     $query = 
       "SELECT

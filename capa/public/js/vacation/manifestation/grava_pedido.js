@@ -106,7 +106,7 @@ $(function() {
             $('.row #linha-2 #data-inicial-2').removeClass('erro');          
           }
         break;
-        /*
+
         case '3':        
           // recuperando datas
           pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
@@ -172,7 +172,7 @@ $(function() {
             $('.row #linha-3 #data-inicial-3').removeClass('erro');
           }
         break;
-        */
+
         case '4':
           // recuperando datas
           pedido.periodo1.dataInicial = $('.row #linha-1 #data-inicial-1').val();
@@ -298,7 +298,7 @@ $(function() {
 
             swal({
               title: 'Aviso',
-              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Final até 2 meses antes da Data Limite.',
+              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Final até 1 meses antes da Data Limite.',
               icon: 'warning'
             });
           }
@@ -386,8 +386,8 @@ $(function() {
                   $('#data-inicial-2').val('');
                   $('#data-final-2').val('');
 
-                  //$('#data-inicial-3').val('');
-                  //$('#data-final-3').val('');
+                  $('#data-inicial-3').val('');
+                  $('#data-final-3').val('');
 
                   $('#data-inicial-4').val('');
                   $('#data-final-4').val('');
@@ -444,17 +444,17 @@ $(function() {
         // setando valor default
         $('#data-inicial-1').val('');
         $('#data-inicial-2').val('');
-        //$('#data-inicial-3').val('');
+        $('#data-inicial-3').val('');
         $('#data-inicial-4').val('');
 
         $('#data-final-1').val('');
         $('#data-final-2').val('');
-        //$('#data-final-3').val('');
+        $('#data-final-3').val('');
         $('#data-final-4').val('');
 
         $('#total-dias-1').val('0');
         $('#total-dias-2').val('0');
-        //$('#total-dias-3').val('0');
+        $('#total-dias-3').val('0');
         $('#total-dias-4').val('0');
       }
     }

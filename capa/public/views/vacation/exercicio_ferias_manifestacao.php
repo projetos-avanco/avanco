@@ -185,7 +185,7 @@
                           <option value="0" selected>Lista  de Períodos</option>
                           <option id="periodo-1" value="1">1 Período de 30 Dias</option>
                           <option id="periodo-2" value="2">2 Períodos de 15 Dias</option>
-                          <!--<option value="3">3 Períodos de 10 Dias</option>-->
+                          <option id="periodo-3" value="3">3 Períodos de 10 Dias</option>
                           <option id="periodo-4" value="4">1 Período de 10 Dias e 1 Período de 20 Dias</option>
                           <option id="periodo-5" value="5">1 Período de 20 Dias e 1 Período de 10 Dias</option>
                           <option class="hidden" id="periodo-6" value="6">1 Período de 15 Dias</option>

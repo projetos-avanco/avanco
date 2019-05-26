@@ -22,6 +22,7 @@ $(function() {
         if (dados.regime == '1' && dados.contrato == '0') {
           $('#periodo-1').removeClass('hidden');
           $('#periodo-2').removeClass('hidden');
+          $('#periodo-3').removeClass('hidden');
           $('#periodo-4').removeClass('hidden');
           $('#periodo-5').removeClass('hidden');
 
@@ -30,6 +31,7 @@ $(function() {
         } else if (dados.regime == '2' && dados.contrato == '1') {
           $('#periodo-1').addClass('hidden');
           $('#periodo-2').addClass('hidden');
+          $('#periodo-3').addClass('hidden');
           $('#periodo-4').addClass('hidden');
           $('#periodo-5').addClass('hidden');
 
@@ -38,6 +40,7 @@ $(function() {
         } else if (dados.regime == '2' && dados.contrato == '2') {
           $('#periodo-1').removeClass('hidden');
           $('#periodo-2').removeClass('hidden');
+          $('#periodo-3').removeClass('hidden');
           $('#periodo-4').removeClass('hidden');
           $('#periodo-5').removeClass('hidden');
 

@@ -108,7 +108,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
                     <p><strong>2º - Período</strong> {$pedido['periodo2']['data_inicial']} até {$pedido['periodo2']['data_final']} - {$pedido['periodo2']['dias']} dias</p>
                   ";
                 break;
-                /*
+
                 case '3':
                   $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
                   $pedido['periodo1']['data_final']   = formataDataParaExibir($pedido['periodo1']['data_final']);
@@ -125,7 +125,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
                     <p><strong>3º - Período</strong> {$pedido['periodo3']['data_inicial']} até {$pedido['periodo3']['data_final']} - {$pedido['periodo3']['dias']} dias</p>
                   ";
                 break;
-                */
+
                 case '4':
                 case '5':
                   $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
@@ -211,7 +211,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->Port       = 465;
 
     # destinatários
-    $email->setFrom('ferias@avancoinfo.com.br', 'Avanço | Aprovação Férias');    
+    $email->setFrom('ferias@avancoinfo.com.br', 'Avanço | Aprovação Férias');
     $email->addAddress($emailColaborador);
     $email->addReplyTo($emailSupervisor, 'Respostas');
     #$email->addCC();    
@@ -362,7 +362,7 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
                 <p id='observacao'>";
                 
                 if ($regime == 1) {
-                  $msg .= '<strong>Lembrando que, o período permitido para agendamento dos dias será apartir da data do Exerício Final até 2 meses antes da Data Limite.</strong>';
+                  $msg .= '<strong>Lembrando que, o período permitido para agendamento dos dias será apartir da data do Exerício Final até 1 meses antes da Data Limite.</strong>';
                 } else {
                   $msg .= '<strong>Lembrando que, o período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.</strong>';
                 }
@@ -580,7 +580,7 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
                       <p><strong>2º - Período</strong> {$pedido['periodo2']['data_inicial']} até {$pedido['periodo2']['data_final']} - {$pedido['periodo2']['dias']} dias</p>
                     ";
                   break;
-                  /*
+
                   case '3':
                     $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
                     $pedido['periodo1']['data_final']   = formataDataParaExibir($pedido['periodo1']['data_final']);
@@ -597,7 +597,7 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
                       <p><strong>3º - Período</strong> {$pedido['periodo3']['data_inicial']} até {$pedido['periodo3']['data_final']} - {$pedido['periodo3']['dias']} dias</p>
                     ";
                   break;
-                  */
+
                   case '4':
                   case '5':
                     $pedido['periodo1']['data_inicial'] = formataDataParaExibir($pedido['periodo1']['data_inicial']);                    
@@ -669,7 +669,7 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
     $email->Port       = 465;
 
     # destinatários
-    $email->setFrom('ferias@avancoinfo.com.br', 'Avanço | Pedido Férias');    
+    $email->setFrom('ferias@avancoinfo.com.br', 'Avanço | Pedido Férias');
     $email->addAddress('badaro@avancoinfo.com.br');
     $email->addReplyTo($emailColaborador, 'Respostas');
     #$email->addCC();

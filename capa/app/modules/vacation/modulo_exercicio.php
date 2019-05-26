@@ -85,8 +85,12 @@ function recebeExercicioDeFerias($exercicio)
   $dados = consultaDadosDoUsuarioDoPortalAvancao($db, $exercicio['colaborador']);
 
   # verificando se já existe um exercício de férias gravado para o colaborador no ano vigente
-  if (consultaExercicioDeFeriasRegistrado($db, $exercicio, $dados) > 0) {    
-    $_SESSION['atividades']['mensagens'][] = 'Já existe um exercício de férias gravado para o colaborador no ano vigente.';
+  if (consultaExercicioDeFeriasRegistrado($db, $exercicio, $dados) > 0) {
+    if ($dados['regime'] === '2' && $dados['contrato'] === '1') {
+      $_SESSION['atividades']['mensagens'][] = 'Já existem dois exercícios de férias gravados para o colaborador no ano vigente.';
+    } else {
+      $_SESSION['atividades']['mensagens'][] = 'Já existe um exercício de férias gravado para o colaborador no ano vigente.';
+    }
   } else {
     # verificando se o exercício de férias não foi gravado com sucesso
     if (!insereExercicioDeFerias($db, $exercicio)) {

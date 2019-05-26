@@ -63,6 +63,10 @@ $(function() {
 
     exercicio.dia = date.getDate();
 
+    // diminuindo 30 dias (1 meses) na data de vencimento
+    date.setDate(exercicio.dia - 30);
+
+    /*
     // verificando se o regime do colaborador é clt
     if (exercicio.regime == '1') {
       // diminuindo 60 dias (2 meses) na data de vencimento
@@ -72,6 +76,7 @@ $(function() {
       // diminuindo 30 dias (1 meses) na data de vencimento
       date.setDate(exercicio.dia - 30);
     }
+    */
 
     // dividindo a data de admissão em array para recuperar o exercício final
     exercicio.tmp = date.toISOString();
@@ -81,17 +86,17 @@ $(function() {
     // setando valor default
     $('#data-inicial-1').val('');
     $('#data-inicial-2').val('');
-    //$('#data-inicial-3').val('');
+    $('#data-inicial-3').val('');
     $('#data-inicial-4').val('');
 
     $('#data-final-1').val('');
     $('#data-final-2').val('');
-    //$('#data-final-3').val('');
+    $('#data-final-3').val('');
     $('#data-final-4').val('');
 
     $('#total-dias-1').val('0');
     $('#total-dias-2').val('0');
-    //$('#total-dias-3').val('0');
+    $('#total-dias-3').val('0');
     $('#total-dias-4').val('0');
 
     // setando id do exercício no input hidden da página
@@ -141,7 +146,7 @@ $(function() {
           $('#data-inicial-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);
           $('#data-final-2').prop('min', exercicio.final).prop('max', exercicio.vencimento);        
         break;
-        /*
+
         case '3':
           // liberando data inicial para preenchimento
           $('#data-inicial-1').prop('readonly', false);
@@ -168,7 +173,7 @@ $(function() {
           $('#data-inicial-3').prop('min', exercicio.final).prop('max', exercicio.vencimento);
           $('#data-final-3').prop('min', exercicio.final).prop('max', exercicio.vencimento);
         break;
-        */
+
         case '4':        
           // liberando data inicial para preenchimento
           $('#data-inicial-1').prop('readonly', false);
@@ -282,7 +287,7 @@ $(function() {
             $('#data-inicial-2').prop('min', exercicio.inicial).prop('max', exercicio.vencimento);
             $('#data-final-2').prop('min', exercicio.inicial).prop('max', exercicio.vencimento);
           break;
-          /*
+
           case '3':
             // liberando data inicial para preenchimento
             $('#data-inicial-1').prop('readonly', false);
@@ -309,7 +314,7 @@ $(function() {
             $('#data-inicial-3').prop('min', exercicio.inicial).prop('max', exercicio.vencimento);
             $('#data-final-3').prop('min', exercicio.inicial).prop('max', exercicio.vencimento);
           break;
-          */
+          
           case '4':        
             // liberando data inicial para preenchimento
             $('#data-inicial-1').prop('readonly', false);

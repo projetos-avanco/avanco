@@ -298,7 +298,7 @@ $(function() {
 
             swal({
               title: 'Aviso',
-              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Final até 2 meses antes da Data Limite.',
+              text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Final até a Data Limite.',
               icon: 'warning'
             });
           }
@@ -312,7 +312,7 @@ $(function() {
 
               swal({
                 title: 'Aviso',
-                text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.',
+                text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até a Data Limite.',
                 icon: 'warning'
               });
             }
@@ -324,7 +324,7 @@ $(function() {
 
               swal({
                 title: 'Aviso',
-                text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até 1 mês antes da Data Limite.',
+                text: 'O período permitido para agendamento dos dias será apartir da data do Exerício Inicial até a Data Limite.',
                 icon: 'warning'
               });
             }
@@ -377,15 +377,15 @@ $(function() {
                   $('#data-inicial-2').val('');
                   $('#data-final-2').val('');
 
-                  //$('#data-inicial-3').val('');
-                  //$('#data-final-3').val('');
+                  $('#data-inicial-3').val('');
+                  $('#data-final-3').val('');
 
                   $('#data-inicial-4').val('');
                   $('#data-final-4').val('');
 
                   $('#total-dias-1').val('0');
                   $('#total-dias-2').val('0');
-                  //$('#total-dias-3').val('0');
+                  $('#total-dias-3').val('0');
                   $('#total-dias-4').val('0');
 
                   var id = $('#id').val();
@@ -426,17 +426,17 @@ $(function() {
         // setando valor default
         $('#data-inicial-1').val('');
         $('#data-inicial-2').val('');
-        //$('#data-inicial-3').val('');
+        $('#data-inicial-3').val('');
         $('#data-inicial-4').val('');
 
         $('#data-final-1').val('');
         $('#data-final-2').val('');
-        //$('#data-final-3').val('');
+        $('#data-final-3').val('');
         $('#data-final-4').val('');
 
         $('#total-dias-1').val('0');
         $('#total-dias-2').val('0');
-        //$('#total-dias-3').val('0');
+        $('#total-dias-3').val('0');
         $('#total-dias-4').val('0');
       }
     }    
