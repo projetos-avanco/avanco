@@ -156,6 +156,7 @@ function consultaDadosDosColaboradores($painel, $db)
         u.user_id  = 39 OR
         u.user_id  = 42 OR
         u.user_id  = 44 OR
+        u.user_id  = 55 OR
         u.user_id  = 61)
         AND (u.dep_id > 0)
         AND NOT (d.disabled = 1)
@@ -189,6 +190,7 @@ function consultaDadosDosColaboradores($painel, $db)
         u.user_id  = 39 OR
         u.user_id  = 42 OR
         u.user_id  = 44 OR
+        u.user_id  = 55 OR
         u.user_id  = 61)
         AND (u.dep_id > 0)
         AND NOT (d.disabled = 1)

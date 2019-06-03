@@ -20,10 +20,12 @@ function retornaDadosParaPainelDeColaboradoresLogados()
 
     if
       ($painel[$i]['id'] == 20 OR
+       $painel[$i]['id'] == 25 OR
        $painel[$i]['id'] == 37 OR
-       $painel[$i]['id'] == 38 OR       
+       $painel[$i]['id'] == 38 OR
        $painel[$i]['id'] == 40 OR
        $painel[$i]['id'] == 41 OR
+       $painel[$i]['id'] == 43 OR
        $painel[$i]['id'] == 79) {
 
          $paineis['externo'][] = $painel[$i];
