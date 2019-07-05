@@ -14,7 +14,7 @@
   $db = abre_conexao();
 
   # verificando se o usuário logado é um capitão
-  if ($id == 14 OR $id == 23 OR $id == 30 OR $id == 48)
+  if ($id == 14 OR $id == 23 OR $id == 30 OR $id == 66)
     
     # chamando função que retorna o id do time atual do capitão
     $time = consultaTimeDoCapitaoLogado($db, $id);
@@ -82,7 +82,7 @@
 
         <br>
 
-      <?php if ($_SESSION['usuario']['nivel'] == 1) : ?>
+      <?php if ($_SESSION['usuario']['nivel'] == 1 || ($_SESSION['usuario']['nivel'] == 3 && $_SESSION['usuario']['id'] == 66)) : ?>
       <form action="<?php echo BASE_URL; ?>app/requests/post/recebe_time.php" method="post">
         <div class="row text-center">
           <div class="col-sm-4 col-sm-offset-4">
