@@ -523,6 +523,7 @@
           ['Cotação Web', <?php echo $graficos['integral']['cotacao']; ?>,    defineCor(<?php echo $graficos['integral']['cotacao']; ?>)],
           ['TNFE',        <?php echo $graficos['integral']['tnfe']; ?>,       defineCor(<?php echo $graficos['integral']['tnfe']; ?>)],
           ['WMS',         <?php echo $graficos['integral']['wms']; ?>,        defineCor(<?php echo $graficos['integral']['wms']; ?>)],
+          ['NFC-e',       <?php echo $graficos['integral']['nfce']; ?>,       defineCor(<?php echo $graficos['integral']['nfce']; ?>)]
         ]);
 
         //opções para o gráfico de barras
@@ -551,8 +552,8 @@
           ['Supervisor',     <?php echo $graficos['frente_de_loja']['supervisor']; ?>,     defineCor(<?php echo $graficos['frente_de_loja']['supervisor']; ?>)],
           ['Scanntech',      <?php echo $graficos['frente_de_loja']['scanntech']; ?>,      defineCor(<?php echo $graficos['frente_de_loja']['scanntech']; ?>)],
           ['Sitef',          <?php echo $graficos['frente_de_loja']['sitef']; ?>,          defineCor(<?php echo $graficos['frente_de_loja']['sitef']; ?>)],
-          ['Comandas',       <?php echo $graficos['frente_de_loja']['comandas']; ?>,       defineCor(<?php echo $graficos['frente_de_loja']['comandas']; ?>)]
-
+          ['Comandas',       <?php echo $graficos['frente_de_loja']['comandas']; ?>,       defineCor(<?php echo $graficos['frente_de_loja']['comandas']; ?>)],
+          ['NFC-e',          <?php echo $graficos['frente_de_loja']['nfce']; ?>,           defineCor(<?php echo $graficos['frente_de_loja']['nfce']; ?>)]
         ]);
 
         //opções para o gráfico de barras

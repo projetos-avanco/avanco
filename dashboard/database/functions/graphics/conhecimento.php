@@ -11,7 +11,7 @@ function verificaConhecimentoDoColaborador($conexao, $id)
   criaSessaoDeGraficos();
 
   # preenchendo a sessão com o nível de conhecimento do colaborador em cada módulo
-  for ($i = 1; $i <= 28; $i++) {
+  for ($i = 1; $i <= 30; $i++) {
 
     $query =
       "SELECT
@@ -147,6 +147,14 @@ function verificaConhecimentoDoColaborador($conexao, $id)
 
       case 28:
         $_SESSION['graficos']['novo_erp']['minha_conta']             = $percentual[0];
+        break;
+
+      case 29:
+        $_SESSION['graficos']['integral']['nfce']                    = $percentual[0];
+        break;
+
+      case 30:
+        $_SESSION['graficos']['frente_de_loja']['nfce']              = $percentual[0];
         break;
 
     }

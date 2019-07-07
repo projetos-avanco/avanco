@@ -312,6 +312,55 @@ function atualizaEspecialidadesDoIntegral($db, $id, $especialidades)
       mysqli_query($db, $query);
     }    
   }
+
+  if ($especialidades['integral']['nfce']) {
+    $query = 
+      "SELECT
+        id_especialidade
+      FROM av_dashboard_colaborador_especialidades
+      WHERE (id_colaborador = $id)
+        AND (id_especialidade = 234)";
+    
+    $resultado = mysqli_query($db, $query);
+
+    if ($resultado->num_rows > 0) {
+      for ($j = 234; $j <= 234; $j++) {
+        if ($j <= 234) {
+          $query = 
+            "UPDATE av_dashboard_colaborador_especialidades 
+              SET conhecimento = 1
+                WHERE (id_colaborador = $id)
+                  AND (id_especialidade = $j)
+                  AND (id_modulo = 29)";
+  
+        } else {
+          $query = 
+            "UPDATE av_dashboard_colaborador_especialidades 
+              SET conhecimento = 0
+                WHERE (id_colaborador = $id)
+                  AND (id_especialidade = $j)
+                  AND (id_modulo = 29)";
+        }
+  
+        mysqli_query($db, $query);
+      }
+    } else {
+      $query = "INSERT INTO av_dashboard_colaborador_especialidades VALUES ($id, 234, 29, 1)";
+
+      mysqli_query($db, $query);
+    }
+  } else {
+    for ($j = 234; $j <= 234; $j++) {
+      $query = 
+        "UPDATE av_dashboard_colaborador_especialidades 
+          SET conhecimento = 0
+            WHERE (id_colaborador = $id)
+              AND (id_especialidade = $j)
+              AND (id_modulo = 29)";
+
+      mysqli_query($db, $query);
+    }    
+  }
 }
 
 /**
@@ -518,6 +567,55 @@ function atualizaEspecialidadesDoFrente($db, $id, $especialidades)
 
       mysqli_query($db, $query);
     }
+  }
+
+  if ($especialidades['frente']['nfce']) {
+    $query = 
+      "SELECT
+        id_especialidade
+      FROM av_dashboard_colaborador_especialidades
+      WHERE (id_colaborador = $id)
+        AND (id_especialidade = 235)";
+    
+    $resultado = mysqli_query($db, $query);
+
+    if ($resultado->num_rows > 0) {
+      for ($j = 235; $j <= 235; $j++) {
+        if ($j <= 235) {
+          $query = 
+            "UPDATE av_dashboard_colaborador_especialidades 
+              SET conhecimento = 1
+                WHERE (id_colaborador = $id)
+                  AND (id_especialidade = $j)
+                  AND (id_modulo = 30)";
+  
+        } else {
+          $query = 
+            "UPDATE av_dashboard_colaborador_especialidades 
+              SET conhecimento = 0
+                WHERE (id_colaborador = $id)
+                  AND (id_especialidade = $j)
+                  AND (id_modulo = 30)";
+        }
+  
+        mysqli_query($db, $query);
+      }
+    } else {
+      $query = "INSERT INTO av_dashboard_colaborador_especialidades VALUES ($id, 235, 30, 1)";
+
+      mysqli_query($db, $query);
+    }
+  } else {
+    for ($j = 235; $j <= 235; $j++) {
+      $query = 
+        "UPDATE av_dashboard_colaborador_especialidades 
+          SET conhecimento = 0
+            WHERE (id_colaborador = $id)
+              AND (id_especialidade = $j)
+              AND (id_modulo = 30)";
+
+      mysqli_query($db, $query);
+    }    
   }
 }
 
@@ -1050,7 +1148,8 @@ function atualizaEspecialidadesDoUsuario($db, $id, $opcoes)
       'contabil' => false,
       'cotacao' => false,
       'tnfe' => false,
-      'wms' => false
+      'wms' => false,
+      'nfce' => false,
     ),
 
     'frente' => array(
@@ -1059,7 +1158,8 @@ function atualizaEspecialidadesDoUsuario($db, $id, $opcoes)
       'supervisor' => false,
       'scanntech' => false,
       'sitef' => false,
-      'comandas' => false
+      'comandas' => false,
+      'nfce' => false,
     ),
 
     'gestor' => array(
@@ -1115,6 +1215,10 @@ function atualizaEspecialidadesDoUsuario($db, $id, $opcoes)
         case 7:
           $especialidades['integral']['wms'] = true;
             break;
+
+        case 29:
+          $especialidades['integral']['nfce'] = true;
+            break;
       }
     } elseif ($opcoes['produto'][$i] == 2) {
       switch ($opcoes['modulo'][$i]) {
@@ -1140,6 +1244,10 @@ function atualizaEspecialidadesDoUsuario($db, $id, $opcoes)
 
         case 13:
           $especialidades['frente']['comandas'] = true;
+            break;
+
+        case 30:
+          $especialidades['frente']['nfce'] = true;
             break;
       }
     } elseif ($opcoes['produto'][$i] == 3) {
