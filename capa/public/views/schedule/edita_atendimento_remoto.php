@@ -235,6 +235,12 @@
                               <option value="2">Frente de Loja</option>
                               <option value="3">Gestor</option>
                               <option value="4" selected>Novo ERP</option>
+                            <?php elseif ($remoto['produto'] == '5') : ?>
+                              <option value="1">Integral</option>
+                              <option value="2">Frente de Loja</option>
+                              <option value="3">Gestor</option>
+                              <option value="4">Novo ERP</option>
+                              <option value="5" selected>Outros</option>
                             <?php endif; ?>
                             </select>
                           </div>
@@ -244,7 +250,7 @@
                           <div class="form-group">
                             <label for="modulo">Módulo</label>
                             <select class="form-control required" id="modulo" name="remoto[modulo]">
-                            <?php if ($remoto['modulo'] == '1'  && $remoto['produto'] == '1') : ?>                    
+                            <?php if ($remoto['modulo'] == '1'  && $remoto['produto'] == '1') : ?>
                               <option value="1" selected>Materiais</option>
                               <option value="2">Fiscal</option>
                               <option value="3">Financeiro</option>
@@ -482,6 +488,8 @@
                               <option value="26">Importação e Exportação</option>
                               <option value="27">Configurações PDV</option>
                               <option value="28" selected>Minha Conta</option>
+                            <?php elseif ($remoto['modulo'] == '28' && $remoto['produto'] == '5') : ?>
+                              <option value="28" selected>Outros</option>
                             <?php endif; ?>
                             </select>
                           </div>

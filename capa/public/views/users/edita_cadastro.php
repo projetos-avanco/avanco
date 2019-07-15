@@ -398,7 +398,9 @@
 
                                   <td>
                                     <div class="checkbox">
-                                      <label></label>
+                                      <label>
+                                        <input type="checkbox" id="30" name="cadastro[opcoes][30]" value="2"> NFC-e
+                                      </label>
                                     </div>
                                   </td>
 
@@ -420,7 +422,9 @@
                                 <tr>
                                   <td>
                                     <div class="checkbox">
-                                      <label></label>
+                                      <label>
+                                        <input type="checkbox" id="29" name="cadastro[opcoes][29]" value="1"> NFC-e
+                                      </label>
                                     </div>
                                   </td>
 
