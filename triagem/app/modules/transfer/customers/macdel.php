@@ -9,7 +9,7 @@ if ($cliente['produto'] == '1') {
     case '6':
     case '7':
       for ($i = 0; $i < $contador; $i++) {
-        if ($colaboradores[$i]['id'] != '23' && $colaboradores[$i]['id'] != '20') {
+        if ($colaboradores[$i]['id'] != '23' && $colaboradores[$i]['id'] != '30') {
           unset($colaboradores[$i]);
         }
       }
@@ -34,7 +34,7 @@ if ($cliente['produto'] == '1') {
     case '2':
     case '4':
       for ($i = 0; $i < $contador; $i++) {
-        if ($colaboradores[$i]['id'] != '25') {
+        if ($colaboradores[$i]['id'] != '66') {
           unset($colaboradores[$i]);
         }
       }
@@ -100,7 +100,7 @@ if ($cliente['produto'] == '1') {
 } elseif ($cliente['produto'] == '2') {
   # Qualquer Módulo
   for ($i = 0; $i < $contador; $i++) {
-    if ($colaboradores[$i]['id'] != '20') {
+    if ($colaboradores[$i]['id'] != '30') {
       unset($colaboradores[$i]);
     }
   }
