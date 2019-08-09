@@ -258,7 +258,6 @@
     </div><!-- segunda seção de produtos -->
 
     <div class="row"><!-- terceira seção de produtos -->
-      <!--
       <div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
@@ -279,7 +278,7 @@
         </div>
       </div>
 
-      <div class="col-sm-4">
+      <!--<div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="text-center">
@@ -299,7 +298,7 @@
         </div>
       </div>
     -->
-      <div class="col-sm-4">
+      <!--<div class="col-sm-4">
         <div class="panel panel-default">
           <div class="panel-body">
             <div class="text-center">
@@ -317,7 +316,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
 
       <div class="col-sm-4">
         <div class="panel panel-default">
