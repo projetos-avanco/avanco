@@ -67,7 +67,7 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null, $alteracoes
     # configurações de servidor
     #$email->SMTPDebug  = 2;
     $email->isSMTP();
-    $email->Host       = 'email-ssl.com.br';
+    $email->Host       = 'email.avancoinfo.com.br';
     $email->SMTPAuth   = true;
     $email->Username   = 'agenda@avancoinfo.com.br';
     $email->Password   = '40728dca334d69aeb664423c77e8e5f6';
