@@ -70,7 +70,7 @@ function enviaEmailRemoto($db, $remoto, $contato, $cc, $tipo = null, $alteracoes
     $email->Host       = 'email-ssl.com.br';
     $email->SMTPAuth   = true;
     $email->Username   = 'agenda@avancoinfo.com.br';
-    $email->Password   = 'Avanco@30251188';
+    $email->Password   = '40728dca334d69aeb664423c77e8e5f6';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
