@@ -402,7 +402,7 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoExterno($db, $externo, $e
                 <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'> $supervisor</span>
                 <span style='display: inline;'>/</span> <span style='color: rgb(33, 33, 33); display: inline;'>Atendimento</span>
                 <span style='display: inline;'><br></span>
-                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $email</a>
+                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'>agenda@avancoinfo.com.br</a>
                 <span style='color: #212121;'></span>
               </p>
 
@@ -749,7 +749,7 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoExterno($db, $externo, $ende
                 <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'> $supervisor</span>
                 <span style='display: inline;'>/</span> <span style='color: rgb(33, 33, 33); display: inline;'>Atendimento</span>
                 <span style='display: inline;'><br></span>
-                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $email</a>
+                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'>agenda@avancoinfo.com.br</a>
                 <span style='color: #212121;'></span>
               </p>
 
@@ -1051,7 +1051,7 @@ function geraMensagemDeEmailDoAtendimentoExterno($db, $externo, $endereco, $cont
                 <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'> $supervisor</span>
                 <span style='display: inline;'>/</span> <span style='color: rgb(33, 33, 33); display: inline;'>Atendimento</span>
                 <span style='display: inline;'><br></span>
-                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $email</a>
+                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'>agenda@avancoinfo.com.br</a>
                 <span style='color: #212121;'></span>
               </p>
 
@@ -1284,7 +1284,7 @@ function geraMensagemDeEmailDoCancelamentoDoAtendimentoRemoto($db, $remoto, $con
                 <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'> $supervisor</span>
                 <span style='display: inline;'>/</span> <span style='color: rgb(33, 33, 33); display: inline;'>Atendimento</span>
                 <span style='display: inline;'><br></span>
-                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $email</a>
+                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'>agenda@avancoinfo.com.br</a>
                 <span style='color: #212121;'></span>
               </p>
 
@@ -1592,7 +1592,7 @@ function geraMensagemDeEmailDeAlteracaoDoAtendimentoRemoto($db, $remoto, $contat
                 <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'> $supervisor</span>
                 <span style='display: inline;'>/</span> <span style='color: rgb(33, 33, 33); display: inline;'>Atendimento</span>
                 <span style='display: inline;'><br></span>
-                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $email</a>
+                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'>agenda@avancoinfo.com.br</a>
                 <span style='color: #212121;'></span>
               </p>
 
@@ -1859,7 +1859,7 @@ function geraMensagemDeEmailDoAtendimentoRemoto($db, $remoto, $contato)
                 <span style='font-weight: bold; color: rgb(33, 33, 33); display: inline;'> $supervisor</span>
                 <span style='display: inline;'>/</span> <span style='color: rgb(33, 33, 33); display: inline;'>Atendimento</span>
                 <span style='display: inline;'><br></span>
-                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'> $email</a>
+                  <a href='mailto: iuri@avancoinfo.com.br' style='color: rgb(71, 124, 204); text-decoration: none; display: inline;'>agenda@avancoinfo.com.br</a>
                 <span style='color: #212121;'></span>
               </p>
 
