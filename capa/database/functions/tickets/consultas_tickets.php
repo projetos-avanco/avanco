@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * consulta os dados básicos dos tickets para página de consulta de tickets
@@ -7,10 +7,10 @@
  */
 function consultaDadosBasicosDosTickets($db, $tickets)
 {
-  require DIRETORIO_HELPERS . 'datas.php';
+    require DIRETORIO_HELPERS . 'datas.php';
 
-  $query =
-    "SELECT
+    $query =
+        "SELECT
       DATE_FORMAT(t.data_hora, '%Y-%m-%d') AS data,	
       t.ticket,
       CONCAT(c.name, ' ', c.surname) AS colaborador,
@@ -36,37 +36,34 @@ function consultaDadosBasicosDosTickets($db, $tickets)
       ON c.id = t.colaborador
     ORDER BY t.id DESC";
 
-  # verificando se a consulta pode ser executada
-  if ($resultado = $db->query($query)) {
-    
-    # recuperando os dados
-    while ($registro = $resultado->fetch_assoc()) {
+    # verificando se a consulta pode ser executada
+    if ($resultado = $db->query($query)) {
 
-      # chamando função que formata a data para exibir na página
-      $registro['data']          = formataDataParaExibir($registro['data']);
-      $registro['data_agendada'] = formataDataParaExibir($registro['data_agendada']);
+        # recuperando os dados
+        while ($registro = $resultado->fetch_assoc()) {
 
-      $tickets[] = array(
-        
-        'data'           => $registro['data'],
-        'ticket'         => $registro['ticket'],
-        'colaborador'    => $registro['colaborador'],
-        'data_agendada'  => $registro['data_agendada'],
-        'hora_agendada'  => $registro['hora_agendada'],
-        'chat_id'        => $registro['chat_id'],
-        'validade'       => $registro['validade'],
-        'razao_social'   => $registro['razao_social'],
-        'cnpj'           => $registro['cnpj'],
-        'conta_contrato' => $registro['conta_contrato']
+            # chamando função que formata a data para exibir na página
+            $registro['data']          = formataDataParaExibir($registro['data']);
+            $registro['data_agendada'] = formataDataParaExibir($registro['data_agendada']);
 
-      );
+            $tickets[] = array(
 
+                'data'           => $registro['data'],
+                'ticket'         => $registro['ticket'],
+                'colaborador'    => $registro['colaborador'],
+                'data_agendada'  => $registro['data_agendada'],
+                'hora_agendada'  => $registro['hora_agendada'],
+                'chat_id'        => $registro['chat_id'],
+                'validade'       => $registro['validade'],
+                'razao_social'   => $registro['razao_social'],
+                'cnpj'           => $registro['cnpj'],
+                'conta_contrato' => $registro['conta_contrato']
+
+            );
+        }
     }
 
-  }
-
-  return $tickets;
-
+    return $tickets;
 }
 
 /**
@@ -77,10 +74,10 @@ function consultaDadosBasicosDosTickets($db, $tickets)
  */
 function consultaDadosDaPaginaDeVisualizaoDeTickets($db, $dados, $ticket)
 {
-  require DIRETORIO_HELPERS . 'datas.php';
+    require DIRETORIO_HELPERS . 'datas.php';
 
-  $query =
-    "SELECT
+    $query =
+        "SELECT
       DATE_FORMAT(t.data_hora, '%Y-%m-%d') AS data,
       t.ticket,
       DATE_FORMAT(t.agendado, '%Y-%m-%d') AS data_agendada,
@@ -118,43 +115,67 @@ function consultaDadosDaPaginaDeVisualizaoDeTickets($db, $dados, $ticket)
     WHERE (t.ticket = $ticket)
     ORDER BY data DESC";
 
-  # verificando se a consulta pode ser executada
-  if ($resultado = $db->query($query)) {
+    # verificando se a consulta pode ser executada
+    if ($resultado = $db->query($query)) {
 
-    while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
+        while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
 
-      $registro['data']          = formataDataParaExibir($registro['data']);
-      $registro['data_agendada'] = formataDataParaExibir($registro['data_agendada']);
+            $registro['data']          = formataDataParaExibir($registro['data']);
+            $registro['data_agendada'] = formataDataParaExibir($registro['data_agendada']);
 
-      $dados = array(
+            if ($registro['id_produto'] == 5) {
+                $dados = array(
 
-        'data'              => $registro['data'],
-        'ticket'            => $registro['ticket'],
-        'data_agendada'     => $registro['data_agendada'],
-        'hora_agendada'     => $registro['hora_agendada'],
-        'historico_chat_id' => $registro['historico_chat_id'],
-        'validade'          => $registro['validade'],
-        'contato'           => $registro['contato'],
-        'cnpj'              => $registro['cnpj'],
-        'conta_contrato'    => $registro['conta_contrato'],
-        'razao_social'      => $registro['razao_social'],
-        'telefone'          => $registro['telefone'],
-        'id_supervisor'     => $registro['id_supervisor'],
-        'supervisor'        => $registro['supervisor'],
-        'id_colaborador'    => $registro['id_colaborador'],
-        'colaborador'       => $registro['colaborador'],
-        'id_produto'        => $registro['id_produto'],
-        'produto'           => $registro['produto'],
-        'id_modulo'         => $registro['id_modulo'],
-        'modulo'            => $registro['modulo'],
-        'assunto'           => $registro['assunto']
+                    'data'              => $registro['data'],
+                    'ticket'            => $registro['ticket'],
+                    'data_agendada'     => $registro['data_agendada'],
+                    'hora_agendada'     => $registro['hora_agendada'],
+                    'historico_chat_id' => $registro['historico_chat_id'],
+                    'validade'          => $registro['validade'],
+                    'contato'           => $registro['contato'],
+                    'cnpj'              => $registro['cnpj'],
+                    'conta_contrato'    => $registro['conta_contrato'],
+                    'razao_social'      => $registro['razao_social'],
+                    'telefone'          => $registro['telefone'],
+                    'id_supervisor'     => $registro['id_supervisor'],
+                    'supervisor'        => $registro['supervisor'],
+                    'id_colaborador'    => $registro['id_colaborador'],
+                    'colaborador'       => $registro['colaborador'],
+                    'id_produto'        => $registro['id_produto'],
+                    'produto'           => $registro['produto'],
+                    'id_modulo'         => $registro['id_modulo'],
+                    'modulo'            => 'Outros',
+                    'assunto'           => $registro['assunto']
 
-      );
+                );
+            } else {
+                $dados = array(
 
+                    'data'              => $registro['data'],
+                    'ticket'            => $registro['ticket'],
+                    'data_agendada'     => $registro['data_agendada'],
+                    'hora_agendada'     => $registro['hora_agendada'],
+                    'historico_chat_id' => $registro['historico_chat_id'],
+                    'validade'          => $registro['validade'],
+                    'contato'           => $registro['contato'],
+                    'cnpj'              => $registro['cnpj'],
+                    'conta_contrato'    => $registro['conta_contrato'],
+                    'razao_social'      => $registro['razao_social'],
+                    'telefone'          => $registro['telefone'],
+                    'id_supervisor'     => $registro['id_supervisor'],
+                    'supervisor'        => $registro['supervisor'],
+                    'id_colaborador'    => $registro['id_colaborador'],
+                    'colaborador'       => $registro['colaborador'],
+                    'id_produto'        => $registro['id_produto'],
+                    'produto'           => $registro['produto'],
+                    'id_modulo'         => $registro['id_modulo'],
+                    'modulo'            => $registro['modulo'],
+                    'assunto'           => $registro['assunto']
+
+                );
+            }
+        }
     }
 
-  }
-
-  return $dados;
-
+    return $dados;
 }
