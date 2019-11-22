@@ -22,7 +22,7 @@ function retornaDadosDoColaborador($objeto, $modelo, $id)
 
     $modelo['pessoal']['nome']                 = $registro['nome'];
     $modelo['pessoal']['sobrenome']            = $registro['sobrenome'];
-    $modelo['pessoal']['caminho_foto_jogador'] = $registro['caminho_foto'];
+    $modelo['pessoal']['caminho_foto_jogador'] = strtolower(removeAcentosReformulada($registro['caminho_foto']));
 
   }
 
@@ -79,7 +79,7 @@ function retornaCaminhoDaFotoDaBandeiraDoTime($objeto, $modelo, $id)
 
   $bandeira = mysqli_fetch_row($resultado);
 
-  $modelo['pessoal']['caminho_foto_bandeira'] = BASE_URL . 'public/img/flags/' . strtolower(removeAcentos($bandeira[0])) . '.png';
+  $modelo['pessoal']['caminho_foto_bandeira'] = BASE_URL . 'public/img/flags/' . strtolower(removeAcentosReformulada($bandeira[0])) . '.png';
 
   return $modelo;
 }
