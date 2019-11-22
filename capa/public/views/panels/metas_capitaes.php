@@ -110,19 +110,23 @@
 
                 # verificando se o time selecionado foi os templários
                 if (isset($dados['2']))
-                  $time = 'Os Templários';
+                  $time = 'Águia';
                 
                 # verificando se o time selecionado foi o divergente
                 if (isset($dados['3']))
-                  $time = 'Divergente';
+                  $time = 'Phoenix';
 
                 # verificando se o time selecionado foi o gulliver
                 if (isset($dados['4']))
-                  $time = 'Gulliver';
+                  $time = 'Integradores';
                 
                 # verificando se o time selecionado foi o avalanche
                 if (isset($dados['5']))
-                  $time = 'Avalanche';
+                  $time = 'Store Front';
+
+                # verificando se o time selecionado foi o avalanche
+                if (isset($dados['6']))
+                  $time = 'Specialists';
 
               ?>
 
@@ -215,7 +219,7 @@
                 </tbody>
               </table>
             <?php else : ?><!-- exibindo todos os times -->          
-              <h3 class="text-center">Os Templários</h3>
+              <h3 class="text-center">Águia</h3>
 
               <br>
 
@@ -302,7 +306,7 @@
 
               <br>
 
-              <h3 class="text-center">Divergente</h3>
+              <h3 class="text-center">Phoenix</h3>
 
               <br>
 
@@ -389,7 +393,7 @@
 
               <br>
 
-              <h3 class="text-center">Gulliver</h3>
+              <h3 class="text-center">Integradores</h3>
 
               <br>
 
@@ -476,7 +480,7 @@
 
               <br>
 
-              <h3 class="text-center">Avalanche</h3>
+              <h3 class="text-center">Store Front</h3>
 
               <br>
 
@@ -560,6 +564,93 @@
                 </tr><!-- exibindo totais -->
                 </tbody>
               </table><!-- tabela do time avalanche -->
+
+              <br>
+
+              <h3 class="text-center">Specialists</h3>
+
+              <br>
+
+              <table class="table table-bordered"><!-- tabela do time gulliver -->
+                <thead>
+                  <tr>
+                    <th class="text-center">Colaborador</th>
+                    <th class="text-center">Demandados</th>
+                    <th class="text-center">Perc. de Perda</th>
+                    <th class="text-center">Perc. de Fila 15 min</th>
+                    <th class="text-center">Perc. de Perda Prop.</th>
+                    <th class="text-center">Perc. de Fila 15 min Prop.</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <?php foreach($dados['6'] as $chave => $valor) : ?>
+                  
+                  <?php if (isset($valor['nome']) AND isset($valor['sobrenome'])) : ?>
+                  <tr>
+                    <td class="text-left" width="15%"><?php echo $valor['nome'] . ' ' . $valor['sobrenome']; ?></td>
+                  <?php endif; ?>
+                  <?php if (isset($valor['demandados'])) : ?>
+                    <td class="text-center" width="15%"><?php echo $valor['demandados'];?></td>                      
+                  <?php endif; ?>
+                  <?php if (isset($valor['perc_perda'])) : ?>
+                    <td class="text-center" width="15%"><?php echo $valor['perc_perda']; ?>%</td>
+                  <?php endif; ?>
+                  <?php if (isset($valor['perc_fila'])) : ?>
+                    <td class="text-center" width="15%"><?php echo $valor['perc_fila']; ?>%</td>
+                  <?php endif; ?>
+                  <?php if (isset($valor['perc_perda_prop'])) : ?>
+                    <td class="text-center" width="15%"><?php echo $valor['perc_perda_prop']; ?>%</td>
+                  <?php endif; ?>
+                  <?php if (isset($valor['perc_fila_prop'])) : ?>
+                    <td class="text-center" width="15%"><?php echo $valor['perc_fila_prop']; ?>%</td>
+                  </tr>
+                  <?php endif; ?>                  
+
+                  <?php 
+
+                    # verificando se a posição percorrida é a do total de perda proporcional
+                    if (isset($valor['total_perda_prop']))
+                      
+                      # gravando total de perda proporcional em uma variável
+                      $totalPerdaProp = $valor['total_perda_prop'];                                        
+
+                    # verificando se a posição percorrida é a do total de fila proporcional
+                    if (isset($valor['total_fila_prop']))
+
+                      # gravando total de fila proporcional em uma variável
+                      $totalFilaProp = $valor['total_fila_prop'];                    
+
+                    # verificando se a posição percorrida é a do total de demandados
+                    if (isset($valor['total_demandados']))
+
+                      # gravando total de demandados em uma variável
+                      $totalDemandados = $valor['total_demandados'];                    
+
+                    # verificando se a posição percorrida é a do total de perda
+                    if (isset($valor['total_perda']))
+
+                      # gravando total de perda em uma variável
+                      $totalPerda = $valor['total_perda'];                    
+
+                    # verificando se a posição percorrida é a do total de fila
+                    if (isset($valor['total_fila']))
+
+                      # gravando total de fila em uma variável
+                      $totalFila = $valor['total_fila'];                    
+
+                  ?>
+
+                <?php endforeach; ?>
+                <tr class="linha-totais"><!-- exibindo totais -->
+                  <td class="text-center negrito">Totais</td>
+                  <td class="text-center"><?php echo $totalDemandados; ?></td>
+                  <td class="text-center perc-total-perda negrito"><?php echo $totalPerda; ?>%</td>
+                  <td class="text-center perc-total-fila negrito"><?php echo $totalFila; ?>%</td>
+                  <td class="text-center"><?php echo $totalPerdaProp; ?>%</td>
+                  <td class="text-center"><?php echo $totalFilaProp; ?>%</td>
+                </tr><!-- exibindo totais -->
+                </tbody>
+              </table><!-- tabela do time gulliver -->
             <?php endif; ?>
           </div>
         </div>

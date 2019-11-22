@@ -61,32 +61,39 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
     # verificando qual é o id do time do capitão que está logado
     switch ($id) {
 
-      case '14':
+      case '23':
   
-        $dados['time']    = 3;
-        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time divergente
+        $dados['time']    = 6;
+        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time águia
   
           break;
   
-      case '23':
+      case '64':
   
-        $dados['time']    = 2;
-        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time os templários
+        $dados['time']    = 7;
+        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time phoenix
   
+          break;
+  
+      case '14':
+  
+        $dados['time']    = 8;
+        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time integradores
+
           break;
   
       case '30':
   
-        $dados['time']    = 5;
-        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time avalanche
-
+        $dados['time']    = 9;
+        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time store front
+          
           break;
-  
+
       case '66':
   
-        $dados['time']    = 4;
-        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time gulliver
-          
+        $dados['time']    = 10;
+        $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time specialists
+              
           break;
 
     }

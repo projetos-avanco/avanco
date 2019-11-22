@@ -63,6 +63,11 @@ function buscaDadosDoPainelMetaCapitaes($time, $data1, $data2)
 
     # chamando função que calcula os resultados totais
     $dados = calculaResultadosTotais('5', count($dados['5']), $dados);
+
+  if (isset($dados['6']))
+
+    # chamando função que calcula os resultados totais
+    $dados = calculaResultadosTotais('6', count($dados['6']), $dados);
   
   # chamando função que altera o formato da data para dd/mm/aaaa
   $data1 = formataDataParaExibir($data1);

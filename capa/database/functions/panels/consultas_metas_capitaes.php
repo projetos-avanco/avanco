@@ -48,26 +48,30 @@ function consultaIdDosColaboradoresDoTime($db, $time)
       # recuperando id do chat dos colaboradores de todos os times
       while ($registro = $resultado->fetch_assoc()) {
         
-        # verificando se o id do chat do colaborador pertence ao time os templários
-        if ($registro['time'] == '2') {
+        # verificando se o id do chat do colaborador pertence ao time águia
+        if ($registro['time'] == '6') {
 
           $ids['2'][] = $registro['id'];
         
-        # verificando se o id do chat do colaborador pertence ao time divergente
-        } elseif ($registro['time'] == '3') { 
+        # verificando se o id do chat do colaborador pertence ao time phoenix
+        } elseif ($registro['time'] == '7') { 
 
           $ids['3'][] = $registro['id'];
         
-        # verificando se o id do chat do colaborador pertence ao time gulliver
-        } elseif ($registro['time'] == '4') {
+        # verificando se o id do chat do colaborador pertence ao time integradores
+        } elseif ($registro['time'] == '8') {
 
           $ids['4'][] = $registro['id'];
         
-        # verificando se o id do chat do colaborador pertence ao time avalanche
-        } elseif ($registro['time'] == '5') {
+        # verificando se o id do chat do colaborador pertence ao time store front
+        } elseif ($registro['time'] == '9') {
 
           $ids['5'][] = $registro['id'];
+        # verificando se o id do chat do colaborador pertence ao time specialists
+        } elseif ($registro['time'] == '10') {
 
+          $ids['6'][] = $registro['id'];
+  
         }
 
       }
@@ -168,8 +172,8 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
       settype($registro['percentual_perda'], 'float');
       settype($registro['percentual_fila_15_min'], 'float');
 
-      # verificando se o id do chat do colaborador pertence ao time os templários
-      if ($registro['time'] == '2') {
+      # verificando se o id do chat do colaborador pertence ao time águia
+      if ($registro['time'] == '6') {
 
         # adicionando os índices retornados pela consulta e calculando os percentuais proporcionais
         $dados['2'][] = array(
@@ -185,8 +189,8 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
 
         );
       
-      # verificando se o id do chat do colaborador pertence ao time divergente
-      } elseif ($registro['time'] == '3') {
+      # verificando se o id do chat do colaborador pertence ao time phoenix
+      } elseif ($registro['time'] == '7') {
 
         # adicionando os índices retornados pela consulta e calculando os percentuais proporcionais
         $dados['3'][] = array(
@@ -202,8 +206,8 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
 
         );
 
-      # verificando se o id do chat do colaborador pertence ao time gulliver
-      } elseif ($registro['time'] == '4') {
+      # verificando se o id do chat do colaborador pertence ao time integradores
+      } elseif ($registro['time'] == '8') {
 
         # adicionando os índices retornados pela consulta e calculando os percentuais proporcionais
         $dados['4'][] = array(
@@ -219,11 +223,28 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
 
         );
 
-      # verificando se o id do chat do colaborador pertence ao time avalanche
-      } elseif ($registro['time'] == '5') {
+      # verificando se o id do chat do colaborador pertence ao time store front
+      } elseif ($registro['time'] == '9') {
 
         # adicionando os índices retornados pela consulta e calculando os percentuais proporcionais
         $dados['5'][] = array(
+
+          'id'              => $registro['id'],
+          'nome'            => $registro['nome'],
+          'sobrenome'       => $registro['sobrenome'],
+          'demandados'      => $registro['demandados'],
+          'perc_perda'      => $registro['percentual_perda'],
+          'perc_fila'       => $registro['percentual_fila_15_min'],
+          'perc_perda_prop' => $registro['demandados'] * $registro['percentual_perda'] / 100,
+          'perc_fila_prop'  => $registro['demandados'] * $registro['percentual_fila_15_min'] / 100
+
+        );
+
+      # verificando se o id do chat do colaborador pertence ao time specialists
+      } elseif ($registro['time'] == '10') {
+
+        # adicionando os índices retornados pela consulta e calculando os percentuais proporcionais
+        $dados['6'][] = array(
 
           'id'              => $registro['id'],
           'nome'            => $registro['nome'],
@@ -240,7 +261,7 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
 
     }
 
-    # verificando se existe resultados do time os templários no array
+    # verificando se existe resultados do time águia no array
     if (isset($dados['2'])) {
 
       # adicionando os índices de totais
@@ -256,7 +277,7 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
 
     }
     
-    # verificando se existe resultados do time divergente no array
+    # verificando se existe resultados do time phoenix no array
     if (isset($dados['3'])) {
 
       # adicionando os índices de totais
@@ -272,7 +293,7 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
 
     }    
 
-    # verificando se existe resultados do time gulliver no array
+    # verificando se existe resultados do time integradores no array
     if (isset($dados['4'])) {
       
       # adicionando os índices de totais
@@ -288,7 +309,7 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
 
     }    
 
-    # verificando se existe resultados do time avalanche no array
+    # verificando se existe resultados do time store front no array
     if (isset($dados['5'])) {
       
       # adicionando os índices de totais
@@ -302,6 +323,22 @@ function consultaResultadosDosColaboradores($db, $colaboradores, $data1, $data2,
   
       );
 
+    }
+
+    # verificando se existe resultados do time specialists no array
+    if (isset($dados['6'])) {
+      
+      # adicionando os índices de totais
+      $dados['6'][] = array(
+  
+        'total_perda_prop' => 0.0,
+        'total_fila_prop'  => 0.0,
+        'total_demandados' => 0,
+        'total_perda'      => 0.0,
+        'total_fila'       => 0.0
+    
+      );
+  
     }
     
   }

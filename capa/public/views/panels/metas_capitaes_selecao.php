@@ -14,7 +14,7 @@
   $db = abre_conexao();
 
   # verificando se o usuário logado é um capitão
-  if ($id == 14 OR $id == 23 OR $id == 30 OR $id == 66)
+  if ($id == 14 OR $id == 23 OR $id == 30 OR $id == 64 OR $id == 66)
     
     # chamando função que retorna o id do time atual do capitão
     $time = consultaTimeDoCapitaoLogado($db, $id);
@@ -141,10 +141,11 @@
                     <div class="form-group">
                       <select class="form-control" name="time">
                         <option value="1" checked>Todos os Times</option>
-                        <option value="2">Os Templários</option>
-                        <option value="3">Divergente</option>
-                        <option value="4">Gulliver</option>
-                        <option value="5">Avalanche</option>                                            
+                        <option value="6">Águia</option>
+                        <option value="7">Phoenix</option>
+                        <option value="8">Integradores</option>
+                        <option value="9">Store Front</option>
+                        <option value="10">Specialists</option>
                       </select>
                     </div>
                   </div>
