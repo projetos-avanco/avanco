@@ -5,6 +5,8 @@
  */
 function consultaChatSuporte()
 {
+  $curva = false;
+
   # chamando função que retorna uma conexão com a base de dados
   $conexao = abre_conexao();
 
@@ -35,7 +37,7 @@ function consultaChatSuporte()
   if ($quantidade == 1) {
 
     # chamando função que monta uma URL e redireciona o cliente para o departamento que realizará o atendimento
-    redirecionaClienteParaDepartamento($colaboradores, $cliente);
+    redirecionaClienteParaDepartamento($colaboradores, $cliente, $curva);
 
     # verificando se existe um ou mais colaboradores online no chat
   } elseif ($quantidade > 1) {
@@ -68,7 +70,7 @@ function consultaChatSuporte()
       usort($colaboradores, "comparaChavesDosArraysInternos");
 
       # chamando função que monta uma URL e redireciona o cliente para o departamento que realizará o atendimento
-      redirecionaClienteParaDepartamento($colaboradores, $cliente);
+      redirecionaClienteParaDepartamento($colaboradores, $cliente, $curva);
 
       # verificando se existe um ou mais colaboradores logados que possuem no mínimo 20% de conhecimento
     } elseif ($quantidade > 0) {
@@ -83,7 +85,7 @@ function consultaChatSuporte()
       usort($colaboradores, "comparaChavesDosArraysInternos");
 
       # chamando função que monta uma URL e redireciona o cliente para o departamento que realizará o atendimento
-      redirecionaClienteParaDepartamento($colaboradores, $cliente);
+      redirecionaClienteParaDepartamento($colaboradores, $cliente, $curva);
 
     }
 

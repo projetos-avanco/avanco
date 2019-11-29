@@ -44,7 +44,7 @@
         <div class="col-sm-2">
           <div class="form-group">
             <label class="sr-only" for="conta_contrato">Conta Contrato: </label>
-            <input type="text" id="conta_contrato" name="cliente[conta_contrato]" value="0000027">
+            <input type="text" id="conta_contrato" name="cliente[conta_contrato]" value="0000573">
           </div>
         </div>
 

@@ -1,5 +1,7 @@
 <?php
 
+$curva = true;
+
 $contador = count($colaboradores);
 
 if ($cliente['produto'] == '1') {
@@ -9,112 +11,60 @@ if ($cliente['produto'] == '1') {
     case '6':
     case '7':
       for ($i = 0; $i < $contador; $i++) {
-        if ($colaboradores[$i]['id'] != '23' && $colaboradores[$i]['id'] != '30') {
-          unset($colaboradores[$i]);
+        if ($colaboradores[$i]['id'] == '23') {
+            $colaborador = [];
+
+            array_push($colaborador, $colaboradores[$i]);
+            redirecionaClienteParaDepartamento($colaborador, $cliente, $curva);
         }
       }
-
-      $quantidade = count($colaboradores);
-
-      $colaboradores = array_values($colaboradores);
-      $colaboradores = verificaFilaDosColaboradores($colaboradores, $quantidade, $conexao);
-
-      if (count($colaboradores) == 0) {
-        echo json_encode(NULL);
-        exit;
-      } elseif (count($colaboradores) == 1) {
-        redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-      } else {
-        usort($colaboradores, "comparaChavesDosArraysInternos");
-        redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-      }
-        break;
+    break;
 
     # Fiscal, Contábil
     case '2':
     case '4':
       for ($i = 0; $i < $contador; $i++) {
-        if ($colaboradores[$i]['id'] != '66') {
-          unset($colaboradores[$i]);
+        if ($colaboradores[$i]['id'] == '66') {
+            $colaborador = [];
+
+            array_push($colaborador, $colaboradores[$i]);
+            redirecionaClienteParaDepartamento($colaborador, $cliente, $curva);
         }
       }
-
-      $quantidade = count($colaboradores);
-      $colaboradores = array_values($colaboradores);
-
-      if (count($colaboradores) == 0) {
-        echo json_encode(NULL);
-        exit;
-      } elseif (count($colaboradores) == 1) {
-        redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-      } else {
-        usort($colaboradores, "comparaChavesDosArraysInternos");
-        redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-      }
-        break;
+    break;
 
     # Financeiro
     case '3':
       for ($i = 0; $i < $contador; $i++) {
-        if ($colaboradores[$i]['id'] != '14') {
-          unset($colaboradores[$i]);
+        if ($colaboradores[$i]['id'] == '14') {
+            $colaborador = [];
+
+            array_push($colaborador, $colaboradores[$i]);
+            redirecionaClienteParaDepartamento($colaborador, $cliente, $curva);
         }
       }
-
-      $quantidade = count($colaboradores);
-      $colaboradores = array_values($colaboradores);
-
-      if (count($colaboradores) == 0) {
-        echo json_encode(NULL);
-        exit;
-      } elseif (count($colaboradores) == 1) {
-        redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-      } else {
-        usort($colaboradores, "comparaChavesDosArraysInternos");
-        redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-      }
-        break;
+    break;
 
     # Cotação
     case '5':
       for ($i = 0; $i < $contador; $i++) {
-        if ($colaboradores[$i]['id'] != '23') {
-          unset($colaboradores[$i]);
+        if ($colaboradores[$i]['id'] == '23') {
+            $colaborador = [];
+
+            array_push($colaborador, $colaboradores[$i]);
+            redirecionaClienteParaDepartamento($colaborador, $cliente, $curva);
         }
       }
-
-      $quantidade = count($colaboradores);
-      $colaboradores = array_values($colaboradores);
-
-      if (count($colaboradores) == 0) {
-        echo json_encode(NULL);
-        exit;
-      } elseif (count($colaboradores) == 1) {
-        redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-      } else {
-        usort($colaboradores, "comparaChavesDosArraysInternos");
-        redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-      }
-        break;
+    break;
   }
 } elseif ($cliente['produto'] == '2') {
   # Qualquer Módulo
   for ($i = 0; $i < $contador; $i++) {
-    if ($colaboradores[$i]['id'] != '30') {
-      unset($colaboradores[$i]);
+    if ($colaboradores[$i]['id'] == '30') {
+        $colaborador = [];
+
+        array_push($colaborador, $colaboradores[$i]);
+        redirecionaClienteParaDepartamento($colaborador, $cliente, $curva);
     }
-  }
-
-  $quantidade = count($colaboradores);
-  $colaboradores = array_values($colaboradores);
-
-  if (count($colaboradores) == 0) {
-    echo json_encode(NULL);
-    exit;
-  } elseif (count($colaboradores) == 1) {
-    redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
-  } else {
-    usort($colaboradores, "comparaChavesDosArraysInternos");
-    redirecionaClienteParaDepartamento($colaboradores, $cliente, true);
   }
 }
