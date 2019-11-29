@@ -205,7 +205,7 @@ $(function() {
               exercicio.dia = data.getDate();
 
               // retirando 30 dias a partir da data final (1 meses)
-              data.setDate(exercicio.dia - 30);
+              //data.setDate(exercicio.dia - 30);
               
               // dividindo data de admissão em array para recuperar o vencimento
               exercicio.tmp = data.toISOString();
