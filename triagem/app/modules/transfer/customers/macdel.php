@@ -20,8 +20,9 @@ if ($cliente['produto'] == '1') {
       }
     break;
 
-    # Fiscal, Contábil
+    # Fiscal, Financeiro, Contábil
     case '2':
+    case '3':
     case '4':
       for ($i = 0; $i < $contador; $i++) {
         if ($colaboradores[$i]['id'] == '66') {
@@ -32,19 +33,7 @@ if ($cliente['produto'] == '1') {
         }
       }
     break;
-
-    # Financeiro
-    case '3':
-      for ($i = 0; $i < $contador; $i++) {
-        if ($colaboradores[$i]['id'] == '14') {
-            $colaborador = [];
-
-            array_push($colaborador, $colaboradores[$i]);
-            redirecionaClienteParaDepartamento($colaborador, $cliente, $curva);
-        }
-      }
-    break;
-
+    
     # Cotação
     case '5':
       for ($i = 0; $i < $contador; $i++) {
