@@ -68,7 +68,7 @@
                 font-size: 12px;
                 vertical-align: middle;
                 padding-top: 0.5%;
-                padding-left: 5%;
+                padding-left: 1.5%;
                 padding-bottom: 0.5%;
             }
 
@@ -119,7 +119,7 @@
         <form action="<?php echo BASE_URL; ?>app/requests/post/users/recebe_edicao_cadastro.php" method="post" accept-charset="utf-8" enctype="multipart/form-data">
             <div class="row">
                 <!-- linha principal -->
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <!-- primeira coluna principal -->
 
                     <div class="row">
@@ -177,8 +177,7 @@
                                                     <tr>
                                                         <th class="text-center">Integral</th>
                                                         <th class="text-center">Frente</th>
-                                                        <th class="text-center">Gestor</th>
-                                                        <th class="text-center">Novo ERP</th>
+                                                        <th class="text-center">Outros</th>
                                                     </tr>
                                                 </thead>
 
@@ -187,7 +186,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="1" name="cadastro[opcoes][1]" value="1"> Materiais
+                                                                    <input type="checkbox" id="245" name="cadastro[opcoes][245]" value="36"> Cadastros Gerais
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -195,7 +194,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="8" name="cadastro[opcoes][8]" value="2"> Frente Windows
+                                                                    <input type="checkbox" id="239" name="cadastro[opcoes][239]" value="34"> Comandas
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -203,15 +202,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="14" name="cadastro[opcoes][14]" value="3"> Instalação
-                                                                </label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" id="19" name="cadastro[opcoes][19]" value="4"> Instalação
+                                                                    <input type="checkbox" id="234" name="cadastro[opcoes][234]" value="29"> App Avanço / Farol de Preços / Integweb / Ivisual / Novos Relatórios Web
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -221,7 +212,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="2" name="cadastro[opcoes][2]" value="1"> Fiscal
+                                                                    <input type="checkbox" id="246" name="cadastro[opcoes][246]" value="36"> Cálculo de Preços
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -229,7 +220,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="9" name="cadastro[opcoes][9]" value="2"> Frente Linux
+                                                                    <input type="checkbox" id="240" name="cadastro[opcoes][240]" value="34"> Frente Linux
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -237,15 +228,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="15" name="cadastro[opcoes][15]" value="3"> Cadastro
-                                                                </label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" id="20" name="cadastro[opcoes][20]" value="4"> Pessoas
+                                                                    <input type="checkbox" id="235" name="cadastro[opcoes][235]" value="30"> Central de Compras
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -255,7 +238,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="3" name="cadastro[opcoes][3]" value="1"> Financeiro
+                                                                    <input type="checkbox" id="247" name="cadastro[opcoes][247]" value="36"> Coletores
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -263,7 +246,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="10" name="cadastro[opcoes][10]" value="2"> Supervisor
+                                                                    <input type="checkbox" id="241" name="cadastro[opcoes][241]" value="34"> Frente Windows
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -271,15 +254,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="16" name="cadastro[opcoes][16]" value="3"> Movimento
-                                                                </label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" id="21" name="cadastro[opcoes][21]" value="4"> Produtos
+                                                                    <input type="checkbox" id="236" name="cadastro[opcoes][236]" value="31"> Conciliador de Cartões
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -289,7 +264,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="4" name="cadastro[opcoes][4]" value="1"> Contábil
+                                                                    <input type="checkbox" id="248" name="cadastro[opcoes][248]" value="36"> Contábil
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -297,7 +272,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="11" name="cadastro[opcoes][11]" value="2"> Scanntech
+                                                                    <input type="checkbox" id="242" name="cadastro[opcoes][242]" value="34"> Sitef
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -305,15 +280,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="17" name="cadastro[opcoes][17]" value="3"> Contábil
-                                                                </label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" id="22" name="cadastro[opcoes][22]" value="4"> Fiscal
+                                                                    <input type="checkbox" id="237" name="cadastro[opcoes][237]" value="32"> E-commerce / MG Mobile
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -323,7 +290,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="5" name="cadastro[opcoes][5]" value="1"> Cotação
+                                                                    <input type="checkbox" id="249" name="cadastro[opcoes][249]" value="36"> Contas à Pagar / Receber
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -331,7 +298,8 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="12" name="cadastro[opcoes][12]" value="2"> Sitef
+                                                                    <input type="checkbox" id="243" name="cadastro[opcoes][243]" value="34">
+                                                                    Supervisor
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -339,15 +307,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="18" name="cadastro[opcoes][18]" value="3"> Fiscal
-                                                                </label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" id="23" name="cadastro[opcoes][23]" value="4"> Financeiro
+                                                                    <input type="checkbox" id="238" name="cadastro[opcoes][238]" value="33"> FGF / Systax
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -357,15 +317,8 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="6" name="cadastro[opcoes][6]" value="1"> TNFE
-                                                                </label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" id="13" name="cadastro[opcoes][13]" value="2"> Comandas
+                                                                    <input type="checkbox" id="250" name="cadastro[opcoes][250]" value="36">
+                                                                    Controle Bancário
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -379,7 +332,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="24" name="cadastro[opcoes][24]" value="4"> Lançamentos
+                                                                    <input type="checkbox" id="244" name="cadastro[opcoes][244]" value="35"> Gestor
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -389,15 +342,8 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="7" name="cadastro[opcoes][7]" value="1"> WMS
-                                                                </label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label>
-                                                                    <input type="checkbox" id="30" name="cadastro[opcoes][30]" value="2"> NFC-e
+                                                                    <input type="checkbox" id="251" name="cadastro[opcoes][251]" value="36">
+                                                                    Cotação de Preços / Sugestão de Compras / Pedidos de Compras
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -411,7 +357,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="25" name="cadastro[opcoes][25]" value="4"> Relatórios e Gráficos
+                                                                    <input type="checkbox" id="269" name="cadastro[opcoes][269]" value="37"> Mercafácil / Dotz / DMCard / Scanntech
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -421,7 +367,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="29" name="cadastro[opcoes][29]" value="1"> NFC-e
+                                                                    <input type="checkbox" id="252" name="cadastro[opcoes][252]" value="36"> Emissão de Etiquetas
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -434,14 +380,8 @@
 
                                                         <td>
                                                             <div class="checkbox">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="26" name="cadastro[opcoes][26]" value="4"> Importação e Exportação
+                                                                    <input type="checkbox" id="270" name="cadastro[opcoes][270]" value="38"> NFC-e
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -450,13 +390,9 @@
                                                     <tr>
                                                         <td>
                                                             <div class="checkbox">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label></label>
+                                                                <label>
+                                                                    <input type="checkbox" id="253" name="cadastro[opcoes][253]" value="36"> Estoque
+                                                                </label>
                                                             </div>
                                                         </td>
 
@@ -469,7 +405,7 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="27" name="cadastro[opcoes][27]" value="4"> Configurações PDV
+                                                                    <input type="checkbox" id="271" name="cadastro[opcoes][271]" value="39"> NovoERP
                                                                 </label>
                                                             </div>
                                                         </td>
@@ -478,13 +414,9 @@
                                                     <tr>
                                                         <td>
                                                             <div class="checkbox">
-                                                                <label></label>
-                                                            </div>
-                                                        </td>
-
-                                                        <td>
-                                                            <div class="checkbox">
-                                                                <label></label>
+                                                                <label>
+                                                                    <input type="checkbox" id="254" name="cadastro[opcoes][254]" value="36"> Exportação de Produtos para o Frente de Loja e Balanças
+                                                                </label>
                                                             </div>
                                                         </td>
 
@@ -497,8 +429,316 @@
                                                         <td>
                                                             <div class="checkbox">
                                                                 <label>
-                                                                    <input type="checkbox" id="28" name="cadastro[opcoes][28]" value="4"> Minha Conta
+                                                                    <input type="checkbox" id="272" name="cadastro[opcoes][272]" value="40"> Tramitador NF-e
                                                                 </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="255" name="cadastro[opcoes][255]" value="36"> Fechamento de Caixa
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="256" name="cadastro[opcoes][256]" value="36"> Importação de Vendas Cupons / Redução Z
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="257" name="cadastro[opcoes][257]" value="36"> Movimentações
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="258" name="cadastro[opcoes][258]" value="36"> Online de Vendas / Clientes
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="259" name="cadastro[opcoes][259]" value="36"> Pedidos de Vendas / DAV / Pré Vendas
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="260" name="cadastro[opcoes][260]" value="36"> Plano de Contas Gerencial / Contábil
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="261" name="cadastro[opcoes][261]" value="36"> Preços de Venda
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="262" name="cadastro[opcoes][262]" value="36"> Recebimento via Coletor / Nota Antecipada / Confronto XML
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="263" name="cadastro[opcoes][263]" value="36"> Relatórios de Entradas e Saidas
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="264" name="cadastro[opcoes][264]" value="36"> Relatórios Fiscais
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="265" name="cadastro[opcoes][265]" value="36"> Rotina de Convênio
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="266" name="cadastro[opcoes][266]" value="36"> Rotina de Produção / Transformação
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="267" name="cadastro[opcoes][267]" value="36"> SPED / Sintegra
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" id="268" name="cadastro[opcoes][268]" value="36"> WMS
+                                                                </label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
+                                                            </div>
+                                                        </td>
+
+                                                        <td>
+                                                            <div class="checkbox">
+                                                                <label></label>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -516,7 +756,7 @@
 
                 </div><!-- primeira coluna principal -->
 
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <!-- segunda coluna principal -->
                     <div class="row">
                         <!-- painel usuário -->

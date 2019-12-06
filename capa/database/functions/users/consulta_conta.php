@@ -28,7 +28,7 @@ function verificaAlteracaoDoTime($db, $time, $id)
  * @param - objeto com uma conexão aberta
  * @param - string com o id do chat
  */
-function consultaEspecialidadesDoUsuario($db, $id)
+/* function consultaEspecialidadesDoUsuario($db, $id)
 {
   $query =
     "SELECT
@@ -46,6 +46,31 @@ function consultaEspecialidadesDoUsuario($db, $id)
 
   while ($linha = mysqli_fetch_array($resultado)) {
     array_push($dados, $linha['id_modulo']);
+  }
+
+  return $dados;
+} */
+
+/**
+ * consulta as especialidades do usuário
+ * @param - objeto com uma conexão aberta
+ * @param - string com o id do chat
+ */
+function consultaEspecialidadesDoUsuario($db, $id)
+{
+  $query =
+    "SELECT
+        id_especialidade
+    FROM av_dashboard_colaborador_especialidades
+    WHERE (id_colaborador = $id)
+        AND (conhecimento = 1)";
+  
+  $resultado = mysqli_query($db, $query);
+
+  $dados = array();
+
+  while ($linha = mysqli_fetch_array($resultado)) {
+    array_push($dados, $linha['id_especialidade']);
   }
 
   return $dados;

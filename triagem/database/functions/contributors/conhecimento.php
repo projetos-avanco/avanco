@@ -7,7 +7,7 @@
  * @param - inteiro com a quantidade de colaboradores online
  * @param - objeto com uma conexão aberta
  */
-function verificaNivelDeConhecimentoDosColaboradoresOnline($colaboradores, $cliente, $quantidade, $db)
+/* function verificaNivelDeConhecimentoDosColaboradoresOnline($colaboradores, $cliente, $quantidade, $db)
 {
   $posicao = 0;
 
@@ -57,4 +57,49 @@ function verificaNivelDeConhecimentoDosColaboradoresOnline($colaboradores, $clie
   }
 
   return $colaboradores;
+} */
+
+/**
+ * verifica o nível de conhecimento dos colaboradores
+ * @param - array com os dados dos colaboradores online
+ * @param - array com os dados do cliente que chamou pelo portal avanço
+ * @param - inteiro com a quantidade de colaboradores online
+ * @param - objeto com uma conexão aberta
+ */
+function verificaNivelDeConhecimentoDosColaboradoresOnline($colaboradores, $cliente, $quantidade, $db)
+{
+    $posicao = 0;
+
+    # executando a query para todos os colaboradores do array
+    while ($posicao < $quantidade) {
+
+        $query =
+            "SELECT
+                conhecimento
+            FROM av_dashboard_colaborador_especialidades
+            WHERE (id_colaborador = {$colaboradores[$posicao]['id']})
+                AND (id_especialidade = {$cliente['modulo']})";
+
+        # verificando se a query pode ser executada
+        if ($resultado = $db->query($query)) {
+
+            # recuperando o percentual de conhecimento
+            while ($registro = $resultado->fetch_array(MYSQLI_ASSOC)) {
+
+                $colaboradores[$posicao]['conhecimento'] = $registro['conhecimento'];
+            }
+        } else {
+
+            $msg = 'Erro ao executar a consulta de conhecimento dos colaboradores!';
+
+            # retornando mensagem para o portal avanço
+            echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+
+            exit;
+        }
+
+        $posicao++;
+    }
+
+    return $colaboradores;
 }
