@@ -68,7 +68,7 @@ if ($cliente['produto'] == '33') {
     switch ($cliente['modulo']) {
         case '238': # FGF / Systax
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '14' || $colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '14' || $colaboradores[$i]['id'] == '64') {
                     $colaborador = [];
 
                     array_push($colaborador, $colaboradores[$i]);
@@ -155,7 +155,7 @@ if ($cliente['produto'] == '36') {
             $capitaes = [];
 
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '64') {
                     array_push($capitaes, $colaboradores[$i]);
                 }
             }
@@ -171,7 +171,7 @@ if ($cliente['produto'] == '36') {
             $capitaes = [];
 
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '64') {
                     array_push($capitaes, $colaboradores[$i]);
                 }
             }
@@ -187,7 +187,7 @@ if ($cliente['produto'] == '36') {
             $capitaes = [];
 
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '64') {
                     array_push($capitaes, $colaboradores[$i]);
                 }
             }
@@ -243,7 +243,7 @@ if ($cliente['produto'] == '36') {
             $capitaes = [];
 
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '64') {
                     array_push($capitaes, $colaboradores[$i]);
                 }
             }
@@ -259,7 +259,7 @@ if ($cliente['produto'] == '36') {
             $capitaes = [];
 
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '23' || $colaboradores[$i]['id'] == '30' || $colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '23' || $colaboradores[$i]['id'] == '30' || $colaboradores[$i]['id'] == '64') {
                     array_push($capitaes, $colaboradores[$i]);
                 }
             }
@@ -317,7 +317,7 @@ if ($cliente['produto'] == '36') {
             $capitaes = [];
 
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '64') {
                     array_push($capitaes, $colaboradores[$i]);
                 }
             }
@@ -375,7 +375,7 @@ if ($cliente['produto'] == '36') {
             $capitaes = [];
 
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '64') {
                     array_push($capitaes, $colaboradores[$i]);
                 }
             }
@@ -389,7 +389,7 @@ if ($cliente['produto'] == '36') {
             break;
         case '265': # Rotina de Convênio
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '64') {
                     $colaborador = [];
 
                     array_push($colaborador, $colaboradores[$i]);
@@ -411,7 +411,7 @@ if ($cliente['produto'] == '36') {
             $capitaes = [];
 
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '64') {
                     array_push($capitaes, $colaboradores[$i]);
                 }
             }
@@ -455,7 +455,7 @@ if ($cliente['produto'] == '38') {
     switch ($cliente['modulo']) {
         case '270': # NFC-e
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '64') {
+                if ($colaboradores[$i]['id'] == '49') {
                     $colaborador = [];
 
                     array_push($colaborador, $colaboradores[$i]);
@@ -485,7 +485,7 @@ if ($cliente['produto'] == '40') {
     switch ($cliente['modulo']) {
         case '272': # Tramitador NF-e
             for ($i = 0; $i < $contador; $i++) {
-                if ($colaboradores[$i]['id'] == '23' || $colaboradores[$i]['id'] == '64' || $colaboradores[$i]['id'] == '66') {
+                if ($colaboradores[$i]['id'] == '23' || $colaboradores[$i]['id'] == '49' || $colaboradores[$i]['id'] == '64') {
                     $colaborador = [];
 
                     array_push($colaborador, $colaboradores[$i]);

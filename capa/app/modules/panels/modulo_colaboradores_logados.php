@@ -56,7 +56,7 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
   $db    = abre_conexao();
 
   # verificando se um capitão está logado no portal avanção
-  if ($nivel == 1 || ($nivel == 3 && $_SESSION['usuario']['id'] == 66)) {
+  if ($nivel == 1) {
 
     # verificando qual é o id do time do capitão que está logado
     switch ($id) {
@@ -68,7 +68,7 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
   
           break;
   
-      case '64':
+      case '49':
   
         $dados['time']    = 7;
         $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time phoenix
@@ -89,7 +89,7 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
           
           break;
 
-      case '66':
+      case '64':
   
         $dados['time']    = 10;
         $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time specialists
