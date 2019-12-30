@@ -52,7 +52,7 @@ function consultaColaboradores($options, $db)
         	surname AS sobrenome
         FROM lh_users
         WHERE (disabled = 0)
-        	AND NOT (id = 1 OR id = 2 OR id = 3 OR id = 4 OR id = 5 OR id = 6 OR id = 42 OR id = 44 OR id = 61)
+        	AND NOT (id = 1 OR id = 2 OR id = 3 OR id = 4 OR id = 6 OR id = 44)
         ORDER BY nome";
 
       # verificando se a consulta pode ser executada
