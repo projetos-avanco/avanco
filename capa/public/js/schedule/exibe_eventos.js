@@ -18,44 +18,68 @@ $(function() {
             eventLimit: true,
             events: [ // adicionando cor de fundo para os feriados
                 {
-                    start: '2019-01-01',
-                    end: '2019-01-01',
+                    start: '2020-01-01',
+                    end: '2020-01-01',
                     rendering: 'background',
                     color: '#F6CECE'
                 },
                 {
-                    start: '2019-03-05',
-                    end: '2019-03-05',
+                    start: '2020-02-25',
+                    end: '2020-02-25',
                     rendering: 'background',
                     color: '#F6CECE'
                 },
                 {
-                    start: '2019-04-19',
-                    end: '2019-04-19',
+                    start: '2020-02-26',
+                    end: '2020-02-26',
                     rendering: 'background',
                     color: '#F6CECE'
                 },
                 {
-                    start: '2019-05-01',
-                    end: '2019-05-01',
+                    start: '2020-04-21',
+                    end: '2020-04-21',
                     rendering: 'background',
                     color: '#F6CECE'
                 },
                 {
-                    start: '2019-06-20',
-                    end: '2019-06-20',
+                    start: '2020-05-01',
+                    end: '2020-05-01',
                     rendering: 'background',
                     color: '#F6CECE'
                 },
                 {
-                    start: '2019-11-15',
-                    end: '2019-11-15',
+                    start: '2020-06-11',
+                    end: '2020-06-11',
                     rendering: 'background',
                     color: '#F6CECE'
                 },
                 {
-                    start: '2019-12-25',
-                    end: '2019-12-25',
+                    start: '2020-09-07',
+                    end: '2020-09-07',
+                    rendering: 'background',
+                    color: '#F6CECE'
+                },
+                {
+                    start: '2020-10-12',
+                    end: '2020-10-12',
+                    rendering: 'background',
+                    color: '#F6CECE'
+                },
+                {
+                    start: '2020-11-02',
+                    end: '2020-11-02',
+                    rendering: 'background',
+                    color: '#F6CECE'
+                },
+                {
+                    start: '2020-11-15',
+                    end: '2020-11-15',
+                    rendering: 'background',
+                    color: '#F6CECE'
+                },
+                {
+                    start: '2020-12-25',
+                    end: '2020-12-25',
                     rendering: 'background',
                     color: '#F6CECE'
                 },
