@@ -206,7 +206,7 @@ function enviaEmailDeAprovacaoDeFerias($emailColaborador, $pedido, $tipo)
     $email->Host       = 'email.avancoinfo.com.br';
     $email->SMTPAuth   = true;
     $email->Username   = 'ferias@avancoinfo.com.br';
-    $email->Password   = '7se8X5uKDP';
+    $email->Password   = 'Avanco20Anos';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
@@ -435,7 +435,7 @@ function enviaEmailDeConfirmacaoDeExercicioDeFerias($emailColaborador, $inicial,
     $email->Host       = 'email.avancoinfo.com.br';
     $email->SMTPAuth   = true;
     $email->Username   = 'ferias@avancoinfo.com.br';
-    $email->Password   = '7se8X5uKDP';
+    $email->Password   = 'Avanco20Anos';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
@@ -664,7 +664,7 @@ function enviaEmailDeSolicitacaoDaAprovacaoDoPedidoDeFerias($pedido, $tipo)
     $email->Host       = 'email.avancoinfo.com.br';
     $email->SMTPAuth   = true;
     $email->Username   = 'ferias@avancoinfo.com.br';
-    $email->Password   = '7se8X5uKDP';
+    $email->Password   = 'Avanco20Anos';
     $email->SMTPSecure = 'ssl';
     $email->Port       = 465;
 
