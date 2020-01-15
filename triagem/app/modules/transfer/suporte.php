@@ -33,7 +33,13 @@ function consultaChatSuporte()
     $quantidade = count($colaboradores);
     
     ### === Curva ABC
-    if ($quantidade >= 1 && ($cliente['conta_contrato'] == '0000573' || $cliente['conta_contrato'] == '0000197')) {
+    if (
+        $quantidade >= 1 && (
+            $cliente['conta_contrato'] == '0000573' ||
+            $cliente['conta_contrato'] == '0000197' ||
+            $cliente['conta_contrato'] == '0000127'
+            )
+        ) {
         include 'curva/curva_abc.php';
     }
     ### === Curva ABC
