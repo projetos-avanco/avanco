@@ -54,7 +54,7 @@ function recuperaDados($array, $metodo)
       $array['nome_usuario']   = ucwords($valor['nome_usuario']);
       $array['cnpj']           = $valor['cnpj'];
       $array['conta_contrato'] = $valor['conta_contrato'];
-      $array['razao_social']   = strtoupper($valor['razao_social']);
+      $array['razao_social']   = trim(substr(strtoupper($valor['razao_social']), 0, 49));
       $array['produto']        = $valor['produto'];
       $array['modulo']         = $valor['modulo'];
       $array['duvida']         = ucwords($valor['duvida']);
