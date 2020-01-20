@@ -64,8 +64,10 @@ $(function() {
 
         exercicio.dia = date.getDate();
 
-        // diminuindo 30 dias (1 meses) na data de vencimento
-        date.setDate(exercicio.dia - 30);
+        if (exercicio.regime != '2' && exercicio.contrato != '1') {
+            // diminuindo 30 dias (1 meses) na data de vencimento
+            date.setDate(exercicio.dia - 30);
+        }
 
         /*
         // verificando se o regime do colaborador é clt
@@ -79,10 +81,12 @@ $(function() {
         }
         */
 
-        // dividindo a data de admissão em array para recuperar o exercício final
-        exercicio.tmp = date.toISOString();
-        exercicio.tmp = exercicio.tmp.split('T');
-        exercicio.vencimento = exercicio.tmp[0];
+        if (exercicio.regime != '2' && exercicio.contrato != '1') {
+            // dividindo a data de admissão em array para recuperar o exercício final
+            exercicio.tmp = date.toISOString();
+            exercicio.tmp = exercicio.tmp.split('T');
+            exercicio.vencimento = exercicio.tmp[0];
+        }
 
         // setando valor default
         $('#data-inicial-1').val('');
