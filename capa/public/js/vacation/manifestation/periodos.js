@@ -59,8 +59,8 @@ $(function() {
 
         $('#exercicio-vencimento').val(exercicio.vencimento);
 
-        //var date = new Date(exercicio.vencimento);
-        var date = new Date(exercicio.final);
+        var date = new Date(exercicio.vencimento);
+        //var date = new Date(exercicio.final);
 
         exercicio.dia = date.getDate();
 
