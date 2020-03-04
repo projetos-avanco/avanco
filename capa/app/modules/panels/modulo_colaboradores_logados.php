@@ -75,7 +75,7 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
   
           break;
   
-      case '14':
+      case '58':
   
         $dados['time']    = 8;
         $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time integradores
@@ -89,7 +89,7 @@ function retornaIdDosColaboradoresDoTime($id, $nivel, $dados)
           
           break;
 
-      case '64':
+      case '14':
   
         $dados['time']    = 10;
         $dados['exibir_opcoes'] = true; # permitindo exibição das opções offline/online dos colaboradores do time specialists
