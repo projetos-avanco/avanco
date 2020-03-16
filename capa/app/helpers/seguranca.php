@@ -69,8 +69,8 @@ function verificaUsuarioLogado($pagina, $id = null)
       if (($pagina == 'metas_capitaes_selecao.php') AND (
             $id == 14 OR
             $id == 23 OR
-            $id == 30 OR
-            $id == 49 OR
+            $id == 33 OR
+            $id == 93 OR
             $id == 58)
 
             OR
@@ -78,8 +78,8 @@ function verificaUsuarioLogado($pagina, $id = null)
           ($pagina == 'metas_capitaes.php') AND (
             $id == 14 OR
             $id == 23 OR
-            $id == 30 OR
-            $id == 49 OR
+            $id == 33 OR
+            $id == 93 OR
             $id == 58)) {
 
         return true;
